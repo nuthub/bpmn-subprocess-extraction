@@ -1,0 +1,135 @@
+<pnml xmlns="http://www.pnml.org/version-2009/grammar/pnml">
+  <net id="net0" type="http://www.pnml.org/version-2009/grammar/ptnet">
+    <page id="page0">
+      <transition id="StartEvent_1">
+        <name>
+          <text>start</text>
+        </name>
+      </transition>
+      <transition id="IntermediateThrowEvent_2">
+        <name>
+          <text>Intermediate Throw Event 2</text>
+        </name>
+      </transition>
+      <transition id="ExclusiveGateway_2.SequenceFlow_6">
+        <name>
+          <text></text>
+        </name>
+      </transition>
+      <transition id="IntermediateThrowEvent_1">
+        <name>
+          <text>Intermediate Throw Event 1</text>
+        </name>
+      </transition>
+      <transition id="EndEvent_1">
+        <name>
+          <text>end</text>
+        </name>
+      </transition>
+      <transition id="SequenceFlow_7.ExclusiveGateway_1">
+        <name>
+          <text></text>
+        </name>
+      </transition>
+      <transition id="IntermediateThrowEvent_3">
+        <name>
+          <text>Intermediate Throw Event 3</text>
+        </name>
+      </transition>
+      <transition id="ExclusiveGateway_2.SequenceFlow_1">
+        <name>
+          <text></text>
+        </name>
+      </transition>
+      <transition id="SequenceFlow_3.ExclusiveGateway_1">
+        <name>
+          <text></text>
+        </name>
+      </transition>
+      <place id="P-EndEvent_1-null">
+        <name>
+          <text>P0</text>
+        </name>
+      </place>
+      <place id="P-IntermediateThrowEvent_3-SequenceFlow_7.ExclusiveGateway_1">
+        <name>
+          <text>P1</text>
+        </name>
+      </place>
+      <place id="P-StartEvent_1-IntermediateThrowEvent_1">
+        <name>
+          <text>P2</text>
+        </name>
+      </place>
+      <place id="P-ExclusiveGateway_2.SequenceFlow_6-IntermediateThrowEvent_3">
+        <name>
+          <text>P3</text>
+        </name>
+      </place>
+      <place id="P-null-StartEvent_1">
+        <name>
+          <text>P4</text>
+        </name>
+        <initialMarking>
+          <text>1</text>
+        </initialMarking>
+      </place>
+      <place id="P-ExclusiveGateway_2.SequenceFlow_1-EndEvent_1">
+        <name>
+          <text>P5</text>
+        </name>
+      </place>
+      <place id="P-IntermediateThrowEvent_2-ExclusiveGateway_2">
+        <name>
+          <text>P6</text>
+        </name>
+      </place>
+      <place id="P-ExclusiveGateway_1-IntermediateThrowEvent_2">
+        <name>
+          <text>P7</text>
+        </name>
+      </place>
+      <place id="P-IntermediateThrowEvent_1-SequenceFlow_3.ExclusiveGateway_1">
+        <name>
+          <text>P8</text>
+        </name>
+      </place>
+      <arc id="P-ExclusiveGateway_1-IntermediateThrowEvent_2--IntermediateThrowEvent_2" source="P-ExclusiveGateway_1-IntermediateThrowEvent_2" target="IntermediateThrowEvent_2">
+      </arc>
+      <arc id="ExclusiveGateway_2.SequenceFlow_6--P-ExclusiveGateway_2.SequenceFlow_6-IntermediateThrowEvent_3" source="ExclusiveGateway_2.SequenceFlow_6" target="P-ExclusiveGateway_2.SequenceFlow_6-IntermediateThrowEvent_3">
+      </arc>
+      <arc id="SequenceFlow_7.ExclusiveGateway_1--P-ExclusiveGateway_1-IntermediateThrowEvent_2" source="SequenceFlow_7.ExclusiveGateway_1" target="P-ExclusiveGateway_1-IntermediateThrowEvent_2">
+      </arc>
+      <arc id="P-IntermediateThrowEvent_2-ExclusiveGateway_2--ExclusiveGateway_2.SequenceFlow_1" source="P-IntermediateThrowEvent_2-ExclusiveGateway_2" target="ExclusiveGateway_2.SequenceFlow_1">
+      </arc>
+      <arc id="IntermediateThrowEvent_3--P-IntermediateThrowEvent_3-SequenceFlow_7.ExclusiveGateway_1" source="IntermediateThrowEvent_3" target="P-IntermediateThrowEvent_3-SequenceFlow_7.ExclusiveGateway_1">
+      </arc>
+      <arc id="P-IntermediateThrowEvent_3-SequenceFlow_7.ExclusiveGateway_1--SequenceFlow_7.ExclusiveGateway_1" source="P-IntermediateThrowEvent_3-SequenceFlow_7.ExclusiveGateway_1" target="SequenceFlow_7.ExclusiveGateway_1">
+      </arc>
+      <arc id="StartEvent_1--P-StartEvent_1-IntermediateThrowEvent_1" source="StartEvent_1" target="P-StartEvent_1-IntermediateThrowEvent_1">
+      </arc>
+      <arc id="EndEvent_1--P-EndEvent_1-null" source="EndEvent_1" target="P-EndEvent_1-null">
+      </arc>
+      <arc id="SequenceFlow_3.ExclusiveGateway_1--P-ExclusiveGateway_1-IntermediateThrowEvent_2" source="SequenceFlow_3.ExclusiveGateway_1" target="P-ExclusiveGateway_1-IntermediateThrowEvent_2">
+      </arc>
+      <arc id="P-StartEvent_1-IntermediateThrowEvent_1--IntermediateThrowEvent_1" source="P-StartEvent_1-IntermediateThrowEvent_1" target="IntermediateThrowEvent_1">
+      </arc>
+      <arc id="P-null-StartEvent_1--StartEvent_1" source="P-null-StartEvent_1" target="StartEvent_1">
+      </arc>
+      <arc id="P-IntermediateThrowEvent_1-SequenceFlow_3.ExclusiveGateway_1--SequenceFlow_3.ExclusiveGateway_1" source="P-IntermediateThrowEvent_1-SequenceFlow_3.ExclusiveGateway_1" target="SequenceFlow_3.ExclusiveGateway_1">
+      </arc>
+      <arc id="P-IntermediateThrowEvent_2-ExclusiveGateway_2--ExclusiveGateway_2.SequenceFlow_6" source="P-IntermediateThrowEvent_2-ExclusiveGateway_2" target="ExclusiveGateway_2.SequenceFlow_6">
+      </arc>
+      <arc id="ExclusiveGateway_2.SequenceFlow_1--P-ExclusiveGateway_2.SequenceFlow_1-EndEvent_1" source="ExclusiveGateway_2.SequenceFlow_1" target="P-ExclusiveGateway_2.SequenceFlow_1-EndEvent_1">
+      </arc>
+      <arc id="IntermediateThrowEvent_1--P-IntermediateThrowEvent_1-SequenceFlow_3.ExclusiveGateway_1" source="IntermediateThrowEvent_1" target="P-IntermediateThrowEvent_1-SequenceFlow_3.ExclusiveGateway_1">
+      </arc>
+      <arc id="IntermediateThrowEvent_2--P-IntermediateThrowEvent_2-ExclusiveGateway_2" source="IntermediateThrowEvent_2" target="P-IntermediateThrowEvent_2-ExclusiveGateway_2">
+      </arc>
+      <arc id="P-ExclusiveGateway_2.SequenceFlow_6-IntermediateThrowEvent_3--IntermediateThrowEvent_3" source="P-ExclusiveGateway_2.SequenceFlow_6-IntermediateThrowEvent_3" target="IntermediateThrowEvent_3">
+      </arc>
+      <arc id="P-ExclusiveGateway_2.SequenceFlow_1-EndEvent_1--EndEvent_1" source="P-ExclusiveGateway_2.SequenceFlow_1-EndEvent_1" target="EndEvent_1">
+      </arc>
+    </page>
+  </net>
+</pnml>

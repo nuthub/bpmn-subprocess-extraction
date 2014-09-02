@@ -1,0 +1,97 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>edu.udo.cs.ls14.jf</groupId>
+	<artifactId>bpmn2pnml</artifactId>
+	<version>0.0.1-SNAPSHOT</version>
+	<properties>
+		<pnml.version>2.2.4.SNAPSHOT</pnml.version>
+	</properties>
+	<dependencies>
+		<dependency>
+			<groupId>org.eclipse</groupId>
+			<artifactId>org.eclipse.bpmn2</artifactId>
+			<version>1.0.0.201406050616</version>
+		</dependency>
+		<dependency>
+			<groupId>org.eclipse.emf</groupId>
+			<artifactId>org.eclipse.emf.ecore.xmi</artifactId>
+			<version>2.10.0-v20140514-1158</version>
+		</dependency>
+		<dependency>
+			<groupId>org.eclipse.emf</groupId>
+			<artifactId>org.eclipse.emf.ecore</artifactId>
+			<version>2.10.0-v20140514-1158</version>
+		</dependency>
+		<dependency>
+			<groupId>org.eclipse.emf</groupId>
+			<artifactId>org.eclipse.emf.common</artifactId>
+			<version>2.10.0-v20140514-1158</version>
+		</dependency>
+		<dependency>
+			<groupId>fr.lip6.move.pnml</groupId>
+			<artifactId>fr.lip6.move.pnml.framework.3rdpartimports</artifactId>
+			<version>2.2.0.qualifier</version>
+		</dependency>
+		<dependency>
+			<groupId>fr.lip6.move.pnml</groupId>
+			<artifactId>fr.lip6.move.pnml.framework.utils</artifactId>
+			<version>${pnml.version}</version>
+		</dependency>
+		<!-- declare the PNML Framework Petri Net libraries. See below -->
+		<dependency>
+			<groupId>fr.lip6.move.pnml</groupId>
+			<artifactId>fr.lip6.move.pnml.framework.coremodel</artifactId>
+			<version>${pnml.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>fr.lip6.move.pnml</groupId>
+			<artifactId>fr.lip6.move.pnml.framework.ptnet</artifactId>
+			<version>${pnml.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<version>4.11</version>
+			<scope>test</scope>
+		</dependency>
+		<!-- <dependency> <groupId>fr.lip6.move.pnml</groupId> <artifactId>fr.lip6.move.pnml.framework.symmetricnet</artifactId> 
+			<version>${pnml.version}</version> </dependency> <dependency> <groupId>fr.lip6.move.pnml</groupId> 
+			<artifactId>fr.lip6.move.pnml.framework.hlpn</artifactId> <version>${pnml.version}</version> 
+			</dependency> <dependency> <groupId>fr.lip6.move.pnml</groupId> <artifactId>fr.lip6.move.pnml.framework.pthlpng</artifactId> 
+			<version>${pnml.version}</version> </dependency> -->
+		<dependency>
+			<groupId>org.apache.commons</groupId>
+			<artifactId>commons-lang3</artifactId>
+			<version>3.3.2</version>
+		</dependency>
+		<dependency>
+			<groupId>net.sf.jung</groupId>
+			<artifactId>jung-visualization</artifactId>
+			<version>2.0.1</version>
+		</dependency>
+		<dependency>
+			<groupId>net.sf.jung</groupId>
+			<artifactId>jung-graph-impl</artifactId>
+			<version>2.0.1</version>
+		</dependency>
+		<dependency>
+			<groupId>net.sf.jung</groupId>
+			<artifactId>jung-io</artifactId>
+			<version>2.0.1</version>
+		</dependency>
+	</dependencies>
+	<repositories>
+		<repository>
+			<id>pnml.framework</id>
+			<url>http://miage11.u-paris10.fr:8081/nexus/content/groups/public/</url>
+			<releases>
+				<enabled>true</enabled>
+			</releases>
+			<snapshots>
+				<enabled>true</enabled>
+			</snapshots>
+		</repository>
+
+	</repositories>
+</project>
