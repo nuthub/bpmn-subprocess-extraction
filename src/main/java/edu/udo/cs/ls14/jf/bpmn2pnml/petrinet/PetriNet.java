@@ -25,6 +25,13 @@ import fr.lip6.move.pnml.ptnet.hlapi.PetriNetHLAPI;
 import fr.lip6.move.pnml.ptnet.hlapi.PlaceHLAPI;
 import fr.lip6.move.pnml.ptnet.hlapi.TransitionHLAPI;
 
+/**
+ * 
+ * @author flake
+ * 
+ * @deprecated use PNML Framework
+ */
+@Deprecated
 public class PetriNet {
 
 	private PetriNetDocHLAPI doc;
@@ -59,8 +66,8 @@ public class PetriNet {
 		return t.getId();
 	}
 
-	public String addPlace(String id, String label, boolean marked) throws InvalidIDException,
-			VoidRepositoryException {
+	public String addPlace(String id, String label, boolean marked)
+			throws InvalidIDException, VoidRepositoryException {
 		PTMarkingHLAPI m = null;
 		if (marked) {
 			m = new PTMarkingHLAPI(1);
