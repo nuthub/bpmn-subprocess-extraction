@@ -1,4 +1,4 @@
-package edu.udo.cs.ls14.jf.bpmn2pnml.util;
+package edu.udo.cs.ls14.jf.bpmn2pnml;
 
 import java.net.URL;
 

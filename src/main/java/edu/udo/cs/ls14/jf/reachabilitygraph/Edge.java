@@ -1,4 +1,4 @@
-package edu.udo.cs.ls14.jf.pnml2reachabilitygraph.model;
+package edu.udo.cs.ls14.jf.reachabilitygraph;
 
 public class Edge {
 

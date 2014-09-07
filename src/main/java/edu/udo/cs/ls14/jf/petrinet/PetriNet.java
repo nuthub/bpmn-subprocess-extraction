@@ -1,4 +1,4 @@
-package edu.udo.cs.ls14.jf.bpmn2pnml.petrinet;
+package edu.udo.cs.ls14.jf.petrinet;
 
 import java.io.IOException;
 import java.util.HashMap;
@@ -123,6 +123,10 @@ public class PetriNet {
 		}
 		sb.append(" }");
 		return sb.toString();
+	}
+	
+	public PetriNetHLAPI toPTNet() {
+		return net;
 	}
 
 	public String toPNML() {
