@@ -9,7 +9,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import edu.udo.cs.ls14.jf.bpmn2pnml.Bpmn2PnmlConverter;
-import edu.udo.cs.ls14.jf.bpmn2pnml.util.ProcessLoader;
+import edu.udo.cs.ls14.jf.bpmn2pnml.ProcessLoader;
 
 public class Bpmn2PnmlConverterTest {
 
@@ -29,6 +29,11 @@ public class Bpmn2PnmlConverterTest {
 	public void testXorWEventsTransformation() throws Exception {
 		runConversion("xor-example");
 	}
+	
+	@Test
+	public void testLoopingXorTransformation() throws Exception {
+		runConversion("looping-xor");
+	}
 
 	@Test
 	public void testPM1Transformation() throws Exception {
@@ -41,7 +46,7 @@ public class Bpmn2PnmlConverterTest {
 	}
 
 	private void runConversion(String basename) throws Exception {
-		URL url = getClass().getResource(basename + ".bpmn");
+		URL url = getClass().getResource("../../bpmn/" + basename + ".bpmn");
 		assertNotNull(url);
 		Process process = ProcessLoader.loadFirstProcessFromResource(url);
 		converter.convertToPnmlFile(process, "/tmp/" + basename + ".pnml");
