@@ -1,0 +1,186 @@
+<pnml xmlns="http://www.pnml.org/version-2009/grammar/pnml">
+  <net id="net0" type="http://www.pnml.org/version-2009/grammar/ptnet">
+    <page id="page0">
+      <transition id="StartEvent_1">
+        <name>
+          <text>start</text>
+        </name>
+      </transition>
+      <transition id="ExclusiveGateway_4.SequenceFlow_8">
+        <name>
+          <text></text>
+        </name>
+      </transition>
+      <transition id="SequenceFlow_2.ExclusiveGateway_1">
+        <name>
+          <text></text>
+        </name>
+      </transition>
+      <transition id="Task_3">
+        <name>
+          <text>Task 3</text>
+        </name>
+      </transition>
+      <transition id="SequenceFlow_9.ExclusiveGateway_5">
+        <name>
+          <text></text>
+        </name>
+      </transition>
+      <transition id="ExclusiveGateway_3.SequenceFlow_12">
+        <name>
+          <text></text>
+        </name>
+      </transition>
+      <transition id="EndEvent_1">
+        <name>
+          <text>end</text>
+        </name>
+      </transition>
+      <transition id="ExclusiveGateway_3.SequenceFlow_1">
+        <name>
+          <text></text>
+        </name>
+      </transition>
+      <transition id="Task_2">
+        <name>
+          <text>Task 2</text>
+        </name>
+      </transition>
+      <transition id="Task_1">
+        <name>
+          <text>Task 1</text>
+        </name>
+      </transition>
+      <transition id="ExclusiveGateway_4.SequenceFlow_7">
+        <name>
+          <text></text>
+        </name>
+      </transition>
+      <transition id="SequenceFlow_10.ExclusiveGateway_5">
+        <name>
+          <text></text>
+        </name>
+      </transition>
+      <transition id="SequenceFlow_13.ExclusiveGateway_1">
+        <name>
+          <text></text>
+        </name>
+      </transition>
+      <place id="P-ExclusiveGateway_4.SequenceFlow_8-Task_3">
+        <name>
+          <text>P0</text>
+        </name>
+      </place>
+      <place id="P-ExclusiveGateway_4.SequenceFlow_7-Task_2">
+        <name>
+          <text>P1</text>
+        </name>
+      </place>
+      <place id="P-StartEvent_1-SequenceFlow_2.ExclusiveGateway_1">
+        <name>
+          <text>P2</text>
+        </name>
+      </place>
+      <place id="P-Task_3-SequenceFlow_9.ExclusiveGateway_5">
+        <name>
+          <text>P3</text>
+        </name>
+      </place>
+      <place id="P-ExclusiveGateway_3.SequenceFlow_1-EndEvent_1">
+        <name>
+          <text>P4</text>
+        </name>
+      </place>
+      <place id="P-null-StartEvent_1">
+        <name>
+          <text>P5</text>
+        </name>
+        <initialMarking>
+          <text>1</text>
+        </initialMarking>
+      </place>
+      <place id="P-Task_1-ExclusiveGateway_3">
+        <name>
+          <text>P6</text>
+        </name>
+      </place>
+      <place id="P-EndEvent_1-null">
+        <name>
+          <text>P7</text>
+        </name>
+      </place>
+      <place id="P-ExclusiveGateway_3.SequenceFlow_12-ExclusiveGateway_4">
+        <name>
+          <text>P8</text>
+        </name>
+      </place>
+      <place id="P-Task_2-SequenceFlow_10.ExclusiveGateway_5">
+        <name>
+          <text>P9</text>
+        </name>
+      </place>
+      <place id="P-ExclusiveGateway_5-SequenceFlow_13.ExclusiveGateway_1">
+        <name>
+          <text>P10</text>
+        </name>
+      </place>
+      <place id="P-ExclusiveGateway_1-Task_1">
+        <name>
+          <text>P11</text>
+        </name>
+      </place>
+      <arc id="P-Task_1-ExclusiveGateway_3--ExclusiveGateway_3.SequenceFlow_1" source="P-Task_1-ExclusiveGateway_3" target="ExclusiveGateway_3.SequenceFlow_1">
+      </arc>
+      <arc id="P-Task_1-ExclusiveGateway_3--ExclusiveGateway_3.SequenceFlow_12" source="P-Task_1-ExclusiveGateway_3" target="ExclusiveGateway_3.SequenceFlow_12">
+      </arc>
+      <arc id="ExclusiveGateway_4.SequenceFlow_8--P-ExclusiveGateway_4.SequenceFlow_8-Task_3" source="ExclusiveGateway_4.SequenceFlow_8" target="P-ExclusiveGateway_4.SequenceFlow_8-Task_3">
+      </arc>
+      <arc id="P-StartEvent_1-SequenceFlow_2.ExclusiveGateway_1--SequenceFlow_2.ExclusiveGateway_1" source="P-StartEvent_1-SequenceFlow_2.ExclusiveGateway_1" target="SequenceFlow_2.ExclusiveGateway_1">
+      </arc>
+      <arc id="SequenceFlow_10.ExclusiveGateway_5--P-ExclusiveGateway_5-SequenceFlow_13.ExclusiveGateway_1" source="SequenceFlow_10.ExclusiveGateway_5" target="P-ExclusiveGateway_5-SequenceFlow_13.ExclusiveGateway_1">
+      </arc>
+      <arc id="SequenceFlow_9.ExclusiveGateway_5--P-ExclusiveGateway_5-SequenceFlow_13.ExclusiveGateway_1" source="SequenceFlow_9.ExclusiveGateway_5" target="P-ExclusiveGateway_5-SequenceFlow_13.ExclusiveGateway_1">
+      </arc>
+      <arc id="P-ExclusiveGateway_3.SequenceFlow_12-ExclusiveGateway_4--ExclusiveGateway_4.SequenceFlow_7" source="P-ExclusiveGateway_3.SequenceFlow_12-ExclusiveGateway_4" target="ExclusiveGateway_4.SequenceFlow_7">
+      </arc>
+      <arc id="Task_1--P-Task_1-ExclusiveGateway_3" source="Task_1" target="P-Task_1-ExclusiveGateway_3">
+      </arc>
+      <arc id="EndEvent_1--P-EndEvent_1-null" source="EndEvent_1" target="P-EndEvent_1-null">
+      </arc>
+      <arc id="SequenceFlow_13.ExclusiveGateway_1--P-ExclusiveGateway_1-Task_1" source="SequenceFlow_13.ExclusiveGateway_1" target="P-ExclusiveGateway_1-Task_1">
+      </arc>
+      <arc id="StartEvent_1--P-StartEvent_1-SequenceFlow_2.ExclusiveGateway_1" source="StartEvent_1" target="P-StartEvent_1-SequenceFlow_2.ExclusiveGateway_1">
+      </arc>
+      <arc id="P-ExclusiveGateway_3.SequenceFlow_1-EndEvent_1--EndEvent_1" source="P-ExclusiveGateway_3.SequenceFlow_1-EndEvent_1" target="EndEvent_1">
+      </arc>
+      <arc id="P-ExclusiveGateway_1-Task_1--Task_1" source="P-ExclusiveGateway_1-Task_1" target="Task_1">
+      </arc>
+      <arc id="P-null-StartEvent_1--StartEvent_1" source="P-null-StartEvent_1" target="StartEvent_1">
+      </arc>
+      <arc id="P-ExclusiveGateway_4.SequenceFlow_8-Task_3--Task_3" source="P-ExclusiveGateway_4.SequenceFlow_8-Task_3" target="Task_3">
+      </arc>
+      <arc id="Task_2--P-Task_2-SequenceFlow_10.ExclusiveGateway_5" source="Task_2" target="P-Task_2-SequenceFlow_10.ExclusiveGateway_5">
+      </arc>
+      <arc id="P-ExclusiveGateway_4.SequenceFlow_7-Task_2--Task_2" source="P-ExclusiveGateway_4.SequenceFlow_7-Task_2" target="Task_2">
+      </arc>
+      <arc id="SequenceFlow_2.ExclusiveGateway_1--P-ExclusiveGateway_1-Task_1" source="SequenceFlow_2.ExclusiveGateway_1" target="P-ExclusiveGateway_1-Task_1">
+      </arc>
+      <arc id="P-Task_3-SequenceFlow_9.ExclusiveGateway_5--SequenceFlow_9.ExclusiveGateway_5" source="P-Task_3-SequenceFlow_9.ExclusiveGateway_5" target="SequenceFlow_9.ExclusiveGateway_5">
+      </arc>
+      <arc id="ExclusiveGateway_3.SequenceFlow_12--P-ExclusiveGateway_3.SequenceFlow_12-ExclusiveGateway_4" source="ExclusiveGateway_3.SequenceFlow_12" target="P-ExclusiveGateway_3.SequenceFlow_12-ExclusiveGateway_4">
+      </arc>
+      <arc id="ExclusiveGateway_3.SequenceFlow_1--P-ExclusiveGateway_3.SequenceFlow_1-EndEvent_1" source="ExclusiveGateway_3.SequenceFlow_1" target="P-ExclusiveGateway_3.SequenceFlow_1-EndEvent_1">
+      </arc>
+      <arc id="Task_3--P-Task_3-SequenceFlow_9.ExclusiveGateway_5" source="Task_3" target="P-Task_3-SequenceFlow_9.ExclusiveGateway_5">
+      </arc>
+      <arc id="ExclusiveGateway_4.SequenceFlow_7--P-ExclusiveGateway_4.SequenceFlow_7-Task_2" source="ExclusiveGateway_4.SequenceFlow_7" target="P-ExclusiveGateway_4.SequenceFlow_7-Task_2">
+      </arc>
+      <arc id="P-Task_2-SequenceFlow_10.ExclusiveGateway_5--SequenceFlow_10.ExclusiveGateway_5" source="P-Task_2-SequenceFlow_10.ExclusiveGateway_5" target="SequenceFlow_10.ExclusiveGateway_5">
+      </arc>
+      <arc id="P-ExclusiveGateway_5-SequenceFlow_13.ExclusiveGateway_1--SequenceFlow_13.ExclusiveGateway_1" source="P-ExclusiveGateway_5-SequenceFlow_13.ExclusiveGateway_1" target="SequenceFlow_13.ExclusiveGateway_1">
+      </arc>
+      <arc id="P-ExclusiveGateway_3.SequenceFlow_12-ExclusiveGateway_4--ExclusiveGateway_4.SequenceFlow_8" source="P-ExclusiveGateway_3.SequenceFlow_12-ExclusiveGateway_4" target="ExclusiveGateway_4.SequenceFlow_8">
+      </arc>
+    </page>
+  </net>
+</pnml>
