@@ -16,9 +16,9 @@ import org.apache.commons.lang3.NotImplementedException;
 
 import edu.uci.ics.jung.graph.DirectedSparseMultigraph;
 import edu.uci.ics.jung.io.GraphMLWriter;
-import edu.udo.cs.ls14.jf.pnml2reachabilitygraph.model.Edge;
-import edu.udo.cs.ls14.jf.pnml2reachabilitygraph.model.Marking;
-import edu.udo.cs.ls14.jf.pnml2reachabilitygraph.model.Trace;
+import edu.udo.cs.ls14.jf.reachabilitygraph.Edge;
+import edu.udo.cs.ls14.jf.reachabilitygraph.Marking;
+import edu.udo.cs.ls14.jf.reachabilitygraph.Trace;
 import fr.lip6.move.pnml.framework.hlapi.HLAPIRootClass;
 import fr.lip6.move.pnml.framework.utils.PNMLUtils;
 import fr.lip6.move.pnml.ptnet.Arc;
@@ -28,6 +28,7 @@ import fr.lip6.move.pnml.ptnet.Place;
 import fr.lip6.move.pnml.ptnet.PnObject;
 import fr.lip6.move.pnml.ptnet.Transition;
 import fr.lip6.move.pnml.ptnet.hlapi.PetriNetDocHLAPI;
+import fr.lip6.move.pnml.ptnet.hlapi.PetriNetHLAPI;
 
 public class ReachabilityGraph extends DirectedSparseMultigraph<Marking, Edge> {
 
@@ -36,21 +37,8 @@ public class ReachabilityGraph extends DirectedSparseMultigraph<Marking, Edge> {
 	 */
 	private static final long serialVersionUID = 4381590121431152940L;
 
-	public void createFromPnml(File file) throws Exception {
-		HLAPIRootClass rc = PNMLUtils.importPnmlDocument(file, false);
-		if (!PNMLUtils.isPTNetDocument(rc)) {
-			throw new NotImplementedException(
-					"only fr.lip6.move.pnml.ptnet.hlapi.PetriNetDocHLAPI type pnml files implemented");
-		}
-		PetriNetDocHLAPI ptDoc = (PetriNetDocHLAPI) rc;
-
-		List<PetriNet> nets = ptDoc.getNets();
-		if (nets.size() != 1) {
-			throw new NotImplementedException(
-					"only pnml files with one single net supported");
-		}
-		PetriNet net = nets.get(0);
-		List<Page> pages = net.getPages();
+	public void createFromPTNet(PetriNet ptnet) throws Exception {
+		List<Page> pages = ptnet.getPages();
 		if (pages.size() != 1) {
 			throw new NotImplementedException(
 					"only nets with one single page supported");
@@ -78,6 +66,24 @@ public class ReachabilityGraph extends DirectedSparseMultigraph<Marking, Edge> {
 			}
 		}
 		createFromTPFM(transitions, places, arcs, m0);
+
+	}
+
+	public void createFromPnml(File file) throws Exception {
+		HLAPIRootClass rc = PNMLUtils.importPnmlDocument(file, false);
+		if (!PNMLUtils.isPTNetDocument(rc)) {
+			throw new NotImplementedException(
+					"only fr.lip6.move.pnml.ptnet.hlapi.PetriNetDocHLAPI type pnml files implemented");
+		}
+		PetriNetDocHLAPI ptDoc = (PetriNetDocHLAPI) rc;
+
+		List<PetriNet> nets = ptDoc.getNets();
+		if (nets.size() != 1) {
+			throw new NotImplementedException(
+					"only pnml files with one single net supported");
+		}
+		createFromPTNet(nets.get(0));
+
 	}
 
 	public void createFromTPFM(Map<String, Transition> transitions,
@@ -97,6 +103,8 @@ public class ReachabilityGraph extends DirectedSparseMultigraph<Marking, Edge> {
 			pending.remove(m);
 			visited.add(m);
 			// foreach transition t activated in m do
+			// TODO: Check, ob durch das feuern einer Transition eine andere
+			// deaktiviert werden könnte (Stellen-Kapazitäten beachten?)
 			for (Transition t : getActiveTransitions(m, transitions)) {
 				// calculate m' such that m \xrightarrow{t} m'
 				Marking mPrime = getMPrime(m, t);
@@ -153,39 +161,39 @@ public class ReachabilityGraph extends DirectedSparseMultigraph<Marking, Edge> {
 		}
 		Marking start = startNodes.iterator().next();
 		Marking end = endNodes.iterator().next();
-		return getTraces(this, start, end, new Trace(),
-				new HashMap<String, Integer>());
+		return getTraces(this, start, end, new Trace(), new HashSet<Edge>());
 	}
 
 	private Set<Trace> getTraces(ReachabilityGraph graph, Marking start,
-			Marking end, Trace prefix, Map<String, Integer> visited) {
+			Marking end, Trace prefix, Set<Edge> visited) {
 		Set<Trace> traces = new HashSet<Trace>();
 		if (start == end) {
+			prefix.setFinished(true);
 			traces.add(prefix);
 			return traces;
 		}
 		for (Edge edge : graph.getOutEdges(start)) {
-			// Wenn die Kante schon mehr als einmal durchlaufen wurde, ignoriere
-			// die Kante
-			if (!visited.containsKey(edge.getT())
-					|| visited.get(edge.getT()) <= 1) {
+			// erstelle neuen Trace aus Prefix
+			Trace trace = new Trace();
+			trace.addAll(prefix);
+			// Wenn kante keine stille Transition repräsentiert
+			if (edge.getT() != null && !edge.getT().equals("")) {
+				// Füge die Kante dem Trace hinzu
+				trace.add(edge.getT());
+			}
+			// Wenn Kante noch nicht durchlaufen wurde, Rekursion
+			if (!visited.contains(edge)) {
+				// Vorher merken, dass Kante bereits durchlaufen wurde (nur,
+				// wenn keine Stille Kante
 				if (edge.getT() != null && !edge.getT().equals("")) {
-					if(!visited.containsKey(edge.getT())) {
-					visited.put(edge.getT(), 0);
-					}
-					// Erhöhe den Zähler der Kante um 1
-					visited.put(edge.getT(), visited.get(edge.getT()) + 1);
+					visited.add(edge);
 				}
-				// erstelle neuen Trace aus Prefix
-				Trace trace = new Trace();
-				trace.addAll(prefix);
-				// Wenn kante keine stille Transition repräsentiert
-				if (edge.getT() != null && !edge.getT().equals("")) {
-					// Füge die Kante dem Trace hinzu
-					trace.add(edge.getT());
-				}
+				// Rekursion
 				traces.addAll(getTraces(graph, graph.getDest(edge), end, trace,
 						visited));
+			} else {
+				trace.setFinished(false);
+				traces.add(trace);
 			}
 		}
 		return traces;

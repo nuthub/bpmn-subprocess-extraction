@@ -12,8 +12,8 @@ import edu.uci.ics.jung.graph.Graph;
 import edu.uci.ics.jung.visualization.VisualizationViewer;
 import edu.uci.ics.jung.visualization.control.DefaultModalGraphMouse;
 import edu.uci.ics.jung.visualization.control.ModalGraphMouse;
-import edu.udo.cs.ls14.jf.pnml2reachabilitygraph.model.Edge;
-import edu.udo.cs.ls14.jf.pnml2reachabilitygraph.model.Marking;
+import edu.udo.cs.ls14.jf.reachabilitygraph.Edge;
+import edu.udo.cs.ls14.jf.reachabilitygraph.Marking;
 
 public class ReachabilityGraphVisualizer {
 
