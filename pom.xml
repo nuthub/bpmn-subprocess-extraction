@@ -4,6 +4,11 @@
 	<groupId>edu.udo.cs.ls14.jf</groupId>
 	<artifactId>bpmn-subprocess-extraction-parent</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
+	<modules>
+	  <module>emf-dependencies</module>
+	  <module>pnml-dependencies</module>
+	  <module>bpmn2bp</module>
+	</modules>
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<source>1.7</source>
