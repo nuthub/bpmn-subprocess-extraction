@@ -30,12 +30,13 @@ import org.eclipse.bpmn2.StartEvent;
 import org.eclipse.bpmn2.SubProcess;
 import org.eclipse.bpmn2.Task;
 
-import edu.udo.cs.ls14.jf.bpmn2pnml.petrinet.Arc;
-import edu.udo.cs.ls14.jf.bpmn2pnml.petrinet.PetriNet;
-import edu.udo.cs.ls14.jf.bpmn2pnml.petrinet.Place;
-import edu.udo.cs.ls14.jf.bpmn2pnml.petrinet.Transition;
+import edu.udo.cs.ls14.jf.petrinet.Arc;
+import edu.udo.cs.ls14.jf.petrinet.PetriNet;
+import edu.udo.cs.ls14.jf.petrinet.Place;
+import edu.udo.cs.ls14.jf.petrinet.Transition;
 import fr.lip6.move.pnml.framework.utils.exception.InvalidIDException;
 import fr.lip6.move.pnml.framework.utils.exception.VoidRepositoryException;
+import fr.lip6.move.pnml.ptnet.hlapi.PetriNetHLAPI;
 
 public class Bpmn2PnmlConverter {
 
@@ -45,6 +46,13 @@ public class Bpmn2PnmlConverter {
 
 	private Set<Place> placesTemp;
 	private Map<String, Set<String>> substitutedTransitions;
+	
+
+	public PetriNetHLAPI convertToPTNet(Process process) throws Exception {
+		convert(process);
+		outputNet();
+		return createPN().toPTNet();
+	}
 
 	public String convertToPnmlString(Process process) throws Exception {
 		convert(process);
@@ -225,13 +233,13 @@ public class Bpmn2PnmlConverter {
 
 	private void handleEvent(Event n) throws Exception {
 		if (n instanceof StartEvent) {
-			transitions.add(new Transition(n.getId(), "start"));
+			transitions.add(new Transition(n.getId(), n.getName()));
 			placesTemp.add(new Place(null, n.getId(), true));
 			for (SequenceFlow f : n.getOutgoing()) {
 				placesTemp.add(new Place(n.getId(), f.getId(), false));
 			}
 		} else if (n instanceof EndEvent) {
-			transitions.add(new Transition(n.getId(), "end"));
+			transitions.add(new Transition(n.getId(), n.getName()));
 			placesTemp.add(new Place(n.getId(), null, false));
 			for (SequenceFlow f : n.getIncoming()) {
 				placesTemp.add(new Place(f.getId(), n.getId(), false));
