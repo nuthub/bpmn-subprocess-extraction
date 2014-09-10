@@ -42,7 +42,7 @@ public class BPMN2BPTest {
 		
 		// create P/T-Net from bpmn
 		Bpmn2PnmlConverter converter = new Bpmn2PnmlConverter();
-		PetriNetHLAPI ptnet = converter.convertToPTNet(process);
+		PetriNetHLAPI ptnet = converter.convertToPetriNet(process);
 		
 		// create Reachability Graph from petri net
 		ReachabilityGraph rg = new ReachabilityGraph();

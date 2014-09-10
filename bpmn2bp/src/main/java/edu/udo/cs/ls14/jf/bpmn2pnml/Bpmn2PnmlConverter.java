@@ -1,6 +1,5 @@
 package edu.udo.cs.ls14.jf.bpmn2pnml;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
@@ -38,12 +37,7 @@ import org.eclipse.bpmn2.Task;
 
 import fr.lip6.move.pnml.framework.utils.ModelRepository;
 import fr.lip6.move.pnml.framework.utils.PNMLUtils;
-import fr.lip6.move.pnml.framework.utils.exception.BadFileFormatException;
 import fr.lip6.move.pnml.framework.utils.exception.InvalidIDException;
-import fr.lip6.move.pnml.framework.utils.exception.OCLValidationFailed;
-import fr.lip6.move.pnml.framework.utils.exception.OtherException;
-import fr.lip6.move.pnml.framework.utils.exception.UnhandledNetType;
-import fr.lip6.move.pnml.framework.utils.exception.ValidationFailedException;
 import fr.lip6.move.pnml.framework.utils.exception.VoidRepositoryException;
 import fr.lip6.move.pnml.ptnet.hlapi.ArcHLAPI;
 import fr.lip6.move.pnml.ptnet.hlapi.NameHLAPI;
@@ -66,34 +60,22 @@ public class Bpmn2PnmlConverter {
 	private Set<Tuple<String, Set<TransitionHLAPI>>> prePlaces;
 	private Set<Tuple<Set<TransitionHLAPI>, String>> postPlaces;
 
-	public PetriNetHLAPI convertToPTNet(Process process) throws Exception {
-		convert(process);
+	public PetriNetHLAPI convertToPetriNet(Process process) throws Exception {
+		createPetrinetFromProcess(process);
 		LOG.fine(this.toString());
 		return net;
 	}
 
-	public String convertToPnmlString(Process process) throws Exception {
-		convert(process);
-		LOG.fine(this.toString());
-		return net.toPNML();
-	}
-
-	public void convertToPnmlFile(Process process, String pnmlFileName)
-			throws Exception {
-		convert(process);
-		LOG.fine(this.toString());
-		savetoPnml(pnmlFileName);
+	public void saveToPnmlFile(String pnmlFileName) throws Exception {
+		if (doc == null) {
+			throw new Exception (
+					"Document not created yet, call convertToPetriNet(...) first.");
+		}
+		PNMLUtils.exportPetriNetDocToPNML(doc, pnmlFileName);
 		LOG.info("Wrote PNML to " + pnmlFileName);
 	}
 
-	private void savetoPnml(String pnmlFileName) throws UnhandledNetType,
-			OCLValidationFailed, IOException, ValidationFailedException,
-			BadFileFormatException, OtherException, InvalidIDException,
-			VoidRepositoryException {
-		PNMLUtils.exportPetriNetDocToPNML(doc, pnmlFileName);
-	}
-
-	private void convert(Process process) throws Exception {
+	private void createPetrinetFromProcess(Process process) throws Exception {
 		// Build maps (perhaps sets are ok, since ordering of FlowNodes and
 		// SequenceFlows is undefined. => i need a directory, which ids are
 		// sequenceflows (step 2))
