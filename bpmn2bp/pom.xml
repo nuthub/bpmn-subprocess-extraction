@@ -7,9 +7,6 @@
 		<version>0.0.1-SNAPSHOT</version>
 	</parent>
 	<artifactId>bpmn2pnml</artifactId>
-	<properties>
-		<pnml.version>2.2.4.SNAPSHOT</pnml.version>
-	</properties>
 	<dependencies>
 		<dependency>
 			<groupId>edu.udo.cs.ls14.jf</groupId>
