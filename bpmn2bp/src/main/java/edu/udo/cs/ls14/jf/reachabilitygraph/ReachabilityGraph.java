@@ -1,4 +1,4 @@
-package edu.udo.cs.ls14.jf.pnml2reachabilitygraph;
+package edu.udo.cs.ls14.jf.reachabilitygraph;
 
 import java.io.File;
 import java.io.FileWriter;
@@ -16,9 +16,6 @@ import org.apache.commons.lang3.NotImplementedException;
 
 import edu.uci.ics.jung.graph.DirectedSparseMultigraph;
 import edu.uci.ics.jung.io.GraphMLWriter;
-import edu.udo.cs.ls14.jf.reachabilitygraph.Edge;
-import edu.udo.cs.ls14.jf.reachabilitygraph.Marking;
-import edu.udo.cs.ls14.jf.reachabilitygraph.Trace;
 import fr.lip6.move.pnml.framework.hlapi.HLAPIRootClass;
 import fr.lip6.move.pnml.framework.utils.PNMLUtils;
 import fr.lip6.move.pnml.ptnet.Arc;
@@ -28,7 +25,6 @@ import fr.lip6.move.pnml.ptnet.Place;
 import fr.lip6.move.pnml.ptnet.PnObject;
 import fr.lip6.move.pnml.ptnet.Transition;
 import fr.lip6.move.pnml.ptnet.hlapi.PetriNetDocHLAPI;
-import fr.lip6.move.pnml.ptnet.hlapi.PetriNetHLAPI;
 
 public class ReachabilityGraph extends DirectedSparseMultigraph<Marking, Edge> {
 
@@ -110,7 +106,7 @@ public class ReachabilityGraph extends DirectedSparseMultigraph<Marking, Edge> {
 				Marking mPrime = getMPrime(m, t);
 				// V := V \cup {m, m'}
 				// E := E \cup {(m, t, m')}
-				addEdge(new Edge(t.getName().getText()), m, mPrime);
+				addEdge(new Edge(t.getId()), m, mPrime);
 				// pending := pending \cup {m'}
 				if (!visited.contains(mPrime)) {
 					pending.add(mPrime);
@@ -156,6 +152,7 @@ public class ReachabilityGraph extends DirectedSparseMultigraph<Marking, Edge> {
 					+ startNodes.size());
 		}
 		if (endNodes.size() != 1) {
+			System.out.println(endNodes);
 			throw new Exception("expected exactly 1 end node, found "
 					+ endNodes.size());
 		}
