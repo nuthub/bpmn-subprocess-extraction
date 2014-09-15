@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- origin at X=0.0 Y=0.0 -->
 <definitions xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:omgdc="http://www.omg.org/spec/DD/20100524/DC" xmlns:omgdi="http://www.omg.org/spec/DD/20100524/DI" xmlns:signavio="http://www.signavio.com" xmlns:xs="http://www.w3.org/2001/XMLSchema" xsi:schemaLocation="http://www.omg.org/spec/BPMN/20100524/MODEL http://www.omg.org/spec/BPMN/2.0/20100501/BPMN20.xsd http://www.omg.org/spec/DD/20100524/DC http://www.omg.org/spec/DD/20100524/DC-XMI http://www.omg.org/spec/DD/20100524/DI http://www.omg.org/spec/DD/20100524/DI-XMI http://www.omg.org/spec/BPMN/20100524/DI http://www.omg.org/spec/BPMN/20100524/DI-XMI" id="sid-d5960d41-e38f-42cd-a26c-0ae350fe4124" exporter="org.eclipse.bpmn2.modeler.core" exporterVersion="1.1.0.201408072130" targetNamespace="http://www.signavio.com/bpmn20">
-  <process id="sid-5c5f4f4f-5428-4665-89a4-ddf4c1608484">
+  <process id="sid-5c5f4f4f-5428-4665-89a4-ddf4c1608484" name="PM1-mit-Fragment1">
     <extensionElements>
       <signavio:signavioDiagramMetaData xsi:type="xs:anyType" metaKey="revisionid" metaValue="d2cbcb10daf94def899d214254454cd8"/>
     </extensionElements>
-    <startEvent id="sid-94CA3CAB-AA15-484C-A00C-7372185C0A79" name="">
+    <startEvent id="sid-94CA3CAB-AA15-484C-A00C-7372185C0A79" name="Start">
       <extensionElements>
         <signavio:signavioMetaData xsi:type="xs:anyType" metaKey="bgcolor" metaValue="#ffffff"/>
       </extensionElements>
@@ -56,13 +56,13 @@
       <incoming>sid-0AD5228D-887A-4D19-87E7-1219EAE576C9</incoming>
       <outgoing>SequenceFlow_4</outgoing>
     </task>
-    <endEvent id="sid-88383928-E961-4E4A-9725-55B02E86FD0E" name="">
+    <endEvent id="sid-88383928-E961-4E4A-9725-55B02E86FD0E" name="End">
       <extensionElements>
         <signavio:signavioMetaData xsi:type="xs:anyType" metaKey="bgcolor" metaValue="#ffffff"/>
       </extensionElements>
       <incoming>SequenceFlow_4</incoming>
     </endEvent>
-    <parallelGateway id="sid-D98FE8D4-32DF-476A-9C41-F9E569B0DA71" name="" gatewayDirection="Converging">
+    <parallelGateway id="sid-D98FE8D4-32DF-476A-9C41-F9E569B0DA71" name="Gateway 2" gatewayDirection="Converging">
       <extensionElements>
         <signavio:signavioMetaData xsi:type="xs:anyType" metaKey="bgcolor" metaValue="#ffffff"/>
       </extensionElements>
@@ -71,7 +71,7 @@
       <incoming>sid-C6506147-1F35-4235-88C2-9EDFD483F4C6</incoming>
       <outgoing>sid-0AD5228D-887A-4D19-87E7-1219EAE576C9</outgoing>
     </parallelGateway>
-    <parallelGateway id="sid-F4D68AC5-D815-48C5-B160-CEBA4C1421DC" name="" gatewayDirection="Diverging">
+    <parallelGateway id="sid-F4D68AC5-D815-48C5-B160-CEBA4C1421DC" name="Gateway 1" gatewayDirection="Diverging">
       <extensionElements>
         <signavio:signavioMetaData xsi:type="xs:anyType" metaKey="bgcolor" metaValue="#ffffff"/>
       </extensionElements>
@@ -95,7 +95,9 @@
     <bpmndi:BPMNPlane id="sid-e6f8b098-e00c-425d-a2ef-f10af8155cec" bpmnElement="sid-5c5f4f4f-5428-4665-89a4-ddf4c1608484">
       <bpmndi:BPMNShape id="sid-94CA3CAB-AA15-484C-A00C-7372185C0A79_gui" bpmnElement="sid-94CA3CAB-AA15-484C-A00C-7372185C0A79">
         <omgdc:Bounds height="30.0" width="30.0" x="70.0" y="160.0"/>
-        <bpmndi:BPMNLabel id="BPMNLabel_6" labelStyle="BPMNLabelStyle_1"/>
+        <bpmndi:BPMNLabel id="BPMNLabel_6" labelStyle="BPMNLabelStyle_1">
+          <omgdc:Bounds height="14.0" width="25.0" x="72.0" y="190.0"/>
+        </bpmndi:BPMNLabel>
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="sid-24BB1352-5C62-4E83-A253-378A2D086D85_gui" bpmnElement="sid-24BB1352-5C62-4E83-A253-378A2D086D85">
         <omgdc:Bounds height="80.0" width="100.0" x="150.0" y="135.0"/>
@@ -129,15 +131,21 @@
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="sid-88383928-E961-4E4A-9725-55B02E86FD0E_gui" bpmnElement="sid-88383928-E961-4E4A-9725-55B02E86FD0E">
         <omgdc:Bounds height="28.0" width="28.0" x="780.0" y="161.0"/>
-        <bpmndi:BPMNLabel id="BPMNLabel_7" labelStyle="BPMNLabelStyle_1"/>
+        <bpmndi:BPMNLabel id="BPMNLabel_7" labelStyle="BPMNLabelStyle_1">
+          <omgdc:Bounds height="14.0" width="22.0" x="783.0" y="189.0"/>
+        </bpmndi:BPMNLabel>
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="sid-D98FE8D4-32DF-476A-9C41-F9E569B0DA71_gui" bpmnElement="sid-D98FE8D4-32DF-476A-9C41-F9E569B0DA71">
         <omgdc:Bounds height="40.0" width="40.0" x="521.0" y="155.0"/>
-        <bpmndi:BPMNLabel id="BPMNLabel_8" labelStyle="BPMNLabelStyle_1"/>
+        <bpmndi:BPMNLabel id="BPMNLabel_8" labelStyle="BPMNLabelStyle_1">
+          <omgdc:Bounds height="14.0" width="58.0" x="512.0" y="195.0"/>
+        </bpmndi:BPMNLabel>
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="sid-F4D68AC5-D815-48C5-B160-CEBA4C1421DC_gui" bpmnElement="sid-F4D68AC5-D815-48C5-B160-CEBA4C1421DC">
         <omgdc:Bounds height="40.0" width="40.0" x="295.0" y="155.0"/>
-        <bpmndi:BPMNLabel id="BPMNLabel_9" labelStyle="BPMNLabelStyle_1"/>
+        <bpmndi:BPMNLabel id="BPMNLabel_9" labelStyle="BPMNLabelStyle_1">
+          <omgdc:Bounds height="14.0" width="58.0" x="286.0" y="195.0"/>
+        </bpmndi:BPMNLabel>
       </bpmndi:BPMNShape>
       <bpmndi:BPMNEdge id="sid-16C4A25C-59E5-4B8E-851F-F05BBEE8CE71_gui" bpmnElement="sid-16C4A25C-59E5-4B8E-851F-F05BBEE8CE71" sourceElement="sid-24BB1352-5C62-4E83-A253-378A2D086D85_gui" targetElement="sid-F4D68AC5-D815-48C5-B160-CEBA4C1421DC_gui">
         <omgdi:waypoint xsi:type="omgdc:Point" x="250.0" y="175.0"/>
