@@ -5,14 +5,14 @@
 	<artifactId>bpmn-subprocess-extraction-parent</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<modules>
-	  <module>emf-dependencies</module>
-	  <module>pnml-dependencies</module>
-	  <module>bpmn2bp</module>
+		<module>emf-dependencies</module>
+		<module>pnml-dependencies</module>
+		<module>bpmn2bp</module>
 	</modules>
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		<source>1.7</source>
-		<target>1.7</target>
+		<maven.compiler.source>1.8</maven.compiler.source>
+		<maven.compiler.target>1.8</maven.compiler.target>
 	</properties>
 	<dependencies>
 		<dependency>
