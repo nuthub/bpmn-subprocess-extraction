@@ -20,7 +20,7 @@ public class BehavioralProfile {
 		}
 	}
 
-	public Relation get(String a, String b) {
+	private Relation get(String a, String b) {
 		if (m.get(a, b) && m.get(b, a)) {
 			return Relation.PARALLEL;
 		}

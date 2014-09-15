@@ -26,76 +26,59 @@ public class Bpmn2PnmlConverterTest {
 	@Test
 	public void testLoopTransformation() throws Exception {
 		String basename = "looping-events-example";
-		URL url = getClass().getResource("../../bpmn/" + basename + ".bpmn");
-		assertNotNull(url);
-		Process process = ProcessLoader.loadFirstProcessFromResource(url);
-		PetriNetHLAPI net = converter.convertToPetriNet(process);
-		assertEquals(1, net.getPagesHLAPI().size());
-		PageHLAPI page = net.getPagesHLAPI().get(0);
-		assertEquals(9, page.getObjects_PlaceHLAPI().size());
-		assertEquals(9, page.getObjects_TransitionHLAPI().size());
-		assertEquals(18, page.getObjects_ArcHLAPI().size());
-		converter.saveToPnmlFile("/tmp/" + basename + ".pnml");
+		runTest(basename, 9, 9, 186);
 	}
 
 	@Test
 	public void testXorWEventsTransformation() throws Exception {
 		String basename = "xor-example";
-		URL url = getClass().getResource("../../bpmn/" + basename + ".bpmn");
-		assertNotNull(url);
-		Process process = ProcessLoader.loadFirstProcessFromResource(url);
-		PetriNetHLAPI net = converter.convertToPetriNet(process);
-		assertEquals(1, net.getPagesHLAPI().size());
-		PageHLAPI page = net.getPagesHLAPI().get(0);
-		assertEquals(8, page.getObjects_PlaceHLAPI().size());
-		assertEquals(8, page.getObjects_TransitionHLAPI().size());
-		assertEquals(16, page.getObjects_ArcHLAPI().size());
-		converter.saveToPnmlFile("/tmp/" + basename + ".pnml");
+		runTest(basename, 8, 8, 16);
 	}
 
 	@Test
 	public void testLoopingXorTransformation() throws Exception {
 		String basename = "looping-xor";
-		URL url = getClass().getResource("../../bpmn/" + basename + ".bpmn");
-		assertNotNull(url);
-		Process process = ProcessLoader.loadFirstProcessFromResource(url);
-		PetriNetHLAPI net = converter.convertToPetriNet(process);
-		assertEquals(1, net.getPagesHLAPI().size());
-		PageHLAPI page = net.getPagesHLAPI().get(0);
-		assertEquals(12, page.getObjects_PlaceHLAPI().size());
-		assertEquals(13, page.getObjects_TransitionHLAPI().size());
-		assertEquals(26, page.getObjects_ArcHLAPI().size());
-		converter.saveToPnmlFile("/tmp/" + basename + ".pnml");
+		runTest(basename, 12, 13, 26);
 	}
 
 	@Test
-	public void testPM1Transformation() throws Exception {
+	public void testPM1() throws Exception {
 		String basename = "PM1-mit-Fragment1";
-		URL url = getClass().getResource("../../bpmn/" + basename + ".bpmn");
-		assertNotNull(url);
-		Process process = ProcessLoader.loadFirstProcessFromResource(url);
-		PetriNetHLAPI net = converter.convertToPetriNet(process);
-		assertEquals(1, net.getPagesHLAPI().size());
-		PageHLAPI page = net.getPagesHLAPI().get(0);
-		assertEquals(12, page.getObjects_PlaceHLAPI().size());
-		assertEquals(9, page.getObjects_TransitionHLAPI().size());
-		assertEquals(22, page.getObjects_ArcHLAPI().size());
-		converter.saveToPnmlFile("/tmp/" + basename + ".pnml");
+		runTest(basename, 12, 9, 22);
 	}
 
 	@Test
-	public void testPM2Transformation() throws Exception {
+	public void testPM2() throws Exception {
 		String basename = "PM2-mit-Fragment1";
+		runTest(basename, 14, 11, 26);
+	}
+
+	@Test
+	public void testEventBasedGatewayExclusive() throws Exception {
+		String basename = "event-based-gateway-exclusive";
+		runTest(basename, 8, 8, 16);
+	}
+
+	@Test
+	public void testEventBasedGatewayParallel() throws Exception {
+		String basename = "event-based-gateway-parallel";
+		runTest(basename, 8, 6, 14);
+	}
+
+	private void runTest(String basename, int expectedPlaceCount,
+			int expectedTransitionCount, int expectedArcCount) throws Exception {
 		URL url = getClass().getResource("../../bpmn/" + basename + ".bpmn");
 		assertNotNull(url);
 		Process process = ProcessLoader.loadFirstProcessFromResource(url);
 		PetriNetHLAPI net = converter.convertToPetriNet(process);
 		assertEquals(1, net.getPagesHLAPI().size());
 		PageHLAPI page = net.getPagesHLAPI().get(0);
-		assertEquals(14, page.getObjects_PlaceHLAPI().size());
-		assertEquals(11, page.getObjects_TransitionHLAPI().size());
-		assertEquals(26, page.getObjects_ArcHLAPI().size());
+		assertEquals(expectedPlaceCount, page.getObjects_PlaceHLAPI().size());
+		assertEquals(expectedTransitionCount, page.getObjects_TransitionHLAPI()
+				.size());
+		assertEquals(expectedArcCount, page.getObjects_ArcHLAPI().size());
 		converter.saveToPnmlFile("/tmp/" + basename + ".pnml");
+
 	}
 
 }

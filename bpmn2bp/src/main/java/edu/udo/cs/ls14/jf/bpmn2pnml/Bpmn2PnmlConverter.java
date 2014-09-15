@@ -19,6 +19,7 @@ import org.eclipse.bpmn2.ComplexGateway;
 import org.eclipse.bpmn2.EndEvent;
 import org.eclipse.bpmn2.Event;
 import org.eclipse.bpmn2.EventBasedGateway;
+import org.eclipse.bpmn2.EventBasedGatewayType;
 import org.eclipse.bpmn2.ExclusiveGateway;
 import org.eclipse.bpmn2.FlowElement;
 import org.eclipse.bpmn2.FlowNode;
@@ -68,7 +69,7 @@ public class Bpmn2PnmlConverter {
 
 	public void saveToPnmlFile(String pnmlFileName) throws Exception {
 		if (doc == null) {
-			throw new Exception (
+			throw new Exception(
 					"Document not created yet, call convertToPetriNet(...) first.");
 		}
 		PNMLUtils.exportPetriNetDocToPNML(doc, pnmlFileName);
@@ -149,10 +150,11 @@ public class Bpmn2PnmlConverter {
 
 	private void handleGateway(Gateway n) throws InvalidIDException,
 			VoidRepositoryException {
-		if (n instanceof ParallelGateway) {
+		if (n instanceof ParallelGateway
+				|| (n instanceof EventBasedGateway && ((EventBasedGateway) n)
+						.getEventGatewayType() == EventBasedGatewayType.PARALLEL)) {
 			// TODO: Test with mixed gateway directions
-			TransitionHLAPI t = new TransitionHLAPI(n.getId(), new NameHLAPI(
-					n.getName()), null, page);
+			TransitionHLAPI t = new TransitionHLAPI(n.getId(), new NameHLAPI(""), null, page);
 			for (SequenceFlow f : n.getIncoming()) {
 				prePlaces.add(new Tuple<String, Set<TransitionHLAPI>>(
 						f.getId(), new HashSet<TransitionHLAPI>(Arrays
@@ -163,10 +165,12 @@ public class Bpmn2PnmlConverter {
 						new HashSet<TransitionHLAPI>(Arrays.asList(t)), f
 								.getId()));
 			}
-		} else if (n instanceof ExclusiveGateway) {
-			if (((ExclusiveGateway) n).getGatewayDirection() == GatewayDirection.DIVERGING) {
+		} else if (n instanceof ExclusiveGateway
+				|| (n instanceof EventBasedGateway && ((EventBasedGateway) n)
+						.getEventGatewayType() == EventBasedGatewayType.EXCLUSIVE)) {
+			if (((Gateway) n).getGatewayDirection() == GatewayDirection.DIVERGING) {
 				Set<TransitionHLAPI> ts = new HashSet<TransitionHLAPI>();
-				for (SequenceFlow f : ((ExclusiveGateway) n).getOutgoing()) {
+				for (SequenceFlow f : ((Gateway) n).getOutgoing()) {
 					TransitionHLAPI t = new TransitionHLAPI(n.getId() + "."
 							+ f.getId(), new NameHLAPI(""), null, page);
 					ts.add(t);
@@ -174,13 +178,13 @@ public class Bpmn2PnmlConverter {
 							new HashSet<TransitionHLAPI>(Arrays.asList(t)), f
 									.getId()));
 				}
-				for (SequenceFlow f : ((ExclusiveGateway) n).getIncoming()) {
+				for (SequenceFlow f : ((Gateway) n).getIncoming()) {
 					prePlaces.add(new Tuple<String, Set<TransitionHLAPI>>(f
 							.getId(), ts));
 				}
-			} else if (((ExclusiveGateway) n).getGatewayDirection() == GatewayDirection.CONVERGING) {
+			} else if (((Gateway) n).getGatewayDirection() == GatewayDirection.CONVERGING) {
 				Set<TransitionHLAPI> ts = new HashSet<TransitionHLAPI>();
-				for (SequenceFlow f : ((ExclusiveGateway) n).getIncoming()) {
+				for (SequenceFlow f : ((Gateway) n).getIncoming()) {
 					TransitionHLAPI t = new TransitionHLAPI(f.getId() + "."
 							+ n.getId(), new NameHLAPI(""), null, page);
 					ts.add(t);
@@ -188,7 +192,7 @@ public class Bpmn2PnmlConverter {
 							.getId(), new HashSet<TransitionHLAPI>(Arrays
 							.asList(t))));
 				}
-				for (SequenceFlow f : ((ExclusiveGateway) n).getOutgoing()) {
+				for (SequenceFlow f : ((Gateway) n).getOutgoing()) {
 					postPlaces.add(new Tuple<Set<TransitionHLAPI>, String>(ts,
 							f.getId()));
 				}
@@ -197,15 +201,15 @@ public class Bpmn2PnmlConverter {
 				// gateways
 				throw new NotImplementedException(
 						"unsupported GatewayDirection: "
-								+ ((ExclusiveGateway) n).getGatewayDirection()
+								+ ((Gateway) n).getGatewayDirection()
 								+ ". Must be Diverging or Converging.");
 			}
-		} else if (n instanceof EventBasedGateway) {
-			throw new NotImplementedException("EventBasedGateway");
 		} else if (n instanceof InclusiveGateway) {
 			throw new NotImplementedException("InclusiveGateway");
 		} else if (n instanceof ComplexGateway) {
 			throw new NotImplementedException("ComplexGateway");
+		} else {
+			throw new NotImplementedException("Unsupported Gateway: " + n);
 		}
 	}
 
