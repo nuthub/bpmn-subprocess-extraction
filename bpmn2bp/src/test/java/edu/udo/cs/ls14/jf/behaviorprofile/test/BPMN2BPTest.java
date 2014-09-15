@@ -11,7 +11,7 @@ import org.junit.Test;
 import edu.udo.cs.ls14.jf.behaviorprofile.BehavioralProfile;
 import edu.udo.cs.ls14.jf.bpmn2pnml.Bpmn2PnmlConverter;
 import edu.udo.cs.ls14.jf.bpmn2pnml.ProcessLoader;
-import edu.udo.cs.ls14.jf.pnml2reachabilitygraph.ReachabilityGraph;
+import edu.udo.cs.ls14.jf.reachabilitygraph.ReachabilityGraph;
 import edu.udo.cs.ls14.jf.reachabilitygraph.Trace;
 import fr.lip6.move.pnml.ptnet.hlapi.PetriNetHLAPI;
 
