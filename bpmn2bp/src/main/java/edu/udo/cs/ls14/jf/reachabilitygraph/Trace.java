@@ -5,6 +5,10 @@ import java.util.List;
 
 public class Trace extends ArrayList<String> implements List<String> {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 3394826206326636581L;
 	private boolean finished;
 
 	public boolean isFinished() {
