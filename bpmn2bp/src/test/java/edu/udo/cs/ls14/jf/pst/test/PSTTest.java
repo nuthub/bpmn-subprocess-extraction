@@ -17,54 +17,112 @@ import edu.udo.cs.ls14.jf.utils.bpmn.ProcessLoader;
 public class PSTTest {
 
 	@Test
+	public void testEventBasedGatewayExclusive() throws Exception {
+		String basename = "event-based-gateway-exclusive";
+		Set<Fragment> frags = runTest(basename);
+		assertEquals(3, frags.size());
+		assertFragsContainByName(frags, "1", "6");
+		assertFragsContainByName(frags, "2", "4");
+		assertFragsContainByName(frags, "3", "5");
+	}
+
+	@Test
+	public void testEventBasedGatewayParallel() throws Exception {
+		String basename = "event-based-gateway-parallel";
+		Set<Fragment> frags = runTest(basename);
+		assertEquals(3, frags.size());
+		assertFragsContainByName(frags, "1", "6");
+		assertFragsContainByName(frags, "2", "4");
+		assertFragsContainByName(frags, "3", "5");
+	}
+
+	@Test
 	public void testPM1() throws Exception {
 		String basename = "PM1-mit-Fragment1";
 		Set<Fragment> frags = runTest(basename);
-		assertEquals(9, frags.size());
-		assertTrue(contains(frags, "sid-C6506147-1F35-4235-88C2-9EDFD483F4C6",
-				"sid-93B31B1C-6F42-4974-B551-705587AA85D2"));
-		assertTrue(contains(frags, "sid-0AD5228D-887A-4D19-87E7-1219EAE576C9",
-				"SequenceFlow_4"));
-
-		assertTrue(contains(frags, "sid-0AD5228D-887A-4D19-87E7-1219EAE576C9",
-				"SequenceFlow_4"));
-		assertTrue(contains(frags, "sid-03B5B5AF-A1F0-4E20-AFB9-38B826AB8D3E",
-				"sid-F6EDEAA1-882C-491F-8852-A994BE20ACCB"));
-		assertTrue(contains(frags, "sid-16C4A25C-59E5-4B8E-851F-F05BBEE8CE71",
-				"sid-0AD5228D-887A-4D19-87E7-1219EAE576C9"));
-		assertTrue(contains(frags, "sid-16C4A25C-59E5-4B8E-851F-F05BBEE8CE71",
-				"SequenceFlow_4"));
-		assertTrue(contains(frags, "sid-EFED9E2B-3B01-44F9-82E6-3727E2B1CA76",
-				"sid-C465B7EB-B45B-435F-B4F8-A68E96E38708"));
-
-		assertTrue(contains(frags, "SequenceFlow_3", "SequenceFlow_4"));
-		assertTrue(contains(frags, "sid-16C4A25C-59E5-4B8E-851F-F05BBEE8CE71",
-				"SequenceFlow_3"));
-		assertTrue(contains(frags, "SequenceFlow_3",
-				"sid-0AD5228D-887A-4D19-87E7-1219EAE576C9"));
-
+		assertEquals(6, frags.size());
+		assertFragsContainByName(frags, "1", "2");
+		assertFragsContainByName(frags, "2", "9");
+		assertFragsContainByName(frags, "3", "6");
+		assertFragsContainByName(frags, "4", "7");
+		assertFragsContainByName(frags, "5", "8");
+		assertFragsContainByName(frags, "9", "10");
 	}
 
-	private boolean contains(Set<Fragment> frags, String entryId, String exitId) {
-		for (Fragment f : frags) {
-			if (entryId.equals(f.getEntry().getId())
-					&& exitId.equals(f.getExit().getId())) {
-				return true;
-			}
-			// TODO: remove this case after order of fragment edges is
-			// determined
-			if (exitId.equals(f.getEntry().getId())
-					&& entryId.equals(f.getExit().getId())) {
-				return true;
-			}
-		}
-		return false;
+	@Test
+	public void testPM2() throws Exception {
+		String basename = "PM2-mit-Fragment1";
+		Set<Fragment> frags = runTest(basename);
+		assertEquals(7, frags.size());
+		assertFragsContainByName(frags, "1", "2");
+		assertFragsContainByName(frags, "2", "11");
+		assertFragsContainByName(frags, "3", "9");
+		assertFragsContainByName(frags, "4", "10");
+		assertFragsContainByName(frags, "5", "7");
+		assertFragsContainByName(frags, "6", "8");
+		assertFragsContainByName(frags, "11", "12");
+	}
+
+	@Test
+	public void testSequence() throws Exception {
+		String basename = "sequence";
+		Set<Fragment> frags = runTest(basename);
+		assertEquals(4, frags.size());
+		assertFragsContainByName(frags, "2", "3");
+		assertFragsContainByName(frags, "3", "4");
+		assertFragsContainByName(frags, "4", "5");
+		assertFragsContainByName(frags, "5", "1");
+	}
+
+	@Test
+	public void testXorExample() throws Exception {
+		String basename = "xor-example";
+		Set<Fragment> frags = runTest(basename);
+		assertEquals(3, frags.size());
+		assertFragsContainByName(frags, "1", "6");
+		assertFragsContainByName(frags, "2", "4");
+		assertFragsContainByName(frags, "3", "5");
+	}
+
+	@Test
+	public void testOverlapping() throws Exception {
+		String basename = "overlapping";
+		Set<Fragment> frags = runTest(basename);
+		assertEquals(6, frags.size());
+		assertFragsContainByName(frags, "1", "7");
+		assertFragsContainByName(frags, "3", "5");
+		assertFragsContainByName(frags, "4", "6");
+		assertFragsContainByName(frags, "7", "8");
+		assertFragsContainByName(frags, "9", "10");
+		assertFragsContainByName(frags, "8", "12");
+	}
+
+	@Test
+	public void testLoopingXor() throws Exception {
+		String basename = "looping-xor";
+		Set<Fragment> frags = runTest(basename);
+		assertEquals(5, frags.size());
+		assertFragsContainByName(frags, "1", "10");
+		assertFragsContainByName(frags, "2", "3");
+		assertFragsContainByName(frags, "4", "9");
+		assertFragsContainByName(frags, "5", "7");
+		assertFragsContainByName(frags, "6", "8");
+	}
+
+	@Test
+	public void testLoopingEvents() throws Exception {
+		String basename = "looping-events-example";
+		Set<Fragment> frags = runTest(basename);
+		assertEquals(4, frags.size());
+		assertFragsContainByName(frags, "f1", "f2");
+		assertFragsContainByName(frags, "f2", "f7");
+		assertFragsContainByName(frags, "f3", "f4");
+		assertFragsContainByName(frags, "f5", "f6");
 	}
 
 	public Set<Fragment> runTest(String basename) throws Exception {
 		System.out.println("Creating PST for " + basename);
-		URL url = PSTTest.class.getResource("../../bpmn/" + basename
-				+ ".bpmn");
+		URL url = PSTTest.class.getResource("../../bpmn/" + basename + ".bpmn");
 		Process process = ProcessLoader.loadFirstProcessFromResource(url);
 
 		PST pst = new PST();
@@ -73,11 +131,44 @@ public class PSTTest {
 				pst.getGraphAsDot());
 		IOUtils.invokeDOT("/tmp", basename + "-spanningtree.png",
 				pst.getSpanningTreeAsDot());
-		System.out.println("The fragments are: ");
-		fragments.stream().forEach(
-				f -> System.out.println(f.getEntry().getId() + " -> "
-						+ f.getExit().getId()));
-
+		IOUtils.invokeDOT("/tmp", basename + "-pst.png",
+				pst.getStructureTreeAsDot());
 		return fragments;
 	}
+
+	private void assertFragsContainByName(Set<Fragment> frags, String entryId,
+			String exitId) {
+		boolean contains = false;
+		for (Fragment f : frags) {
+			if (entryId.equals(f.getEntry().getName())
+					&& exitId.equals(f.getExit().getName())) {
+				contains = true;
+			}
+		}
+		assertTrue(contains);
+	}
+
+	// @Test
+	// public void testFindPaths() throws Exception {
+	// String basename = "PM1-mit-Fragment1";
+	// // basename = "looping-events-example";
+	// URL url = PSTTest.class.getResource("../../bpmn/" + basename + ".bpmn");
+	// Process process = ProcessLoader.loadFirstProcessFromResource(url);
+	// PST pst = new PST();
+	// FlowNode start = NodeFinder.getStartNode(process);
+	// FlowNode end = NodeFinder.getEndNode(process);
+	// Set<List<SequenceFlow>> paths = pst.getPaths(start.getOutgoing().get(0),
+	// end.getIncoming().get(0),
+	// new ArrayList<SequenceFlow>());
+	// for (List<SequenceFlow> path : paths) {
+	// for (SequenceFlow flow : path) {
+	// System.out.print(flow.getName()+", ");
+	// }
+	// System.out.println();
+	// }
+	// System.out.println(paths.size() + " paths");
+	// System.out.println("---");
+	// System.out.println(pst.dominates(start, start.getOutgoing().get(0),
+	// end.getIncoming().get(0)));
+	// }
 }
