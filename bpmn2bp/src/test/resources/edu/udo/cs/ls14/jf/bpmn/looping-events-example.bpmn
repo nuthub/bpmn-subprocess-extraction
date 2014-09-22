@@ -5,7 +5,7 @@
     <bpmn2:startEvent id="StartEvent_1" name="Start Event 1">
       <bpmn2:outgoing>SequenceFlow_2</bpmn2:outgoing>
     </bpmn2:startEvent>
-    <bpmn2:sequenceFlow id="SequenceFlow_1" name="Sequence Flow 1" sourceRef="ExclusiveGateway_2" targetRef="EndEvent_1"/>
+    <bpmn2:sequenceFlow id="SequenceFlow_1" name="f7" sourceRef="ExclusiveGateway_2" targetRef="EndEvent_1"/>
     <bpmn2:endEvent id="EndEvent_1" name="End Event 1">
       <bpmn2:incoming>SequenceFlow_1</bpmn2:incoming>
     </bpmn2:endEvent>
@@ -13,30 +13,30 @@
       <bpmn2:incoming>SequenceFlow_2</bpmn2:incoming>
       <bpmn2:outgoing>SequenceFlow_3</bpmn2:outgoing>
     </bpmn2:intermediateThrowEvent>
-    <bpmn2:sequenceFlow id="SequenceFlow_2" sourceRef="StartEvent_1" targetRef="IntermediateThrowEvent_1"/>
+    <bpmn2:sequenceFlow id="SequenceFlow_2" name="f1" sourceRef="StartEvent_1" targetRef="IntermediateThrowEvent_1"/>
     <bpmn2:exclusiveGateway id="ExclusiveGateway_1" name="Exclusive Gateway 1" gatewayDirection="Converging">
       <bpmn2:incoming>SequenceFlow_3</bpmn2:incoming>
       <bpmn2:incoming>SequenceFlow_7</bpmn2:incoming>
       <bpmn2:outgoing>SequenceFlow_4</bpmn2:outgoing>
     </bpmn2:exclusiveGateway>
-    <bpmn2:sequenceFlow id="SequenceFlow_3" sourceRef="IntermediateThrowEvent_1" targetRef="ExclusiveGateway_1"/>
+    <bpmn2:sequenceFlow id="SequenceFlow_3" name="f2" sourceRef="IntermediateThrowEvent_1" targetRef="ExclusiveGateway_1"/>
     <bpmn2:intermediateThrowEvent id="IntermediateThrowEvent_2" name="Intermediate Throw Event 2">
       <bpmn2:incoming>SequenceFlow_4</bpmn2:incoming>
       <bpmn2:outgoing>SequenceFlow_5</bpmn2:outgoing>
     </bpmn2:intermediateThrowEvent>
-    <bpmn2:sequenceFlow id="SequenceFlow_4" sourceRef="ExclusiveGateway_1" targetRef="IntermediateThrowEvent_2"/>
+    <bpmn2:sequenceFlow id="SequenceFlow_4" name="f3" sourceRef="ExclusiveGateway_1" targetRef="IntermediateThrowEvent_2"/>
     <bpmn2:exclusiveGateway id="ExclusiveGateway_2" name="Exclusive Gateway 2" gatewayDirection="Diverging">
       <bpmn2:incoming>SequenceFlow_5</bpmn2:incoming>
       <bpmn2:outgoing>SequenceFlow_1</bpmn2:outgoing>
       <bpmn2:outgoing>SequenceFlow_6</bpmn2:outgoing>
     </bpmn2:exclusiveGateway>
-    <bpmn2:sequenceFlow id="SequenceFlow_5" sourceRef="IntermediateThrowEvent_2" targetRef="ExclusiveGateway_2"/>
-    <bpmn2:sequenceFlow id="SequenceFlow_6" sourceRef="ExclusiveGateway_2" targetRef="IntermediateThrowEvent_3"/>
+    <bpmn2:sequenceFlow id="SequenceFlow_5" name="f4" sourceRef="IntermediateThrowEvent_2" targetRef="ExclusiveGateway_2"/>
+    <bpmn2:sequenceFlow id="SequenceFlow_6" name="f5" sourceRef="ExclusiveGateway_2" targetRef="IntermediateThrowEvent_3"/>
     <bpmn2:intermediateThrowEvent id="IntermediateThrowEvent_3" name="Intermediate Throw Event 3">
       <bpmn2:incoming>SequenceFlow_6</bpmn2:incoming>
       <bpmn2:outgoing>SequenceFlow_7</bpmn2:outgoing>
     </bpmn2:intermediateThrowEvent>
-    <bpmn2:sequenceFlow id="SequenceFlow_7" sourceRef="IntermediateThrowEvent_3" targetRef="ExclusiveGateway_1"/>
+    <bpmn2:sequenceFlow id="SequenceFlow_7" name="f6" sourceRef="IntermediateThrowEvent_3" targetRef="ExclusiveGateway_1"/>
   </bpmn2:process>
   <bpmndi:BPMNDiagram id="BPMNDiagram_1" name="Default Process Diagram">
     <bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="test-loop">
@@ -86,40 +86,52 @@
         <di:waypoint xsi:type="dc:Point" x="556.0" y="118.0"/>
         <di:waypoint xsi:type="dc:Point" x="614.0" y="118.0"/>
         <bpmndi:BPMNLabel id="BPMNLabel_2" labelStyle="BPMNLabelStyle_1">
-          <dc:Bounds height="28.0" width="59.0" x="558.0" y="119.0"/>
+          <dc:Bounds height="14.0" width="10.0" x="581.0" y="119.0"/>
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="BPMNEdge_SequenceFlow_2" bpmnElement="SequenceFlow_2" sourceElement="BPMNShape_1" targetElement="BPMNShape_IntermediateThrowEvent_1">
         <di:waypoint xsi:type="dc:Point" x="136.0" y="118.0"/>
         <di:waypoint xsi:type="dc:Point" x="200.0" y="118.0"/>
-        <bpmndi:BPMNLabel id="BPMNLabel_5" labelStyle="BPMNLabelStyle_1"/>
+        <bpmndi:BPMNLabel id="BPMNLabel_5" labelStyle="BPMNLabelStyle_1">
+          <dc:Bounds height="14.0" width="10.0" x="164.0" y="119.0"/>
+        </bpmndi:BPMNLabel>
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="BPMNEdge_SequenceFlow_3" bpmnElement="SequenceFlow_3" sourceElement="BPMNShape_IntermediateThrowEvent_1" targetElement="BPMNShape_ExclusiveGateway_1">
         <di:waypoint xsi:type="dc:Point" x="236.0" y="118.0"/>
         <di:waypoint xsi:type="dc:Point" x="300.0" y="118.0"/>
-        <bpmndi:BPMNLabel id="BPMNLabel_7" labelStyle="BPMNLabelStyle_1"/>
+        <bpmndi:BPMNLabel id="BPMNLabel_7" labelStyle="BPMNLabelStyle_1">
+          <dc:Bounds height="14.0" width="10.0" x="264.0" y="119.0"/>
+        </bpmndi:BPMNLabel>
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="BPMNEdge_SequenceFlow_4" bpmnElement="SequenceFlow_4" sourceElement="BPMNShape_ExclusiveGateway_1" targetElement="BPMNShape_IntermediateThrowEvent_2">
         <di:waypoint xsi:type="dc:Point" x="350.0" y="118.0"/>
         <di:waypoint xsi:type="dc:Point" x="410.0" y="118.0"/>
-        <bpmndi:BPMNLabel id="BPMNLabel_9" labelStyle="BPMNLabelStyle_1"/>
+        <bpmndi:BPMNLabel id="BPMNLabel_9" labelStyle="BPMNLabelStyle_1">
+          <dc:Bounds height="14.0" width="10.0" x="376.0" y="119.0"/>
+        </bpmndi:BPMNLabel>
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="BPMNEdge_SequenceFlow_5" bpmnElement="SequenceFlow_5" sourceElement="BPMNShape_IntermediateThrowEvent_2" targetElement="BPMNShape_ExclusiveGateway_2">
         <di:waypoint xsi:type="dc:Point" x="446.0" y="118.0"/>
         <di:waypoint xsi:type="dc:Point" x="506.0" y="118.0"/>
-        <bpmndi:BPMNLabel id="BPMNLabel_11" labelStyle="BPMNLabelStyle_1"/>
+        <bpmndi:BPMNLabel id="BPMNLabel_11" labelStyle="BPMNLabelStyle_1">
+          <dc:Bounds height="14.0" width="10.0" x="472.0" y="119.0"/>
+        </bpmndi:BPMNLabel>
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="BPMNEdge_SequenceFlow_6" bpmnElement="SequenceFlow_6" sourceElement="BPMNShape_ExclusiveGateway_2" targetElement="BPMNShape_IntermediateThrowEvent_3">
         <di:waypoint xsi:type="dc:Point" x="531.0" y="93.0"/>
         <di:waypoint xsi:type="dc:Point" x="531.0" y="58.0"/>
         <di:waypoint xsi:type="dc:Point" x="446.0" y="58.0"/>
-        <bpmndi:BPMNLabel id="BPMNLabel_12" labelStyle="BPMNLabelStyle_1"/>
+        <bpmndi:BPMNLabel id="BPMNLabel_12" labelStyle="BPMNLabelStyle_1">
+          <dc:Bounds height="14.0" width="10.0" x="502.0" y="59.0"/>
+        </bpmndi:BPMNLabel>
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="BPMNEdge_SequenceFlow_7" bpmnElement="SequenceFlow_7" sourceElement="BPMNShape_IntermediateThrowEvent_3" targetElement="BPMNShape_ExclusiveGateway_1">
         <di:waypoint xsi:type="dc:Point" x="410.0" y="58.0"/>
         <di:waypoint xsi:type="dc:Point" x="325.0" y="58.0"/>
         <di:waypoint xsi:type="dc:Point" x="325.0" y="93.0"/>
-        <bpmndi:BPMNLabel id="BPMNLabel_14" labelStyle="BPMNLabelStyle_1"/>
+        <bpmndi:BPMNLabel id="BPMNLabel_14" labelStyle="BPMNLabelStyle_1">
+          <dc:Bounds height="14.0" width="10.0" x="346.0" y="59.0"/>
+        </bpmndi:BPMNLabel>
       </bpmndi:BPMNEdge>
     </bpmndi:BPMNPlane>
     <bpmndi:BPMNLabelStyle id="BPMNLabelStyle_1">

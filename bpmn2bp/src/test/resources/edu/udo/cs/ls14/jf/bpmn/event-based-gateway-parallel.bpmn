@@ -13,25 +13,25 @@
       <bpmn2:outgoing>SequenceFlow_3</bpmn2:outgoing>
       <bpmn2:outgoing>SequenceFlow_4</bpmn2:outgoing>
     </bpmn2:eventBasedGateway>
-    <bpmn2:sequenceFlow id="SequenceFlow_2" sourceRef="StartEvent_1" targetRef="EventBasedGateway_1"/>
+    <bpmn2:sequenceFlow id="SequenceFlow_2" name="1" sourceRef="StartEvent_1" targetRef="EventBasedGateway_1"/>
     <bpmn2:task id="Task_1" name="Task 1">
       <bpmn2:incoming>SequenceFlow_3</bpmn2:incoming>
       <bpmn2:outgoing>SequenceFlow_6</bpmn2:outgoing>
     </bpmn2:task>
-    <bpmn2:sequenceFlow id="SequenceFlow_3" sourceRef="EventBasedGateway_1" targetRef="Task_1"/>
+    <bpmn2:sequenceFlow id="SequenceFlow_3" name="2" sourceRef="EventBasedGateway_1" targetRef="Task_1"/>
     <bpmn2:intermediateThrowEvent id="IntermediateThrowEvent_1" name="Intermediate Throw Event 1">
       <bpmn2:incoming>SequenceFlow_4</bpmn2:incoming>
       <bpmn2:outgoing>SequenceFlow_5</bpmn2:outgoing>
     </bpmn2:intermediateThrowEvent>
-    <bpmn2:sequenceFlow id="SequenceFlow_4" sourceRef="EventBasedGateway_1" targetRef="IntermediateThrowEvent_1"/>
-    <bpmn2:sequenceFlow id="SequenceFlow_5" sourceRef="IntermediateThrowEvent_1" targetRef="ParallelGateway_1"/>
-    <bpmn2:sequenceFlow id="SequenceFlow_6" sourceRef="Task_1" targetRef="ParallelGateway_1"/>
+    <bpmn2:sequenceFlow id="SequenceFlow_4" name="3" sourceRef="EventBasedGateway_1" targetRef="IntermediateThrowEvent_1"/>
+    <bpmn2:sequenceFlow id="SequenceFlow_5" name="5" sourceRef="IntermediateThrowEvent_1" targetRef="ParallelGateway_1"/>
+    <bpmn2:sequenceFlow id="SequenceFlow_6" name="4" sourceRef="Task_1" targetRef="ParallelGateway_1"/>
     <bpmn2:parallelGateway id="ParallelGateway_1" name="Parallel Gateway 1" gatewayDirection="Converging">
       <bpmn2:incoming>SequenceFlow_5</bpmn2:incoming>
       <bpmn2:incoming>SequenceFlow_6</bpmn2:incoming>
       <bpmn2:outgoing>SequenceFlow_7</bpmn2:outgoing>
     </bpmn2:parallelGateway>
-    <bpmn2:sequenceFlow id="SequenceFlow_7" sourceRef="ParallelGateway_1" targetRef="EndEvent_1"/>
+    <bpmn2:sequenceFlow id="SequenceFlow_7" name="6" sourceRef="ParallelGateway_1" targetRef="EndEvent_1"/>
   </bpmn2:process>
   <bpmndi:BPMNDiagram id="BPMNDiagram_1" name="Default Process Diagram">
     <bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="event-based-gateway">
@@ -74,36 +74,48 @@
       <bpmndi:BPMNEdge id="BPMNEdge_SequenceFlow_2" bpmnElement="SequenceFlow_2" sourceElement="BPMNShape_1" targetElement="BPMNShape_EventBasedGateway_1">
         <di:waypoint xsi:type="dc:Point" x="79.0" y="108.0"/>
         <di:waypoint xsi:type="dc:Point" x="125.0" y="108.0"/>
-        <bpmndi:BPMNLabel id="BPMNLabel_5" labelStyle="BPMNLabelStyle_1"/>
+        <bpmndi:BPMNLabel id="BPMNLabel_5" labelStyle="BPMNLabelStyle_1">
+          <dc:Bounds height="14.0" width="7.0" x="99.0" y="109.0"/>
+        </bpmndi:BPMNLabel>
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="BPMNEdge_SequenceFlow_3" bpmnElement="SequenceFlow_3" sourceElement="BPMNShape_EventBasedGateway_1" targetElement="BPMNShape_Task_1">
         <di:waypoint xsi:type="dc:Point" x="150.0" y="83.0"/>
         <di:waypoint xsi:type="dc:Point" x="150.0" y="50.0"/>
         <di:waypoint xsi:type="dc:Point" x="223.0" y="50.0"/>
-        <bpmndi:BPMNLabel id="BPMNLabel_7" labelStyle="BPMNLabelStyle_1"/>
+        <bpmndi:BPMNLabel id="BPMNLabel_7" labelStyle="BPMNLabelStyle_1">
+          <dc:Bounds height="14.0" width="7.0" x="167.0" y="51.0"/>
+        </bpmndi:BPMNLabel>
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="BPMNEdge_SequenceFlow_4" bpmnElement="SequenceFlow_4" sourceElement="BPMNShape_EventBasedGateway_1" targetElement="BPMNShape_IntermediateThrowEvent_1">
         <di:waypoint xsi:type="dc:Point" x="150.0" y="133.0"/>
         <di:waypoint xsi:type="dc:Point" x="150.0" y="168.0"/>
         <di:waypoint xsi:type="dc:Point" x="260.0" y="168.0"/>
-        <bpmndi:BPMNLabel id="BPMNLabel_9" labelStyle="BPMNLabelStyle_1"/>
+        <bpmndi:BPMNLabel id="BPMNLabel_9" labelStyle="BPMNLabelStyle_1">
+          <dc:Bounds height="14.0" width="7.0" x="185.0" y="169.0"/>
+        </bpmndi:BPMNLabel>
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="BPMNEdge_SequenceFlow_5" bpmnElement="SequenceFlow_5" sourceElement="BPMNShape_IntermediateThrowEvent_1" targetElement="BPMNShape_ParallelGateway_1">
         <di:waypoint xsi:type="dc:Point" x="296.0" y="168.0"/>
         <di:waypoint xsi:type="dc:Point" x="393.0" y="168.0"/>
         <di:waypoint xsi:type="dc:Point" x="393.0" y="133.0"/>
-        <bpmndi:BPMNLabel id="BPMNLabel_11" labelStyle="BPMNLabelStyle_1"/>
+        <bpmndi:BPMNLabel id="BPMNLabel_11" labelStyle="BPMNLabelStyle_1">
+          <dc:Bounds height="14.0" width="7.0" x="359.0" y="169.0"/>
+        </bpmndi:BPMNLabel>
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="BPMNEdge_SequenceFlow_6" bpmnElement="SequenceFlow_6" sourceElement="BPMNShape_Task_1" targetElement="BPMNShape_ParallelGateway_1">
         <di:waypoint xsi:type="dc:Point" x="333.0" y="50.0"/>
         <di:waypoint xsi:type="dc:Point" x="393.0" y="50.0"/>
         <di:waypoint xsi:type="dc:Point" x="393.0" y="83.0"/>
-        <bpmndi:BPMNLabel id="BPMNLabel_13" labelStyle="BPMNLabelStyle_1"/>
+        <bpmndi:BPMNLabel id="BPMNLabel_13" labelStyle="BPMNLabelStyle_1">
+          <dc:Bounds height="14.0" width="7.0" x="377.0" y="51.0"/>
+        </bpmndi:BPMNLabel>
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="BPMNEdge_SequenceFlow_7" bpmnElement="SequenceFlow_7" sourceElement="BPMNShape_ParallelGateway_1" targetElement="BPMNShape_2">
         <di:waypoint xsi:type="dc:Point" x="418.0" y="108.0"/>
         <di:waypoint xsi:type="dc:Point" x="463.0" y="108.0"/>
-        <bpmndi:BPMNLabel id="BPMNLabel_14" labelStyle="BPMNLabelStyle_1"/>
+        <bpmndi:BPMNLabel id="BPMNLabel_14" labelStyle="BPMNLabelStyle_1">
+          <dc:Bounds height="14.0" width="7.0" x="438.0" y="109.0"/>
+        </bpmndi:BPMNLabel>
       </bpmndi:BPMNEdge>
     </bpmndi:BPMNPlane>
     <bpmndi:BPMNLabelStyle id="BPMNLabelStyle_1">
