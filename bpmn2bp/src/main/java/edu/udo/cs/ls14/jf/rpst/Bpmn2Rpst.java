@@ -4,7 +4,10 @@ import java.io.IOException;
 import java.util.Map;
 import java.util.stream.Collectors;
 
+import org.eclipse.bpmn2.Activity;
+import org.eclipse.bpmn2.Event;
 import org.eclipse.bpmn2.FlowNode;
+import org.eclipse.bpmn2.Gateway;
 import org.eclipse.bpmn2.Process;
 import org.eclipse.bpmn2.SequenceFlow;
 import org.jbpt.algo.tree.rpst.RPST;
@@ -40,10 +43,16 @@ public class Bpmn2Rpst {
 		Map<String, BpmnPathVertex> vertices = process
 				.getFlowElements()
 				.stream()
-				.filter(e -> e instanceof FlowNode)
+				.filter(e -> false 
+						|| e instanceof Activity
+//				 || e instanceof IntermediateCatchEvent
+//				 || e instanceof IntermediateThrowEvent
+						|| e instanceof Event 
+						|| e instanceof Gateway)
+				.map(e -> (FlowNode) e)
 				.collect(
 						Collectors.toMap(n -> n.getId(),
-								n -> new BpmnPathVertex(n.getName())));
+								n -> new BpmnPathVertex(n)));
 
 		process.getFlowElements()
 				.stream()
@@ -54,5 +63,4 @@ public class Bpmn2Rpst {
 								vertices.get(f.getTargetRef().getId())));
 		return g;
 	}
-
 }
