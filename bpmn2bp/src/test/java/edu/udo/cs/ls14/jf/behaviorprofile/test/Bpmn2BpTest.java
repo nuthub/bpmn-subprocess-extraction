@@ -6,6 +6,7 @@ import java.net.URL;
 import java.util.Set;
 
 import org.eclipse.bpmn2.Process;
+import org.junit.Ignore;
 import org.junit.Test;
 
 import edu.udo.cs.ls14.jf.behaviorprofile.BehavioralProfile;
@@ -15,17 +16,46 @@ import edu.udo.cs.ls14.jf.reachabilitygraph.Trace;
 import edu.udo.cs.ls14.jf.utils.bpmn.ProcessLoader;
 import fr.lip6.move.pnml.ptnet.hlapi.PetriNetHLAPI;
 
-public class BPMN2BPTest {
+public class Bpmn2BpTest {
 
 
 	@Test
+	public void testPM1() throws Exception {
+		String basename = "PM1-mit-Fragment1";
+		BehavioralProfile bp = createBpFromBpmn(basename);
+		// print profile
+		System.out.println(bp);
+	}
+
+	@Test
+	public void testPM2() throws Exception {
+		String basename = "PM2-mit-Fragment1";
+		BehavioralProfile bp = createBpFromBpmn(basename);
+		// print profile
+		System.out.println(bp);
+	}
+
+
+	@Test
+	public void testPM3() throws Exception {
+		String basename = "PM3-mit-Fragment2";
+		BehavioralProfile bp = createBpFromBpmn(basename);
+		// print profile
+		System.out.println(bp);
+	}
+
+
+	@Test
+	@Ignore
 	public void testBpmn2bpLoopingXor() throws Exception {
 		String basename = "looping-xor";
 		BehavioralProfile bp = createBpFromBpmn(basename);
 		// print profile
 		System.out.println(bp);
 	}
+
 	@Test
+	@Ignore
 	public void testBpmn2bpLoopingEvents() throws Exception {
 		String basename = "looping-events-example";
 		BehavioralProfile bp = createBpFromBpmn(basename);

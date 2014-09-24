@@ -20,17 +20,17 @@ public class BehavioralProfile {
 		}
 	}
 
-	private Relation get(String a, String b) {
+	public RelationType get(String a, String b) {
 		if (m.get(a, b) && m.get(b, a)) {
-			return Relation.PARALLEL;
+			return RelationType.PARALLEL;
 		}
 		if (m.get(a, b) && !m.get(b, a)) {
-			return Relation.DIRECT_SUCCESSOR;
+			return RelationType.DIRECT_SUCCESSOR;
 		}
 		if (!m.get(a, b) && m.get(b, a)) {
-			return Relation.DIRECT_PREDECESSOR;
+			return RelationType.DIRECT_PREDECESSOR;
 		}
-		return Relation.NO_SUCCESSION;
+		return RelationType.NO_SUCCESSION;
 	}
 
 	public String toString() {
@@ -43,7 +43,7 @@ public class BehavioralProfile {
 		for (String x : m.getKeys()) {
 			for (String y : m.getKeys()) {
 				sb.append(x + " ");
-				Relation r = get(x, y);
+				RelationType r = get(x, y);
 				switch (r) {
 				case DIRECT_SUCCESSOR:
 					sb.append("→");

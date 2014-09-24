@@ -26,7 +26,7 @@ public class Bpmn2PnmlConverterTest {
 	@Test
 	public void testLoopTransformation() throws Exception {
 		String basename = "looping-events-example";
-		runTest(basename, 9, 9, 186);
+		runTest(basename, 9, 9, 18);
 	}
 
 	@Test

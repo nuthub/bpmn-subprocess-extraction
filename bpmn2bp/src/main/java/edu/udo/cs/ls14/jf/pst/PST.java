@@ -46,9 +46,14 @@ public class PST {
 		spanningTree = new DirectedSparseMultigraph<FlowNode, SequenceFlow>();
 		start = NodeFinder.getStartNode(process);
 		end = NodeFinder.getEndNode(process);
-		graph = buildGraph(process);
-		completeGraph();
 
+		// create undirected graph from process
+		graph = buildGraph(process);
+		// add end->start edge
+		insertEdge = completeGraph();
+
+		// create (directed) spanning tree and seperate edges into set of tree
+		// edges and back edges, determine bracket sets per edge
 		System.out.println();
 		System.out
 				.println("creating spanning tree and computing bracket sets ...");
@@ -60,16 +65,19 @@ public class PST {
 						+ e.getValue().stream().map(b -> b.getName())
 								.collect(Collectors.toSet())));
 
+		// yield all sese-fragments from edgestates
 		System.out.println();
 		System.out.println("yielding Fragments ...");
 		fragments = yieldFragments(start, end);
 		fragments.forEach(f -> System.out.println(f.toString()));
 
+		// filter canonical sese-fragments from all sese-fragments
 		System.out.println();
 		System.out.println("Filtering canonical fragments...");
 		canonicalFragments = canoncialFragments(start, end, fragments);
 		canonicalFragments.forEach(f -> System.out.println(f.toString()));
 
+		// create pst from canonical sese-fragments
 		System.out.println();
 		System.out.println("building structure tree ...");
 		structureTree = buildStructureTree(canonicalFragments);
@@ -94,13 +102,14 @@ public class PST {
 		// parents.push(new Fragment(start.getOutgoing().get(0),
 		// end.getIncoming()
 		// .get(0)));
-		buildStructureTreeAcc(start.getOutgoing().get(0), new Fragment(null,
-				null), parents, new HashSet<SequenceFlow>());
+		buildStructureTreeAcc(canonicalFragments, start.getOutgoing().get(0),
+				new Fragment(null, null), parents, new HashSet<SequenceFlow>());
 		return structureTree;
 	}
 
-	private void buildStructureTreeAcc(SequenceFlow edge, Fragment root,
-			Stack<Fragment> parents, Set<SequenceFlow> visited) {
+	private void buildStructureTreeAcc(Set<Fragment> canonicalFragments,
+			SequenceFlow edge, Fragment root, Stack<Fragment> parents,
+			Set<SequenceFlow> visited) {
 		if (visited.contains(edge)) {
 			return;
 		}
@@ -126,7 +135,8 @@ public class PST {
 			System.out.println("recursion with " + f.getTargetRef().getName());
 			Stack<Fragment> childParents = new Stack<Fragment>();
 			childParents.addAll(parents);
-			buildStructureTreeAcc(f, root, childParents, visited);
+			buildStructureTreeAcc(canonicalFragments, f, root, childParents,
+					visited);
 		}
 		System.out.println("leaving recursion in " + edge.getName());
 		if (!parents.empty()) {
@@ -136,16 +146,18 @@ public class PST {
 
 	/**
 	 * Inserts an edge from end to start
+	 * @return 
 	 */
-	private void completeGraph() {
+	private SequenceFlow completeGraph() {
 		FlowNode start = this.start;
 		FlowNode end = this.end;
-		insertEdge = Bpmn2Factory.eINSTANCE.createSequenceFlow();
-		insertEdge.setId("inserted-end-start-flow");
-		insertEdge.setName(insertEdge.getId());
-		insertEdge.setSourceRef(end);
-		insertEdge.setTargetRef(start);
-		graph.addEdge(insertEdge, start, end);
+		SequenceFlow edge = Bpmn2Factory.eINSTANCE.createSequenceFlow();
+		edge.setId("inserted-end-start-flow");
+		edge.setName(edge.getId());
+		edge.setSourceRef(end);
+		edge.setTargetRef(start);
+		graph.addEdge(edge, start, end);
+		return edge;
 	}
 
 	/**
@@ -397,8 +409,6 @@ public class PST {
 			}
 			return paths;
 		} else {
-			// in a loop
-			// paths.add(path);
 			return paths;
 		}
 	}

@@ -38,7 +38,7 @@
       <incoming>sid-93B31B1C-6F42-4974-B551-705587AA85D2</incoming>
       <outgoing>sid-C6506147-1F35-4235-88C2-9EDFD483F4C6</outgoing>
     </task>
-    <task id="sid-0EC98739-28B8-4098-9212-D6FCCD59E1DB" name="Ware verpacken">
+    <task id="sid-0EC98739-28B8-4098-9212-D6FCCD59E1DB" name="Waren verpacken">
       <extensionElements>
         <signavio:signavioMetaData xsi:type="xs:anyType" metaKey="bgcolor" metaValue="#ffffcc"/>
         <signavio:signavioMetaData xsi:type="xs:anyType" metaKey="risklevel" metaValue=""/>

@@ -12,6 +12,7 @@ import org.eclipse.bpmn2.Process;
 import org.jbpt.algo.tree.rpst.IRPSTNode;
 import org.jbpt.algo.tree.rpst.RPST;
 import org.jbpt.algo.tree.tctree.TCType;
+import org.junit.Ignore;
 import org.junit.Test;
 
 import edu.udo.cs.ls14.jf.rpst.Bpmn2Rpst;
@@ -42,11 +43,13 @@ public class Bpmn2RpstTest {
 	}
 
 	@Test
+	@Ignore
 	public void testOverlapping() throws Exception {
 		getRPST("overlapping", 10, 3, 1, 0, 6);
 	}
 
 	@Test
+	@Ignore
 	public void testPM1() throws Exception {
 		getRPST("PM1-mit-Fragment1", 13, 4, 1, 0, 8);
 	}
@@ -57,6 +60,7 @@ public class Bpmn2RpstTest {
 	}
 
 	@Test
+	@Ignore
 	public void testSequence() throws Exception {
 		String basename = "sequence";
 		getRPST(basename, 4, 1, 0, 0, 3);
