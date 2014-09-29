@@ -20,7 +20,8 @@ public class LemmatizerTest {
 	}
 
 	private void runTest(String word) throws Exception {
-		System.out.println(word + ": " + Lemmatizer.lemmatize("de", word));
+		Lemmatizer.lemmatize("de", word);
+//		System.out.println(word + ": " + );
 	}
 
 }

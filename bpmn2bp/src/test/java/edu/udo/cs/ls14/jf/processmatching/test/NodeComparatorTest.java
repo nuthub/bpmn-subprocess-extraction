@@ -1,4 +1,4 @@
-package edu.udo.cs.ls14.jf.matching.test;
+package edu.udo.cs.ls14.jf.processmatching.test;
 
 import static org.junit.Assert.assertTrue;
 
@@ -6,13 +6,13 @@ import org.eclipse.bpmn2.Bpmn2Factory;
 import org.eclipse.bpmn2.FlowNode;
 import org.junit.Test;
 
-import edu.udo.cs.ls14.jf.matching.Comparator;
+import edu.udo.cs.ls14.jf.processmatching.NodeComparator;
 
-public class ComparatorTest {
+public class NodeComparatorTest {
 
 	@Test
 	public void test1() {
-		Comparator c = new Comparator();
+		NodeComparator c = new NodeComparator();
 		FlowNode a1 = Bpmn2Factory.eINSTANCE.createTask();
 		a1.setName("Die Waren versenden");
 		FlowNode a2 = Bpmn2Factory.eINSTANCE.createTask();
@@ -21,7 +21,7 @@ public class ComparatorTest {
 	}
 	@Test
 	public void test2() {
-		Comparator c = new Comparator();
+		NodeComparator c = new NodeComparator();
 		FlowNode a1 = Bpmn2Factory.eINSTANCE.createTask();
 		a1.setName("Waren verpacken");
 		FlowNode a2 = Bpmn2Factory.eINSTANCE.createTask();

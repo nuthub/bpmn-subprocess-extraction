@@ -16,6 +16,8 @@ import org.eclipse.bpmn2.FlowNode;
 import org.eclipse.bpmn2.Process;
 import org.eclipse.bpmn2.SequenceFlow;
 import org.eclipse.bpmn2.StartEvent;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import edu.uci.ics.jung.graph.DirectedGraph;
 import edu.uci.ics.jung.graph.DirectedSparseGraph;
@@ -26,6 +28,8 @@ import edu.udo.cs.ls14.jf.utils.bpmn.NodeFinder;
 
 public class PST {
 
+	private static final Logger LOG = LoggerFactory.getLogger(PST.class);
+	
 	private Process process;
 	private UndirectedGraph<FlowNode, SequenceFlow> graph;
 	private DirectedGraph<FlowNode, SequenceFlow> spanningTree;
@@ -38,7 +42,7 @@ public class PST {
 	private EndEvent end;
 	private SequenceFlow insertEdge;
 
-	public Set<Fragment> createFromProcess(Process process) {
+	public void createFromProcess(Process process) {
 		this.process = process;
 		// initialize
 		edgeStates = new HashMap<SequenceFlow, EdgeState>();
@@ -54,36 +58,33 @@ public class PST {
 
 		// create (directed) spanning tree and seperate edges into set of tree
 		// edges and back edges, determine bracket sets per edge
-		System.out.println();
-		System.out
-				.println("creating spanning tree and computing bracket sets ...");
+		LOG.debug("creating spanning tree and computing bracket sets ...");
 		undirectedDFS(graph, graph.getVertices().iterator().next(),
 				new ArrayList<FlowNode>());
 		bracketSets.entrySet().forEach(
-				e -> System.out.println(e.getKey().getName()
+				e -> LOG.debug(e.getKey().getName()
 						+ ": "
 						+ e.getValue().stream().map(b -> b.getName())
 								.collect(Collectors.toSet())));
 
 		// yield all sese-fragments from edgestates
-		System.out.println();
-		System.out.println("yielding Fragments ...");
+		LOG.debug("yielding Fragments ...");
 		fragments = yieldFragments(start, end);
-		fragments.forEach(f -> System.out.println(f.toString()));
+		fragments.forEach(f -> LOG.debug(f.toString()));
 
 		// filter canonical sese-fragments from all sese-fragments
-		System.out.println();
-		System.out.println("Filtering canonical fragments...");
+		LOG.debug("Filtering canonical fragments...");
 		canonicalFragments = canoncialFragments(start, end, fragments);
-		canonicalFragments.forEach(f -> System.out.println(f.toString()));
+		canonicalFragments.forEach(f -> LOG.debug(f.toString()));
 
 		// create pst from canonical sese-fragments
-		System.out.println();
-		System.out.println("building structure tree ...");
+		LOG.debug("building structure tree ...");
 		structureTree = buildStructureTree(canonicalFragments);
 
-		System.out.println();
-		System.out.println("done ...");
+		LOG.debug("done ...");
+	}
+
+	public Set<Fragment> getFragments() {
 		return canonicalFragments;
 	}
 
@@ -103,7 +104,8 @@ public class PST {
 		// end.getIncoming()
 		// .get(0)));
 		buildStructureTreeAcc(canonicalFragments, start.getOutgoing().get(0),
-				new Fragment(null, null), parents, new HashSet<SequenceFlow>());
+				new Fragment(process, null, null), parents,
+				new HashSet<SequenceFlow>());
 		return structureTree;
 	}
 
@@ -114,17 +116,14 @@ public class PST {
 			return;
 		}
 		visited.add(edge);
-		System.out.println("flow: " + edge.getName() + ", Parents: " + parents);
 		for (Fragment f : canonicalFragments) {
 			if (edge.equals(f.getExit())) {
-				System.out.println("leaving " + f);
 				parents.pop();
 			}
 		}
 
 		for (Fragment f : canonicalFragments) {
 			if (edge.equals(f.getEntry())) {
-				System.out.println("entering " + f);
 				structureTree.addEdge(new Object(), parents.empty() ? root
 						: parents.peek(), f);
 				parents.push(f);
@@ -132,13 +131,11 @@ public class PST {
 		}
 
 		for (SequenceFlow f : edge.getTargetRef().getOutgoing()) {
-			System.out.println("recursion with " + f.getTargetRef().getName());
 			Stack<Fragment> childParents = new Stack<Fragment>();
 			childParents.addAll(parents);
 			buildStructureTreeAcc(canonicalFragments, f, root, childParents,
 					visited);
 		}
-		System.out.println("leaving recursion in " + edge.getName());
 		if (!parents.empty()) {
 			parents.pop();
 		}
@@ -146,7 +143,8 @@ public class PST {
 
 	/**
 	 * Inserts an edge from end to start
-	 * @return 
+	 * 
+	 * @return
 	 */
 	private SequenceFlow completeGraph() {
 		FlowNode start = this.start;
@@ -180,7 +178,6 @@ public class PST {
 			UndirectedGraph<FlowNode, SequenceFlow> g, FlowNode v,
 			List<FlowNode> visited) {
 		visited.add(v);
-		System.out.println("NOW visiting " + v.getName());
 		// create set of brackets
 		Set<SequenceFlow> brackets = new HashSet<SequenceFlow>();
 		for (SequenceFlow edge : g.getIncidentEdges(v)) {
@@ -190,7 +187,7 @@ public class PST {
 					// add edge to tree edges
 					edgeStates.put(edge, EdgeState.TREE);
 					spanningTree.addEdge(edge, v, w);
-					System.out.println("adding tree edge from " + v.getName()
+					LOG.debug("adding tree edge from " + v.getName()
 							+ " to " + w.getName());
 					// save childrens' bracket sets
 					Set<SequenceFlow> childBrackets = undirectedDFS(g, w,
@@ -201,7 +198,7 @@ public class PST {
 					// add edge to back edges
 					edgeStates.put(edge, EdgeState.BACK);
 					spanningTree.addEdge(edge, v, w);
-					System.out.println("adding back edge from " + v.getName()
+					LOG.debug("adding back edge from " + v.getName()
 							+ " to " + w.getName());
 					bracketSets.put(edge, new HashSet<SequenceFlow>());
 					// save backedge from v to ancestor(v)
@@ -274,8 +271,9 @@ public class PST {
 					}
 					if (isFragment) {
 						if (dominates(start, e, f)
-								&& !fragments.contains(new Fragment(e, f))) {
-							fragments.add(new Fragment(e, f));
+								&& !fragments.contains(new Fragment(process, e,
+										f))) {
+							fragments.add(new Fragment(process, e, f));
 						}
 					}
 				}
@@ -304,7 +302,7 @@ public class PST {
 					// b dominates b'
 					if (e.getEntry().equals(f.getEntry())
 							&& !dominates(start, e.getExit(), f.getExit())) {
-						System.out.println(e.getExit().getName()
+						LOG.debug(e.getExit().getName()
 								+ " does not dominate " + f.getExit().getName()
 								+ ", so " + e
 								+ " is not canonical, because of " + f);
@@ -313,7 +311,7 @@ public class PST {
 					// // a postdominates a'
 					if (e.getExit().equals(f.getExit())
 							&& !postDominates(end, e.getEntry(), f.getEntry())) {
-						System.out.println(e.getEntry().getName()
+						LOG.debug(e.getEntry().getName()
 								+ " does not postdominate "
 								+ f.getEntry().getName() + ", so " + e
 								+ " is not canonical, because of " + f);

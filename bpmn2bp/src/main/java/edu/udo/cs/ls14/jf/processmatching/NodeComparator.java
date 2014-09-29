@@ -1,4 +1,4 @@
-package edu.udo.cs.ls14.jf.matching;
+package edu.udo.cs.ls14.jf.processmatching;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -16,13 +16,13 @@ import edu.udo.cs.ls14.jf.nlp.Lemmatizer;
 import edu.udo.cs.ls14.jf.nlp.OpenThesaurus;
 import edu.udo.cs.ls14.jf.nlp.StopWordList;
 
-public class Comparator {
+public class NodeComparator {
 
 	private static final String LANGUAGE = "de";
 	private List<Class<? extends FlowNode>> classes;
 	private static final String SPECIAL_CHARACTERS_PATTERN = "[^a-zA-Z 0-9äÄöÖüÜß]";
 
-	public Comparator() {
+	public NodeComparator() {
 		super();
 		classes = new ArrayList<Class<? extends FlowNode>>();
 		classes.add(ActivityImpl.class);

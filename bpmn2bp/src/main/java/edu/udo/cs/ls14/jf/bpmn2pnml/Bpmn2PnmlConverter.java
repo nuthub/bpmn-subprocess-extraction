@@ -8,7 +8,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.Random;
 import java.util.Set;
-import java.util.logging.Logger;
 
 import org.apache.commons.lang3.NotImplementedException;
 import org.apache.commons.lang3.StringUtils;
@@ -35,6 +34,8 @@ import org.eclipse.bpmn2.SequenceFlow;
 import org.eclipse.bpmn2.StartEvent;
 import org.eclipse.bpmn2.SubProcess;
 import org.eclipse.bpmn2.Task;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import fr.lip6.move.pnml.framework.utils.ModelRepository;
 import fr.lip6.move.pnml.framework.utils.PNMLUtils;
@@ -52,8 +53,7 @@ import fr.lip6.move.pnml.ptnet.hlapi.TransitionHLAPI;
 
 public class Bpmn2PnmlConverter {
 
-	private static final Logger LOG = Logger.getLogger(Bpmn2PnmlConverter.class
-			.getName());
+	private static final Logger LOG = LoggerFactory.getLogger(Bpmn2PnmlConverter.class);
 
 	private PetriNetHLAPI net;
 	private PageHLAPI page;
@@ -63,7 +63,6 @@ public class Bpmn2PnmlConverter {
 
 	public PetriNetHLAPI convertToPetriNet(Process process) throws Exception {
 		createPetrinetFromProcess(process);
-		LOG.fine(this.toString());
 		return net;
 	}
 

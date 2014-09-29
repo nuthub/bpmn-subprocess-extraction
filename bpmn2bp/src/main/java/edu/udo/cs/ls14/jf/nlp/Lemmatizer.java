@@ -6,8 +6,12 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 public class Lemmatizer {
 
+	private static final Logger LOG = LoggerFactory.getLogger(Lemmatizer.class);
 	private static final String DRIVER = "org.sqlite.JDBC";
 	private static final String CONNECTION = "jdbc:sqlite:"
 			+ Lemmatizer.class.getResource("lemmatizer.sqlite").getPath();
@@ -15,9 +19,9 @@ public class Lemmatizer {
 
 	private static void connect() throws ClassNotFoundException, SQLException {
 		Class.forName(DRIVER);
-		System.out.println("Trying to connect to " + CONNECTION);
+		LOG.debug("Trying to connect to " + CONNECTION);
 		c = DriverManager.getConnection(CONNECTION);
-		System.out.println("Opened database successfully");
+		LOG.info("Connected to " + CONNECTION);
 	}
 
 	public static String lemmatize(String language, String word)
@@ -32,20 +36,17 @@ public class Lemmatizer {
 		Statement statement;
 		statement = c.createStatement();
 		ResultSet resultSet = null;
-		// resultSet = statement
-		// .executeQuery("SELECT COUNT(grundform) FROM word_mapping WHERE wortform='"
-		// + word + "';");
-		// resultSet.next();
-		// System.out.println(word + " hat " +
-		// resultSet.getInt("COUNT(grundform)") + " Grundformen:");
-		resultSet = statement
-				.executeQuery("SELECT grundform FROM word_mapping "
-						+ "WHERE wortform = '" + word + "' LIMIT 0,1;");
+		String query = "SELECT grundform FROM word_mapping "
+				+ "WHERE wortform = '" + word + "' LIMIT 0,1;";
+		LOG.debug("Query: " + query);
+		resultSet = statement.executeQuery(query);
 
 		if (resultSet.next()) {
-			// System.out.println(resultSet.getString("grundform"));
-			return resultSet.getString("grundform");
+			String result = resultSet.getString("grundform");
+			LOG.debug("Returning result: " + result);
+			return result;
 		}
+		LOG.debug("Returning query word: " + word);
 		return word;
 	}
 }

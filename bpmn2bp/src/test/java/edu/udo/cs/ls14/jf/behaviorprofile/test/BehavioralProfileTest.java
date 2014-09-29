@@ -6,18 +6,18 @@ import java.net.URL;
 import java.util.Set;
 
 import org.eclipse.bpmn2.Process;
-import org.junit.Ignore;
+import org.jbpt.utils.IOUtils;
 import org.junit.Test;
 
 import edu.udo.cs.ls14.jf.behaviorprofile.BehavioralProfile;
 import edu.udo.cs.ls14.jf.bpmn2pnml.Bpmn2PnmlConverter;
 import edu.udo.cs.ls14.jf.reachabilitygraph.ReachabilityGraph;
 import edu.udo.cs.ls14.jf.reachabilitygraph.Trace;
+import edu.udo.cs.ls14.jf.reachabilitygraph.Tracer;
 import edu.udo.cs.ls14.jf.utils.bpmn.ProcessLoader;
 import fr.lip6.move.pnml.ptnet.hlapi.PetriNetHLAPI;
 
-public class Bpmn2BpTest {
-
+public class BehavioralProfileTest {
 
 	@Test
 	public void testPM1() throws Exception {
@@ -35,7 +35,6 @@ public class Bpmn2BpTest {
 		System.out.println(bp);
 	}
 
-
 	@Test
 	public void testPM3() throws Exception {
 		String basename = "PM3-mit-Fragment2";
@@ -44,9 +43,7 @@ public class Bpmn2BpTest {
 		System.out.println(bp);
 	}
 
-
 	@Test
-	@Ignore
 	public void testBpmn2bpLoopingXor() throws Exception {
 		String basename = "looping-xor";
 		BehavioralProfile bp = createBpFromBpmn(basename);
@@ -55,37 +52,48 @@ public class Bpmn2BpTest {
 	}
 
 	@Test
-	@Ignore
 	public void testBpmn2bpLoopingEvents() throws Exception {
 		String basename = "looping-events-example";
 		BehavioralProfile bp = createBpFromBpmn(basename);
 		// print profile
 		System.out.println(bp);
 	}
-	
-	private BehavioralProfile createBpFromBpmn(String basename) throws Exception {
+
+	private BehavioralProfile createBpFromBpmn(String basename)
+			throws Exception {
 		URL url = getClass().getResource("../../bpmn/" + basename + ".bpmn");
 		assertNotNull(url);
-		
+		System.out.println("Now profiling " + basename);
 		// Load BPMN model
 		Process process = ProcessLoader.loadFirstProcessFromResource(url);
-		
+
 		// create P/T-Net from bpmn
 		Bpmn2PnmlConverter converter = new Bpmn2PnmlConverter();
 		PetriNetHLAPI ptnet = converter.convertToPetriNet(process);
-		
+//		converter.saveToPnmlFile("/tmp/" + basename + ".pnml");
+
 		// create Reachability Graph from petri net
 		ReachabilityGraph rg = new ReachabilityGraph();
 		rg.createFromPTNet(ptnet.getContainedItem());
-				
+		String dot = rg.toDot();
+		System.out.println(dot);
+		IOUtils.invokeDOT("/tmp", basename + "-reachabilityGraph.png",
+				dot);
+
+
 		// Create Traces
-		Set<Trace> traces = rg.getTraces();
-		System.out.println(traces);
-		System.out.println("---------------------------------");
+		Set<Trace> traces = Tracer.getTraces(process, rg);
+		// output traces
+		for(Trace trace : traces) {
+			System.out.println(trace);
+			for(String node: trace) {
+				System.out.println(" " + node);
+			}
+		}
 
 		// create Behavioral Profile
 		BehavioralProfile bp = new BehavioralProfile();
-		bp.generateFromTraces(traces);		
+		bp.generateFromTraces(process, traces);
 
 		return bp;
 	}

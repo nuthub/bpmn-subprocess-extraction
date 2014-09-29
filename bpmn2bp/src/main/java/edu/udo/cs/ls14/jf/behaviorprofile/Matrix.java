@@ -1,9 +1,9 @@
 package edu.udo.cs.ls14.jf.behaviorprofile;
 
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
-import java.util.TreeSet;
 
 public class Matrix<K, V> {
 
@@ -14,7 +14,7 @@ public class Matrix<K, V> {
 	public Matrix(V defaultValue) {
 		super();
 		this.matrix = new HashMap<K, Map<K, V>>();
-		this.keys = new TreeSet<K>();
+		this.keys = new HashSet<K>();
 		this.defaultValue = defaultValue;
 	}
 

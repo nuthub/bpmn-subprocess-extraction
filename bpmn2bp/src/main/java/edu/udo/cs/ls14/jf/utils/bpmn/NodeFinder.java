@@ -36,4 +36,16 @@ public class NodeFinder {
 		}
 		return null;
 	}
+
+	public static FlowElement getElement(Process process, String id) {
+		if (id == null || id.isEmpty()) {
+			return null;
+		}
+		for (FlowElement f : process.getFlowElements()) {
+			if (f.getId().equals(id)) {
+				return f;
+			}
+		}
+		return null;
+	}
 }

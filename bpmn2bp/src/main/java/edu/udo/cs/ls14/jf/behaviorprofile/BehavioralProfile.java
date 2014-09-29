@@ -1,26 +1,50 @@
 package edu.udo.cs.ls14.jf.behaviorprofile;
 
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Set;
+
+import org.eclipse.bpmn2.FlowElement;
+import org.eclipse.bpmn2.FlowNode;
+import org.eclipse.bpmn2.Process;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import edu.udo.cs.ls14.jf.reachabilitygraph.Trace;
 
 public class BehavioralProfile {
 
-	private Matrix<String, Boolean> m;
+	private static final Logger LOG = LoggerFactory.getLogger(BehavioralProfile.class);
+	
+	private Matrix<FlowNode, Boolean> m;
+	private Map<String, FlowNode> nodes;
 
 	public BehavioralProfile() {
-		m = new Matrix<String, Boolean>(false);
+		m = new Matrix<FlowNode, Boolean>(false);
+		nodes = new HashMap<String, FlowNode>();
 	}
 
-	public void generateFromTraces(Set<Trace> traces) {
+	public void generateFromTraces(Process process, Set<Trace> traces) {
+		for (FlowElement elem : process.getFlowElements()) {
+			if (elem instanceof FlowNode) {
+				LOG.debug("add: " + elem.getId());
+				nodes.put(elem.getId(), (FlowNode) elem);
+			}
+		}
 		for (Trace t : traces) {
 			for (int i = 0; i < t.size() - 1; i++) {
-				m.put(t.get(i), t.get(i + 1), true);
+				if(!nodes.containsKey(t.get(i))) {
+					LOG.debug(t.get(i) + " not contained in " + nodes);
+				}
+				if(!nodes.containsKey(t.get(i+1))) {
+					LOG.debug(t.get(i+1) + " not contained in " + nodes);
+				}
+				m.put(nodes.get(t.get(i)), nodes.get(t.get(i + 1)), true);
 			}
 		}
 	}
 
-	public RelationType get(String a, String b) {
+	public RelationType get(FlowNode a, FlowNode b) {
 		if (m.get(a, b) && m.get(b, a)) {
 			return RelationType.PARALLEL;
 		}
@@ -35,14 +59,9 @@ public class BehavioralProfile {
 
 	public String toString() {
 		StringBuffer sb = new StringBuffer();
-		// System.out.println("→");
-		// System.out.println("←");
-		// System.out.println("∥");
-		// System.out.println("#");
-		//
-		for (String x : m.getKeys()) {
-			for (String y : m.getKeys()) {
-				sb.append(x + " ");
+		for (FlowNode x : m.getKeys()) {
+			for (FlowNode y : m.getKeys()) {
+				sb.append(x.getName() + " ");
 				RelationType r = get(x, y);
 				switch (r) {
 				case DIRECT_SUCCESSOR:
@@ -58,7 +77,7 @@ public class BehavioralProfile {
 					sb.append("#");
 					break;
 				}
-				sb.append(" " + y);
+				sb.append(" " + y.getName());
 				sb.append(System.getProperty("line.separator"));
 			}
 			sb.append(System.getProperty("line.separator"));

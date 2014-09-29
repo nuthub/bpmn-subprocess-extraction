@@ -6,7 +6,13 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 public class StopWordList {
+
+	private static final Logger LOG = LoggerFactory
+			.getLogger(StopWordList.class);
 
 	private static final String DRIVER = "org.sqlite.JDBC";
 	private static final String CONNECTION = "jdbc:sqlite:"
@@ -15,12 +21,13 @@ public class StopWordList {
 
 	private static void connect() throws ClassNotFoundException, SQLException {
 		Class.forName(DRIVER);
-		System.out.println("Trying to connect to " + CONNECTION);
+		LOG.debug("Trying to connect to " + CONNECTION);
 		c = DriverManager.getConnection(CONNECTION);
-		System.out.println("Opened database successfully");
+		LOG.info("Connected to " + CONNECTION);
 	}
 
-	public static boolean contains(String language, String word) throws Exception {
+	public static boolean contains(String language, String word)
+			throws Exception {
 		if (language != "de") {
 			throw new Exception("No baseform information for language "
 					+ language + " available.");

@@ -2,8 +2,13 @@ package edu.udo.cs.ls14.jf.nlp;
 
 import java.sql.SQLException;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 public class Word {
 
+	private static final Logger LOG = LoggerFactory.getLogger(Word.class);
+	
 	private String language = null;
 	private String word = null;
 	private String baseform = null;
@@ -32,7 +37,7 @@ public class Word {
 			try {
 				baseform = Lemmatizer.lemmatize(language, word);
 			} catch (Exception e) {
-				System.err.println("Cannot get baseform of word " + word
+				LOG.error("Cannot get baseform of word " + word
 						+ " (language = " + language + ")");
 				e.printStackTrace();
 			}
@@ -49,7 +54,7 @@ public class Word {
 					type = WordType.NORMAL;
 				}
 			} catch (Exception e) {
-				System.err.println("Cannot load stopword list for language "
+				LOG.error("Cannot load stopword list for language "
 						+ language);
 				e.printStackTrace();
 				type = WordType.UNKNOWN;

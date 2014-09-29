@@ -6,6 +6,9 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 /**
  * TODO static vs. singleton vs. object
  * 
@@ -14,15 +17,17 @@ import java.sql.Statement;
  */
 public class OpenThesaurus {
 
+	private static final Logger LOG = LoggerFactory.getLogger(OpenThesaurus.class);
+	
 	private static final String DRIVER = "com.mysql.jdbc.Driver";
 	private static final String CONNECTION = "jdbc:mysql://localhost/openthesaurus?user=openthesaurus&password=04dSv7H0";
 	private static Connection connection = null;
 
 	private static void connect() throws SQLException, ClassNotFoundException {
 		Class.forName(DRIVER);
-		System.out.println("Trying to connect to " + CONNECTION);
+		LOG.debug("Trying to connect to " + CONNECTION);
 		connection = DriverManager.getConnection(CONNECTION);
-		System.out.println("Connected to " + CONNECTION);
+		LOG.info("Connected to " + CONNECTION);
 	}
 
 	public static boolean areSynonyms(String word1, String word2)

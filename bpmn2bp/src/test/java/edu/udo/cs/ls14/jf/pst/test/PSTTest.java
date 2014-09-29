@@ -126,7 +126,8 @@ public class PSTTest {
 		Process process = ProcessLoader.loadFirstProcessFromResource(url);
 
 		PST pst = new PST();
-		Set<Fragment> fragments = pst.createFromProcess(process);
+		pst.createFromProcess(process);
+		Set<Fragment> fragments = pst.getFragments();
 		IOUtils.invokeDOT("/tmp", basename + "-undirectedgraph.png",
 				pst.getGraphAsDot());
 		IOUtils.invokeDOT("/tmp", basename + "-spanningtree.png",

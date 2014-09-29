@@ -1,6 +1,7 @@
 package edu.udo.cs.ls14.jf.reachabilitygraph;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import org.apache.commons.lang3.StringUtils;
 
@@ -21,6 +22,14 @@ public class Marking extends ArrayList<Place> {
 
 	public void setInitialMarking(boolean initialMarking) {
 		this.initialMarking = initialMarking;
+	}
+	
+	public String getLabel() {
+		List<String> labels = new ArrayList<String>();
+		for(Place p: this) {
+			labels.add(p.getId());
+		}
+		return labels.toString();
 	}
 	
 	public String toString() {

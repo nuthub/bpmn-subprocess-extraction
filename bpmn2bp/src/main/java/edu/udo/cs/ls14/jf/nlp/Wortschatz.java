@@ -6,6 +6,9 @@ import java.util.stream.Collectors;
 
 import javax.xml.ws.BindingProvider;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import similarity.Similarity;
 import similarity.SimilarityService;
 import synonyms.Synonyms;
@@ -17,6 +20,8 @@ import baseform.BaseformService;
 import de.uni_leipzig.wortschatz.webservice.datatypes.DataVector;
 
 public class Wortschatz {
+
+	private static final Logger LOG = LoggerFactory.getLogger(Wortschatz.class);
 
 	private static final String USERNAME = "anonymous";
 	private static final String PASSWORD = "anonymous";
@@ -50,15 +55,14 @@ public class Wortschatz {
 
 		synonyms.ResponseParameter response = synonyms.execute(params);
 		// TODO: collect results
-		System.out.println("Synonyms of " + word + ":");
+		LOG.debug("Synonyms of " + word + ":");
 		response.getResult().getDataVectors().stream().map(v -> v.getDataRow())
-				.forEach(r -> System.out.println(" " + r));
+				.forEach(r -> LOG.debug(" " + r));
 		return response.getResult().getDataVectors().stream()
 				.map(v -> v.getDataRow().get(0)).collect(Collectors.toList());
 	}
 
-	public static String baseform(String corpus, String word)
-			throws Exception {
+	public static String baseform(String corpus, String word) throws Exception {
 		URL url = new URL(BASEFORM_URL);
 		Baseform baseform = new BaseformService(url).getBaseform();
 		if (!baseform.ping().equals("Webservice \"Baseform\" is ready.")) {
@@ -80,17 +84,17 @@ public class Wortschatz {
 
 		baseform.ResponseParameter response = baseform.execute(params);
 		// TODO: collect results
-		System.out.println("Baseform of '" + word + "': ");
+		LOG.debug("Baseform of '" + word + "': ");
 		response.getResult().getDataVectors().stream().map(v -> v.getDataRow())
-				.forEach(v -> System.out.println(" " + v));
+				.forEach(v -> LOG.debug(" " + v));
 		List<String> baseforms = response.getResult().getDataVectors().stream()
 				.map(v -> v.getDataRow()).filter(r -> !r.get(1).equals("S"))
 				.map(r -> r.get(0)).collect(Collectors.toList());
 		return baseforms.isEmpty() ? null : baseforms.get(0);
 	}
 
-	public static List<String> thesaurus(String corpus, String word,
-			int limit) throws Exception {
+	public static List<String> thesaurus(String corpus, String word, int limit)
+			throws Exception {
 		URL url = new URL(THESAURUS_URL);
 		Thesaurus thesaurus = new ThesaurusService(url).getThesaurus();
 		if (!thesaurus.ping().equals("Webservice \"Thesaurus\" is ready.")) {
@@ -114,14 +118,14 @@ public class Wortschatz {
 
 		thesaurus.ResponseParameter response = thesaurus.execute(params);
 		// TODO: collect results
-		System.out.println("Thesaurus of " + word + ":");
+		LOG.debug("Thesaurus of " + word + ":");
 		response.getResult().getDataVectors().stream()
-				.forEach(v -> System.out.println("- " + v.getDataRow()));
+				.forEach(v -> LOG.debug("- " + v.getDataRow()));
 		return null;
 	}
 
-	public static List<String> similarity(String corpus, String word,
-			int limit) throws Exception {
+	public static List<String> similarity(String corpus, String word, int limit)
+			throws Exception {
 		URL url = new URL(SIMILARITY_URL);
 		SimilarityService service = new SimilarityService(url);
 		Similarity similarity = service.getSimilarity();
@@ -146,14 +150,13 @@ public class Wortschatz {
 
 		similarity.ResponseParameter response = similarity.execute(params);
 		// TODO: collect results
-		System.out.println("Similarity of " + word + ":");
+		LOG.debug("Similarity of " + word + ":");
 		response.getResult()
 				.getDataVectors()
 				.stream()
 				.forEach(
-						v -> System.out.println("- [" + v.getDataRow().get(2)
-								+ "] " + v.getDataRow().get(1)));
-		System.out.println();
+						v -> LOG.debug("- [" + v.getDataRow().get(2) + "] "
+								+ v.getDataRow().get(1)));
 		return null;
 	}
 

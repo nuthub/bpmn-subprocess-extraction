@@ -15,6 +15,9 @@ import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 public class ProcessLoader {
 
 	public static Process loadFirstProcessFromResource(URL url) throws Exception {
+		if(url==null) {
+			throw new Exception("URL ist null!");
+		}
 		Resource.Factory.Registry.INSTANCE.getExtensionToFactoryMap().put(
 				"bpmn2", new Bpmn2ResourceFactoryImpl());
 		Resource.Factory.Registry.INSTANCE.getExtensionToFactoryMap().put(

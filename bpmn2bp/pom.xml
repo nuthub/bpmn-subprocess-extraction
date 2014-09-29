@@ -100,6 +100,16 @@
 			<artifactId>sqlite-jdbc</artifactId>
 			<version>3.8.5-pre1</version>
 		</dependency>
+		<dependency>
+			<groupId>ch.qos.logback</groupId>
+			<artifactId>logback-classic</artifactId>
+			<version>1.1.2</version>
+		</dependency>
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-api</artifactId>
+			<version>1.7.7</version>
+		</dependency>
 	</dependencies>
 	<build>
 		<plugins>
@@ -113,7 +123,7 @@
 							<goal>wsimport</goal>
 						</goals>
 						<configuration>
-							<packageName>edu.udo.cs.ls14.jf.wortschatz</packageName>
+							<!-- <packageName>edu.udo.cs.ls14.jf.wortschatz</packageName> -->
 							<wsdlUrls>
 								<wsdlUrl>http://wortschatz.uni-leipzig.de/axis/services/Baseform?wsdl</wsdlUrl>
 								<wsdlUrl>http://wortschatz.uni-leipzig.de/axis/services/Synonyms?wsdl</wsdlUrl>

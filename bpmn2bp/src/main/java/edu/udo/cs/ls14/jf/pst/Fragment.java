@@ -1,16 +1,27 @@
 package edu.udo.cs.ls14.jf.pst;
 
+import java.util.HashSet;
+import java.util.Set;
+
+import org.eclipse.bpmn2.FlowNode;
+import org.eclipse.bpmn2.Process;
 import org.eclipse.bpmn2.SequenceFlow;
 
 public class Fragment {
 
+	private Process process;
 	private SequenceFlow entry;
 	private SequenceFlow exit;
 	private Fragment parent;
 
-	public Fragment(SequenceFlow entry, SequenceFlow exit) {
+	public Fragment(Process process, SequenceFlow entry, SequenceFlow exit) {
+		this.process = process;
 		this.entry = entry;
 		this.exit = exit;
+	}
+	
+	public Process getProcess() {
+		return process;
 	}
 
 	public SequenceFlow getEntry() {
@@ -21,6 +32,25 @@ public class Fragment {
 		return exit;
 	}
 
+	public Set<FlowNode> getContainedFlowNodes(Process process) {
+		return getContainedFlowNodesAcc(process, entry, new HashSet<FlowNode>());
+	}
+	
+	private Set<FlowNode> getContainedFlowNodesAcc(Process process, SequenceFlow entry, Set<FlowNode> nodes) {
+		FlowNode target = entry.getTargetRef();
+		if(nodes.contains(target)) {
+			return nodes;
+		}
+		if(entry.equals(exit)) {
+			return nodes;
+		}
+		nodes.add(target);
+		for(SequenceFlow newEntry: target.getOutgoing()) {
+			nodes.addAll(getContainedFlowNodesAcc(process, newEntry, nodes));
+		}
+		return nodes;
+	}
+	
 	public void setParent(Fragment parent) {
 		this.parent = parent;
 	}

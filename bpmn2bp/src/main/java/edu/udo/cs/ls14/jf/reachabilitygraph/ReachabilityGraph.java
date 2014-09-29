@@ -1,8 +1,6 @@
 package edu.udo.cs.ls14.jf.reachabilitygraph;
 
 import java.io.File;
-import java.io.FileWriter;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -11,11 +9,13 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
-import org.apache.commons.collections15.Transformer;
 import org.apache.commons.lang3.NotImplementedException;
+import org.eclipse.bpmn2.FlowElement;
+import org.eclipse.bpmn2.Process;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import edu.uci.ics.jung.graph.DirectedSparseMultigraph;
-import edu.uci.ics.jung.io.GraphMLWriter;
 import fr.lip6.move.pnml.framework.hlapi.HLAPIRootClass;
 import fr.lip6.move.pnml.framework.utils.PNMLUtils;
 import fr.lip6.move.pnml.ptnet.Arc;
@@ -32,6 +32,8 @@ public class ReachabilityGraph extends DirectedSparseMultigraph<Marking, Edge> {
 	 * 
 	 */
 	private static final long serialVersionUID = 4381590121431152940L;
+	private static final Logger LOG = LoggerFactory
+			.getLogger(ReachabilityGraph.class);
 
 	public void createFromPTNet(PetriNet ptnet) throws Exception {
 		List<Page> pages = ptnet.getPages();
@@ -115,86 +117,17 @@ public class ReachabilityGraph extends DirectedSparseMultigraph<Marking, Edge> {
 		}
 	}
 
-	public File saveGraphML(String filename) throws IOException {
-		// Save as GraphML
-		GraphMLWriter<Marking, Edge> gw = new GraphMLWriter<Marking, Edge>();
-		gw.addEdgeData("label", "The edge's label", "",
-				new Transformer<Edge, String>() {
-					public String transform(Edge e) {
-						return e.getT();
-					}
-				});
-		gw.addVertexData("initial", "true, if marking is initial", "false",
-				new Transformer<Marking, String>() {
-					public String transform(Marking m) {
-						return m.isInitialMarking() ? "true" : "false";
-					}
-				});
-		File file = new File(filename);
-		gw.save(this, new FileWriter(file));
-		return file;
-
-	}
-
-	public Set<Trace> getTraces() throws Exception {
-		Set<Marking> startNodes = new HashSet<Marking>();
-		Set<Marking> endNodes = new HashSet<Marking>();
-		for (Marking m : getVertices()) {
-			if (inDegree(m) == 0) {
-				startNodes.add(m);
-			}
-			if (outDegree(m) == 0) {
-				endNodes.add(m);
-			}
-		}
-		if (startNodes.size() != 1) {
-			throw new Exception("expected exactly 1 start node, found "
-					+ startNodes.size());
-		}
-		if (endNodes.size() != 1) {
-			System.out.println(endNodes);
-			throw new Exception("expected exactly 1 end node, found "
-					+ endNodes.size());
-		}
-		Marking start = startNodes.iterator().next();
-		Marking end = endNodes.iterator().next();
-		return getTraces(this, start, end, new Trace(), new HashSet<Edge>());
-	}
-
-	private Set<Trace> getTraces(ReachabilityGraph graph, Marking start,
-			Marking end, Trace prefix, Set<Edge> visited) {
-		Set<Trace> traces = new HashSet<Trace>();
-		if (start == end) {
-			prefix.setFinished(true);
-			traces.add(prefix);
-			return traces;
-		}
-		for (Edge edge : graph.getOutEdges(start)) {
-			// erstelle neuen Trace aus Prefix
-			Trace trace = new Trace();
-			trace.addAll(prefix);
-			// Wenn kante keine stille Transition repräsentiert
-			if (edge.getT() != null && !edge.getT().equals("")) {
-				// Füge die Kante dem Trace hinzu
-				trace.add(edge.getT());
-			}
-			// Wenn Kante noch nicht durchlaufen wurde, Rekursion
-			if (!visited.contains(edge)) {
-				// Vorher merken, dass Kante bereits durchlaufen wurde (nur,
-				// wenn keine Stille Kante
-				if (edge.getT() != null && !edge.getT().equals("")) {
-					visited.add(edge);
-				}
-				// Rekursion
-				traces.addAll(getTraces(graph, graph.getDest(edge), end, trace,
-						visited));
-			} else {
-				trace.setFinished(false);
-				traces.add(trace);
-			}
-		}
-		return traces;
-	}
+	/*
+	 * public File saveGraphML(String filename) throws IOException { // Save as
+	 * GraphML GraphMLWriter<Marking, Edge> gw = new GraphMLWriter<Marking,
+	 * Edge>(); gw.addEdgeData("label", "The edge's label", "", new
+	 * Transformer<Edge, String>() { public String transform(Edge e) { return
+	 * e.getT(); } }); gw.addVertexData("initial",
+	 * "true, if marking is initial", "false", new Transformer<Marking,
+	 * String>() { public String transform(Marking m) { return
+	 * m.isInitialMarking() ? "true" : "false"; } }); File file = new
+	 * File(filename); gw.save(this, new FileWriter(file)); return file; }
+	 */
 
 	private Marking getMPrime(Marking m, Transition t) throws Exception {
 		Marking mPrime = new Marking();
@@ -244,6 +177,23 @@ public class ReachabilityGraph extends DirectedSparseMultigraph<Marking, Edge> {
 		}
 		return activeTransitions;
 
+	}
+
+	public String toDot() {
+		StringBuffer sb = new StringBuffer();
+		sb.append("digraph {");
+		sb.append(System.getProperty("line.separator"));
+
+		for (Edge edge : getEdges()) {
+			sb.append("\"" + getSource(edge).getLabel() + "\"");
+			sb.append(" -> ");
+			sb.append("\"" + getDest(edge).getLabel() + "\"");
+			sb.append(" [label=\"" + edge.getT() + "\"]");
+			sb.append(System.getProperty("line.separator"));
+		}
+		sb.append("}");
+		sb.append(System.getProperty("line.separator"));
+		return sb.toString();
 	}
 
 }
