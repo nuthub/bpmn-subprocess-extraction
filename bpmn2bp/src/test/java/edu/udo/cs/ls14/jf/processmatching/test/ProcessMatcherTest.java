@@ -23,7 +23,7 @@ public class ProcessMatcherTest {
 	public void testPm1WithPm3() throws Exception {
 		String basename1 = "PM1-mit-Fragment1";
 		String basename2 = "PM3-mit-Fragment2";
-		runTest(basename1, basename2, 3, 3);
+		runTest(basename1, basename2, 5, 5);
 	}
 
 	private void runTest(String basename1, String basename2,

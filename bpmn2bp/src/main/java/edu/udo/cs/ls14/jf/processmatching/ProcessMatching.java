@@ -1,17 +1,18 @@
 package edu.udo.cs.ls14.jf.processmatching;
 
-import java.util.Map;
+import java.util.Set;
 
 import org.eclipse.bpmn2.FlowNode;
 import org.eclipse.bpmn2.Process;
+import org.javatuples.Pair;
 
 import edu.udo.cs.ls14.jf.pst.Fragment;
 
 public class ProcessMatching {
 	private Process process1;
 	private Process process2;
-	private Map<FlowNode, FlowNode> nodeCorrespondences;
-	private Map<Fragment, Fragment> fragmentCorrespondences;
+	private Set<Pair<FlowNode, FlowNode>> nodeCorrespondences;
+	private Set<Pair<Fragment, Fragment>> fragmentCorrespondences;
 
 	public Process getProcess1() {
 		return process1;
@@ -29,19 +30,19 @@ public class ProcessMatching {
 		this.process2 = process2;
 	}
 
-	public Map<FlowNode, FlowNode> getNodeCorrespondences() {
+	public Set<Pair<FlowNode, FlowNode>> getNodeCorrespondences() {
 		return nodeCorrespondences;
 	}
 
-	public void setNodeCorrespondences(Map<FlowNode, FlowNode> nodeCorrespondences) {
+	public void setNodeCorrespondences(Set<Pair<FlowNode, FlowNode>> nodeCorrespondences) {
 		this.nodeCorrespondences = nodeCorrespondences;
 	}
 
-	public void setFragmentCorrespondences(Map<Fragment, Fragment> fragmentCorrespondences) {
+	public void setFragmentCorrespondences(Set<Pair<Fragment, Fragment>> fragmentCorrespondences) {
 		this.fragmentCorrespondences = fragmentCorrespondences;
 	}
 
-	public Map<Fragment, Fragment> getFragmentCorrespondences() {
+	public Set<Pair<Fragment, Fragment>> getFragmentCorrespondences() {
 		return fragmentCorrespondences;
 	}
 
