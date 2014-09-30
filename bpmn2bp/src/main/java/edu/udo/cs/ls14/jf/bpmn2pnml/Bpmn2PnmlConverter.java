@@ -34,6 +34,7 @@ import org.eclipse.bpmn2.SequenceFlow;
 import org.eclipse.bpmn2.StartEvent;
 import org.eclipse.bpmn2.SubProcess;
 import org.eclipse.bpmn2.Task;
+import org.javatuples.Pair;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -58,8 +59,8 @@ public class Bpmn2PnmlConverter {
 	private PetriNetHLAPI net;
 	private PageHLAPI page;
 	private PetriNetDocHLAPI doc;
-	private Set<Tuple<String, Set<TransitionHLAPI>>> prePlaces;
-	private Set<Tuple<Set<TransitionHLAPI>, String>> postPlaces;
+	private Set<Pair<String, Set<TransitionHLAPI>>> prePlaces;
+	private Set<Pair<Set<TransitionHLAPI>, String>> postPlaces;
 
 	public PetriNetHLAPI convertToPetriNet(Process process) throws Exception {
 		createPetrinetFromProcess(process);
@@ -99,8 +100,8 @@ public class Bpmn2PnmlConverter {
 		doc = new PetriNetDocHLAPI();
 		net = new PetriNetHLAPI("net0", PNTypeHLAPI.PTNET, doc);
 		page = new PageHLAPI("page0", net);
-		prePlaces = new HashSet<Tuple<String, Set<TransitionHLAPI>>>();
-		postPlaces = new HashSet<Tuple<Set<TransitionHLAPI>, String>>();
+		prePlaces = new HashSet<Pair<String, Set<TransitionHLAPI>>>();
+		postPlaces = new HashSet<Pair<Set<TransitionHLAPI>, String>>();
 
 		// 1. Iterate over all flownodes and create transitions and places
 		// remember mapped ids
@@ -119,23 +120,23 @@ public class Bpmn2PnmlConverter {
 
 		// 2. postPlaces+prePlaces matchen, neue Places für Matches erzeugen,
 		// entsprechende Edges erzeugen.
-		for (Tuple<Set<TransitionHLAPI>, String> p : postPlaces) {
-			for (Tuple<String, Set<TransitionHLAPI>> p2 : prePlaces) {
-				if (p.getSecond().equals(p2.getFirst())) {
+		for (Pair<Set<TransitionHLAPI>, String> p : postPlaces) {
+			for (Pair<String, Set<TransitionHLAPI>> p2 : prePlaces) {
+				if (p.getValue1().equals(p2.getValue0())) {
 					PlaceHLAPI place = new PlaceHLAPI("P-"
-							+ getConcatenatedIds(p.getFirst()) + "-"
-							+ getConcatenatedIds(p2.getSecond()),
+							+ getConcatenatedIds(p.getValue0()) + "-"
+							+ getConcatenatedIds(p2.getValue1()),
 							new NameHLAPI("P-"
-									+ getConcatenatedNames(p.getFirst()) + "-"
-									+ getConcatenatedNames(p2.getSecond())),
+									+ getConcatenatedNames(p.getValue0()) + "-"
+									+ getConcatenatedNames(p2.getValue1())),
 							null, null, page);
-					for (TransitionHLAPI t : p2.getSecond()) {
+					for (TransitionHLAPI t : p2.getValue1()) {
 						String arcId = "Arc-" + place.getId() + "---"
 								+ t.getId();
 						new ArcHLAPI(arcId, new NameHLAPI(arcId), place, t,
 								null, null, page);
 					}
-					for (TransitionHLAPI t : p.getFirst()) {
+					for (TransitionHLAPI t : p.getValue0()) {
 						String arcId = "Arc-" + t.getId() + "---"
 								+ place.getId();
 						new ArcHLAPI(arcId, new NameHLAPI(arcId), t, place,
@@ -155,12 +156,12 @@ public class Bpmn2PnmlConverter {
 			// TODO: Test with mixed gateway directions
 			TransitionHLAPI t = new TransitionHLAPI(n.getId(), new NameHLAPI(""), null, page);
 			for (SequenceFlow f : n.getIncoming()) {
-				prePlaces.add(new Tuple<String, Set<TransitionHLAPI>>(
+				prePlaces.add(new Pair<String, Set<TransitionHLAPI>>(
 						f.getId(), new HashSet<TransitionHLAPI>(Arrays
 								.asList(t))));
 			}
 			for (SequenceFlow f : n.getOutgoing()) {
-				postPlaces.add(new Tuple<Set<TransitionHLAPI>, String>(
+				postPlaces.add(new Pair<Set<TransitionHLAPI>, String>(
 						new HashSet<TransitionHLAPI>(Arrays.asList(t)), f
 								.getId()));
 			}
@@ -173,12 +174,12 @@ public class Bpmn2PnmlConverter {
 					TransitionHLAPI t = new TransitionHLAPI(n.getId() + "."
 							+ f.getId(), new NameHLAPI(""), null, page);
 					ts.add(t);
-					postPlaces.add(new Tuple<Set<TransitionHLAPI>, String>(
+					postPlaces.add(new Pair<Set<TransitionHLAPI>, String>(
 							new HashSet<TransitionHLAPI>(Arrays.asList(t)), f
 									.getId()));
 				}
 				for (SequenceFlow f : ((Gateway) n).getIncoming()) {
-					prePlaces.add(new Tuple<String, Set<TransitionHLAPI>>(f
+					prePlaces.add(new Pair<String, Set<TransitionHLAPI>>(f
 							.getId(), ts));
 				}
 			} else if (((Gateway) n).getGatewayDirection() == GatewayDirection.CONVERGING) {
@@ -187,12 +188,12 @@ public class Bpmn2PnmlConverter {
 					TransitionHLAPI t = new TransitionHLAPI(f.getId() + "."
 							+ n.getId(), new NameHLAPI(""), null, page);
 					ts.add(t);
-					prePlaces.add(new Tuple<String, Set<TransitionHLAPI>>(f
+					prePlaces.add(new Pair<String, Set<TransitionHLAPI>>(f
 							.getId(), new HashSet<TransitionHLAPI>(Arrays
 							.asList(t))));
 				}
 				for (SequenceFlow f : ((Gateway) n).getOutgoing()) {
-					postPlaces.add(new Tuple<Set<TransitionHLAPI>, String>(ts,
+					postPlaces.add(new Pair<Set<TransitionHLAPI>, String>(ts,
 							f.getId()));
 				}
 			} else {
@@ -218,12 +219,12 @@ public class Bpmn2PnmlConverter {
 					n.getName()), null, page);
 
 			for (SequenceFlow f : n.getIncoming()) {
-				prePlaces.add(new Tuple<String, Set<TransitionHLAPI>>(
+				prePlaces.add(new Pair<String, Set<TransitionHLAPI>>(
 						f.getId(), new HashSet<TransitionHLAPI>(Arrays
 								.asList(t))));
 			}
 			for (SequenceFlow f : n.getOutgoing()) {
-				postPlaces.add(new Tuple<Set<TransitionHLAPI>, String>(
+				postPlaces.add(new Pair<Set<TransitionHLAPI>, String>(
 						new HashSet<TransitionHLAPI>(Arrays.asList(t)), f
 								.getId()));
 			}
@@ -246,7 +247,7 @@ public class Bpmn2PnmlConverter {
 					"Arc-" + p.getName().getText() + "---"
 							+ t.getName().getText()), p, t, null, null, page);
 			for (SequenceFlow f : n.getOutgoing()) {
-				postPlaces.add(new Tuple<Set<TransitionHLAPI>, String>(
+				postPlaces.add(new Pair<Set<TransitionHLAPI>, String>(
 						new HashSet<TransitionHLAPI>(Arrays.asList(t)), f
 								.getId()));
 			}
@@ -260,7 +261,7 @@ public class Bpmn2PnmlConverter {
 					"Arc-" + t.getNameHLAPI() + "---" + p.getNameHLAPI()), t,
 					p, null, null, page);
 			for (SequenceFlow f : n.getIncoming()) {
-				prePlaces.add(new Tuple<String, Set<TransitionHLAPI>>(
+				prePlaces.add(new Pair<String, Set<TransitionHLAPI>>(
 						f.getId(), new HashSet<TransitionHLAPI>(Arrays
 								.asList(t))));
 			}
@@ -269,12 +270,12 @@ public class Bpmn2PnmlConverter {
 			TransitionHLAPI t = new TransitionHLAPI(n.getId(), new NameHLAPI(
 					n.getName()), null, page);
 			for (SequenceFlow f : n.getIncoming()) {
-				prePlaces.add(new Tuple<String, Set<TransitionHLAPI>>(
+				prePlaces.add(new Pair<String, Set<TransitionHLAPI>>(
 						f.getId(), new HashSet<TransitionHLAPI>(Arrays
 								.asList(t))));
 			}
 			for (SequenceFlow f : n.getOutgoing()) {
-				postPlaces.add(new Tuple<Set<TransitionHLAPI>, String>(
+				postPlaces.add(new Pair<Set<TransitionHLAPI>, String>(
 						new HashSet<TransitionHLAPI>(Arrays.asList(t)), f
 								.getId()));
 			}
