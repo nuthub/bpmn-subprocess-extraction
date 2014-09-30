@@ -1,10 +1,17 @@
 package edu.udo.cs.ls14.jf.bpmn2pnml;
 
+/**
+ * @deprecated use org.javatuples.Pair or commons-lang tuples
+ * @author flake
+ *
+ * @param <U>
+ * @param <V>
+ */
 public class Tuple<U, V> {
 
 	private U first;
 	private V second;
-	
+
 	public Tuple(U first, V second) {
 		this.first = first;
 		this.second = second;
