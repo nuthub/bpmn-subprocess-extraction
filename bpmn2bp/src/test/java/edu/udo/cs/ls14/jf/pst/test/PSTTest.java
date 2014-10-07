@@ -4,7 +4,10 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
 import java.net.URL;
+import java.util.Map;
 import java.util.Set;
+import java.util.function.Function;
+import java.util.stream.Collectors;
 
 import org.eclipse.bpmn2.Process;
 import org.jbpt.utils.IOUtils;
@@ -19,17 +22,27 @@ public class PSTTest {
 	@Test
 	public void testEventBasedGatewayExclusive() throws Exception {
 		String basename = "event-based-gateway-exclusive";
-		Set<Fragment> frags = runTest(basename);
+		PST pst = runTest(basename);
+		Set<Fragment> frags = pst.getFragments();
 		assertEquals(3, frags.size());
 		assertFragsContainByName(frags, "1", "6");
 		assertFragsContainByName(frags, "2", "4");
 		assertFragsContainByName(frags, "3", "5");
+		Map<String, Fragment> fragMap = frags.stream().collect(
+				Collectors.toMap(f -> f.toString(),
+						Function.<Fragment> identity()));
+		assertEquals("Fragment (1, 6)", fragMap.get("Fragment (2, 4)")
+				.getParent().toString());
+		assertEquals("Fragment (1, 6)", fragMap.get("Fragment (3, 5)")
+				.getParent().toString());
+		assertEquals(null, fragMap.get("Fragment (1, 6)").getParent());
 	}
 
 	@Test
 	public void testEventBasedGatewayParallel() throws Exception {
 		String basename = "event-based-gateway-parallel";
-		Set<Fragment> frags = runTest(basename);
+		PST pst = runTest(basename);
+		Set<Fragment> frags = pst.getFragments();
 		assertEquals(3, frags.size());
 		assertFragsContainByName(frags, "1", "6");
 		assertFragsContainByName(frags, "2", "4");
@@ -39,7 +52,8 @@ public class PSTTest {
 	@Test
 	public void testPM1() throws Exception {
 		String basename = "PM1-mit-Fragment1";
-		Set<Fragment> frags = runTest(basename);
+		PST pst = runTest(basename);
+		Set<Fragment> frags = pst.getFragments();
 		assertEquals(6, frags.size());
 		assertFragsContainByName(frags, "1", "2");
 		assertFragsContainByName(frags, "2", "9");
@@ -52,7 +66,8 @@ public class PSTTest {
 	@Test
 	public void testPM2() throws Exception {
 		String basename = "PM2-mit-Fragment1";
-		Set<Fragment> frags = runTest(basename);
+		PST pst = runTest(basename);
+		Set<Fragment> frags = pst.getFragments();
 		assertEquals(7, frags.size());
 		assertFragsContainByName(frags, "1", "2");
 		assertFragsContainByName(frags, "2", "11");
@@ -66,7 +81,8 @@ public class PSTTest {
 	@Test
 	public void testSequence() throws Exception {
 		String basename = "sequence";
-		Set<Fragment> frags = runTest(basename);
+		PST pst = runTest(basename);
+		Set<Fragment> frags = pst.getFragments();
 		assertEquals(4, frags.size());
 		assertFragsContainByName(frags, "2", "3");
 		assertFragsContainByName(frags, "3", "4");
@@ -77,7 +93,8 @@ public class PSTTest {
 	@Test
 	public void testXorExample() throws Exception {
 		String basename = "xor-example";
-		Set<Fragment> frags = runTest(basename);
+		PST pst = runTest(basename);
+		Set<Fragment> frags = pst.getFragments();
 		assertEquals(3, frags.size());
 		assertFragsContainByName(frags, "1", "6");
 		assertFragsContainByName(frags, "2", "4");
@@ -87,7 +104,8 @@ public class PSTTest {
 	@Test
 	public void testOverlapping() throws Exception {
 		String basename = "overlapping";
-		Set<Fragment> frags = runTest(basename);
+		PST pst = runTest(basename);
+		Set<Fragment> frags = pst.getFragments();
 		assertEquals(6, frags.size());
 		assertFragsContainByName(frags, "1", "7");
 		assertFragsContainByName(frags, "3", "5");
@@ -100,7 +118,8 @@ public class PSTTest {
 	@Test
 	public void testLoopingXor() throws Exception {
 		String basename = "looping-xor";
-		Set<Fragment> frags = runTest(basename);
+		PST pst = runTest(basename);
+		Set<Fragment> frags = pst.getFragments();
 		assertEquals(5, frags.size());
 		assertFragsContainByName(frags, "1", "10");
 		assertFragsContainByName(frags, "2", "3");
@@ -112,7 +131,8 @@ public class PSTTest {
 	@Test
 	public void testLoopingEvents() throws Exception {
 		String basename = "looping-events-example";
-		Set<Fragment> frags = runTest(basename);
+		PST pst = runTest(basename);
+		Set<Fragment> frags = pst.getFragments();
 		assertEquals(4, frags.size());
 		assertFragsContainByName(frags, "f1", "f2");
 		assertFragsContainByName(frags, "f2", "f7");
@@ -120,21 +140,19 @@ public class PSTTest {
 		assertFragsContainByName(frags, "f5", "f6");
 	}
 
-	public Set<Fragment> runTest(String basename) throws Exception {
+	public PST runTest(String basename) throws Exception {
 		System.out.println("Creating PST for " + basename);
 		URL url = PSTTest.class.getResource("../../bpmn/" + basename + ".bpmn");
 		Process process = ProcessLoader.loadFirstProcessFromResource(url);
-
 		PST pst = new PST();
 		pst.createFromProcess(process);
-		Set<Fragment> fragments = pst.getFragments();
 		IOUtils.invokeDOT("/tmp", basename + "-undirectedgraph.png",
 				pst.getGraphAsDot());
 		IOUtils.invokeDOT("/tmp", basename + "-spanningtree.png",
 				pst.getSpanningTreeAsDot());
 		IOUtils.invokeDOT("/tmp", basename + "-pst.png",
 				pst.getStructureTreeAsDot());
-		return fragments;
+		return pst;
 	}
 
 	private void assertFragsContainByName(Set<Fragment> frags, String entryId,
@@ -149,27 +167,4 @@ public class PSTTest {
 		assertTrue(contains);
 	}
 
-	// @Test
-	// public void testFindPaths() throws Exception {
-	// String basename = "PM1-mit-Fragment1";
-	// // basename = "looping-events-example";
-	// URL url = PSTTest.class.getResource("../../bpmn/" + basename + ".bpmn");
-	// Process process = ProcessLoader.loadFirstProcessFromResource(url);
-	// PST pst = new PST();
-	// FlowNode start = NodeFinder.getStartNode(process);
-	// FlowNode end = NodeFinder.getEndNode(process);
-	// Set<List<SequenceFlow>> paths = pst.getPaths(start.getOutgoing().get(0),
-	// end.getIncoming().get(0),
-	// new ArrayList<SequenceFlow>());
-	// for (List<SequenceFlow> path : paths) {
-	// for (SequenceFlow flow : path) {
-	// System.out.print(flow.getName()+", ");
-	// }
-	// System.out.println();
-	// }
-	// System.out.println(paths.size() + " paths");
-	// System.out.println("---");
-	// System.out.println(pst.dominates(start, start.getOutgoing().get(0),
-	// end.getIncoming().get(0)));
-	// }
 }

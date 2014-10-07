@@ -29,7 +29,7 @@ import edu.udo.cs.ls14.jf.utils.bpmn.NodeFinder;
 public class PST {
 
 	private static final Logger LOG = LoggerFactory.getLogger(PST.class);
-	
+
 	private Process process;
 	private UndirectedGraph<FlowNode, SequenceFlow> graph;
 	private DirectedGraph<FlowNode, SequenceFlow> spanningTree;
@@ -100,9 +100,6 @@ public class PST {
 			Set<Fragment> canonicalFragments) {
 		structureTree = new DirectedSparseGraph<Fragment, Object>();
 		Stack<Fragment> parents = new Stack<Fragment>();
-		// parents.push(new Fragment(start.getOutgoing().get(0),
-		// end.getIncoming()
-		// .get(0)));
 		buildStructureTreeAcc(canonicalFragments, start.getOutgoing().get(0),
 				new Fragment(process, null, null), parents,
 				new HashSet<SequenceFlow>());
@@ -124,8 +121,12 @@ public class PST {
 
 		for (Fragment f : canonicalFragments) {
 			if (edge.equals(f.getEntry())) {
-				structureTree.addEdge(new Object(), parents.empty() ? root
-						: parents.peek(), f);
+				if (parents.empty()) {
+					structureTree.addEdge(new Object(), root, f);
+				} else {
+					f.setParent(parents.peek());
+					structureTree.addEdge(new Object(), parents.peek(), f);
+				}
 				parents.push(f);
 			}
 		}
@@ -187,8 +188,8 @@ public class PST {
 					// add edge to tree edges
 					edgeStates.put(edge, EdgeState.TREE);
 					spanningTree.addEdge(edge, v, w);
-					LOG.debug("adding tree edge from " + v.getName()
-							+ " to " + w.getName());
+					LOG.debug("adding tree edge from " + v.getName() + " to "
+							+ w.getName());
 					// save childrens' bracket sets
 					Set<SequenceFlow> childBrackets = undirectedDFS(g, w,
 							visited);
@@ -198,8 +199,8 @@ public class PST {
 					// add edge to back edges
 					edgeStates.put(edge, EdgeState.BACK);
 					spanningTree.addEdge(edge, v, w);
-					LOG.debug("adding back edge from " + v.getName()
-							+ " to " + w.getName());
+					LOG.debug("adding back edge from " + v.getName() + " to "
+							+ w.getName());
 					bracketSets.put(edge, new HashSet<SequenceFlow>());
 					// save backedge from v to ancestor(v)
 					brackets.add(edge);
@@ -302,9 +303,8 @@ public class PST {
 					// b dominates b'
 					if (e.getEntry().equals(f.getEntry())
 							&& !dominates(start, e.getExit(), f.getExit())) {
-						LOG.debug(e.getExit().getName()
-								+ " does not dominate " + f.getExit().getName()
-								+ ", so " + e
+						LOG.debug(e.getExit().getName() + " does not dominate "
+								+ f.getExit().getName() + ", so " + e
 								+ " is not canonical, because of " + f);
 						isCanonical = false;
 					}
