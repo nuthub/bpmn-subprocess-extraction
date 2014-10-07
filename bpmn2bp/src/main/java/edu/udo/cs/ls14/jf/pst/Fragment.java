@@ -2,7 +2,10 @@ package edu.udo.cs.ls14.jf.pst;
 
 import java.util.HashSet;
 import java.util.Set;
+import java.util.function.Predicate;
 
+import org.eclipse.bpmn2.Activity;
+import org.eclipse.bpmn2.Event;
 import org.eclipse.bpmn2.FlowNode;
 import org.eclipse.bpmn2.Process;
 import org.eclipse.bpmn2.SequenceFlow;
@@ -19,7 +22,7 @@ public class Fragment {
 		this.entry = entry;
 		this.exit = exit;
 	}
-	
+
 	public Process getProcess() {
 		return process;
 	}
@@ -32,25 +35,32 @@ public class Fragment {
 		return exit;
 	}
 
-	public Set<FlowNode> getContainedFlowNodes(Process process) {
-		return getContainedFlowNodesAcc(process, entry, new HashSet<FlowNode>());
+	public boolean contains(Fragment fragment) {
+		return getContainedFlowNodes(
+				n -> n instanceof Event || n instanceof Activity).containsAll(
+				fragment.getContainedFlowNodes(n -> n instanceof Event
+						|| n instanceof Activity));
 	}
-	
-	private Set<FlowNode> getContainedFlowNodesAcc(Process process, SequenceFlow entry, Set<FlowNode> nodes) {
+
+	public Set<FlowNode> getContainedFlowNodes(Predicate<FlowNode> filter) {
+		return getContainedFlowNodesAcc(entry, new HashSet<FlowNode>(), filter);
+	}
+
+	private Set<FlowNode> getContainedFlowNodesAcc(SequenceFlow entry,
+			Set<FlowNode> nodes, Predicate<FlowNode> filter) {
 		FlowNode target = entry.getTargetRef();
-		if(nodes.contains(target)) {
+		if (nodes.contains(target) || entry.equals(exit)) {
 			return nodes;
 		}
-		if(entry.equals(exit)) {
-			return nodes;
+		if (filter.test(target)) {
+			nodes.add(target);
 		}
-		nodes.add(target);
-		for(SequenceFlow newEntry: target.getOutgoing()) {
-			nodes.addAll(getContainedFlowNodesAcc(process, newEntry, nodes));
+		for (SequenceFlow newEntry : target.getOutgoing()) {
+			nodes.addAll(getContainedFlowNodesAcc(newEntry, nodes, filter));
 		}
 		return nodes;
 	}
-	
+
 	public void setParent(Fragment parent) {
 		this.parent = parent;
 	}

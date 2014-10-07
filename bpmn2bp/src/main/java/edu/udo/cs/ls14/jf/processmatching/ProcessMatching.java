@@ -10,6 +10,7 @@ import org.javatuples.Pair;
 import edu.udo.cs.ls14.jf.pst.Fragment;
 
 public class ProcessMatching {
+
 	private Process process1;
 	private Process process2;
 	private Set<Pair<FlowNode, FlowNode>> nodeCorrespondences;

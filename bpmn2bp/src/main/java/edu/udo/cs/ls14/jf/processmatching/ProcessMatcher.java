@@ -19,6 +19,7 @@ import edu.udo.cs.ls14.jf.behaviorprofile.RelationType;
 import edu.udo.cs.ls14.jf.pst.Fragment;
 
 public class ProcessMatcher {
+
 	private final static Logger LOG = LoggerFactory
 			.getLogger(ProcessMatcher.class);
 
@@ -34,7 +35,7 @@ public class ProcessMatcher {
 		matching.setProcess1(process1);
 		matching.setProcess2(process2);
 
-		// create and save matching nodes
+		// create and save node correspondences
 		LOG.debug("Matching nodes");
 		Set<Pair<FlowNode, FlowNode>> nodeMappings = NodeMatcher.getMappings(
 				process1, process2);
@@ -44,7 +45,7 @@ public class ProcessMatcher {
 				m -> LOG.debug(" (" + m.getValue0().getName() + ","
 						+ m.getValue1().getName() + ")"));
 
-		// get equivalent Fragments
+		// get Fragment Correspondences
 		Set<Pair<Fragment, Fragment>> fragmentMapping = getMapping(process1,
 				analysis1.getPst().getFragments(),
 				analysis1.getBehavioralProfile(), process2, analysis2.getPst()
@@ -81,10 +82,8 @@ public class ProcessMatcher {
 			LOG.debug("Checking if process's 1 " + f1 + " is a candidate");
 			// Get Events and Activities From f1
 			Set<FlowNode> nodes1 = f1
-					.getContainedFlowNodes(process1)
-					.stream()
-					.filter(n -> ((n instanceof Event) || (n instanceof Activity)))
-					.collect(Collectors.toSet());
+					.getContainedFlowNodes(n -> n instanceof Event
+							|| n instanceof Activity);
 			// Wenn nicht f. jeden Knoten u \in nodes1 ein Paar(u,v) existiert,
 			// dann ist Fragment uninteressant
 			if (!nodeMappings.stream().map(p -> p.getValue0())
@@ -98,12 +97,9 @@ public class ProcessMatcher {
 							.collect(Collectors.toSet()));
 			// Check fragments of process2
 			for (Fragment f2 : fragmentsOfProcess2) {
-				// LOG.debug("Comparing with process's 2 " + f2);
 				Set<FlowNode> nodes2 = f2
-						.getContainedFlowNodes(process2)
-						.stream()
-						.filter(n -> ((n instanceof Event) || (n instanceof Activity)))
-						.collect(Collectors.toSet());
+						.getContainedFlowNodes(n -> n instanceof Event
+								|| n instanceof Activity);
 				// fragmente sind "node matching" wenn
 				// für jeden Knoten u \in nodes1 und
 				// jeden Knoten v \in nodes2
@@ -163,4 +159,5 @@ public class ProcessMatcher {
 		}
 		return mapping;
 	}
+
 }
