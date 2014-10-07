@@ -83,11 +83,12 @@ public class PSTTest {
 		String basename = "sequence";
 		PST pst = runTest(basename);
 		Set<Fragment> frags = pst.getFragments();
-		assertEquals(4, frags.size());
+		assertEquals(5, frags.size());
+		assertFragsContainByName(frags, "1", "2");
 		assertFragsContainByName(frags, "2", "3");
 		assertFragsContainByName(frags, "3", "4");
 		assertFragsContainByName(frags, "4", "5");
-		assertFragsContainByName(frags, "5", "1");
+		assertFragsContainByName(frags, "5", "6");
 	}
 
 	@Test
