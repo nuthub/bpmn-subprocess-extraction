@@ -10,8 +10,6 @@ import java.util.Map;
 import java.util.Set;
 
 import org.apache.commons.lang3.NotImplementedException;
-import org.eclipse.bpmn2.FlowElement;
-import org.eclipse.bpmn2.Process;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -38,8 +36,9 @@ public class ReachabilityGraph extends DirectedSparseMultigraph<Marking, Edge> {
 	public void createFromPTNet(PetriNet ptnet) throws Exception {
 		List<Page> pages = ptnet.getPages();
 		if (pages.size() != 1) {
-			throw new NotImplementedException(
-					"only nets with one single page supported");
+			String msg = "only nets with one single page supported";
+			LOG.error(msg);
+			throw new NotImplementedException(msg);
 		}
 		Page page = pages.get(0);
 		// Algo
@@ -70,15 +69,17 @@ public class ReachabilityGraph extends DirectedSparseMultigraph<Marking, Edge> {
 	public void createFromPnml(File file) throws Exception {
 		HLAPIRootClass rc = PNMLUtils.importPnmlDocument(file, false);
 		if (!PNMLUtils.isPTNetDocument(rc)) {
-			throw new NotImplementedException(
-					"only fr.lip6.move.pnml.ptnet.hlapi.PetriNetDocHLAPI type pnml files implemented");
+			String msg = "only fr.lip6.move.pnml.ptnet.hlapi.PetriNetDocHLAPI type pnml files implemented";
+			LOG.error(msg);
+			throw new NotImplementedException(msg);
 		}
 		PetriNetDocHLAPI ptDoc = (PetriNetDocHLAPI) rc;
 
 		List<PetriNet> nets = ptDoc.getNets();
 		if (nets.size() != 1) {
-			throw new NotImplementedException(
-					"only pnml files with one single net supported");
+			String msg = "only pnml files with one single net supported";
+			LOG.error(msg);
+			throw new NotImplementedException(msg);
 		}
 		createFromPTNet(nets.get(0));
 
@@ -136,8 +137,9 @@ public class ReachabilityGraph extends DirectedSparseMultigraph<Marking, Edge> {
 		// 1. Vorbereich aus Markierung entfernen
 		for (Arc arc : t.getInArcs()) {
 			if (!(arc.getSource() instanceof Place)) {
-				throw new Exception(
-						"Transition's inArc has not a Place as source!");
+				String msg = "Transition's inArc has not a Place as source!";
+				LOG.error(msg);
+				throw new Exception(msg);
 			}
 			Place p = (Place) arc.getSource();
 			if (!m.contains(p)) {
@@ -148,8 +150,9 @@ public class ReachabilityGraph extends DirectedSparseMultigraph<Marking, Edge> {
 		// 2. Nachbereich in Markierung aufnehmen
 		for (Arc arc : t.getOutArcs()) {
 			if (!(arc.getTarget() instanceof Place)) {
-				throw new Exception(
-						"Transition's outArc has not a Place as target!");
+				String msg = "Transition's outArc has not a Place as target!";
+				LOG.error(msg);
+				throw new Exception(msg);
 			}
 			mPrime.add((Place) arc.getTarget());
 		}
@@ -163,8 +166,9 @@ public class ReachabilityGraph extends DirectedSparseMultigraph<Marking, Edge> {
 			boolean active = true;
 			for (Arc arc : t.getInArcs()) {
 				if (!(arc.getSource() instanceof Place)) {
-					throw new Exception(
-							"Transition's inArc has not a Place as source!");
+					String msg = "Transition's inArc has not a Place as source!";
+					LOG.error(msg);
+					throw new Exception(msg);
 				}
 				Place p = (Place) arc.getSource();
 				if (!m.contains(p)) {
