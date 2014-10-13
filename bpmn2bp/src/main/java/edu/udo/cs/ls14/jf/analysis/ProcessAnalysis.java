@@ -2,7 +2,7 @@ package edu.udo.cs.ls14.jf.analysis;
 
 import java.util.Set;
 
-import org.eclipse.bpmn2.Process;
+import org.eclipse.emf.ecore.resource.Resource;
 
 import edu.udo.cs.ls14.jf.behaviorprofile.BehavioralProfile;
 import edu.udo.cs.ls14.jf.pst.PST;
@@ -12,19 +12,19 @@ import fr.lip6.move.pnml.ptnet.hlapi.PetriNetHLAPI;
 
 public class ProcessAnalysis {
 
-	private Process process;
+	private Resource resource;
 	private PetriNetHLAPI ptnet;
 	private ReachabilityGraph reachabilityGraph;
 	private Set<Trace> traces;
 	private BehavioralProfile behavioralProfile;
 	private PST pst;
 
-	public Process getProcess() {
-		return process;
+	public void setResource(Resource resource) {
+		this.resource = resource;
 	}
 
-	public void setProcess(Process process) {
-		this.process = process;
+	public Resource getResource() {
+		return resource;
 	}
 
 	public PetriNetHLAPI getPtnet() {
@@ -66,13 +66,13 @@ public class ProcessAnalysis {
 	public void setPst(PST pst) {
 		this.pst = pst;
 	}
-	
+
 	@Override
 	public String toString() {
 		StringBuffer sb = new StringBuffer();
 		sb.append("ProcessAnalysis [");
 		sb.append(System.getProperty("line.separator"));
-		sb.append("  process=" + process + ", ");
+		sb.append("  resource=" + resource + ", ");
 		sb.append(System.getProperty("line.separator"));
 		sb.append("  ptnet=" + ptnet + ", ");
 		sb.append(System.getProperty("line.separator"));

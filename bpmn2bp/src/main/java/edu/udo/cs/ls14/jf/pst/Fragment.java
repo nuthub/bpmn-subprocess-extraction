@@ -10,15 +10,19 @@ import org.eclipse.bpmn2.FlowElement;
 import org.eclipse.bpmn2.FlowNode;
 import org.eclipse.bpmn2.Process;
 import org.eclipse.bpmn2.SequenceFlow;
+import org.eclipse.emf.ecore.resource.Resource;
 
 public class Fragment {
 
+	private Resource resource;
 	private Process process;
 	private SequenceFlow entry;
 	private SequenceFlow exit;
 	private Fragment parent;
 
-	public Fragment(Process process, SequenceFlow entry, SequenceFlow exit) {
+	public Fragment(Resource resource, Process process, SequenceFlow entry,
+			SequenceFlow exit) {
+		this.resource = resource;
 		this.process = process;
 		this.entry = entry;
 		this.exit = exit;
@@ -34,6 +38,10 @@ public class Fragment {
 
 	public SequenceFlow getExit() {
 		return exit;
+	}
+	
+	public Resource getResource() {
+		return resource;
 	}
 
 	public boolean contains(Fragment fragment) {
@@ -52,7 +60,7 @@ public class Fragment {
 	private Set<FlowElement> getContainedFlowElementsAcc(SequenceFlow entry,
 			Set<FlowElement> elements, Predicate<FlowElement> filter) {
 		FlowNode target = entry.getTargetRef();
-		if(!entry.equals(this.entry) && !entry.equals(this.exit)) {
+		if (!entry.equals(this.entry) && !entry.equals(this.exit)) {
 			elements.add(entry);
 		}
 		if (elements.contains(target) || entry.equals(exit)) {

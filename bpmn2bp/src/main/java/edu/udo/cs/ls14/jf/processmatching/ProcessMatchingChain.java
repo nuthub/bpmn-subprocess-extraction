@@ -1,20 +1,14 @@
 package edu.udo.cs.ls14.jf.processmatching;
 
-import java.net.URL;
-
-import org.eclipse.bpmn2.Process;
-
-import edu.udo.cs.ls14.jf.utils.bpmn.ProcessLoader;
+import org.eclipse.emf.ecore.resource.Resource;
 
 public class ProcessMatchingChain {
 
-	public static ProcessMatching getCandidates(URL url1, URL url2) throws Exception {
-		Process process1 = ProcessLoader.loadFirstProcessFromResource(url1);
-		Process process2 = ProcessLoader.loadFirstProcessFromResource(url2);
+	public static ProcessMatching getCandidates(Resource res1, Resource res2) throws Exception {
 
 		// Find all matches
 		System.out.println("Find all matches.");
-		ProcessMatching allMatching = ProcessMatcher.match(process1, process2);
+		ProcessMatching allMatching = ProcessMatcher.match(res1, res2);
 		// Filter out nested fragment matches
 		System.out.println("Filter out nested matches.");
 		ProcessMatching filteredMatching = NestedFCFilter.filter(allMatching);

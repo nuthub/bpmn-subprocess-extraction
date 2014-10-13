@@ -5,6 +5,7 @@ import java.util.Set;
 
 import org.eclipse.bpmn2.FlowNode;
 import org.eclipse.bpmn2.Process;
+import org.eclipse.emf.ecore.resource.Resource;
 import org.javatuples.Pair;
 
 import edu.udo.cs.ls14.jf.pst.Fragment;
@@ -13,6 +14,8 @@ public class ProcessMatching {
 
 	private Process process1;
 	private Process process2;
+	private Resource resource1;
+	private Resource resource2;
 	private Set<Pair<FlowNode, FlowNode>> nodeCorrespondences;
 	private Set<Pair<Fragment, Fragment>> fragmentCorrespondences;
 
@@ -30,6 +33,23 @@ public class ProcessMatching {
 
 	public void setProcess2(Process process2) {
 		this.process2 = process2;
+	}
+
+	
+	public Resource getResource1() {
+		return resource1;
+	}
+
+	public void setResource1(Resource resource1) {
+		this.resource1 = resource1;
+	}
+
+	public Resource getResource2() {
+		return resource2;
+	}
+
+	public void setResource2(Resource resource2) {
+		this.resource2 = resource2;
 	}
 
 	public Set<Pair<FlowNode, FlowNode>> getNodeCorrespondences() {
@@ -52,6 +72,8 @@ public class ProcessMatching {
 
 	public ProcessMatching clone() {
 		ProcessMatching clone = new ProcessMatching();
+		clone.setResource1(resource1);
+		clone.setResource2(resource2);
 		clone.setProcess1(process1);
 		clone.setProcess2(process2);
 		clone.setNodeCorrespondences(new HashSet<Pair<FlowNode, FlowNode>>(
@@ -64,6 +86,10 @@ public class ProcessMatching {
 	public String toString() {
 		StringBuffer sb = new StringBuffer();
 		sb.append("ProcessMatching [");
+		sb.append(System.getProperty("line.separator"));
+		sb.append(" resource1=" + resource1.getURI() + ", ");
+		sb.append(System.getProperty("line.separator"));
+		sb.append(" resource2=" + resource2.getURI() + ", ");
 		sb.append(System.getProperty("line.separator"));
 		sb.append(" process1=" + process1.getName() + ", ");
 		sb.append(System.getProperty("line.separator"));

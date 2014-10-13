@@ -9,13 +9,13 @@ import java.util.Set;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 
+import org.eclipse.bpmn2.FlowElement;
 import org.eclipse.bpmn2.FlowNode;
 import org.eclipse.bpmn2.Process;
 import org.javatuples.Pair;
 import org.junit.Test;
 
 import edu.udo.cs.ls14.jf.processmatching.NodeMatcher;
-import edu.udo.cs.ls14.jf.utils.bpmn.NodeFinder;
 import edu.udo.cs.ls14.jf.utils.bpmn.ProcessLoader;
 
 public class NodeMatcherTest {
@@ -31,13 +31,13 @@ public class NodeMatcherTest {
 		mapping.forEach(p -> System.out.println(p.getValue0().getId() + " , "
 				+ p.getValue1().getId()));
 		Set<FlowNode> nodes = new HashSet<FlowNode>();
-		nodes.add((FlowNode) NodeFinder.getElement(process1,
+		nodes.add((FlowNode) getElement(process1,
 				"sid-0EC98739-28B8-4098-9212-D6FCCD59E1DB"));
-		nodes.add((FlowNode) NodeFinder.getElement(process1,
+		nodes.add((FlowNode) getElement(process1,
 				"sid-29EB2FC1-7050-4603-BF12-D0CD6B6116F1"));
 		assertTrue(getValues0(mapping).containsAll(nodes));
 		assertFalse(getValues1(mapping).containsAll(nodes));
-		nodes.add((FlowNode) NodeFinder.getElement(process2, "Task_1"));
+		nodes.add((FlowNode) getElement(process2, "Task_1"));
 		assertFalse(getValues1(mapping).containsAll(nodes));
 	}
 
@@ -52,5 +52,18 @@ public class NodeMatcherTest {
 	private Set<FlowNode> getValues(Set<Pair<FlowNode, FlowNode>> mapping,
 			Function<Pair<FlowNode, FlowNode>, FlowNode> mapper) {
 		return mapping.stream().map(mapper).collect(Collectors.toSet());
+	}
+	
+
+	private FlowElement getElement(Process process, String id) {
+		if (id == null || id.isEmpty()) {
+			return null;
+		}
+		for (FlowElement f : process.getFlowElements()) {
+			if (f.getId().equals(id)) {
+				return f;
+			}
+		}
+		return null;
 	}
 }

@@ -8,6 +8,7 @@ import org.eclipse.bpmn2.Activity;
 import org.eclipse.bpmn2.Event;
 import org.eclipse.bpmn2.FlowNode;
 import org.eclipse.bpmn2.Process;
+import org.eclipse.emf.ecore.resource.Resource;
 import org.javatuples.Pair;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -17,21 +18,28 @@ import edu.udo.cs.ls14.jf.analysis.ProcessAnalyzer;
 import edu.udo.cs.ls14.jf.behaviorprofile.BehavioralProfile;
 import edu.udo.cs.ls14.jf.behaviorprofile.RelationType;
 import edu.udo.cs.ls14.jf.pst.Fragment;
+import edu.udo.cs.ls14.jf.utils.bpmn.ProcessLoader;
 
 public class ProcessMatcher {
 
 	private final static Logger LOG = LoggerFactory
 			.getLogger(ProcessMatcher.class);
 
-	public static ProcessMatching match(Process process1, Process process2)
+	public static ProcessMatching match(Resource res1, Resource res2)
 			throws Exception {
+		
+		Process process1 = ProcessLoader.getProcessFromResource(res1);
 		LOG.debug("Analyze process 1: " + process1.getName());
-		ProcessAnalysis analysis1 = ProcessAnalyzer.analyze(process1);
+		ProcessAnalysis analysis1 = ProcessAnalyzer.analyze(res1);
+
+		Process process2 = ProcessLoader.getProcessFromResource(res2);
 		LOG.debug("Analyze process 2: " + process2.getName());
-		ProcessAnalysis analysis2 = ProcessAnalyzer.analyze(process2);
+		ProcessAnalysis analysis2 = ProcessAnalyzer.analyze(res2);
 
 		ProcessMatching matching = new ProcessMatching();
 		// just set processes
+		matching.setResource1(res1);
+		matching.setResource2(res2);
 		matching.setProcess1(process1);
 		matching.setProcess2(process2);
 

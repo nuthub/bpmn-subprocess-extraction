@@ -12,7 +12,7 @@
     <appender-ref ref="STDOUT" />
   </root>
   
-  <logger name="edu.udo.cs.ls14.jf.nlp" level="info" />
-  <logger name="edu.udo.cs.ls14.jf.processmatching.ProcessMatcher" level="debug" />
+  <logger name="edu.udo.cs.ls14.jf.nlp" level="INFO" />
+  <logger name="edu.udo.cs.ls14.jf.processmatching.ProcessMatcher" level="INFO" />
   
 </configuration>

@@ -56,10 +56,12 @@ public class SequentialFCJointer {
 		Pair<Fragment, Fragment> p = sequence.getValue0();
 		Pair<Fragment, Fragment> q = sequence.getValue1();
 		// Create new unioned fragment
-		Fragment union0 = new Fragment(p.getValue0().getProcess(), p
-				.getValue0().getEntry(), q.getValue0().getExit());
-		Fragment union1 = new Fragment(p.getValue1().getProcess(), p
-				.getValue1().getEntry(), q.getValue1().getExit());
+		Fragment union0 = new Fragment(p.getValue0().getResource(), p
+				.getValue0().getProcess(), p.getValue0().getEntry(), q
+				.getValue0().getExit());
+		Fragment union1 = new Fragment(p.getValue1().getResource(), p
+				.getValue1().getProcess(), p.getValue1().getEntry(), q
+				.getValue1().getExit());
 		pairs.add(Pair.with(union0, union1));
 		pairs.remove(p);
 		pairs.remove(q);

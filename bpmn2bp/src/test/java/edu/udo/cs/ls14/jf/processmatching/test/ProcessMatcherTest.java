@@ -8,13 +8,13 @@ import java.util.function.Predicate;
 import org.eclipse.bpmn2.Activity;
 import org.eclipse.bpmn2.Event;
 import org.eclipse.bpmn2.FlowNode;
-import org.eclipse.bpmn2.Process;
+import org.eclipse.emf.ecore.resource.Resource;
 import org.junit.Test;
 
-import edu.udo.cs.ls14.jf.processmatching.SequentialFCJointer;
 import edu.udo.cs.ls14.jf.processmatching.NestedFCFilter;
 import edu.udo.cs.ls14.jf.processmatching.ProcessMatcher;
 import edu.udo.cs.ls14.jf.processmatching.ProcessMatching;
+import edu.udo.cs.ls14.jf.processmatching.SequentialFCJointer;
 import edu.udo.cs.ls14.jf.processmatching.TrivialFCFilter;
 import edu.udo.cs.ls14.jf.utils.bpmn.ProcessLoader;
 
@@ -69,12 +69,12 @@ public class ProcessMatcherTest {
 		System.out.println("Testing " + basename1 + " with " + basename2);
 		URL url1 = getClass().getResource("../../bpmn/" + basename1 + ".bpmn");
 		URL url2 = getClass().getResource("../../bpmn/" + basename2 + ".bpmn");
-		Process process1 = ProcessLoader.loadFirstProcessFromResource(url1);
-		Process process2 = ProcessLoader.loadFirstProcessFromResource(url2);
+		Resource res1 = ProcessLoader.getBpmnResource(url1);
+		Resource res2 = ProcessLoader.getBpmnResource(url2);
 
 		// Find all matches
 		System.out.println("Find all matches.");
-		ProcessMatching allMatching = ProcessMatcher.match(process1, process2);
+		ProcessMatching allMatching = ProcessMatcher.match(res1, res2);
 		// Filter out nested fragment matches
 		System.out.println("Filter out nested matches.");
 		ProcessMatching filteredMatching = NestedFCFilter.filter(allMatching);

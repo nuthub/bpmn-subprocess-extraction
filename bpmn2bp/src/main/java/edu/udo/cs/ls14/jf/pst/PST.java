@@ -16,6 +16,7 @@ import org.eclipse.bpmn2.FlowNode;
 import org.eclipse.bpmn2.Process;
 import org.eclipse.bpmn2.SequenceFlow;
 import org.eclipse.bpmn2.StartEvent;
+import org.eclipse.emf.ecore.resource.Resource;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -25,11 +26,13 @@ import edu.uci.ics.jung.graph.DirectedSparseMultigraph;
 import edu.uci.ics.jung.graph.UndirectedGraph;
 import edu.uci.ics.jung.graph.UndirectedSparseMultigraph;
 import edu.udo.cs.ls14.jf.utils.bpmn.NodeFinder;
+import edu.udo.cs.ls14.jf.utils.bpmn.ProcessLoader;
 
 public class PST {
 
 	private static final Logger LOG = LoggerFactory.getLogger(PST.class);
 
+	private Resource resource;
 	private Process process;
 	private UndirectedGraph<FlowNode, SequenceFlow> graph;
 	private DirectedGraph<FlowNode, SequenceFlow> spanningTree;
@@ -42,8 +45,9 @@ public class PST {
 	private EndEvent end;
 	private SequenceFlow insertEdge;
 
-	public void createFromProcess(Process process) {
-		this.process = process;
+	public void createFromProcess(Resource resource) throws Exception {
+		this.resource = resource;
+		this.process = ProcessLoader.getProcessFromResource(resource);
 		// initialize
 		edgeStates = new HashMap<SequenceFlow, EdgeState>();
 		bracketSets = new HashMap<SequenceFlow, Set<SequenceFlow>>();
@@ -81,6 +85,10 @@ public class PST {
 		LOG.debug("building structure tree ...");
 		structureTree = buildStructureTree(canonicalFragments);
 
+		// remove end->start edge
+		LOG.debug("decompleting graph");
+		decompleteGraph(insertEdge);
+
 		LOG.debug("done ...");
 	}
 
@@ -101,7 +109,7 @@ public class PST {
 		structureTree = new DirectedSparseGraph<Fragment, Object>();
 		Stack<Fragment> parents = new Stack<Fragment>();
 		buildStructureTreeAcc(canonicalFragments, start.getOutgoing().get(0),
-				new Fragment(process, null, null), parents,
+				new Fragment(resource, process, null, null), parents,
 				new HashSet<SequenceFlow>());
 		return structureTree;
 	}
@@ -157,6 +165,19 @@ public class PST {
 		edge.setTargetRef(start);
 		graph.addEdge(edge, start, end);
 		return edge;
+	}
+
+	/**
+	 * Removes edge from end to start
+	 * 
+	 * @param insertEdge
+	 * 
+	 * @return
+	 */
+	private void decompleteGraph(SequenceFlow insertEdge) {
+		insertEdge.setSourceRef(null);
+		insertEdge.setTargetRef(null);
+		graph.removeEdge(insertEdge);
 	}
 
 	/**
@@ -272,9 +293,10 @@ public class PST {
 					}
 					if (isFragment) {
 						if (dominates(start, e, f)
-								&& !fragments.contains(new Fragment(process, e,
-										f))) {
-							fragments.add(new Fragment(process, e, f));
+								&& !fragments.contains(new Fragment(resource,
+										process, e, f))) {
+							fragments
+									.add(new Fragment(resource, process, e, f));
 						}
 					}
 				}

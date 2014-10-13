@@ -9,7 +9,6 @@ import java.util.Set;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 
-import org.eclipse.bpmn2.Process;
 import org.jbpt.utils.IOUtils;
 import org.junit.Test;
 
@@ -144,9 +143,8 @@ public class PSTTest {
 	public PST runTest(String basename) throws Exception {
 		System.out.println("Creating PST for " + basename);
 		URL url = PSTTest.class.getResource("../../bpmn/" + basename + ".bpmn");
-		Process process = ProcessLoader.loadFirstProcessFromResource(url);
 		PST pst = new PST();
-		pst.createFromProcess(process);
+		pst.createFromProcess(ProcessLoader.getBpmnResource(url));
 		IOUtils.invokeDOT("/tmp", basename + "-undirectedgraph.png",
 				pst.getGraphAsDot());
 		IOUtils.invokeDOT("/tmp", basename + "-spanningtree.png",
