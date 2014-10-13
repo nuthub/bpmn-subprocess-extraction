@@ -4,7 +4,7 @@ import org.javatuples.Pair;
 
 import edu.udo.cs.ls14.jf.pst.Fragment;
 
-public class FragmentEvaluator {
+public class FragmentComparator {
 	public static Fragment getBetter(Pair<Fragment, Fragment> pair) {
 		if (pair.getValue0().getContainedFlowNodes(n -> true).size() > pair
 				.getValue1().getContainedFlowNodes(n -> true).size()) {

@@ -16,7 +16,7 @@ import edu.udo.cs.ls14.jf.processmatching.ProcessMatching;
 import edu.udo.cs.ls14.jf.processmatching.ProcessMatchingChain;
 import edu.udo.cs.ls14.jf.pst.Fragment;
 import edu.udo.cs.ls14.jf.transformation.CoordinateCalculator;
-import edu.udo.cs.ls14.jf.transformation.FragmentEvaluator;
+import edu.udo.cs.ls14.jf.transformation.FragmentComparator;
 import edu.udo.cs.ls14.jf.transformation.FragmentExtractor;
 import edu.udo.cs.ls14.jf.utils.bpmn.ProcessLoader;
 
@@ -68,7 +68,7 @@ public class TransformationTest {
 			File newProcessFile = new File(targetDir + "/" + basename1 + "_"
 					+ basename2 + "extracted_process-" + i++ + ".bpmn2");
 			// select fragment to extract
-			Fragment fragmentToExtract = FragmentEvaluator.getBetter(pair);
+			Fragment fragmentToExtract = FragmentComparator.getBetter(pair);
 			// copy resource
 			fragmentToExtract.getResource().save(
 					new FileOutputStream(newProcessFile), null);

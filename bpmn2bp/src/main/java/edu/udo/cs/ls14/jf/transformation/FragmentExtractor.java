@@ -27,8 +27,8 @@ public class FragmentExtractor {
 
 	private Engine engine = null;
 
-	private static final String RULEFILE = "sequenceRule";
-	private static final String RULEPATH = "src/test/resources/edu/udo/cs/ls14/jf/henshin/";
+	private static final String RULEFILE = "bpmnModifier";
+	private static final String RULEPATH = "src/main/resources/edu/udo/cs/ls14/jf/henshin/";
 
 	private void init() {
 		engine = new EngineImpl();
