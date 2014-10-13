@@ -1,16 +1,12 @@
-package edu.udo.cs.ls14.jf.transformation.test;
+package edu.udo.cs.ls14.jf.application;
 
 import java.io.File;
 import java.io.FileOutputStream;
-import java.net.MalformedURLException;
-import java.net.URL;
 
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.henshin.interpreter.EGraph;
 import org.eclipse.emf.henshin.interpreter.impl.EGraphImpl;
 import org.javatuples.Pair;
-import org.junit.Before;
-import org.junit.Test;
 
 import edu.udo.cs.ls14.jf.processmatching.ProcessMatching;
 import edu.udo.cs.ls14.jf.processmatching.ProcessMatchingChain;
@@ -20,53 +16,27 @@ import edu.udo.cs.ls14.jf.transformation.FragmentComparator;
 import edu.udo.cs.ls14.jf.transformation.FragmentExtractor;
 import edu.udo.cs.ls14.jf.utils.bpmn.ProcessLoader;
 
-public class TransformationTest {
+public class Application {
 
-	private File targetDir = null;
-
-	@Before
-	public void setUp() throws MalformedURLException {
-		URL targetUrl = new URL(getClass().getResource("/")
-				+ "../generated-models/");
-		targetDir = new File(targetUrl.getFile());
-		targetDir.mkdir();
-	}
-
-	@Test
-	public void testSequenceSequence2() throws Exception {
-		String basename1 = "sequence";
-		String basename2 = "sequence2";
-		runTest(basename1, basename2);
-	}
-
-	@Test
-	public void testPM1PM2() throws Exception {
-		String basename1 = "PM1-mit-Fragment1";
-		String basename2 = "PM2-mit-Fragment1";
-		runTest(basename1, basename2);
-	}
-
-	private void runTest(String basename1, String basename2) throws Exception {
-		Resource res1 = ProcessLoader.getBpmnResource(getClass().getResource(
-				"../../bpmn/" + basename1 + ".bpmn"));
-		Resource res2 = ProcessLoader.getBpmnResource(getClass().getResource(
-				"../../bpmn/" + basename2 + ".bpmn"));
-		File process1File = new File(targetDir + "/" + basename1
+	
+	public void matchAndExtract(Pair<String, Resource> model1, Pair<String, Resource> model2, File targetDir) throws Exception {
+		
+		File process1File = new File(targetDir + "/" + model1.getValue0()
 				+ "_transformed.bpmn2");
-		File process2File = new File(targetDir + "/" + basename2
+		File process2File = new File(targetDir + "/" + model2.getValue1()
 				+ "_transformed.bpmn2");
 
 		// Determine candidates
-		ProcessMatching matching = ProcessMatchingChain.getCandidates(res1,
-				res2);
+		ProcessMatching matching = ProcessMatchingChain.getCandidates(model1.getValue1(),
+				model2.getValue1());
 		FragmentExtractor extractor = new FragmentExtractor();
 
 		// Loop over all matching pairs
 		int i = 1;
 		for (Pair<Fragment, Fragment> pair : matching
 				.getFragmentCorrespondences()) {
-			File newProcessFile = new File(targetDir + "/" + basename1 + "_"
-					+ basename2 + "extracted_process-" + i++ + ".bpmn2");
+			File newProcessFile = new File(targetDir + "/" + model1.getValue0() + "_"
+					+ model2.getValue0() + "extracted_process-" + i++ + ".bpmn2");
 			// select fragment to extract
 			Fragment fragmentToExtract = FragmentComparator.getBetter(pair);
 			// copy resource
@@ -89,20 +59,20 @@ public class TransformationTest {
 			String callActivitiyName = getCallActivityName(fragmentToExtract);
 
 			// replace fragment in Process1
-			Pair<Float, Float> coords1 = CoordinateCalculator.getCoords(res1,
+			Pair<Float, Float> coords1 = CoordinateCalculator.getCoords(model1.getValue1(),
 					pair.getValue0());
-			EGraph graph1 = new EGraphImpl(res1);
+			EGraph graph1 = new EGraphImpl(model1.getValue1());
 			extractor.replaceFragmentByCallActivity(graph1, pair.getValue0(),
 					callActivitiyName, coords1);
-			res1.save(new FileOutputStream(process1File), null);
+			model1.getValue1().save(new FileOutputStream(process1File), null);
 
 			// replace fragment in Process2
-			Pair<Float, Float> coords2 = CoordinateCalculator.getCoords(res2,
+			Pair<Float, Float> coords2 = CoordinateCalculator.getCoords(model2.getValue1(),
 					pair.getValue1());
-			EGraph graph2 = new EGraphImpl(res2);
+			EGraph graph2 = new EGraphImpl(model2.getValue1());
 			extractor.replaceFragmentByCallActivity(graph2, pair.getValue1(),
 					callActivitiyName, coords2);
-			res2.save(new FileOutputStream(process2File), null);
+			model2.getValue1().save(new FileOutputStream(process2File), null);
 		}
 	}
 
@@ -110,5 +80,6 @@ public class TransformationTest {
 		// TODO: build name
 		return "My new Call Activity which potentially could have a very long label with different labels concatenated to describe, which activities are contained in the process called by the call activity";
 	}
+
 
 }
