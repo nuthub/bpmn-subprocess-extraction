@@ -68,7 +68,7 @@ public class Bpmn2RpstTest {
 
 	@Test
 	public void testXorExample() throws Exception {
-		getRPST("xor-example", 10, 3, 1, 0, 6);
+		getRPST("xor-example", 11, 3, 1, 0, 7);
 	}
 
 	private RPST<BpmnPathEdge, BpmnPathVertex> getRPST(String basename,

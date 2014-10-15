@@ -95,10 +95,11 @@ public class PSTTest {
 		String basename = "xor-example";
 		PST pst = runTest(basename);
 		Set<Fragment> frags = pst.getFragments();
-		assertEquals(3, frags.size());
-		assertFragsContainByName(frags, "1", "6");
-		assertFragsContainByName(frags, "2", "4");
+		assertEquals(4, frags.size());
+		assertFragsContainByName(frags, "1", "2");
+		assertFragsContainByName(frags, "2", "7");
 		assertFragsContainByName(frags, "3", "5");
+		assertFragsContainByName(frags, "4", "6");
 	}
 
 	@Test

@@ -32,7 +32,7 @@ public class Bpmn2PnmlConverterTest {
 	@Test
 	public void testXorWEventsTransformation() throws Exception {
 		String basename = "xor-example";
-		runTest(basename, 8, 8, 16);
+		runTest(basename, 9, 9, 18);
 	}
 
 	@Test
