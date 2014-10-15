@@ -18,20 +18,21 @@ public class PetriNetUnfolder {
 	// global P',T',Q',HashTable 0
 	private Unfolding unf;
 	private Queue<Transition> queue;
+	@SuppressWarnings("unused")
 	private Map<Set<Transition>, Transition> ht;
 
 	// function Unfold(P,T, Mo)
 	public Unfolding unfold(Set<PlaceHLAPI> pIn, Set<TransitionHLAPI> tIn,
 			Set<PlaceHLAPI> m0) throws Exception {
-		
+
 		// P' = T' = Q' = emptySet; clear HashTable
 		unf = new Unfolding();
 		queue = new PriorityQueue<Transition>(11, new Comparator<Transition>() {
 			public int compare(Transition t1, Transition t2) {
-				if(localConfig(t1).size() < localConfig(t2).size()) {
+				if (localConfig(t1).size() < localConfig(t2).size()) {
 					return -1;
 				}
-				if(localConfig(t1).size() > localConfig(t2).size()) {
+				if (localConfig(t1).size() > localConfig(t2).size()) {
 					return 1;
 				}
 				return 0;
@@ -90,7 +91,8 @@ public class PetriNetUnfolder {
 		// return
 		// TODO: Wenn es keine möglichen Erweiterungen gibt, abbrechen
 		// if Predecessors(S') has forward conflict then return
-		// TODO: forward conflict (= zwei t mit nicht leerem Schnitt ihrer inputs), abbrechen
+		// TODO: forward conflict (= zwei t mit nicht leerem Schnitt ihrer
+		// inputs), abbrechen
 		// forall t E T do
 		for (TransitionHLAPI t : T) {
 			// if place(S') = inputs of t then
@@ -134,6 +136,7 @@ public class PetriNetUnfolder {
 		return null;
 	}
 
+	@SuppressWarnings("unused")
 	private Set<Place> predecessors(Place P) {
 		// TODO: implement
 		// do
@@ -142,6 +145,7 @@ public class PetriNetUnfolder {
 		return null;
 	}
 
+	@SuppressWarnings("unused")
 	private Set<Place> finalState(Set<Transition> c) {
 		// TODO: implement
 		// let S' be the set of all p' E P' such that preds(p') \subseteq C'
