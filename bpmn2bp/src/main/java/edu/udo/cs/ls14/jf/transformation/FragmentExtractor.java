@@ -5,44 +5,32 @@ import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 
-import org.eclipse.bpmn2.Bpmn2Package;
+import org.eclipse.bpmn2.CallableElement;
 import org.eclipse.bpmn2.FlowElement;
 import org.eclipse.bpmn2.FlowNode;
-import org.eclipse.bpmn2.Process;
 import org.eclipse.bpmn2.SequenceFlow;
-import org.eclipse.bpmn2.util.Bpmn2ResourceFactoryImpl;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.henshin.interpreter.EGraph;
-import org.eclipse.emf.henshin.interpreter.Engine;
-import org.eclipse.emf.henshin.interpreter.UnitApplication;
 import org.eclipse.emf.henshin.interpreter.impl.EGraphImpl;
-import org.eclipse.emf.henshin.interpreter.impl.EngineImpl;
-import org.eclipse.emf.henshin.interpreter.impl.LoggingApplicationMonitor;
-import org.eclipse.emf.henshin.interpreter.impl.UnitApplicationImpl;
-import org.eclipse.emf.henshin.model.Module;
-import org.eclipse.emf.henshin.model.Unit;
-import org.eclipse.emf.henshin.model.resource.HenshinResourceSet;
 import org.javatuples.Pair;
 
 import edu.udo.cs.ls14.jf.pst.Fragment;
 
-public class FragmentExtractor {
-
-	private Engine engine = null;
+public class FragmentExtractor extends HenshinTransformation {
 
 	private static final String RULEFILE = "bpmnModifier";
 	private static final String RULEPATH = "src/main/resources/edu/udo/cs/ls14/jf/henshin/";
 
-	private void init() {
-		engine = new EngineImpl();
+	@Override
+	protected String getRulePath() {
+		return RULEPATH;
 	}
 
-	public void createProcessFromFragment(Resource newResource, Fragment fragment)
-			throws Exception {
-		Pair<Float, Float> startEventCoords = CoordinateCalculator
-				.getCoords(newResource, fragment.getEntry()
-						.getSourceRef());
+	public void createProcessFromFragment(Resource newResource,
+			Fragment fragment) throws Exception {
+		Pair<Float, Float> startEventCoords = CoordinateCalculator.getCoords(
+				newResource, fragment.getEntry().getSourceRef());
 		Pair<Float, Float> endEventCoords = CoordinateCalculator.getCoords(
 				newResource, fragment.getExit().getTargetRef());
 		Set<String> nodeIds = new HashSet<String>();
@@ -102,8 +90,8 @@ public class FragmentExtractor {
 		}
 	}
 
-	public void replaceFragmentByCallActivity(Resource resource, Fragment fragment,
-			String name, Process calledElement)
+	public void replaceFragmentByCallActivity(Resource resource,
+			Fragment fragment, String name, CallableElement calledElement)
 			throws Exception {
 		Pair<Float, Float> coords = CoordinateCalculator.getCoords(resource,
 				fragment);
@@ -156,34 +144,7 @@ public class FragmentExtractor {
 			parameters.put("id", nodeId);
 			applyRule(graph, RULEFILE, "deleteFlowNode", parameters);
 		}
+
 	}
 
-	private void applyRule(EGraph graph, String rulefileBaseName,
-			String ruleName, Map<String, Object> parameters) throws Exception {
-		if (engine == null) {
-			init();
-		}
-		// Load rule
-		HenshinResourceSet resourceSet = new HenshinResourceSet(RULEPATH);
-		resourceSet.registerXMIResourceFactories("bpmn2");
-		resourceSet.getPackageRegistry().put(Bpmn2Package.eNS_URI,
-				Bpmn2Package.eINSTANCE);
-		resourceSet.getResourceFactoryRegistry().getExtensionToFactoryMap()
-				.put("bpmn2", new Bpmn2ResourceFactoryImpl());
-		Module module = resourceSet.getModule(rulefileBaseName + ".henshin");
-		Unit unit = module.getUnit(ruleName);
-		if (unit == null) {
-			throw new Exception("Could not get Unit: " + rulefileBaseName
-					+ " / " + ruleName);
-		}
-		UnitApplication app = new UnitApplicationImpl(engine, graph, unit, null);
-		for (Map.Entry<String, Object> p : parameters.entrySet()) {
-			app.setParameterValue(p.getKey(), p.getValue());
-		}
-		// app.execute(new LoggingApplicationMonitor())
-		if (!app.execute(new LoggingApplicationMonitor())) {
-			throw new Exception("Could not apply rule: " + rulefileBaseName
-					+ " / " + ruleName + " / " + parameters);
-		}
-	}
 }

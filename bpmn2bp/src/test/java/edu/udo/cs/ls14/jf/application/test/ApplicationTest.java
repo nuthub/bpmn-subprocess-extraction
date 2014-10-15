@@ -42,13 +42,8 @@ public class ApplicationTest {
 		Application app = new Application();
 		Pair<String, Resource> model1 = Pair.with(basename1, res1);
 		Pair<String, Resource> model2 = Pair.with(basename2, res2);
-//		URL targetUrl = new URL(getClass().getResource("/")
-//				, "../generated-models/");
-//		targetUrl = new URL("file:/tmp/applicationtest/");
-//		File targetDir = new File(targetUrl.getFile());
 		File targetDir = new File("/tmp/applicationtest/");
 		targetDir.mkdirs();
-//		targetDir = new File("/tmp/");
 		app.matchAndExtract(model1, model2, targetDir);
 	}
 }

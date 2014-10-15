@@ -12,6 +12,7 @@ import edu.udo.cs.ls14.jf.pst.Fragment;
 import edu.udo.cs.ls14.jf.transformation.FragmentComparator;
 import edu.udo.cs.ls14.jf.transformation.FragmentExtractor;
 import edu.udo.cs.ls14.jf.transformation.LabelGenerator;
+import edu.udo.cs.ls14.jf.transformation.LocationFixer;
 import edu.udo.cs.ls14.jf.utils.bpmn.ProcessLoader;
 import edu.udo.cs.ls14.jf.utils.bpmn.ResourceCopier;
 
@@ -39,11 +40,12 @@ public class Application {
 			// select fragment to extract
 			Fragment fragmentToExtract = FragmentComparator.getBetter(pair);
 			// copy resource: Resource is not copied!
+			String targetFilename = model1.getValue0() + "_"
+					+ model2.getValue0() + "_extracted_process-"
+					+ processCounter++ + ".bpmn2";
 			Resource newResource = ResourceCopier.copy(
 					fragmentToExtract.getResource(), new File(targetDir, "/"
-							+ model1.getValue0() + "_" + model2.getValue0()
-							+ "_extracted_process-" + processCounter++
-							+ ".bpmn2").toString());
+							+ targetFilename).toString());
 
 			// create new subprocess
 			extractor.createProcessFromFragment(newResource, fragmentToExtract);
@@ -55,13 +57,23 @@ public class Application {
 			// replace fragment in Process1
 			extractor.replaceFragmentByCallActivity(res1, pair.getValue0(),
 					callActivityName, calledElement);
+			doFixes(res1, calledElement);
+			res1.save(null);
+
 			// replace fragment in Process2
 			extractor.replaceFragmentByCallActivity(res2, pair.getValue1(),
 					callActivityName, calledElement);
-			System.out.println(calledElement.eResource());
+			doFixes(res2, calledElement);
+			res2.save(null);
 		}
-		res1.save(null);
-		res2.save(null);
+	}
+
+	private void doFixes(Resource resource, Process calledElement) throws Exception {
+		resource.save(null);
+		String newLocation = calledElement.eResource().getURI().toString();
+		String oldLocation = new File(newLocation).getName();
+		LocationFixer fixer = new LocationFixer();
+		fixer.fixLocations(resource, oldLocation, newLocation);
 	}
 
 	private String getCallActivityName(Fragment fragment) throws Exception {

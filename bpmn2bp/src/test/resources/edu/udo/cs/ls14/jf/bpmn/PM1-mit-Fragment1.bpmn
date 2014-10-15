@@ -1,80 +1,40 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- origin at X=0.0 Y=0.0 -->
-<definitions xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:omgdc="http://www.omg.org/spec/DD/20100524/DC" xmlns:omgdi="http://www.omg.org/spec/DD/20100524/DI" xmlns:signavio="http://www.signavio.com" xmlns:xs="http://www.w3.org/2001/XMLSchema" xsi:schemaLocation="http://www.omg.org/spec/BPMN/20100524/MODEL http://www.omg.org/spec/BPMN/2.0/20100501/BPMN20.xsd http://www.omg.org/spec/DD/20100524/DI http://www.omg.org/spec/DD/20100524/DI-XMI http://www.omg.org/spec/DD/20100524/DC http://www.omg.org/spec/DD/20100524/DC-XMI http://www.omg.org/spec/BPMN/20100524/DI http://www.omg.org/spec/BPMN/20100524/DI-XMI" id="sid-d5960d41-e38f-42cd-a26c-0ae350fe4124" exporter="org.eclipse.bpmn2.modeler.core" exporterVersion="1.1.0.201408072130" targetNamespace="http://www.signavio.com/bpmn20">
+<definitions xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:omgdc="http://www.omg.org/spec/DD/20100524/DC" xmlns:omgdi="http://www.omg.org/spec/DD/20100524/DI" xmlns:xs="http://www.w3.org/2001/XMLSchema" xsi:schemaLocation="http://www.omg.org/spec/BPMN/20100524/MODEL http://www.omg.org/spec/BPMN/2.0/20100501/BPMN20.xsd http://www.omg.org/spec/DD/20100524/DI http://www.omg.org/spec/DD/20100524/DI-XMI http://www.omg.org/spec/DD/20100524/DC http://www.omg.org/spec/DD/20100524/DC-XMI http://www.omg.org/spec/BPMN/20100524/DI http://www.omg.org/spec/BPMN/20100524/DI-XMI" id="sid-d5960d41-e38f-42cd-a26c-0ae350fe4124" exporter="org.eclipse.bpmn2.modeler.core" exporterVersion="1.1.0.201408072130" targetNamespace="http://www.omg.org/spec/BPMN/20100524/MODEL">
   <process id="sid-5c5f4f4f-5428-4665-89a4-ddf4c1608484" name="PM1-mit-Fragment1">
-    <extensionElements>
-      <signavio:signavioDiagramMetaData xsi:type="xs:anyType" metaKey="revisionid" metaValue="d2cbcb10daf94def899d214254454cd8"/>
-    </extensionElements>
     <startEvent id="sid-94CA3CAB-AA15-484C-A00C-7372185C0A79" name="Start">
-      <extensionElements>
-        <signavio:signavioMetaData xsi:type="xs:anyType" metaKey="bgcolor" metaValue="#ffffff"/>
-      </extensionElements>
       <outgoing>SequenceFlow_3</outgoing>
     </startEvent>
     <task id="sid-24BB1352-5C62-4E83-A253-378A2D086D85" name="Task A">
-      <extensionElements>
-        <signavio:signavioMetaData xsi:type="xs:anyType" metaKey="bgcolor" metaValue="#ffffcc"/>
-        <signavio:signavioMetaData xsi:type="xs:anyType" metaKey="risklevel" metaValue=""/>
-        <signavio:signavioMetaData xsi:type="xs:anyType" metaKey="externaldocuments" metaValue="[]"/>
-      </extensionElements>
       <incoming>SequenceFlow_3</incoming>
       <outgoing>sid-16C4A25C-59E5-4B8E-851F-F05BBEE8CE71</outgoing>
     </task>
     <task id="sid-E886E7E9-C4EA-42F6-ABCB-882EF9EB8B38" name="Lieferschein erstellen">
-      <extensionElements>
-        <signavio:signavioMetaData xsi:type="xs:anyType" metaKey="bgcolor" metaValue="#ffffcc"/>
-        <signavio:signavioMetaData xsi:type="xs:anyType" metaKey="risklevel" metaValue=""/>
-        <signavio:signavioMetaData xsi:type="xs:anyType" metaKey="externaldocuments" metaValue="[]"/>
-      </extensionElements>
       <incoming>sid-F6EDEAA1-882C-491F-8852-A994BE20ACCB</incoming>
       <outgoing>sid-03B5B5AF-A1F0-4E20-AFB9-38B826AB8D3E</outgoing>
     </task>
     <task id="sid-29EB2FC1-7050-4603-BF12-D0CD6B6116F1" name="Rechnung erstellen">
-      <extensionElements>
-        <signavio:signavioMetaData xsi:type="xs:anyType" metaKey="bgcolor" metaValue="#ffffcc"/>
-        <signavio:signavioMetaData xsi:type="xs:anyType" metaKey="risklevel" metaValue=""/>
-        <signavio:signavioMetaData xsi:type="xs:anyType" metaKey="externaldocuments" metaValue="[]"/>
-      </extensionElements>
       <incoming>sid-93B31B1C-6F42-4974-B551-705587AA85D2</incoming>
       <outgoing>sid-C6506147-1F35-4235-88C2-9EDFD483F4C6</outgoing>
     </task>
     <task id="sid-0EC98739-28B8-4098-9212-D6FCCD59E1DB" name="Waren verpacken">
-      <extensionElements>
-        <signavio:signavioMetaData xsi:type="xs:anyType" metaKey="bgcolor" metaValue="#ffffcc"/>
-        <signavio:signavioMetaData xsi:type="xs:anyType" metaKey="risklevel" metaValue=""/>
-        <signavio:signavioMetaData xsi:type="xs:anyType" metaKey="externaldocuments" metaValue="[]"/>
-      </extensionElements>
       <incoming>sid-EFED9E2B-3B01-44F9-82E6-3727E2B1CA76</incoming>
       <outgoing>sid-C465B7EB-B45B-435F-B4F8-A68E96E38708</outgoing>
     </task>
     <task id="sid-0E079D7D-0098-428D-97A2-ABF51024CB72" name="Task B">
-      <extensionElements>
-        <signavio:signavioMetaData xsi:type="xs:anyType" metaKey="bgcolor" metaValue="#ffffcc"/>
-        <signavio:signavioMetaData xsi:type="xs:anyType" metaKey="risklevel" metaValue=""/>
-        <signavio:signavioMetaData xsi:type="xs:anyType" metaKey="externaldocuments" metaValue="[]"/>
-      </extensionElements>
       <incoming>sid-0AD5228D-887A-4D19-87E7-1219EAE576C9</incoming>
       <outgoing>SequenceFlow_4</outgoing>
     </task>
     <endEvent id="sid-88383928-E961-4E4A-9725-55B02E86FD0E" name="End">
-      <extensionElements>
-        <signavio:signavioMetaData xsi:type="xs:anyType" metaKey="bgcolor" metaValue="#ffffff"/>
-      </extensionElements>
       <incoming>SequenceFlow_4</incoming>
     </endEvent>
     <parallelGateway id="sid-D98FE8D4-32DF-476A-9C41-F9E569B0DA71" name="Gateway 2" gatewayDirection="Converging">
-      <extensionElements>
-        <signavio:signavioMetaData xsi:type="xs:anyType" metaKey="bgcolor" metaValue="#ffffff"/>
-      </extensionElements>
       <incoming>sid-C465B7EB-B45B-435F-B4F8-A68E96E38708</incoming>
       <incoming>sid-03B5B5AF-A1F0-4E20-AFB9-38B826AB8D3E</incoming>
       <incoming>sid-C6506147-1F35-4235-88C2-9EDFD483F4C6</incoming>
       <outgoing>sid-0AD5228D-887A-4D19-87E7-1219EAE576C9</outgoing>
     </parallelGateway>
     <parallelGateway id="sid-F4D68AC5-D815-48C5-B160-CEBA4C1421DC" name="Gateway 1" gatewayDirection="Diverging">
-      <extensionElements>
-        <signavio:signavioMetaData xsi:type="xs:anyType" metaKey="bgcolor" metaValue="#ffffff"/>
-      </extensionElements>
       <incoming>sid-16C4A25C-59E5-4B8E-851F-F05BBEE8CE71</incoming>
       <outgoing>sid-93B31B1C-6F42-4974-B551-705587AA85D2</outgoing>
       <outgoing>sid-F6EDEAA1-882C-491F-8852-A994BE20ACCB</outgoing>
