@@ -15,17 +15,11 @@
     </bpmn2:task>
     <bpmn2:sequenceFlow id="SequenceFlow_2" name="1" sourceRef="StartEvent_1" targetRef="Task_1"/>
     <bpmn2:task id="Task_2" name="Task 2">
-      <bpmn2:extensionElements>
-        <ext:style ext:shapeBackground="#90ee90"/>
-      </bpmn2:extensionElements>
       <bpmn2:incoming>SequenceFlow_3</bpmn2:incoming>
       <bpmn2:outgoing>SequenceFlow_4</bpmn2:outgoing>
     </bpmn2:task>
     <bpmn2:sequenceFlow id="SequenceFlow_3" name="2" sourceRef="Task_1" targetRef="Task_2"/>
     <bpmn2:task id="Task_3" name="Task 3">
-      <bpmn2:extensionElements>
-        <ext:style ext:shapeBackground="#90ee90"/>
-      </bpmn2:extensionElements>
       <bpmn2:incoming>SequenceFlow_4</bpmn2:incoming>
       <bpmn2:outgoing>SequenceFlow_6</bpmn2:outgoing>
     </bpmn2:task>
@@ -36,9 +30,6 @@
     </bpmn2:task>
     <bpmn2:sequenceFlow id="SequenceFlow_5" name="5" sourceRef="Task_5" targetRef="Task_4"/>
     <bpmn2:task id="Task_5" name="Task 4">
-      <bpmn2:extensionElements>
-        <ext:style ext:shapeBackground="#90ee90"/>
-      </bpmn2:extensionElements>
       <bpmn2:incoming>SequenceFlow_6</bpmn2:incoming>
       <bpmn2:outgoing>SequenceFlow_5</bpmn2:outgoing>
     </bpmn2:task>

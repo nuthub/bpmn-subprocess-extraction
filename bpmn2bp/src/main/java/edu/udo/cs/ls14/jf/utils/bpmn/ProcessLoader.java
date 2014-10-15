@@ -18,20 +18,22 @@ import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 
 public class ProcessLoader {
 
-	public static BPMNDiagram getDiagramFromResource(Resource res) throws Exception {
+	public static BPMNDiagram getDiagramFromResource(Resource res)
+			throws Exception {
 		EList<EObject> contents = res.getContents();
 		if (!(contents.get(0) instanceof DocumentRoot)) {
 			throw new Exception("load error");
 		}
 		DocumentRoot docRoot = ((DocumentRoot) contents.get(0));
 		List<BPMNDiagram> diagrams = docRoot.getDefinitions().getDiagrams();
-		if(diagrams.isEmpty()) {
+		if (diagrams.isEmpty()) {
 			throw new Exception("no diagrams found");
 		}
 		return diagrams.get(0);
 	}
 
-	private static DocumentRoot getDocumentRootFromUrl(URL url) throws Exception {
+	private static DocumentRoot getDocumentRootFromUrl(URL url)
+			throws Exception {
 		Resource res = getBpmnResource(url);
 		EList<EObject> contents = res.getContents();
 		if (!(contents.get(0) instanceof DocumentRoot)) {
@@ -57,47 +59,52 @@ public class ProcessLoader {
 		return process;
 	}
 
-
 	public static Resource getBpmnResource(URL url) throws Exception {
 		if (url == null) {
 			throw new Exception("URL ist null!");
 		}
-		Resource.Factory.Registry.INSTANCE.getExtensionToFactoryMap().put(
-				"bpmn2", new Bpmn2ResourceFactoryImpl());
-		Resource.Factory.Registry.INSTANCE.getExtensionToFactoryMap().put(
-				"bpmn", new Bpmn2ResourceFactoryImpl());
+		registerFactories();
 		URI fileUri = URI.createFileURI(url.getFile());
-		Resource res = new ResourceSetImpl().getResource(fileUri, true);
+		org.eclipse.emf.ecore.resource.Resource res = new ResourceSetImpl()
+				.getResource(fileUri, true);
 		return res;
 	}
-
 
 	public static Resource getBpmnResource(File file) throws Exception {
 		if (file == null) {
-			throw new Exception("URL ist null!");
+			throw new Exception("File ist null!");
 		}
-		Resource.Factory.Registry.INSTANCE.getExtensionToFactoryMap().put(
-				"bpmn2", new Bpmn2ResourceFactoryImpl());
-		Resource.Factory.Registry.INSTANCE.getExtensionToFactoryMap().put(
-				"bpmn", new Bpmn2ResourceFactoryImpl());
+		registerFactories();
 		URI fileUri = URI.createURI(file.getAbsolutePath());
-		System.out.println(fileUri);
 		Resource res = new ResourceSetImpl().getResource(fileUri, true);
 		return res;
 	}
 
-	public static Process getProcessFromResource(
-			Resource resource) throws Exception {
+	public static Process getProcessFromResource(Resource resource)
+			throws Exception {
 		EList<EObject> contents = resource.getContents();
 		if (!(contents.get(0) instanceof DocumentRoot)) {
 			throw new Exception("load error");
 		}
 		DocumentRoot docRoot = ((DocumentRoot) contents.get(0));
 		List<RootElement> roots = docRoot.getDefinitions().getRootElements();
-		if(roots.isEmpty()) {
+		if (roots.isEmpty()) {
 			throw new Exception("no diagrams found");
 		}
 		return (Process) roots.get(0);
+	}
+
+	private static void registerFactories() {
+		if (!Resource.Factory.Registry.INSTANCE.getExtensionToFactoryMap()
+				.containsKey("bpmn2")) {
+			Resource.Factory.Registry.INSTANCE.getExtensionToFactoryMap().put(
+					"bpmn2", new Bpmn2ResourceFactoryImpl());
+		}
+		if (!Resource.Factory.Registry.INSTANCE.getExtensionToFactoryMap()
+				.containsKey("bpmn")) {
+			Resource.Factory.Registry.INSTANCE.getExtensionToFactoryMap().put(
+					"bpmn", new Bpmn2ResourceFactoryImpl());
+		}
 	}
 
 }

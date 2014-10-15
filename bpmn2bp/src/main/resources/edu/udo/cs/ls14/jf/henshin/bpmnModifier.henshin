@@ -190,12 +190,12 @@
     <mappings xmi:id="_jT5ywk_BEeSxqchWGzsm5Q" origin="_jT5ywE_BEeSxqchWGzsm5Q" image="_jT5ywU_BEeSxqchWGzsm5Q"/>
   </units>
   <units xsi:type="henshin:Rule" xmi:id="_9hiH0E_CEeSxqchWGzsm5Q" name="setTargetRef">
-    <parameters xmi:id="_A912oE_DEeSxqchWGzsm5Q" name="id"/>
+    <parameters xmi:id="_elS_YFPDEeS_zfeF7kE1Gg" name="id"/>
     <parameters xmi:id="_A912oU_DEeSxqchWGzsm5Q" name="targetId"/>
     <lhs xmi:id="_9hj9AE_CEeSxqchWGzsm5Q" name="Lhs">
-      <nodes xmi:id="_EoQS4E_DEeSxqchWGzsm5Q" incoming="_ejU4UE_EEeSxqchWGzsm5Q" outgoing="_INLLIE_DEeSxqchWGzsm5Q">
+      <nodes xmi:id="_EoQS4E_DEeSxqchWGzsm5Q" name="" incoming="_ejU4UE_EEeSxqchWGzsm5Q" outgoing="_INLLIE_DEeSxqchWGzsm5Q">
         <type href="http://www.omg.org/spec/BPMN/20100524/MODEL-XMI#//SequenceFlow"/>
-        <attributes xmi:id="_L557kE_DEeSxqchWGzsm5Q" value="id">
+        <attributes xmi:id="_dPkikFPDEeS_zfeF7kE1Gg" value="id">
           <type href="http://www.omg.org/spec/BPMN/20100524/MODEL-XMI#//BaseElement/id"/>
         </attributes>
       </nodes>
@@ -234,9 +234,9 @@
       </edges>
     </lhs>
     <rhs xmi:id="_9hj9AU_CEeSxqchWGzsm5Q" name="Rhs">
-      <nodes xmi:id="_EoQS4U_DEeSxqchWGzsm5Q" incoming="_ejU4UU_EEeSxqchWGzsm5Q" outgoing="_IjVBUE_DEeSxqchWGzsm5Q">
+      <nodes xmi:id="_EoQS4U_DEeSxqchWGzsm5Q" name="" incoming="_ejU4UU_EEeSxqchWGzsm5Q" outgoing="_IjVBUE_DEeSxqchWGzsm5Q">
         <type href="http://www.omg.org/spec/BPMN/20100524/MODEL-XMI#//SequenceFlow"/>
-        <attributes xmi:id="_L557kU_DEeSxqchWGzsm5Q" value="id">
+        <attributes xmi:id="_dPlJoFPDEeS_zfeF7kE1Gg" value="id">
           <type href="http://www.omg.org/spec/BPMN/20100524/MODEL-XMI#//BaseElement/id"/>
         </attributes>
       </nodes>
@@ -376,9 +376,9 @@
   <units xsi:type="henshin:Rule" xmi:id="_egUyME_FEeSxqchWGzsm5Q" name="createCallActivity">
     <parameters xmi:id="_TnqUoE_HEeSxqchWGzsm5Q" name="id"/>
     <parameters xmi:id="_Tnq7sE_HEeSxqchWGzsm5Q" name="name"/>
-    <parameters xmi:id="_fEvb8E_HEeSxqchWGzsm5Q" name="shapeId"/>
     <parameters xmi:id="_e8OtQE_UEeSxqchWGzsm5Q" name="x"/>
     <parameters xmi:id="_e8OtQU_UEeSxqchWGzsm5Q" name="y"/>
+    <parameters xmi:id="_8pdMQFMjEeSQIc3c9royVw" name="calledElement"/>
     <lhs xmi:id="_egWnYE_FEeSxqchWGzsm5Q" name="Lhs">
       <nodes xmi:id="_rRLOgE_FEeSxqchWGzsm5Q">
         <type href="http://www.omg.org/spec/BPMN/20100524/MODEL-XMI#//Process"/>
@@ -389,9 +389,12 @@
       <nodes xmi:id="_hp98UE_IEeSxqchWGzsm5Q">
         <type href="http://www.omg.org/spec/BPMN/20100524/DI-XMI#//BPMNLabelStyle"/>
       </nodes>
+      <nodes xmi:id="_9xlR8FMjEeSQIc3c9royVw" name="calledElement">
+        <type href="http://www.omg.org/spec/BPMN/20100524/MODEL-XMI#//Process"/>
+      </nodes>
     </lhs>
     <rhs xmi:id="_egXOcE_FEeSxqchWGzsm5Q" name="Rhs">
-      <nodes xmi:id="_g62T4E_FEeSxqchWGzsm5Q" incoming="_99SvYE_FEeSxqchWGzsm5Q __MefUE_FEeSxqchWGzsm5Q">
+      <nodes xmi:id="_g62T4E_FEeSxqchWGzsm5Q" incoming="_99SvYE_FEeSxqchWGzsm5Q __MefUE_FEeSxqchWGzsm5Q" outgoing="_-5ulwFMjEeSQIc3c9royVw">
         <type href="http://www.omg.org/spec/BPMN/20100524/MODEL-XMI#//CallActivity"/>
         <attributes xmi:id="_jd5fcE_FEeSxqchWGzsm5Q" value="id">
           <type href="http://www.omg.org/spec/BPMN/20100524/MODEL-XMI#//BaseElement/id"/>
@@ -402,9 +405,6 @@
       </nodes>
       <nodes xmi:id="_hxJCsE_FEeSxqchWGzsm5Q" incoming="_8tU8UE_FEeSxqchWGzsm5Q" outgoing="_9J91AE_FEeSxqchWGzsm5Q __MefUE_FEeSxqchWGzsm5Q _59iN4E_IEeSxqchWGzsm5Q">
         <type href="http://www.omg.org/spec/BPMN/20100524/DI-XMI#//BPMNShape"/>
-        <attributes xmi:id="_kjxiYE_FEeSxqchWGzsm5Q" value="shapeId">
-          <type href="http://www.omg.org/spec/DD/20100524/DI-XMI#//DiagramElement/id"/>
-        </attributes>
       </nodes>
       <nodes xmi:id="_ibEwgE_FEeSxqchWGzsm5Q" incoming="_9J91AE_FEeSxqchWGzsm5Q" outgoing="_i2HmYE_IEeSxqchWGzsm5Q _6X4nkE_IEeSxqchWGzsm5Q">
         <type href="http://www.omg.org/spec/BPMN/20100524/DI-XMI#//BPMNLabel"/>
@@ -448,6 +448,9 @@
           <type href="http://www.omg.org/spec/DD/20100524/DC-XMI#//Bounds/height"/>
         </attributes>
       </nodes>
+      <nodes xmi:id="_-dwbcFMjEeSQIc3c9royVw" name="calledElement" incoming="_-5ulwFMjEeSQIc3c9royVw">
+        <type href="http://www.omg.org/spec/BPMN/20100524/MODEL-XMI#//Process"/>
+      </nodes>
       <edges xmi:id="_99SvYE_FEeSxqchWGzsm5Q" source="_rRLOgU_FEeSxqchWGzsm5Q" target="_g62T4E_FEeSxqchWGzsm5Q">
         <type href="http://www.omg.org/spec/BPMN/20100524/MODEL-XMI#//FlowElementsContainer/flowElements"/>
       </edges>
@@ -469,10 +472,14 @@
       <edges xmi:id="_6X4nkE_IEeSxqchWGzsm5Q" source="_ibEwgE_FEeSxqchWGzsm5Q" target="_3m2qYE_IEeSxqchWGzsm5Q">
         <type href="http://www.omg.org/spec/DD/20100524/DI-XMI#//Label/bounds"/>
       </edges>
+      <edges xmi:id="_-5ulwFMjEeSQIc3c9royVw" source="_g62T4E_FEeSxqchWGzsm5Q" target="_-dwbcFMjEeSQIc3c9royVw">
+        <type href="http://www.omg.org/spec/BPMN/20100524/MODEL-XMI#//CallActivity/calledElementRef"/>
+      </edges>
     </rhs>
     <mappings xmi:id="_rRLOgk_FEeSxqchWGzsm5Q" origin="_rRLOgE_FEeSxqchWGzsm5Q" image="_rRLOgU_FEeSxqchWGzsm5Q"/>
     <mappings xmi:id="_r2dF0k_FEeSxqchWGzsm5Q" origin="_r2dF0E_FEeSxqchWGzsm5Q" image="_r2dF0U_FEeSxqchWGzsm5Q"/>
     <mappings xmi:id="_iPkl4E_IEeSxqchWGzsm5Q" origin="_hp98UE_IEeSxqchWGzsm5Q" image="_iPklxE_IEeSxqchWGzsm5Q"/>
+    <mappings xmi:id="_-dwbcVMjEeSQIc3c9royVw" origin="_9xlR8FMjEeSQIc3c9royVw" image="_-dwbcFMjEeSQIc3c9royVw"/>
   </units>
   <units xsi:type="henshin:Rule" xmi:id="_dbIpYFICEeSC8Y6zH3LPOA" name="createStartEvent">
     <parameters xmi:id="_iEYFYFICEeSC8Y6zH3LPOA" name="id"/>

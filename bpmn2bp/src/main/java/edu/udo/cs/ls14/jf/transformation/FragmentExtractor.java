@@ -8,13 +8,17 @@ import java.util.Set;
 import org.eclipse.bpmn2.Bpmn2Package;
 import org.eclipse.bpmn2.FlowElement;
 import org.eclipse.bpmn2.FlowNode;
+import org.eclipse.bpmn2.Process;
 import org.eclipse.bpmn2.SequenceFlow;
 import org.eclipse.bpmn2.util.Bpmn2ResourceFactoryImpl;
+import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.henshin.interpreter.EGraph;
 import org.eclipse.emf.henshin.interpreter.Engine;
 import org.eclipse.emf.henshin.interpreter.UnitApplication;
+import org.eclipse.emf.henshin.interpreter.impl.EGraphImpl;
 import org.eclipse.emf.henshin.interpreter.impl.EngineImpl;
+import org.eclipse.emf.henshin.interpreter.impl.LoggingApplicationMonitor;
 import org.eclipse.emf.henshin.interpreter.impl.UnitApplicationImpl;
 import org.eclipse.emf.henshin.model.Module;
 import org.eclipse.emf.henshin.model.Unit;
@@ -34,10 +38,13 @@ public class FragmentExtractor {
 		engine = new EngineImpl();
 	}
 
-	public void createProcessFromFragment(EGraph graph, Fragment fragment,
-			String startEventName, Pair<Float, Float> startEventCoords,
-			String endEventName, Pair<Float, Float> endEventCoords)
+	public void createProcessFromFragment(Resource newResource, Fragment fragment)
 			throws Exception {
+		Pair<Float, Float> startEventCoords = CoordinateCalculator
+				.getCoords(newResource, fragment.getEntry()
+						.getSourceRef());
+		Pair<Float, Float> endEventCoords = CoordinateCalculator.getCoords(
+				newResource, fragment.getExit().getTargetRef());
 		Set<String> nodeIds = new HashSet<String>();
 		Set<String> edgeIds = new HashSet<String>();
 		for (FlowElement e : fragment.getProcess().getFlowElements()) {
@@ -51,12 +58,13 @@ public class FragmentExtractor {
 				}
 			}
 		}
+		EGraph graph = new EGraphImpl(newResource);
 		Map<String, Object> parameters = new HashMap<String, Object>();
 		// create startevent
 		String startEventId = EcoreUtil.generateUUID();
 		parameters.clear();
 		parameters.put("id", startEventId);
-		parameters.put("name", startEventName);
+		parameters.put("name", "Start");
 		parameters.put("shapeId", startEventId + "_gui");
 		parameters.put("x", startEventCoords.getValue0());
 		parameters.put("y", startEventCoords.getValue1());
@@ -70,7 +78,7 @@ public class FragmentExtractor {
 		String endEventId = EcoreUtil.generateUUID();
 		parameters.clear();
 		parameters.put("id", endEventId);
-		parameters.put("name", endEventName);
+		parameters.put("name", "End");
 		parameters.put("shapeId", endEventId + "_gui");
 		parameters.put("x", endEventCoords.getValue0());
 		parameters.put("y", endEventCoords.getValue1());
@@ -94,9 +102,12 @@ public class FragmentExtractor {
 		}
 	}
 
-	public void replaceFragmentByCallActivity(EGraph graph, Fragment fragment,
-			String name, Pair<Float, Float> coords)
+	public void replaceFragmentByCallActivity(Resource resource, Fragment fragment,
+			String name, Process calledElement)
 			throws Exception {
+		Pair<Float, Float> coords = CoordinateCalculator.getCoords(resource,
+				fragment);
+		EGraph graph = new EGraphImpl(resource);
 
 		Set<String> nodeIds = new HashSet<String>();
 		Set<String> edgeIds = new HashSet<String>();
@@ -112,12 +123,13 @@ public class FragmentExtractor {
 
 		// create call activity
 		parameters.clear();
+		// TODO: use object instead of ID
 		String callActivityUuid = EcoreUtil.generateUUID();
 		parameters.put("id", callActivityUuid);
 		parameters.put("name", name);
-		parameters.put("shapeId", callActivityUuid + "_gui");
 		parameters.put("x", coords.getValue0());
 		parameters.put("y", coords.getValue1());
+		parameters.put("calledElement", calledElement);
 		applyRule(graph, RULEFILE, "createCallActivity", parameters);
 
 		// modify entry's target ref
@@ -169,7 +181,7 @@ public class FragmentExtractor {
 			app.setParameterValue(p.getKey(), p.getValue());
 		}
 		// app.execute(new LoggingApplicationMonitor())
-		if (!app.execute(null)) {
+		if (!app.execute(new LoggingApplicationMonitor())) {
 			throw new Exception("Could not apply rule: " + rulefileBaseName
 					+ " / " + ruleName + " / " + parameters);
 		}

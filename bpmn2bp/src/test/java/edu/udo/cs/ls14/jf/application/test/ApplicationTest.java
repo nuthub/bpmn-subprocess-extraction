@@ -1,7 +1,6 @@
 package edu.udo.cs.ls14.jf.application.test;
 
 import java.io.File;
-import java.net.URL;
 
 import org.eclipse.emf.ecore.resource.Resource;
 import org.javatuples.Pair;
@@ -26,6 +25,14 @@ public class ApplicationTest {
 		runTest(basename1, basename2);
 	}
 
+	@Test
+	public void testXorExampleLoopingXor() throws Exception {
+		String basename1 = "xor-example";
+		String basename2 = "looping-xor";
+		runTest(basename1, basename2);
+	}
+
+	// TODO: Make assertions
 	private void runTest(String basename1, String basename2) throws Exception {
 		Resource res1 = ProcessLoader.getBpmnResource(getClass().getResource(
 				"../../bpmn/" + basename1 + ".bpmn"));
@@ -35,10 +42,13 @@ public class ApplicationTest {
 		Application app = new Application();
 		Pair<String, Resource> model1 = Pair.with(basename1, res1);
 		Pair<String, Resource> model2 = Pair.with(basename2, res2);
-		URL targetUrl = new URL(getClass().getResource("/")
-				+ "../generated-models/");
-		File targetDir = new File(targetUrl.getFile());
-		targetDir.mkdir();
+//		URL targetUrl = new URL(getClass().getResource("/")
+//				, "../generated-models/");
+//		targetUrl = new URL("file:/tmp/applicationtest/");
+//		File targetDir = new File(targetUrl.getFile());
+		File targetDir = new File("/tmp/applicationtest/");
+		targetDir.mkdirs();
+//		targetDir = new File("/tmp/");
 		app.matchAndExtract(model1, model2, targetDir);
 	}
 }
