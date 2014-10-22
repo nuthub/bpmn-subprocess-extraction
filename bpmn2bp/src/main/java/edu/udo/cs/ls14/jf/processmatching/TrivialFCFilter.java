@@ -10,7 +10,7 @@ import org.javatuples.Pair;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import edu.udo.cs.ls14.jf.pst.Fragment;
+import edu.udo.cs.ls14.jf.analysis.pst.Fragment;
 
 public class TrivialFCFilter {
 	private static final Logger LOG = LoggerFactory

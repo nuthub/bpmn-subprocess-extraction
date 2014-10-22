@@ -10,9 +10,9 @@ import org.javatuples.Pair;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import edu.udo.cs.ls14.jf.behaviorprofile.BehavioralProfile;
-import edu.udo.cs.ls14.jf.behaviorprofile.RelationType;
-import edu.udo.cs.ls14.jf.pst.Fragment;
+import edu.udo.cs.ls14.jf.analysis.behaviorprofile.BehavioralProfile;
+import edu.udo.cs.ls14.jf.analysis.behaviorprofile.RelationType;
+import edu.udo.cs.ls14.jf.analysis.pst.Fragment;
 
 public class InequivalentBehaviourFCFilter {
 

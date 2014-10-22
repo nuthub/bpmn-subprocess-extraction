@@ -12,7 +12,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import edu.udo.cs.ls14.jf.analysis.ProcessAnalysis;
-import edu.udo.cs.ls14.jf.pst.Fragment;
+import edu.udo.cs.ls14.jf.analysis.pst.Fragment;
 
 public class InequivalentNodeFCFilter {
 

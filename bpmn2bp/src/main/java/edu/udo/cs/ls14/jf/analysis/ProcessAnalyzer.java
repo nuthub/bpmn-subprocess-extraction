@@ -3,13 +3,13 @@ package edu.udo.cs.ls14.jf.analysis;
 import org.eclipse.bpmn2.Process;
 import org.eclipse.emf.ecore.resource.Resource;
 
-import edu.udo.cs.ls14.jf.behaviorprofile.BehavioralProfile;
-import edu.udo.cs.ls14.jf.bpmn2ptnet.Bpmn2PtnetConverter;
-import edu.udo.cs.ls14.jf.conditionalprofile.ConditionalProfile;
-import edu.udo.cs.ls14.jf.conditionalprofile.ConditionalProfiler;
-import edu.udo.cs.ls14.jf.pst.PST;
-import edu.udo.cs.ls14.jf.reachabilitygraph.ReachabilityGraph;
-import edu.udo.cs.ls14.jf.reachabilitygraph.Tracer;
+import edu.udo.cs.ls14.jf.analysis.behaviorprofile.BehavioralProfile;
+import edu.udo.cs.ls14.jf.analysis.bpmn2ptnet.Bpmn2PtnetConverter;
+import edu.udo.cs.ls14.jf.analysis.conditionalprofile.ConditionalProfile;
+import edu.udo.cs.ls14.jf.analysis.conditionalprofile.ConditionalProfiler;
+import edu.udo.cs.ls14.jf.analysis.pst.PST;
+import edu.udo.cs.ls14.jf.analysis.reachabilitygraph.ReachabilityGraph;
+import edu.udo.cs.ls14.jf.analysis.reachabilitygraph.Tracer;
 import edu.udo.cs.ls14.jf.utils.bpmn.ProcessLoader;
 
 public class ProcessAnalyzer {

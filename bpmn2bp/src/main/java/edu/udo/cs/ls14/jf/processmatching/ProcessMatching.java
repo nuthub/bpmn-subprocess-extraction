@@ -7,7 +7,7 @@ import org.eclipse.bpmn2.FlowNode;
 import org.javatuples.Pair;
 
 import edu.udo.cs.ls14.jf.analysis.ProcessAnalysis;
-import edu.udo.cs.ls14.jf.pst.Fragment;
+import edu.udo.cs.ls14.jf.analysis.pst.Fragment;
 
 public class ProcessMatching {
 

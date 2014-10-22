@@ -5,11 +5,11 @@ import java.util.Set;
 import org.eclipse.bpmn2.Process;
 import org.eclipse.emf.ecore.resource.Resource;
 
-import edu.udo.cs.ls14.jf.behaviorprofile.BehavioralProfile;
-import edu.udo.cs.ls14.jf.conditionalprofile.ConditionalProfile;
-import edu.udo.cs.ls14.jf.pst.PST;
-import edu.udo.cs.ls14.jf.reachabilitygraph.ReachabilityGraph;
-import edu.udo.cs.ls14.jf.reachabilitygraph.Trace;
+import edu.udo.cs.ls14.jf.analysis.behaviorprofile.BehavioralProfile;
+import edu.udo.cs.ls14.jf.analysis.conditionalprofile.ConditionalProfile;
+import edu.udo.cs.ls14.jf.analysis.pst.PST;
+import edu.udo.cs.ls14.jf.analysis.reachabilitygraph.ReachabilityGraph;
+import edu.udo.cs.ls14.jf.analysis.reachabilitygraph.Trace;
 import fr.lip6.move.pnml.ptnet.hlapi.PetriNetHLAPI;
 
 public class ProcessAnalysis {

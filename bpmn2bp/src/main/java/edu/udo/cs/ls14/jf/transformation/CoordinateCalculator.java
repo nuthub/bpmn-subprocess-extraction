@@ -11,7 +11,7 @@ import org.eclipse.dd.di.DiagramElement;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.javatuples.Pair;
 
-import edu.udo.cs.ls14.jf.pst.Fragment;
+import edu.udo.cs.ls14.jf.analysis.pst.Fragment;
 import edu.udo.cs.ls14.jf.utils.bpmn.ProcessLoader;
 
 public class CoordinateCalculator {

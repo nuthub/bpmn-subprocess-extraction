@@ -15,7 +15,7 @@ import org.eclipse.emf.henshin.interpreter.EGraph;
 import org.eclipse.emf.henshin.interpreter.impl.EGraphImpl;
 import org.javatuples.Pair;
 
-import edu.udo.cs.ls14.jf.pst.Fragment;
+import edu.udo.cs.ls14.jf.analysis.pst.Fragment;
 
 public class FragmentExtractor extends HenshinTransformation {
 

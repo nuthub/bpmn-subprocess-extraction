@@ -12,7 +12,7 @@ import org.slf4j.LoggerFactory;
 
 import edu.udo.cs.ls14.jf.analysis.ProcessAnalysis;
 import edu.udo.cs.ls14.jf.analysis.ProcessAnalyzer;
-import edu.udo.cs.ls14.jf.pst.Fragment;
+import edu.udo.cs.ls14.jf.analysis.pst.Fragment;
 import edu.udo.cs.ls14.jf.utils.bpmn.ProcessLoader;
 
 public class ProcessMatchingChain {
