@@ -1,4 +1,4 @@
-package edu.udo.cs.ls14.jf.application;
+package edu.udo.cs.ls14.jf.transformation.test;
 
 import static org.junit.Assert.assertTrue;
 
@@ -22,7 +22,7 @@ import edu.udo.cs.ls14.jf.transformation.LocationFixer;
 import edu.udo.cs.ls14.jf.utils.bpmn.ProcessLoader;
 import edu.udo.cs.ls14.jf.utils.bpmn.ResourceCopier;
 
-public class CallActivityTest {
+public class FixLocationTest {
 
 	private static final String RULEFILE = "callActivityTest";
 	private static final String RULEPATH = "src/main/resources/edu/udo/cs/ls14/jf/henshin/";
@@ -30,13 +30,13 @@ public class CallActivityTest {
 	@Test
 	public void testCallActivityCalledElementRef() throws Exception {
 		Resource srcResource1 = ProcessLoader.getBpmnResource(new File(
-				getClass().getResource("../bpmn/sequence.bpmn").getFile()));
+				getClass().getResource("../../bpmn/sequence.bpmn").getFile()));
 		String targetFilename1 = "/tmp/transformed/myCalledProcess.bpmn";
 		Resource res1 = ResourceCopier.copy(srcResource1, targetFilename1);
 		Process calledElement = ProcessLoader.getProcessFromResource(res1);
 
 		Resource srcResource2 = ProcessLoader.getBpmnResource(getClass()
-				.getResource("../bpmn/empty.bpmn"));
+				.getResource("../../bpmn/empty.bpmn"));
 		String targetFilename2 = "/tmp/transformed/myNewProcess.bpmn";
 		Resource res2 = ResourceCopier.copy(srcResource2, targetFilename2);
 
