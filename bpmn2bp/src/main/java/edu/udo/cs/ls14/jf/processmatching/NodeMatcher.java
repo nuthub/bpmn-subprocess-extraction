@@ -6,12 +6,17 @@ import java.util.Set;
 import org.eclipse.bpmn2.FlowElement;
 import org.eclipse.bpmn2.FlowNode;
 import org.eclipse.bpmn2.Process;
+import org.eclipse.emf.ecore.resource.Resource;
 import org.javatuples.Pair;
+
+import edu.udo.cs.ls14.jf.utils.bpmn.ProcessLoader;
 
 public class NodeMatcher {
 
-	public static Set<Pair<FlowNode, FlowNode>> getMappings(Process process1,
-			Process process2) {
+	public static Set<Pair<FlowNode, FlowNode>> getCorrespondences(Resource res1,
+			Resource res2) throws Exception {
+		Process process1 = ProcessLoader.getProcessFromResource(res1);
+		Process process2 = ProcessLoader.getProcessFromResource(res2);
 		Set<Pair<FlowNode, FlowNode>> mapping = new HashSet<Pair<FlowNode, FlowNode>>();
 		NodeComparator comp = new NodeComparator();
 		for (FlowElement e1 : process1.getFlowElements()) {

@@ -1,8 +1,13 @@
 package edu.udo.cs.ls14.jf.processmatching;
 
+import org.eclipse.bpmn2.Process;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import edu.udo.cs.ls14.jf.analysis.ProcessAnalysis;
+import edu.udo.cs.ls14.jf.analysis.ProcessAnalyzer;
+import edu.udo.cs.ls14.jf.utils.bpmn.ProcessLoader;
 
 public class ProcessMatchingChain {
 
@@ -11,10 +16,19 @@ public class ProcessMatchingChain {
 
 	public static ProcessMatching getCandidates(Resource res1, Resource res2)
 			throws Exception {
+		// analyze process1
+		Process process1 = ProcessLoader.getProcessFromResource(res1);
+		LOG.debug("Analyze process 1: " + process1.getName());
+		ProcessAnalysis analysis1 = ProcessAnalyzer.analyze(res1);
+
+		// analyze process2
+		Process process2 = ProcessLoader.getProcessFromResource(res2);
+		LOG.debug("Analyze process 2: " + process2.getName());
+		ProcessAnalysis analysis2 = ProcessAnalyzer.analyze(res2);
 
 		// Find all matches
 		LOG.info("Find all matches.");
-		ProcessMatching allMatching = ProcessMatcher.match(res1, res2);
+		ProcessMatching allMatching = ProcessMatcher.match(analysis1, analysis2);
 		LOG.info(allMatching.getFragmentCorrespondences().size()
 				+ " fragment correspondences left.");
 

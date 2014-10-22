@@ -11,6 +11,8 @@ import org.eclipse.bpmn2.FlowNode;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.junit.Test;
 
+import edu.udo.cs.ls14.jf.analysis.ProcessAnalysis;
+import edu.udo.cs.ls14.jf.analysis.ProcessAnalyzer;
 import edu.udo.cs.ls14.jf.processmatching.NestedFCFilter;
 import edu.udo.cs.ls14.jf.processmatching.ProcessMatcher;
 import edu.udo.cs.ls14.jf.processmatching.ProcessMatching;
@@ -72,9 +74,13 @@ public class ProcessMatcherTest {
 		Resource res1 = ProcessLoader.getBpmnResource(url1);
 		Resource res2 = ProcessLoader.getBpmnResource(url2);
 
+		// analyze resources
+		ProcessAnalysis analysis1 = ProcessAnalyzer.analyze(res1);
+		ProcessAnalysis analysis2 = ProcessAnalyzer.analyze(res2);
+
 		// Find all matches
 		System.out.println("Find all matches.");
-		ProcessMatching allMatching = ProcessMatcher.match(res1, res2);
+		ProcessMatching allMatching = ProcessMatcher.match(analysis1, analysis2);
 		// Filter out nested fragment matches
 		System.out.println("Filter out nested matches.");
 		ProcessMatching filteredMatching = NestedFCFilter.filter(allMatching);
