@@ -43,7 +43,7 @@
 			<artifactId>jung-io</artifactId>
 			<version>2.0.1</version>
 		</dependency>
-		<dependency>
+<!-- 		<dependency>
 			<groupId>org.jbpt</groupId>
 			<artifactId>jbpt-deco</artifactId>
 			<version>0.2.393</version>
@@ -58,12 +58,12 @@
 			<artifactId>jbpt-bp</artifactId>
 			<version>0.2.393</version>
 		</dependency>
-		<dependency>
+-->		<dependency>
 			<groupId>org.jbpt</groupId>
 			<artifactId>jbpt-bpm</artifactId>
 			<version>0.2.393</version>
 		</dependency>
-		<dependency>
+<!-- 		<dependency>
 			<groupId>org.jbpt</groupId>
 			<artifactId>jbpt</artifactId>
 			<version>0.2.393</version>
@@ -80,7 +80,7 @@
 			<artifactId>jbpt-petri</artifactId>
 			<version>0.2.393</version>
 		</dependency>
-		<dependency>
+ -->		<dependency>
 			<groupId>com.googlecode.json-simple</groupId>
 			<artifactId>json-simple</artifactId>
 			<version>1.1.1</version>
