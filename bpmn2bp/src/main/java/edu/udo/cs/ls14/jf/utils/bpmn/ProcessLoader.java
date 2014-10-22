@@ -91,7 +91,12 @@ public class ProcessLoader {
 		if (roots.isEmpty()) {
 			throw new Exception("no diagrams found");
 		}
-		return (Process) roots.get(0);
+		for(RootElement root: roots) {
+			if(root instanceof Process) {
+				return (Process) root;
+			}
+		}
+		throw new Exception("Process not found in resource " + resource.getURI());
 	}
 
 	private static void registerFactories() {
