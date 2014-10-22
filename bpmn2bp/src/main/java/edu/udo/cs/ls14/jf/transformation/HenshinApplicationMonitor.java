@@ -10,7 +10,6 @@
 package edu.udo.cs.ls14.jf.transformation;
 
 import java.io.IOException;
-import java.io.PrintStream;
 import java.text.DecimalFormat;
 import java.util.HashMap;
 import java.util.Map;
@@ -42,9 +41,6 @@ public class HenshinApplicationMonitor extends BasicApplicationMonitor {
 
 	private Logger logger = LoggerFactory
 			.getLogger(HenshinApplicationMonitor.class);
-
-	// Print stream to be used for logging:
-	protected PrintStream logStream = System.out;
 
 	// Whether to print logs only for rule applications:
 	protected boolean onlyRuleApplications = false;
