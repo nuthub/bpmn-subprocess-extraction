@@ -1,4 +1,4 @@
-package edu.udo.cs.ls14.jf.pnml2unfoldedpnml.test;
+package edu.udo.cs.ls14.jf.unfolding.test;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
