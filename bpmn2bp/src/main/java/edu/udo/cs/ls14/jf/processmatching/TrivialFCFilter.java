@@ -29,13 +29,10 @@ public class TrivialFCFilter {
 						"1:n and n:m correspondences not yet implemented.");
 			}
 			if (size0 < 2) {
-				LOG.debug("removing trivial Matching " + pair
-						+ ", because of its fragments's size, which is "
-						+ size0);
+				LOG.info(pair + " is filtered out, because of size=" + size0);
 				filtered.getFragmentCorrespondences().remove(pair);
 			}
 		}
 		return filtered;
 	}
-
 }
