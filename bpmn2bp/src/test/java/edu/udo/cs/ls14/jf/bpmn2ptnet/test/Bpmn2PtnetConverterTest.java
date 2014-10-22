@@ -1,4 +1,4 @@
-package edu.udo.cs.ls14.jf.bpmn2pnml.test;
+package edu.udo.cs.ls14.jf.bpmn2ptnet.test;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
@@ -9,18 +9,18 @@ import org.eclipse.bpmn2.Process;
 import org.junit.Before;
 import org.junit.Test;
 
-import edu.udo.cs.ls14.jf.bpmn2pnml.Bpmn2PnmlConverter;
+import edu.udo.cs.ls14.jf.bpmn2ptnet.Bpmn2PtnetConverter;
 import edu.udo.cs.ls14.jf.utils.bpmn.ProcessLoader;
 import fr.lip6.move.pnml.ptnet.hlapi.PageHLAPI;
 import fr.lip6.move.pnml.ptnet.hlapi.PetriNetHLAPI;
 
-public class Bpmn2PnmlConverterTest {
+public class Bpmn2PtnetConverterTest {
 
-	private Bpmn2PnmlConverter converter;
+	private Bpmn2PtnetConverter converter;
 
 	@Before
 	public void setUp() {
-		converter = new Bpmn2PnmlConverter();
+		converter = new Bpmn2PtnetConverter();
 	}
 
 	@Test

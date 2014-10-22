@@ -51,7 +51,7 @@ public class ProcessMatchingChain {
 		Set<Pair<Fragment, Fragment>> allMappings = getAllMappings(matching);
 		matching.setFragmentCorrespondences(allMappings);
 		LOG.info(matching.getFragmentCorrespondences().size()
-				+ " fragment correspondence candidates.");
+				+ " possible fragment correspondences.");
 
 		// Filter out fragments, that are not node equivalent
 		Set<Pair<Fragment, Fragment>> nodeEqMappings = InequivalentNodeFCFilter.filter
@@ -98,7 +98,6 @@ public class ProcessMatchingChain {
 				+ " fragment correspondences left.");
 
 		return matching;
-
 	}
 
 	private static Set<Pair<Fragment, Fragment>> getAllMappings(

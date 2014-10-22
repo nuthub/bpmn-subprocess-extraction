@@ -4,7 +4,7 @@ import org.eclipse.bpmn2.Process;
 import org.eclipse.emf.ecore.resource.Resource;
 
 import edu.udo.cs.ls14.jf.behaviorprofile.BehavioralProfile;
-import edu.udo.cs.ls14.jf.bpmn2pnml.Bpmn2PnmlConverter;
+import edu.udo.cs.ls14.jf.bpmn2ptnet.Bpmn2PtnetConverter;
 import edu.udo.cs.ls14.jf.conditionalprofile.ConditionalProfile;
 import edu.udo.cs.ls14.jf.conditionalprofile.ConditionalProfiler;
 import edu.udo.cs.ls14.jf.pst.PST;
@@ -21,7 +21,7 @@ public class ProcessAnalyzer {
 		analysis.setProcess(process);
 
 		// create petri net
-		Bpmn2PnmlConverter bpmn2ptnet = new Bpmn2PnmlConverter();
+		Bpmn2PtnetConverter bpmn2ptnet = new Bpmn2PtnetConverter();
 		analysis.setPtnet(bpmn2ptnet.convertToPetriNet(process));
 
 		// create reachabilitygraph

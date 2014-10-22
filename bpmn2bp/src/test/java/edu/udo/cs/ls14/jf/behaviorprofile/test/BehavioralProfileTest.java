@@ -10,7 +10,7 @@ import org.jbpt.utils.IOUtils;
 import org.junit.Test;
 
 import edu.udo.cs.ls14.jf.behaviorprofile.BehavioralProfile;
-import edu.udo.cs.ls14.jf.bpmn2pnml.Bpmn2PnmlConverter;
+import edu.udo.cs.ls14.jf.bpmn2ptnet.Bpmn2PtnetConverter;
 import edu.udo.cs.ls14.jf.reachabilitygraph.ReachabilityGraph;
 import edu.udo.cs.ls14.jf.reachabilitygraph.Trace;
 import edu.udo.cs.ls14.jf.reachabilitygraph.Tracer;
@@ -68,7 +68,7 @@ public class BehavioralProfileTest {
 		Process process = ProcessLoader.loadFirstProcessFromResource(url);
 
 		// create P/T-Net from bpmn
-		Bpmn2PnmlConverter converter = new Bpmn2PnmlConverter();
+		Bpmn2PtnetConverter converter = new Bpmn2PtnetConverter();
 		PetriNetHLAPI ptnet = converter.convertToPetriNet(process);
 //		converter.saveToPnmlFile("/tmp/" + basename + ".pnml");
 

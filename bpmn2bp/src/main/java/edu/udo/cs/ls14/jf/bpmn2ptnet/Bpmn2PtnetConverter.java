@@ -1,4 +1,4 @@
-package edu.udo.cs.ls14.jf.bpmn2pnml;
+package edu.udo.cs.ls14.jf.bpmn2ptnet;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -52,9 +52,9 @@ import fr.lip6.move.pnml.ptnet.hlapi.PetriNetHLAPI;
 import fr.lip6.move.pnml.ptnet.hlapi.PlaceHLAPI;
 import fr.lip6.move.pnml.ptnet.hlapi.TransitionHLAPI;
 
-public class Bpmn2PnmlConverter {
+public class Bpmn2PtnetConverter {
 
-	private static final Logger LOG = LoggerFactory.getLogger(Bpmn2PnmlConverter.class);
+	private static final Logger LOG = LoggerFactory.getLogger(Bpmn2PtnetConverter.class);
 
 	private PetriNetHLAPI net;
 	private PageHLAPI page;
