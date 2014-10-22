@@ -8,12 +8,6 @@ import edu.udo.cs.ls14.jf.utils.bpmn.ProcessLoader;
 public class ConditionalProfileTest {
 
 	@Test
-	public void testConditionalProfile() throws Exception {
-		Resource resource = getResource("xor-example");
-		System.out.println(ConditionalProfiler.generateProfile(resource));
-	}
-
-	@Test
 	public void testConditionSequence() throws Exception {
 		Resource res1 = getResource("conditionSequence");
 		ConditionalProfile cp1 = ConditionalProfiler.generateProfile(res1);
