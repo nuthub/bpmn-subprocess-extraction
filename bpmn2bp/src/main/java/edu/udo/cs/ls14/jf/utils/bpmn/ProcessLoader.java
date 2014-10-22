@@ -1,10 +1,8 @@
 package edu.udo.cs.ls14.jf.utils.bpmn;
 
-import java.io.File;
 import java.net.URL;
 import java.util.List;
 
-import org.eclipse.bpmn2.Definitions;
 import org.eclipse.bpmn2.DocumentRoot;
 import org.eclipse.bpmn2.Process;
 import org.eclipse.bpmn2.RootElement;
@@ -18,45 +16,24 @@ import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 
 public class ProcessLoader {
 
-	public static BPMNDiagram getDiagramFromResource(Resource res)
+	public static Process getProcessFromResource(Resource resource)
 			throws Exception {
-		EList<EObject> contents = res.getContents();
+		EList<EObject> contents = resource.getContents();
 		if (!(contents.get(0) instanceof DocumentRoot)) {
 			throw new Exception("load error");
 		}
 		DocumentRoot docRoot = ((DocumentRoot) contents.get(0));
-		List<BPMNDiagram> diagrams = docRoot.getDefinitions().getDiagrams();
-		if (diagrams.isEmpty()) {
-			throw new Exception("no diagrams found");
+		List<RootElement> roots = docRoot.getDefinitions().getRootElements();
+		if (roots.isEmpty()) {
+			throw new Exception("empty definitions found");
 		}
-		return diagrams.get(0);
-	}
-
-	private static DocumentRoot getDocumentRootFromUrl(URL url)
-			throws Exception {
-		Resource res = getBpmnResource(url);
-		EList<EObject> contents = res.getContents();
-		if (!(contents.get(0) instanceof DocumentRoot)) {
-			throw new Exception("load error");
+		for (RootElement root : roots) {
+			if (root instanceof Process) {
+				return (Process) root;
+			}
 		}
-		DocumentRoot docRoot = ((DocumentRoot) contents.get(0));
-		return docRoot;
-	}
-
-	private static Definitions getDefinitionsFromUrl(URL url) throws Exception {
-		DocumentRoot docRoot = getDocumentRootFromUrl(url);
-		Definitions definitions = docRoot.getDefinitions();
-		return definitions;
-	}
-
-	public static Process loadFirstProcessFromResource(URL url)
-			throws Exception {
-		Definitions definitions = getDefinitionsFromUrl(url);
-		if (!(definitions.getRootElements().get(0) instanceof Process)) {
-			throw new Exception("no process found");
-		}
-		Process process = (Process) definitions.getRootElements().get(0);
-		return process;
+		throw new Exception("Process not found in resource "
+				+ resource.getURI());
 	}
 
 	public static Resource getBpmnResource(URL url) throws Exception {
@@ -70,33 +47,18 @@ public class ProcessLoader {
 		return res;
 	}
 
-	public static Resource getBpmnResource(File file) throws Exception {
-		if (file == null) {
-			throw new Exception("File ist null!");
-		}
-		registerFactories();
-		URI fileUri = URI.createURI(file.getAbsolutePath());
-		Resource res = new ResourceSetImpl().getResource(fileUri, true);
-		return res;
-	}
-
-	public static Process getProcessFromResource(Resource resource)
+	public static BPMNDiagram getDiagramFromResource(Resource res)
 			throws Exception {
-		EList<EObject> contents = resource.getContents();
+		EList<EObject> contents = res.getContents();
 		if (!(contents.get(0) instanceof DocumentRoot)) {
 			throw new Exception("load error");
 		}
 		DocumentRoot docRoot = ((DocumentRoot) contents.get(0));
-		List<RootElement> roots = docRoot.getDefinitions().getRootElements();
-		if (roots.isEmpty()) {
+		List<BPMNDiagram> diagrams = docRoot.getDefinitions().getDiagrams();
+		if (diagrams.isEmpty()) {
 			throw new Exception("no diagrams found");
 		}
-		for(RootElement root: roots) {
-			if(root instanceof Process) {
-				return (Process) root;
-			}
-		}
-		throw new Exception("Process not found in resource " + resource.getURI());
+		return diagrams.get(0);
 	}
 
 	private static void registerFactories() {
