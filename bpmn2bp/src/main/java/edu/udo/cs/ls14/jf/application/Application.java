@@ -5,6 +5,8 @@ import java.io.File;
 import org.eclipse.bpmn2.Process;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.javatuples.Pair;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import edu.udo.cs.ls14.jf.processmatching.ProcessMatching;
 import edu.udo.cs.ls14.jf.processmatching.ProcessMatchingChain;
@@ -18,6 +20,8 @@ import edu.udo.cs.ls14.jf.utils.bpmn.ResourceCopier;
 
 public class Application {
 
+	private static final Logger LOG = LoggerFactory.getLogger(Application.class);
+	
 	public void matchAndExtract(Pair<String, Resource> model1,
 			Pair<String, Resource> model2, File targetDir) throws Exception {
 
@@ -48,23 +52,31 @@ public class Application {
 							+ targetFilename).toString());
 
 			// create new subprocess
+			LOG.info("Creating process from " + fragmentToExtract + " in " + newResource.getURI());
 			extractor.createProcessFromFragment(newResource, fragmentToExtract);
 			newResource.save(null);
+			LOG.info("Created process from " + fragmentToExtract + " in " + newResource.getURI());
 			// replace fragments by call activities
 			String callActivityName = getCallActivityName(fragmentToExtract);
 			Process calledElement = ProcessLoader
 					.getProcessFromResource(newResource);
 			// replace fragment in Process1
+			LOG.info("Replacing " + pair.getValue0() + " in " + res1.getURI());
 			extractor.replaceFragmentByCallActivity(res1, pair.getValue0(),
 					callActivityName, calledElement);
+			LOG.info("Fixing " + res1);
 			doFixes(res1, calledElement);
 			res1.save(null);
+			LOG.info("Replaced " + pair.getValue0() + " in " + res1.getURI());
 
 			// replace fragment in Process2
+			LOG.info("Replacing " + pair.getValue1() + " in " + res2.getURI());
 			extractor.replaceFragmentByCallActivity(res2, pair.getValue1(),
 					callActivityName, calledElement);
+			LOG.info("Fixing " + res1);
 			doFixes(res2, calledElement);
 			res2.save(null);
+			LOG.info("Replaced " + pair.getValue1() + " in " + res2.getURI());
 		}
 	}
 

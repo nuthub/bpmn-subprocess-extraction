@@ -9,6 +9,7 @@ import org.eclipse.bpmn2.Event;
 import org.eclipse.bpmn2.FlowNode;
 import org.eclipse.bpmn2.Process;
 import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.emf.henshin.model.Mapping;
 import org.javatuples.Pair;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -17,6 +18,7 @@ import edu.udo.cs.ls14.jf.analysis.ProcessAnalysis;
 import edu.udo.cs.ls14.jf.analysis.ProcessAnalyzer;
 import edu.udo.cs.ls14.jf.behaviorprofile.BehavioralProfile;
 import edu.udo.cs.ls14.jf.behaviorprofile.RelationType;
+import edu.udo.cs.ls14.jf.conditionalprofile.ConditionalProfile;
 import edu.udo.cs.ls14.jf.pst.Fragment;
 import edu.udo.cs.ls14.jf.utils.bpmn.ProcessLoader;
 
@@ -27,7 +29,7 @@ public class ProcessMatcher {
 
 	public static ProcessMatching match(Resource res1, Resource res2)
 			throws Exception {
-		
+
 		Process process1 = ProcessLoader.getProcessFromResource(res1);
 		LOG.debug("Analyze process 1: " + process1.getName());
 		ProcessAnalysis analysis1 = ProcessAnalyzer.analyze(res1);
@@ -36,12 +38,14 @@ public class ProcessMatcher {
 		LOG.debug("Analyze process 2: " + process2.getName());
 		ProcessAnalysis analysis2 = ProcessAnalyzer.analyze(res2);
 
+		// create matching object
 		ProcessMatching matching = new ProcessMatching();
-		// just set processes
 		matching.setResource1(res1);
 		matching.setResource2(res2);
 		matching.setProcess1(process1);
 		matching.setProcess2(process2);
+		matching.setAnalysis1(analysis1);
+		matching.setAnalysis2(analysis2);
 
 		// create and save node correspondences
 		LOG.debug("Matching nodes");
@@ -133,39 +137,51 @@ public class ProcessMatcher {
 						+ f2
 						+ nodes2.stream().map(n -> n.getName())
 								.collect(Collectors.toSet()));
-				LOG.debug("Have to compare profiles");
-				boolean fragmentsHaveSameProfile = true;
-				for (FlowNode n1 : nodes1) {
-					for (FlowNode n2 : nodes1) {
-						RelationType r1 = profileOfProcess1.get(n1, n2);
-						FlowNode targetNode1 = nodeMappings
-								.stream()
-								.filter(p -> p.getValue0().equals(n1)
-										&& nodes2.contains(p.getValue1()))
-								.findAny().get().getValue1();
-						FlowNode targetNode2 = nodeMappings
-								.stream()
-								.filter(p -> p.getValue0().equals(n2)
-										&& nodes2.contains(p.getValue1()))
-								.findAny().get().getValue1();
-						RelationType r2 = profileOfProcess2.get(targetNode1,
-								targetNode2);
-						if (r1 != r2) {
-							fragmentsHaveSameProfile = false;
-						}
-					}
-				}
-				if (fragmentsHaveSameProfile) {
-					LOG.info("Found equivalent fragments: " + f1 + " / " + f2);
+				// Compare behaviour profile
+				LOG.debug("Have to compare behaviour profiles");
+				boolean behaviourMatches = behaviourProfilesMatch(nodes1,
+						nodes2, profileOfProcess1, profileOfProcess2,
+						nodeMappings);
+				if (behaviourMatches) {
+					LOG.info("Behaviour equivalent fragments: " + f1 + " / "
+							+ f2);
 					mapping.add(Pair.with(f1, f2));
 				} else {
 					LOG.debug(f1 + " and " + f2
 							+ " are not behaviour equivalent.");
 				}
-
 			}
 		}
 		return mapping;
+	}
+
+
+	private static boolean behaviourProfilesMatch(Set<FlowNode> nodes1,
+			Set<FlowNode> nodes2, BehavioralProfile profileOfProcess1,
+			BehavioralProfile profileOfProcess2,
+			Set<Pair<FlowNode, FlowNode>> nodeMappings) {
+		boolean profilesMatch = true;
+		for (FlowNode n1 : nodes1) {
+			for (FlowNode n2 : nodes1) {
+				RelationType r1 = profileOfProcess1.get(n1, n2);
+				FlowNode targetNode1 = nodeMappings
+						.stream()
+						.filter(p -> p.getValue0().equals(n1)
+								&& nodes2.contains(p.getValue1())).findAny()
+						.get().getValue1();
+				FlowNode targetNode2 = nodeMappings
+						.stream()
+						.filter(p -> p.getValue0().equals(n2)
+								&& nodes2.contains(p.getValue1())).findAny()
+						.get().getValue1();
+				RelationType r2 = profileOfProcess2.get(targetNode1,
+						targetNode2);
+				if (r1 != r2) {
+					profilesMatch = false;
+				}
+			}
+		}
+		return profilesMatch;
 	}
 
 }

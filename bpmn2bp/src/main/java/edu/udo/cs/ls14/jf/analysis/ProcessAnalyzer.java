@@ -5,6 +5,8 @@ import org.eclipse.emf.ecore.resource.Resource;
 
 import edu.udo.cs.ls14.jf.behaviorprofile.BehavioralProfile;
 import edu.udo.cs.ls14.jf.bpmn2pnml.Bpmn2PnmlConverter;
+import edu.udo.cs.ls14.jf.conditionalprofile.ConditionalProfile;
+import edu.udo.cs.ls14.jf.conditionalprofile.ConditionalProfiler;
 import edu.udo.cs.ls14.jf.pst.PST;
 import edu.udo.cs.ls14.jf.reachabilitygraph.ReachabilityGraph;
 import edu.udo.cs.ls14.jf.reachabilitygraph.Tracer;
@@ -30,6 +32,10 @@ public class ProcessAnalyzer {
 		BehavioralProfile behavioralProfile = new BehavioralProfile();
 		behavioralProfile.generateFromTraces(process, analysis.getTraces());
 		analysis.setBehavioralProfile(behavioralProfile);
+		// create conditional profile
+		ConditionalProfile conditionalProfile = ConditionalProfiler
+				.generateProfile(resource);
+		analysis.setConditionalProfile(conditionalProfile);
 		// create PST
 		PST pst = new PST();
 		pst.createFromProcess(resource);

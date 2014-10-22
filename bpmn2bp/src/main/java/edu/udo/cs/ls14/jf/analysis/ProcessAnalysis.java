@@ -5,6 +5,7 @@ import java.util.Set;
 import org.eclipse.emf.ecore.resource.Resource;
 
 import edu.udo.cs.ls14.jf.behaviorprofile.BehavioralProfile;
+import edu.udo.cs.ls14.jf.conditionalprofile.ConditionalProfile;
 import edu.udo.cs.ls14.jf.pst.PST;
 import edu.udo.cs.ls14.jf.reachabilitygraph.ReachabilityGraph;
 import edu.udo.cs.ls14.jf.reachabilitygraph.Trace;
@@ -17,6 +18,7 @@ public class ProcessAnalysis {
 	private ReachabilityGraph reachabilityGraph;
 	private Set<Trace> traces;
 	private BehavioralProfile behavioralProfile;
+	private ConditionalProfile conditionalProfile;
 	private PST pst;
 
 	public void setResource(Resource resource) {
@@ -59,6 +61,14 @@ public class ProcessAnalysis {
 		this.behavioralProfile = behavioralProfile;
 	}
 
+	public ConditionalProfile getConditionalProfile() {
+		return conditionalProfile;
+	}
+
+	public void setConditionalProfile(ConditionalProfile conditionalProfile) {
+		this.conditionalProfile = conditionalProfile;
+	}
+
 	public PST getPst() {
 		return pst;
 	}
@@ -81,6 +91,8 @@ public class ProcessAnalysis {
 		sb.append("  traces=" + traces + ",");
 		sb.append(System.getProperty("line.separator"));
 		sb.append("  behavioralProfile=" + behavioralProfile + ",");
+		sb.append(System.getProperty("line.separator"));
+		sb.append("  conditionalProfile=" + conditionalProfile + ",");
 		sb.append(System.getProperty("line.separator"));
 		sb.append("  pst=" + pst + "");
 		sb.append(System.getProperty("line.separator"));

@@ -62,6 +62,16 @@ public class FragmentExtractor extends HenshinTransformation {
 		parameters.put("id", fragment.getEntry().getId());
 		parameters.put("sourceId", startEventId);
 		applyRule(graph, RULEFILE, "setSourceRef", parameters);
+		// set name of entry edge
+		parameters.clear();
+		parameters.put("id", fragment.getEntry().getId());
+		parameters.put("oldName", fragment.getEntry().getName());
+		parameters.put("newName",  "");
+		applyRule(graph, RULEFILE, "setName", parameters);
+		// remove conditions of entry edge
+		parameters.clear();
+		parameters.put("id", fragment.getEntry().getId());
+		applyRule(graph, RULEFILE, "deleteExpression", parameters);
 		// create endevent
 		String endEventId = EcoreUtil.generateUUID();
 		parameters.clear();
@@ -76,6 +86,16 @@ public class FragmentExtractor extends HenshinTransformation {
 		parameters.put("id", fragment.getExit().getId());
 		parameters.put("targetId", endEventId);
 		applyRule(graph, RULEFILE, "setTargetRef", parameters);
+		// remove conditions of exit edge
+		parameters.clear();
+		parameters.put("id", fragment.getExit().getId());
+		applyRule(graph, RULEFILE, "deleteExpression", parameters);
+		// set name of exit edge
+		parameters.clear();
+		parameters.put("id", fragment.getExit().getId());
+		parameters.put("oldName", fragment.getExit().getName());
+		parameters.put("newName",  "");
+		applyRule(graph, RULEFILE, "setName", parameters);
 		// remove sequenceflows
 		parameters.clear();
 		for (String id : edgeIds) {
