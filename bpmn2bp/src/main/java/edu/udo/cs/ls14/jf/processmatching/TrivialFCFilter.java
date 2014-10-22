@@ -1,6 +1,6 @@
 package edu.udo.cs.ls14.jf.processmatching;
 
-import java.util.function.Predicate;
+import java.util.Set;
 
 import org.apache.commons.lang3.NotImplementedException;
 import org.eclipse.bpmn2.Activity;
@@ -16,14 +16,13 @@ public class TrivialFCFilter {
 	private static final Logger LOG = LoggerFactory
 			.getLogger(TrivialFCFilter.class);
 
-	public static ProcessMatching filter(ProcessMatching matching) {
+	public static Set<Pair<Fragment, Fragment>> filter(ProcessMatching matching) {
+		// TODO: do not clone matching object
 		ProcessMatching filtered = matching.clone();
-		Predicate<FlowNode> filter = n -> n instanceof Activity
-				|| n instanceof Event;
 		for (Pair<Fragment, Fragment> pair : matching
 				.getFragmentCorrespondences()) {
-			int size0 = pair.getValue0().getContainedFlowNodes(filter).size();
-			int size1 = pair.getValue1().getContainedFlowNodes(filter).size();
+			int size0 = getEventsAndActivites(pair.getValue0()).size();
+			int size1 = getEventsAndActivites(pair.getValue1()).size();
 			if (size0 != size1) {
 				throw new NotImplementedException(
 						"1:n and n:m correspondences not yet implemented.");
@@ -33,6 +32,12 @@ public class TrivialFCFilter {
 				filtered.getFragmentCorrespondences().remove(pair);
 			}
 		}
-		return filtered;
+		return filtered.getFragmentCorrespondences();
+	}
+
+	// TODO: move to Fragment
+	private static Set<FlowNode> getEventsAndActivites(Fragment fragment) {
+		return fragment.getContainedFlowNodes(n -> n instanceof Activity
+				|| n instanceof Event);
 	}
 }

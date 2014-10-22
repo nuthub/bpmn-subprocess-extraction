@@ -19,28 +19,36 @@ public class ProcessAnalyzer {
 		analysis.setResource(resource);
 		Process process = ProcessLoader.getProcessFromResource(resource);
 		analysis.setProcess(process);
+
 		// create petri net
 		Bpmn2PnmlConverter bpmn2ptnet = new Bpmn2PnmlConverter();
 		analysis.setPtnet(bpmn2ptnet.convertToPetriNet(process));
+
 		// create reachabilitygraph
 		ReachabilityGraph reachabilityGraph = new ReachabilityGraph();
 		reachabilityGraph.createFromPTNet(analysis.getPtnet()
 				.getContainedItem());
 		analysis.setReachabilityGraph(reachabilityGraph);
+
 		// create traces
 		analysis.setTraces(Tracer.getTraces(process, reachabilityGraph));
+
 		// create behavioral profile
 		BehavioralProfile behavioralProfile = new BehavioralProfile();
 		behavioralProfile.generateFromTraces(process, analysis.getTraces());
 		analysis.setBehavioralProfile(behavioralProfile);
+
 		// create conditional profile
 		ConditionalProfile conditionalProfile = ConditionalProfiler
 				.generateProfile(resource);
 		analysis.setConditionalProfile(conditionalProfile);
+
 		// create PST
 		PST pst = new PST();
 		pst.createFromProcess(resource);
 		analysis.setPst(pst);
+
+		// done
 		return analysis;
 	}
 

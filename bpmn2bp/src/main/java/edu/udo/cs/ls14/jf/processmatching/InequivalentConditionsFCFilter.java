@@ -29,7 +29,7 @@ public class InequivalentConditionsFCFilter {
 	 * @param matching
 	 * @return
 	 */
-	public static ProcessMatching filter(ProcessMatching matching) {
+	public static Set<Pair<Fragment, Fragment>> filter(ProcessMatching matching) {
 		Set<Pair<Fragment, Fragment>> filteredMapping = new HashSet<Pair<Fragment, Fragment>>();
 		// ConditionalProfile p1 = matching.
 		for (Pair<Fragment, Fragment> mapping : matching
@@ -39,8 +39,8 @@ public class InequivalentConditionsFCFilter {
 			LOG.debug("-------------");
 			LOG.debug("Checking if " + f1 + " and " + f2
 					+ " have the same conditional profile.");
-			Set<FlowNode> nodes1 = getNodes(f1);
-			Set<FlowNode> nodes2 = getNodes(f2);
+			Set<FlowNode> nodes1 = getEventsAndActivites(f1);
+			Set<FlowNode> nodes2 = getEventsAndActivites(f2);
 			Set<SequenceFlow> edges1 = getEdges(f1);
 			Set<SequenceFlow> edges2 = getEdges(f2);
 			ConditionalProfile cp1 = matching.getAnalysis1()
@@ -114,9 +114,7 @@ public class InequivalentConditionsFCFilter {
 				LOG.debug(f1 + " and " + f2 + " are not conditions equivalent.");
 			}
 		}
-		ProcessMatching newMatching = matching.clone();
-		newMatching.setFragmentCorrespondences(filteredMapping);
-		return newMatching;
+		return filteredMapping;
 	}
 
 	private static Map<FlowNode, Set<FormalExpression>> getFragmentFnc(
@@ -158,11 +156,13 @@ public class InequivalentConditionsFCFilter {
 		return null;
 	}
 
-	private static Set<FlowNode> getNodes(Fragment f) {
+	// TODO: Move to fragment
+	private static Set<FlowNode> getEventsAndActivites(Fragment f) {
 		return f.getContainedFlowNodes(n -> n instanceof Event
 				|| n instanceof Activity);
 	}
 
+	// TODO: Move to fragment
 	private static Set<SequenceFlow> getEdges(Fragment fragment) {
 		return fragment
 				.getContainedFlowElements(
