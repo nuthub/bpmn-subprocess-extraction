@@ -19,8 +19,6 @@ public class ProcessAnalyzerTest {
 		URL url = getClass().getResource("../../bpmn/" + basename + ".bpmn");
 		Resource res = ProcessLoader.getBpmnResource(url);
 		ProcessAnalysis analysis = ProcessAnalyzer.analyze(res);
-		System.out.println("Analysis results of " + basename);
-		System.out.println(analysis);
 		assertEquals(6, analysis.getPst().getFragments().size());
 		assertEquals(7, analysis.getConditionalProfile()
 				.getFlowNodeConditions().size());
@@ -33,8 +31,6 @@ public class ProcessAnalyzerTest {
 				"../../bpmn/conditionalFlow/" + basename + ".bpmn");
 		Resource res = ProcessLoader.getBpmnResource(url);
 		ProcessAnalysis analysis = ProcessAnalyzer.analyze(res);
-		System.out.println("Analysis results of " + basename);
-		System.out.println(analysis);
 		assertEquals(5, analysis.getPst().getFragments().size());
 		assertEquals(5, analysis.getConditionalProfile()
 				.getFlowNodeConditions().size());
@@ -47,8 +43,6 @@ public class ProcessAnalyzerTest {
 				"../../bpmn/conditionalFlow/" + basename + ".bpmn");
 		Resource res = ProcessLoader.getBpmnResource(url);
 		ProcessAnalysis analysis = ProcessAnalyzer.analyze(res);
-		System.out.println("Analysis results of " + basename);
-		System.out.println(analysis);
 		assertEquals(5, analysis.getPst().getFragments().size());
 		assertEquals(5, analysis.getConditionalProfile()
 				.getFlowNodeConditions().size());
