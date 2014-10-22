@@ -1,8 +1,10 @@
-package edu.udo.cs.ls14.jf.conditionalprofile;
+package edu.udo.cs.ls14.jf.conditionalprofile.test;
 
 import org.eclipse.emf.ecore.resource.Resource;
 import org.junit.Test;
 
+import edu.udo.cs.ls14.jf.conditionalprofile.ConditionalProfile;
+import edu.udo.cs.ls14.jf.conditionalprofile.ConditionalProfiler;
 import edu.udo.cs.ls14.jf.utils.bpmn.ProcessLoader;
 
 public class ConditionalProfileTest {
