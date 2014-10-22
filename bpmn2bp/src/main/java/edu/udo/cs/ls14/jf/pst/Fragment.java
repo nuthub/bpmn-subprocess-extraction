@@ -54,24 +54,25 @@ public class Fragment {
 	public Set<FlowElement> getContainedFlowElements(
 			Predicate<FlowElement> filter) {
 		return getContainedFlowElementsAcc(entry, new HashSet<FlowElement>(),
-				filter);
+				filter, new HashSet<SequenceFlow>());
 	}
 
 	private Set<FlowElement> getContainedFlowElementsAcc(SequenceFlow entry,
-			Set<FlowElement> elements, Predicate<FlowElement> filter) {
+			Set<FlowElement> elements, Predicate<FlowElement> filter, Set<SequenceFlow> visited) {
 		FlowNode target = entry.getTargetRef();
 		if (!entry.equals(this.entry) && !entry.equals(this.exit)) {
 			elements.add(entry);
 		}
-		if (elements.contains(target) || entry.equals(exit)) {
+		if (visited.contains(entry) || elements.contains(target) || entry.equals(this.exit)) {
 			return elements;
 		}
+		visited.add(entry);
 		if (filter.test(target)) {
 			elements.add(target);
 		}
 		for (SequenceFlow newEntry : target.getOutgoing()) {
 			elements.addAll(getContainedFlowElementsAcc(newEntry, elements,
-					filter));
+					filter, visited));
 		}
 		return elements;
 	}

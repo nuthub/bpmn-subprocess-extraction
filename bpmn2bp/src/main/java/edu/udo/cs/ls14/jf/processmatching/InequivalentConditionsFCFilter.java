@@ -23,6 +23,12 @@ public class InequivalentConditionsFCFilter {
 	private static final Logger LOG = LoggerFactory
 			.getLogger(InequivalentConditionsFCFilter.class);
 
+	/**
+	 * TODO: könnte eleganter gelöst werden / funktional
+	 * 
+	 * @param matching
+	 * @return
+	 */
 	public static ProcessMatching filter(ProcessMatching matching) {
 		Set<Pair<Fragment, Fragment>> filteredMapping = new HashSet<Pair<Fragment, Fragment>>();
 		// ConditionalProfile p1 = matching.
@@ -46,7 +52,7 @@ public class InequivalentConditionsFCFilter {
 					nodes1, edges1);
 			Map<FlowNode, Set<FormalExpression>> fnc2 = getFragmentFnc(cp2,
 					nodes2, edges2);
-			boolean allFragmentConditionsMatch = true;
+			boolean allConditionsMatch = true;
 			// compare conditions
 			// Für alle Knoten n1 von Prozess1
 			for (FlowNode n1 : nodes1) {
@@ -60,11 +66,14 @@ public class InequivalentConditionsFCFilter {
 				LOG.debug("n2 has " + fnc2.get(n2).size() + " conditions in "
 						+ f2);
 				// suche Match
-				boolean nodeConditionsMatch = false;
+				boolean nodeConditionsMatch = true;
 				// bedingungsloser Match
 				if (fnc1.get(n1).size() == 0 && fnc2.get(n2).size() == 0) {
-					LOG.debug("There are no conditions, so n1 and n2 match.");
+					LOG.debug("There are no conditions to match, so n1 and n2 have a condition match.");
 					nodeConditionsMatch = true;
+				}
+				if (fnc1.get(n1).size() != fnc2.get(n2).size()) {
+					LOG.debug("The amounts of nodes' conditions differ, so they cannot have a condition match.");
 				}
 				// Für alle Conditions von n1
 				for (FormalExpression exp1 : fnc1.get(n1)) {
@@ -76,23 +85,29 @@ public class InequivalentConditionsFCFilter {
 						continue;
 					}
 					// prüfe, ob Entsprechung in fnc2 vorhanden
+					boolean expressionMatchFound = false;
 					for (FormalExpression exp2 : fnc2.get(n2)) {
 						LOG.debug("Comparing with " + exp2);
 						if (exp1.getBody().equals(exp2.getBody())) {
 							LOG.debug("Match: " + exp1.getBody() + " / "
 									+ exp2.getBody() + " !");
-							nodeConditionsMatch = true;
+							expressionMatchFound = true;
 						}
+					} // forall expressions of n2
+					if (!expressionMatchFound) {
+						nodeConditionsMatch = false;
+						LOG.debug("No matching expression could be found.");
 					}
-				}
-				// Wenn keine Entsprechung gefunden, abbrechen, Conditional
-				// Profiles sind unterschiedlich
+				} // forall expressions of n1
+					// Wenn keine Entsprechung gefunden, abbrechen, Conditional
+					// Profiles sind unterschiedlich
 				if (!nodeConditionsMatch) {
-					allFragmentConditionsMatch = false;
-					continue;
+					allConditionsMatch = false;
+					LOG.debug("Not all nodes' conditions have correspondences.");
+					// continue;
 				}
-			}
-			if (allFragmentConditionsMatch) {
+			} // forall nodes of fragment1
+			if (allConditionsMatch) {
 				LOG.info("Conditions equivalent fragments: " + f1 + " / " + f2);
 				filteredMapping.add(mapping);
 			} else {
