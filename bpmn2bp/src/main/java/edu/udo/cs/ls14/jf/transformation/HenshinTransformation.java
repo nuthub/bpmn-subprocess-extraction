@@ -48,8 +48,9 @@ public abstract class HenshinTransformation {
 			app.setParameterValue(p.getKey(), p.getValue());
 		}
 		if (!app.execute(new LoggingApplicationMonitor())) {
+//			if (!app.execute(new HenshinApplicationMonitor())) {
 			throw new Exception("Could not apply rule: " + rulefileBaseName
-					+ " / " + ruleName + " / " + parameters);
+					+ "->" + ruleName + " with " + parameters);
 		}
 	}
 }
