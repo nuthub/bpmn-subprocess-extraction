@@ -9,7 +9,6 @@ import org.eclipse.bpmn2.Event;
 import org.eclipse.bpmn2.FlowNode;
 import org.eclipse.bpmn2.Process;
 import org.eclipse.emf.ecore.resource.Resource;
-import org.eclipse.emf.henshin.model.Mapping;
 import org.javatuples.Pair;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -18,7 +17,6 @@ import edu.udo.cs.ls14.jf.analysis.ProcessAnalysis;
 import edu.udo.cs.ls14.jf.analysis.ProcessAnalyzer;
 import edu.udo.cs.ls14.jf.behaviorprofile.BehavioralProfile;
 import edu.udo.cs.ls14.jf.behaviorprofile.RelationType;
-import edu.udo.cs.ls14.jf.conditionalprofile.ConditionalProfile;
 import edu.udo.cs.ls14.jf.pst.Fragment;
 import edu.udo.cs.ls14.jf.utils.bpmn.ProcessLoader;
 
@@ -42,8 +40,6 @@ public class ProcessMatcher {
 		ProcessMatching matching = new ProcessMatching();
 		matching.setResource1(res1);
 		matching.setResource2(res2);
-		matching.setProcess1(process1);
-		matching.setProcess2(process2);
 		matching.setAnalysis1(analysis1);
 		matching.setAnalysis2(analysis2);
 

@@ -4,7 +4,6 @@ import java.util.HashSet;
 import java.util.Set;
 
 import org.eclipse.bpmn2.FlowNode;
-import org.eclipse.bpmn2.Process;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.javatuples.Pair;
 
@@ -15,8 +14,6 @@ public class ProcessMatching {
 
 	private Resource resource1;
 	private Resource resource2;
-	private Process process1;
-	private Process process2;
 	private ProcessAnalysis analysis1;
 	private ProcessAnalysis analysis2;
 	private Set<Pair<FlowNode, FlowNode>> nodeCorrespondences;
@@ -36,38 +33,6 @@ public class ProcessMatching {
 
 	public void setResource2(Resource resource2) {
 		this.resource2 = resource2;
-	}
-
-	/**
-	 * @deprecated
-	 * @return
-	 */
-	public Process getProcess1() {
-		return process1;
-	}
-
-	/**
-	 * @deprecated
-	 * @return
-	 */
-	public void setProcess1(Process process1) {
-		this.process1 = process1;
-	}
-
-	/**
-	 * @deprecated
-	 * @return
-	 */
-	public Process getProcess2() {
-		return process2;
-	}
-
-	/**
-	 * @deprecated
-	 * @return
-	 */
-	public void setProcess2(Process process2) {
-		this.process2 = process2;
 	}
 
 	public ProcessAnalysis getAnalysis1() {
@@ -108,8 +73,6 @@ public class ProcessMatching {
 		ProcessMatching clone = new ProcessMatching();
 		clone.setResource1(resource1);
 		clone.setResource2(resource2);
-		clone.setProcess1(process1);
-		clone.setProcess2(process2);
 		clone.setAnalysis1(analysis1);
 		clone.setAnalysis2(analysis2);
 		clone.setNodeCorrespondences(new HashSet<Pair<FlowNode, FlowNode>>(
@@ -126,10 +89,6 @@ public class ProcessMatching {
 		sb.append(" resource1=" + resource1.getURI() + ", ");
 		sb.append(System.getProperty("line.separator"));
 		sb.append(" resource2=" + resource2.getURI() + ", ");
-		sb.append(System.getProperty("line.separator"));
-		sb.append(" process1=" + process1.getName() + ", ");
-		sb.append(System.getProperty("line.separator"));
-		sb.append(" process2=" + process2.getName() + ", ");
 		sb.append(System.getProperty("line.separator"));
 		sb.append(" analysis1=" + analysis1 + ", ");
 		sb.append(System.getProperty("line.separator"));
