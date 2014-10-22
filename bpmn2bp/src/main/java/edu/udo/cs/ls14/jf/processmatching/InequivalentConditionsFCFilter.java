@@ -101,8 +101,6 @@ public class InequivalentConditionsFCFilter {
 		}
 		ProcessMatching newMatching = matching.clone();
 		newMatching.setFragmentCorrespondences(filteredMapping);
-		System.out.println(filteredMapping);
-		System.out.println(filteredMapping.size());
 		return newMatching;
 	}
 
