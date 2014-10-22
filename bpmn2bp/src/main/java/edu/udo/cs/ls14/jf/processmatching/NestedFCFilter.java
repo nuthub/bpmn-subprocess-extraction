@@ -25,16 +25,14 @@ public class NestedFCFilter {
 						&& !c1.getValue1().equals(c2.getValue1())
 						&& (c2.getValue0().contains(c1.getValue0()) || c2
 								.getValue1().contains(c1.getValue1()))) {
-					LOG.debug("c1="
-							+ c1
-							+ " is filtered out, because it is contained in c2="
+					LOG.info(c1
+							+ " is filtered out, because it is contained in "
 							+ c2);
 					isContainedInOther = true;
 				}
 			}
 			if (!isContainedInOther) {
-				LOG.debug("Adding " + c1
-						+ ", because it is not contained in any other fragment");
+				LOG.info(c1 + " is not contained in any other fragment");
 				filteredCorrespondences.add(c1);
 			}
 		}
