@@ -23,9 +23,9 @@ public class ProcessMatchingChainTest {
 		String basename2 = "conditionSequence2";
 		System.out.println("Testing " + basename1 + " with " + basename2);
 		URL url1 = getClass().getResource(
-				"../../bpmn/conditionalFlow/" + basename1 + ".bpmn");
+				"/edu/udo/cs/ls14/jf/bpmn/conditionalFlow/" + basename1 + ".bpmn");
 		URL url2 = getClass().getResource(
-				"../../bpmn/conditionalFlow/" + basename2 + ".bpmn");
+				"/edu/udo/cs/ls14/jf/bpmn/conditionalFlow/" + basename2 + ".bpmn");
 		Resource res1 = ProcessLoader.getBpmnResource(url1);
 		Resource res2 = ProcessLoader.getBpmnResource(url2);
 		runTest(res1, res2, 1);

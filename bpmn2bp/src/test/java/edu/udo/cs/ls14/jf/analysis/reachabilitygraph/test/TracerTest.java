@@ -3,9 +3,11 @@ package edu.udo.cs.ls14.jf.analysis.reachabilitygraph.test;
 import static org.junit.Assert.assertEquals;
 
 import java.io.File;
+import java.net.URL;
 import java.util.Set;
 
 import org.eclipse.bpmn2.Process;
+import org.eclipse.emf.ecore.resource.Resource;
 import org.junit.Test;
 
 import edu.udo.cs.ls14.jf.analysis.reachabilitygraph.ReachabilityGraph;
@@ -60,12 +62,14 @@ public class TracerTest {
 
 	private void runTest(String basename, int expectedTracesSize)
 			throws Exception {
-		Process process = ProcessLoader.loadFirstProcessFromResource(getClass()
-				.getResource("../../bpmn/" + basename + ".bpmn"));
+		URL url = getClass()
+		.getResource("/edu/udo/cs/ls14/jf/bpmn/" + basename + ".bpmn");
+		Resource resource = ProcessLoader.getBpmnResource(url);
+		Process process = ProcessLoader.getProcessFromResource(resource);
 		System.out.println("Now testing " + basename);
 		ReachabilityGraph rg = new ReachabilityGraph();
 		File file = new File(getClass().getResource(
-				"../../pnml/" + basename + ".pnml").toURI());
+				"/edu/udo/cs/ls14/jf/pnml/" + basename + ".pnml").toURI());
 		rg.createFromPnml(file);
 		System.out.println("|V| = " + rg.getVertices().size());
 		System.out.println("|E| = " + rg.getEdges().size());

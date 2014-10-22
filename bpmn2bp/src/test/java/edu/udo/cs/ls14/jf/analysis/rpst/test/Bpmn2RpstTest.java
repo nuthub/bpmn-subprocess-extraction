@@ -9,6 +9,7 @@ import java.util.Set;
 import java.util.stream.Collectors;
 
 import org.eclipse.bpmn2.Process;
+import org.eclipse.emf.ecore.resource.Resource;
 import org.jbpt.algo.tree.rpst.IRPSTNode;
 import org.jbpt.algo.tree.rpst.RPST;
 import org.jbpt.algo.tree.tctree.TCType;
@@ -76,9 +77,10 @@ public class Bpmn2RpstTest {
 			throws Exception {
 		System.out.println("----------------------------");
 		System.out.println("Generating RPST for " + basename + ".bpmn");
-		URL url = getClass().getResource("../../bpmn/" + basename + ".bpmn");
+		URL url = getClass().getResource("/edu/udo/cs/ls14/jf/bpmn/" + basename + ".bpmn");
 		assertNotNull(url);
-		Process process = ProcessLoader.loadFirstProcessFromResource(url);
+		Resource resource = ProcessLoader.getBpmnResource(url);
+		Process process = ProcessLoader.getProcessFromResource(resource);
 		RPST<BpmnPathEdge, BpmnPathVertex> rpst = Bpmn2Rpst.getRPST(process,
 				true);
 		// output

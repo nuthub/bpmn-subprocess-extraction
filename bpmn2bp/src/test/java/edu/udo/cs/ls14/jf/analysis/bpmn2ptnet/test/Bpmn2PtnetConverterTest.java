@@ -6,6 +6,7 @@ import static org.junit.Assert.assertNotNull;
 import java.net.URL;
 
 import org.eclipse.bpmn2.Process;
+import org.eclipse.emf.ecore.resource.Resource;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -67,9 +68,10 @@ public class Bpmn2PtnetConverterTest {
 
 	private void runTest(String basename, int expectedPlaceCount,
 			int expectedTransitionCount, int expectedArcCount) throws Exception {
-		URL url = getClass().getResource("../../bpmn/" + basename + ".bpmn");
+		URL url = getClass().getResource("/edu/udo/cs/ls14/jf/bpmn/" + basename + ".bpmn");
 		assertNotNull(url);
-		Process process = ProcessLoader.loadFirstProcessFromResource(url);
+		Resource resource = ProcessLoader.getBpmnResource(url);
+		Process process = ProcessLoader.getProcessFromResource(resource);
 		PetriNetHLAPI net = converter.convertToPetriNet(process);
 		assertEquals(1, net.getPagesHLAPI().size());
 		PageHLAPI page = net.getPagesHLAPI().get(0);

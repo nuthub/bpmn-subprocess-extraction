@@ -6,6 +6,7 @@ import java.net.URL;
 import java.util.Set;
 
 import org.eclipse.bpmn2.Process;
+import org.eclipse.emf.ecore.resource.Resource;
 import org.jbpt.utils.IOUtils;
 import org.junit.Test;
 
@@ -61,11 +62,12 @@ public class BehavioralProfileTest {
 
 	private BehavioralProfile createBpFromBpmn(String basename)
 			throws Exception {
-		URL url = getClass().getResource("../../bpmn/" + basename + ".bpmn");
+		URL url = getClass().getResource("/edu/udo/cs/ls14/jf/bpmn/" + basename + ".bpmn");
 		assertNotNull(url);
 		System.out.println("Now profiling " + basename);
 		// Load BPMN model
-		Process process = ProcessLoader.loadFirstProcessFromResource(url);
+		Resource resource = ProcessLoader.getBpmnResource(url);
+		Process process = ProcessLoader.getProcessFromResource(resource);
 
 		// create P/T-Net from bpmn
 		Bpmn2PtnetConverter converter = new Bpmn2PtnetConverter();

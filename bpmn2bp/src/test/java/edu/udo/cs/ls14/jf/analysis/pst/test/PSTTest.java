@@ -143,7 +143,7 @@ public class PSTTest {
 
 	public PST runTest(String basename) throws Exception {
 		System.out.println("Creating PST for " + basename);
-		URL url = PSTTest.class.getResource("../../bpmn/" + basename + ".bpmn");
+		URL url = PSTTest.class.getResource("/edu/udo/cs/ls14/jf/bpmn/" + basename + ".bpmn");
 		PST pst = new PST();
 		pst.createFromProcess(ProcessLoader.getBpmnResource(url));
 		IOUtils.invokeDOT("/tmp", basename + "-undirectedgraph.png",

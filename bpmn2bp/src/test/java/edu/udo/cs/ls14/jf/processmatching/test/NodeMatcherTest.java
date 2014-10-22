@@ -23,8 +23,8 @@ public class NodeMatcherTest {
 
 	@Test
 	public void testNodeMatcher() throws Exception {
-		URL url1 = getClass().getResource("../../bpmn/PM1-mit-Fragment1.bpmn");
-		URL url2 = getClass().getResource("../../bpmn/PM3-mit-Fragment2.bpmn");
+		URL url1 = getClass().getResource("/edu/udo/cs/ls14/jf/bpmn/PM1-mit-Fragment1.bpmn");
+		URL url2 = getClass().getResource("/edu/udo/cs/ls14/jf/bpmn/PM3-mit-Fragment2.bpmn");
 		Resource res1 = ProcessLoader.getBpmnResource(url1);
 		Resource res2 = ProcessLoader.getBpmnResource(url2);
 		Set<Pair<FlowNode, FlowNode>> mapping = NodeMatcher.getCorrespondences(res1,

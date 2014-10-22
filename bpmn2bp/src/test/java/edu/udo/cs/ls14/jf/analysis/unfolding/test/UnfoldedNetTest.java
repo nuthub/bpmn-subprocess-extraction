@@ -80,7 +80,7 @@ public class UnfoldedNetTest {
 	@Ignore
 	public void testUnfold() throws Exception {
 		File file = new File(getClass().getResource(
-				"../../pnml/looping-events-example.pnml").toURI());
+				"/edu/udo/cs/ls14/jf/pnml/looping-events-example.pnml").toURI());
 
 		HLAPIRootClass rc = PNMLUtils.importPnmlDocument(file, false);
 		if (!PNMLUtils.isPTNetDocument(rc)) {
@@ -121,7 +121,7 @@ public class UnfoldedNetTest {
 	@Test
 	public void testEsparzaUnfolder() throws Exception {
 		File file = new File(getClass().getResource(
-				"../../pnml/xor-example.pnml").toURI());
+				"/edu/udo/cs/ls14/jf/pnml/xor-example.pnml").toURI());
 
 		HLAPIRootClass rc = PNMLUtils.importPnmlDocument(file, false);
 		if (!PNMLUtils.isPTNetDocument(rc)) {

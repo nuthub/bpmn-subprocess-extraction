@@ -22,7 +22,7 @@ public class ConditionalProfileTest {
 
 	private Resource getResource(String basename) throws Exception {
 		return ProcessLoader.getBpmnResource(getClass().getResource(
-				"../../bpmn/conditionalFlow/" + basename + ".bpmn"));
+				"/edu/udo/cs/ls14/jf/bpmn/conditionalFlow/" + basename + ".bpmn"));
 	}
 
 }

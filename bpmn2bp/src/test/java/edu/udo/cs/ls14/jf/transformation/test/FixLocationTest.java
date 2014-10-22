@@ -2,8 +2,6 @@ package edu.udo.cs.ls14.jf.transformation.test;
 
 import static org.junit.Assert.assertTrue;
 
-import java.io.File;
-
 import org.eclipse.bpmn2.Process;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.henshin.interpreter.EGraph;
@@ -29,14 +27,14 @@ public class FixLocationTest {
 
 	@Test
 	public void testCallActivityCalledElementRef() throws Exception {
-		Resource srcResource1 = ProcessLoader.getBpmnResource(new File(
-				getClass().getResource("../../bpmn/sequence.bpmn").getFile()));
+		Resource srcResource1 = ProcessLoader.getBpmnResource(getClass()
+				.getResource("/edu/udo/cs/ls14/jf/bpmn/sequence.bpmn"));
 		String targetFilename1 = "/tmp/transformed/myCalledProcess.bpmn";
 		Resource res1 = ResourceCopier.copy(srcResource1, targetFilename1);
 		Process calledElement = ProcessLoader.getProcessFromResource(res1);
 
 		Resource srcResource2 = ProcessLoader.getBpmnResource(getClass()
-				.getResource("../../bpmn/empty.bpmn"));
+				.getResource("/edu/udo/cs/ls14/jf/bpmn/empty.bpmn"));
 		String targetFilename2 = "/tmp/transformed/myNewProcess.bpmn";
 		Resource res2 = ResourceCopier.copy(srcResource2, targetFilename2);
 
@@ -58,9 +56,10 @@ public class FixLocationTest {
 		System.out.println(res2.getURI());
 		System.out.println(calledElement.eResource().getURI());
 		res2.save(null);
-		
+
 		LocationFixer fixer = new LocationFixer();
-		fixer.fixLocations(res2, "myCalledProcess.bpmn", "file:/tmp/transformed/myCalledProcess.bpmn");
+		fixer.fixLocations(res2, "myCalledProcess.bpmn",
+				"file:/tmp/transformed/myCalledProcess.bpmn");
 		res2.save(null);
 	}
 

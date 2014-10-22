@@ -42,9 +42,9 @@ public class ApplicationTest {
 	// TODO: Make assertions
 	private void runTest(String basename1, String basename2, String path) throws Exception {
 		Resource res1 = ProcessLoader.getBpmnResource(getClass().getResource(
-				"../../bpmn/" + path + "/" + basename1 + ".bpmn"));
+				"/edu/udo/cs/ls14/jf/bpmn/" + path + "/" + basename1 + ".bpmn"));
 		Resource res2 = ProcessLoader.getBpmnResource(getClass().getResource(
-				"../../bpmn/" +  path + "/" + basename2 + ".bpmn"));
+				"/edu/udo/cs/ls14/jf/bpmn/" +  path + "/" + basename2 + ".bpmn"));
 		// hit the process
 		Application app = new Application();
 		Pair<String, Resource> model1 = Pair.with(basename1, res1);
