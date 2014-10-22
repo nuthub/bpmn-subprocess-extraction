@@ -39,7 +39,7 @@ public class Fragment {
 	public SequenceFlow getExit() {
 		return exit;
 	}
-	
+
 	public Resource getResource() {
 		return resource;
 	}
@@ -103,20 +103,28 @@ public class Fragment {
 		return parent;
 	}
 
+	private String getSequenceFlowLabel(SequenceFlow flow) {
+		if (flow.getName() != null && !flow.getName().equals("")) {
+			return flow.getName();
+		}
+		return flow.getId();
+	}
+
 	@Override
 	public String toString() {
+
 		StringBuffer sb = new StringBuffer();
 		sb.append("Fragment (");
 		if (entry == null) {
-			sb.append("null");
+			sb.append("--");
 		} else {
-			sb.append(entry.getName());
+			sb.append(getSequenceFlowLabel(entry));
 		}
 		sb.append(", ");
 		if (exit == null) {
-			sb.append("null");
+			sb.append("--");
 		} else {
-			sb.append(exit.getName());
+			sb.append(getSequenceFlowLabel(exit));
 		}
 		sb.append(")");
 		return sb.toString();
