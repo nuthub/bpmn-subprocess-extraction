@@ -8,7 +8,6 @@ import org.eclipse.emf.henshin.interpreter.EGraph;
 import org.eclipse.emf.henshin.interpreter.Engine;
 import org.eclipse.emf.henshin.interpreter.UnitApplication;
 import org.eclipse.emf.henshin.interpreter.impl.EngineImpl;
-import org.eclipse.emf.henshin.interpreter.impl.LoggingApplicationMonitor;
 import org.eclipse.emf.henshin.interpreter.impl.UnitApplicationImpl;
 import org.eclipse.emf.henshin.model.Module;
 import org.eclipse.emf.henshin.model.Unit;
@@ -47,8 +46,7 @@ public abstract class HenshinTransformation {
 		for (Map.Entry<String, Object> p : parameters.entrySet()) {
 			app.setParameterValue(p.getKey(), p.getValue());
 		}
-		if (!app.execute(new LoggingApplicationMonitor())) {
-//			if (!app.execute(new HenshinApplicationMonitor())) {
+		if (!app.execute(new HenshinApplicationMonitor())) {
 			throw new Exception("Could not apply rule: " + rulefileBaseName
 					+ "->" + ruleName + " with " + parameters);
 		}
