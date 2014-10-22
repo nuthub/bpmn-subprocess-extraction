@@ -33,6 +33,26 @@ public class ReachabilityGraph extends DirectedSparseMultigraph<Marking, Edge> {
 	private static final Logger LOG = LoggerFactory
 			.getLogger(ReachabilityGraph.class);
 
+
+	public void createFromPnml(File file) throws Exception {
+		HLAPIRootClass rc = PNMLUtils.importPnmlDocument(file, false);
+		if (!PNMLUtils.isPTNetDocument(rc)) {
+			String msg = "only fr.lip6.move.pnml.ptnet.hlapi.PetriNetDocHLAPI type pnml files implemented";
+			LOG.error(msg);
+			throw new NotImplementedException(msg);
+		}
+		PetriNetDocHLAPI ptDoc = (PetriNetDocHLAPI) rc;
+
+		List<PetriNet> nets = ptDoc.getNets();
+		if (nets.size() != 1) {
+			String msg = "only pnml files with one single net supported";
+			LOG.error(msg);
+			throw new NotImplementedException(msg);
+		}
+		createFromPTNet(nets.get(0));
+
+	}
+
 	public void createFromPTNet(PetriNet ptnet) throws Exception {
 		List<Page> pages = ptnet.getPages();
 		if (pages.size() != 1) {
@@ -63,25 +83,6 @@ public class ReachabilityGraph extends DirectedSparseMultigraph<Marking, Edge> {
 			}
 		}
 		createFromTPFM(transitions, places, arcs, m0);
-
-	}
-
-	public void createFromPnml(File file) throws Exception {
-		HLAPIRootClass rc = PNMLUtils.importPnmlDocument(file, false);
-		if (!PNMLUtils.isPTNetDocument(rc)) {
-			String msg = "only fr.lip6.move.pnml.ptnet.hlapi.PetriNetDocHLAPI type pnml files implemented";
-			LOG.error(msg);
-			throw new NotImplementedException(msg);
-		}
-		PetriNetDocHLAPI ptDoc = (PetriNetDocHLAPI) rc;
-
-		List<PetriNet> nets = ptDoc.getNets();
-		if (nets.size() != 1) {
-			String msg = "only pnml files with one single net supported";
-			LOG.error(msg);
-			throw new NotImplementedException(msg);
-		}
-		createFromPTNet(nets.get(0));
 
 	}
 
