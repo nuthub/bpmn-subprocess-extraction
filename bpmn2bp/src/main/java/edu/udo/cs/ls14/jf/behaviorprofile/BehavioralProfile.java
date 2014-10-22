@@ -27,7 +27,6 @@ public class BehavioralProfile {
 	public void generateFromTraces(Process process, Set<Trace> traces) {
 		for (FlowElement elem : process.getFlowElements()) {
 			if (elem instanceof FlowNode) {
-				LOG.debug("add: " + elem.getId());
 				nodes.put(elem.getId(), (FlowNode) elem);
 			}
 		}
