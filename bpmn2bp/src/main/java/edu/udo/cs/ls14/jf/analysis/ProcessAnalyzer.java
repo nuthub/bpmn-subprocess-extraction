@@ -15,9 +15,10 @@ import edu.udo.cs.ls14.jf.utils.bpmn.ProcessLoader;
 public class ProcessAnalyzer {
 
 	public static ProcessAnalysis analyze(Resource resource) throws Exception {
-		Process process = ProcessLoader.getProcessFromResource(resource);
 		ProcessAnalysis analysis = new ProcessAnalysis();
 		analysis.setResource(resource);
+		Process process = ProcessLoader.getProcessFromResource(resource);
+		analysis.setProcess(process);
 		// create petri net
 		Bpmn2PnmlConverter bpmn2ptnet = new Bpmn2PnmlConverter();
 		analysis.setPtnet(bpmn2ptnet.convertToPetriNet(process));

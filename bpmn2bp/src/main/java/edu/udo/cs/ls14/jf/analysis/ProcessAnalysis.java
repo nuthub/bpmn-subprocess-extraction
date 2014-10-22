@@ -2,6 +2,7 @@ package edu.udo.cs.ls14.jf.analysis;
 
 import java.util.Set;
 
+import org.eclipse.bpmn2.Process;
 import org.eclipse.emf.ecore.resource.Resource;
 
 import edu.udo.cs.ls14.jf.behaviorprofile.BehavioralProfile;
@@ -14,6 +15,7 @@ import fr.lip6.move.pnml.ptnet.hlapi.PetriNetHLAPI;
 public class ProcessAnalysis {
 
 	private Resource resource;
+	private Process process;
 	private PetriNetHLAPI ptnet;
 	private ReachabilityGraph reachabilityGraph;
 	private Set<Trace> traces;
@@ -27,6 +29,14 @@ public class ProcessAnalysis {
 
 	public Resource getResource() {
 		return resource;
+	}
+
+	public void setProcess(Process process) {
+		this.process = process;
+	}
+
+	public Process getProcess() {
+		return process;
 	}
 
 	public PetriNetHLAPI getPtnet() {
