@@ -64,7 +64,7 @@ public class Application {
 			LOG.info("Replacing " + pair.getValue0() + " in " + res1.getURI());
 			extractor.replaceFragmentByCallActivity(res1, pair.getValue0(),
 					callActivityName, calledElement);
-			LOG.info("Fixing " + res1);
+			LOG.info("Fixing " + res1.getURI());
 			doFixes(res1, calledElement);
 			res1.save(null);
 			LOG.info("Replaced " + pair.getValue0() + " in " + res1.getURI());
@@ -73,7 +73,7 @@ public class Application {
 			LOG.info("Replacing " + pair.getValue1() + " in " + res2.getURI());
 			extractor.replaceFragmentByCallActivity(res2, pair.getValue1(),
 					callActivityName, calledElement);
-			LOG.info("Fixing " + res1);
+			LOG.info("Fixing " + res1.getURI());
 			doFixes(res2, calledElement);
 			res2.save(null);
 			LOG.info("Replaced " + pair.getValue1() + " in " + res2.getURI());

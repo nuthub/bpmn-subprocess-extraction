@@ -146,13 +146,23 @@ public class HenshinApplicationMonitor extends BasicApplicationMonitor {
 		}
 		step++;
 		EGraph graph = application.getEGraph();
-		logger.debug("=== ("
-				+ step
-				+ ") "
-				+ stepKind
-				+ ((application instanceof RuleApplication) ? " RULE "
-						: " UNIT ") + "'" + application.getUnit().getName()
-				+ "' [" + String.valueOf(success).toUpperCase() + "] ===");
+		if (success) {
+			logger.info("=== ("
+					+ step
+					+ ") "
+					+ stepKind
+					+ ((application instanceof RuleApplication) ? " RULE "
+							: " UNIT ") + "'" + application.getUnit().getName()
+					+ "' [SUCCESS] ===");
+		} else {
+			logger.error("=== ("
+					+ step
+					+ ") "
+					+ stepKind
+					+ ((application instanceof RuleApplication) ? " RULE "
+							: " UNIT ") + "'" + application.getUnit().getName()
+					+ "' [FAILURE] ===");
+		}
 		String edges = "?";
 		try {
 			edges = String.valueOf(InterpreterUtil.countEdges(graph));
