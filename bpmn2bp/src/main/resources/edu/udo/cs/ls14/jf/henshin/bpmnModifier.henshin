@@ -58,7 +58,7 @@
     <mappings xmi:id="_gLXjQk-7EeSxqchWGzsm5Q" origin="_gLXjQE-7EeSxqchWGzsm5Q" image="_gLXjQU-7EeSxqchWGzsm5Q"/>
     <mappings xmi:id="_uYuZ0k-7EeSxqchWGzsm5Q" origin="_uYuZ0E-7EeSxqchWGzsm5Q" image="_uYuZ0U-7EeSxqchWGzsm5Q"/>
   </units>
-  <units xsi:type="henshin:Rule" xmi:id="_FQXGoE_BEeSxqchWGzsm5Q" name="deleteSequenceFlow">
+  <units xsi:type="henshin:Rule" xmi:id="_FQXGoE_BEeSxqchWGzsm5Q" name="deleteSequenceFlowClean">
     <parameters xmi:id="_GDvrYE_BEeSxqchWGzsm5Q" name="id"/>
     <lhs xmi:id="_FQY70E_BEeSxqchWGzsm5Q" name="Lhs">
       <nodes xmi:id="_G6JH4E_BEeSxqchWGzsm5Q" incoming="_Si5TsE_BEeSxqchWGzsm5Q _ZXJOsE_BEeSxqchWGzsm5Q" outgoing="_5hl88E_BEeSxqchWGzsm5Q _5608UE_BEeSxqchWGzsm5Q">
@@ -682,5 +682,136 @@
     <mappings xmi:id="_WBR1AlIEEeSC8Y6zH3LPOA" origin="_WBR1AFIEEeSC8Y6zH3LPOA" image="_WBR1AVIEEeSC8Y6zH3LPOA"/>
     <mappings xmi:id="_WddasVIEEeSC8Y6zH3LPOA" origin="_WdczoFIEEeSC8Y6zH3LPOA" image="_WddasFIEEeSC8Y6zH3LPOA"/>
     <mappings xmi:id="_Yy6PIlIEEeSC8Y6zH3LPOA" origin="_Yy6PIFIEEeSC8Y6zH3LPOA" image="_Yy6PIVIEEeSC8Y6zH3LPOA"/>
+  </units>
+  <units xsi:type="henshin:Rule" xmi:id="_whdnoFhxEeSQUIz1B5ANEQ" name="removeDefaultRefs">
+    <parameters xmi:id="_FLdxgFhyEeSQUIz1B5ANEQ" name="id"/>
+    <lhs xmi:id="_whpN0FhxEeSQUIz1B5ANEQ" name="Lhs">
+      <nodes xmi:id="_M49osFhyEeSQUIz1B5ANEQ">
+        <type href="http://www.omg.org/spec/BPMN/20100524/MODEL-XMI#//SequenceFlow"/>
+        <attributes xmi:id="_v0VJ8FhzEeSQUIz1B5ANEQ" value="id">
+          <type href="http://www.omg.org/spec/BPMN/20100524/MODEL-XMI#//BaseElement/id"/>
+        </attributes>
+      </nodes>
+    </lhs>
+    <rhs xmi:id="_whpN0VhxEeSQUIz1B5ANEQ" name="Rhs">
+      <nodes xmi:id="_M4-PwFhyEeSQUIz1B5ANEQ">
+        <type href="http://www.omg.org/spec/BPMN/20100524/MODEL-XMI#//SequenceFlow"/>
+        <attributes xmi:id="_v0XmMFhzEeSQUIz1B5ANEQ" value="id">
+          <type href="http://www.omg.org/spec/BPMN/20100524/MODEL-XMI#//BaseElement/id"/>
+        </attributes>
+      </nodes>
+    </rhs>
+    <mappings xmi:id="_M4-20FhyEeSQUIz1B5ANEQ" origin="_M49osFhyEeSQUIz1B5ANEQ" image="_M4-PwFhyEeSQUIz1B5ANEQ"/>
+    <multiRules xmi:id="_IXJN4FhzEeSQUIz1B5ANEQ">
+      <parameters xmi:id="_IXi2gFhzEeSQUIz1B5ANEQ" name="id"/>
+      <lhs xmi:id="_IXYecFhzEeSQUIz1B5ANEQ" name="Lhs">
+        <nodes xmi:id="_IXZFgVhzEeSQUIz1B5ANEQ" incoming="_OOClQFhyEeSQUIz1B5ANEQ">
+          <type href="http://www.omg.org/spec/BPMN/20100524/MODEL-XMI#//SequenceFlow"/>
+        </nodes>
+        <nodes xmi:id="_NiXLAFhyEeSQUIz1B5ANEQ" outgoing="_OOClQFhyEeSQUIz1B5ANEQ">
+          <type href="http://www.omg.org/spec/BPMN/20100524/MODEL-XMI#//ExclusiveGateway"/>
+        </nodes>
+        <edges xmi:id="_OOClQFhyEeSQUIz1B5ANEQ" source="_NiXLAFhyEeSQUIz1B5ANEQ" target="_IXZFgVhzEeSQUIz1B5ANEQ">
+          <type href="http://www.omg.org/spec/BPMN/20100524/MODEL-XMI#//ExclusiveGateway/default"/>
+        </edges>
+      </lhs>
+      <rhs xmi:id="_IXYecVhzEeSQUIz1B5ANEQ" name="Rhs">
+        <nodes xmi:id="_IXYeclhzEeSQUIz1B5ANEQ">
+          <type href="http://www.omg.org/spec/BPMN/20100524/MODEL-XMI#//SequenceFlow"/>
+        </nodes>
+        <nodes xmi:id="_NiXLAVhyEeSQUIz1B5ANEQ">
+          <type href="http://www.omg.org/spec/BPMN/20100524/MODEL-XMI#//ExclusiveGateway"/>
+        </nodes>
+      </rhs>
+      <mappings xmi:id="_IXZFhlhzEeSQUIz1B5ANEQ" origin="_IXZFgVhzEeSQUIz1B5ANEQ" image="_IXYeclhzEeSQUIz1B5ANEQ"/>
+      <mappings xmi:id="_NiXyEFhyEeSQUIz1B5ANEQ" origin="_NiXLAFhyEeSQUIz1B5ANEQ" image="_NiXLAVhyEeSQUIz1B5ANEQ"/>
+      <multiMappings xmi:id="_IXZFgFhzEeSQUIz1B5ANEQ" origin="_M4-PwFhyEeSQUIz1B5ANEQ" image="_IXYeclhzEeSQUIz1B5ANEQ"/>
+      <multiMappings xmi:id="_IXZFglhzEeSQUIz1B5ANEQ" origin="_M49osFhyEeSQUIz1B5ANEQ" image="_IXZFgVhzEeSQUIz1B5ANEQ"/>
+    </multiRules>
+  </units>
+  <units xsi:type="henshin:SequentialUnit" xmi:id="_0V2fQFhxEeSQUIz1B5ANEQ" name="deleteSequenceFlow" subUnits="_whdnoFhxEeSQUIz1B5ANEQ _8aPFEFh0EeSQUIz1B5ANEQ _FQXGoE_BEeSxqchWGzsm5Q">
+    <parameters xmi:id="_8YeR4FhxEeSQUIz1B5ANEQ" name="id"/>
+    <parameterMappings xmi:id="_GGwVEFhyEeSQUIz1B5ANEQ" source="_8YeR4FhxEeSQUIz1B5ANEQ" target="_FLdxgFhyEeSQUIz1B5ANEQ"/>
+    <parameterMappings xmi:id="_GGwVEVhyEeSQUIz1B5ANEQ" source="_FLdxgFhyEeSQUIz1B5ANEQ" target="_8YeR4FhxEeSQUIz1B5ANEQ"/>
+    <parameterMappings xmi:id="__m5OUFh0EeSQUIz1B5ANEQ" source="_8YeR4FhxEeSQUIz1B5ANEQ" target="_9zglIFh0EeSQUIz1B5ANEQ"/>
+    <parameterMappings xmi:id="__m51YFh0EeSQUIz1B5ANEQ" source="_9zglIFh0EeSQUIz1B5ANEQ" target="_8YeR4FhxEeSQUIz1B5ANEQ"/>
+    <parameterMappings xmi:id="_FJmo8Fh1EeSQUIz1B5ANEQ" source="_8YeR4FhxEeSQUIz1B5ANEQ" target="_GDvrYE_BEeSxqchWGzsm5Q"/>
+    <parameterMappings xmi:id="_FJmo8Vh1EeSQUIz1B5ANEQ" source="_GDvrYE_BEeSxqchWGzsm5Q" target="_8YeR4FhxEeSQUIz1B5ANEQ"/>
+  </units>
+  <units xsi:type="henshin:Rule" xmi:id="_8aPFEFh0EeSQUIz1B5ANEQ" name="deleteExpression">
+    <parameters xmi:id="_9zglIFh0EeSQUIz1B5ANEQ" name="id"/>
+    <lhs xmi:id="_8aYPAFh0EeSQUIz1B5ANEQ" name="Lhs">
+      <nodes xmi:id="_ItCTcFh1EeSQUIz1B5ANEQ">
+        <type href="http://www.omg.org/spec/BPMN/20100524/MODEL-XMI#//SequenceFlow"/>
+        <attributes xmi:id="_JSLA0Fh1EeSQUIz1B5ANEQ" value="id">
+          <type href="http://www.omg.org/spec/BPMN/20100524/MODEL-XMI#//BaseElement/id"/>
+        </attributes>
+      </nodes>
+    </lhs>
+    <rhs xmi:id="_8aYPAVh0EeSQUIz1B5ANEQ" name="Rhs">
+      <nodes xmi:id="_ItCTcVh1EeSQUIz1B5ANEQ">
+        <type href="http://www.omg.org/spec/BPMN/20100524/MODEL-XMI#//SequenceFlow"/>
+        <attributes xmi:id="_JSLA0Vh1EeSQUIz1B5ANEQ" value="id">
+          <type href="http://www.omg.org/spec/BPMN/20100524/MODEL-XMI#//BaseElement/id"/>
+        </attributes>
+      </nodes>
+    </rhs>
+    <mappings xmi:id="_ItCTclh1EeSQUIz1B5ANEQ" origin="_ItCTcFh1EeSQUIz1B5ANEQ" image="_ItCTcVh1EeSQUIz1B5ANEQ"/>
+    <multiRules xmi:id="_E_-8AFj7EeSQUIz1B5ANEQ">
+      <parameters xmi:id="_FAAxMFj7EeSQUIz1B5ANEQ" name="id"/>
+      <lhs xmi:id="_FAAKIFj7EeSQUIz1B5ANEQ" name="Lhs">
+        <nodes xmi:id="_FAAKJVj7EeSQUIz1B5ANEQ" outgoing="_BxOhAFj7EeSQUIz1B5ANEQ">
+          <type href="http://www.omg.org/spec/BPMN/20100524/MODEL-XMI#//SequenceFlow"/>
+          <attributes xmi:id="_FAAKJlj7EeSQUIz1B5ANEQ" value="id">
+            <type href="http://www.omg.org/spec/BPMN/20100524/MODEL-XMI#//BaseElement/id"/>
+          </attributes>
+        </nodes>
+        <nodes xmi:id="_AoTKEFj7EeSQUIz1B5ANEQ" incoming="_BxOhAFj7EeSQUIz1B5ANEQ">
+          <type href="http://www.omg.org/spec/BPMN/20100524/MODEL-XMI#//FormalExpression"/>
+        </nodes>
+        <edges xmi:id="_BxOhAFj7EeSQUIz1B5ANEQ" source="_FAAKJVj7EeSQUIz1B5ANEQ" target="_AoTKEFj7EeSQUIz1B5ANEQ">
+          <type href="http://www.omg.org/spec/BPMN/20100524/MODEL-XMI#//SequenceFlow/conditionExpression"/>
+        </edges>
+      </lhs>
+      <rhs xmi:id="_FAAKIVj7EeSQUIz1B5ANEQ" name="Rhs">
+        <nodes xmi:id="_FAAKIlj7EeSQUIz1B5ANEQ">
+          <type href="http://www.omg.org/spec/BPMN/20100524/MODEL-XMI#//SequenceFlow"/>
+          <attributes xmi:id="_FAAKI1j7EeSQUIz1B5ANEQ" value="id">
+            <type href="http://www.omg.org/spec/BPMN/20100524/MODEL-XMI#//BaseElement/id"/>
+          </attributes>
+        </nodes>
+      </rhs>
+      <mappings xmi:id="_FAAKK1j7EeSQUIz1B5ANEQ" origin="_FAAKJVj7EeSQUIz1B5ANEQ" image="_FAAKIlj7EeSQUIz1B5ANEQ"/>
+      <multiMappings xmi:id="_FAAKJFj7EeSQUIz1B5ANEQ" origin="_ItCTcVh1EeSQUIz1B5ANEQ" image="_FAAKIlj7EeSQUIz1B5ANEQ"/>
+      <multiMappings xmi:id="_FAAKJ1j7EeSQUIz1B5ANEQ" origin="_ItCTcFh1EeSQUIz1B5ANEQ" image="_FAAKJVj7EeSQUIz1B5ANEQ"/>
+    </multiRules>
+  </units>
+  <units xsi:type="henshin:Rule" xmi:id="_XuY0cFnCEeSQUIz1B5ANEQ" name="setName">
+    <parameters xmi:id="_1R1HYFnGEeSQUIz1B5ANEQ" name="id"/>
+    <parameters xmi:id="_ZnGFsFnGEeSQUIz1B5ANEQ" name="oldName"/>
+    <parameters xmi:id="_4UL6kFnFEeSQUIz1B5ANEQ" name="newName"/>
+    <lhs xmi:id="_XubQsFnCEeSQUIz1B5ANEQ" name="Lhs">
+      <nodes xmi:id="_cl3gwFnCEeSQUIz1B5ANEQ">
+        <type href="http://www.omg.org/spec/BPMN/20100524/MODEL-XMI#//FlowElement"/>
+        <attributes xmi:id="_dfWGcFnCEeSQUIz1B5ANEQ" value="oldName">
+          <type href="http://www.omg.org/spec/BPMN/20100524/MODEL-XMI#//FlowElement/name"/>
+        </attributes>
+        <attributes xmi:id="_2JhkYFnGEeSQUIz1B5ANEQ" value="id">
+          <type href="http://www.omg.org/spec/BPMN/20100524/MODEL-XMI#//BaseElement/id"/>
+        </attributes>
+      </nodes>
+    </lhs>
+    <rhs xmi:id="_XubQsVnCEeSQUIz1B5ANEQ" name="Rhs">
+      <nodes xmi:id="_cl3gwVnCEeSQUIz1B5ANEQ">
+        <type href="http://www.omg.org/spec/BPMN/20100524/MODEL-XMI#//FlowElement"/>
+        <attributes xmi:id="_dfWGcVnCEeSQUIz1B5ANEQ" value="newName">
+          <type href="http://www.omg.org/spec/BPMN/20100524/MODEL-XMI#//FlowElement/name"/>
+        </attributes>
+        <attributes xmi:id="_2JhkYVnGEeSQUIz1B5ANEQ" value="id">
+          <type href="http://www.omg.org/spec/BPMN/20100524/MODEL-XMI#//BaseElement/id"/>
+        </attributes>
+      </nodes>
+    </rhs>
+    <mappings xmi:id="_cl3gwlnCEeSQUIz1B5ANEQ" origin="_cl3gwFnCEeSQUIz1B5ANEQ" image="_cl3gwVnCEeSQUIz1B5ANEQ"/>
   </units>
 </henshin:Module>
