@@ -10,6 +10,7 @@
 		<module>emf-ws-example</module>
 		<module>activiti-project</module>
 		<module>webapp-example</module>
+		<module>emf-ws-client-example</module>
 	</modules>
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
