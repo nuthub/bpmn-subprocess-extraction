@@ -9,13 +9,13 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import edu.udo.cs.ls14.jf.analysis.pst.Fragment;
+import edu.udo.cs.ls14.jf.bpmn.utils.ProcessLoader;
 import edu.udo.cs.ls14.jf.processmatching.ProcessMatching;
 import edu.udo.cs.ls14.jf.processmatching.ProcessMatchingChain;
 import edu.udo.cs.ls14.jf.transformation.FragmentComparator;
 import edu.udo.cs.ls14.jf.transformation.FragmentExtractor;
 import edu.udo.cs.ls14.jf.transformation.LabelGenerator;
 import edu.udo.cs.ls14.jf.transformation.LocationFixer;
-import edu.udo.cs.ls14.jf.utils.bpmn.ProcessLoader;
 import edu.udo.cs.ls14.jf.utils.bpmn.ResourceCopier;
 
 public class Application {

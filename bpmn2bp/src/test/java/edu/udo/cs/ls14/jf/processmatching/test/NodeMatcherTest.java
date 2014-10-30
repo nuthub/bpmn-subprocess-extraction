@@ -16,8 +16,8 @@ import org.eclipse.emf.ecore.resource.Resource;
 import org.javatuples.Pair;
 import org.junit.Test;
 
+import edu.udo.cs.ls14.jf.bpmn.utils.ProcessLoader;
 import edu.udo.cs.ls14.jf.processmatching.NodeMatcher;
-import edu.udo.cs.ls14.jf.utils.bpmn.ProcessLoader;
 
 public class NodeMatcherTest {
 

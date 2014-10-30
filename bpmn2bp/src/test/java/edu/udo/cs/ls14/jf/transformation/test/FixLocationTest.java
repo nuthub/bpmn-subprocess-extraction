@@ -16,8 +16,8 @@ import org.eclipse.emf.henshin.model.Unit;
 import org.eclipse.emf.henshin.model.resource.HenshinResourceSet;
 import org.junit.Test;
 
+import edu.udo.cs.ls14.jf.bpmn.utils.ProcessLoader;
 import edu.udo.cs.ls14.jf.transformation.LocationFixer;
-import edu.udo.cs.ls14.jf.utils.bpmn.ProcessLoader;
 import edu.udo.cs.ls14.jf.utils.bpmn.ResourceCopier;
 
 public class FixLocationTest {

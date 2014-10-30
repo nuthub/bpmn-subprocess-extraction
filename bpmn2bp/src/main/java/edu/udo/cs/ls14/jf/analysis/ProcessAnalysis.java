@@ -1,6 +1,9 @@
 package edu.udo.cs.ls14.jf.analysis;
 
+import java.io.Serializable;
 import java.util.Set;
+
+import javax.xml.bind.annotation.XmlRootElement;
 
 import org.eclipse.bpmn2.Process;
 import org.eclipse.emf.ecore.resource.Resource;
@@ -12,8 +15,13 @@ import edu.udo.cs.ls14.jf.analysis.reachabilitygraph.ReachabilityGraph;
 import edu.udo.cs.ls14.jf.analysis.reachabilitygraph.Trace;
 import fr.lip6.move.pnml.ptnet.hlapi.PetriNetHLAPI;
 
-public class ProcessAnalysis {
+@XmlRootElement
+public class ProcessAnalysis implements Serializable {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -1580226751012270993L;
 	private Resource resource;
 	private Process process;
 	private PetriNetHLAPI ptnet;

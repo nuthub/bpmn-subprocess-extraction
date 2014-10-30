@@ -11,7 +11,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import edu.udo.cs.ls14.jf.analysis.bpmn2ptnet.Bpmn2PtnetConverter;
-import edu.udo.cs.ls14.jf.utils.bpmn.ProcessLoader;
+import edu.udo.cs.ls14.jf.bpmn.utils.ProcessLoader;
 import fr.lip6.move.pnml.ptnet.hlapi.PageHLAPI;
 import fr.lip6.move.pnml.ptnet.hlapi.PetriNetHLAPI;
 

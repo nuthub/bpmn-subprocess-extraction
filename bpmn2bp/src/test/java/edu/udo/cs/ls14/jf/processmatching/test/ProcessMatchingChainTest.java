@@ -11,9 +11,9 @@ import org.eclipse.bpmn2.FlowNode;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.junit.Test;
 
+import edu.udo.cs.ls14.jf.bpmn.utils.ProcessLoader;
 import edu.udo.cs.ls14.jf.processmatching.ProcessMatching;
 import edu.udo.cs.ls14.jf.processmatching.ProcessMatchingChain;
-import edu.udo.cs.ls14.jf.utils.bpmn.ProcessLoader;
 
 public class ProcessMatchingChainTest {
 

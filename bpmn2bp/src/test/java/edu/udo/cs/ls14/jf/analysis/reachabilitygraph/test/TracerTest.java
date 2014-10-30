@@ -13,7 +13,7 @@ import org.junit.Test;
 import edu.udo.cs.ls14.jf.analysis.reachabilitygraph.ReachabilityGraph;
 import edu.udo.cs.ls14.jf.analysis.reachabilitygraph.Trace;
 import edu.udo.cs.ls14.jf.analysis.reachabilitygraph.Tracer;
-import edu.udo.cs.ls14.jf.utils.bpmn.ProcessLoader;
+import edu.udo.cs.ls14.jf.bpmn.utils.ProcessLoader;
 
 public class TracerTest {
 

@@ -13,5 +13,8 @@
   </root>
   
   <logger name="edu.udo.cs.ls14.jf" level="DEBUG" />
+  <logger name="edu.udo.cs.ls14.jf.nlp" level="INFO" />
+  <logger name="edu.udo.cs.ls14.jf.pst" level="INFO" />
+  <logger name="edu.udo.cs.ls14.jf.transformation.HenshinApplicationMonitor" level="INFO" />
 
 </configuration>

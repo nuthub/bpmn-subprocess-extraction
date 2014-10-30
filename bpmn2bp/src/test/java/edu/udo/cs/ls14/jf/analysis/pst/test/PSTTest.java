@@ -14,7 +14,7 @@ import org.junit.Test;
 
 import edu.udo.cs.ls14.jf.analysis.pst.Fragment;
 import edu.udo.cs.ls14.jf.analysis.pst.PST;
-import edu.udo.cs.ls14.jf.utils.bpmn.ProcessLoader;
+import edu.udo.cs.ls14.jf.bpmn.utils.ProcessLoader;
 
 public class PSTTest {
 

@@ -3,10 +3,12 @@ package edu.udo.cs.ls14.jf.nlp.test;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
+import org.junit.Ignore;
 import org.junit.Test;
 
 import edu.udo.cs.ls14.jf.nlp.Wortschatz;
 
+@Ignore
 public class WortschatzTest {
 
 	@Test

@@ -10,7 +10,7 @@ import edu.udo.cs.ls14.jf.analysis.conditionalprofile.ConditionalProfiler;
 import edu.udo.cs.ls14.jf.analysis.pst.PST;
 import edu.udo.cs.ls14.jf.analysis.reachabilitygraph.ReachabilityGraph;
 import edu.udo.cs.ls14.jf.analysis.reachabilitygraph.Tracer;
-import edu.udo.cs.ls14.jf.utils.bpmn.ProcessLoader;
+import edu.udo.cs.ls14.jf.bpmn.utils.ProcessLoader;
 
 public class ProcessAnalyzer {
 

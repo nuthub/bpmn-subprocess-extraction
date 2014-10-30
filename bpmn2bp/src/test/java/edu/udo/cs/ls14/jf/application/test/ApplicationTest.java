@@ -7,7 +7,7 @@ import org.javatuples.Pair;
 import org.junit.Test;
 
 import edu.udo.cs.ls14.jf.application.Application;
-import edu.udo.cs.ls14.jf.utils.bpmn.ProcessLoader;
+import edu.udo.cs.ls14.jf.bpmn.utils.ProcessLoader;
 
 public class ApplicationTest {
 
