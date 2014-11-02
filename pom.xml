@@ -5,10 +5,12 @@
 	<artifactId>bpmn-subprocess-extraction-parent</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<modules>
+		<module>activiti-extensions</module>
 		<module>bpmn-utils</module>
+
+		<module>activiti-webservice-example</module>
+
 		<module>bpmn2bp</module>
-		<module>emf-ws-example</module>
-		<module>activiti-project</module>
 		<module>webapp-example</module>
 		<module>emf-ws-client-example</module>
 	</modules>
