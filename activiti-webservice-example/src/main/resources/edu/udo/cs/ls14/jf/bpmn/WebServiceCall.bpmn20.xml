@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions xmlns="http://www.omg.org/spec/BPMN/20100524/MODEL"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+	xmlns:activiti="http://activiti.org/bpmn" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI"
+	xmlns:omgdc="http://www.omg.org/spec/DD/20100524/DC" xmlns:omgdi="http://www.omg.org/spec/DD/20100524/DI"
+	xmlns:jfservice="http://services.jf.ls14.cs.udo.edu/"
+	typeLanguage="http://www.w3.org/2001/XMLSchema" expressionLanguage="http://www.w3.org/1999/XPath"
+	targetNamespace="http://www.activiti.org/test">
+
+	<import importType="http://schemas.xmlsoap.org/wsdl/"
+		location="http://localhost:8080/activiti-webservice-example/StringSizeService?wsdl"
+		namespace="http://services.jf.ls14.cs.udo.edu/" />
+
+	<!-- QNames of input and output elements -->
+	<itemDefinition id="processInputItem" structureRef="xsd:string" />
+	<itemDefinition id="processOutputItem" structureRef="xsd:int" />
+	<itemDefinition id="getSizeRequestItem" structureRef="jfservice:getSize" />
+	<itemDefinition id="getSizeResponseItem" structureRef="jfservice:getSizeResponse" />
+
+	<!-- associates Messages to items -->
+	<message id="getSizeMessage" itemRef="getSizeRequestItem"></message>
+	<message id="getSizeResponseMessage" itemRef="getSizeResponseItem"></message>
+
+	<!-- Interface: implementationRef = QName of WSDL Port Type -->
+	<interface id="StringSizeInterface" name="String size service Interface"
+		implementationRef="jfservice:StringSize">
+		<!-- Operation: implementationRef = QName of WSDL Operation -->
+		<operation id="getSizeOperation" name="getSize Operation"
+			implementationRef="jfservice:getSize">
+			<inMessageRef>getSizeMessage</inMessageRef>
+			<outMessageRef>getSizeResponseMessage</outMessageRef>
+		</operation>
+	</interface>
+
+	<process id="myProcess" name="My process" isExecutable="true">
+
+		<ioSpecification id="ioSpecProcess">
+			<dataInput id="dataInputOfProcess" itemSubjectRef="processInputItem" />
+			<dataOutput id="dataOutputOfProcess" itemSubjectRef="processOutputItem" />
+			<inputSet id="processInputSet1">
+				<dataInputRefs>dataInputOfProcess</dataInputRefs>
+			</inputSet>
+			<outputSet id="processOutputSet1">
+				<dataOutputRefs>dataOutputOfProcess</dataOutputRefs>
+			</outputSet>
+		</ioSpecification>
+
+		<startEvent id="startevent1" name="Start"></startEvent>
+
+		<sequenceFlow id="flow1" sourceRef="startevent1"
+			targetRef="scripttask1"></sequenceFlow>
+
+		<scriptTask id="scripttask1" name="Script Task"
+			scriptFormat="groovy">
+			<script>println("dataInputOfProcess: " + dataInputOfProcess);
+			</script>
+		</scriptTask>
+
+		<sequenceFlow id="flow2" sourceRef="scripttask1"
+			targetRef="servicetask1"></sequenceFlow>
+
+		<serviceTask id="servicetask1" name="Service Task"
+			implementation="##WebService" operationRef="getSizeOperation">
+			<ioSpecification id="ioSpecServiceTask">
+				<dataInput id="dataInputOfServiceTask" itemSubjectRef="getSizeRequestItem" />
+				<dataOutput id="dataOutputOfServiceTask" itemSubjectRef="getSizeResponseItem" />
+				<inputSet id="serviceTaskInputSet1">
+					<dataInputRefs>dataInputOfServiceTask</dataInputRefs>
+				</inputSet>
+				<outputSet id="serviceTaskOutputSet1">
+					<dataOutputRefs>dataOutputOfServiceTask</dataOutputRefs>
+				</outputSet>
+			</ioSpecification>
+			<dataInputAssociation id="serviceTaskInputAssoc">
+				<sourceRef>dataInputOfProcess</sourceRef>
+				<targetRef>dataInputOfServiceTask</targetRef>
+				<assignment id="assignment1">
+					<from id="assignment1From">${dataInputOfProcess}</from>
+					<to id="assignment1To">${dataInputOfServiceTask.arg0}</to>
+				</assignment>
+			</dataInputAssociation>
+			<!-- Does work, if @WebResult is set (to name="result" in this example), 
+				see also http://forums.activiti.org/content/transformation-uel-dataoutputassociation -->
+			<dataOutputAssociation id="serviceTaskOutpuAssoc">
+				<targetRef>dataOutputOfProcess</targetRef>
+				<transformation id="myTransformation">${dataOutputOfServiceTask.result}
+				</transformation>
+			</dataOutputAssociation>
+			<!-- Does not work: -->
+			<!-- <dataOutputAssociation> <sourceRef>dataOutputOfServiceTask</sourceRef> 
+				<targetRef>dataOutputOfProcess</targetRef> <assignment> <from>${dataOutputOfServiceTask.result}</from> 
+				<to>${dataOutputOfProcess}</to> </assignment> </dataOutputAssociation> -->
+		</serviceTask>
+
+		<sequenceFlow id="flow3" sourceRef="servicetask1"
+			targetRef="scripttask2"></sequenceFlow>
+		<scriptTask id="scripttask2" name="Script Task"
+			scriptFormat="groovy">
+			<script>println("dataOutputOfProcess: " + dataOutputOfProcess);
+			</script>
+		</scriptTask>
+		<sequenceFlow id="flow4" sourceRef="scripttask2"
+			targetRef="endevent1"></sequenceFlow>
+		<endEvent id="endevent1" name="End"></endEvent>
+	</process>
+	<bpmndi:BPMNDiagram id="BPMNDiagram_myProcess">
+		<bpmndi:BPMNPlane bpmnElement="myProcess" id="BPMNPlane_myProcess">
+			<bpmndi:BPMNShape bpmnElement="startevent1"
+				id="BPMNShape_startevent1">
+				<omgdc:Bounds height="35.0" width="35.0" x="40.0" y="50.0"></omgdc:Bounds>
+			</bpmndi:BPMNShape>
+			<bpmndi:BPMNShape bpmnElement="endevent1" id="BPMNShape_endevent1">
+				<omgdc:Bounds height="35.0" width="35.0" x="570.0" y="50.0"></omgdc:Bounds>
+			</bpmndi:BPMNShape>
+			<bpmndi:BPMNShape bpmnElement="scripttask1"
+				id="BPMNShape_scripttask1">
+				<omgdc:Bounds height="55.0" width="105.0" x="120.0" y="40.0"></omgdc:Bounds>
+			</bpmndi:BPMNShape>
+			<bpmndi:BPMNShape bpmnElement="servicetask1"
+				id="BPMNShape_servicetask1">
+				<omgdc:Bounds height="55.0" width="105.0" x="280.0" y="40.0"></omgdc:Bounds>
+			</bpmndi:BPMNShape>
+			<bpmndi:BPMNShape bpmnElement="scripttask2"
+				id="BPMNShape_scripttask2">
+				<omgdc:Bounds height="55.0" width="105.0" x="430.0" y="40.0"></omgdc:Bounds>
+			</bpmndi:BPMNShape>
+			<bpmndi:BPMNEdge bpmnElement="flow1" id="BPMNEdge_flow1">
+				<omgdi:waypoint x="75.0" y="67.0"></omgdi:waypoint>
+				<omgdi:waypoint x="120.0" y="67.0"></omgdi:waypoint>
+			</bpmndi:BPMNEdge>
+			<bpmndi:BPMNEdge bpmnElement="flow2" id="BPMNEdge_flow2">
+				<omgdi:waypoint x="225.0" y="67.0"></omgdi:waypoint>
+				<omgdi:waypoint x="280.0" y="67.0"></omgdi:waypoint>
+			</bpmndi:BPMNEdge>
+			<bpmndi:BPMNEdge bpmnElement="flow3" id="BPMNEdge_flow3">
+				<omgdi:waypoint x="385.0" y="67.0"></omgdi:waypoint>
+				<omgdi:waypoint x="430.0" y="67.0"></omgdi:waypoint>
+			</bpmndi:BPMNEdge>
+			<bpmndi:BPMNEdge bpmnElement="flow4" id="BPMNEdge_flow4">
+				<omgdi:waypoint x="535.0" y="67.0"></omgdi:waypoint>
+				<omgdi:waypoint x="570.0" y="67.0"></omgdi:waypoint>
+			</bpmndi:BPMNEdge>
+		</bpmndi:BPMNPlane>
+	</bpmndi:BPMNDiagram>
+</definitions>
