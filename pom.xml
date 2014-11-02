@@ -12,7 +12,6 @@
 
 		<module>bpmn2bp</module>
 		<module>webapp-example</module>
-		<module>emf-ws-client-example</module>
 	</modules>
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
