@@ -2,7 +2,9 @@ package edu.udo.cs.ls14.jf.bpmn.utils;
 
 import java.net.URL;
 import java.util.List;
+import java.util.stream.Collectors;
 
+import org.eclipse.bpmn2.Definitions;
 import org.eclipse.bpmn2.DocumentRoot;
 import org.eclipse.bpmn2.Process;
 import org.eclipse.bpmn2.RootElement;
@@ -18,12 +20,7 @@ public class ProcessLoader {
 
 	public static Process getProcessFromResource(Resource resource)
 			throws Exception {
-		EList<EObject> contents = resource.getContents();
-		if (!(contents.get(0) instanceof DocumentRoot)) {
-			throw new Exception("load error");
-		}
-		DocumentRoot docRoot = ((DocumentRoot) contents.get(0));
-		List<RootElement> roots = docRoot.getDefinitions().getRootElements();
+		List<RootElement> roots = getDefinitionsFromResource(resource).getRootElements();
 		if (roots.isEmpty()) {
 			throw new Exception("empty definitions found");
 		}
@@ -72,6 +69,30 @@ public class ProcessLoader {
 			Resource.Factory.Registry.INSTANCE.getExtensionToFactoryMap().put(
 					"bpmn", new Bpmn2ResourceFactoryImpl());
 		}
+	}
+
+	public static Process getProcessFromDefinitions(Definitions definitions)
+			throws Exception {
+		List<Process> processes = definitions.getRootElements().stream()
+				.filter(r -> r instanceof Process).map(p -> (Process) p)
+				.collect(Collectors.toList());
+		if (processes.size() < 1) {
+			throw new Exception("Definitions object contains no Process");
+		} else if (processes.size() > 1) {
+			throw new Exception(
+					"Definitions object contains more than one Process");
+		}
+		return processes.get(0);
+	}
+
+	public static Definitions getDefinitionsFromResource(Resource resource) throws Exception {
+		EList<EObject> contents = resource.getContents();
+		if (!(contents.get(0) instanceof DocumentRoot)) {
+			throw new Exception("load error");
+		}
+		DocumentRoot docRoot = ((DocumentRoot) contents.get(0));
+		Definitions definitions = docRoot.getDefinitions();
+		return definitions;
 	}
 
 }
