@@ -1,4 +1,4 @@
-package edu.udo.cs.ls14.services.bpmn.metrics;
+package edu.udo.cs.ls14.jf.services.bpmn;
 
 import java.util.function.Predicate;
 import java.util.logging.Logger;
@@ -64,7 +64,7 @@ public class NumberOfNodes {
 			LOG.warning("Received null input");
 			return -1;
 		}
-		LOG.info("Received definitionsXml of length " + definitionsXml.length());
+		LOG.info("Received definitionsXmi of length " + definitionsXml.length());
 		LOG.fine("Received: " + definitionsXml);
 		EObject eobj = EObjectXmlConverter.xml2EObject(definitionsXml);
 		if (!(eobj instanceof Definitions)) {

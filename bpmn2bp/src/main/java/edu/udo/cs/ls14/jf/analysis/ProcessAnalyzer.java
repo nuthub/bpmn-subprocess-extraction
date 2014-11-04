@@ -1,14 +1,18 @@
 package edu.udo.cs.ls14.jf.analysis;
 
+import java.util.Set;
+
 import org.eclipse.bpmn2.Process;
 import org.eclipse.emf.ecore.resource.Resource;
 
 import edu.udo.cs.ls14.jf.analysis.behaviorprofile.BehavioralProfile;
+import edu.udo.cs.ls14.jf.analysis.behaviorprofile.BehavioralProfiler;
 import edu.udo.cs.ls14.jf.analysis.bpmn2ptnet.Bpmn2PtnetConverter;
 import edu.udo.cs.ls14.jf.analysis.conditionalprofile.ConditionalProfile;
 import edu.udo.cs.ls14.jf.analysis.conditionalprofile.ConditionalProfiler;
 import edu.udo.cs.ls14.jf.analysis.pst.PST;
 import edu.udo.cs.ls14.jf.analysis.reachabilitygraph.ReachabilityGraph;
+import edu.udo.cs.ls14.jf.analysis.reachabilitygraph.Trace;
 import edu.udo.cs.ls14.jf.analysis.reachabilitygraph.Tracer;
 import edu.udo.cs.ls14.jf.bpmn.utils.ProcessLoader;
 
@@ -31,11 +35,12 @@ public class ProcessAnalyzer {
 		analysis.setReachabilityGraph(reachabilityGraph);
 
 		// create traces
-		analysis.setTraces(Tracer.getTraces(process, reachabilityGraph));
+		Set<Trace> traces = Tracer.getTraces(process, reachabilityGraph);
+		analysis.setTraces(traces);
 
 		// create behavioral profile
-		BehavioralProfile behavioralProfile = new BehavioralProfile();
-		behavioralProfile.generateFromTraces(process, analysis.getTraces());
+		BehavioralProfile behavioralProfile = BehavioralProfiler
+				.generateProfile(process, analysis.getTraces());
 		analysis.setBehavioralProfile(behavioralProfile);
 
 		// create conditional profile

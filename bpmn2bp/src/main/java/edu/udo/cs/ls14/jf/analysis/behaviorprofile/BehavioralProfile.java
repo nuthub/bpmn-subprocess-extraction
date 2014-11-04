@@ -2,85 +2,50 @@ package edu.udo.cs.ls14.jf.analysis.behaviorprofile;
 
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Set;
 
-import org.eclipse.bpmn2.FlowElement;
+import javax.xml.bind.annotation.XmlRootElement;
+
 import org.eclipse.bpmn2.FlowNode;
-import org.eclipse.bpmn2.Process;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import org.javatuples.Pair;
 
-import edu.udo.cs.ls14.jf.analysis.reachabilitygraph.Trace;
+@XmlRootElement
+public class BehavioralProfile extends
+		HashMap<Pair<String, String>, RelationType> {
 
-public class BehavioralProfile {
-
-	private static final Logger LOG = LoggerFactory.getLogger(BehavioralProfile.class);
-	
-	private Matrix<FlowNode, Boolean> m;
-	private Map<String, FlowNode> nodes;
-
-	public BehavioralProfile() {
-		m = new Matrix<FlowNode, Boolean>(false);
-		nodes = new HashMap<String, FlowNode>();
-	}
-
-	public void generateFromTraces(Process process, Set<Trace> traces) {
-		for (FlowElement elem : process.getFlowElements()) {
-			if (elem instanceof FlowNode) {
-				nodes.put(elem.getId(), (FlowNode) elem);
-			}
-		}
-		for (Trace t : traces) {
-			for (int i = 0; i < t.size() - 1; i++) {
-				if(!nodes.containsKey(t.get(i))) {
-					LOG.debug(t.get(i) + " not contained in " + nodes);
-				}
-				if(!nodes.containsKey(t.get(i+1))) {
-					LOG.debug(t.get(i+1) + " not contained in " + nodes);
-				}
-				m.put(nodes.get(t.get(i)), nodes.get(t.get(i + 1)), true);
-			}
-		}
-	}
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -6859323470574181105L;
 
 	public RelationType get(FlowNode a, FlowNode b) {
-		if (m.get(a, b) && m.get(b, a)) {
-			return RelationType.PARALLEL;
-		}
-		if (m.get(a, b) && !m.get(b, a)) {
-			return RelationType.DIRECT_SUCCESSOR;
-		}
-		if (!m.get(a, b) && m.get(b, a)) {
-			return RelationType.DIRECT_PREDECESSOR;
-		}
-		return RelationType.NO_SUCCESSION;
+		return get(Pair.with(a.getId(), b.getId()));
 	}
 
 	public String toString() {
 		StringBuffer sb = new StringBuffer();
-		for (FlowNode x : m.getKeys()) {
-			for (FlowNode y : m.getKeys()) {
-				sb.append(x.getName() + " ");
-				RelationType r = get(x, y);
-				switch (r) {
-				case DIRECT_SUCCESSOR:
-					sb.append("→");
-					break;
-				case DIRECT_PREDECESSOR:
-					sb.append("←");
-					break;
-				case PARALLEL:
-					sb.append("∥");
-					break;
-				case NO_SUCCESSION:
-					sb.append("#");
-					break;
-				}
-				sb.append(" " + y.getName());
-				sb.append(System.getProperty("line.separator"));
+		for (Map.Entry<Pair<String, String>, RelationType> entry : entrySet()) {
+			String a = entry.getKey().getValue0();
+			String b = entry.getKey().getValue1();
+			RelationType r = entry.getValue();
+			sb.append(a + " ");
+			switch (r) {
+			case DIRECT_SUCCESSOR:
+				sb.append("→");
+				break;
+			case DIRECT_PREDECESSOR:
+				sb.append("←");
+				break;
+			case PARALLEL:
+				sb.append("∥");
+				break;
+			case NO_SUCCESSION:
+				sb.append("#");
+				break;
 			}
+			sb.append(" " + b);
 			sb.append(System.getProperty("line.separator"));
 		}
+
 		return sb.toString();
 	}
 }

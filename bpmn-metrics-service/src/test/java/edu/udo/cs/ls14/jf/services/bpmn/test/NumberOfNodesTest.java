@@ -1,4 +1,4 @@
-package edu.udo.cs.ls14.jf.services.bpmn.metrics.test;
+package edu.udo.cs.ls14.jf.services.bpmn.test;
 
 import static org.junit.Assert.assertEquals;
 
@@ -9,7 +9,7 @@ import org.junit.Test;
 
 import edu.udo.cs.ls14.jf.bpmn.utils.EObjectXmlConverter;
 import edu.udo.cs.ls14.jf.bpmn.utils.ProcessLoader;
-import edu.udo.cs.ls14.services.bpmn.metrics.NumberOfNodes;
+import edu.udo.cs.ls14.jf.services.bpmn.NumberOfNodes;
 
 public class NumberOfNodesTest {
 

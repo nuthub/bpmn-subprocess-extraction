@@ -11,6 +11,7 @@ import org.jbpt.utils.IOUtils;
 import org.junit.Test;
 
 import edu.udo.cs.ls14.jf.analysis.behaviorprofile.BehavioralProfile;
+import edu.udo.cs.ls14.jf.analysis.behaviorprofile.BehavioralProfiler;
 import edu.udo.cs.ls14.jf.analysis.bpmn2ptnet.Bpmn2PtnetConverter;
 import edu.udo.cs.ls14.jf.analysis.reachabilitygraph.ReachabilityGraph;
 import edu.udo.cs.ls14.jf.analysis.reachabilitygraph.Trace;
@@ -62,7 +63,8 @@ public class BehavioralProfileTest {
 
 	private BehavioralProfile createBpFromBpmn(String basename)
 			throws Exception {
-		URL url = getClass().getResource("/edu/udo/cs/ls14/jf/bpmn/" + basename + ".bpmn");
+		URL url = getClass().getResource(
+				"/edu/udo/cs/ls14/jf/bpmn/" + basename + ".bpmn");
 		assertNotNull(url);
 		System.out.println("Now profiling " + basename);
 		// Load BPMN model
@@ -72,32 +74,27 @@ public class BehavioralProfileTest {
 		// create P/T-Net from bpmn
 		Bpmn2PtnetConverter converter = new Bpmn2PtnetConverter();
 		PetriNetHLAPI ptnet = converter.convertToPetriNet(process);
-//		converter.saveToPnmlFile("/tmp/" + basename + ".pnml");
+		// converter.saveToPnmlFile("/tmp/" + basename + ".pnml");
 
 		// create Reachability Graph from petri net
 		ReachabilityGraph rg = new ReachabilityGraph();
 		rg.createFromPTNet(ptnet.getContainedItem());
 		String dot = rg.toDot();
 		System.out.println(dot);
-		IOUtils.invokeDOT("/tmp", basename + "-reachabilityGraph.png",
-				dot);
-
+		IOUtils.invokeDOT("/tmp", basename + "-reachabilityGraph.png", dot);
 
 		// Create Traces
 		Set<Trace> traces = Tracer.getTraces(process, rg);
 		// output traces
-		for(Trace trace : traces) {
+		for (Trace trace : traces) {
 			System.out.println(trace);
-			for(String node: trace) {
+			for (String node : trace) {
 				System.out.println(" " + node);
 			}
 		}
 
 		// create Behavioral Profile
-		BehavioralProfile bp = new BehavioralProfile();
-		bp.generateFromTraces(process, traces);
-
-		return bp;
+		return BehavioralProfiler.generateProfile(process, traces);
 	}
 
 }
