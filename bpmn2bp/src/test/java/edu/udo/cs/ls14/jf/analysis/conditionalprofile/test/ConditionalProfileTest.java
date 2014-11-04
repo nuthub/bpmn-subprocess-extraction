@@ -14,10 +14,12 @@ public class ConditionalProfileTest {
 		Resource res1 = getResource("conditionSequence");
 		ConditionalProfile cp1 = ConditionalProfiler.generateProfile(res1);
 		System.out.println(cp1);
+		// TODO: assertions
 
 		Resource res2 = getResource("conditionSequence2");
 		ConditionalProfile cp2 = ConditionalProfiler.generateProfile(res2);
 		System.out.println(cp2);
+		// TODO: assertions
 	}
 
 	private Resource getResource(String basename) throws Exception {

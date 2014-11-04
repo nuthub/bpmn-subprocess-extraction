@@ -1,23 +1,17 @@
 package edu.udo.cs.ls14.jf.analysis.conditionalprofile;
 
-import java.util.Map;
-import java.util.Map.Entry;
+import java.util.HashMap;
 import java.util.Set;
 
 import org.eclipse.bpmn2.FlowNode;
 import org.eclipse.bpmn2.FormalExpression;
 
-public class ConditionalProfile {
-	private Map<FlowNode, Set<FormalExpression>> flowNodeConditions = null;
+public class ConditionalProfile extends HashMap<FlowNode, Set<FormalExpression>> {
 
-	public Map<FlowNode, Set<FormalExpression>> getFlowNodeConditions() {
-		return flowNodeConditions;
-	}
-
-	public void setFlowNodeConditions(
-			Map<FlowNode, Set<FormalExpression>> flowNodeConditions) {
-		this.flowNodeConditions = flowNodeConditions;
-	}
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 5558382440946440541L;
 
 	public String toString() {
 		StringBuffer sb = new StringBuffer();
@@ -26,8 +20,7 @@ public class ConditionalProfile {
 		// fnc
 		sb.append("  flowNodeConditions=[");
 		sb.append(System.getProperty("line.separator"));
-		for (Entry<FlowNode, Set<FormalExpression>> entry : flowNodeConditions
-				.entrySet()) {
+		for (Entry<FlowNode, Set<FormalExpression>> entry : entrySet()) {
 			sb.append("    " + entry.getKey().getId() + " => ");
 			for (FormalExpression exp : entry.getValue()) {
 				sb.append(exp.getBody() + ", ");

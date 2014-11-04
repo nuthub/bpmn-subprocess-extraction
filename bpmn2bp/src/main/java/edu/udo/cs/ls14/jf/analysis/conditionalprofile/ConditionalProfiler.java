@@ -22,18 +22,22 @@ public class ConditionalProfiler {
 
 	public static ConditionalProfile generateProfile(Resource resource)
 			throws Exception {
-		Map<FlowNode, Set<FormalExpression>> flowNodeConditions = new HashMap<FlowNode, Set<FormalExpression>>();
+		Process process = ProcessLoader.getProcessFromResource(resource);
+		return generateProfile(process);
+	}
+
+	public static ConditionalProfile generateProfile(Process process)
+			throws Exception {
+		ConditionalProfile cp = new ConditionalProfile();
 
 		Map<SequenceFlow, FormalExpression> sequenceFlowConditions = new HashMap<SequenceFlow, FormalExpression>();
 		Map<Expression, SequenceFlow> expressions = new HashMap<Expression, SequenceFlow>();
 
-		Process process = ProcessLoader.getProcessFromResource(resource);
 		for (FlowElement element : process.getFlowElements()) {
 			if (element instanceof Gateway) {
 				// do nothing
 			} else if (element instanceof FlowNode) {
-				flowNodeConditions.put((FlowNode) element,
-						new HashSet<FormalExpression>());
+				cp.put((FlowNode) element, new HashSet<FormalExpression>());
 			} else if (element instanceof SequenceFlow) {
 				Expression exp = ((SequenceFlow) element)
 						.getConditionExpression();
@@ -44,17 +48,15 @@ public class ConditionalProfiler {
 				}
 			}
 		}
+
 		for (SequenceFlow flow : sequenceFlowConditions.keySet()) {
 
 			Set<FlowNode> nodes = getAffectedNodes(flow,
 					new HashSet<FlowNode>());
 			for (FlowNode node : nodes) {
-				flowNodeConditions.get(node).add(
-						sequenceFlowConditions.get(flow));
+				cp.get(node).add(sequenceFlowConditions.get(flow));
 			}
 		}
-		ConditionalProfile cp = new ConditionalProfile();
-		cp.setFlowNodeConditions(flowNodeConditions);
 		return cp;
 	}
 

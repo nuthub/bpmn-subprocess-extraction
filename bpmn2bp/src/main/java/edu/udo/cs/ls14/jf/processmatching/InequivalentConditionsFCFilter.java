@@ -119,7 +119,7 @@ public class InequivalentConditionsFCFilter {
 
 	private static Map<FlowNode, Set<FormalExpression>> getFragmentFnc(
 			ConditionalProfile cp, Set<FlowNode> nodes, Set<SequenceFlow> edges) {
-		Map<FlowNode, Set<FormalExpression>> fnc = cp.getFlowNodeConditions();
+		Map<FlowNode, Set<FormalExpression>> fnc = cp;
 		Map<FlowNode, Set<FormalExpression>> fnc2 = new HashMap<FlowNode, Set<FormalExpression>>();
 		// Für alle Knoten des Fragments
 		for (FlowNode node : nodes) {
