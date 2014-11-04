@@ -12,7 +12,7 @@ import edu.udo.cs.ls14.jf.analysis.behaviorprofile.RelationType;
 import edu.udo.cs.ls14.jf.services.types.BehaviourProfileType;
 import edu.udo.cs.ls14.jf.services.types.OrderRelationType;
 
-public class BehaviourProfileAdapter extends
+public class BehavioralProfileAdapter extends
 		XmlAdapter<BehaviourProfileType, BehavioralProfile> {
 
 	@Override

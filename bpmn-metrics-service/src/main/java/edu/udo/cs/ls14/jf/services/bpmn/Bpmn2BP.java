@@ -24,7 +24,7 @@ import edu.udo.cs.ls14.jf.analysis.reachabilitygraph.Trace;
 import edu.udo.cs.ls14.jf.analysis.reachabilitygraph.Tracer;
 import edu.udo.cs.ls14.jf.bpmn.utils.EObjectXmlConverter;
 import edu.udo.cs.ls14.jf.bpmn.utils.ProcessLoader;
-import edu.udo.cs.ls14.jf.services.adapter.BehaviourProfileAdapter;
+import edu.udo.cs.ls14.jf.services.adapter.BehavioralProfileAdapter;
 import fr.lip6.move.pnml.ptnet.hlapi.PetriNetHLAPI;
 
 @WebService
@@ -34,7 +34,7 @@ public class Bpmn2BP {
 
 	@WebMethod
 	@WebResult(name = "behaviourProfile")
-	@XmlJavaTypeAdapter(BehaviourProfileAdapter.class)
+	@XmlJavaTypeAdapter(BehavioralProfileAdapter.class)
 	public BehavioralProfile getBehavioralProfile(
 			@WebParam(name = "definitionsXmi") String definitionsXml)
 			throws Exception {

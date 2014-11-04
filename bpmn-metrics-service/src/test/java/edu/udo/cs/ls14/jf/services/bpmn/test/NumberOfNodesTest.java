@@ -21,11 +21,18 @@ public class NumberOfNodesTest {
 	}
 
 	@Test
-	public void testNumberOfActivities() throws Exception {
+	public void testPM1() throws Exception {
 		String definitionsXml = getDefinitionsXml("PM1-mit-Fragment1.bpmn");
 		assertEquals(5, service.getNumOfActivities(definitionsXml));
 		assertEquals(7, service.getNumOfActivitiesAndEvents(definitionsXml));
 		assertEquals(2, service.getNumOfGateways(definitionsXml));
+		
+	}
+	
+	@Test
+	public void testConditionSequence() throws Exception {
+		String definitionsXml = getDefinitionsXml("conditionSequence.bpmn");
+		System.out.println(definitionsXml);
 	}
 
 	private String getDefinitionsXml(String basename) throws Exception {
