@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<genmodel:GenModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore"
+    xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" modelDirectory="/bpmn-analysis-model/src/main/java" modelPluginID=""
+    modelName="BpmnAnalysis" rootExtendsClass="org.eclipse.emf.ecore.impl.MinimalEObjectImpl$Container"
+    importerID="org.eclipse.emf.importer.ecore" complianceLevel="8.0" copyrightFields="false"
+    usedGenPackages="../../../../org.eclipse.bpmn2/model/BPMN20.genmodel#//bpmn2 ../../../../org.eclipse.bpmn2/model/BPMN20.genmodel#//di ../../../../org.eclipse.bpmn2/model/BPMN20.genmodel#//di.1 ../../../../org.eclipse.bpmn2/model/BPMN20.genmodel#//dc"
+    operationReflection="true" importOrganizing="true">
+  <foreignModel>BpmnAnalysis.ecore</foreignModel>
+  <genPackages prefix="BpmnAnalysis" basePackage="edu.udo.cs.ls14.jf" disposableProviderFactory="true"
+      ecorePackage="BpmnAnalysis.ecore#/">
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="BpmnAnalysis.ecore#//behavioralProfile/BehavioralRelationType">
+      <genEnumLiterals ecoreEnumLiteral="BpmnAnalysis.ecore#//behavioralProfile/BehavioralRelationType/NO_SUCCESSION"/>
+      <genEnumLiterals ecoreEnumLiteral="BpmnAnalysis.ecore#//behavioralProfile/BehavioralRelationType/DIRECT_SUCCESSOR"/>
+      <genEnumLiterals ecoreEnumLiteral="BpmnAnalysis.ecore#//behavioralProfile/BehavioralRelationType/DIRECT_PREDECESSOR"/>
+      <genEnumLiterals ecoreEnumLiteral="BpmnAnalysis.ecore#//behavioralProfile/BehavioralRelationType/PARALLEL"/>
+    </genEnums>
+    <genClasses ecoreClass="BpmnAnalysis.ecore#//Analysis">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute BpmnAnalysis.ecore#//Analysis/id"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference BpmnAnalysis.ecore#//Analysis/definitions"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference BpmnAnalysis.ecore#//Analysis/results"/>
+    </genClasses>
+    <genClasses ecoreClass="BpmnAnalysis.ecore#//AnalysisResultEntry">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute BpmnAnalysis.ecore#//AnalysisResultEntry/key"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference BpmnAnalysis.ecore#//AnalysisResultEntry/value"/>
+    </genClasses>
+    <genClasses ecoreClass="BpmnAnalysis.ecore#//AnalysisResult"/>
+    <genClasses ecoreClass="BpmnAnalysis.ecore#//behavioralProfile/BehavioralProfile">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference BpmnAnalysis.ecore#//behavioralProfile/BehavioralProfile/relations"/>
+    </genClasses>
+    <genClasses ecoreClass="BpmnAnalysis.ecore#//behavioralProfile/BehavioralRelation">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference BpmnAnalysis.ecore#//behavioralProfile/BehavioralRelation/left"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference BpmnAnalysis.ecore#//behavioralProfile/BehavioralRelation/right"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute BpmnAnalysis.ecore#//behavioralProfile/BehavioralRelation/relation"/>
+    </genClasses>
+    <genClasses ecoreClass="BpmnAnalysis.ecore#//conditionalProfile/ConditionalProfile">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference BpmnAnalysis.ecore#//conditionalProfile/ConditionalProfile/relations"/>
+    </genClasses>
+    <genClasses ecoreClass="BpmnAnalysis.ecore#//conditionalProfile/ConditionRelationEntry">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference BpmnAnalysis.ecore#//conditionalProfile/ConditionRelationEntry/key"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference BpmnAnalysis.ecore#//conditionalProfile/ConditionRelationEntry/value"/>
+    </genClasses>
+    <genClasses ecoreClass="BpmnAnalysis.ecore#//ProcessStructureTree">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference BpmnAnalysis.ecore#//ProcessStructureTree/fragments"/>
+    </genClasses>
+    <genClasses ecoreClass="BpmnAnalysis.ecore#//Fragment">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference BpmnAnalysis.ecore#//Fragment/entry"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference BpmnAnalysis.ecore#//Fragment/exit"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference BpmnAnalysis.ecore#//Fragment/parent"/>
+    </genClasses>
+  </genPackages>
+</genmodel:GenModel>
