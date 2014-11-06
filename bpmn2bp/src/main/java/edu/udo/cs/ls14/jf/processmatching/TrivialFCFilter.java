@@ -1,43 +1,34 @@
 package edu.udo.cs.ls14.jf.processmatching;
 
-import java.util.Set;
-
 import org.apache.commons.lang3.NotImplementedException;
-import org.eclipse.bpmn2.Activity;
-import org.eclipse.bpmn2.Event;
-import org.eclipse.bpmn2.FlowNode;
-import org.javatuples.Pair;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import edu.udo.cs.ls14.jf.analysis.pst.Fragment;
+import edu.udo.cs.ls14.jf.bpmnanalysis.BpmnAnalysisFactory;
+import edu.udo.cs.ls14.jf.bpmnanalysis.FragmentMatching;
+import edu.udo.cs.ls14.jf.bpmnanalysis.FragmentPair;
+import edu.udo.cs.ls14.jf.bpmnanalysis.util.FragmentUtil;
 
 public class TrivialFCFilter {
 	private static final Logger LOG = LoggerFactory
 			.getLogger(TrivialFCFilter.class);
 
-	public static Set<Pair<Fragment, Fragment>> filter(ProcessMatching matching) {
-		// TODO: do not clone matching object
-		ProcessMatching filtered = matching.clone();
-		for (Pair<Fragment, Fragment> pair : matching
-				.getFragmentCorrespondences()) {
-			int size0 = getEventsAndActivites(pair.getValue0()).size();
-			int size1 = getEventsAndActivites(pair.getValue1()).size();
+	public static FragmentMatching filter(FragmentMatching matchingIn) {
+		FragmentMatching matchingOut = BpmnAnalysisFactory.eINSTANCE
+				.createFragmentMatching();
+		for (FragmentPair pair : matchingIn.getPairs()) {
+			int size0 = FragmentUtil.getEventsAndActivites(pair.getA()).size();
+			int size1 = FragmentUtil.getEventsAndActivites(pair.getB()).size();
 			if (size0 != size1) {
 				throw new NotImplementedException(
 						"1:n and n:m correspondences not yet implemented.");
 			}
-			if (size0 < 2) {
+			if (size0 >= 2) {
 				LOG.info(pair + " is filtered out, because of size=" + size0);
-				filtered.getFragmentCorrespondences().remove(pair);
+				matchingOut.getPairs().add(pair);
 			}
 		}
-		return filtered.getFragmentCorrespondences();
+		return matchingOut;
 	}
 
-	// TODO: move to Fragment
-	private static Set<FlowNode> getEventsAndActivites(Fragment fragment) {
-		return fragment.getContainedFlowNodes(n -> n instanceof Activity
-				|| n instanceof Event);
-	}
 }

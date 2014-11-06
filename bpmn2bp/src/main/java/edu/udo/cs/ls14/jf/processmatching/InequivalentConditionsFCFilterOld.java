@@ -4,54 +4,51 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
+import java.util.stream.Collectors;
 
+import org.eclipse.bpmn2.Activity;
+import org.eclipse.bpmn2.Event;
 import org.eclipse.bpmn2.FlowNode;
 import org.eclipse.bpmn2.FormalExpression;
 import org.eclipse.bpmn2.SequenceFlow;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.EMap;
+import org.javatuples.Pair;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import edu.udo.cs.ls14.jf.bpmnanalysis.Analysis;
-import edu.udo.cs.ls14.jf.bpmnanalysis.BpmnAnalysisFactory;
+import edu.udo.cs.ls14.jf.analysis.pst.FragmentOld;
 import edu.udo.cs.ls14.jf.bpmnanalysis.ConditionalProfile;
-import edu.udo.cs.ls14.jf.bpmnanalysis.Fragment;
-import edu.udo.cs.ls14.jf.bpmnanalysis.FragmentMatching;
-import edu.udo.cs.ls14.jf.bpmnanalysis.FragmentPair;
-import edu.udo.cs.ls14.jf.bpmnanalysis.NodeMatching;
-import edu.udo.cs.ls14.jf.bpmnanalysis.NodePair;
-import edu.udo.cs.ls14.jf.bpmnanalysis.util.FragmentUtil;
 
-public class InequivalentConditionsFCFilter {
+public class InequivalentConditionsFCFilterOld {
 
 	private static final Logger LOG = LoggerFactory
-			.getLogger(InequivalentConditionsFCFilter.class);
+			.getLogger(InequivalentConditionsFCFilterOld.class);
 
 	/**
 	 * TODO: könnte eleganter gelöst werden / funktional
 	 * 
-	 * @param matchingIn
+	 * @param matching
 	 * @return
 	 */
-	public static FragmentMatching filter(FragmentMatching matchingIn,
-			NodeMatching nodeMatching, Analysis analysis1, Analysis analysis2) {
-		FragmentMatching matchingOut = BpmnAnalysisFactory.eINSTANCE
-				.createFragmentMatching();
-		for (FragmentPair pair : matchingIn.getPairs()) {
-			Fragment f1 = pair.getA();
-			Fragment f2 = pair.getB();
+	public static Set<Pair<FragmentOld, FragmentOld>> filter(ProcessMatching matching) {
+		Set<Pair<FragmentOld, FragmentOld>> filteredMapping = new HashSet<Pair<FragmentOld, FragmentOld>>();
+		// ConditionalProfile p1 = matching.
+		for (Pair<FragmentOld, FragmentOld> mapping : matching
+				.getFragmentCorrespondencesOld()) {
+			FragmentOld f1 = mapping.getValue0();
+			FragmentOld f2 = mapping.getValue1();
 			LOG.debug("-------------");
 			LOG.debug("Checking if " + f1 + " and " + f2
 					+ " have the same conditional profile.");
-			Set<FlowNode> nodes1 = FragmentUtil.getEventsAndActivites(f1);
-			Set<FlowNode> nodes2 = FragmentUtil.getEventsAndActivites(f2);
-			Set<SequenceFlow> edges1 = FragmentUtil.getEdges(f1);
-			Set<SequenceFlow> edges2 = FragmentUtil.getEdges(f2);
-			ConditionalProfile cp1 = (ConditionalProfile) analysis1
-					.getResults().get("conditionalProfile");
-			ConditionalProfile cp2 = (ConditionalProfile) analysis2
-					.getResults().get("conditionalProfile");
+			Set<FlowNode> nodes1 = getEventsAndActivites(f1);
+			Set<FlowNode> nodes2 = getEventsAndActivites(f2);
+			Set<SequenceFlow> edges1 = getEdges(f1);
+			Set<SequenceFlow> edges2 = getEdges(f2);
+			ConditionalProfile cp1 = matching.getAnalysis1()
+					.getConditionalProfile();
+			ConditionalProfile cp2 = matching.getAnalysis2()
+					.getConditionalProfile();
 			// Hole relevante FNCs
 			Map<FlowNode, Set<FormalExpression>> fnc1 = getFragmentFnc(cp1,
 					nodes1, edges1);
@@ -62,7 +59,7 @@ public class InequivalentConditionsFCFilter {
 			// Für alle Knoten n1 von Prozess1
 			for (FlowNode n1 : nodes1) {
 				// hole korrespondierenden Knoten n2
-				FlowNode n2 = getMatchingNode(matchingIn, nodeMatching, n1);
+				FlowNode n2 = getMatchingNode(matching, n1);
 				LOG.debug("Now comparing conditions of:");
 				LOG.debug("n1 = " + n1);
 				LOG.debug("n2 = " + n2);
@@ -114,12 +111,12 @@ public class InequivalentConditionsFCFilter {
 			} // forall nodes of fragment1
 			if (allConditionsMatch) {
 				LOG.info("Conditions equivalent fragments: " + f1 + " / " + f2);
-				matchingOut.getPairs().add(pair);
+				filteredMapping.add(mapping);
 			} else {
 				LOG.debug(f1 + " and " + f2 + " are not conditions equivalent.");
 			}
 		}
-		return matchingOut;
+		return filteredMapping;
 	}
 
 	private static Map<FlowNode, Set<FormalExpression>> getFragmentFnc(
@@ -151,14 +148,29 @@ public class InequivalentConditionsFCFilter {
 		return false;
 	}
 
-	private static FlowNode getMatchingNode(FragmentMatching matchingIn,
-			NodeMatching nodeMatching, FlowNode node) {
-		for (NodePair pair : nodeMatching.getPairs()) {
-			if (pair.getA().getId().equals(node.getId())) {
-				return pair.getB();
+	private static FlowNode getMatchingNode(ProcessMatching matching,
+			FlowNode node) {
+		for (Pair<FlowNode, FlowNode> pair : matching.getNodeCorrespondences()) {
+			if (pair.getValue0().getId().equals(node.getId())) {
+				return pair.getValue1();
 			}
 		}
 		return null;
 	}
 
+	// TODO: Move to fragment
+	private static Set<FlowNode> getEventsAndActivites(FragmentOld f) {
+		return f.getContainedFlowNodes(n -> n instanceof Event
+				|| n instanceof Activity);
+	}
+
+	// TODO: Move to fragment
+	private static Set<SequenceFlow> getEdges(FragmentOld fragment) {
+		return fragment
+				.getContainedFlowElements(
+						flow -> flow instanceof SequenceFlow
+								&& !flow.equals(fragment.getEntry())
+								&& !flow.equals(fragment.getExit())).stream()
+				.map(flow -> (SequenceFlow) flow).collect(Collectors.toSet());
+	}
 }

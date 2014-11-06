@@ -12,15 +12,16 @@ import org.eclipse.bpmn2.Process;
 import org.eclipse.bpmn2.SequenceFlow;
 import org.eclipse.emf.ecore.resource.Resource;
 
-public class Fragment {
+@Deprecated
+public class FragmentOld {
 
 	private Resource resource;
 	private Process process;
 	private SequenceFlow entry;
 	private SequenceFlow exit;
-	private Fragment parent;
+	private FragmentOld parent;
 
-	public Fragment(Resource resource, Process process, SequenceFlow entry,
+	public FragmentOld(Resource resource, Process process, SequenceFlow entry,
 			SequenceFlow exit) {
 		this.resource = resource;
 		this.process = process;
@@ -44,7 +45,15 @@ public class Fragment {
 		return resource;
 	}
 
-	public boolean contains(Fragment fragment) {
+	public void setParent(FragmentOld parent) {
+		this.parent = parent;
+	}
+
+	public FragmentOld getParent() {
+		return parent;
+	}
+	
+	public boolean contains(FragmentOld fragment) {
 		return getContainedFlowNodes(
 				n -> n instanceof Event || n instanceof Activity).containsAll(
 				fragment.getContainedFlowNodes(n -> n instanceof Event
@@ -96,13 +105,6 @@ public class Fragment {
 		return nodes;
 	}
 
-	public void setParent(Fragment parent) {
-		this.parent = parent;
-	}
-
-	public Fragment getParent() {
-		return parent;
-	}
 
 	private String getSequenceFlowLabel(SequenceFlow flow) {
 		if (flow.getName() != null && !flow.getName().equals("")) {
@@ -148,7 +150,7 @@ public class Fragment {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		Fragment other = (Fragment) obj;
+		FragmentOld other = (FragmentOld) obj;
 		if (entry == null) {
 			if (other.entry != null)
 				return false;

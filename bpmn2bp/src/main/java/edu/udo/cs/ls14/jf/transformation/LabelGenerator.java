@@ -11,7 +11,7 @@ import org.eclipse.bpmn2.FlowNode;
 import org.eclipse.bpmn2.Process;
 import org.eclipse.bpmn2.SequenceFlow;
 
-import edu.udo.cs.ls14.jf.analysis.pst.Fragment;
+import edu.udo.cs.ls14.jf.analysis.pst.FragmentOld;
 import edu.udo.cs.ls14.jf.bpmn.utils.ProcessLoader;
 
 public class LabelGenerator {
@@ -24,7 +24,7 @@ public class LabelGenerator {
 	 * @throws Exception
 	 */
 
-	public static String getLabel(Fragment fragment) throws Exception {
+	public static String getLabel(FragmentOld fragment) throws Exception {
 		// TODO respect flow relation order of nodes
 		Process process = ProcessLoader.getProcessFromResource(fragment
 				.getResource());
@@ -35,7 +35,7 @@ public class LabelGenerator {
 		return StringUtils.join(names.toArray(), ", ");
 	}
 
-	private static List<String> getNamesAcc(Process process, Fragment fragment,
+	private static List<String> getNamesAcc(Process process, FragmentOld fragment,
 			SequenceFlow entry, ArrayList<String> names,
 			HashSet<FlowNode> visited) {
 		if (entry.equals(fragment.getExit())

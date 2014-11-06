@@ -11,7 +11,7 @@ import org.eclipse.dd.di.DiagramElement;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.javatuples.Pair;
 
-import edu.udo.cs.ls14.jf.analysis.pst.Fragment;
+import edu.udo.cs.ls14.jf.analysis.pst.FragmentOld;
 import edu.udo.cs.ls14.jf.bpmn.utils.ProcessLoader;
 
 public class CoordinateCalculator {
@@ -35,7 +35,7 @@ public class CoordinateCalculator {
 		return Pair.with(x, y);
 	}
 
-	public static Pair<Float, Float> getCoords(Resource res, Fragment fragment)
+	public static Pair<Float, Float> getCoords(Resource res, FragmentOld fragment)
 			throws Exception {
 		Set<FlowNode> nodes = fragment.getContainedFlowNodes(n -> true);
 		Set<String> nodeIds = nodes.stream().map(n -> n.getId())

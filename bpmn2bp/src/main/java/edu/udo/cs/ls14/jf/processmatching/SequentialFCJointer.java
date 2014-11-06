@@ -1,31 +1,30 @@
 package edu.udo.cs.ls14.jf.processmatching;
 
-import java.util.Set;
-
 import org.javatuples.Pair;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import edu.udo.cs.ls14.jf.analysis.pst.Fragment;
+import edu.udo.cs.ls14.jf.bpmnanalysis.BpmnAnalysisFactory;
+import edu.udo.cs.ls14.jf.bpmnanalysis.Fragment;
+import edu.udo.cs.ls14.jf.bpmnanalysis.FragmentMatching;
+import edu.udo.cs.ls14.jf.bpmnanalysis.FragmentPair;
 
 public class SequentialFCJointer {
 
 	private static final Logger LOG = LoggerFactory
 			.getLogger(SequentialFCJointer.class);
 
-	public static Set<Pair<Fragment, Fragment>> joinSequences(ProcessMatching matching) {
-		// TODO: do not clone
-		ProcessMatching unionedMatching = matching.clone();
-		Set<Pair<Fragment, Fragment>> pairs = unionedMatching
-				.getFragmentCorrespondences();
-		Pair<Pair<Fragment, Fragment>, Pair<Fragment, Fragment>> s;
-		s = findSequence(pairs);
+	public static FragmentMatching joinSequences(FragmentMatching matchingIn) {
+		FragmentMatching matchingOut = BpmnAnalysisFactory.eINSTANCE
+				.createFragmentMatching();
+		Pair<FragmentPair, FragmentPair> s;
+		s = findSequence(matchingOut);
 		while (s != null) {
 			LOG.debug("Found sequence: " + s);
-			joinSequence(pairs, s);
-			s = findSequence(pairs);
+			joinSequence(matchingOut, s);
+			s = findSequence(matchingOut);
 		}
-		return pairs;
+		return matchingOut;
 	}
 
 	/**
@@ -34,15 +33,14 @@ public class SequentialFCJointer {
 	 * @param matching
 	 * @return
 	 */
-	private static Pair<Pair<Fragment, Fragment>, Pair<Fragment, Fragment>> findSequence(
-			Set<Pair<Fragment, Fragment>> pairs) {
-		for (Pair<Fragment, Fragment> p : pairs) {
-			for (Pair<Fragment, Fragment> q : pairs) {
+	private static Pair<FragmentPair, FragmentPair> findSequence(
+			FragmentMatching matching) {
+		for (FragmentPair p : matching.getPairs()) {
+			for (FragmentPair q : matching.getPairs()) {
 				if (p != q) {
-					if (p.getValue0().getExit() == q.getValue0().getEntry()
-							&& p.getValue1().getExit() == q.getValue1()
-									.getEntry()) {
-						return Pair.with(p, q);
+					if (p.getA().getExit() == q.getA().getEntry()
+							&& p.getB().getExit() == q.getB().getEntry()) {
+						return Pair.with(q, p);
 					}
 				}
 			}
@@ -50,22 +48,26 @@ public class SequentialFCJointer {
 		return null;
 	}
 
-	private static Set<Pair<Fragment, Fragment>> joinSequence(
-			Set<Pair<Fragment, Fragment>> pairs,
-			Pair<Pair<Fragment, Fragment>, Pair<Fragment, Fragment>> sequence) {
-		Pair<Fragment, Fragment> p = sequence.getValue0();
-		Pair<Fragment, Fragment> q = sequence.getValue1();
+	private static FragmentMatching joinSequence(FragmentMatching matching,
+			Pair<FragmentPair, FragmentPair> sequence) {
+		FragmentPair p = sequence.getValue0();
+		FragmentPair q = sequence.getValue1();
 		// Create new unioned fragment
-		Fragment union0 = new Fragment(p.getValue0().getResource(), p
-				.getValue0().getProcess(), p.getValue0().getEntry(), q
-				.getValue0().getExit());
-		Fragment union1 = new Fragment(p.getValue1().getResource(), p
-				.getValue1().getProcess(), p.getValue1().getEntry(), q
-				.getValue1().getExit());
-		pairs.add(Pair.with(union0, union1));
-		pairs.remove(p);
-		pairs.remove(q);
-		return pairs;
+		Fragment union0 = BpmnAnalysisFactory.eINSTANCE.createFragment();
+		union0.setEntry(p.getA().getEntry());
+		union0.setExit(q.getA().getExit());
+
+		Fragment union1 = BpmnAnalysisFactory.eINSTANCE.createFragment();
+		union1.setEntry(p.getB().getEntry());
+		union1.setExit(q.getB().getExit());
+
+		FragmentPair pair = BpmnAnalysisFactory.eINSTANCE.createFragmentPair();
+		pair.setA(union0);
+		pair.setB(union1);
+		matching.getPairs().add(pair);
+		matching.getPairs().remove(p);
+		matching.getPairs().remove(q);
+		return matching;
 	}
 
 }

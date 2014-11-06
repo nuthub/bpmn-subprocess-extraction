@@ -11,8 +11,8 @@ import org.eclipse.emf.ecore.resource.Resource;
 import org.junit.Test;
 
 import edu.udo.cs.ls14.jf.analysis.reachabilitygraph.ReachabilityGraph;
-import edu.udo.cs.ls14.jf.analysis.reachabilitygraph.Trace;
-import edu.udo.cs.ls14.jf.analysis.reachabilitygraph.Tracer;
+import edu.udo.cs.ls14.jf.analysis.reachabilitygraph.TraceOld;
+import edu.udo.cs.ls14.jf.analysis.reachabilitygraph.TracerOld;
 import edu.udo.cs.ls14.jf.bpmn.utils.ProcessLoader;
 
 public class TracerTest {
@@ -73,7 +73,7 @@ public class TracerTest {
 		rg.createFromPnml(file);
 		System.out.println("|V| = " + rg.getVertices().size());
 		System.out.println("|E| = " + rg.getEdges().size());
-		Set<Trace> traces = Tracer.getTraces(process, rg);
+		Set<TraceOld> traces = TracerOld.getTraces(process, rg);
 		traces.forEach(t -> System.out.println(t));
 		assertEquals(expectedTracesSize, traces.size());
 	}

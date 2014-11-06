@@ -12,9 +12,9 @@ import java.util.stream.Collectors;
 import org.jbpt.utils.IOUtils;
 import org.junit.Test;
 
-import edu.udo.cs.ls14.jf.analysis.pst.Fragment;
 import edu.udo.cs.ls14.jf.analysis.pst.PST;
 import edu.udo.cs.ls14.jf.bpmn.utils.ProcessLoader;
+import edu.udo.cs.ls14.jf.bpmnanalysis.Fragment;
 
 public class PSTTest {
 
@@ -27,14 +27,20 @@ public class PSTTest {
 		assertFragsContainByName(frags, "1", "6");
 		assertFragsContainByName(frags, "2", "4");
 		assertFragsContainByName(frags, "3", "5");
-		Map<String, Fragment> fragMap = frags.stream().collect(
-				Collectors.toMap(f -> f.toString(),
-						Function.<Fragment> identity()));
-		assertEquals("Fragment (1, 6)", fragMap.get("Fragment (2, 4)")
-				.getParent().toString());
-		assertEquals("Fragment (1, 6)", fragMap.get("Fragment (3, 5)")
-				.getParent().toString());
-		assertEquals(null, fragMap.get("Fragment (1, 6)").getParent());
+
+		Map<String, Fragment> fragMap = frags.stream()
+				.collect(
+						Collectors.toMap(f -> f.getEntry().getName() + "#"
+								+ f.getExit().getName(),
+								Function.<Fragment> identity()));
+		System.out.println("MAP: " + fragMap);
+		assertEquals(null, fragMap.get("1#6").getParent());
+		// parent(2,4) == (1,6)
+		assertEquals("1", fragMap.get("2#4").getParent().getEntry().getName());
+		assertEquals("6", fragMap.get("2#4").getParent().getExit().getName());
+		// parent(1,6) == (3,5)
+		assertEquals("1", fragMap.get("3#5").getParent().getEntry().getName());
+		assertEquals("6", fragMap.get("3#5").getParent().getExit().getName());
 	}
 
 	@Test
@@ -143,9 +149,11 @@ public class PSTTest {
 
 	public PST runTest(String basename) throws Exception {
 		System.out.println("Creating PST for " + basename);
-		URL url = PSTTest.class.getResource("/edu/udo/cs/ls14/jf/bpmn/" + basename + ".bpmn");
+		URL url = PSTTest.class.getResource("/edu/udo/cs/ls14/jf/bpmn/"
+				+ basename + ".bpmn");
 		PST pst = new PST();
-		pst.createFromProcess(ProcessLoader.getBpmnResource(url));
+		pst.createFromProcess(ProcessLoader
+				.getProcessFromResource(ProcessLoader.getBpmnResource(url)));
 		IOUtils.invokeDOT("/tmp", basename + "-undirectedgraph.png",
 				pst.getGraphAsDot());
 		IOUtils.invokeDOT("/tmp", basename + "-spanningtree.png",
@@ -165,6 +173,6 @@ public class PSTTest {
 			}
 		}
 		assertTrue(contains);
-	}
 
+	}
 }

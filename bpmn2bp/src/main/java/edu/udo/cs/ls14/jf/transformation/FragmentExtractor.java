@@ -15,7 +15,7 @@ import org.eclipse.emf.henshin.interpreter.EGraph;
 import org.eclipse.emf.henshin.interpreter.impl.EGraphImpl;
 import org.javatuples.Pair;
 
-import edu.udo.cs.ls14.jf.analysis.pst.Fragment;
+import edu.udo.cs.ls14.jf.analysis.pst.FragmentOld;
 
 public class FragmentExtractor extends HenshinTransformation {
 
@@ -28,7 +28,7 @@ public class FragmentExtractor extends HenshinTransformation {
 	}
 
 	public void createProcessFromFragment(Resource newResource,
-			Fragment fragment) throws Exception {
+			FragmentOld fragment) throws Exception {
 		Pair<Float, Float> startEventCoords = CoordinateCalculator.getCoords(
 				newResource, fragment.getEntry().getSourceRef());
 		Pair<Float, Float> endEventCoords = CoordinateCalculator.getCoords(
@@ -111,7 +111,7 @@ public class FragmentExtractor extends HenshinTransformation {
 	}
 
 	public void replaceFragmentByCallActivity(Resource resource,
-			Fragment fragment, String name, CallableElement calledElement)
+			FragmentOld fragment, String name, CallableElement calledElement)
 			throws Exception {
 		Pair<Float, Float> coords = CoordinateCalculator.getCoords(resource,
 				fragment);

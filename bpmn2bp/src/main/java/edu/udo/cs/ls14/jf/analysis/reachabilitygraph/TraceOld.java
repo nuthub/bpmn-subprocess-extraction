@@ -3,7 +3,7 @@ package edu.udo.cs.ls14.jf.analysis.reachabilitygraph;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Trace extends ArrayList<String> implements List<String> {
+public class TraceOld extends ArrayList<String> implements List<String> {
 
 	/**
 	 * 

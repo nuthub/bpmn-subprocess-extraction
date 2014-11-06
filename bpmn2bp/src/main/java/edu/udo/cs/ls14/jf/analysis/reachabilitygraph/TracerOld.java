@@ -4,21 +4,15 @@ import java.util.HashSet;
 import java.util.Set;
 
 import org.eclipse.bpmn2.FlowElement;
-import org.eclipse.bpmn2.FlowNode;
 import org.eclipse.bpmn2.Process;
-import org.eclipse.emf.common.util.BasicEList;
-import org.eclipse.emf.common.util.EList;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import edu.udo.cs.ls14.jf.bpmnanalysis.BpmnAnalysisFactory;
-import edu.udo.cs.ls14.jf.bpmnanalysis.Trace;
+public class TracerOld {
 
-public class Tracer {
+	private static final Logger LOG = LoggerFactory.getLogger(TracerOld.class);
 
-	private static final Logger LOG = LoggerFactory.getLogger(Tracer.class);
-
-	public static EList<Trace> getTraces(Process process, ReachabilityGraph rg)
+	public static Set<TraceOld> getTraces(Process process, ReachabilityGraph rg)
 			throws Exception {
 		Set<Marking> startNodes = new HashSet<Marking>();
 		Set<Marking> endNodes = new HashSet<Marking>();
@@ -44,14 +38,14 @@ public class Tracer {
 		}
 		Marking start = startNodes.iterator().next();
 		Marking end = endNodes.iterator().next();
-		return getTraces(process, rg, start, end, BpmnAnalysisFactory.eINSTANCE.createTrace(),
+		return getTraces(process, rg, start, end, new TraceOld(),
 				new HashSet<Edge>());
 	}
 
-	private static EList<Trace> getTraces(Process process,
-			ReachabilityGraph graph, Marking start, Marking end, Trace prefix,
+	private static Set<TraceOld> getTraces(Process process,
+			ReachabilityGraph graph, Marking start, Marking end, TraceOld prefix,
 			Set<Edge> visited) {
-		EList<Trace> traces = new BasicEList<Trace>();
+		Set<TraceOld> traces = new HashSet<TraceOld>();
 		if (start == end) {
 			prefix.setFinished(true);
 			traces.add(prefix);
@@ -59,12 +53,12 @@ public class Tracer {
 		}
 		for (Edge edge : graph.getOutEdges(start)) {
 			// erstelle neuen Trace aus Prefix
-			Trace trace = BpmnAnalysisFactory.eINSTANCE.createTrace();
-			trace.getNodes().addAll(prefix.getNodes());
+			TraceOld trace = new TraceOld();
+			trace.addAll(prefix);
 			// Wenn kante keine stille Transition repräsentiert
 			if (!isSilentTransition(process, edge.getT())) {
 				// Füge die Kante dem Trace hinzu
-				trace.getNodes().add(getFlowNode(process,edge));
+				trace.add(edge.getT());
 			}
 			// Wenn Kante noch nicht durchlaufen wurde, Rekursion
 			if (!visited.contains(edge)) {
@@ -83,16 +77,6 @@ public class Tracer {
 			}
 		}
 		return traces;
-	}
-
-	private static FlowNode getFlowNode(Process process, Edge edge) {
-		edge.getT();
-		for(FlowElement e: process.getFlowElements()) {
-			if(e instanceof FlowNode && e.getId().equals(edge.getT())) {
-				return (FlowNode) e;
-			}
-		}
-		return null;
 	}
 
 	private static boolean isSilentTransition(Process process, String id) {

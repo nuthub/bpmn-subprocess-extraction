@@ -3,20 +3,21 @@ package edu.udo.cs.ls14.jf.analysis.behaviorprofile.test;
 import static org.junit.Assert.assertNotNull;
 
 import java.net.URL;
-import java.util.Set;
 
+import org.eclipse.bpmn2.FlowNode;
 import org.eclipse.bpmn2.Process;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.jbpt.utils.IOUtils;
 import org.junit.Test;
 
-import edu.udo.cs.ls14.jf.analysis.behaviorprofile.BehavioralProfile;
 import edu.udo.cs.ls14.jf.analysis.behaviorprofile.BehavioralProfiler;
 import edu.udo.cs.ls14.jf.analysis.bpmn2ptnet.Bpmn2PtnetConverter;
 import edu.udo.cs.ls14.jf.analysis.reachabilitygraph.ReachabilityGraph;
-import edu.udo.cs.ls14.jf.analysis.reachabilitygraph.Trace;
 import edu.udo.cs.ls14.jf.analysis.reachabilitygraph.Tracer;
 import edu.udo.cs.ls14.jf.bpmn.utils.ProcessLoader;
+import edu.udo.cs.ls14.jf.bpmnanalysis.BehavioralProfile;
+import edu.udo.cs.ls14.jf.bpmnanalysis.BpmnAnalysisFactory;
+import edu.udo.cs.ls14.jf.bpmnanalysis.Trace;
 import fr.lip6.move.pnml.ptnet.hlapi.PetriNetHLAPI;
 
 public class BehavioralProfileTest {
@@ -84,17 +85,21 @@ public class BehavioralProfileTest {
 		IOUtils.invokeDOT("/tmp", basename + "-reachabilityGraph.png", dot);
 
 		// Create Traces
-		Set<Trace> traces = Tracer.getTraces(process, rg);
+		BehavioralProfile bp = BpmnAnalysisFactory.eINSTANCE
+				.createBehavioralProfile();
+		bp.getTraces().addAll(Tracer.getTraces(process, rg));
 		// output traces
-		for (Trace trace : traces) {
+		for (Trace trace : bp.getTraces()) {
 			System.out.println(trace);
-			for (String node : trace) {
-				System.out.println(" " + node);
+			for (FlowNode node : trace.getNodes()) {
+				System.out.println(" " + node.getId());
 			}
 		}
 
 		// create Behavioral Profile
-		return BehavioralProfiler.generateProfile(process, traces);
+		bp.getRelations().addAll(
+				BehavioralProfiler.generateProfile(process, bp.getTraces()));
+		return bp;
 	}
 
 }

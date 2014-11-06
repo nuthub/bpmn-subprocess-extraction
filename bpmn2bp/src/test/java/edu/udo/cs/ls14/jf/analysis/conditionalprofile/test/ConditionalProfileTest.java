@@ -3,9 +3,9 @@ package edu.udo.cs.ls14.jf.analysis.conditionalprofile.test;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.junit.Test;
 
-import edu.udo.cs.ls14.jf.analysis.conditionalprofile.ConditionalProfile;
 import edu.udo.cs.ls14.jf.analysis.conditionalprofile.ConditionalProfiler;
 import edu.udo.cs.ls14.jf.bpmn.utils.ProcessLoader;
+import edu.udo.cs.ls14.jf.bpmnanalysis.ConditionalProfile;
 
 public class ConditionalProfileTest {
 
@@ -24,7 +24,8 @@ public class ConditionalProfileTest {
 
 	private Resource getResource(String basename) throws Exception {
 		return ProcessLoader.getBpmnResource(getClass().getResource(
-				"/edu/udo/cs/ls14/jf/bpmn/conditionalFlow/" + basename + ".bpmn"));
+				"/edu/udo/cs/ls14/jf/bpmn/conditionalFlow/" + basename
+						+ ".bpmn"));
 	}
 
 }

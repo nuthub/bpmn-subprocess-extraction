@@ -1,8 +1,8 @@
 package edu.udo.cs.ls14.jf.analysis;
 
-import org.eclipse.bpmn2.Definitions;
 import org.eclipse.bpmn2.Process;
 import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.ecore.resource.Resource;
 
 import edu.udo.cs.ls14.jf.analysis.behaviorprofile.BehavioralProfiler;
 import edu.udo.cs.ls14.jf.analysis.bpmn2ptnet.Bpmn2PtnetConverter;
@@ -11,53 +11,52 @@ import edu.udo.cs.ls14.jf.analysis.pst.PST;
 import edu.udo.cs.ls14.jf.analysis.reachabilitygraph.ReachabilityGraph;
 import edu.udo.cs.ls14.jf.analysis.reachabilitygraph.Tracer;
 import edu.udo.cs.ls14.jf.bpmn.utils.ProcessLoader;
-import edu.udo.cs.ls14.jf.bpmnanalysis.Analysis;
 import edu.udo.cs.ls14.jf.bpmnanalysis.BehavioralProfile;
 import edu.udo.cs.ls14.jf.bpmnanalysis.BpmnAnalysisFactory;
 import edu.udo.cs.ls14.jf.bpmnanalysis.ConditionalProfile;
-import edu.udo.cs.ls14.jf.bpmnanalysis.ProcessStructureTree;
 import edu.udo.cs.ls14.jf.bpmnanalysis.Trace;
-import fr.lip6.move.pnml.ptnet.hlapi.PetriNetHLAPI;
 
-public class ProcessAnalyzer {
+@Deprecated
+public class ProcessAnalyzerOld {
 
-	public static Analysis analyze(Definitions definitions) throws Exception {
-		Analysis analysis = BpmnAnalysisFactory.eINSTANCE.createAnalysis();
-		analysis.setDefinitions(definitions);
-		Process process = ProcessLoader.getProcessFromDefinitions(definitions);
+	public static ProcessAnalysis analyze(Resource resource) throws Exception {
+		ProcessAnalysis analysis = new ProcessAnalysis();
+		analysis.setResource(resource);
+		Process process = ProcessLoader.getProcessFromResource(resource);
+		analysis.setProcess(process);
 
 		// create petri net
 		Bpmn2PtnetConverter bpmn2ptnet = new Bpmn2PtnetConverter();
-		PetriNetHLAPI ptnet = bpmn2ptnet.convertToPetriNet(process);
+		analysis.setPtnet(bpmn2ptnet.convertToPetriNet(process));
 
 		// create reachabilitygraph
 		ReachabilityGraph reachabilityGraph = new ReachabilityGraph();
-		reachabilityGraph.createFromPTNet(ptnet.getContainedItem());
+		reachabilityGraph.createFromPTNet(analysis.getPtnet()
+				.getContainedItem());
+		analysis.setReachabilityGraph(reachabilityGraph);
 
 		// create behavioral profile
 		BehavioralProfile behavioralProfile = BpmnAnalysisFactory.eINSTANCE
 				.createBehavioralProfile();
 		// create traces
 		EList<Trace> traces = Tracer.getTraces(process, reachabilityGraph);
+		analysis.setTraces(traces);
 		behavioralProfile.getTraces().addAll(traces);
 		// create relations
 		behavioralProfile.getRelations().addAll(
 				BehavioralProfiler.generateProfile(process,
-						behavioralProfile.getTraces()));
-		analysis.getResults().put("behavioralProfile", behavioralProfile);
+						analysis.getTraces()));
+		analysis.setBehavioralProfile(behavioralProfile);
 
 		// create conditional profile
 		ConditionalProfile conditionalProfile = ConditionalProfiler
-				.generateProfile(process);
-		analysis.getResults().put("conditionalProfile", conditionalProfile);
+				.generateProfile(resource);
+		analysis.setConditionalProfile(conditionalProfile);
 
 		// create PST
-		ProcessStructureTree ePst = BpmnAnalysisFactory.eINSTANCE
-				.createProcessStructureTree();
 		PST pst = new PST();
-		pst.createFromProcess(process);
-		ePst.getFragments().addAll(pst.getFragments());
-		analysis.getResults().put("pst", ePst);
+		pst.createFromProcess(resource);
+		analysis.setPst(pst);
 
 		// done
 		return analysis;

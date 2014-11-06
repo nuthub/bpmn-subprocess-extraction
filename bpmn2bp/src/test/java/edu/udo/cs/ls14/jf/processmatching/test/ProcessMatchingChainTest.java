@@ -47,17 +47,17 @@ public class ProcessMatchingChainTest {
 
 	private ProcessMatching runTest(Resource res1, Resource res2,
 			int expectedFCs) throws Exception {
-		ProcessMatching matching = ProcessMatchingChain.getCandidates(res1,
+		ProcessMatching matching = ProcessMatchingChain.getCandidatesOld(res1,
 				res2);
 		printMatching(matching);
-		assertEquals(expectedFCs, matching.getFragmentCorrespondences().size());
+		assertEquals(expectedFCs, matching.getFragmentCorrespondencesOld().size());
 		return matching;
 	}
 
 	private void printMatching(ProcessMatching matching) {
 		Predicate<FlowNode> filter = n -> n instanceof Event
 				|| n instanceof Activity;
-		matching.getFragmentCorrespondences()
+		matching.getFragmentCorrespondencesOld()
 				.stream()
 				.forEach(
 						p -> System.out.println(p.getValue0()

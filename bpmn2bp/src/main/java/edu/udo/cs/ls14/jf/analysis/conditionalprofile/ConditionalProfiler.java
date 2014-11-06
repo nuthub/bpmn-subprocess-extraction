@@ -14,9 +14,12 @@ import org.eclipse.bpmn2.FormalExpression;
 import org.eclipse.bpmn2.Gateway;
 import org.eclipse.bpmn2.Process;
 import org.eclipse.bpmn2.SequenceFlow;
+import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.ecore.resource.Resource;
 
 import edu.udo.cs.ls14.jf.bpmn.utils.ProcessLoader;
+import edu.udo.cs.ls14.jf.bpmnanalysis.BpmnAnalysisFactory;
+import edu.udo.cs.ls14.jf.bpmnanalysis.ConditionalProfile;
 
 public class ConditionalProfiler {
 
@@ -28,7 +31,8 @@ public class ConditionalProfiler {
 
 	public static ConditionalProfile generateProfile(Process process)
 			throws Exception {
-		ConditionalProfile cp = new ConditionalProfile();
+		ConditionalProfile cp = BpmnAnalysisFactory.eINSTANCE
+				.createConditionalProfile();
 
 		Map<SequenceFlow, FormalExpression> sequenceFlowConditions = new HashMap<SequenceFlow, FormalExpression>();
 		Map<Expression, SequenceFlow> expressions = new HashMap<Expression, SequenceFlow>();
@@ -37,7 +41,8 @@ public class ConditionalProfiler {
 			if (element instanceof Gateway) {
 				// do nothing
 			} else if (element instanceof FlowNode) {
-				cp.put((FlowNode) element, new HashSet<FormalExpression>());
+				cp.getRelations().put((FlowNode) element,
+						new BasicEList<FormalExpression>());
 			} else if (element instanceof SequenceFlow) {
 				Expression exp = ((SequenceFlow) element)
 						.getConditionExpression();
@@ -54,7 +59,8 @@ public class ConditionalProfiler {
 			Set<FlowNode> nodes = getAffectedNodes(flow,
 					new HashSet<FlowNode>());
 			for (FlowNode node : nodes) {
-				cp.get(node).add(sequenceFlowConditions.get(flow));
+				cp.getRelations().get(node)
+						.add(sequenceFlowConditions.get(flow));
 			}
 		}
 		return cp;

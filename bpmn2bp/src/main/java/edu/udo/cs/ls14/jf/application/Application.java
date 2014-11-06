@@ -8,7 +8,7 @@ import org.javatuples.Pair;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import edu.udo.cs.ls14.jf.analysis.pst.Fragment;
+import edu.udo.cs.ls14.jf.analysis.pst.FragmentOld;
 import edu.udo.cs.ls14.jf.bpmn.utils.ProcessLoader;
 import edu.udo.cs.ls14.jf.processmatching.ProcessMatching;
 import edu.udo.cs.ls14.jf.processmatching.ProcessMatchingChain;
@@ -33,16 +33,16 @@ public class Application {
 						+ "_transformed.bpmn2").toString());
 
 		// Determine candidates
-		ProcessMatching matching = ProcessMatchingChain.getCandidates(
+		ProcessMatching matching = ProcessMatchingChain.getCandidatesOld(
 				model1.getValue1(), model2.getValue1());
 		FragmentExtractor extractor = new FragmentExtractor();
 
 		// Loop over all matching pairs
 		int processCounter = 1;
-		for (Pair<Fragment, Fragment> pair : matching
-				.getFragmentCorrespondences()) {
+		for (Pair<FragmentOld, FragmentOld> pair : matching
+				.getFragmentCorrespondencesOld()) {
 			// select fragment to extract
-			Fragment fragmentToExtract = FragmentComparator.getBetter(pair);
+			FragmentOld fragmentToExtract = FragmentComparator.getBetter(pair);
 			// copy resource: Resource is not copied!
 			String targetFilename = model1.getValue0() + "_"
 					+ model2.getValue0() + "_extracted_process-"
@@ -88,7 +88,7 @@ public class Application {
 		fixer.fixLocations(resource, oldLocation, newLocation);
 	}
 
-	private String getCallActivityName(Fragment fragment) throws Exception {
+	private String getCallActivityName(FragmentOld fragment) throws Exception {
 		return LabelGenerator.getLabel(fragment);
 	}
 

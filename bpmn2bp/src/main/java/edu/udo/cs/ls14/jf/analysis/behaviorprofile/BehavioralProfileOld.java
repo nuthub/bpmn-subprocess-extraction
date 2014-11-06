@@ -9,8 +9,9 @@ import org.eclipse.bpmn2.FlowNode;
 import org.javatuples.Pair;
 
 @XmlRootElement
-public class BehavioralProfile extends
-		HashMap<Pair<String, String>, RelationType> {
+@Deprecated
+public class BehavioralProfileOld extends
+		HashMap<Pair<FlowNode, FlowNode>, RelationType> {
 
 	/**
 	 * 
@@ -18,16 +19,16 @@ public class BehavioralProfile extends
 	private static final long serialVersionUID = -6859323470574181105L;
 
 	public RelationType get(FlowNode a, FlowNode b) {
-		return get(Pair.with(a.getId(), b.getId()));
+		return get(Pair.with(a, b));
 	}
 
 	public String toString() {
 		StringBuffer sb = new StringBuffer();
-		for (Map.Entry<Pair<String, String>, RelationType> entry : entrySet()) {
-			String a = entry.getKey().getValue0();
-			String b = entry.getKey().getValue1();
+		for (Map.Entry<Pair<FlowNode, FlowNode>, RelationType> entry : entrySet()) {
+			FlowNode a = entry.getKey().getValue0();
+			FlowNode b = entry.getKey().getValue1();
 			RelationType r = entry.getValue();
-			sb.append(a + " ");
+			sb.append(a.getName() + " ");
 			switch (r) {
 			case DIRECT_SUCCESSOR:
 				sb.append("→");
@@ -42,7 +43,7 @@ public class BehavioralProfile extends
 				sb.append("#");
 				break;
 			}
-			sb.append(" " + b);
+			sb.append(" " + b.getName());
 			sb.append(System.getProperty("line.separator"));
 		}
 

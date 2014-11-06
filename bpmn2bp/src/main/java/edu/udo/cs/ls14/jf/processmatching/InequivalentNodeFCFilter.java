@@ -1,17 +1,18 @@
 package edu.udo.cs.ls14.jf.processmatching;
 
-import java.util.HashSet;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-import org.eclipse.bpmn2.Activity;
-import org.eclipse.bpmn2.Event;
 import org.eclipse.bpmn2.FlowNode;
-import org.javatuples.Pair;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import edu.udo.cs.ls14.jf.analysis.pst.Fragment;
+import edu.udo.cs.ls14.jf.bpmnanalysis.BpmnAnalysisFactory;
+import edu.udo.cs.ls14.jf.bpmnanalysis.FragmentMatching;
+import edu.udo.cs.ls14.jf.bpmnanalysis.FragmentPair;
+import edu.udo.cs.ls14.jf.bpmnanalysis.NodeMatching;
+import edu.udo.cs.ls14.jf.bpmnanalysis.NodePair;
+import edu.udo.cs.ls14.jf.bpmnanalysis.util.FragmentUtil;
 
 public class InequivalentNodeFCFilter {
 
@@ -30,48 +31,45 @@ public class InequivalentNodeFCFilter {
 	 * @param nodeMapping
 	 * @return
 	 */
-	public static Set<Pair<Fragment, Fragment>> filter(ProcessMatching matching) {
-		Set<Pair<FlowNode, FlowNode>> nodeMappings = matching
-				.getNodeCorrespondences();
-		Set<Pair<Fragment, Fragment>> pairs = new HashSet<Pair<Fragment, Fragment>>();
+	public static FragmentMatching filter(NodeMatching nodeMatching,
+			FragmentMatching fragmentMatching) {
 
-		for (Pair<Fragment, Fragment> pair : matching
-				.getFragmentCorrespondences()) {
+		FragmentMatching matchingOut = BpmnAnalysisFactory.eINSTANCE
+				.createFragmentMatching();
+
+		for (FragmentPair pair : fragmentMatching.getPairs()) {
 			LOG.debug("Checking pair " + pair);
 			// Get nodes of Fragments
-			Set<FlowNode> nodes1 = getEventsAndActivites(pair.getValue0());
-			Set<FlowNode> nodes2 = getEventsAndActivites(pair.getValue1());
-			Set<Pair<FlowNode, FlowNode>> relevantMappings = nodeMappings
+			Set<FlowNode> nodes1 = FragmentUtil.getEventsAndActivites(pair
+					.getA());
+			Set<FlowNode> nodes2 = FragmentUtil.getEventsAndActivites(pair
+					.getB());
+			Set<NodePair> relevantMappings = nodeMatching
+					.getPairs()
 					.stream()
-					.filter(p -> nodes1.contains(p.getValue0())
-							&& nodes2.contains(p.getValue1()))
+					.filter(p -> nodes1.contains(p.getA())
+							&& nodes2.contains(p.getB()))
 					.collect(Collectors.toSet());
 			Set<FlowNode> nodes1Mapped = relevantMappings.stream()
-					.map(p -> p.getValue0()).collect(Collectors.toSet());
+					.map(p -> p.getA()).collect(Collectors.toSet());
 			Set<FlowNode> nodes2Mapped = relevantMappings.stream()
-					.map(p -> p.getValue1()).collect(Collectors.toSet());
+					.map(p -> p.getB()).collect(Collectors.toSet());
 			if (!nodes1.equals(nodes1Mapped) || !nodes2.equals(nodes2Mapped)) {
 				LOG.debug("Fragments are not node equivalent.");
 				continue;
 			}
 			LOG.info("Fragments are node equivalent: ");
 			LOG.debug("Process 1: "
-					+ pair.getValue0()
+					+ pair.getA()
 					+ nodes1.stream().map(n -> n.getName())
 							.collect(Collectors.toSet()));
 			LOG.debug("Process 2: "
-					+ pair.getValue1()
+					+ pair.getB()
 					+ nodes2.stream().map(n -> n.getName())
 							.collect(Collectors.toSet()));
-			pairs.add(pair);
+			matchingOut.getPairs().add(pair);
 		}
-		return pairs;
+		return matchingOut;
 	}
 
-	// TODO: move to Fragment
-	private static Set<FlowNode> getEventsAndActivites(Fragment fragment) {
-		return fragment.getContainedFlowNodes(n -> n instanceof Event
-				|| n instanceof Activity);
-
-	}
 }

@@ -7,14 +7,17 @@ import org.eclipse.bpmn2.FlowNode;
 import org.javatuples.Pair;
 
 import edu.udo.cs.ls14.jf.analysis.ProcessAnalysis;
-import edu.udo.cs.ls14.jf.analysis.pst.Fragment;
+import edu.udo.cs.ls14.jf.analysis.pst.FragmentOld;
+import edu.udo.cs.ls14.jf.bpmnanalysis.Fragment;
+import edu.udo.cs.ls14.jf.bpmnanalysis.FragmentMatching;
 
 public class ProcessMatching {
 
 	private ProcessAnalysis analysis1;
 	private ProcessAnalysis analysis2;
 	private Set<Pair<FlowNode, FlowNode>> nodeCorrespondences;
-	private Set<Pair<Fragment, Fragment>> fragmentCorrespondences;
+	private Set<Pair<FragmentOld, FragmentOld>> fragmentCorrespondencesOld;
+	private FragmentMatching fragmentMatching;
 
 	public ProcessAnalysis getAnalysis1() {
 		return analysis1;
@@ -41,13 +44,23 @@ public class ProcessMatching {
 		this.nodeCorrespondences = nodeCorrespondences;
 	}
 
-	public void setFragmentCorrespondences(
-			Set<Pair<Fragment, Fragment>> fragmentCorrespondences) {
-		this.fragmentCorrespondences = fragmentCorrespondences;
+	public FragmentMatching getFragmentMatching() {
+		return fragmentMatching;
 	}
 
-	public Set<Pair<Fragment, Fragment>> getFragmentCorrespondences() {
-		return fragmentCorrespondences;
+	public void setFragmentMatching(FragmentMatching fragmentMatching) {
+		this.fragmentMatching = fragmentMatching;
+	}
+	
+	@Deprecated
+	public void setFragmentCorrespondencesOld(
+			Set<Pair<FragmentOld, FragmentOld>> fragmentCorrespondences) {
+		this.fragmentCorrespondencesOld = fragmentCorrespondences;
+	}
+
+	@Deprecated
+	public Set<Pair<FragmentOld, FragmentOld>> getFragmentCorrespondencesOld() {
+		return fragmentCorrespondencesOld;
 	}
 
 	public ProcessMatching clone() {
@@ -56,8 +69,8 @@ public class ProcessMatching {
 		clone.setAnalysis2(analysis2);
 		clone.setNodeCorrespondences(new HashSet<Pair<FlowNode, FlowNode>>(
 				nodeCorrespondences));
-		clone.setFragmentCorrespondences(new HashSet<Pair<Fragment, Fragment>>(
-				fragmentCorrespondences));
+		clone.setFragmentCorrespondencesOld(new HashSet<Pair<FragmentOld, FragmentOld>>(
+				fragmentCorrespondencesOld));
 		return clone;
 	}
 
@@ -71,10 +84,11 @@ public class ProcessMatching {
 		sb.append(System.getProperty("line.separator"));
 		sb.append(" nodeCorrespondences=" + nodeCorrespondences + ",");
 		sb.append(System.getProperty("line.separator"));
-		sb.append(" fragmentCorrespondences=" + fragmentCorrespondences);
+		sb.append(" fragmentCorrespondences=" + fragmentCorrespondencesOld);
 		sb.append(System.getProperty("line.separator"));
 		sb.append("]");
 		sb.append(System.getProperty("line.separator"));
 		return sb.toString();
 	}
+
 }

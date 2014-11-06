@@ -1,18 +1,18 @@
 package edu.udo.cs.ls14.jf.analysis;
 
 import java.io.Serializable;
-import java.util.Set;
 
 import javax.xml.bind.annotation.XmlRootElement;
 
 import org.eclipse.bpmn2.Process;
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.resource.Resource;
 
-import edu.udo.cs.ls14.jf.analysis.behaviorprofile.BehavioralProfile;
-import edu.udo.cs.ls14.jf.analysis.conditionalprofile.ConditionalProfile;
 import edu.udo.cs.ls14.jf.analysis.pst.PST;
 import edu.udo.cs.ls14.jf.analysis.reachabilitygraph.ReachabilityGraph;
-import edu.udo.cs.ls14.jf.analysis.reachabilitygraph.Trace;
+import edu.udo.cs.ls14.jf.bpmnanalysis.BehavioralProfile;
+import edu.udo.cs.ls14.jf.bpmnanalysis.ConditionalProfile;
+import edu.udo.cs.ls14.jf.bpmnanalysis.Trace;
 import fr.lip6.move.pnml.ptnet.hlapi.PetriNetHLAPI;
 
 @XmlRootElement
@@ -26,7 +26,7 @@ public class ProcessAnalysis implements Serializable {
 	private Process process;
 	private PetriNetHLAPI ptnet;
 	private ReachabilityGraph reachabilityGraph;
-	private Set<Trace> traces;
+	private EList<Trace> traces;
 	private BehavioralProfile behavioralProfile;
 	private ConditionalProfile conditionalProfile;
 	private PST pst;
@@ -63,11 +63,11 @@ public class ProcessAnalysis implements Serializable {
 		this.reachabilityGraph = reachabilityGraph;
 	}
 
-	public Set<Trace> getTraces() {
+	public EList<Trace> getTraces() {
 		return traces;
 	}
 
-	public void setTraces(Set<Trace> traces) {
+	public void setTraces(EList<Trace> traces) {
 		this.traces = traces;
 	}
 
