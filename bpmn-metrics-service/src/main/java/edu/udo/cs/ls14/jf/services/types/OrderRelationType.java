@@ -3,7 +3,7 @@ package edu.udo.cs.ls14.jf.services.types;
 import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlValue;
 
-import edu.udo.cs.ls14.jf.analysis.behaviorprofile.RelationType;
+import edu.udo.cs.ls14.jf.analysis.behaviorprofile.RelationTypeOld;
 
 public class OrderRelationType {
 
@@ -12,13 +12,13 @@ public class OrderRelationType {
 	@XmlAttribute
 	public String b;
 	@XmlValue
-	public RelationType relationType;
+	public RelationTypeOld relationType;
 
 	public OrderRelationType() {
 		super();
 	}
 
-	public OrderRelationType(String a, String b, RelationType relationType) {
+	public OrderRelationType(String a, String b, RelationTypeOld relationType) {
 		super();
 		this.a = a;
 		this.b = b;

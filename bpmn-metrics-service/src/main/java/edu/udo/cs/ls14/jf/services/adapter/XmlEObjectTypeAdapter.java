@@ -11,6 +11,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.xmi.XMLResource;
 import org.eclipse.emf.ecore.xmi.impl.XMLResourceImpl;
 
+// TODO: make use of EobjectXmlConverter
 public class XmlEObjectTypeAdapter extends XmlAdapter<String, EObject> {
 
 	private static final Logger LOG = Logger
@@ -32,11 +33,14 @@ public class XmlEObjectTypeAdapter extends XmlAdapter<String, EObject> {
 	@Override
 	public String marshal(EObject v) throws Exception {
 		XMLResource xres = new XMLResourceImpl();
+		xres.setEncoding("UTF-8");
 		xres.getContents().add(v);
 		ByteArrayOutputStream os = new ByteArrayOutputStream();
+
 		try {
 			xres.save(os, null);
 		} catch (NullPointerException e) {
+			e.printStackTrace();
 			LOG.severe("could not create XMLResource, NPE occurred (dangling symlink?)");
 			return "";
 		}

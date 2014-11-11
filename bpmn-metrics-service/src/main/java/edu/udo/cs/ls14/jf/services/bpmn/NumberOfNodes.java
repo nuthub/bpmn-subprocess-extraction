@@ -14,9 +14,8 @@ import org.eclipse.bpmn2.Event;
 import org.eclipse.bpmn2.FlowElement;
 import org.eclipse.bpmn2.Gateway;
 import org.eclipse.bpmn2.Process;
-import org.eclipse.emf.ecore.EObject;
 
-import edu.udo.cs.ls14.jf.bpmn.utils.EObjectXmlConverter;
+import edu.udo.cs.ls14.jf.bpmn.utils.BpmnXmlConverter;
 import edu.udo.cs.ls14.jf.bpmn.utils.ProcessLoader;
 
 @WebService
@@ -66,11 +65,8 @@ public class NumberOfNodes {
 		}
 		LOG.info("Received definitionsXmi of length " + definitionsXml.length());
 		LOG.fine("Received: " + definitionsXml);
-		EObject eobj = EObjectXmlConverter.xml2EObject(definitionsXml);
-		if (!(eobj instanceof Definitions)) {
-			LOG.severe("parameter definitionsXml does not contain a XMI of Defintions.");
-		}
-		Definitions definitions = (Definitions) eobj;
+		Definitions definitions = (Definitions) BpmnXmlConverter.xml2Bpmn(
+				definitionsXml, Definitions.class);
 		Process p = ProcessLoader.getProcessFromDefinitions(definitions);
 		int size = p.getFlowElements().stream().filter(filter).mapToInt(a -> 1)
 				.sum();

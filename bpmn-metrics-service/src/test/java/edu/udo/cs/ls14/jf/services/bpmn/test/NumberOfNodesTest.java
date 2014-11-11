@@ -7,7 +7,7 @@ import org.eclipse.emf.ecore.resource.Resource;
 import org.junit.Before;
 import org.junit.Test;
 
-import edu.udo.cs.ls14.jf.bpmn.utils.EObjectXmlConverter;
+import edu.udo.cs.ls14.jf.bpmn.utils.BpmnXmlConverter;
 import edu.udo.cs.ls14.jf.bpmn.utils.ProcessLoader;
 import edu.udo.cs.ls14.jf.services.bpmn.NumberOfNodes;
 
@@ -26,9 +26,9 @@ public class NumberOfNodesTest {
 		assertEquals(5, service.getNumOfActivities(definitionsXml));
 		assertEquals(7, service.getNumOfActivitiesAndEvents(definitionsXml));
 		assertEquals(2, service.getNumOfGateways(definitionsXml));
-		
+
 	}
-	
+
 	@Test
 	public void testConditionSequence() throws Exception {
 		String definitionsXml = getDefinitionsXml("conditionSequence.bpmn");
@@ -40,8 +40,7 @@ public class NumberOfNodesTest {
 				.getResource(basename));
 		Definitions definitions = ProcessLoader
 				.getDefinitionsFromResource(resource);
-		return EObjectXmlConverter.eObject2Xml(definitions);
+		return BpmnXmlConverter.bpmn2Xml(definitions, Definitions.class);
 	}
-	
-	
+
 }
