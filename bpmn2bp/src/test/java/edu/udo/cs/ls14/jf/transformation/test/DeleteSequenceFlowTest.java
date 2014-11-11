@@ -12,8 +12,8 @@ import org.eclipse.emf.henshin.interpreter.EGraph;
 import org.eclipse.emf.henshin.interpreter.impl.EGraphImpl;
 import org.junit.Test;
 
+import edu.udo.cs.ls14.jf.bpmn.utils.Bpmn2ResourceSet;
 import edu.udo.cs.ls14.jf.transformation.HenshinTransformation;
-import edu.udo.cs.ls14.jf.utils.bpmn.Bpmn2ResourceSet;
 
 /**
  * checks, if conditional and default sequence flow can be removed

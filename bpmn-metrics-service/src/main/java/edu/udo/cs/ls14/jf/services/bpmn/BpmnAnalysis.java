@@ -7,11 +7,8 @@ import javax.jws.WebService;
 
 import org.eclipse.bpmn2.Definitions;
 
-import edu.udo.cs.ls14.jf.analysis.conditionalprofile.ConditionalProfiler;
 import edu.udo.cs.ls14.jf.bpmn.utils.BpmnXmlConverter;
-import edu.udo.cs.ls14.jf.bpmn.utils.ProcessLoader;
 import edu.udo.cs.ls14.jf.bpmnanalysis.BpmnAnalysisFactory;
-import edu.udo.cs.ls14.jf.bpmnanalysis.ConditionalProfile;
 import edu.udo.cs.ls14.jf.bpmnanalysis.ProcessAnalysis;
 import edu.udo.cs.ls14.jf.bpmnanalysis.ProcessAnalysisResult;
 
@@ -29,12 +26,8 @@ public class BpmnAnalysis {
 		ana.setDefinitions((Definitions) BpmnXmlConverter.xml2Bpmn(
 				definitionsXml, Definitions.class));
 		// cond prof
-		org.eclipse.bpmn2.Process process = ProcessLoader
-				.getProcessFromDefinitions(ana.getDefinitions());
-		ConditionalProfile cp = ConditionalProfiler.generateProfile(process);
 		ProcessAnalysisResult eCp = ana.getResults().get("conditionalProfile");
 		System.out.println(eCp);
-
 		return ana;
 
 	}

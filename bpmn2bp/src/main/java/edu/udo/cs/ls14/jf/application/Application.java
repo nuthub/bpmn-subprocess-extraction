@@ -12,6 +12,7 @@ import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import edu.udo.cs.ls14.jf.bpmn.utils.Bpmn2ResourceSet;
 import edu.udo.cs.ls14.jf.bpmn.utils.ProcessLoader;
 import edu.udo.cs.ls14.jf.bpmnanalysis.Fragment;
 import edu.udo.cs.ls14.jf.bpmnmatching.FragmentPair;
@@ -20,7 +21,6 @@ import edu.udo.cs.ls14.jf.transformation.FragmentComparatorSize;
 import edu.udo.cs.ls14.jf.transformation.FragmentExtractor;
 import edu.udo.cs.ls14.jf.transformation.LabelGenerator;
 import edu.udo.cs.ls14.jf.transformation.LocationFixer;
-import edu.udo.cs.ls14.jf.utils.bpmn.Bpmn2ResourceSet;
 
 /**
  * handles only with definitions

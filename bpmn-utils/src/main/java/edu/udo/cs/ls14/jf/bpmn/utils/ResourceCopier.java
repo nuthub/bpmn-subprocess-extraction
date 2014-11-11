@@ -1,4 +1,4 @@
-package edu.udo.cs.ls14.jf.utils.bpmn;
+package edu.udo.cs.ls14.jf.bpmn.utils;
 
 import org.eclipse.bpmn2.util.Bpmn2ResourceFactoryImpl;
 import org.eclipse.emf.common.util.URI;

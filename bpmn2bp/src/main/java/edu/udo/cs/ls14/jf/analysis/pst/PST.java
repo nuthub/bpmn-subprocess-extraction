@@ -17,7 +17,6 @@ import org.eclipse.bpmn2.FlowNode;
 import org.eclipse.bpmn2.Process;
 import org.eclipse.bpmn2.SequenceFlow;
 import org.eclipse.bpmn2.StartEvent;
-import org.eclipse.emf.ecore.resource.Resource;
 import org.javatuples.Pair;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -36,21 +35,14 @@ public class PST {
 
 	private static final Logger LOG = LoggerFactory.getLogger(PST.class);
 
-	private Resource resource;
 	private Definitions definitions;
 	private Process process;
 	private UndirectedGraph<FlowNode, SequenceFlow> graph;
 	private DirectedGraph<FlowNode, SequenceFlow> spanningTree;
 	private Map<SequenceFlow, EdgeState> edgeStates;
 	private Map<SequenceFlow, Set<SequenceFlow>> bracketSets;
-	@Deprecated
-	private Set<FragmentOld> fragments2;
 	private Set<Fragment> fragments;
-	@Deprecated
-	private Set<FragmentOld> canonicalFragments2;
 	private Set<Fragment> canonicalFragments;
-	@Deprecated
-	private DirectedGraph<FragmentOld, Object> structureTree2;
 	private DirectedGraph<Fragment, Object> structureTree;
 
 	private StartEvent start;
@@ -88,20 +80,17 @@ public class PST {
 
 		// yield all sese-fragments from edgestates
 		LOG.debug("yielding Fragments ...");
-		fragments2 = yieldFragments2(start, end);
 		yieldedFragments = new HashSet<Pair<SequenceFlow, SequenceFlow>>();
 		fragments = yieldFragments(start, end);
-		fragments2.forEach(f -> LOG.debug(f.toString()));
+		fragments.forEach(f -> LOG.debug(f.toString()));
 
 		// filter canonical sese-fragments from all sese-fragments
 		LOG.debug("Filtering canonical fragments...");
-		canonicalFragments2 = canoncialFragments2(start, end, fragments2);
 		canonicalFragments = canoncialFragments(start, end, fragments);
-		canonicalFragments2.forEach(f -> LOG.debug(f.toString()));
+		canonicalFragments.forEach(f -> LOG.debug(f.toString()));
 
 		// create pst from canonical sese-fragments
 		LOG.debug("building structure tree ...");
-		structureTree2 = buildStructureTree2(canonicalFragments2);
 		structureTree = buildStructureTree(canonicalFragments);
 
 		// remove end->start edge
@@ -109,11 +98,6 @@ public class PST {
 		decompleteGraph(insertEdge);
 
 		LOG.debug("done ...");
-	}
-
-	@Deprecated
-	public Set<FragmentOld> getFragments2() {
-		return canonicalFragments2;
 	}
 
 	public Set<Fragment> getFragments() {
@@ -128,17 +112,6 @@ public class PST {
 	 * @param canonicalFragments
 	 * @return
 	 */
-	@Deprecated
-	private DirectedGraph<FragmentOld, Object> buildStructureTree2(
-			Set<FragmentOld> canonicalFragments) {
-		structureTree2 = new DirectedSparseGraph<FragmentOld, Object>();
-		Stack<FragmentOld> parents = new Stack<FragmentOld>();
-		buildStructureTreeAcc2(canonicalFragments, start.getOutgoing().get(0),
-				new FragmentOld(resource, process, null, null), parents,
-				new HashSet<SequenceFlow>());
-		return structureTree2;
-	}
-
 	private DirectedGraph<Fragment, Object> buildStructureTree(
 			Set<Fragment> canonicalFragments) {
 		structureTree = new DirectedSparseGraph<Fragment, Object>();
@@ -177,43 +150,6 @@ public class PST {
 			Stack<Fragment> childParents = new Stack<Fragment>();
 			childParents.addAll(parents);
 			buildStructureTreeAcc(canonicalFragments, f, root, childParents,
-					visited);
-		}
-		if (!parents.empty()) {
-			parents.pop();
-		}
-	}
-
-	@Deprecated
-	private void buildStructureTreeAcc2(Set<FragmentOld> canonicalFragments,
-			SequenceFlow edge, FragmentOld root, Stack<FragmentOld> parents,
-			Set<SequenceFlow> visited) {
-		if (visited.contains(edge)) {
-			return;
-		}
-		visited.add(edge);
-		for (FragmentOld f : canonicalFragments) {
-			if (edge.equals(f.getExit())) {
-				parents.pop();
-			}
-		}
-
-		for (FragmentOld f : canonicalFragments) {
-			if (edge.equals(f.getEntry())) {
-				if (parents.empty()) {
-					structureTree2.addEdge(new Object(), root, f);
-				} else {
-					f.setParent(parents.peek());
-					structureTree2.addEdge(new Object(), parents.peek(), f);
-				}
-				parents.push(f);
-			}
-		}
-
-		for (SequenceFlow f : edge.getTargetRef().getOutgoing()) {
-			Stack<FragmentOld> childParents = new Stack<FragmentOld>();
-			childParents.addAll(parents);
-			buildStructureTreeAcc2(canonicalFragments, f, root, childParents,
 					visited);
 		}
 		if (!parents.empty()) {
@@ -328,55 +264,6 @@ public class PST {
 	 * @param start
 	 * @param end
 	 */
-	@Deprecated
-	private Set<FragmentOld> yieldFragments2(FlowNode start, FlowNode end) {
-		fragments2 = new HashSet<FragmentOld>();
-		for (SequenceFlow e : spanningTree.getEdges()) {
-			for (SequenceFlow f : spanningTree.getEdges()) {
-
-				if (!e.equals(f) && !f.equals(insertEdge)) {
-					boolean isFragment = false;
-					if (edgeStates.get(e) == EdgeState.BACK
-							&& edgeStates.get(f) == EdgeState.BACK) {
-						// can't be a fragment
-					} else if (edgeStates.get(e) == EdgeState.BACK
-							&& edgeStates.get(f) == EdgeState.TREE) {
-						// is fragment, if e is only bracket of f
-						if (bracketSets.get(f).size() == 1
-								&& bracketSets.get(f).contains(e)) {
-							isFragment = true;
-						}
-					} else if (edgeStates.get(e) == EdgeState.TREE
-							&& edgeStates.get(f) == EdgeState.BACK) {
-						// is fragment, if f is only bracket of e
-						if (bracketSets.get(e).size() == 1
-								&& bracketSets.get(e).contains(f)) {
-							isFragment = true;
-						}
-					} else if (edgeStates.get(e) == EdgeState.TREE
-							&& edgeStates.get(f) == EdgeState.TREE) {
-						// is fragment, if bracket sets of e and f are the
-						// same
-						if (bracketSets.get(e).equals(bracketSets.get(f))) {
-							isFragment = true;
-						}
-					} else {
-						// no chance to get here
-					}
-					if (isFragment) {
-						if (dominates(start, e, f)
-								&& !fragments2.contains(new FragmentOld(
-										resource, process, e, f))) {
-							fragments2.add(new FragmentOld(resource, process,
-									e, f));
-						}
-					}
-				}
-			}
-		}
-		return fragments2;
-	}
-
 	private Set<Fragment> yieldFragments(FlowNode start, FlowNode end) {
 		Set<Fragment> fragments = new HashSet<Fragment>();
 		for (SequenceFlow e : spanningTree.getEdges()) {
@@ -439,39 +326,6 @@ public class PST {
 	 * @param fragments
 	 * @return
 	 */
-	private Set<FragmentOld> canoncialFragments2(FlowNode start, FlowNode end,
-			Set<FragmentOld> fragments) {
-		Set<FragmentOld> canonicalFragments = new HashSet<FragmentOld>();
-		for (FragmentOld e : fragments) {
-			boolean isCanonical = true;
-			for (FragmentOld f : fragments) {
-				if (!e.equals(f)) {
-					// b dominates b'
-					if (e.getEntry().equals(f.getEntry())
-							&& !dominates(start, e.getExit(), f.getExit())) {
-						LOG.debug(e.getExit().getName() + " does not dominate "
-								+ f.getExit().getName() + ", so " + e
-								+ " is not canonical, because of " + f);
-						isCanonical = false;
-					}
-					// // a postdominates a'
-					if (e.getExit().equals(f.getExit())
-							&& !postDominates(end, e.getEntry(), f.getEntry())) {
-						LOG.debug(e.getEntry().getName()
-								+ " does not postdominate "
-								+ f.getEntry().getName() + ", so " + e
-								+ " is not canonical, because of " + f);
-						isCanonical = false;
-					}
-				}
-			}
-			if (isCanonical) {
-				canonicalFragments.add(e);
-			}
-		}
-		return canonicalFragments;
-	}
-
 	private Set<Fragment> canoncialFragments(FlowNode start, FlowNode end,
 			Set<Fragment> fragments) {
 		Set<Fragment> canonicalFragments = new HashSet<Fragment>();

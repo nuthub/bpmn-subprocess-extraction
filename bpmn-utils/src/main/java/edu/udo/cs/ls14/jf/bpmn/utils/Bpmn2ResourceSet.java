@@ -1,4 +1,4 @@
-package edu.udo.cs.ls14.jf.utils.bpmn;
+package edu.udo.cs.ls14.jf.bpmn.utils;
 
 import java.io.BufferedInputStream;
 import java.io.File;

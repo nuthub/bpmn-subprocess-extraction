@@ -13,8 +13,8 @@ import org.jbpt.utils.IOUtils;
 import org.junit.Test;
 
 import edu.udo.cs.ls14.jf.analysis.pst.PST;
+import edu.udo.cs.ls14.jf.bpmn.utils.Bpmn2ResourceSet;
 import edu.udo.cs.ls14.jf.bpmnanalysis.Fragment;
-import edu.udo.cs.ls14.jf.utils.bpmn.Bpmn2ResourceSet;
 
 public class PSTTest {
 

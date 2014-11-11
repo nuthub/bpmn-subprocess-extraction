@@ -44,9 +44,9 @@ public class TestObject {
 		Task t1 = Bpmn2Factory.eINSTANCE.createTask();
 		t1.setName("A");
 		Task t2 = Bpmn2Factory.eINSTANCE.createTask();
-		t1.setName("B");
+		t2.setName("B");
 		Task t3 = Bpmn2Factory.eINSTANCE.createTask();
-//		t1.setName("C");
+		t3.setName("C");
 //		profile.put(Pair.with(t1, t2), RelationType.PARALLEL);
 //		profile.put(Pair.with(t2, t1), RelationType.PARALLEL);
 //		profile.put(Pair.with(t1, t3), RelationType.DIRECT_PREDECESSOR);

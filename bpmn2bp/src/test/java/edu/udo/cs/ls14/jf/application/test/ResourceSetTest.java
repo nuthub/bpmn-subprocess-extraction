@@ -8,7 +8,7 @@ import java.io.IOException;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.junit.Test;
 
-import edu.udo.cs.ls14.jf.utils.bpmn.Bpmn2ResourceSet;
+import edu.udo.cs.ls14.jf.bpmn.utils.Bpmn2ResourceSet;
 
 public class ResourceSetTest {
 

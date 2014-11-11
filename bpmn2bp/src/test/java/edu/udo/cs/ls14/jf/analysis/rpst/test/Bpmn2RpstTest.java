@@ -18,8 +18,8 @@ import org.junit.Test;
 import edu.udo.cs.ls14.jf.analysis.rpst.Bpmn2Rpst;
 import edu.udo.cs.ls14.jf.analysis.rpst.BpmnPathEdge;
 import edu.udo.cs.ls14.jf.analysis.rpst.BpmnPathVertex;
+import edu.udo.cs.ls14.jf.bpmn.utils.Bpmn2ResourceSet;
 import edu.udo.cs.ls14.jf.bpmn.utils.ProcessLoader;
-import edu.udo.cs.ls14.jf.utils.bpmn.Bpmn2ResourceSet;
 
 public class Bpmn2RpstTest {
 

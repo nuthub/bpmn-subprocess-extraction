@@ -7,9 +7,9 @@ import org.eclipse.emf.ecore.resource.Resource;
 import org.junit.Before;
 import org.junit.Test;
 
+import edu.udo.cs.ls14.jf.bpmn.utils.Bpmn2ResourceSet;
 import edu.udo.cs.ls14.jf.bpmn.utils.BpmnXmlConverter;
 import edu.udo.cs.ls14.jf.services.bpmn.NumberOfNodes;
-import edu.udo.cs.ls14.jf.utils.bpmn.Bpmn2ResourceSet;
 
 public class NumberOfNodesTest {
 

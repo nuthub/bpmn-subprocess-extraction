@@ -10,10 +10,10 @@ import org.eclipse.bpmn2.Event;
 import org.eclipse.bpmn2.FlowElement;
 import org.junit.Test;
 
+import edu.udo.cs.ls14.jf.bpmn.utils.Bpmn2ResourceSet;
 import edu.udo.cs.ls14.jf.bpmn.utils.FragmentUtil;
 import edu.udo.cs.ls14.jf.bpmnmatching.ProcessMatching;
 import edu.udo.cs.ls14.jf.processmatching.ProcessMatchingChain;
-import edu.udo.cs.ls14.jf.utils.bpmn.Bpmn2ResourceSet;
 
 public class ProcessMatchingChainTest {
 

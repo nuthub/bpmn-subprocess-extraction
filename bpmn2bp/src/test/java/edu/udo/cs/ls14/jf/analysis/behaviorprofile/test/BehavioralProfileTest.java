@@ -11,11 +11,11 @@ import edu.udo.cs.ls14.jf.analysis.behaviorprofile.BehavioralProfiler;
 import edu.udo.cs.ls14.jf.analysis.bpmn2ptnet.Bpmn2PtnetConverter;
 import edu.udo.cs.ls14.jf.analysis.reachabilitygraph.ReachabilityGraph;
 import edu.udo.cs.ls14.jf.analysis.reachabilitygraph.Tracer;
+import edu.udo.cs.ls14.jf.bpmn.utils.Bpmn2ResourceSet;
 import edu.udo.cs.ls14.jf.bpmn.utils.ProcessLoader;
 import edu.udo.cs.ls14.jf.bpmnanalysis.BehavioralProfile;
 import edu.udo.cs.ls14.jf.bpmnanalysis.BpmnAnalysisFactory;
 import edu.udo.cs.ls14.jf.bpmnanalysis.Trace;
-import edu.udo.cs.ls14.jf.utils.bpmn.Bpmn2ResourceSet;
 import fr.lip6.move.pnml.ptnet.hlapi.PetriNetHLAPI;
 
 public class BehavioralProfileTest {

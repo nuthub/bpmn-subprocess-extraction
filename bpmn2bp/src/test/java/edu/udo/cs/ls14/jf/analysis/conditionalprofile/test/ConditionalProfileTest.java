@@ -5,9 +5,9 @@ import org.eclipse.bpmn2.Process;
 import org.junit.Test;
 
 import edu.udo.cs.ls14.jf.analysis.conditionalprofile.ConditionalProfiler;
+import edu.udo.cs.ls14.jf.bpmn.utils.Bpmn2ResourceSet;
 import edu.udo.cs.ls14.jf.bpmn.utils.ProcessLoader;
 import edu.udo.cs.ls14.jf.bpmnanalysis.ConditionalProfile;
-import edu.udo.cs.ls14.jf.utils.bpmn.Bpmn2ResourceSet;
 
 public class ConditionalProfileTest {
 

@@ -7,10 +7,10 @@ import org.eclipse.emf.ecore.resource.Resource;
 import org.junit.Test;
 
 import edu.udo.cs.ls14.jf.analysis.ProcessAnalyzer;
+import edu.udo.cs.ls14.jf.bpmn.utils.Bpmn2ResourceSet;
 import edu.udo.cs.ls14.jf.bpmnanalysis.ConditionalProfile;
 import edu.udo.cs.ls14.jf.bpmnanalysis.ProcessAnalysis;
 import edu.udo.cs.ls14.jf.bpmnanalysis.ProcessStructureTree;
-import edu.udo.cs.ls14.jf.utils.bpmn.Bpmn2ResourceSet;
 
 public class ProcessAnalyzerTest {
 

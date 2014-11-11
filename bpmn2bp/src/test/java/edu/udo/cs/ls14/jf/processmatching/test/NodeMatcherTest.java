@@ -14,11 +14,11 @@ import org.eclipse.bpmn2.FlowNode;
 import org.eclipse.bpmn2.Process;
 import org.junit.Test;
 
+import edu.udo.cs.ls14.jf.bpmn.utils.Bpmn2ResourceSet;
 import edu.udo.cs.ls14.jf.bpmn.utils.ProcessLoader;
 import edu.udo.cs.ls14.jf.bpmnmatching.NodeMatching;
 import edu.udo.cs.ls14.jf.bpmnmatching.NodePair;
 import edu.udo.cs.ls14.jf.processmatching.NodeMatcher;
-import edu.udo.cs.ls14.jf.utils.bpmn.Bpmn2ResourceSet;
 
 public class NodeMatcherTest {
 
