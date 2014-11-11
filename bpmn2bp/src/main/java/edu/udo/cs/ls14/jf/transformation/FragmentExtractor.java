@@ -32,7 +32,6 @@ public class FragmentExtractor extends HenshinTransformation {
 		return RULEPATH;
 	}
 
-	@Deprecated
 	public void replaceId(Resource resource, String oldId, String newId)
 			throws Exception {
 		EGraph graph = new EGraphImpl(resource);

@@ -13,7 +13,6 @@ import org.eclipse.dd.dc.Bounds;
 import org.eclipse.dd.di.DiagramElement;
 import org.javatuples.Pair;
 
-import edu.udo.cs.ls14.jf.bpmn.utils.BpmnXmlConverter;
 import edu.udo.cs.ls14.jf.bpmn.utils.FragmentUtil;
 import edu.udo.cs.ls14.jf.bpmn.utils.ProcessLoader;
 import edu.udo.cs.ls14.jf.bpmnanalysis.Fragment;

@@ -3,17 +3,12 @@
 package edu.udo.cs.ls14.jf.bpmnanalysis.util;
 
 import edu.udo.cs.ls14.jf.bpmnanalysis.*;
-
+import java.util.List;
 import java.util.Map;
-
 import org.eclipse.bpmn2.FlowNode;
 import org.eclipse.bpmn2.FormalExpression;
-
-import org.eclipse.emf.common.util.EList;
-
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
-
 import org.eclipse.emf.ecore.util.Switch;
 
 /**
@@ -112,7 +107,7 @@ public class BpmnAnalysisSwitch<T> extends Switch<T> {
 				return result;
 			}
 			case BpmnAnalysisPackage.CONDITION_RELATION_ENTRY: {
-				@SuppressWarnings("unchecked") Map.Entry<FlowNode, EList<FormalExpression>> conditionRelationEntry = (Map.Entry<FlowNode, EList<FormalExpression>>)theEObject;
+				@SuppressWarnings("unchecked") Map.Entry<FlowNode, List<FormalExpression>> conditionRelationEntry = (Map.Entry<FlowNode, List<FormalExpression>>)theEObject;
 				T result = caseConditionRelationEntry(conditionRelationEntry);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
@@ -248,7 +243,7 @@ public class BpmnAnalysisSwitch<T> extends Switch<T> {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseConditionRelationEntry(Map.Entry<FlowNode, EList<FormalExpression>> object) {
+	public T caseConditionRelationEntry(Map.Entry<FlowNode, List<FormalExpression>> object) {
 		return null;
 	}
 

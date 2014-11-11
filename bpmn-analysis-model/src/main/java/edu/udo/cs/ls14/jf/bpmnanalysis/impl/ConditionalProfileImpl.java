@@ -4,19 +4,15 @@ package edu.udo.cs.ls14.jf.bpmnanalysis.impl;
 
 import edu.udo.cs.ls14.jf.bpmnanalysis.BpmnAnalysisPackage;
 import edu.udo.cs.ls14.jf.bpmnanalysis.ConditionalProfile;
-
+import java.util.List;
+import java.util.Map;
 import org.eclipse.bpmn2.FlowNode;
 import org.eclipse.bpmn2.FormalExpression;
-
 import org.eclipse.emf.common.notify.NotificationChain;
-
-import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.EMap;
-
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.InternalEObject;
-
 import org.eclipse.emf.ecore.util.EcoreEMap;
 import org.eclipse.emf.ecore.util.InternalEList;
 
@@ -42,7 +38,7 @@ public class ConditionalProfileImpl extends ProcessAnalysisResultImpl implements
 	 * @generated
 	 * @ordered
 	 */
-	protected EMap<FlowNode, EList<FormalExpression>> relations;
+	protected EMap<FlowNode, List<FormalExpression>> relations;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -68,11 +64,11 @@ public class ConditionalProfileImpl extends ProcessAnalysisResultImpl implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EMap<FlowNode, EList<FormalExpression>> getRelations() {
+	public Map<FlowNode, List<FormalExpression>> getRelations() {
 		if (relations == null) {
-			relations = new EcoreEMap<FlowNode,EList<FormalExpression>>(BpmnAnalysisPackage.Literals.CONDITION_RELATION_ENTRY, ConditionRelationEntryImpl.class, this, BpmnAnalysisPackage.CONDITIONAL_PROFILE__RELATIONS);
+			relations = new EcoreEMap<FlowNode,List<FormalExpression>>(BpmnAnalysisPackage.Literals.CONDITION_RELATION_ENTRY, ConditionRelationEntryImpl.class, this, BpmnAnalysisPackage.CONDITIONAL_PROFILE__RELATIONS);
 		}
-		return relations;
+		return relations.map();
 	}
 
 	/**
@@ -84,7 +80,7 @@ public class ConditionalProfileImpl extends ProcessAnalysisResultImpl implements
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
 			case BpmnAnalysisPackage.CONDITIONAL_PROFILE__RELATIONS:
-				return ((InternalEList<?>)getRelations()).basicRemove(otherEnd, msgs);
+				return ((InternalEList<?>)((EMap.InternalMapView<FlowNode, List<FormalExpression>>)getRelations()).eMap()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -98,8 +94,8 @@ public class ConditionalProfileImpl extends ProcessAnalysisResultImpl implements
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
 			case BpmnAnalysisPackage.CONDITIONAL_PROFILE__RELATIONS:
-				if (coreType) return getRelations();
-				else return getRelations().map();
+				if (coreType) return ((EMap.InternalMapView<FlowNode, List<FormalExpression>>)getRelations()).eMap();
+				else return getRelations();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -113,7 +109,7 @@ public class ConditionalProfileImpl extends ProcessAnalysisResultImpl implements
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
 			case BpmnAnalysisPackage.CONDITIONAL_PROFILE__RELATIONS:
-				((EStructuralFeature.Setting)getRelations()).set(newValue);
+				((EStructuralFeature.Setting)((EMap.InternalMapView<FlowNode, List<FormalExpression>>)getRelations()).eMap()).set(newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);

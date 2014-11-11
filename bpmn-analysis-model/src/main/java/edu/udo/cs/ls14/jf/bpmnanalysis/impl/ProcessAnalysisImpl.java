@@ -6,6 +6,7 @@ import edu.udo.cs.ls14.jf.bpmnanalysis.BpmnAnalysisPackage;
 import edu.udo.cs.ls14.jf.bpmnanalysis.ProcessAnalysis;
 import edu.udo.cs.ls14.jf.bpmnanalysis.ProcessAnalysisResult;
 
+import java.util.Map;
 import org.eclipse.bpmn2.Definitions;
 
 import org.eclipse.emf.common.notify.Notification;
@@ -167,11 +168,11 @@ public class ProcessAnalysisImpl extends MinimalEObjectImpl.Container implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EMap<String, ProcessAnalysisResult> getResults() {
+	public Map<String, ProcessAnalysisResult> getResults() {
 		if (results == null) {
 			results = new EcoreEMap<String,ProcessAnalysisResult>(BpmnAnalysisPackage.Literals.PROCESS_ANALYSIS_RESULT_ENTRY, ProcessAnalysisResultEntryImpl.class, this, BpmnAnalysisPackage.PROCESS_ANALYSIS__RESULTS);
 		}
-		return results;
+		return results.map();
 	}
 
 	/**
@@ -185,7 +186,7 @@ public class ProcessAnalysisImpl extends MinimalEObjectImpl.Container implements
 			case BpmnAnalysisPackage.PROCESS_ANALYSIS__DEFINITIONS:
 				return basicSetDefinitions(null, msgs);
 			case BpmnAnalysisPackage.PROCESS_ANALYSIS__RESULTS:
-				return ((InternalEList<?>)getResults()).basicRemove(otherEnd, msgs);
+				return ((InternalEList<?>)((EMap.InternalMapView<String, ProcessAnalysisResult>)getResults()).eMap()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -203,8 +204,8 @@ public class ProcessAnalysisImpl extends MinimalEObjectImpl.Container implements
 			case BpmnAnalysisPackage.PROCESS_ANALYSIS__DEFINITIONS:
 				return getDefinitions();
 			case BpmnAnalysisPackage.PROCESS_ANALYSIS__RESULTS:
-				if (coreType) return getResults();
-				else return getResults().map();
+				if (coreType) return ((EMap.InternalMapView<String, ProcessAnalysisResult>)getResults()).eMap();
+				else return getResults();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -224,7 +225,7 @@ public class ProcessAnalysisImpl extends MinimalEObjectImpl.Container implements
 				setDefinitions((Definitions)newValue);
 				return;
 			case BpmnAnalysisPackage.PROCESS_ANALYSIS__RESULTS:
-				((EStructuralFeature.Setting)getResults()).set(newValue);
+				((EStructuralFeature.Setting)((EMap.InternalMapView<String, ProcessAnalysisResult>)getResults()).eMap()).set(newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);

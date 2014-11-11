@@ -2,10 +2,8 @@
  */
 package edu.udo.cs.ls14.jf.bpmnanalysis;
 
+import java.util.List;
 import org.eclipse.bpmn2.FlowNode;
-
-import org.eclipse.emf.common.util.EList;
-
 import org.eclipse.emf.ecore.EObject;
 
 /**
@@ -40,7 +38,7 @@ public interface Trace extends EObject {
 	 * @model
 	 * @generated
 	 */
-	EList<FlowNode> getNodes();
+	List<FlowNode> getNodes();
 
 	/**
 	 * Returns the value of the '<em><b>Finished</b></em>' attribute.

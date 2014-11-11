@@ -2,14 +2,13 @@ package edu.udo.cs.ls14.jf.processmatching;
 
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
 import org.eclipse.bpmn2.FlowNode;
 import org.eclipse.bpmn2.FormalExpression;
 import org.eclipse.bpmn2.SequenceFlow;
-import org.eclipse.emf.common.util.EList;
-import org.eclipse.emf.common.util.EMap;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -124,7 +123,7 @@ public class InequivalentConditionsFCFilter {
 
 	private static Map<FlowNode, Set<FormalExpression>> getFragmentFnc(
 			ConditionalProfile cp, Set<FlowNode> nodes, Set<SequenceFlow> edges) {
-		EMap<FlowNode, EList<FormalExpression>> fnc = cp.getRelations();
+		Map<FlowNode, List<FormalExpression>> fnc = cp.getRelations();
 		Map<FlowNode, Set<FormalExpression>> fnc2 = new HashMap<FlowNode, Set<FormalExpression>>();
 		// Für alle Knoten des Fragments
 		for (FlowNode node : nodes) {

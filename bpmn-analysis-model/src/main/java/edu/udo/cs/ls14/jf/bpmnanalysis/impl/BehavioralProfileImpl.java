@@ -9,6 +9,7 @@ import edu.udo.cs.ls14.jf.bpmnanalysis.Trace;
 
 import java.util.Collection;
 
+import java.util.List;
 import org.eclipse.emf.common.notify.NotificationChain;
 
 import org.eclipse.emf.common.util.EList;
@@ -78,7 +79,7 @@ public class BehavioralProfileImpl extends ProcessAnalysisResultImpl implements 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList<Trace> getTraces() {
+	public List<Trace> getTraces() {
 		if (traces == null) {
 			traces = new EObjectContainmentEList<Trace>(Trace.class, this, BpmnAnalysisPackage.BEHAVIORAL_PROFILE__TRACES);
 		}
@@ -90,7 +91,7 @@ public class BehavioralProfileImpl extends ProcessAnalysisResultImpl implements 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList<BehavioralRelation> getRelations() {
+	public List<BehavioralRelation> getRelations() {
 		if (relations == null) {
 			relations = new EObjectContainmentEList<BehavioralRelation>(BehavioralRelation.class, this, BpmnAnalysisPackage.BEHAVIORAL_PROFILE__RELATIONS);
 		}

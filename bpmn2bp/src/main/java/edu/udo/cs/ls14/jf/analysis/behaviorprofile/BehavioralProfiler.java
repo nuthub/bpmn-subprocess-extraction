@@ -1,6 +1,7 @@
 package edu.udo.cs.ls14.jf.analysis.behaviorprofile;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import org.eclipse.bpmn2.FlowElement;
@@ -22,7 +23,7 @@ public class BehavioralProfiler {
 			.getLogger(BehavioralProfiler.class);
 
 	public static EList<BehavioralRelation> generateProfile(Process process,
-			EList<Trace> traces) {
+			List<Trace> traces) {
 
 		Map<String, FlowNode> nodes = new HashMap<String, FlowNode>();
 		for (FlowElement elem : process.getFlowElements()) {

@@ -2,7 +2,7 @@
  */
 package edu.udo.cs.ls14.jf.bpmnanalysis;
 
-import org.eclipse.emf.common.util.EList;
+import java.util.List;
 
 /**
  * <!-- begin-user-doc -->
@@ -36,7 +36,7 @@ public interface BehavioralProfile extends ProcessAnalysisResult {
 	 * @model containment="true"
 	 * @generated
 	 */
-	EList<Trace> getTraces();
+	List<Trace> getTraces();
 
 	/**
 	 * Returns the value of the '<em><b>Relations</b></em>' containment reference list.
@@ -52,6 +52,6 @@ public interface BehavioralProfile extends ProcessAnalysisResult {
 	 * @model containment="true"
 	 * @generated
 	 */
-	EList<BehavioralRelation> getRelations();
+	List<BehavioralRelation> getRelations();
 
 } // BehavioralProfile

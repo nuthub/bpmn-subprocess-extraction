@@ -6,6 +6,7 @@ import edu.udo.cs.ls14.jf.bpmnanalysis.BpmnAnalysisPackage;
 
 import java.util.Collection;
 
+import java.util.List;
 import org.eclipse.bpmn2.FlowNode;
 import org.eclipse.bpmn2.FormalExpression;
 
@@ -38,7 +39,7 @@ import org.eclipse.emf.ecore.util.EObjectResolvingEList;
  *
  * @generated
  */
-public class ConditionRelationEntryImpl extends MinimalEObjectImpl.Container implements BasicEMap.Entry<FlowNode,EList<FormalExpression>> {
+public class ConditionRelationEntryImpl extends MinimalEObjectImpl.Container implements BasicEMap.Entry<FlowNode,List<FormalExpression>> {
 	/**
 	 * The cached value of the '{@link #getTypedKey() <em>Key</em>}' reference.
 	 * <!-- begin-user-doc -->
@@ -121,7 +122,7 @@ public class ConditionRelationEntryImpl extends MinimalEObjectImpl.Container imp
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList<FormalExpression> getTypedValue() {
+	public List<FormalExpression> getTypedValue() {
 		if (value == null) {
 			value = new EObjectResolvingEList<FormalExpression>(FormalExpression.class, this, BpmnAnalysisPackage.CONDITION_RELATION_ENTRY__VALUE);
 		}
@@ -251,7 +252,7 @@ public class ConditionRelationEntryImpl extends MinimalEObjectImpl.Container imp
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList<FormalExpression> getValue() {
+	public List<FormalExpression> getValue() {
 		return getTypedValue();
 	}
 
@@ -260,8 +261,8 @@ public class ConditionRelationEntryImpl extends MinimalEObjectImpl.Container imp
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList<FormalExpression> setValue(EList<FormalExpression> value) {
-		EList<FormalExpression> oldValue = getValue();
+	public List<FormalExpression> setValue(List<FormalExpression> value) {
+		List<FormalExpression> oldValue = getValue();
 		getTypedValue().clear();
 		getTypedValue().addAll(value);
 		return oldValue;
@@ -273,9 +274,9 @@ public class ConditionRelationEntryImpl extends MinimalEObjectImpl.Container imp
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
-	public EMap<FlowNode, EList<FormalExpression>> getEMap() {
+	public EMap<FlowNode, List<FormalExpression>> getEMap() {
 		EObject container = eContainer();
-		return container == null ? null : (EMap<FlowNode, EList<FormalExpression>>)container.eGet(eContainmentFeature());
+		return container == null ? null : (EMap<FlowNode, List<FormalExpression>>)container.eGet(eContainmentFeature());
 	}
 
 } //ConditionRelationEntryImpl

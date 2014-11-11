@@ -2,7 +2,7 @@
  */
 package edu.udo.cs.ls14.jf.bpmnanalysis;
 
-import org.eclipse.emf.common.util.EList;
+import java.util.List;
 
 /**
  * <!-- begin-user-doc -->
@@ -35,6 +35,6 @@ public interface TraceProfile extends ProcessAnalysisResult {
 	 * @model containment="true"
 	 * @generated
 	 */
-	EList<Trace> getTraces();
+	List<Trace> getTraces();
 
 } // TraceProfile

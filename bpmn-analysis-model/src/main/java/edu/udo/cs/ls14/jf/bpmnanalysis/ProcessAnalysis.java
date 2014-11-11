@@ -2,10 +2,8 @@
  */
 package edu.udo.cs.ls14.jf.bpmnanalysis;
 
+import java.util.Map;
 import org.eclipse.bpmn2.Definitions;
-
-import org.eclipse.emf.common.util.EMap;
-
 import org.eclipse.emf.ecore.EObject;
 
 /**
@@ -94,6 +92,6 @@ public interface ProcessAnalysis extends EObject {
 	 * @model mapType="edu.udo.cs.ls14.jf.bpmnanalysis.ProcessAnalysisResultEntry<org.eclipse.emf.ecore.xml.type.ID, edu.udo.cs.ls14.jf.bpmnanalysis.ProcessAnalysisResult>"
 	 * @generated
 	 */
-	EMap<String, ProcessAnalysisResult> getResults();
+	Map<String, ProcessAnalysisResult> getResults();
 
 } // ProcessAnalysis

@@ -7,6 +7,7 @@ import edu.udo.cs.ls14.jf.bpmnanalysis.Trace;
 
 import java.util.Collection;
 
+import java.util.List;
 import org.eclipse.bpmn2.FlowNode;
 
 import org.eclipse.emf.common.notify.Notification;
@@ -89,7 +90,7 @@ public class TraceImpl extends MinimalEObjectImpl.Container implements Trace {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList<FlowNode> getNodes() {
+	public List<FlowNode> getNodes() {
 		if (nodes == null) {
 			nodes = new EObjectResolvingEList<FlowNode>(FlowNode.class, this, BpmnAnalysisPackage.TRACE__NODES);
 		}

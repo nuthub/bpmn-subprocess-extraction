@@ -8,6 +8,7 @@ import edu.udo.cs.ls14.jf.bpmnanalysis.ProcessStructureTree;
 
 import java.util.Collection;
 
+import java.util.List;
 import org.eclipse.emf.common.notify.NotificationChain;
 
 import org.eclipse.emf.common.util.EList;
@@ -66,7 +67,7 @@ public class ProcessStructureTreeImpl extends ProcessAnalysisResultImpl implemen
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList<Fragment> getFragments() {
+	public List<Fragment> getFragments() {
 		if (fragments == null) {
 			fragments = new EObjectContainmentEList<Fragment>(Fragment.class, this, BpmnAnalysisPackage.PROCESS_STRUCTURE_TREE__FRAGMENTS);
 		}

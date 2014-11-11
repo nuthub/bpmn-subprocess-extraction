@@ -2,11 +2,10 @@
  */
 package edu.udo.cs.ls14.jf.bpmnanalysis;
 
+import java.util.List;
+import java.util.Map;
 import org.eclipse.bpmn2.FlowNode;
 import org.eclipse.bpmn2.FormalExpression;
-
-import org.eclipse.emf.common.util.EList;
-import org.eclipse.emf.common.util.EMap;
 
 /**
  * <!-- begin-user-doc -->
@@ -40,6 +39,6 @@ public interface ConditionalProfile extends ProcessAnalysisResult {
 	 * @model mapType="edu.udo.cs.ls14.jf.bpmnanalysis.ConditionRelationEntry<org.eclipse.bpmn2.FlowNode, org.eclipse.bpmn2.FormalExpression>"
 	 * @generated
 	 */
-	EMap<FlowNode, EList<FormalExpression>> getRelations();
+	Map<FlowNode, List<FormalExpression>> getRelations();
 
 } // ConditionalProfile

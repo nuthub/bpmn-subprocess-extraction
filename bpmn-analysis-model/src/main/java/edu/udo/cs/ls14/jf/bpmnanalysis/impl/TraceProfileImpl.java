@@ -8,6 +8,7 @@ import edu.udo.cs.ls14.jf.bpmnanalysis.TraceProfile;
 
 import java.util.Collection;
 
+import java.util.List;
 import org.eclipse.emf.common.notify.NotificationChain;
 
 import org.eclipse.emf.common.util.EList;
@@ -66,7 +67,7 @@ public class TraceProfileImpl extends ProcessAnalysisResultImpl implements Trace
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList<Trace> getTraces() {
+	public List<Trace> getTraces() {
 		if (traces == null) {
 			traces = new EObjectContainmentEList<Trace>(Trace.class, this, BpmnAnalysisPackage.TRACE_PROFILE__TRACES);
 		}
