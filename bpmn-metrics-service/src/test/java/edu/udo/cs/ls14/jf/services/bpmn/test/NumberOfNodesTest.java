@@ -8,8 +8,8 @@ import org.junit.Before;
 import org.junit.Test;
 
 import edu.udo.cs.ls14.jf.bpmn.utils.BpmnXmlConverter;
-import edu.udo.cs.ls14.jf.bpmn.utils.ProcessLoader;
 import edu.udo.cs.ls14.jf.services.bpmn.NumberOfNodes;
+import edu.udo.cs.ls14.jf.utils.bpmn.Bpmn2ResourceSet;
 
 public class NumberOfNodesTest {
 
@@ -22,7 +22,7 @@ public class NumberOfNodesTest {
 
 	@Test
 	public void testPM1() throws Exception {
-		String definitionsXml = getDefinitionsXml("PM1-mit-Fragment1.bpmn");
+		String definitionsXml = getDefinitionsXml("PM1-mit-Fragment1");
 		assertEquals(5, service.getNumOfActivities(definitionsXml));
 		assertEquals(7, service.getNumOfActivitiesAndEvents(definitionsXml));
 		assertEquals(2, service.getNumOfGateways(definitionsXml));
@@ -31,15 +31,15 @@ public class NumberOfNodesTest {
 
 	@Test
 	public void testConditionSequence() throws Exception {
-		String definitionsXml = getDefinitionsXml("conditionSequence.bpmn");
+		String definitionsXml = getDefinitionsXml("conditionSequence");
 		System.out.println(definitionsXml);
 	}
 
 	private String getDefinitionsXml(String basename) throws Exception {
-		Resource resource = ProcessLoader.getBpmnResource(getClass()
-				.getResource(basename));
-		Definitions definitions = ProcessLoader
-				.getDefinitionsFromResource(resource);
+		Resource resource = new Bpmn2ResourceSet(
+				"src/test/resources/edu/udo/cs/ls14/jf/services/bpmn/test")
+				.loadResource(basename + ".bpmn");
+		Definitions definitions = (Definitions) resource.getContents().get(0);
 		return BpmnXmlConverter.bpmn2Xml(definitions, Definitions.class);
 	}
 
