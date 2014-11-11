@@ -2,8 +2,7 @@
  */
 package edu.udo.cs.ls14.jf.bpmnmatching;
 
-import org.eclipse.emf.common.util.EList;
-
+import java.util.List;
 import org.eclipse.emf.ecore.EObject;
 
 /**
@@ -37,6 +36,6 @@ public interface NodeMatching extends EObject {
 	 * @model
 	 * @generated
 	 */
-	EList<NodePair> getPairs();
+	List<NodePair> getPairs();
 
 } // NodeMatching

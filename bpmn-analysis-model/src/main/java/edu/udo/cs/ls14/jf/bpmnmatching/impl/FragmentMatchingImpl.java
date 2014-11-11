@@ -8,6 +8,7 @@ import edu.udo.cs.ls14.jf.bpmnmatching.FragmentPair;
 
 import java.util.Collection;
 
+import java.util.List;
 import org.eclipse.emf.common.util.EList;
 
 import org.eclipse.emf.ecore.EClass;
@@ -64,7 +65,7 @@ public class FragmentMatchingImpl extends MinimalEObjectImpl.Container implement
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList<FragmentPair> getPairs() {
+	public List<FragmentPair> getPairs() {
 		if (pairs == null) {
 			pairs = new EObjectResolvingEList<FragmentPair>(FragmentPair.class, this, BpmnMatchingPackage.FRAGMENT_MATCHING__PAIRS);
 		}

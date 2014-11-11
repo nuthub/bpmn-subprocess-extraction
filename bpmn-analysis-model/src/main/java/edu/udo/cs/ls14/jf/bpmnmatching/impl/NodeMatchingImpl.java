@@ -8,6 +8,7 @@ import edu.udo.cs.ls14.jf.bpmnmatching.NodePair;
 
 import java.util.Collection;
 
+import java.util.List;
 import org.eclipse.emf.common.util.EList;
 
 import org.eclipse.emf.ecore.EClass;
@@ -64,7 +65,7 @@ public class NodeMatchingImpl extends MinimalEObjectImpl.Container implements No
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList<NodePair> getPairs() {
+	public List<NodePair> getPairs() {
 		if (pairs == null) {
 			pairs = new EObjectResolvingEList<NodePair>(NodePair.class, this, BpmnMatchingPackage.NODE_MATCHING__PAIRS);
 		}

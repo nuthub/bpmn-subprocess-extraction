@@ -7,8 +7,8 @@
     copyrightFields="false" usedGenPackages="BPMN20.genmodel#//bpmn2 BPMN20.genmodel#//di BPMN20.genmodel#//di.1 BPMN20.genmodel#//dc"
     operationReflection="true" importOrganizing="true">
   <foreignModel>BpmnAnalysis.ecore</foreignModel>
-  <genPackages prefix="BpmnAnalysis" basePackage="edu.udo.cs.ls14.jf" disposableProviderFactory="true"
-      ecorePackage="BpmnAnalysis.ecore#/">
+  <genPackages prefix="BpmnAnalysis" basePackage="edu.udo.cs.ls14.jf" resource="XML"
+      disposableProviderFactory="true" ecorePackage="BpmnAnalysis.ecore#/">
     <genEnums typeSafeEnumCompatible="false" ecoreEnum="BpmnAnalysis.ecore#//BehavioralRelationType">
       <genEnumLiterals ecoreEnumLiteral="BpmnAnalysis.ecore#//BehavioralRelationType/NO_SUCCESSION"/>
       <genEnumLiterals ecoreEnumLiteral="BpmnAnalysis.ecore#//BehavioralRelationType/DIRECT_SUCCESSOR"/>
