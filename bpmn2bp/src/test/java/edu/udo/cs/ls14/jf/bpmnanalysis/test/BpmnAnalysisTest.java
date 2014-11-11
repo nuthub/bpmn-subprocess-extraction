@@ -90,7 +90,7 @@ public class BpmnAnalysisTest {
 
 		// ///////////////
 		before = getTime();
-		String xml = EObjectXmlConverter.eObject2Xml(a);
+		EObjectXmlConverter.eObject2Xml(a);
 		after = getTime();
 		System.out.println((after - before) + " ms (eObject2Xml)");
 		end = getTime();

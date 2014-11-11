@@ -3,35 +3,35 @@ package edu.udo.cs.ls14.jf.processmatching.test;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
-import java.net.URL;
 import java.util.HashSet;
 import java.util.Set;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 
+import org.eclipse.bpmn2.Definitions;
 import org.eclipse.bpmn2.FlowElement;
 import org.eclipse.bpmn2.FlowNode;
 import org.eclipse.bpmn2.Process;
-import org.eclipse.emf.ecore.resource.Resource;
 import org.junit.Test;
 
 import edu.udo.cs.ls14.jf.bpmn.utils.ProcessLoader;
 import edu.udo.cs.ls14.jf.bpmnmatching.NodeMatching;
 import edu.udo.cs.ls14.jf.bpmnmatching.NodePair;
 import edu.udo.cs.ls14.jf.processmatching.NodeMatcher;
+import edu.udo.cs.ls14.jf.utils.bpmn.Bpmn2ResourceSet;
 
 public class NodeMatcherTest {
 
 	@Test
 	public void testNodeMatcher() throws Exception {
-		URL url1 = getClass().getResource(
-				"/edu/udo/cs/ls14/jf/bpmn/PM1-mit-Fragment1.bpmn");
-		URL url2 = getClass().getResource(
-				"/edu/udo/cs/ls14/jf/bpmn/PM3-mit-Fragment2.bpmn");
-		Resource res1 = ProcessLoader.getBpmnResource(url1);
-		Resource res2 = ProcessLoader.getBpmnResource(url2);
-		Process process1 = ProcessLoader.getProcessFromResource(res1);
-		Process process2 = ProcessLoader.getProcessFromResource(res2);
+		Bpmn2ResourceSet resSet = new Bpmn2ResourceSet(
+				"src/test/resources/edu/udo/cs/ls14/jf/bpmn");
+		Definitions def1 = (Definitions) resSet
+				.loadResource("PM1-mit-Fragment1.bpmn").getContents().get(0);
+		Definitions def2 = (Definitions) resSet
+				.loadResource("PM3-mit-Fragment2.bpmn").getContents().get(0);
+		Process process1 = ProcessLoader.getProcessFromDefinitions(def1);
+		Process process2 = ProcessLoader.getProcessFromDefinitions(def2);
 		NodeMatching nodeMatching = NodeMatcher.getCorrespondences(process1,
 				process2);
 		nodeMatching.getPairs().forEach(

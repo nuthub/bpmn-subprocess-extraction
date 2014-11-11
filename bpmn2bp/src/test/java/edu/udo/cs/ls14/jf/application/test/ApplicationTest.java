@@ -1,15 +1,10 @@
 package edu.udo.cs.ls14.jf.application.test;
 
 import java.io.File;
-import java.io.FileOutputStream;
 import java.util.Map;
-import java.util.Map.Entry;
 
 import org.eclipse.bpmn2.Definitions;
-import org.eclipse.bpmn2.util.Bpmn2ResourceFactoryImpl;
-import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.resource.Resource;
-import org.junit.Ignore;
 import org.junit.Test;
 
 import edu.udo.cs.ls14.jf.application.Application;
@@ -66,6 +61,7 @@ public class ApplicationTest {
 		ProcessMatching pMatching = ProcessMatchingChain.createProcessMatching(
 				definitions1, definitions2);
 		Map<String, Resource> result = app.extract(pMatching);
+		System.out.println(result);
 		System.out.println(app.getResourceSet().toContentString());
 	}
 }

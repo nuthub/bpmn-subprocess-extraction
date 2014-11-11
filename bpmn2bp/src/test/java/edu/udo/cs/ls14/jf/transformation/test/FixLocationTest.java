@@ -4,7 +4,6 @@ import static org.junit.Assert.assertTrue;
 
 import org.eclipse.bpmn2.Definitions;
 import org.eclipse.bpmn2.Process;
-import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.henshin.interpreter.EGraph;
 import org.eclipse.emf.henshin.interpreter.Engine;

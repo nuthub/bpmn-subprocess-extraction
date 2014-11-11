@@ -1,13 +1,12 @@
 package edu.udo.cs.ls14.jf.analysis.rpst.test;
 
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotNull;
 
-import java.net.URL;
 import java.util.HashSet;
 import java.util.Set;
 import java.util.stream.Collectors;
 
+import org.eclipse.bpmn2.Definitions;
 import org.eclipse.bpmn2.Process;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.jbpt.algo.tree.rpst.IRPSTNode;
@@ -20,6 +19,7 @@ import edu.udo.cs.ls14.jf.analysis.rpst.Bpmn2Rpst;
 import edu.udo.cs.ls14.jf.analysis.rpst.BpmnPathEdge;
 import edu.udo.cs.ls14.jf.analysis.rpst.BpmnPathVertex;
 import edu.udo.cs.ls14.jf.bpmn.utils.ProcessLoader;
+import edu.udo.cs.ls14.jf.utils.bpmn.Bpmn2ResourceSet;
 
 public class Bpmn2RpstTest {
 
@@ -77,10 +77,12 @@ public class Bpmn2RpstTest {
 			throws Exception {
 		System.out.println("----------------------------");
 		System.out.println("Generating RPST for " + basename + ".bpmn");
-		URL url = getClass().getResource("/edu/udo/cs/ls14/jf/bpmn/" + basename + ".bpmn");
-		assertNotNull(url);
-		Resource resource = ProcessLoader.getBpmnResource(url);
-		Process process = ProcessLoader.getProcessFromResource(resource);
+		Resource resource = new Bpmn2ResourceSet(
+				"src/test/resources/edu/udo/cs/ls14/jf/bpmn/")
+				.loadResource(basename + ".bpmn");
+		Process process = ProcessLoader
+				.getProcessFromDefinitions((Definitions) resource.getContents()
+						.get(0));
 		RPST<BpmnPathEdge, BpmnPathVertex> rpst = Bpmn2Rpst.getRPST(process,
 				true);
 		// output

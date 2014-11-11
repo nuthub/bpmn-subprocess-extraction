@@ -2,20 +2,18 @@ package edu.udo.cs.ls14.jf.processmatching.test;
 
 import static org.junit.Assert.assertEquals;
 
-import java.net.URL;
 import java.util.function.Predicate;
 
 import org.eclipse.bpmn2.Activity;
 import org.eclipse.bpmn2.Definitions;
 import org.eclipse.bpmn2.Event;
 import org.eclipse.bpmn2.FlowElement;
-import org.eclipse.emf.ecore.resource.Resource;
 import org.junit.Test;
 
 import edu.udo.cs.ls14.jf.bpmn.utils.FragmentUtil;
-import edu.udo.cs.ls14.jf.bpmn.utils.ProcessLoader;
 import edu.udo.cs.ls14.jf.bpmnmatching.ProcessMatching;
 import edu.udo.cs.ls14.jf.processmatching.ProcessMatchingChain;
+import edu.udo.cs.ls14.jf.utils.bpmn.Bpmn2ResourceSet;
 
 public class ProcessMatchingChainTest {
 
@@ -24,15 +22,13 @@ public class ProcessMatchingChainTest {
 		String basename1 = "conditionSequence";
 		String basename2 = "conditionSequence2";
 		System.out.println("Testing " + basename1 + " with " + basename2);
-		URL url1 = getClass().getResource(
-				"/edu/udo/cs/ls14/jf/bpmn/conditionalFlow/" + basename1
-						+ ".bpmn");
-		URL url2 = getClass().getResource(
-				"/edu/udo/cs/ls14/jf/bpmn/conditionalFlow/" + basename2
-						+ ".bpmn");
-		Resource res1 = ProcessLoader.getBpmnResource(url1);
-		Resource res2 = ProcessLoader.getBpmnResource(url2);
-		runTest(res1, res2, 1);
+		Bpmn2ResourceSet resSet = new Bpmn2ResourceSet(
+				"src/test/resources/edu/udo/cs/ls14/jf/bpmn/conditionalFlow/");
+		Definitions def1 = (Definitions) resSet
+				.loadResource(basename1 + ".bpmn").getContents().get(0);
+		Definitions def2 = (Definitions) resSet
+				.loadResource(basename2 + ".bpmn").getContents().get(0);
+		runTest(def1, def2, 1);
 	}
 
 	@Test
@@ -40,19 +36,17 @@ public class ProcessMatchingChainTest {
 		String basename1 = "PM1-mit-Fragment1";
 		String basename2 = "PM2-mit-Fragment1";
 		System.out.println("Testing " + basename1 + " with " + basename2);
-		URL url1 = getClass().getResource("../../bpmn/" + basename1 + ".bpmn");
-		URL url2 = getClass().getResource("../../bpmn/" + basename2 + ".bpmn");
-		Resource res1 = ProcessLoader.getBpmnResource(url1);
-		Resource res2 = ProcessLoader.getBpmnResource(url2);
-		runTest(res1, res2, 1);
+		Bpmn2ResourceSet resSet = new Bpmn2ResourceSet(
+				"src/test/resources/edu/udo/cs/ls14/jf/bpmn/");
+		Definitions def1 = (Definitions) resSet
+				.loadResource(basename1 + ".bpmn").getContents().get(0);
+		Definitions def2 = (Definitions) resSet
+				.loadResource(basename2 + ".bpmn").getContents().get(0);
+		runTest(def1, def2, 1);
 	}
 
-	private ProcessMatching runTest(Resource res1, Resource res2,
-			int expectedFCs) throws Exception {
-		Definitions definitions1 = ProcessLoader
-				.getDefinitionsFromResource(res1);
-		Definitions definitions2 = ProcessLoader
-				.getDefinitionsFromResource(res2);
+	private ProcessMatching runTest(Definitions definitions1,
+			Definitions definitions2, int expectedFCs) throws Exception {
 
 		ProcessMatching matching = ProcessMatchingChain.createProcessMatching(
 				definitions1, definitions2);

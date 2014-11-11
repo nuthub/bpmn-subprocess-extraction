@@ -1,9 +1,6 @@
 package edu.udo.cs.ls14.jf.analysis.behaviorprofile.test;
 
-import static org.junit.Assert.assertNotNull;
-
-import java.net.URL;
-
+import org.eclipse.bpmn2.Definitions;
 import org.eclipse.bpmn2.FlowNode;
 import org.eclipse.bpmn2.Process;
 import org.eclipse.emf.ecore.resource.Resource;
@@ -18,6 +15,7 @@ import edu.udo.cs.ls14.jf.bpmn.utils.ProcessLoader;
 import edu.udo.cs.ls14.jf.bpmnanalysis.BehavioralProfile;
 import edu.udo.cs.ls14.jf.bpmnanalysis.BpmnAnalysisFactory;
 import edu.udo.cs.ls14.jf.bpmnanalysis.Trace;
+import edu.udo.cs.ls14.jf.utils.bpmn.Bpmn2ResourceSet;
 import fr.lip6.move.pnml.ptnet.hlapi.PetriNetHLAPI;
 
 public class BehavioralProfileTest {
@@ -64,13 +62,14 @@ public class BehavioralProfileTest {
 
 	private BehavioralProfile createBpFromBpmn(String basename)
 			throws Exception {
-		URL url = getClass().getResource(
-				"/edu/udo/cs/ls14/jf/bpmn/" + basename + ".bpmn");
-		assertNotNull(url);
 		System.out.println("Now profiling " + basename);
 		// Load BPMN model
-		Resource resource = ProcessLoader.getBpmnResource(url);
-		Process process = ProcessLoader.getProcessFromResource(resource);
+		Resource resource = new Bpmn2ResourceSet(
+				"src/test/resources/edu/udo/cs/ls14/jf/bpmn")
+				.loadResource(basename + ".bpmn");
+		Process process = ProcessLoader
+				.getProcessFromDefinitions((Definitions) resource.getContents()
+						.get(0));
 
 		// create P/T-Net from bpmn
 		Bpmn2PtnetConverter converter = new Bpmn2PtnetConverter();

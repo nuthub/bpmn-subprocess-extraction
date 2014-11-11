@@ -3,17 +3,18 @@ package edu.udo.cs.ls14.jf.analysis.reachabilitygraph.test;
 import static org.junit.Assert.assertEquals;
 
 import java.io.File;
-import java.net.URL;
-import java.util.Set;
 
+import org.eclipse.bpmn2.Definitions;
 import org.eclipse.bpmn2.Process;
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.junit.Test;
 
 import edu.udo.cs.ls14.jf.analysis.reachabilitygraph.ReachabilityGraph;
-import edu.udo.cs.ls14.jf.analysis.reachabilitygraph.TraceOld;
-import edu.udo.cs.ls14.jf.analysis.reachabilitygraph.TracerOld;
+import edu.udo.cs.ls14.jf.analysis.reachabilitygraph.Tracer;
 import edu.udo.cs.ls14.jf.bpmn.utils.ProcessLoader;
+import edu.udo.cs.ls14.jf.bpmnanalysis.Trace;
+import edu.udo.cs.ls14.jf.utils.bpmn.Bpmn2ResourceSet;
 
 public class TracerTest {
 
@@ -62,10 +63,13 @@ public class TracerTest {
 
 	private void runTest(String basename, int expectedTracesSize)
 			throws Exception {
-		URL url = getClass()
-		.getResource("/edu/udo/cs/ls14/jf/bpmn/" + basename + ".bpmn");
-		Resource resource = ProcessLoader.getBpmnResource(url);
-		Process process = ProcessLoader.getProcessFromResource(resource);
+		Resource resource = new Bpmn2ResourceSet(
+				"src/test/resources/edu/udo/cs/ls14/jf/bpmn")
+				.loadResource(basename + ".bpmn");
+		Process process = ProcessLoader
+				.getProcessFromDefinitions((Definitions) resource.getContents()
+						.get(0));
+
 		System.out.println("Now testing " + basename);
 		ReachabilityGraph rg = new ReachabilityGraph();
 		File file = new File(getClass().getResource(
@@ -73,7 +77,7 @@ public class TracerTest {
 		rg.createFromPnml(file);
 		System.out.println("|V| = " + rg.getVertices().size());
 		System.out.println("|E| = " + rg.getEdges().size());
-		Set<TraceOld> traces = TracerOld.getTraces(process, rg);
+		EList<Trace> traces = Tracer.getTraces(process, rg);
 		traces.forEach(t -> System.out.println(t));
 		assertEquals(expectedTracesSize, traces.size());
 	}

@@ -12,8 +12,8 @@ import org.eclipse.emf.henshin.interpreter.EGraph;
 import org.eclipse.emf.henshin.interpreter.impl.EGraphImpl;
 import org.junit.Test;
 
-import edu.udo.cs.ls14.jf.bpmn.utils.ProcessLoader;
 import edu.udo.cs.ls14.jf.transformation.HenshinTransformation;
+import edu.udo.cs.ls14.jf.utils.bpmn.Bpmn2ResourceSet;
 
 /**
  * checks, if conditional and default sequence flow can be removed
@@ -34,8 +34,9 @@ public class DeleteSequenceFlowTest extends HenshinTransformation {
 
 	private void deleteSequenceFlows(String basename, List<String> ids)
 			throws Exception {
-		Resource res = ProcessLoader.getBpmnResource(getClass().getResource(
-				"../../bpmn/" + basename + ".bpmn"));
+		Bpmn2ResourceSet resSet = new Bpmn2ResourceSet(
+				"src/test/resources/edu/udo/cs/ls14/jf/bpmn");
+		Resource res = resSet.loadResource(basename + ".bpmn");
 		EGraph graph = new EGraphImpl(res);
 
 		Map<String, Object> parameters = new HashMap<String, Object>();

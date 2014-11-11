@@ -1,10 +1,8 @@
 package edu.udo.cs.ls14.jf.analysis.bpmn2ptnet.test;
 
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotNull;
 
-import java.net.URL;
-
+import org.eclipse.bpmn2.Definitions;
 import org.eclipse.bpmn2.Process;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.junit.Before;
@@ -12,6 +10,7 @@ import org.junit.Test;
 
 import edu.udo.cs.ls14.jf.analysis.bpmn2ptnet.Bpmn2PtnetConverter;
 import edu.udo.cs.ls14.jf.bpmn.utils.ProcessLoader;
+import edu.udo.cs.ls14.jf.utils.bpmn.Bpmn2ResourceSet;
 import fr.lip6.move.pnml.ptnet.hlapi.PageHLAPI;
 import fr.lip6.move.pnml.ptnet.hlapi.PetriNetHLAPI;
 
@@ -68,10 +67,12 @@ public class Bpmn2PtnetConverterTest {
 
 	private void runTest(String basename, int expectedPlaceCount,
 			int expectedTransitionCount, int expectedArcCount) throws Exception {
-		URL url = getClass().getResource("/edu/udo/cs/ls14/jf/bpmn/" + basename + ".bpmn");
-		assertNotNull(url);
-		Resource resource = ProcessLoader.getBpmnResource(url);
-		Process process = ProcessLoader.getProcessFromResource(resource);
+		Resource resource = new Bpmn2ResourceSet(
+				"src/test/resources/edu/udo/cs/ls14/jf/bpmn/")
+				.loadResource(basename + ".bpmn");
+		Process process = ProcessLoader
+				.getProcessFromDefinitions((Definitions) resource.getContents()
+						.get(0));
 		PetriNetHLAPI net = converter.convertToPetriNet(process);
 		assertEquals(1, net.getPagesHLAPI().size());
 		PageHLAPI page = net.getPagesHLAPI().get(0);

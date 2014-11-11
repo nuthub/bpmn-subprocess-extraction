@@ -3,18 +3,18 @@ package edu.udo.cs.ls14.jf.analysis.pst.test;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
-import java.net.URL;
 import java.util.Map;
 import java.util.Set;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 
+import org.eclipse.bpmn2.Definitions;
 import org.jbpt.utils.IOUtils;
 import org.junit.Test;
 
 import edu.udo.cs.ls14.jf.analysis.pst.PST;
-import edu.udo.cs.ls14.jf.bpmn.utils.ProcessLoader;
 import edu.udo.cs.ls14.jf.bpmnanalysis.Fragment;
+import edu.udo.cs.ls14.jf.utils.bpmn.Bpmn2ResourceSet;
 
 public class PSTTest {
 
@@ -149,11 +149,11 @@ public class PSTTest {
 
 	public PST runTest(String basename) throws Exception {
 		System.out.println("Creating PST for " + basename);
-		URL url = PSTTest.class.getResource("/edu/udo/cs/ls14/jf/bpmn/"
-				+ basename + ".bpmn");
 		PST pst = new PST();
-		pst.createFromDefinitions(ProcessLoader
-				.getDefinitionsFromResource(ProcessLoader.getBpmnResource(url)));
+		Definitions definitions = (Definitions) new Bpmn2ResourceSet(
+				"src/test/resources/edu/udo/cs/ls14/jf/bpmn/")
+				.loadResource(basename + ".bpmn").getContents().get(0);
+		pst.createFromDefinitions(definitions);
 		IOUtils.invokeDOT("/tmp", basename + "-undirectedgraph.png",
 				pst.getGraphAsDot());
 		IOUtils.invokeDOT("/tmp", basename + "-spanningtree.png",

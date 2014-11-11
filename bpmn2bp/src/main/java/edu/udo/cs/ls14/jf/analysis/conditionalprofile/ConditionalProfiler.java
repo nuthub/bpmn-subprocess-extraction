@@ -23,6 +23,7 @@ import edu.udo.cs.ls14.jf.bpmnanalysis.ConditionalProfile;
 
 public class ConditionalProfiler {
 
+	@Deprecated
 	public static ConditionalProfile generateProfile(Resource resource)
 			throws Exception {
 		Process process = ProcessLoader.getProcessFromResource(resource);

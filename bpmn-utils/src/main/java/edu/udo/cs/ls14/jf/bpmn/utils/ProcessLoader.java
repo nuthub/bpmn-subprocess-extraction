@@ -94,30 +94,6 @@ public class ProcessLoader {
 	}
 
 	@Deprecated
-	public static Resource getBpmnResource(URL url) throws Exception {
-		if (url == null) {
-			throw new Exception("URL ist null!");
-		}
-		registerFactories();
-		URI fileUri = URI.createFileURI(url.getFile());
-		Resource res = new Bpmn2ResourceFactoryImpl().createResource(URI
-				.createURI(""));
-		res.load(new FileInputStream(fileUri.toFileString()), null);
-		return res;
-	}
-
-	@Deprecated
-	public static BPMNDiagram getDiagramFromResource(Resource res)
-			throws Exception {
-		EList<EObject> contents = res.getContents();
-		if (!(contents.get(0) instanceof DocumentRoot)) {
-			throw new Exception("load error");
-		}
-		DocumentRoot docRoot = ((DocumentRoot) contents.get(0));
-		return getDiagramFromDefinitions(docRoot.getDefinitions());
-	}
-
-	@Deprecated
 	public static Definitions getDefinitionsFromResource(Resource resource)
 			throws Exception {
 		EList<EObject> contents = resource.getContents();

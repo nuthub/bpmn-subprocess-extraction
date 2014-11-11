@@ -1,31 +1,34 @@
 package edu.udo.cs.ls14.jf.analysis.conditionalprofile.test;
 
-import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.bpmn2.Definitions;
+import org.eclipse.bpmn2.Process;
 import org.junit.Test;
 
 import edu.udo.cs.ls14.jf.analysis.conditionalprofile.ConditionalProfiler;
 import edu.udo.cs.ls14.jf.bpmn.utils.ProcessLoader;
 import edu.udo.cs.ls14.jf.bpmnanalysis.ConditionalProfile;
+import edu.udo.cs.ls14.jf.utils.bpmn.Bpmn2ResourceSet;
 
 public class ConditionalProfileTest {
 
 	@Test
 	public void testConditionSequence() throws Exception {
-		Resource res1 = getResource("conditionSequence");
-		ConditionalProfile cp1 = ConditionalProfiler.generateProfile(res1);
+		Process p1 = getResource("conditionSequence");
+		ConditionalProfile cp1 = ConditionalProfiler.generateProfile(p1);
 		System.out.println(cp1);
 		// TODO: assertions
 
-		Resource res2 = getResource("conditionSequence2");
-		ConditionalProfile cp2 = ConditionalProfiler.generateProfile(res2);
+		Process p2 = getResource("conditionSequence2");
+		ConditionalProfile cp2 = ConditionalProfiler.generateProfile(p2);
 		System.out.println(cp2);
 		// TODO: assertions
 	}
 
-	private Resource getResource(String basename) throws Exception {
-		return ProcessLoader.getBpmnResource(getClass().getResource(
-				"/edu/udo/cs/ls14/jf/bpmn/conditionalFlow/" + basename
-						+ ".bpmn"));
+	private Process getResource(String basename) throws Exception {
+		Definitions definitions = (Definitions) new Bpmn2ResourceSet(
+				"src/test/resources/edu/udo/cs/ls14/jf/bpmn/conditionalFlow")
+				.loadResource(basename + ".bpmn").getContents().get(0);
+		return ProcessLoader.getProcessFromDefinitions(definitions);
 	}
 
 }
