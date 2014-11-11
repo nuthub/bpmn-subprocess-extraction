@@ -1,9 +1,9 @@
 package edu.udo.cs.ls14.jf.processmatching;
 
+import java.util.List;
 import java.util.Set;
 
 import org.eclipse.bpmn2.FlowNode;
-import org.eclipse.emf.common.util.EList;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -59,7 +59,7 @@ public class InequivalentBehaviourFCFilter {
 
 	private static boolean behaviourProfilesMatch(Set<FlowNode> nodes1,
 			Set<FlowNode> nodes2, BehavioralProfile profile1,
-			BehavioralProfile profile2, EList<NodePair> nodeMatching) {
+			BehavioralProfile profile2, List<NodePair> nodeMatching) {
 		boolean profilesMatch = true;
 		for (FlowNode n1 : nodes1) {
 			for (FlowNode n2 : nodes1) {
