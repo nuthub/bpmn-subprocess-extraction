@@ -24,7 +24,7 @@ import org.eclipse.emf.common.util.EMap;
  * @model
  * @generated
  */
-public interface ConditionalProfile extends AnalysisResult {
+public interface ConditionalProfile extends ProcessAnalysisResult {
 	/**
 	 * Returns the value of the '<em><b>Relations</b></em>' map.
 	 * The key is of type {@link org.eclipse.bpmn2.FlowNode},

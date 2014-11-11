@@ -20,7 +20,7 @@ import org.eclipse.emf.common.util.EList;
  * @model
  * @generated
  */
-public interface ProcessStructureTree extends AnalysisResult {
+public interface ProcessStructureTree extends ProcessAnalysisResult {
 	/**
 	 * Returns the value of the '<em><b>Fragments</b></em>' containment reference list.
 	 * The list contents are of type {@link edu.udo.cs.ls14.jf.bpmnanalysis.Fragment}.

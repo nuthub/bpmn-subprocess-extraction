@@ -22,13 +22,40 @@ public interface BpmnAnalysisFactory extends EFactory {
 	BpmnAnalysisFactory eINSTANCE = edu.udo.cs.ls14.jf.bpmnanalysis.impl.BpmnAnalysisFactoryImpl.init();
 
 	/**
-	 * Returns a new object of class '<em>Analysis</em>'.
+	 * Returns a new object of class '<em>Process Analysis</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Analysis</em>'.
+	 * @return a new object of class '<em>Process Analysis</em>'.
 	 * @generated
 	 */
-	Analysis createAnalysis();
+	ProcessAnalysis createProcessAnalysis();
+
+	/**
+	 * Returns a new object of class '<em>Behavioral Profile</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Behavioral Profile</em>'.
+	 * @generated
+	 */
+	BehavioralProfile createBehavioralProfile();
+
+	/**
+	 * Returns a new object of class '<em>Behavioral Relation</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Behavioral Relation</em>'.
+	 * @generated
+	 */
+	BehavioralRelation createBehavioralRelation();
+
+	/**
+	 * Returns a new object of class '<em>Conditional Profile</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Conditional Profile</em>'.
+	 * @generated
+	 */
+	ConditionalProfile createConditionalProfile();
 
 	/**
 	 * Returns a new object of class '<em>Process Structure Tree</em>'.
@@ -65,69 +92,6 @@ public interface BpmnAnalysisFactory extends EFactory {
 	 * @generated
 	 */
 	TraceProfile createTraceProfile();
-
-	/**
-	 * Returns a new object of class '<em>Node Matching</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Node Matching</em>'.
-	 * @generated
-	 */
-	NodeMatching createNodeMatching();
-
-	/**
-	 * Returns a new object of class '<em>Node Pair</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Node Pair</em>'.
-	 * @generated
-	 */
-	NodePair createNodePair();
-
-	/**
-	 * Returns a new object of class '<em>Fragment Matching</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Fragment Matching</em>'.
-	 * @generated
-	 */
-	FragmentMatching createFragmentMatching();
-
-	/**
-	 * Returns a new object of class '<em>Fragment Pair</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Fragment Pair</em>'.
-	 * @generated
-	 */
-	FragmentPair createFragmentPair();
-
-	/**
-	 * Returns a new object of class '<em>Behavioral Profile</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Behavioral Profile</em>'.
-	 * @generated
-	 */
-	BehavioralProfile createBehavioralProfile();
-
-	/**
-	 * Returns a new object of class '<em>Behavioral Relation</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Behavioral Relation</em>'.
-	 * @generated
-	 */
-	BehavioralRelation createBehavioralRelation();
-
-	/**
-	 * Returns a new object of class '<em>Conditional Profile</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Conditional Profile</em>'.
-	 * @generated
-	 */
-	ConditionalProfile createConditionalProfile();
 
 	/**
 	 * Returns the package supported by this factory.

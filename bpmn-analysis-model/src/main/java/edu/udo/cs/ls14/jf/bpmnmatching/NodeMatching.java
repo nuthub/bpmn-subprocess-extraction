@@ -1,8 +1,10 @@
 /**
  */
-package edu.udo.cs.ls14.jf.bpmnanalysis;
+package edu.udo.cs.ls14.jf.bpmnmatching;
 
 import org.eclipse.emf.common.util.EList;
+
+import org.eclipse.emf.ecore.EObject;
 
 /**
  * <!-- begin-user-doc -->
@@ -12,18 +14,18 @@ import org.eclipse.emf.common.util.EList;
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link edu.udo.cs.ls14.jf.bpmnanalysis.NodeMatching#getPairs <em>Pairs</em>}</li>
+ *   <li>{@link edu.udo.cs.ls14.jf.bpmnmatching.NodeMatching#getPairs <em>Pairs</em>}</li>
  * </ul>
  * </p>
  *
- * @see edu.udo.cs.ls14.jf.bpmnanalysis.BpmnAnalysisPackage#getNodeMatching()
+ * @see edu.udo.cs.ls14.jf.bpmnmatching.BpmnMatchingPackage#getNodeMatching()
  * @model
  * @generated
  */
-public interface NodeMatching extends AnalysisResult {
+public interface NodeMatching extends EObject {
 	/**
 	 * Returns the value of the '<em><b>Pairs</b></em>' reference list.
-	 * The list contents are of type {@link edu.udo.cs.ls14.jf.bpmnanalysis.NodePair}.
+	 * The list contents are of type {@link edu.udo.cs.ls14.jf.bpmnmatching.NodePair}.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Pairs</em>' reference list isn't clear,
@@ -31,7 +33,7 @@ public interface NodeMatching extends AnalysisResult {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Pairs</em>' reference list.
-	 * @see edu.udo.cs.ls14.jf.bpmnanalysis.BpmnAnalysisPackage#getNodeMatching_Pairs()
+	 * @see edu.udo.cs.ls14.jf.bpmnmatching.BpmnMatchingPackage#getNodeMatching_Pairs()
 	 * @model
 	 * @generated
 	 */

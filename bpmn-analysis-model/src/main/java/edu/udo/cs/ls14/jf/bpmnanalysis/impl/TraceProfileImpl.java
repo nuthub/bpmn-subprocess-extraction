@@ -31,7 +31,7 @@ import org.eclipse.emf.ecore.util.InternalEList;
  *
  * @generated
  */
-public class TraceProfileImpl extends AnalysisResultImpl implements TraceProfile {
+public class TraceProfileImpl extends ProcessAnalysisResultImpl implements TraceProfile {
 	/**
 	 * The cached value of the '{@link #getTraces() <em>Traces</em>}' containment reference list.
 	 * <!-- begin-user-doc -->

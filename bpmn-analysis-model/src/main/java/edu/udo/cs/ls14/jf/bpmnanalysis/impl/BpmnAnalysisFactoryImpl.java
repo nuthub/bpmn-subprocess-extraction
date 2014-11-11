@@ -64,8 +64,8 @@ public class BpmnAnalysisFactoryImpl extends EFactoryImpl implements BpmnAnalysi
 	@Override
 	public EObject create(EClass eClass) {
 		switch (eClass.getClassifierID()) {
-			case BpmnAnalysisPackage.ANALYSIS: return createAnalysis();
-			case BpmnAnalysisPackage.ANALYSIS_RESULT_ENTRY: return (EObject)createAnalysisResultEntry();
+			case BpmnAnalysisPackage.PROCESS_ANALYSIS: return createProcessAnalysis();
+			case BpmnAnalysisPackage.PROCESS_ANALYSIS_RESULT_ENTRY: return (EObject)createProcessAnalysisResultEntry();
 			case BpmnAnalysisPackage.BEHAVIORAL_PROFILE: return createBehavioralProfile();
 			case BpmnAnalysisPackage.BEHAVIORAL_RELATION: return createBehavioralRelation();
 			case BpmnAnalysisPackage.CONDITIONAL_PROFILE: return createConditionalProfile();
@@ -74,10 +74,6 @@ public class BpmnAnalysisFactoryImpl extends EFactoryImpl implements BpmnAnalysi
 			case BpmnAnalysisPackage.FRAGMENT: return createFragment();
 			case BpmnAnalysisPackage.TRACE: return createTrace();
 			case BpmnAnalysisPackage.TRACE_PROFILE: return createTraceProfile();
-			case BpmnAnalysisPackage.NODE_MATCHING: return createNodeMatching();
-			case BpmnAnalysisPackage.NODE_PAIR: return createNodePair();
-			case BpmnAnalysisPackage.FRAGMENT_MATCHING: return createFragmentMatching();
-			case BpmnAnalysisPackage.FRAGMENT_PAIR: return createFragmentPair();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
@@ -118,9 +114,9 @@ public class BpmnAnalysisFactoryImpl extends EFactoryImpl implements BpmnAnalysi
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Analysis createAnalysis() {
-		AnalysisImpl analysis = new AnalysisImpl();
-		return analysis;
+	public ProcessAnalysis createProcessAnalysis() {
+		ProcessAnalysisImpl processAnalysis = new ProcessAnalysisImpl();
+		return processAnalysis;
 	}
 
 	/**
@@ -128,9 +124,49 @@ public class BpmnAnalysisFactoryImpl extends EFactoryImpl implements BpmnAnalysi
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Map.Entry<String, AnalysisResult> createAnalysisResultEntry() {
-		AnalysisResultEntryImpl analysisResultEntry = new AnalysisResultEntryImpl();
-		return analysisResultEntry;
+	public Map.Entry<String, ProcessAnalysisResult> createProcessAnalysisResultEntry() {
+		ProcessAnalysisResultEntryImpl processAnalysisResultEntry = new ProcessAnalysisResultEntryImpl();
+		return processAnalysisResultEntry;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public BehavioralProfile createBehavioralProfile() {
+		BehavioralProfileImpl behavioralProfile = new BehavioralProfileImpl();
+		return behavioralProfile;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public BehavioralRelation createBehavioralRelation() {
+		BehavioralRelationImpl behavioralRelation = new BehavioralRelationImpl();
+		return behavioralRelation;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public ConditionalProfile createConditionalProfile() {
+		ConditionalProfileImpl conditionalProfile = new ConditionalProfileImpl();
+		return conditionalProfile;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public Map.Entry<FlowNode, EList<FormalExpression>> createConditionRelationEntry() {
+		ConditionRelationEntryImpl conditionRelationEntry = new ConditionRelationEntryImpl();
+		return conditionRelationEntry;
 	}
 
 	/**
@@ -171,86 +207,6 @@ public class BpmnAnalysisFactoryImpl extends EFactoryImpl implements BpmnAnalysi
 	public TraceProfile createTraceProfile() {
 		TraceProfileImpl traceProfile = new TraceProfileImpl();
 		return traceProfile;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public NodeMatching createNodeMatching() {
-		NodeMatchingImpl nodeMatching = new NodeMatchingImpl();
-		return nodeMatching;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public NodePair createNodePair() {
-		NodePairImpl nodePair = new NodePairImpl();
-		return nodePair;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public FragmentMatching createFragmentMatching() {
-		FragmentMatchingImpl fragmentMatching = new FragmentMatchingImpl();
-		return fragmentMatching;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public FragmentPair createFragmentPair() {
-		FragmentPairImpl fragmentPair = new FragmentPairImpl();
-		return fragmentPair;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public BehavioralProfile createBehavioralProfile() {
-		BehavioralProfileImpl behavioralProfile = new BehavioralProfileImpl();
-		return behavioralProfile;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public BehavioralRelation createBehavioralRelation() {
-		BehavioralRelationImpl behavioralRelation = new BehavioralRelationImpl();
-		return behavioralRelation;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public Map.Entry<FlowNode, EList<FormalExpression>> createConditionRelationEntry() {
-		ConditionRelationEntryImpl conditionRelationEntry = new ConditionRelationEntryImpl();
-		return conditionRelationEntry;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public ConditionalProfile createConditionalProfile() {
-		ConditionalProfileImpl conditionalProfile = new ConditionalProfileImpl();
-		return conditionalProfile;
 	}
 
 	/**

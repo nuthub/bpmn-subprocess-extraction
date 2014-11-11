@@ -1,9 +1,9 @@
 /**
  */
-package edu.udo.cs.ls14.jf.bpmnanalysis.impl;
+package edu.udo.cs.ls14.jf.bpmnmatching.impl;
 
-import edu.udo.cs.ls14.jf.bpmnanalysis.BpmnAnalysisPackage;
-import edu.udo.cs.ls14.jf.bpmnanalysis.NodePair;
+import edu.udo.cs.ls14.jf.bpmnmatching.BpmnMatchingPackage;
+import edu.udo.cs.ls14.jf.bpmnmatching.NodePair;
 
 import org.eclipse.bpmn2.FlowNode;
 
@@ -22,8 +22,8 @@ import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link edu.udo.cs.ls14.jf.bpmnanalysis.impl.NodePairImpl#getA <em>A</em>}</li>
- *   <li>{@link edu.udo.cs.ls14.jf.bpmnanalysis.impl.NodePairImpl#getB <em>B</em>}</li>
+ *   <li>{@link edu.udo.cs.ls14.jf.bpmnmatching.impl.NodePairImpl#getA <em>A</em>}</li>
+ *   <li>{@link edu.udo.cs.ls14.jf.bpmnmatching.impl.NodePairImpl#getB <em>B</em>}</li>
  * </ul>
  * </p>
  *
@@ -66,7 +66,7 @@ public class NodePairImpl extends MinimalEObjectImpl.Container implements NodePa
 	 */
 	@Override
 	protected EClass eStaticClass() {
-		return BpmnAnalysisPackage.Literals.NODE_PAIR;
+		return BpmnMatchingPackage.Literals.NODE_PAIR;
 	}
 
 	/**
@@ -80,7 +80,7 @@ public class NodePairImpl extends MinimalEObjectImpl.Container implements NodePa
 			a = (FlowNode)eResolveProxy(oldA);
 			if (a != oldA) {
 				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, BpmnAnalysisPackage.NODE_PAIR__A, oldA, a));
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, BpmnMatchingPackage.NODE_PAIR__A, oldA, a));
 			}
 		}
 		return a;
@@ -104,7 +104,7 @@ public class NodePairImpl extends MinimalEObjectImpl.Container implements NodePa
 		FlowNode oldA = a;
 		a = newA;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, BpmnAnalysisPackage.NODE_PAIR__A, oldA, a));
+			eNotify(new ENotificationImpl(this, Notification.SET, BpmnMatchingPackage.NODE_PAIR__A, oldA, a));
 	}
 
 	/**
@@ -118,7 +118,7 @@ public class NodePairImpl extends MinimalEObjectImpl.Container implements NodePa
 			b = (FlowNode)eResolveProxy(oldB);
 			if (b != oldB) {
 				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, BpmnAnalysisPackage.NODE_PAIR__B, oldB, b));
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, BpmnMatchingPackage.NODE_PAIR__B, oldB, b));
 			}
 		}
 		return b;
@@ -142,7 +142,7 @@ public class NodePairImpl extends MinimalEObjectImpl.Container implements NodePa
 		FlowNode oldB = b;
 		b = newB;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, BpmnAnalysisPackage.NODE_PAIR__B, oldB, b));
+			eNotify(new ENotificationImpl(this, Notification.SET, BpmnMatchingPackage.NODE_PAIR__B, oldB, b));
 	}
 
 	/**
@@ -153,10 +153,10 @@ public class NodePairImpl extends MinimalEObjectImpl.Container implements NodePa
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case BpmnAnalysisPackage.NODE_PAIR__A:
+			case BpmnMatchingPackage.NODE_PAIR__A:
 				if (resolve) return getA();
 				return basicGetA();
-			case BpmnAnalysisPackage.NODE_PAIR__B:
+			case BpmnMatchingPackage.NODE_PAIR__B:
 				if (resolve) return getB();
 				return basicGetB();
 		}
@@ -171,10 +171,10 @@ public class NodePairImpl extends MinimalEObjectImpl.Container implements NodePa
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case BpmnAnalysisPackage.NODE_PAIR__A:
+			case BpmnMatchingPackage.NODE_PAIR__A:
 				setA((FlowNode)newValue);
 				return;
-			case BpmnAnalysisPackage.NODE_PAIR__B:
+			case BpmnMatchingPackage.NODE_PAIR__B:
 				setB((FlowNode)newValue);
 				return;
 		}
@@ -189,10 +189,10 @@ public class NodePairImpl extends MinimalEObjectImpl.Container implements NodePa
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case BpmnAnalysisPackage.NODE_PAIR__A:
+			case BpmnMatchingPackage.NODE_PAIR__A:
 				setA((FlowNode)null);
 				return;
-			case BpmnAnalysisPackage.NODE_PAIR__B:
+			case BpmnMatchingPackage.NODE_PAIR__B:
 				setB((FlowNode)null);
 				return;
 		}
@@ -207,9 +207,9 @@ public class NodePairImpl extends MinimalEObjectImpl.Container implements NodePa
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case BpmnAnalysisPackage.NODE_PAIR__A:
+			case BpmnMatchingPackage.NODE_PAIR__A:
 				return a != null;
-			case BpmnAnalysisPackage.NODE_PAIR__B:
+			case BpmnMatchingPackage.NODE_PAIR__B:
 				return b != null;
 		}
 		return super.eIsSet(featureID);

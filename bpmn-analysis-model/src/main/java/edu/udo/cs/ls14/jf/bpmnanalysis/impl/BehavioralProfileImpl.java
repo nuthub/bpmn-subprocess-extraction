@@ -5,8 +5,8 @@ package edu.udo.cs.ls14.jf.bpmnanalysis.impl;
 import edu.udo.cs.ls14.jf.bpmnanalysis.BehavioralProfile;
 import edu.udo.cs.ls14.jf.bpmnanalysis.BehavioralRelation;
 import edu.udo.cs.ls14.jf.bpmnanalysis.BpmnAnalysisPackage;
-
 import edu.udo.cs.ls14.jf.bpmnanalysis.Trace;
+
 import java.util.Collection;
 
 import org.eclipse.emf.common.notify.NotificationChain;
@@ -33,7 +33,7 @@ import org.eclipse.emf.ecore.util.InternalEList;
  *
  * @generated
  */
-public class BehavioralProfileImpl extends AnalysisResultImpl implements BehavioralProfile {
+public class BehavioralProfileImpl extends ProcessAnalysisResultImpl implements BehavioralProfile {
 	/**
 	 * The cached value of the '{@link #getTraces() <em>Traces</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
@@ -43,6 +43,7 @@ public class BehavioralProfileImpl extends AnalysisResultImpl implements Behavio
 	 * @ordered
 	 */
 	protected EList<Trace> traces;
+
 	/**
 	 * The cached value of the '{@link #getRelations() <em>Relations</em>}' containment reference list.
 	 * <!-- begin-user-doc -->

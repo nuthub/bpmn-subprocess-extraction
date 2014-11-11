@@ -75,16 +75,16 @@ public class BpmnAnalysisAdapterFactory extends AdapterFactoryImpl {
 	protected BpmnAnalysisSwitch<Adapter> modelSwitch =
 		new BpmnAnalysisSwitch<Adapter>() {
 			@Override
-			public Adapter caseAnalysis(Analysis object) {
-				return createAnalysisAdapter();
+			public Adapter caseProcessAnalysis(ProcessAnalysis object) {
+				return createProcessAnalysisAdapter();
 			}
 			@Override
-			public Adapter caseAnalysisResultEntry(Map.Entry<String, AnalysisResult> object) {
-				return createAnalysisResultEntryAdapter();
+			public Adapter caseProcessAnalysisResultEntry(Map.Entry<String, ProcessAnalysisResult> object) {
+				return createProcessAnalysisResultEntryAdapter();
 			}
 			@Override
-			public Adapter caseAnalysisResult(AnalysisResult object) {
-				return createAnalysisResultAdapter();
+			public Adapter caseProcessAnalysisResult(ProcessAnalysisResult object) {
+				return createProcessAnalysisResultAdapter();
 			}
 			@Override
 			public Adapter caseBehavioralProfile(BehavioralProfile object) {
@@ -119,22 +119,6 @@ public class BpmnAnalysisAdapterFactory extends AdapterFactoryImpl {
 				return createTraceProfileAdapter();
 			}
 			@Override
-			public Adapter caseNodeMatching(NodeMatching object) {
-				return createNodeMatchingAdapter();
-			}
-			@Override
-			public Adapter caseNodePair(NodePair object) {
-				return createNodePairAdapter();
-			}
-			@Override
-			public Adapter caseFragmentMatching(FragmentMatching object) {
-				return createFragmentMatchingAdapter();
-			}
-			@Override
-			public Adapter caseFragmentPair(FragmentPair object) {
-				return createFragmentPairAdapter();
-			}
-			@Override
 			public Adapter defaultCase(EObject object) {
 				return createEObjectAdapter();
 			}
@@ -155,21 +139,21 @@ public class BpmnAnalysisAdapterFactory extends AdapterFactoryImpl {
 
 
 	/**
-	 * Creates a new adapter for an object of class '{@link edu.udo.cs.ls14.jf.bpmnanalysis.Analysis <em>Analysis</em>}'.
+	 * Creates a new adapter for an object of class '{@link edu.udo.cs.ls14.jf.bpmnanalysis.ProcessAnalysis <em>Process Analysis</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see edu.udo.cs.ls14.jf.bpmnanalysis.Analysis
+	 * @see edu.udo.cs.ls14.jf.bpmnanalysis.ProcessAnalysis
 	 * @generated
 	 */
-	public Adapter createAnalysisAdapter() {
+	public Adapter createProcessAnalysisAdapter() {
 		return null;
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link java.util.Map.Entry <em>Analysis Result Entry</em>}'.
+	 * Creates a new adapter for an object of class '{@link java.util.Map.Entry <em>Process Analysis Result Entry</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
@@ -178,21 +162,77 @@ public class BpmnAnalysisAdapterFactory extends AdapterFactoryImpl {
 	 * @see java.util.Map.Entry
 	 * @generated
 	 */
-	public Adapter createAnalysisResultEntryAdapter() {
+	public Adapter createProcessAnalysisResultEntryAdapter() {
 		return null;
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link edu.udo.cs.ls14.jf.bpmnanalysis.AnalysisResult <em>Analysis Result</em>}'.
+	 * Creates a new adapter for an object of class '{@link edu.udo.cs.ls14.jf.bpmnanalysis.ProcessAnalysisResult <em>Process Analysis Result</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see edu.udo.cs.ls14.jf.bpmnanalysis.AnalysisResult
+	 * @see edu.udo.cs.ls14.jf.bpmnanalysis.ProcessAnalysisResult
 	 * @generated
 	 */
-	public Adapter createAnalysisResultAdapter() {
+	public Adapter createProcessAnalysisResultAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link edu.udo.cs.ls14.jf.bpmnanalysis.BehavioralProfile <em>Behavioral Profile</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see edu.udo.cs.ls14.jf.bpmnanalysis.BehavioralProfile
+	 * @generated
+	 */
+	public Adapter createBehavioralProfileAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link edu.udo.cs.ls14.jf.bpmnanalysis.BehavioralRelation <em>Behavioral Relation</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see edu.udo.cs.ls14.jf.bpmnanalysis.BehavioralRelation
+	 * @generated
+	 */
+	public Adapter createBehavioralRelationAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link edu.udo.cs.ls14.jf.bpmnanalysis.ConditionalProfile <em>Conditional Profile</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see edu.udo.cs.ls14.jf.bpmnanalysis.ConditionalProfile
+	 * @generated
+	 */
+	public Adapter createConditionalProfileAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link java.util.Map.Entry <em>Condition Relation Entry</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see java.util.Map.Entry
+	 * @generated
+	 */
+	public Adapter createConditionRelationEntryAdapter() {
 		return null;
 	}
 
@@ -249,118 +289,6 @@ public class BpmnAnalysisAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createTraceProfileAdapter() {
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link edu.udo.cs.ls14.jf.bpmnanalysis.NodeMatching <em>Node Matching</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see edu.udo.cs.ls14.jf.bpmnanalysis.NodeMatching
-	 * @generated
-	 */
-	public Adapter createNodeMatchingAdapter() {
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link edu.udo.cs.ls14.jf.bpmnanalysis.NodePair <em>Node Pair</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see edu.udo.cs.ls14.jf.bpmnanalysis.NodePair
-	 * @generated
-	 */
-	public Adapter createNodePairAdapter() {
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link edu.udo.cs.ls14.jf.bpmnanalysis.FragmentMatching <em>Fragment Matching</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see edu.udo.cs.ls14.jf.bpmnanalysis.FragmentMatching
-	 * @generated
-	 */
-	public Adapter createFragmentMatchingAdapter() {
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link edu.udo.cs.ls14.jf.bpmnanalysis.FragmentPair <em>Fragment Pair</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see edu.udo.cs.ls14.jf.bpmnanalysis.FragmentPair
-	 * @generated
-	 */
-	public Adapter createFragmentPairAdapter() {
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link edu.udo.cs.ls14.jf.bpmnanalysis.BehavioralProfile <em>Behavioral Profile</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see edu.udo.cs.ls14.jf.bpmnanalysis.BehavioralProfile
-	 * @generated
-	 */
-	public Adapter createBehavioralProfileAdapter() {
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link edu.udo.cs.ls14.jf.bpmnanalysis.BehavioralRelation <em>Behavioral Relation</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see edu.udo.cs.ls14.jf.bpmnanalysis.BehavioralRelation
-	 * @generated
-	 */
-	public Adapter createBehavioralRelationAdapter() {
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link java.util.Map.Entry <em>Condition Relation Entry</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see java.util.Map.Entry
-	 * @generated
-	 */
-	public Adapter createConditionRelationEntryAdapter() {
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link edu.udo.cs.ls14.jf.bpmnanalysis.ConditionalProfile <em>Conditional Profile</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see edu.udo.cs.ls14.jf.bpmnanalysis.ConditionalProfile
-	 * @generated
-	 */
-	public Adapter createConditionalProfileAdapter() {
 		return null;
 	}
 

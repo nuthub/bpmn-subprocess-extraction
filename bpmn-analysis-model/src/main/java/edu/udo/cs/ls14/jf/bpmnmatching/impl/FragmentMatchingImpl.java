@@ -1,16 +1,18 @@
 /**
  */
-package edu.udo.cs.ls14.jf.bpmnanalysis.impl;
+package edu.udo.cs.ls14.jf.bpmnmatching.impl;
 
-import edu.udo.cs.ls14.jf.bpmnanalysis.BpmnAnalysisPackage;
-import edu.udo.cs.ls14.jf.bpmnanalysis.FragmentMatching;
-import edu.udo.cs.ls14.jf.bpmnanalysis.FragmentPair;
+import edu.udo.cs.ls14.jf.bpmnmatching.BpmnMatchingPackage;
+import edu.udo.cs.ls14.jf.bpmnmatching.FragmentMatching;
+import edu.udo.cs.ls14.jf.bpmnmatching.FragmentPair;
 
 import java.util.Collection;
 
 import org.eclipse.emf.common.util.EList;
 
 import org.eclipse.emf.ecore.EClass;
+
+import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 
 import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 
@@ -21,13 +23,13 @@ import org.eclipse.emf.ecore.util.EObjectResolvingEList;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link edu.udo.cs.ls14.jf.bpmnanalysis.impl.FragmentMatchingImpl#getPairs <em>Pairs</em>}</li>
+ *   <li>{@link edu.udo.cs.ls14.jf.bpmnmatching.impl.FragmentMatchingImpl#getPairs <em>Pairs</em>}</li>
  * </ul>
  * </p>
  *
  * @generated
  */
-public class FragmentMatchingImpl extends AnalysisResultImpl implements FragmentMatching {
+public class FragmentMatchingImpl extends MinimalEObjectImpl.Container implements FragmentMatching {
 	/**
 	 * The cached value of the '{@link #getPairs() <em>Pairs</em>}' reference list.
 	 * <!-- begin-user-doc -->
@@ -54,7 +56,7 @@ public class FragmentMatchingImpl extends AnalysisResultImpl implements Fragment
 	 */
 	@Override
 	protected EClass eStaticClass() {
-		return BpmnAnalysisPackage.Literals.FRAGMENT_MATCHING;
+		return BpmnMatchingPackage.Literals.FRAGMENT_MATCHING;
 	}
 
 	/**
@@ -64,7 +66,7 @@ public class FragmentMatchingImpl extends AnalysisResultImpl implements Fragment
 	 */
 	public EList<FragmentPair> getPairs() {
 		if (pairs == null) {
-			pairs = new EObjectResolvingEList<FragmentPair>(FragmentPair.class, this, BpmnAnalysisPackage.FRAGMENT_MATCHING__PAIRS);
+			pairs = new EObjectResolvingEList<FragmentPair>(FragmentPair.class, this, BpmnMatchingPackage.FRAGMENT_MATCHING__PAIRS);
 		}
 		return pairs;
 	}
@@ -77,7 +79,7 @@ public class FragmentMatchingImpl extends AnalysisResultImpl implements Fragment
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case BpmnAnalysisPackage.FRAGMENT_MATCHING__PAIRS:
+			case BpmnMatchingPackage.FRAGMENT_MATCHING__PAIRS:
 				return getPairs();
 		}
 		return super.eGet(featureID, resolve, coreType);
@@ -92,7 +94,7 @@ public class FragmentMatchingImpl extends AnalysisResultImpl implements Fragment
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case BpmnAnalysisPackage.FRAGMENT_MATCHING__PAIRS:
+			case BpmnMatchingPackage.FRAGMENT_MATCHING__PAIRS:
 				getPairs().clear();
 				getPairs().addAll((Collection<? extends FragmentPair>)newValue);
 				return;
@@ -108,7 +110,7 @@ public class FragmentMatchingImpl extends AnalysisResultImpl implements Fragment
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case BpmnAnalysisPackage.FRAGMENT_MATCHING__PAIRS:
+			case BpmnMatchingPackage.FRAGMENT_MATCHING__PAIRS:
 				getPairs().clear();
 				return;
 		}
@@ -123,7 +125,7 @@ public class FragmentMatchingImpl extends AnalysisResultImpl implements Fragment
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case BpmnAnalysisPackage.FRAGMENT_MATCHING__PAIRS:
+			case BpmnMatchingPackage.FRAGMENT_MATCHING__PAIRS:
 				return pairs != null && !pairs.isEmpty();
 		}
 		return super.eIsSet(featureID);

@@ -1,6 +1,6 @@
 /**
  */
-package edu.udo.cs.ls14.jf.bpmnanalysis;
+package edu.udo.cs.ls14.jf.bpmnmatching;
 
 import org.eclipse.bpmn2.FlowNode;
 
@@ -14,12 +14,12 @@ import org.eclipse.emf.ecore.EObject;
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link edu.udo.cs.ls14.jf.bpmnanalysis.NodePair#getA <em>A</em>}</li>
- *   <li>{@link edu.udo.cs.ls14.jf.bpmnanalysis.NodePair#getB <em>B</em>}</li>
+ *   <li>{@link edu.udo.cs.ls14.jf.bpmnmatching.NodePair#getA <em>A</em>}</li>
+ *   <li>{@link edu.udo.cs.ls14.jf.bpmnmatching.NodePair#getB <em>B</em>}</li>
  * </ul>
  * </p>
  *
- * @see edu.udo.cs.ls14.jf.bpmnanalysis.BpmnAnalysisPackage#getNodePair()
+ * @see edu.udo.cs.ls14.jf.bpmnmatching.BpmnMatchingPackage#getNodePair()
  * @model
  * @generated
  */
@@ -34,14 +34,14 @@ public interface NodePair extends EObject {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>A</em>' reference.
 	 * @see #setA(FlowNode)
-	 * @see edu.udo.cs.ls14.jf.bpmnanalysis.BpmnAnalysisPackage#getNodePair_A()
+	 * @see edu.udo.cs.ls14.jf.bpmnmatching.BpmnMatchingPackage#getNodePair_A()
 	 * @model required="true"
 	 * @generated
 	 */
 	FlowNode getA();
 
 	/**
-	 * Sets the value of the '{@link edu.udo.cs.ls14.jf.bpmnanalysis.NodePair#getA <em>A</em>}' reference.
+	 * Sets the value of the '{@link edu.udo.cs.ls14.jf.bpmnmatching.NodePair#getA <em>A</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>A</em>' reference.
@@ -60,14 +60,14 @@ public interface NodePair extends EObject {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>B</em>' reference.
 	 * @see #setB(FlowNode)
-	 * @see edu.udo.cs.ls14.jf.bpmnanalysis.BpmnAnalysisPackage#getNodePair_B()
+	 * @see edu.udo.cs.ls14.jf.bpmnmatching.BpmnMatchingPackage#getNodePair_B()
 	 * @model required="true"
 	 * @generated
 	 */
 	FlowNode getB();
 
 	/**
-	 * Sets the value of the '{@link edu.udo.cs.ls14.jf.bpmnanalysis.NodePair#getB <em>B</em>}' reference.
+	 * Sets the value of the '{@link edu.udo.cs.ls14.jf.bpmnmatching.NodePair#getB <em>B</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>B</em>' reference.

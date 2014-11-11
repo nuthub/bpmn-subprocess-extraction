@@ -73,28 +73,28 @@ public class BpmnAnalysisSwitch<T> extends Switch<T> {
 	@Override
 	protected T doSwitch(int classifierID, EObject theEObject) {
 		switch (classifierID) {
-			case BpmnAnalysisPackage.ANALYSIS: {
-				Analysis analysis = (Analysis)theEObject;
-				T result = caseAnalysis(analysis);
+			case BpmnAnalysisPackage.PROCESS_ANALYSIS: {
+				ProcessAnalysis processAnalysis = (ProcessAnalysis)theEObject;
+				T result = caseProcessAnalysis(processAnalysis);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case BpmnAnalysisPackage.ANALYSIS_RESULT_ENTRY: {
-				@SuppressWarnings("unchecked") Map.Entry<String, AnalysisResult> analysisResultEntry = (Map.Entry<String, AnalysisResult>)theEObject;
-				T result = caseAnalysisResultEntry(analysisResultEntry);
+			case BpmnAnalysisPackage.PROCESS_ANALYSIS_RESULT_ENTRY: {
+				@SuppressWarnings("unchecked") Map.Entry<String, ProcessAnalysisResult> processAnalysisResultEntry = (Map.Entry<String, ProcessAnalysisResult>)theEObject;
+				T result = caseProcessAnalysisResultEntry(processAnalysisResultEntry);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case BpmnAnalysisPackage.ANALYSIS_RESULT: {
-				AnalysisResult analysisResult = (AnalysisResult)theEObject;
-				T result = caseAnalysisResult(analysisResult);
+			case BpmnAnalysisPackage.PROCESS_ANALYSIS_RESULT: {
+				ProcessAnalysisResult processAnalysisResult = (ProcessAnalysisResult)theEObject;
+				T result = caseProcessAnalysisResult(processAnalysisResult);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
 			case BpmnAnalysisPackage.BEHAVIORAL_PROFILE: {
 				BehavioralProfile behavioralProfile = (BehavioralProfile)theEObject;
 				T result = caseBehavioralProfile(behavioralProfile);
-				if (result == null) result = caseAnalysisResult(behavioralProfile);
+				if (result == null) result = caseProcessAnalysisResult(behavioralProfile);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -107,7 +107,7 @@ public class BpmnAnalysisSwitch<T> extends Switch<T> {
 			case BpmnAnalysisPackage.CONDITIONAL_PROFILE: {
 				ConditionalProfile conditionalProfile = (ConditionalProfile)theEObject;
 				T result = caseConditionalProfile(conditionalProfile);
-				if (result == null) result = caseAnalysisResult(conditionalProfile);
+				if (result == null) result = caseProcessAnalysisResult(conditionalProfile);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -120,7 +120,7 @@ public class BpmnAnalysisSwitch<T> extends Switch<T> {
 			case BpmnAnalysisPackage.PROCESS_STRUCTURE_TREE: {
 				ProcessStructureTree processStructureTree = (ProcessStructureTree)theEObject;
 				T result = caseProcessStructureTree(processStructureTree);
-				if (result == null) result = caseAnalysisResult(processStructureTree);
+				if (result == null) result = caseProcessAnalysisResult(processStructureTree);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -139,33 +139,7 @@ public class BpmnAnalysisSwitch<T> extends Switch<T> {
 			case BpmnAnalysisPackage.TRACE_PROFILE: {
 				TraceProfile traceProfile = (TraceProfile)theEObject;
 				T result = caseTraceProfile(traceProfile);
-				if (result == null) result = caseAnalysisResult(traceProfile);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case BpmnAnalysisPackage.NODE_MATCHING: {
-				NodeMatching nodeMatching = (NodeMatching)theEObject;
-				T result = caseNodeMatching(nodeMatching);
-				if (result == null) result = caseAnalysisResult(nodeMatching);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case BpmnAnalysisPackage.NODE_PAIR: {
-				NodePair nodePair = (NodePair)theEObject;
-				T result = caseNodePair(nodePair);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case BpmnAnalysisPackage.FRAGMENT_MATCHING: {
-				FragmentMatching fragmentMatching = (FragmentMatching)theEObject;
-				T result = caseFragmentMatching(fragmentMatching);
-				if (result == null) result = caseAnalysisResult(fragmentMatching);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case BpmnAnalysisPackage.FRAGMENT_PAIR: {
-				FragmentPair fragmentPair = (FragmentPair)theEObject;
-				T result = caseFragmentPair(fragmentPair);
+				if (result == null) result = caseProcessAnalysisResult(traceProfile);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -174,47 +148,107 @@ public class BpmnAnalysisSwitch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Analysis</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>Process Analysis</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Analysis</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>Process Analysis</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseAnalysis(Analysis object) {
+	public T caseProcessAnalysis(ProcessAnalysis object) {
 		return null;
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Analysis Result Entry</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>Process Analysis Result Entry</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Analysis Result Entry</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>Process Analysis Result Entry</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseAnalysisResultEntry(Map.Entry<String, AnalysisResult> object) {
+	public T caseProcessAnalysisResultEntry(Map.Entry<String, ProcessAnalysisResult> object) {
 		return null;
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Analysis Result</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>Process Analysis Result</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Analysis Result</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>Process Analysis Result</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseAnalysisResult(AnalysisResult object) {
+	public T caseProcessAnalysisResult(ProcessAnalysisResult object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Behavioral Profile</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Behavioral Profile</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseBehavioralProfile(BehavioralProfile object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Behavioral Relation</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Behavioral Relation</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseBehavioralRelation(BehavioralRelation object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Conditional Profile</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Conditional Profile</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseConditionalProfile(ConditionalProfile object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Condition Relation Entry</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Condition Relation Entry</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseConditionRelationEntry(Map.Entry<FlowNode, EList<FormalExpression>> object) {
 		return null;
 	}
 
@@ -275,126 +309,6 @@ public class BpmnAnalysisSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseTraceProfile(TraceProfile object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Node Matching</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Node Matching</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseNodeMatching(NodeMatching object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Node Pair</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Node Pair</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseNodePair(NodePair object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Fragment Matching</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Fragment Matching</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseFragmentMatching(FragmentMatching object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Fragment Pair</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Fragment Pair</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseFragmentPair(FragmentPair object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Behavioral Profile</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Behavioral Profile</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseBehavioralProfile(BehavioralProfile object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Behavioral Relation</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Behavioral Relation</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseBehavioralRelation(BehavioralRelation object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Condition Relation Entry</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Condition Relation Entry</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseConditionRelationEntry(Map.Entry<FlowNode, EList<FormalExpression>> object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Conditional Profile</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Conditional Profile</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseConditionalProfile(ConditionalProfile object) {
 		return null;
 	}
 

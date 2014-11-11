@@ -1,16 +1,18 @@
 /**
  */
-package edu.udo.cs.ls14.jf.bpmnanalysis.impl;
+package edu.udo.cs.ls14.jf.bpmnmatching.impl;
 
-import edu.udo.cs.ls14.jf.bpmnanalysis.BpmnAnalysisPackage;
-import edu.udo.cs.ls14.jf.bpmnanalysis.NodeMatching;
-import edu.udo.cs.ls14.jf.bpmnanalysis.NodePair;
+import edu.udo.cs.ls14.jf.bpmnmatching.BpmnMatchingPackage;
+import edu.udo.cs.ls14.jf.bpmnmatching.NodeMatching;
+import edu.udo.cs.ls14.jf.bpmnmatching.NodePair;
 
 import java.util.Collection;
 
 import org.eclipse.emf.common.util.EList;
 
 import org.eclipse.emf.ecore.EClass;
+
+import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 
 import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 
@@ -21,13 +23,13 @@ import org.eclipse.emf.ecore.util.EObjectResolvingEList;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link edu.udo.cs.ls14.jf.bpmnanalysis.impl.NodeMatchingImpl#getPairs <em>Pairs</em>}</li>
+ *   <li>{@link edu.udo.cs.ls14.jf.bpmnmatching.impl.NodeMatchingImpl#getPairs <em>Pairs</em>}</li>
  * </ul>
  * </p>
  *
  * @generated
  */
-public class NodeMatchingImpl extends AnalysisResultImpl implements NodeMatching {
+public class NodeMatchingImpl extends MinimalEObjectImpl.Container implements NodeMatching {
 	/**
 	 * The cached value of the '{@link #getPairs() <em>Pairs</em>}' reference list.
 	 * <!-- begin-user-doc -->
@@ -54,7 +56,7 @@ public class NodeMatchingImpl extends AnalysisResultImpl implements NodeMatching
 	 */
 	@Override
 	protected EClass eStaticClass() {
-		return BpmnAnalysisPackage.Literals.NODE_MATCHING;
+		return BpmnMatchingPackage.Literals.NODE_MATCHING;
 	}
 
 	/**
@@ -64,7 +66,7 @@ public class NodeMatchingImpl extends AnalysisResultImpl implements NodeMatching
 	 */
 	public EList<NodePair> getPairs() {
 		if (pairs == null) {
-			pairs = new EObjectResolvingEList<NodePair>(NodePair.class, this, BpmnAnalysisPackage.NODE_MATCHING__PAIRS);
+			pairs = new EObjectResolvingEList<NodePair>(NodePair.class, this, BpmnMatchingPackage.NODE_MATCHING__PAIRS);
 		}
 		return pairs;
 	}
@@ -77,7 +79,7 @@ public class NodeMatchingImpl extends AnalysisResultImpl implements NodeMatching
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case BpmnAnalysisPackage.NODE_MATCHING__PAIRS:
+			case BpmnMatchingPackage.NODE_MATCHING__PAIRS:
 				return getPairs();
 		}
 		return super.eGet(featureID, resolve, coreType);
@@ -92,7 +94,7 @@ public class NodeMatchingImpl extends AnalysisResultImpl implements NodeMatching
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case BpmnAnalysisPackage.NODE_MATCHING__PAIRS:
+			case BpmnMatchingPackage.NODE_MATCHING__PAIRS:
 				getPairs().clear();
 				getPairs().addAll((Collection<? extends NodePair>)newValue);
 				return;
@@ -108,7 +110,7 @@ public class NodeMatchingImpl extends AnalysisResultImpl implements NodeMatching
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case BpmnAnalysisPackage.NODE_MATCHING__PAIRS:
+			case BpmnMatchingPackage.NODE_MATCHING__PAIRS:
 				getPairs().clear();
 				return;
 		}
@@ -123,7 +125,7 @@ public class NodeMatchingImpl extends AnalysisResultImpl implements NodeMatching
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case BpmnAnalysisPackage.NODE_MATCHING__PAIRS:
+			case BpmnMatchingPackage.NODE_MATCHING__PAIRS:
 				return pairs != null && !pairs.isEmpty();
 		}
 		return super.eIsSet(featureID);

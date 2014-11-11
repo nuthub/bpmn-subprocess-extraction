@@ -31,7 +31,7 @@ import org.eclipse.emf.ecore.util.InternalEList;
  *
  * @generated
  */
-public class ProcessStructureTreeImpl extends AnalysisResultImpl implements ProcessStructureTree {
+public class ProcessStructureTreeImpl extends ProcessAnalysisResultImpl implements ProcessStructureTree {
 	/**
 	 * The cached value of the '{@link #getFragments() <em>Fragments</em>}' containment reference list.
 	 * <!-- begin-user-doc -->

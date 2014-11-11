@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<genmodel:GenModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore"
+    xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" modelDirectory="/bpmn-analysis-model/src/main/java" modelPluginID=""
+    modelName="BpmnMatching" rootExtendsClass="org.eclipse.emf.ecore.impl.MinimalEObjectImpl$Container"
+    testsDirectory="/bpmn-analysis-model.tests/src/test/java" importerID="org.eclipse.emf.importer.ecore"
+    bundleManifest="false" complianceLevel="8.0" copyrightFields="false" usedGenPackages="BPMN20.genmodel#//bpmn2 BPMN20.genmodel#//di BPMN20.genmodel#//di.1 BPMN20.genmodel#//dc BpmnAnalysis.genmodel#//bpmnanalysis"
+    operationReflection="true" importOrganizing="true">
+  <foreignModel>BpmnMatching.ecore</foreignModel>
+  <genPackages prefix="BpmnMatching" basePackage="edu.udo.cs.ls14.jf" disposableProviderFactory="true"
+      ecorePackage="BpmnMatching.ecore#/">
+    <genClasses ecoreClass="BpmnMatching.ecore#//NodeMatching">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference BpmnMatching.ecore#//NodeMatching/pairs"/>
+    </genClasses>
+    <genClasses ecoreClass="BpmnMatching.ecore#//NodePair">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference BpmnMatching.ecore#//NodePair/a"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference BpmnMatching.ecore#//NodePair/b"/>
+    </genClasses>
+    <genClasses ecoreClass="BpmnMatching.ecore#//FragmentMatching">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference BpmnMatching.ecore#//FragmentMatching/pairs"/>
+    </genClasses>
+    <genClasses ecoreClass="BpmnMatching.ecore#//FragmentPair">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference BpmnMatching.ecore#//FragmentPair/a"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference BpmnMatching.ecore#//FragmentPair/b"/>
+    </genClasses>
+  </genPackages>
+</genmodel:GenModel>

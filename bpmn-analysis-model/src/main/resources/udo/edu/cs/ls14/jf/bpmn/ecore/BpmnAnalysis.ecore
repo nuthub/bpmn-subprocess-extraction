@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ecore:EPackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="bpmnanalysis" nsURI="http://jf.ls14.cs.udo.edu/bpmnanalysis/1.0"
+    nsPrefix="bpmnanalysis">
+  <eClassifiers xsi:type="ecore:EClass" name="ProcessAnalysis">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="id" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="definitions" lowerBound="1"
+        eType="ecore:EClass BPMN20.ecore#//Definitions" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="results" upperBound="-1"
+        eType="#//ProcessAnalysisResultEntry" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ProcessAnalysisResultEntry" instanceClassName="java.util.Map$Entry">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="key" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2003/XMLType#//ID"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="value" lowerBound="1" eType="#//ProcessAnalysisResult"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ProcessAnalysisResult" abstract="true"/>
+  <eClassifiers xsi:type="ecore:EClass" name="BehavioralProfile" eSuperTypes="#//ProcessAnalysisResult">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="traces" upperBound="-1"
+        eType="#//Trace" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="relations" upperBound="-1"
+        eType="#//BehavioralRelation" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="BehavioralRelation">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="left" lowerBound="1" eType="ecore:EClass BPMN20.ecore#//FlowNode"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="right" lowerBound="1" eType="ecore:EClass BPMN20.ecore#//FlowNode"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="relation" lowerBound="1"
+        eType="#//BehavioralRelationType"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="BehavioralRelationType">
+    <eLiterals name="NO_SUCCESSION" value="1" literal="NO_SUCCESSION"/>
+    <eLiterals name="DIRECT_SUCCESSOR" value="2" literal="DIRECT_SUCCESSOR"/>
+    <eLiterals name="DIRECT_PREDECESSOR" value="3" literal="DIRECT_PREDECESSOR"/>
+    <eLiterals name="PARALLEL" value="4" literal="PARALLEL"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ConditionalProfile" eSuperTypes="#//ProcessAnalysisResult">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="relations" upperBound="-1"
+        eType="#//ConditionRelationEntry" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ConditionRelationEntry" instanceClassName="java.util.Map$Entry">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="key" lowerBound="1" eType="ecore:EClass BPMN20.ecore#//FlowNode"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="value" ordered="false"
+        upperBound="-1" eType="ecore:EClass BPMN20.ecore#//FormalExpression"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ProcessStructureTree" eSuperTypes="#//ProcessAnalysisResult">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="fragments" upperBound="-1"
+        eType="#//Fragment" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Fragment">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="definitions" lowerBound="1"
+        eType="ecore:EClass BPMN20.ecore#//Definitions"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="entry" lowerBound="1" eType="ecore:EClass BPMN20.ecore#//SequenceFlow"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="exit" lowerBound="1" eType="ecore:EClass BPMN20.ecore#//SequenceFlow"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="parent" eType="#//Fragment"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Trace">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="nodes" upperBound="-1"
+        eType="ecore:EClass BPMN20.ecore#//FlowNode"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="finished" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="TraceProfile" eSuperTypes="#//ProcessAnalysisResult">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="traces" upperBound="-1"
+        eType="#//Trace" containment="true"/>
+  </eClassifiers>
+</ecore:EPackage>

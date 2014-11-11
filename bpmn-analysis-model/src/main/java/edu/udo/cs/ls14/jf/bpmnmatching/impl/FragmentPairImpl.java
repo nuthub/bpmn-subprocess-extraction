@@ -1,10 +1,11 @@
 /**
  */
-package edu.udo.cs.ls14.jf.bpmnanalysis.impl;
+package edu.udo.cs.ls14.jf.bpmnmatching.impl;
 
-import edu.udo.cs.ls14.jf.bpmnanalysis.BpmnAnalysisPackage;
 import edu.udo.cs.ls14.jf.bpmnanalysis.Fragment;
-import edu.udo.cs.ls14.jf.bpmnanalysis.FragmentPair;
+
+import edu.udo.cs.ls14.jf.bpmnmatching.BpmnMatchingPackage;
+import edu.udo.cs.ls14.jf.bpmnmatching.FragmentPair;
 
 import org.eclipse.emf.common.notify.Notification;
 
@@ -21,8 +22,8 @@ import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link edu.udo.cs.ls14.jf.bpmnanalysis.impl.FragmentPairImpl#getA <em>A</em>}</li>
- *   <li>{@link edu.udo.cs.ls14.jf.bpmnanalysis.impl.FragmentPairImpl#getB <em>B</em>}</li>
+ *   <li>{@link edu.udo.cs.ls14.jf.bpmnmatching.impl.FragmentPairImpl#getA <em>A</em>}</li>
+ *   <li>{@link edu.udo.cs.ls14.jf.bpmnmatching.impl.FragmentPairImpl#getB <em>B</em>}</li>
  * </ul>
  * </p>
  *
@@ -65,7 +66,7 @@ public class FragmentPairImpl extends MinimalEObjectImpl.Container implements Fr
 	 */
 	@Override
 	protected EClass eStaticClass() {
-		return BpmnAnalysisPackage.Literals.FRAGMENT_PAIR;
+		return BpmnMatchingPackage.Literals.FRAGMENT_PAIR;
 	}
 
 	/**
@@ -79,7 +80,7 @@ public class FragmentPairImpl extends MinimalEObjectImpl.Container implements Fr
 			a = (Fragment)eResolveProxy(oldA);
 			if (a != oldA) {
 				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, BpmnAnalysisPackage.FRAGMENT_PAIR__A, oldA, a));
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, BpmnMatchingPackage.FRAGMENT_PAIR__A, oldA, a));
 			}
 		}
 		return a;
@@ -103,7 +104,7 @@ public class FragmentPairImpl extends MinimalEObjectImpl.Container implements Fr
 		Fragment oldA = a;
 		a = newA;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, BpmnAnalysisPackage.FRAGMENT_PAIR__A, oldA, a));
+			eNotify(new ENotificationImpl(this, Notification.SET, BpmnMatchingPackage.FRAGMENT_PAIR__A, oldA, a));
 	}
 
 	/**
@@ -117,7 +118,7 @@ public class FragmentPairImpl extends MinimalEObjectImpl.Container implements Fr
 			b = (Fragment)eResolveProxy(oldB);
 			if (b != oldB) {
 				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, BpmnAnalysisPackage.FRAGMENT_PAIR__B, oldB, b));
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, BpmnMatchingPackage.FRAGMENT_PAIR__B, oldB, b));
 			}
 		}
 		return b;
@@ -141,7 +142,7 @@ public class FragmentPairImpl extends MinimalEObjectImpl.Container implements Fr
 		Fragment oldB = b;
 		b = newB;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, BpmnAnalysisPackage.FRAGMENT_PAIR__B, oldB, b));
+			eNotify(new ENotificationImpl(this, Notification.SET, BpmnMatchingPackage.FRAGMENT_PAIR__B, oldB, b));
 	}
 
 	/**
@@ -152,10 +153,10 @@ public class FragmentPairImpl extends MinimalEObjectImpl.Container implements Fr
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case BpmnAnalysisPackage.FRAGMENT_PAIR__A:
+			case BpmnMatchingPackage.FRAGMENT_PAIR__A:
 				if (resolve) return getA();
 				return basicGetA();
-			case BpmnAnalysisPackage.FRAGMENT_PAIR__B:
+			case BpmnMatchingPackage.FRAGMENT_PAIR__B:
 				if (resolve) return getB();
 				return basicGetB();
 		}
@@ -170,10 +171,10 @@ public class FragmentPairImpl extends MinimalEObjectImpl.Container implements Fr
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case BpmnAnalysisPackage.FRAGMENT_PAIR__A:
+			case BpmnMatchingPackage.FRAGMENT_PAIR__A:
 				setA((Fragment)newValue);
 				return;
-			case BpmnAnalysisPackage.FRAGMENT_PAIR__B:
+			case BpmnMatchingPackage.FRAGMENT_PAIR__B:
 				setB((Fragment)newValue);
 				return;
 		}
@@ -188,10 +189,10 @@ public class FragmentPairImpl extends MinimalEObjectImpl.Container implements Fr
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case BpmnAnalysisPackage.FRAGMENT_PAIR__A:
+			case BpmnMatchingPackage.FRAGMENT_PAIR__A:
 				setA((Fragment)null);
 				return;
-			case BpmnAnalysisPackage.FRAGMENT_PAIR__B:
+			case BpmnMatchingPackage.FRAGMENT_PAIR__B:
 				setB((Fragment)null);
 				return;
 		}
@@ -206,9 +207,9 @@ public class FragmentPairImpl extends MinimalEObjectImpl.Container implements Fr
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case BpmnAnalysisPackage.FRAGMENT_PAIR__A:
+			case BpmnMatchingPackage.FRAGMENT_PAIR__A:
 				return a != null;
-			case BpmnAnalysisPackage.FRAGMENT_PAIR__B:
+			case BpmnMatchingPackage.FRAGMENT_PAIR__B:
 				return b != null;
 		}
 		return super.eIsSet(featureID);

@@ -2,8 +2,8 @@
  */
 package edu.udo.cs.ls14.jf.bpmnanalysis.impl;
 
-import edu.udo.cs.ls14.jf.bpmnanalysis.AnalysisResult;
 import edu.udo.cs.ls14.jf.bpmnanalysis.BpmnAnalysisPackage;
+import edu.udo.cs.ls14.jf.bpmnanalysis.ProcessAnalysisResult;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
@@ -20,19 +20,19 @@ import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 
 /**
  * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Analysis Result Entry</b></em>'.
+ * An implementation of the model object '<em><b>Process Analysis Result Entry</b></em>'.
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link edu.udo.cs.ls14.jf.bpmnanalysis.impl.AnalysisResultEntryImpl#getTypedKey <em>Key</em>}</li>
- *   <li>{@link edu.udo.cs.ls14.jf.bpmnanalysis.impl.AnalysisResultEntryImpl#getTypedValue <em>Value</em>}</li>
+ *   <li>{@link edu.udo.cs.ls14.jf.bpmnanalysis.impl.ProcessAnalysisResultEntryImpl#getTypedKey <em>Key</em>}</li>
+ *   <li>{@link edu.udo.cs.ls14.jf.bpmnanalysis.impl.ProcessAnalysisResultEntryImpl#getTypedValue <em>Value</em>}</li>
  * </ul>
  * </p>
  *
  * @generated
  */
-public class AnalysisResultEntryImpl extends MinimalEObjectImpl.Container implements BasicEMap.Entry<String,AnalysisResult> {
+public class ProcessAnalysisResultEntryImpl extends MinimalEObjectImpl.Container implements BasicEMap.Entry<String,ProcessAnalysisResult> {
 	/**
 	 * The default value of the '{@link #getTypedKey() <em>Key</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -61,14 +61,14 @@ public class AnalysisResultEntryImpl extends MinimalEObjectImpl.Container implem
 	 * @generated
 	 * @ordered
 	 */
-	protected AnalysisResult value;
+	protected ProcessAnalysisResult value;
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected AnalysisResultEntryImpl() {
+	protected ProcessAnalysisResultEntryImpl() {
 		super();
 	}
 
@@ -79,7 +79,7 @@ public class AnalysisResultEntryImpl extends MinimalEObjectImpl.Container implem
 	 */
 	@Override
 	protected EClass eStaticClass() {
-		return BpmnAnalysisPackage.Literals.ANALYSIS_RESULT_ENTRY;
+		return BpmnAnalysisPackage.Literals.PROCESS_ANALYSIS_RESULT_ENTRY;
 	}
 
 	/**
@@ -100,7 +100,7 @@ public class AnalysisResultEntryImpl extends MinimalEObjectImpl.Container implem
 		String oldKey = key;
 		key = newKey;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, BpmnAnalysisPackage.ANALYSIS_RESULT_ENTRY__KEY, oldKey, key));
+			eNotify(new ENotificationImpl(this, Notification.SET, BpmnAnalysisPackage.PROCESS_ANALYSIS_RESULT_ENTRY__KEY, oldKey, key));
 	}
 
 	/**
@@ -108,7 +108,7 @@ public class AnalysisResultEntryImpl extends MinimalEObjectImpl.Container implem
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public AnalysisResult getTypedValue() {
+	public ProcessAnalysisResult getTypedValue() {
 		return value;
 	}
 
@@ -117,11 +117,11 @@ public class AnalysisResultEntryImpl extends MinimalEObjectImpl.Container implem
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain basicSetTypedValue(AnalysisResult newValue, NotificationChain msgs) {
-		AnalysisResult oldValue = value;
+	public NotificationChain basicSetTypedValue(ProcessAnalysisResult newValue, NotificationChain msgs) {
+		ProcessAnalysisResult oldValue = value;
 		value = newValue;
 		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, BpmnAnalysisPackage.ANALYSIS_RESULT_ENTRY__VALUE, oldValue, newValue);
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, BpmnAnalysisPackage.PROCESS_ANALYSIS_RESULT_ENTRY__VALUE, oldValue, newValue);
 			if (msgs == null) msgs = notification; else msgs.add(notification);
 		}
 		return msgs;
@@ -132,18 +132,18 @@ public class AnalysisResultEntryImpl extends MinimalEObjectImpl.Container implem
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setTypedValue(AnalysisResult newValue) {
+	public void setTypedValue(ProcessAnalysisResult newValue) {
 		if (newValue != value) {
 			NotificationChain msgs = null;
 			if (value != null)
-				msgs = ((InternalEObject)value).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - BpmnAnalysisPackage.ANALYSIS_RESULT_ENTRY__VALUE, null, msgs);
+				msgs = ((InternalEObject)value).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - BpmnAnalysisPackage.PROCESS_ANALYSIS_RESULT_ENTRY__VALUE, null, msgs);
 			if (newValue != null)
-				msgs = ((InternalEObject)newValue).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - BpmnAnalysisPackage.ANALYSIS_RESULT_ENTRY__VALUE, null, msgs);
+				msgs = ((InternalEObject)newValue).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - BpmnAnalysisPackage.PROCESS_ANALYSIS_RESULT_ENTRY__VALUE, null, msgs);
 			msgs = basicSetTypedValue(newValue, msgs);
 			if (msgs != null) msgs.dispatch();
 		}
 		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, BpmnAnalysisPackage.ANALYSIS_RESULT_ENTRY__VALUE, newValue, newValue));
+			eNotify(new ENotificationImpl(this, Notification.SET, BpmnAnalysisPackage.PROCESS_ANALYSIS_RESULT_ENTRY__VALUE, newValue, newValue));
 	}
 
 	/**
@@ -154,7 +154,7 @@ public class AnalysisResultEntryImpl extends MinimalEObjectImpl.Container implem
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-			case BpmnAnalysisPackage.ANALYSIS_RESULT_ENTRY__VALUE:
+			case BpmnAnalysisPackage.PROCESS_ANALYSIS_RESULT_ENTRY__VALUE:
 				return basicSetTypedValue(null, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
@@ -168,9 +168,9 @@ public class AnalysisResultEntryImpl extends MinimalEObjectImpl.Container implem
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case BpmnAnalysisPackage.ANALYSIS_RESULT_ENTRY__KEY:
+			case BpmnAnalysisPackage.PROCESS_ANALYSIS_RESULT_ENTRY__KEY:
 				return getTypedKey();
-			case BpmnAnalysisPackage.ANALYSIS_RESULT_ENTRY__VALUE:
+			case BpmnAnalysisPackage.PROCESS_ANALYSIS_RESULT_ENTRY__VALUE:
 				return getTypedValue();
 		}
 		return super.eGet(featureID, resolve, coreType);
@@ -184,11 +184,11 @@ public class AnalysisResultEntryImpl extends MinimalEObjectImpl.Container implem
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case BpmnAnalysisPackage.ANALYSIS_RESULT_ENTRY__KEY:
+			case BpmnAnalysisPackage.PROCESS_ANALYSIS_RESULT_ENTRY__KEY:
 				setTypedKey((String)newValue);
 				return;
-			case BpmnAnalysisPackage.ANALYSIS_RESULT_ENTRY__VALUE:
-				setTypedValue((AnalysisResult)newValue);
+			case BpmnAnalysisPackage.PROCESS_ANALYSIS_RESULT_ENTRY__VALUE:
+				setTypedValue((ProcessAnalysisResult)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -202,11 +202,11 @@ public class AnalysisResultEntryImpl extends MinimalEObjectImpl.Container implem
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case BpmnAnalysisPackage.ANALYSIS_RESULT_ENTRY__KEY:
+			case BpmnAnalysisPackage.PROCESS_ANALYSIS_RESULT_ENTRY__KEY:
 				setTypedKey(KEY_EDEFAULT);
 				return;
-			case BpmnAnalysisPackage.ANALYSIS_RESULT_ENTRY__VALUE:
-				setTypedValue((AnalysisResult)null);
+			case BpmnAnalysisPackage.PROCESS_ANALYSIS_RESULT_ENTRY__VALUE:
+				setTypedValue((ProcessAnalysisResult)null);
 				return;
 		}
 		super.eUnset(featureID);
@@ -220,9 +220,9 @@ public class AnalysisResultEntryImpl extends MinimalEObjectImpl.Container implem
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case BpmnAnalysisPackage.ANALYSIS_RESULT_ENTRY__KEY:
+			case BpmnAnalysisPackage.PROCESS_ANALYSIS_RESULT_ENTRY__KEY:
 				return KEY_EDEFAULT == null ? key != null : !KEY_EDEFAULT.equals(key);
-			case BpmnAnalysisPackage.ANALYSIS_RESULT_ENTRY__VALUE:
+			case BpmnAnalysisPackage.PROCESS_ANALYSIS_RESULT_ENTRY__VALUE:
 				return value != null;
 		}
 		return super.eIsSet(featureID);
@@ -296,7 +296,7 @@ public class AnalysisResultEntryImpl extends MinimalEObjectImpl.Container implem
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public AnalysisResult getValue() {
+	public ProcessAnalysisResult getValue() {
 		return getTypedValue();
 	}
 
@@ -305,8 +305,8 @@ public class AnalysisResultEntryImpl extends MinimalEObjectImpl.Container implem
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public AnalysisResult setValue(AnalysisResult value) {
-		AnalysisResult oldValue = getValue();
+	public ProcessAnalysisResult setValue(ProcessAnalysisResult value) {
+		ProcessAnalysisResult oldValue = getValue();
 		setTypedValue(value);
 		return oldValue;
 	}
@@ -317,9 +317,9 @@ public class AnalysisResultEntryImpl extends MinimalEObjectImpl.Container implem
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
-	public EMap<String, AnalysisResult> getEMap() {
+	public EMap<String, ProcessAnalysisResult> getEMap() {
 		EObject container = eContainer();
-		return container == null ? null : (EMap<String, AnalysisResult>)container.eGet(eContainmentFeature());
+		return container == null ? null : (EMap<String, ProcessAnalysisResult>)container.eGet(eContainmentFeature());
 	}
 
-} //AnalysisResultEntryImpl
+} //ProcessAnalysisResultEntryImpl

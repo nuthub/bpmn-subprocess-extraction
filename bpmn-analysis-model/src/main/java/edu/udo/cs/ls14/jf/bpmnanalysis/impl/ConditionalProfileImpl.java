@@ -33,7 +33,7 @@ import org.eclipse.emf.ecore.util.InternalEList;
  *
  * @generated
  */
-public class ConditionalProfileImpl extends AnalysisResultImpl implements ConditionalProfile {
+public class ConditionalProfileImpl extends ProcessAnalysisResultImpl implements ConditionalProfile {
 	/**
 	 * The cached value of the '{@link #getRelations() <em>Relations</em>}' map.
 	 * <!-- begin-user-doc -->
