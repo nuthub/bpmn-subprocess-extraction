@@ -147,7 +147,7 @@ public class HenshinApplicationMonitor extends BasicApplicationMonitor {
 		step++;
 		EGraph graph = application.getEGraph();
 		if (success) {
-			logger.info("=== ("
+			logger.debug("=== ("
 					+ step
 					+ ") "
 					+ stepKind

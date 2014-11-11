@@ -12,8 +12,13 @@ import org.eclipse.emf.henshin.interpreter.impl.UnitApplicationImpl;
 import org.eclipse.emf.henshin.model.Module;
 import org.eclipse.emf.henshin.model.Unit;
 import org.eclipse.emf.henshin.model.resource.HenshinResourceSet;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public abstract class HenshinTransformation {
+
+	private static final Logger LOG = LoggerFactory
+			.getLogger(HenshinTransformation.class);
 
 	private Engine engine = null;
 	private HenshinResourceSet resourceSet = null;
@@ -43,10 +48,12 @@ public abstract class HenshinTransformation {
 					+ " / " + ruleName);
 		}
 		UnitApplication app = new UnitApplicationImpl(engine, graph, unit, null);
+		// Basically a copy of parameters :( no better way with ruleapplication api)
 		for (Map.Entry<String, Object> p : parameters.entrySet()) {
 			app.setParameterValue(p.getKey(), p.getValue());
 		}
 		if (!app.execute(new HenshinApplicationMonitor())) {
+			LOG.error("Rule execution failed: " + ruleName + " / " + parameters);
 			throw new Exception("Could not apply rule: " + rulefileBaseName
 					+ "->" + ruleName + " with " + parameters);
 		}

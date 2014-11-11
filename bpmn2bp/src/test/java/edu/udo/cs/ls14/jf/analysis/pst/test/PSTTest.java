@@ -152,8 +152,8 @@ public class PSTTest {
 		URL url = PSTTest.class.getResource("/edu/udo/cs/ls14/jf/bpmn/"
 				+ basename + ".bpmn");
 		PST pst = new PST();
-		pst.createFromProcess(ProcessLoader
-				.getProcessFromResource(ProcessLoader.getBpmnResource(url)));
+		pst.createFromDefinitions(ProcessLoader
+				.getDefinitionsFromResource(ProcessLoader.getBpmnResource(url)));
 		IOUtils.invokeDOT("/tmp", basename + "-undirectedgraph.png",
 				pst.getGraphAsDot());
 		IOUtils.invokeDOT("/tmp", basename + "-spanningtree.png",

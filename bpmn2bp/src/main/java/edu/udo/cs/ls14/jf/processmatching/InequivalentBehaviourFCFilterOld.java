@@ -21,7 +21,7 @@ public class InequivalentBehaviourFCFilterOld {
 			.getLogger(InequivalentBehaviourFCFilterOld.class);
 
 	public static Set<Pair<FragmentOld, FragmentOld>> filter(
-			ProcessMatching matching) {
+			ProcessMatchingOld matching) {
 		// LOG.debug("Have to compare behaviour profiles");
 		Set<Pair<FragmentOld, FragmentOld>> pairs = new HashSet<Pair<FragmentOld, FragmentOld>>();
 

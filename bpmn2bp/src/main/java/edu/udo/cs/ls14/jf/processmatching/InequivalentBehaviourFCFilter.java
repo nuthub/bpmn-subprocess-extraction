@@ -7,16 +7,16 @@ import org.eclipse.emf.common.util.EList;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import edu.udo.cs.ls14.jf.bpmnanalysis.Analysis;
+import edu.udo.cs.ls14.jf.bpmn.utils.FragmentUtil;
 import edu.udo.cs.ls14.jf.bpmnanalysis.BehavioralProfile;
 import edu.udo.cs.ls14.jf.bpmnanalysis.BehavioralRelation;
 import edu.udo.cs.ls14.jf.bpmnanalysis.BehavioralRelationType;
-import edu.udo.cs.ls14.jf.bpmnanalysis.BpmnAnalysisFactory;
-import edu.udo.cs.ls14.jf.bpmnanalysis.FragmentMatching;
-import edu.udo.cs.ls14.jf.bpmnanalysis.FragmentPair;
-import edu.udo.cs.ls14.jf.bpmnanalysis.NodeMatching;
-import edu.udo.cs.ls14.jf.bpmnanalysis.NodePair;
-import edu.udo.cs.ls14.jf.bpmnanalysis.util.FragmentUtil;
+import edu.udo.cs.ls14.jf.bpmnanalysis.ProcessAnalysis;
+import edu.udo.cs.ls14.jf.bpmnmatching.BpmnMatchingFactory;
+import edu.udo.cs.ls14.jf.bpmnmatching.FragmentMatching;
+import edu.udo.cs.ls14.jf.bpmnmatching.FragmentPair;
+import edu.udo.cs.ls14.jf.bpmnmatching.NodeMatching;
+import edu.udo.cs.ls14.jf.bpmnmatching.NodePair;
 
 public class InequivalentBehaviourFCFilter {
 
@@ -24,9 +24,9 @@ public class InequivalentBehaviourFCFilter {
 			.getLogger(InequivalentBehaviourFCFilter.class);
 
 	public static FragmentMatching filter(FragmentMatching fragmentMatching,
-			NodeMatching nodeMatching, Analysis analysis1, Analysis analysis2) {
+			NodeMatching nodeMatching, ProcessAnalysis analysis1, ProcessAnalysis analysis2) {
 		// LOG.debug("Have to compare behaviour profiles");
-		FragmentMatching matching = BpmnAnalysisFactory.eINSTANCE
+		FragmentMatching matching = BpmnMatchingFactory.eINSTANCE
 				.createFragmentMatching();
 
 		for (FragmentPair pair : fragmentMatching.getPairs()) {

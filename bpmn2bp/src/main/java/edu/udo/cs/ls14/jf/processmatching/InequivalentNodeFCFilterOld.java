@@ -30,7 +30,7 @@ public class InequivalentNodeFCFilterOld {
 	 * @param nodeMapping
 	 * @return
 	 */
-	public static Set<Pair<FragmentOld, FragmentOld>> filter(ProcessMatching matching) {
+	public static Set<Pair<FragmentOld, FragmentOld>> filter(ProcessMatchingOld matching) {
 		Set<Pair<FlowNode, FlowNode>> nodeMappings = matching
 				.getNodeCorrespondences();
 		Set<Pair<FragmentOld, FragmentOld>> pairs = new HashSet<Pair<FragmentOld, FragmentOld>>();

@@ -6,32 +6,31 @@ import java.util.Set;
 import org.eclipse.bpmn2.FlowNode;
 import org.javatuples.Pair;
 
-import edu.udo.cs.ls14.jf.analysis.ProcessAnalysis;
+import edu.udo.cs.ls14.jf.analysis.ProcessAnalysisOld;
 import edu.udo.cs.ls14.jf.analysis.pst.FragmentOld;
-import edu.udo.cs.ls14.jf.bpmnanalysis.Fragment;
-import edu.udo.cs.ls14.jf.bpmnanalysis.FragmentMatching;
+import edu.udo.cs.ls14.jf.bpmnmatching.FragmentMatching;
 
-public class ProcessMatching {
+public class ProcessMatchingOld {
 
-	private ProcessAnalysis analysis1;
-	private ProcessAnalysis analysis2;
+	private ProcessAnalysisOld analysis1;
+	private ProcessAnalysisOld analysis2;
 	private Set<Pair<FlowNode, FlowNode>> nodeCorrespondences;
 	private Set<Pair<FragmentOld, FragmentOld>> fragmentCorrespondencesOld;
 	private FragmentMatching fragmentMatching;
 
-	public ProcessAnalysis getAnalysis1() {
+	public ProcessAnalysisOld getAnalysis1() {
 		return analysis1;
 	}
 
-	public void setAnalysis1(ProcessAnalysis analysis1) {
+	public void setAnalysis1(ProcessAnalysisOld analysis1) {
 		this.analysis1 = analysis1;
 	}
 
-	public ProcessAnalysis getAnalysis2() {
+	public ProcessAnalysisOld getAnalysis2() {
 		return analysis2;
 	}
 
-	public void setAnalysis2(ProcessAnalysis analysis2) {
+	public void setAnalysis2(ProcessAnalysisOld analysis2) {
 		this.analysis2 = analysis2;
 	}
 
@@ -63,8 +62,8 @@ public class ProcessMatching {
 		return fragmentCorrespondencesOld;
 	}
 
-	public ProcessMatching clone() {
-		ProcessMatching clone = new ProcessMatching();
+	public ProcessMatchingOld clone() {
+		ProcessMatchingOld clone = new ProcessMatchingOld();
 		clone.setAnalysis1(analysis1);
 		clone.setAnalysis2(analysis2);
 		clone.setNodeCorrespondences(new HashSet<Pair<FlowNode, FlowNode>>(

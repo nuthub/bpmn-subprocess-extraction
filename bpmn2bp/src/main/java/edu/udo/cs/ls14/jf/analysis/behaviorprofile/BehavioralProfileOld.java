@@ -11,23 +11,23 @@ import org.javatuples.Pair;
 @XmlRootElement
 @Deprecated
 public class BehavioralProfileOld extends
-		HashMap<Pair<FlowNode, FlowNode>, RelationType> {
+		HashMap<Pair<FlowNode, FlowNode>, RelationTypeOld> {
 
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = -6859323470574181105L;
 
-	public RelationType get(FlowNode a, FlowNode b) {
+	public RelationTypeOld get(FlowNode a, FlowNode b) {
 		return get(Pair.with(a, b));
 	}
 
 	public String toString() {
 		StringBuffer sb = new StringBuffer();
-		for (Map.Entry<Pair<FlowNode, FlowNode>, RelationType> entry : entrySet()) {
+		for (Map.Entry<Pair<FlowNode, FlowNode>, RelationTypeOld> entry : entrySet()) {
 			FlowNode a = entry.getKey().getValue0();
 			FlowNode b = entry.getKey().getValue1();
-			RelationType r = entry.getValue();
+			RelationTypeOld r = entry.getValue();
 			sb.append(a.getName() + " ");
 			switch (r) {
 			case DIRECT_SUCCESSOR:

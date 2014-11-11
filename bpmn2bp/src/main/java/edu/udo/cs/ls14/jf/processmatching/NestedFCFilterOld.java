@@ -14,7 +14,7 @@ public class NestedFCFilterOld {
 	private static final Logger LOG = LoggerFactory
 			.getLogger(NestedFCFilterOld.class.getName());
 
-	public static Set<Pair<FragmentOld, FragmentOld>> filter(ProcessMatching matching) {
+	public static Set<Pair<FragmentOld, FragmentOld>> filter(ProcessMatchingOld matching) {
 		Set<Pair<FragmentOld, FragmentOld>> filteredCorrespondences = new HashSet<Pair<FragmentOld, FragmentOld>>();
 		for (Pair<FragmentOld, FragmentOld> c1 : matching
 				.getFragmentCorrespondencesOld()) {

@@ -1,13 +1,21 @@
 package edu.udo.cs.ls14.jf.application.test;
 
 import java.io.File;
+import java.io.FileOutputStream;
+import java.util.Map;
+import java.util.Map.Entry;
 
+import org.eclipse.bpmn2.Definitions;
+import org.eclipse.bpmn2.util.Bpmn2ResourceFactoryImpl;
+import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.resource.Resource;
-import org.javatuples.Pair;
+import org.junit.Ignore;
 import org.junit.Test;
 
 import edu.udo.cs.ls14.jf.application.Application;
 import edu.udo.cs.ls14.jf.bpmn.utils.ProcessLoader;
+import edu.udo.cs.ls14.jf.bpmnmatching.ProcessMatching;
+import edu.udo.cs.ls14.jf.processmatching.ProcessMatchingChain;
 
 public class ApplicationTest {
 
@@ -38,19 +46,26 @@ public class ApplicationTest {
 		String basename2 = "conditionSequence2";
 		runTest(basename1, basename2, "conditionalFlow");
 	}
-	
+
 	// TODO: Make assertions
-	private void runTest(String basename1, String basename2, String path) throws Exception {
-		Resource res1 = ProcessLoader.getBpmnResource(getClass().getResource(
-				"/edu/udo/cs/ls14/jf/bpmn/" + path + "/" + basename1 + ".bpmn"));
-		Resource res2 = ProcessLoader.getBpmnResource(getClass().getResource(
-				"/edu/udo/cs/ls14/jf/bpmn/" +  path + "/" + basename2 + ".bpmn"));
+	private void runTest(String basename1, String basename2, String path)
+			throws Exception {
 		// hit the process
 		Application app = new Application();
-		Pair<String, Resource> model1 = Pair.with(basename1, res1);
-		Pair<String, Resource> model2 = Pair.with(basename2, res2);
 		File targetDir = new File("/tmp/applicationtest/");
 		targetDir.mkdirs();
-		app.matchAndExtract(model1, model2, targetDir);
+		Definitions definitions1 = ProcessLoader.getDefinitions(getClass()
+				.getResource(
+						"/edu/udo/cs/ls14/jf/bpmn/" + path + "/" + basename1
+								+ ".bpmn"));
+		Definitions definitions2 = ProcessLoader.getDefinitions(getClass()
+				.getResource(
+						"/edu/udo/cs/ls14/jf/bpmn/" + path + "/" + basename2
+								+ ".bpmn"));
+
+		ProcessMatching pMatching = ProcessMatchingChain.createProcessMatching(
+				definitions1, definitions2);
+		Map<String, Resource> result = app.extract(pMatching);
+		System.out.println(app.getResourceSet().toContentString());
 	}
 }

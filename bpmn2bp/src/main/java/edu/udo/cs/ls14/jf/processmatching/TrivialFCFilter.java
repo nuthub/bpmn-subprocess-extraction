@@ -4,17 +4,17 @@ import org.apache.commons.lang3.NotImplementedException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import edu.udo.cs.ls14.jf.bpmnanalysis.BpmnAnalysisFactory;
-import edu.udo.cs.ls14.jf.bpmnanalysis.FragmentMatching;
-import edu.udo.cs.ls14.jf.bpmnanalysis.FragmentPair;
-import edu.udo.cs.ls14.jf.bpmnanalysis.util.FragmentUtil;
+import edu.udo.cs.ls14.jf.bpmn.utils.FragmentUtil;
+import edu.udo.cs.ls14.jf.bpmnmatching.BpmnMatchingFactory;
+import edu.udo.cs.ls14.jf.bpmnmatching.FragmentMatching;
+import edu.udo.cs.ls14.jf.bpmnmatching.FragmentPair;
 
 public class TrivialFCFilter {
 	private static final Logger LOG = LoggerFactory
 			.getLogger(TrivialFCFilter.class);
 
 	public static FragmentMatching filter(FragmentMatching matchingIn) {
-		FragmentMatching matchingOut = BpmnAnalysisFactory.eINSTANCE
+		FragmentMatching matchingOut = BpmnMatchingFactory.eINSTANCE
 				.createFragmentMatching();
 		for (FragmentPair pair : matchingIn.getPairs()) {
 			int size0 = FragmentUtil.getEventsAndActivites(pair.getA()).size();

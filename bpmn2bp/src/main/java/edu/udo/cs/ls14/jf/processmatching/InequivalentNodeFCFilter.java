@@ -7,12 +7,12 @@ import org.eclipse.bpmn2.FlowNode;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import edu.udo.cs.ls14.jf.bpmnanalysis.BpmnAnalysisFactory;
-import edu.udo.cs.ls14.jf.bpmnanalysis.FragmentMatching;
-import edu.udo.cs.ls14.jf.bpmnanalysis.FragmentPair;
-import edu.udo.cs.ls14.jf.bpmnanalysis.NodeMatching;
-import edu.udo.cs.ls14.jf.bpmnanalysis.NodePair;
-import edu.udo.cs.ls14.jf.bpmnanalysis.util.FragmentUtil;
+import edu.udo.cs.ls14.jf.bpmn.utils.FragmentUtil;
+import edu.udo.cs.ls14.jf.bpmnmatching.BpmnMatchingFactory;
+import edu.udo.cs.ls14.jf.bpmnmatching.FragmentMatching;
+import edu.udo.cs.ls14.jf.bpmnmatching.FragmentPair;
+import edu.udo.cs.ls14.jf.bpmnmatching.NodeMatching;
+import edu.udo.cs.ls14.jf.bpmnmatching.NodePair;
 
 public class InequivalentNodeFCFilter {
 
@@ -32,12 +32,12 @@ public class InequivalentNodeFCFilter {
 	 * @return
 	 */
 	public static FragmentMatching filter(NodeMatching nodeMatching,
-			FragmentMatching fragmentMatching) {
+			FragmentMatching matchingIn) {
 
-		FragmentMatching matchingOut = BpmnAnalysisFactory.eINSTANCE
+		FragmentMatching matchingOut = BpmnMatchingFactory.eINSTANCE
 				.createFragmentMatching();
 
-		for (FragmentPair pair : fragmentMatching.getPairs()) {
+		for (FragmentPair pair : matchingIn.getPairs()) {
 			LOG.debug("Checking pair " + pair);
 			// Get nodes of Fragments
 			Set<FlowNode> nodes1 = FragmentUtil.getEventsAndActivites(pair
@@ -58,13 +58,12 @@ public class InequivalentNodeFCFilter {
 				LOG.debug("Fragments are not node equivalent.");
 				continue;
 			}
-			LOG.info("Fragments are node equivalent: ");
-			LOG.debug("Process 1: "
-					+ pair.getA()
+			LOG.info("Fragments are node equivalent: " + pair.getA() + " / "
+					+ pair.getB());
+			LOG.debug("Nodes of Process 1: "
 					+ nodes1.stream().map(n -> n.getName())
 							.collect(Collectors.toSet()));
-			LOG.debug("Process 2: "
-					+ pair.getB()
+			LOG.debug("Nodes of Process 2: "
 					+ nodes2.stream().map(n -> n.getName())
 							.collect(Collectors.toSet()));
 			matchingOut.getPairs().add(pair);

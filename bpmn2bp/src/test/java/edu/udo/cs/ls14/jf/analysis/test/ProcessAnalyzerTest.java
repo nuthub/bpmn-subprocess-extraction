@@ -7,7 +7,7 @@ import java.net.URL;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.junit.Test;
 
-import edu.udo.cs.ls14.jf.analysis.ProcessAnalysis;
+import edu.udo.cs.ls14.jf.analysis.ProcessAnalysisOld;
 import edu.udo.cs.ls14.jf.analysis.ProcessAnalyzerOld;
 import edu.udo.cs.ls14.jf.bpmn.utils.ProcessLoader;
 
@@ -19,7 +19,7 @@ public class ProcessAnalyzerTest {
 		URL url = getClass().getResource(
 				"/edu/udo/cs/ls14/jf/bpmn/" + basename + ".bpmn");
 		Resource res = ProcessLoader.getBpmnResource(url);
-		ProcessAnalysis analysis = ProcessAnalyzerOld.analyze(res);
+		ProcessAnalysisOld analysis = ProcessAnalyzerOld.analyze(res);
 		assertEquals(6, analysis.getPst().getFragments().size());
 		assertEquals(7, analysis.getConditionalProfile().getRelations().size());
 	}
@@ -31,7 +31,7 @@ public class ProcessAnalyzerTest {
 				"/edu/udo/cs/ls14/jf/bpmn/conditionalFlow/" + basename
 						+ ".bpmn");
 		Resource res = ProcessLoader.getBpmnResource(url);
-		ProcessAnalysis analysis = ProcessAnalyzerOld.analyze(res);
+		ProcessAnalysisOld analysis = ProcessAnalyzerOld.analyze(res);
 		assertEquals(5, analysis.getPst().getFragments().size());
 		assertEquals(5, analysis.getConditionalProfile().getRelations().size());
 	}
@@ -43,7 +43,7 @@ public class ProcessAnalyzerTest {
 				"/edu/udo/cs/ls14/jf/bpmn/conditionalFlow/" + basename
 						+ ".bpmn");
 		Resource res = ProcessLoader.getBpmnResource(url);
-		ProcessAnalysis analysis = ProcessAnalyzerOld.analyze(res);
+		ProcessAnalysisOld analysis = ProcessAnalyzerOld.analyze(res);
 		assertEquals(5, analysis.getPst().getFragments().size());
 		assertEquals(5, analysis.getConditionalProfile().getRelations().size());
 	}

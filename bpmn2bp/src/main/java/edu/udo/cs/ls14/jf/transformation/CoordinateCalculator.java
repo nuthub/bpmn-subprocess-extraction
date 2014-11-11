@@ -1,25 +1,29 @@
 package edu.udo.cs.ls14.jf.transformation;
 
 import java.util.Set;
+import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
+import org.eclipse.bpmn2.Definitions;
+import org.eclipse.bpmn2.FlowElement;
 import org.eclipse.bpmn2.FlowNode;
 import org.eclipse.bpmn2.di.BPMNDiagram;
 import org.eclipse.bpmn2.di.BPMNShape;
 import org.eclipse.dd.dc.Bounds;
 import org.eclipse.dd.di.DiagramElement;
-import org.eclipse.emf.ecore.resource.Resource;
 import org.javatuples.Pair;
 
-import edu.udo.cs.ls14.jf.analysis.pst.FragmentOld;
+import edu.udo.cs.ls14.jf.bpmn.utils.BpmnXmlConverter;
+import edu.udo.cs.ls14.jf.bpmn.utils.FragmentUtil;
 import edu.udo.cs.ls14.jf.bpmn.utils.ProcessLoader;
+import edu.udo.cs.ls14.jf.bpmnanalysis.Fragment;
 
 public class CoordinateCalculator {
-	
 
-	public static Pair<Float, Float> getCoords(Resource res, FlowNode node)
-			throws Exception {
-		BPMNDiagram diagram = ProcessLoader.getDiagramFromResource(res);
+	public static Pair<Float, Float> getCoords(FlowNode node,
+			Definitions definitions) throws Exception {
+		BPMNDiagram diagram = ProcessLoader
+				.getDiagramFromDefinitions(definitions);
 		float x = 0;
 		float y = 0;
 		for (DiagramElement element : diagram.getPlane().getPlaneElement()) {
@@ -35,12 +39,14 @@ public class CoordinateCalculator {
 		return Pair.with(x, y);
 	}
 
-	public static Pair<Float, Float> getCoords(Resource res, FragmentOld fragment)
+	public static Pair<Float, Float> getCoords(Fragment fragment)
 			throws Exception {
-		Set<FlowNode> nodes = fragment.getContainedFlowNodes(n -> true);
+		Predicate<FlowElement> filter = e -> e instanceof FlowNode;
+		Set<FlowElement> nodes = FragmentUtil.getFlowElements(fragment, filter);
 		Set<String> nodeIds = nodes.stream().map(n -> n.getId())
 				.collect(Collectors.toSet());
-		BPMNDiagram diagram = ProcessLoader.getDiagramFromResource(res);
+		BPMNDiagram diagram = ProcessLoader.getDiagramFromDefinitions(fragment
+				.getDefinitions());
 		float minX = -1;
 		float maxX = 0;
 		float minY = -1;
@@ -67,5 +73,4 @@ public class CoordinateCalculator {
 				.with(minX + ((maxX - minX) / 2), minY + ((maxY - minY) / 2));
 	}
 
-	
 }

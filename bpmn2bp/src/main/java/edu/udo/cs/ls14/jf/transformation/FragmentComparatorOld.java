@@ -4,7 +4,8 @@ import org.javatuples.Pair;
 
 import edu.udo.cs.ls14.jf.analysis.pst.FragmentOld;
 
-public class FragmentComparator {
+@Deprecated
+public class FragmentComparatorOld {
 	public static FragmentOld getBetter(Pair<FragmentOld, FragmentOld> pair) {
 		if (pair.getValue0().getContainedFlowNodes(n -> true).size() > pair
 				.getValue1().getContainedFlowNodes(n -> true).size()) {

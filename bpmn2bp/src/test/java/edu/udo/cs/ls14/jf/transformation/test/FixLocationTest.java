@@ -2,7 +2,9 @@ package edu.udo.cs.ls14.jf.transformation.test;
 
 import static org.junit.Assert.assertTrue;
 
+import org.eclipse.bpmn2.Definitions;
 import org.eclipse.bpmn2.Process;
+import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.henshin.interpreter.EGraph;
 import org.eclipse.emf.henshin.interpreter.Engine;
@@ -18,6 +20,7 @@ import org.junit.Test;
 
 import edu.udo.cs.ls14.jf.bpmn.utils.ProcessLoader;
 import edu.udo.cs.ls14.jf.transformation.LocationFixer;
+import edu.udo.cs.ls14.jf.utils.bpmn.Bpmn2ResourceSet;
 import edu.udo.cs.ls14.jf.utils.bpmn.ResourceCopier;
 
 public class FixLocationTest {
@@ -27,20 +30,24 @@ public class FixLocationTest {
 
 	@Test
 	public void testCallActivityCalledElementRef() throws Exception {
-		Resource srcResource1 = ProcessLoader.getBpmnResource(getClass()
-				.getResource("/edu/udo/cs/ls14/jf/bpmn/sequence.bpmn"));
-		String targetFilename1 = "/tmp/transformed/myCalledProcess.bpmn";
-		Resource res1 = ResourceCopier.copy(srcResource1, targetFilename1);
-		Process calledElement = ProcessLoader.getProcessFromResource(res1);
+		Bpmn2ResourceSet resSet = new Bpmn2ResourceSet(
+				"src/test/resources/edu/udo/cs/ls14/jf/bpmn");
+		Resource res1 = ResourceCopier.copy(
+				resSet.loadResource("sequence.bpmn"),
+				"/tmp/transformed/myCalledProcess.bpmn");
+		Resource res2 = ResourceCopier.copy(resSet.loadResource("empty.bpmn"),
+				"/tmp/transformed/myNewProcess.bpmn");
+		// create two resources from existing resources
 
-		Resource srcResource2 = ProcessLoader.getBpmnResource(getClass()
-				.getResource("/edu/udo/cs/ls14/jf/bpmn/empty.bpmn"));
-		String targetFilename2 = "/tmp/transformed/myNewProcess.bpmn";
-		Resource res2 = ResourceCopier.copy(srcResource2, targetFilename2);
+		// get process from first resource
+		Process calledElement = ProcessLoader
+				.getProcessFromDefinitions((Definitions) res1.getContents()
+						.get(0));
 
+		// transform second resource
 		EGraph graph = new EGraphImpl(res2);
 		Engine engine = new EngineImpl();
-		// Load rule
+		// Load rule to create a call activity
 		HenshinResourceSet resourceSet = new HenshinResourceSet(RULEPATH);
 		Module module = resourceSet.getModule(RULEFILE + ".henshin");
 		Unit unit = module.getUnit("test");
@@ -53,14 +60,11 @@ public class FixLocationTest {
 		assertTrue(app.execute(new LoggingApplicationMonitor()));
 
 		// seems to be important?
-		System.out.println(res2.getURI());
-		System.out.println(calledElement.eResource().getURI());
 		res2.save(null);
-
+		// now fix the location
 		LocationFixer fixer = new LocationFixer();
 		fixer.fixLocations(res2, "myCalledProcess.bpmn",
 				"file:/tmp/transformed/myCalledProcess.bpmn");
 		res2.save(null);
 	}
-
 }

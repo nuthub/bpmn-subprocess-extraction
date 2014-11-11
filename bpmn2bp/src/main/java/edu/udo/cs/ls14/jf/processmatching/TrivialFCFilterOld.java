@@ -16,9 +16,9 @@ public class TrivialFCFilterOld {
 	private static final Logger LOG = LoggerFactory
 			.getLogger(TrivialFCFilterOld.class);
 
-	public static Set<Pair<FragmentOld, FragmentOld>> filter(ProcessMatching matching) {
+	public static Set<Pair<FragmentOld, FragmentOld>> filter(ProcessMatchingOld matching) {
 		// TODO: do not clone matching object
-		ProcessMatching filtered = matching.clone();
+		ProcessMatchingOld filtered = matching.clone();
 		for (Pair<FragmentOld, FragmentOld> pair : matching
 				.getFragmentCorrespondencesOld()) {
 			int size0 = getEventsAndActivites(pair.getValue0()).size();

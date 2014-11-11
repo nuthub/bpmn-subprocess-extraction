@@ -5,6 +5,7 @@ import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 
+@Deprecated
 public class Matrix<K, V> {
 
 	private Map<K, Map<K, V>> matrix;

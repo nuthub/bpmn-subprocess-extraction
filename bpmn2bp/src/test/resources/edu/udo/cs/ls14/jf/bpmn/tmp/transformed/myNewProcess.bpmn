@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bpmn2:definitions xmlns="http://org.eclipse.bpmn2/default/process" xmlns:bpmn2="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" id="Definitions_1" exporter="org.eclipse.bpmn2.modeler.core" exporterVersion="1.1.0.201408072130" targetNamespace="http://org.eclipse.bpmn2/default/process">
+  <bpmn2:import importType="http://www.omg.org/spec/BPMN/20100524/MODEL" location="file:/tmp/transformed/myCalledProcess.bpmn" namespace="http://org.eclipse.bpmn2/default/process"/>
+  <bpmn2:import importType="http://www.omg.org/spec/BPMN/20100524/MODEL" location="myCalledProcess.bpmn" namespace="http://org.eclipse.bpmn2/default/process"/>
+  <bpmn2:process id="process_1" name="Default Process">
+    <bpmn2:callActivity id="_Py-pIGmREeSBmaZ5pqEn1g" name="New CallActivity" calledElement="myCalledProcess.bpmn#sequence"/>
+  </bpmn2:process>
+  <bpmndi:BPMNDiagram id="BPMNDiagram_1" name="Default Process Diagram">
+    <bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="../../empty.bpmn#process_1">
+      <bpmndi:BPMNShape id="_PzBscWmREeSBmaZ5pqEn1g" bpmnElement="#_Py-pIGmREeSBmaZ5pqEn1g">
+        <dc:Bounds height="50.0" width="100.0" x="100.0" y="100.0"/>
+        <bpmndi:BPMNLabel id="_PzBscmmREeSBmaZ5pqEn1g" labelStyle="#BPMNLabelStyle_1">
+          <dc:Bounds height="50.0" width="100.0" x="100.0" y="100.0"/>
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+    </bpmndi:BPMNPlane>
+    <bpmndi:BPMNLabelStyle id="BPMNLabelStyle_1">
+      <dc:Font name="arial" size="9.0"/>
+    </bpmndi:BPMNLabelStyle>
+  </bpmndi:BPMNDiagram>
+</bpmn2:definitions>

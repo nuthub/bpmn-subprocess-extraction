@@ -73,18 +73,18 @@ public class BehavioralProfiler {
 		return BehavioralRelationType.NO_SUCCESSION;
 	}
 
-	public static RelationType getOld(Matrix<FlowNode, Boolean> successors,
+	public static RelationTypeOld getOld(Matrix<FlowNode, Boolean> successors,
 			FlowNode a, FlowNode b) {
 		if (successors.get(a, b) && successors.get(b, a)) {
-			return RelationType.PARALLEL;
+			return RelationTypeOld.PARALLEL;
 		}
 		if (successors.get(a, b) && !successors.get(b, a)) {
-			return RelationType.DIRECT_SUCCESSOR;
+			return RelationTypeOld.DIRECT_SUCCESSOR;
 		}
 		if (!successors.get(a, b) && successors.get(b, a)) {
-			return RelationType.DIRECT_PREDECESSOR;
+			return RelationTypeOld.DIRECT_PREDECESSOR;
 		}
-		return RelationType.NO_SUCCESSION;
+		return RelationTypeOld.NO_SUCCESSION;
 	}
 
 }

@@ -13,15 +13,15 @@ import org.eclipse.emf.common.util.EMap;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import edu.udo.cs.ls14.jf.bpmnanalysis.Analysis;
-import edu.udo.cs.ls14.jf.bpmnanalysis.BpmnAnalysisFactory;
+import edu.udo.cs.ls14.jf.bpmn.utils.FragmentUtil;
 import edu.udo.cs.ls14.jf.bpmnanalysis.ConditionalProfile;
 import edu.udo.cs.ls14.jf.bpmnanalysis.Fragment;
-import edu.udo.cs.ls14.jf.bpmnanalysis.FragmentMatching;
-import edu.udo.cs.ls14.jf.bpmnanalysis.FragmentPair;
-import edu.udo.cs.ls14.jf.bpmnanalysis.NodeMatching;
-import edu.udo.cs.ls14.jf.bpmnanalysis.NodePair;
-import edu.udo.cs.ls14.jf.bpmnanalysis.util.FragmentUtil;
+import edu.udo.cs.ls14.jf.bpmnanalysis.ProcessAnalysis;
+import edu.udo.cs.ls14.jf.bpmnmatching.BpmnMatchingFactory;
+import edu.udo.cs.ls14.jf.bpmnmatching.FragmentMatching;
+import edu.udo.cs.ls14.jf.bpmnmatching.FragmentPair;
+import edu.udo.cs.ls14.jf.bpmnmatching.NodeMatching;
+import edu.udo.cs.ls14.jf.bpmnmatching.NodePair;
 
 public class InequivalentConditionsFCFilter {
 
@@ -35,8 +35,8 @@ public class InequivalentConditionsFCFilter {
 	 * @return
 	 */
 	public static FragmentMatching filter(FragmentMatching matchingIn,
-			NodeMatching nodeMatching, Analysis analysis1, Analysis analysis2) {
-		FragmentMatching matchingOut = BpmnAnalysisFactory.eINSTANCE
+			NodeMatching nodeMatching, ProcessAnalysis analysis1, ProcessAnalysis analysis2) {
+		FragmentMatching matchingOut = BpmnMatchingFactory.eINSTANCE
 				.createFragmentMatching();
 		for (FragmentPair pair : matchingIn.getPairs()) {
 			Fragment f1 = pair.getA();

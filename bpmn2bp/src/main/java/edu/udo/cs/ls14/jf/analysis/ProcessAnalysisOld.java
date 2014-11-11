@@ -16,7 +16,8 @@ import edu.udo.cs.ls14.jf.bpmnanalysis.Trace;
 import fr.lip6.move.pnml.ptnet.hlapi.PetriNetHLAPI;
 
 @XmlRootElement
-public class ProcessAnalysis implements Serializable {
+@Deprecated
+public class ProcessAnalysisOld implements Serializable {
 
 	/**
 	 * 

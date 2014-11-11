@@ -19,8 +19,9 @@ import edu.udo.cs.ls14.jf.bpmnanalysis.Trace;
 @Deprecated
 public class ProcessAnalyzerOld {
 
-	public static ProcessAnalysis analyze(Resource resource) throws Exception {
-		ProcessAnalysis analysis = new ProcessAnalysis();
+	public static ProcessAnalysisOld analyze(Resource resource)
+			throws Exception {
+		ProcessAnalysisOld analysis = new ProcessAnalysisOld();
 		analysis.setResource(resource);
 		Process process = ProcessLoader.getProcessFromResource(resource);
 		analysis.setProcess(process);
@@ -55,7 +56,8 @@ public class ProcessAnalyzerOld {
 
 		// create PST
 		PST pst = new PST();
-		pst.createFromProcess(resource);
+		pst.createFromDefinitions(ProcessLoader
+				.getDefinitionsFromResource(resource));
 		analysis.setPst(pst);
 
 		// done

@@ -11,6 +11,7 @@ import java.util.stream.Collectors;
 
 import org.apache.commons.lang3.StringUtils;
 import org.eclipse.bpmn2.Bpmn2Factory;
+import org.eclipse.bpmn2.Definitions;
 import org.eclipse.bpmn2.EndEvent;
 import org.eclipse.bpmn2.FlowNode;
 import org.eclipse.bpmn2.Process;
@@ -36,6 +37,7 @@ public class PST {
 	private static final Logger LOG = LoggerFactory.getLogger(PST.class);
 
 	private Resource resource;
+	private Definitions definitions;
 	private Process process;
 	private UndirectedGraph<FlowNode, SequenceFlow> graph;
 	private DirectedGraph<FlowNode, SequenceFlow> spanningTree;
@@ -57,13 +59,9 @@ public class PST {
 
 	private Set<Pair<SequenceFlow, SequenceFlow>> yieldedFragments;
 
-	public void createFromProcess(Resource resource) throws Exception {
-		this.resource = resource;
-		createFromProcess(ProcessLoader.getProcessFromResource(resource));
-	}
-
-	public void createFromProcess(Process process) {
-		this.process = process;
+	public void createFromDefinitions(Definitions definitions) throws Exception {
+		this.definitions = definitions;
+		this.process = ProcessLoader.getProcessFromDefinitions(definitions);
 
 		// initialize
 		edgeStates = new HashMap<SequenceFlow, EdgeState>();
@@ -145,15 +143,13 @@ public class PST {
 			Set<Fragment> canonicalFragments) {
 		structureTree = new DirectedSparseGraph<Fragment, Object>();
 		buildStructureTreeAcc(canonicalFragments, start.getOutgoing().get(0),
-				BpmnAnalysisFactory.eINSTANCE.createFragment(), new Stack<Fragment>(),
-				new HashSet<SequenceFlow>());
+				BpmnAnalysisFactory.eINSTANCE.createFragment(),
+				new Stack<Fragment>(), new HashSet<SequenceFlow>());
 		return structureTree;
 	}
 
-	private void buildStructureTreeAcc(
-			Set<Fragment> canonicalFragments,
-			SequenceFlow edge, Fragment root,
-			Stack<Fragment> parents,
+	private void buildStructureTreeAcc(Set<Fragment> canonicalFragments,
+			SequenceFlow edge, Fragment root, Stack<Fragment> parents,
 			Set<SequenceFlow> visited) {
 		if (visited.contains(edge)) {
 			return;
@@ -369,10 +365,10 @@ public class PST {
 					}
 					if (isFragment) {
 						if (dominates(start, e, f)
-								&& !fragments2.contains(new FragmentOld(resource,
-										process, e, f))) {
-							fragments2
-									.add(new FragmentOld(resource, process, e, f));
+								&& !fragments2.contains(new FragmentOld(
+										resource, process, e, f))) {
+							fragments2.add(new FragmentOld(resource, process,
+									e, f));
 						}
 					}
 				}
@@ -381,8 +377,7 @@ public class PST {
 		return fragments2;
 	}
 
-	private Set<Fragment> yieldFragments(
-			FlowNode start, FlowNode end) {
+	private Set<Fragment> yieldFragments(FlowNode start, FlowNode end) {
 		Set<Fragment> fragments = new HashSet<Fragment>();
 		for (SequenceFlow e : spanningTree.getEdges()) {
 			for (SequenceFlow f : spanningTree.getEdges()) {
@@ -420,11 +415,12 @@ public class PST {
 					if (isFragment) {
 						if (dominates(start, e, f)
 								&& !yieldedFragments.contains(Pair.with(e, f))) {
-							Fragment f2 = BpmnAnalysisFactory.eINSTANCE
+							Fragment newFragment = BpmnAnalysisFactory.eINSTANCE
 									.createFragment();
-							f2.setEntry(e);
-							f2.setExit(f);
-							fragments.add(f2);
+							newFragment.setDefinitions(definitions);
+							newFragment.setEntry(e);
+							newFragment.setExit(f);
+							fragments.add(newFragment);
 						}
 					}
 				}
@@ -476,8 +472,7 @@ public class PST {
 		return canonicalFragments;
 	}
 
-	private Set<Fragment> canoncialFragments(
-			FlowNode start, FlowNode end,
+	private Set<Fragment> canoncialFragments(FlowNode start, FlowNode end,
 			Set<Fragment> fragments) {
 		Set<Fragment> canonicalFragments = new HashSet<Fragment>();
 		for (Fragment e : fragments) {

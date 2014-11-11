@@ -13,9 +13,9 @@ public class SequentialFCJointerOld {
 	private static final Logger LOG = LoggerFactory
 			.getLogger(SequentialFCJointerOld.class);
 
-	public static Set<Pair<FragmentOld, FragmentOld>> joinSequences(ProcessMatching matching) {
+	public static Set<Pair<FragmentOld, FragmentOld>> joinSequences(ProcessMatchingOld matching) {
 		// TODO: do not clone
-		ProcessMatching unionedMatching = matching.clone();
+		ProcessMatchingOld unionedMatching = matching.clone();
 		Set<Pair<FragmentOld, FragmentOld>> pairs = unionedMatching
 				.getFragmentCorrespondencesOld();
 		Pair<Pair<FragmentOld, FragmentOld>, Pair<FragmentOld, FragmentOld>> s;

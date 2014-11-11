@@ -31,7 +31,7 @@ public class InequivalentConditionsFCFilterOld {
 	 * @param matching
 	 * @return
 	 */
-	public static Set<Pair<FragmentOld, FragmentOld>> filter(ProcessMatching matching) {
+	public static Set<Pair<FragmentOld, FragmentOld>> filter(ProcessMatchingOld matching) {
 		Set<Pair<FragmentOld, FragmentOld>> filteredMapping = new HashSet<Pair<FragmentOld, FragmentOld>>();
 		// ConditionalProfile p1 = matching.
 		for (Pair<FragmentOld, FragmentOld> mapping : matching
@@ -148,7 +148,7 @@ public class InequivalentConditionsFCFilterOld {
 		return false;
 	}
 
-	private static FlowNode getMatchingNode(ProcessMatching matching,
+	private static FlowNode getMatchingNode(ProcessMatchingOld matching,
 			FlowNode node) {
 		for (Pair<FlowNode, FlowNode> pair : matching.getNodeCorrespondences()) {
 			if (pair.getValue0().getId().equals(node.getId())) {

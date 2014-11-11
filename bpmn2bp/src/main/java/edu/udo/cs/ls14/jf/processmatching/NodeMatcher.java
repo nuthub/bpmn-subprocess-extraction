@@ -8,15 +8,15 @@ import org.eclipse.bpmn2.FlowNode;
 import org.eclipse.bpmn2.Process;
 import org.javatuples.Pair;
 
-import edu.udo.cs.ls14.jf.bpmnanalysis.BpmnAnalysisFactory;
-import edu.udo.cs.ls14.jf.bpmnanalysis.NodeMatching;
-import edu.udo.cs.ls14.jf.bpmnanalysis.NodePair;
+import edu.udo.cs.ls14.jf.bpmnmatching.BpmnMatchingFactory;
+import edu.udo.cs.ls14.jf.bpmnmatching.NodeMatching;
+import edu.udo.cs.ls14.jf.bpmnmatching.NodePair;
 
 public class NodeMatcher {
 
 	public static NodeMatching getCorrespondences(Process process1,
 			Process process2) throws Exception {
-		NodeMatching matching = BpmnAnalysisFactory.eINSTANCE
+		NodeMatching matching = BpmnMatchingFactory.eINSTANCE
 				.createNodeMatching();
 		NodeComparator comp = new NodeComparator();
 		for (FlowElement e1 : process1.getFlowElements()) {
@@ -24,7 +24,7 @@ public class NodeMatcher {
 				for (FlowElement e2 : process2.getFlowElements()) {
 					if (e2 instanceof FlowNode) {
 						if (comp.isEquivalent((FlowNode) e1, (FlowNode) e2)) {
-							NodePair pair = BpmnAnalysisFactory.eINSTANCE
+							NodePair pair = BpmnMatchingFactory.eINSTANCE
 									.createNodePair();
 							pair.setA((FlowNode) e1);
 							pair.setB((FlowNode) e2);

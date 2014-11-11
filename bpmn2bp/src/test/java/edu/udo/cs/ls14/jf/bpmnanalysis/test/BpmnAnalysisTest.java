@@ -17,9 +17,9 @@ import edu.udo.cs.ls14.jf.analysis.reachabilitygraph.Tracer;
 import edu.udo.cs.ls14.jf.bpmn.utils.BpmnXmlConverter;
 import edu.udo.cs.ls14.jf.bpmn.utils.EObjectXmlConverter;
 import edu.udo.cs.ls14.jf.bpmn.utils.ProcessLoader;
-import edu.udo.cs.ls14.jf.bpmnanalysis.Analysis;
 import edu.udo.cs.ls14.jf.bpmnanalysis.BehavioralProfile;
 import edu.udo.cs.ls14.jf.bpmnanalysis.BpmnAnalysisFactory;
+import edu.udo.cs.ls14.jf.bpmnanalysis.ProcessAnalysis;
 import edu.udo.cs.ls14.jf.bpmnanalysis.ProcessStructureTree;
 import fr.lip6.move.pnml.ptnet.hlapi.PetriNetHLAPI;
 
@@ -30,7 +30,8 @@ public class BpmnAnalysisTest {
 		long start, end, before, after;
 		start = getTime();
 		before = getTime();
-		Analysis a = BpmnAnalysisFactory.eINSTANCE.createAnalysis();
+		ProcessAnalysis a = BpmnAnalysisFactory.eINSTANCE
+				.createProcessAnalysis();
 		after = getTime();
 		System.out.println((after - before) + " ms (create analysis)");
 
@@ -81,14 +82,12 @@ public class BpmnAnalysisTest {
 		ProcessStructureTree ePst = BpmnAnalysisFactory.eINSTANCE
 				.createProcessStructureTree();
 		PST pst = new PST();
-		pst.createFromProcess(process);
+		pst.createFromDefinitions(definitions);
 		ePst.getFragments().addAll(pst.getFragments());
 		a.getResults().put("pst", ePst);
 		after = getTime();
-		System.out.println((after-before) + " ms (complete analysis)");
-		
-		
-		
+		System.out.println((after - before) + " ms (complete analysis)");
+
 		// ///////////////
 		before = getTime();
 		String xml = EObjectXmlConverter.eObject2Xml(a);

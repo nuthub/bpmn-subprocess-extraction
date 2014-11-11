@@ -8,6 +8,7 @@ import org.eclipse.bpmn2.Process;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+@Deprecated
 public class TracerOld {
 
 	private static final Logger LOG = LoggerFactory.getLogger(TracerOld.class);
