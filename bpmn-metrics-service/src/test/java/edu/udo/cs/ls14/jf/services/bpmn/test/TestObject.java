@@ -9,7 +9,6 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 import org.eclipse.bpmn2.Bpmn2Factory;
 import org.eclipse.bpmn2.Task;
-import org.javatuples.Pair;
 
 @XmlRootElement
 public class TestObject {
@@ -20,26 +19,12 @@ public class TestObject {
 
 	public Map<String, String> strMap = new HashMap<String, String>();
 
-	public Pair<String, String> pair = Pair.with("A", "B");
-
-	public List<Pair<String, String>> pairs = new ArrayList<Pair<String, String>>();
-//
-//	@XmlJavaTypeAdapter(BehaviourProfileAdapter.class)
-//	public HashMap<Pair<FlowNode, FlowNode>, RelationType> profile = new HashMap<Pair<FlowNode, FlowNode>, RelationType>();
-
-//	@XmlJavaTypeAdapter(XmlEObjectTypeAdapter.class)
-//	public Task task = Bpmn2Factory.eINSTANCE.createTask();
-
 	public TestObject() {
 		strList.add("A");
 		strList.add("B");
 
 		strMap.put("A", "B");
 		strMap.put("C", "D");
-
-		pairs.add(Pair.with("A", "B"));
-		pairs.add(Pair.with("B", "A"));
-
 
 		Task t1 = Bpmn2Factory.eINSTANCE.createTask();
 		t1.setName("A");

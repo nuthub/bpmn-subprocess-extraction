@@ -5,8 +5,9 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 
 import org.eclipse.bpmn2.Definitions;
-import org.eclipse.bpmn2.DocumentRoot;
 import org.eclipse.bpmn2.Process;
+import org.eclipse.emf.ecore.resource.Resource;
+import org.junit.Before;
 import org.junit.Test;
 
 import edu.udo.cs.ls14.jf.analysis.behaviorprofile.BehavioralProfiler;
@@ -22,10 +23,17 @@ import edu.udo.cs.ls14.jf.bpmnanalysis.BehavioralProfile;
 import edu.udo.cs.ls14.jf.bpmnanalysis.BpmnAnalysisFactory;
 import edu.udo.cs.ls14.jf.bpmnanalysis.ProcessAnalysis;
 import edu.udo.cs.ls14.jf.bpmnanalysis.ProcessStructureTree;
+import edu.udo.cs.ls14.jf.bpmnanalysis.util.BpmnAnalysisResourceFactoryImpl;
 import fr.lip6.move.pnml.ptnet.hlapi.PetriNetHLAPI;
 
 // TODO: Move to another artifact
 public class BpmnAnalysisTest {
+
+	@Before
+	public void setUp() {
+		Resource.Factory.Registry.INSTANCE.getExtensionToFactoryMap().put(
+				"bpmnanalysis", new BpmnAnalysisResourceFactoryImpl());
+	}
 
 	@Test
 	public void testModel() throws Exception {
@@ -44,8 +52,7 @@ public class BpmnAnalysisTest {
 		after = getTime();
 		System.out.println((after - before) + " ms (read file)");
 		before = getTime();
-		Definitions definitions = ((DocumentRoot) BpmnXmlConverter
-				.xml2Bpmn(defXml)).getDefinitions();
+		Definitions definitions = BpmnXmlConverter.xml2Bpmn(defXml);
 		after = getTime();
 		System.out.println((after - before) + " ms (xml2bpmn)");
 		before = getTime();
@@ -92,7 +99,7 @@ public class BpmnAnalysisTest {
 
 		// ///////////////
 		before = getTime();
-		EObjectXmlConverter.eObject2Xml(a);
+		EObjectXmlConverter.eObject2Xml("bpmnanalysis", a);
 		after = getTime();
 		System.out.println((after - before) + " ms (eObject2Xml)");
 		end = getTime();

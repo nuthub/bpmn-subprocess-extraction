@@ -3,6 +3,7 @@ package edu.udo.cs.ls14.jf.services.bpmn.test;
 import static org.junit.Assert.assertEquals;
 
 import org.eclipse.bpmn2.Definitions;
+import org.eclipse.bpmn2.DocumentRoot;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.junit.Before;
 import org.junit.Test;
@@ -39,8 +40,9 @@ public class NumberOfNodesTest {
 		Resource resource = new Bpmn2ResourceSet(
 				"src/test/resources/edu/udo/cs/ls14/jf/services/bpmn/test")
 				.loadResource(basename + ".bpmn");
-		Definitions definitions = (Definitions) resource.getContents().get(0);
-		return BpmnXmlConverter.bpmn2Xml(definitions, Definitions.class);
+		Definitions definitions = ((DocumentRoot) resource.getContents().get(0))
+				.getDefinitions();
+		return BpmnXmlConverter.bpmn2Xml(definitions);
 	}
 
 }

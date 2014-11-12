@@ -16,7 +16,7 @@ import org.eclipse.bpmn2.Gateway;
 import org.eclipse.bpmn2.Process;
 
 import edu.udo.cs.ls14.jf.bpmn.utils.BpmnXmlConverter;
-import edu.udo.cs.ls14.jf.bpmn.utils.ProcessLoader;
+import edu.udo.cs.ls14.jf.bpmn.utils.ProcessUtil;
 
 @WebService
 public class NumberOfNodes {
@@ -65,9 +65,8 @@ public class NumberOfNodes {
 		}
 		LOG.info("Received definitionsXmi of length " + definitionsXml.length());
 		LOG.fine("Received: " + definitionsXml);
-		Definitions definitions = (Definitions) BpmnXmlConverter.xml2Bpmn(
-				definitionsXml, Definitions.class);
-		Process p = ProcessLoader.getProcessFromDefinitions(definitions);
+		Definitions definitions = BpmnXmlConverter.xml2Bpmn(definitionsXml);
+		Process p = ProcessUtil.getProcessFromDefinitions(definitions);
 		int size = p.getFlowElements().stream().filter(filter).mapToInt(a -> 1)
 				.sum();
 		LOG.info("Size is " + size);

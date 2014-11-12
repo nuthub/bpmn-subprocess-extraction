@@ -7,14 +7,27 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 
 import org.eclipse.bpmn2.Definitions;
-import org.eclipse.bpmn2.DocumentRoot;
 import org.eclipse.bpmn2.util.Bpmn2ResourceFactoryImpl;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.emf.ecore.util.EcoreUtil;
+import org.junit.Before;
 import org.junit.Test;
 
 import edu.udo.cs.ls14.jf.bpmn.utils.EObjectXmlConverter;
+import edu.udo.cs.ls14.jf.bpmnanalysis.BpmnAnalysisFactory;
+import edu.udo.cs.ls14.jf.bpmnanalysis.ProcessAnalysis;
+import edu.udo.cs.ls14.jf.bpmnanalysis.util.BpmnAnalysisResourceFactoryImpl;
 
 public class EObjectXmlConverterTest {
+
+	@Before
+	public void setUp() {
+		Resource.Factory.Registry.INSTANCE.getExtensionToFactoryMap().put(
+				"bpmn", new Bpmn2ResourceFactoryImpl());
+		Resource.Factory.Registry.INSTANCE.getExtensionToFactoryMap().put(
+				"bpmnanalysis", new BpmnAnalysisResourceFactoryImpl());
+	}
 
 	@Test
 	public void testConditionSequence() throws Exception {
@@ -28,22 +41,31 @@ public class EObjectXmlConverterTest {
 		runTest(filename);
 	}
 
+	@Test
+	public void testProcessAnalysis() throws Exception {
+		ProcessAnalysis analysis = BpmnAnalysisFactory.eINSTANCE
+				.createProcessAnalysis();
+		analysis.setId(EcoreUtil.generateUUID());
+		String xml = EObjectXmlConverter.eObject2Xml("bpmnanalysis", analysis);
+		ProcessAnalysis analysis2 = (ProcessAnalysis) EObjectXmlConverter
+				.xml2EObject("bpmnanalysis", xml);
+		assertEquals(analysis.getId(), analysis2.getId());
+	}
+
 	private void runTest(String fileName) throws Exception {
 		String xml1 = readFile(fileName);
-		Resource.Factory resFactory = new Bpmn2ResourceFactoryImpl();
 		// convert XML to EObject
-		DocumentRoot docRoot1 = (DocumentRoot) EObjectXmlConverter.xml2EObject(
-				resFactory, xml1);
+		EObject eObj1 = EObjectXmlConverter.xml2EObject("bpmn", xml1);
+		System.out.println(EObjectXmlConverter.xml2EObject("bpmn", xml1));
 
 		// convert EObject to XML
-		String xml2 = EObjectXmlConverter.eObject2Xml(resFactory, docRoot1);
+		String xml2 = EObjectXmlConverter.eObject2Xml("bpmn", eObj1);
 
 		// convert XML to EObject
-		DocumentRoot docRoot2 = (DocumentRoot) EObjectXmlConverter.xml2EObject(
-				resFactory, xml2);
+		EObject eObj2 = EObjectXmlConverter.xml2EObject("bpmn", xml2);
 
-		assertEquals(docRoot1.getDefinitions().getId(), docRoot2
-				.getDefinitions().getId());
+		assertEquals(((Definitions) eObj1).getId(),
+				((Definitions) eObj2).getId());
 
 	}
 
