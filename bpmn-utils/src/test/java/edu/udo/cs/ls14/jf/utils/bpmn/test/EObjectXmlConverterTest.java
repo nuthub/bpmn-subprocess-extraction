@@ -7,6 +7,7 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 
 import org.eclipse.bpmn2.Definitions;
+import org.eclipse.bpmn2.DocumentRoot;
 import org.eclipse.bpmn2.util.Bpmn2ResourceFactoryImpl;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.junit.Test;
@@ -19,8 +20,8 @@ public class EObjectXmlConverterTest {
 	public void testConditionSequence() throws Exception {
 		String filename = "/edu/udo/cs/ls14/jf/utils/bpmn/test/conditionSequence.bpmn";
 		runTest(filename);
-	}	
-	
+	}
+
 	@Test
 	public void testPM1() throws Exception {
 		String filename = "/edu/udo/cs/ls14/jf/utils/bpmn/test/PM1-mit-Fragment1.bpmn";
@@ -31,17 +32,18 @@ public class EObjectXmlConverterTest {
 		String xml1 = readFile(fileName);
 		Resource.Factory resFactory = new Bpmn2ResourceFactoryImpl();
 		// convert XML to EObject
-		Definitions definitions1 = (Definitions) EObjectXmlConverter
-				.xml2EObject(resFactory, xml1, Definitions.class);
+		DocumentRoot docRoot1 = (DocumentRoot) EObjectXmlConverter.xml2EObject(
+				resFactory, xml1);
 
 		// convert EObject to XML
-		String xml2 = EObjectXmlConverter.eObject2Xml(resFactory, definitions1);
+		String xml2 = EObjectXmlConverter.eObject2Xml(resFactory, docRoot1);
 
 		// convert XML to EObject
-		Definitions definitions2 = (Definitions) EObjectXmlConverter
-				.xml2EObject(resFactory, xml2, Definitions.class);
+		DocumentRoot docRoot2 = (DocumentRoot) EObjectXmlConverter.xml2EObject(
+				resFactory, xml2);
 
-		assertEquals(definitions1.getId(), definitions2.getId());
+		assertEquals(docRoot1.getDefinitions().getId(), docRoot2
+				.getDefinitions().getId());
 
 	}
 

@@ -5,12 +5,13 @@ import java.util.Map;
 
 import org.eclipse.bpmn2.Definitions;
 import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.junit.Test;
 
 import edu.udo.cs.ls14.jf.application.Application;
-import edu.udo.cs.ls14.jf.bpmn.utils.ProcessLoader;
+import edu.udo.cs.ls14.jf.bpmn.utils.Bpmn2ResourceSet;
 import edu.udo.cs.ls14.jf.bpmnmatching.ProcessMatching;
-import edu.udo.cs.ls14.jf.processmatching.ProcessMatchingChain;
+import edu.udo.cs.ls14.jf.processmatching.ProcessMatcher;
 
 public class ApplicationTest {
 
@@ -42,24 +43,20 @@ public class ApplicationTest {
 		runTest(basename1, basename2, "conditionalFlow");
 	}
 
-	// TODO: Make assertions
 	private void runTest(String basename1, String basename2, String path)
 			throws Exception {
 		// hit the process
-		Application app = new Application();
 		File targetDir = new File("/tmp/applicationtest/");
 		targetDir.mkdirs();
-		Definitions definitions1 = ProcessLoader.getDefinitions(getClass()
-				.getResource(
-						"/edu/udo/cs/ls14/jf/bpmn/" + path + "/" + basename1
-								+ ".bpmn"));
-		Definitions definitions2 = ProcessLoader.getDefinitions(getClass()
-				.getResource(
-						"/edu/udo/cs/ls14/jf/bpmn/" + path + "/" + basename2
-								+ ".bpmn"));
-
-		ProcessMatching pMatching = ProcessMatchingChain.createProcessMatching(
+		Bpmn2ResourceSet resSet = new Bpmn2ResourceSet("src/test/resources/edu/udo/cs/ls14/jf/bpmn/" + path + "/");
+		Definitions definitions1 = EcoreUtil.copy(resSet.loadDefinitions(basename1 + ".bpmn"));
+		Definitions definitions2 = EcoreUtil.copy(resSet.loadDefinitions(basename2 + ".bpmn"));
+	
+		ProcessMatching pMatching = ProcessMatcher.createProcessMatching(
 				definitions1, definitions2);
+		System.out.println(definitions1);
+		System.out.println(definitions2);
+		Application app = new Application();
 		Map<String, Resource> result = app.extract(pMatching);
 		System.out.println(result);
 		System.out.println(app.getResourceSet().toContentString());

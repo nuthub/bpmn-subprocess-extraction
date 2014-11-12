@@ -19,7 +19,7 @@ import org.eclipse.emf.henshin.interpreter.impl.EGraphImpl;
 import org.javatuples.Pair;
 
 import edu.udo.cs.ls14.jf.bpmn.utils.FragmentUtil;
-import edu.udo.cs.ls14.jf.bpmn.utils.ProcessLoader;
+import edu.udo.cs.ls14.jf.bpmn.utils.ProcessUtil;
 import edu.udo.cs.ls14.jf.bpmnanalysis.Fragment;
 
 public class FragmentExtractor extends HenshinTransformation {
@@ -43,7 +43,7 @@ public class FragmentExtractor extends HenshinTransformation {
 
 	public void cropFragment(Resource resource, Definitions definitions,
 			Fragment fragment) throws Exception {
-		Process process = ProcessLoader.getProcessFromDefinitions(definitions);
+		Process process = ProcessUtil.getProcessFromDefinitions(definitions);
 		Pair<Float, Float> startEventCoords = CoordinateCalculator.getCoords(
 				fragment.getEntry().getSourceRef(), definitions);
 		Pair<Float, Float> endEventCoords = CoordinateCalculator.getCoords(
@@ -116,6 +116,7 @@ public class FragmentExtractor extends HenshinTransformation {
 		parameters.clear();
 		for (FlowElement flow : deleteEdges) {
 			parameters.put("id", flow.getId());
+			System.out.println(flow.getId());
 			applyRule(graph, RULEFILE, "deleteSequenceFlow", parameters);
 		}
 		// remove flownodes

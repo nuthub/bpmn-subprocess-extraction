@@ -15,20 +15,11 @@ import org.eclipse.bpmn2.Gateway;
 import org.eclipse.bpmn2.Process;
 import org.eclipse.bpmn2.SequenceFlow;
 import org.eclipse.emf.common.util.BasicEList;
-import org.eclipse.emf.ecore.resource.Resource;
 
-import edu.udo.cs.ls14.jf.bpmn.utils.ProcessLoader;
 import edu.udo.cs.ls14.jf.bpmnanalysis.BpmnAnalysisFactory;
 import edu.udo.cs.ls14.jf.bpmnanalysis.ConditionalProfile;
 
 public class ConditionalProfiler {
-
-	@Deprecated
-	public static ConditionalProfile generateProfile(Resource resource)
-			throws Exception {
-		Process process = ProcessLoader.getProcessFromResource(resource);
-		return generateProfile(process);
-	}
 
 	public static ConditionalProfile generateProfile(Process process)
 			throws Exception {

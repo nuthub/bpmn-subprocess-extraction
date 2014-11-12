@@ -8,12 +8,12 @@ import java.io.IOException;
 
 import org.eclipse.bpmn2.Bpmn2Package;
 import org.eclipse.bpmn2.Definitions;
+import org.eclipse.bpmn2.DocumentRoot;
 import org.eclipse.bpmn2.util.Bpmn2ResourceFactoryImpl;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
-import org.eclipse.emf.ecore.xmi.XMLResource;
 
 public class Bpmn2ResourceSet extends ResourceSetImpl {
 	private String directory;
@@ -24,9 +24,6 @@ public class Bpmn2ResourceSet extends ResourceSetImpl {
 		getPackageRegistry().put(Bpmn2Package.eNS_URI, Bpmn2Package.eINSTANCE);
 		getResourceFactoryRegistry().getExtensionToFactoryMap().put("bpmn",
 				new Bpmn2ResourceFactoryImpl());
-		loadOptions = getLoadOptions();
-		loadOptions
-				.put(XMLResource.OPTION_SUPPRESS_DOCUMENT_ROOT, Boolean.TRUE);
 		resourceFactory = new Bpmn2ResourceFactoryImpl();
 	}
 
@@ -39,16 +36,6 @@ public class Bpmn2ResourceSet extends ResourceSetImpl {
 		return directory;
 	}
 
-	public Resource createResource(String filename,
-			Definitions subProcessDefinitions) {
-		URI fileURI = getCompletePathURI(filename,
-				directory, true);
-		Resource resource = resourceFactory.createResource(fileURI);
-		getResources().add(resource);
-		resource.getContents().add(subProcessDefinitions);
-		return resource;
-	}
-
 	protected URI getCompletePathURI(String filename, String directory,
 			boolean absolute) {
 		StringBuilder builder = new StringBuilder(directory).append("/");
@@ -57,19 +44,34 @@ public class Bpmn2ResourceSet extends ResourceSetImpl {
 				.getAbsolutePath() : builder.toString());
 	}
 
+	public Resource createResource(String filename,
+			Definitions subProcessDefinitions) {
+		URI fileURI = getCompletePathURI(filename, directory, true);
+		Resource resource = resourceFactory.createResource(fileURI);
+		resource.getContents().add(subProcessDefinitions);
+		getResources().add(resource);
+		return resource;
+	}
+
 	public Resource loadResource(String filename) throws FileNotFoundException,
 			IOException {
 		URI fileURI = getCompletePathURI(filename, directory, true);
 		Resource resource = resourceFactory.createResource(fileURI);
-		getResources().add(resource);
 		resource.load(new BufferedInputStream(new FileInputStream(resource
-				.getURI().toFileString())), loadOptions);
+				.getURI().toFileString())), null);
+		getResources().add(resource);
 		return resource;
 	}
-	
+
+	public Definitions loadDefinitions(String filename)
+			throws FileNotFoundException, IOException {
+		return ((DocumentRoot) loadResource(filename).getContents().get(0))
+				.getDefinitions();
+	}
+
 	public Resource getResource(String filename) {
 		return getResource(getCompletePathURI(filename, directory, true), false);
-		
+
 	}
 
 	public String toContentString() {

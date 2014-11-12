@@ -10,7 +10,7 @@ import edu.udo.cs.ls14.jf.analysis.conditionalprofile.ConditionalProfiler;
 import edu.udo.cs.ls14.jf.analysis.pst.PST;
 import edu.udo.cs.ls14.jf.analysis.reachabilitygraph.ReachabilityGraph;
 import edu.udo.cs.ls14.jf.analysis.reachabilitygraph.Tracer;
-import edu.udo.cs.ls14.jf.bpmn.utils.ProcessLoader;
+import edu.udo.cs.ls14.jf.bpmn.utils.ProcessUtil;
 import edu.udo.cs.ls14.jf.bpmnanalysis.BehavioralProfile;
 import edu.udo.cs.ls14.jf.bpmnanalysis.BpmnAnalysisFactory;
 import edu.udo.cs.ls14.jf.bpmnanalysis.ConditionalProfile;
@@ -24,7 +24,7 @@ public class ProcessAnalyzer {
 	public static ProcessAnalysis analyze(Definitions definitions) throws Exception {
 		ProcessAnalysis analysis = BpmnAnalysisFactory.eINSTANCE.createProcessAnalysis();
 		analysis.setDefinitions(definitions);
-		Process process = ProcessLoader.getProcessFromDefinitions(definitions);
+		Process process = ProcessUtil.getProcessFromDefinitions(definitions);
 
 		// create petri net
 		Bpmn2PtnetConverter bpmn2ptnet = new Bpmn2PtnetConverter();

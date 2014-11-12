@@ -13,7 +13,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import edu.udo.cs.ls14.jf.bpmn.utils.Bpmn2ResourceSet;
-import edu.udo.cs.ls14.jf.bpmn.utils.ProcessLoader;
+import edu.udo.cs.ls14.jf.bpmn.utils.ProcessUtil;
 import edu.udo.cs.ls14.jf.bpmnanalysis.Fragment;
 import edu.udo.cs.ls14.jf.bpmnmatching.FragmentPair;
 import edu.udo.cs.ls14.jf.bpmnmatching.ProcessMatching;
@@ -39,10 +39,10 @@ public class Application {
 			throws Exception {
 		new File(targetDir).mkdirs();
 
-		String filename1 = ProcessLoader.getProcessFromDefinitions(
+		String filename1 = ProcessUtil.getProcessFromDefinitions(
 				pMatching.getAnalysis1().getDefinitions()).getName()
 				+ "_transformed.bpmn";
-		String filename2 = ProcessLoader.getProcessFromDefinitions(
+		String filename2 = ProcessUtil.getProcessFromDefinitions(
 				pMatching.getAnalysis2().getDefinitions()).getName()
 				+ "_transformed.bpmn";
 
@@ -59,37 +59,31 @@ public class Application {
 		int fragmentCounter = 1;
 		for (FragmentPair fPair : pMatching.getFragmentMatching().getPairs()) {
 			// 1. Determine "better" fragment
+			// TODO: let this be part of matching model, to choose better-function in process
 			Fragment fragmentToExtract = FragmentComparatorSize
 					.getBetter(fPair);
-			Process process1 = ProcessLoader.getProcessFromDefinitions(fPair
-					.getA().getDefinitions());
-			Process process2 = ProcessLoader.getProcessFromDefinitions(fPair
-					.getB().getDefinitions());
 
 			// create new (sub)process
-			String idExtracted = process1.getName() + "_" + process2.getName()
-					+ "_extracted_process-" + fragmentCounter++;
-			String filenameExtracted = idExtracted + ".bpmn";
+			String idExtracted = getExtractedProcessIdPrefix(fPair) + fragmentCounter++;
 			Definitions defsExtracted = EcoreUtil.copy(fragmentToExtract
 					.getDefinitions());
-			Resource resExtracted = resourceSet.createResource(
-					filenameExtracted, defsExtracted);
-			defsExtracted.setTargetNamespace("http://bla");
+			Resource resExtracted = resourceSet.createResource(idExtracted
+					+ ".bpmn", defsExtracted);
 			defsExtracted.setTargetNamespace(resExtracted.getURI().toString()
 					.toLowerCase());
 
 			extractor.cropFragment(resExtracted, defsExtracted,
 					fragmentToExtract);
-			extractor.replaceId(resExtracted, ProcessLoader
+			extractor.replaceId(resExtracted, ProcessUtil
 					.getProcessFromDefinitions(defsExtracted).getId(),
 					EcoreUtil.generateUUID());
-			results.put(filenameExtracted, resExtracted);
+			results.put(idExtracted + ".bpmn", resExtracted);
 			resExtracted.save(null);
 
 			// callActivity parameters
 			String callActivityName = LabelGenerator
 					.getLabel(fragmentToExtract);
-			Process calledElement = ProcessLoader
+			Process calledElement = ProcessUtil
 					.getProcessFromDefinitions(defsExtracted);
 			System.out.println(calledElement.getId());
 
@@ -124,55 +118,15 @@ public class Application {
 		return results;
 	}
 
-	/*
-	 * public void matchAndExtract(Pair<String, Resource> model1, Pair<String,
-	 * Resource> model2, File targetDir) throws Exception {
-	 * 
-	 * Resource res1 = ResourceCopier.copy(model1.getValue1(), new
-	 * File(targetDir, "/" + model1.getValue0() +
-	 * "_transformed.bpmn2").toString()); Resource res2 =
-	 * ResourceCopier.copy(model2.getValue1(), new File(targetDir, "/" +
-	 * model2.getValue0() + "_transformed.bpmn2").toString());
-	 * 
-	 * // Determine candidates ProcessMatching matching =
-	 * ProcessMatchingChain.createProcessMatching( model1.getValue1(),
-	 * model2.getValue1()); FragmentExtractor extractor = new
-	 * FragmentExtractor();
-	 * 
-	 * // Loop over all matching pairs int processCounter = 1; for (FragmentPair
-	 * pair : matching.getFragmentMatching().getPairs()) { // select fragment to
-	 * extract Fragment fragmentToExtract =
-	 * FragmentComparatorSize.getBetter(pair); // copy resource: Resource is not
-	 * copied! String targetFilename = model1.getValue0() + "_" +
-	 * model2.getValue0() + "_extracted_process-" + processCounter++ + ".bpmn2";
-	 * Definitions definitions = fragmentToExtract.getDefinitions(); Definitions
-	 * newDefinitions = EcoreUtil.copy(definitions); Bpmn2ResourceFactoryImpl
-	 * resFactory = new Bpmn2ResourceFactoryImpl(); Resource newResource =
-	 * resFactory.createResource(URI .createURI(targetDir + "/" +
-	 * targetFilename));
-	 * newResource.getContents().addAll(newDefinitions.eContents());
-	 * System.out.println(newResource); newResource.save(null); // Resource
-	 * newResource = ResourceCopier.copy( // fragmentToExtract.getResource(),
-	 * new File(targetDir, "/" // + targetFilename).toString()); // // // create
-	 * new subprocess // LOG.info("Creating process from " + fragmentToExtract +
-	 * " in " // + newResource.getURI()); //
-	 * extractor.createProcessFromFragment(newResource, // fragmentToExtract);
-	 * // newResource.save(null); // LOG.info("Created process from " +
-	 * fragmentToExtract + " in " // + newResource.getURI()); // // // replace
-	 * fragments by call activities // String callActivityName =
-	 * getCallActivityName(fragmentToExtract); // Process calledElement =
-	 * ProcessLoader // .getProcessFromResource(newResource); // // // replace
-	 * fragment in Process1 // LOG.info("Replacing " + pair.getA() + " in " +
-	 * res1.getURI()); // extractor.replaceFragmentByCallActivity(res1,
-	 * pair.getA(), // callActivityName, calledElement); // LOG.info("Fixing " +
-	 * res1.getURI()); // doFixes(res1, calledElement); // res1.save(null); //
-	 * LOG.info("Replaced " + pair.getA() + " in " + res1.getURI()); // // //
-	 * replace fragment in Process2 // LOG.info("Replacing " + pair.getB() +
-	 * " in " + res2.getURI()); // extractor.replaceFragmentByCallActivity(res2,
-	 * pair.getB(), // callActivityName, calledElement); // LOG.info("Fixing " +
-	 * res1.getURI()); // doFixes(res2, calledElement); // res2.save(null); //
-	 * LOG.info("Replaced " + pair.getB() + " in " + res2.getURI()); } }
-	 */
+	private String getExtractedProcessIdPrefix(FragmentPair fPair)
+			throws Exception {
+		return ProcessUtil.getProcessFromDefinitions(
+				fPair.getA().getDefinitions()).getName()
+				+ "_"
+				+ ProcessUtil.getProcessFromDefinitions(
+						fPair.getB().getDefinitions()).getName()
+				+ "_extracted_process-";
+	}
 
 	public Bpmn2ResourceSet getResourceSet() {
 		return resourceSet;

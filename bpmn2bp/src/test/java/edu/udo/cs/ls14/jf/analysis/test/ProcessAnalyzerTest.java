@@ -3,6 +3,7 @@ package edu.udo.cs.ls14.jf.analysis.test;
 import static org.junit.Assert.assertEquals;
 
 import org.eclipse.bpmn2.Definitions;
+import org.eclipse.bpmn2.DocumentRoot;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.junit.Test;
 
@@ -29,7 +30,7 @@ public class ProcessAnalyzerTest {
 		Resource res = new Bpmn2ResourceSet(
 				"src/test/resources/edu/udo/cs/ls14/jf/bpmn/")
 				.loadResource("PM1-mit-Fragment1.bpmn");
-		Definitions def = (Definitions) res.getContents().get(0);
+		Definitions def = ((DocumentRoot) res.getContents().get(0)).getDefinitions();
 		ProcessAnalysis analysis = ProcessAnalyzer.analyze(def);
 		assertEquals(6, getPstSize(analysis));
 		assertEquals(7, getCpSize(analysis));
@@ -40,7 +41,7 @@ public class ProcessAnalyzerTest {
 		Resource res = new Bpmn2ResourceSet(
 				"src/test/resources/edu/udo/cs/ls14/jf/bpmn/conditionalFlow/")
 				.loadResource("conditionSequence.bpmn");
-		Definitions def = (Definitions) res.getContents().get(0);
+		Definitions def = ((DocumentRoot) res.getContents().get(0)).getDefinitions();
 		ProcessAnalysis analysis = ProcessAnalyzer.analyze(def);
 		assertEquals(5, getPstSize(analysis));
 		assertEquals(5, getCpSize(analysis));
@@ -51,7 +52,7 @@ public class ProcessAnalyzerTest {
 		Resource res = new Bpmn2ResourceSet(
 				"src/test/resources/edu/udo/cs/ls14/jf/bpmn/conditionalFlow/")
 				.loadResource("conditionSequence2.bpmn");
-		Definitions def = (Definitions) res.getContents().get(0);
+		Definitions def = ((DocumentRoot) res.getContents().get(0)).getDefinitions();
 		ProcessAnalysis analysis = ProcessAnalyzer.analyze(def);
 		assertEquals(5, getPstSize(analysis));
 		assertEquals(5, getCpSize(analysis));

@@ -6,7 +6,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import edu.udo.cs.ls14.jf.analysis.ProcessAnalyzer;
-import edu.udo.cs.ls14.jf.bpmn.utils.ProcessLoader;
+import edu.udo.cs.ls14.jf.bpmn.utils.ProcessUtil;
 import edu.udo.cs.ls14.jf.bpmnanalysis.Fragment;
 import edu.udo.cs.ls14.jf.bpmnanalysis.ProcessAnalysis;
 import edu.udo.cs.ls14.jf.bpmnanalysis.ProcessStructureTree;
@@ -15,16 +15,16 @@ import edu.udo.cs.ls14.jf.bpmnmatching.FragmentMatching;
 import edu.udo.cs.ls14.jf.bpmnmatching.FragmentPair;
 import edu.udo.cs.ls14.jf.bpmnmatching.ProcessMatching;
 
-public class ProcessMatchingChain {
+public class ProcessMatcher {
 
 	private static final Logger LOG = LoggerFactory
-			.getLogger(ProcessMatchingChain.class);
+			.getLogger(ProcessMatcher.class);
 
 	public static ProcessMatching createProcessMatching(Definitions definitions1,
 			Definitions definitions2) throws Exception {
-		Process process1 = ProcessLoader
+		Process process1 = ProcessUtil
 				.getProcessFromDefinitions(definitions1);
-		Process process2 = ProcessLoader
+		Process process2 = ProcessUtil
 				.getProcessFromDefinitions(definitions2);
 
 		// create processmatching object

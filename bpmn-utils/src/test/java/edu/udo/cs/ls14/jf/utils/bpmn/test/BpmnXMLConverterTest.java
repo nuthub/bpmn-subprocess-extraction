@@ -6,7 +6,7 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 
-import org.eclipse.bpmn2.Definitions;
+import org.eclipse.bpmn2.DocumentRoot;
 import org.junit.Test;
 
 import edu.udo.cs.ls14.jf.bpmn.utils.BpmnXmlConverter;
@@ -26,22 +26,20 @@ public class BpmnXMLConverterTest {
 	}
 
 	/*
-	 * File -> XML -> Defintions -> XML -> Definitions
+	 * File -> XML -> DocumentRoot -> XML -> DocumentRoot
 	 */
 	private void runTest(String fileName) throws Exception {
 		// get XML
 		String xml1 = readFile(fileName);
 		// convert XML to EObject
-		Definitions definitions1 = (Definitions) BpmnXmlConverter.xml2Bpmn(
-				xml1, Definitions.class);
+		DocumentRoot docRoot1 = (DocumentRoot) BpmnXmlConverter.xml2Bpmn(xml1);
 		// convert EObject to XML
-		String xml2 = BpmnXmlConverter
-				.bpmn2Xml(definitions1, Definitions.class);
+		String xml2 = BpmnXmlConverter.bpmn2Xml(docRoot1.getDefinitions());
 		// convert XML to EObject
-		Definitions definitions2 = (Definitions) BpmnXmlConverter.xml2Bpmn(
-				xml2, Definitions.class);
+		DocumentRoot docRoot2 = (DocumentRoot) BpmnXmlConverter.xml2Bpmn(xml2);
 		// compare
-		assertEquals(definitions1.getId(), definitions2.getId());
+		assertEquals(docRoot1.getDefinitions().getId(), docRoot2
+				.getDefinitions().getId());
 
 	}
 

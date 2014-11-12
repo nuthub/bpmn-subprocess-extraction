@@ -1,12 +1,13 @@
 package edu.udo.cs.ls14.jf.analysis.conditionalprofile.test;
 
 import org.eclipse.bpmn2.Definitions;
+import org.eclipse.bpmn2.DocumentRoot;
 import org.eclipse.bpmn2.Process;
 import org.junit.Test;
 
 import edu.udo.cs.ls14.jf.analysis.conditionalprofile.ConditionalProfiler;
 import edu.udo.cs.ls14.jf.bpmn.utils.Bpmn2ResourceSet;
-import edu.udo.cs.ls14.jf.bpmn.utils.ProcessLoader;
+import edu.udo.cs.ls14.jf.bpmn.utils.ProcessUtil;
 import edu.udo.cs.ls14.jf.bpmnanalysis.ConditionalProfile;
 
 public class ConditionalProfileTest {
@@ -25,10 +26,11 @@ public class ConditionalProfileTest {
 	}
 
 	private Process getResource(String basename) throws Exception {
-		Definitions definitions = (Definitions) new Bpmn2ResourceSet(
+		Definitions definitions = ((DocumentRoot) new Bpmn2ResourceSet(
 				"src/test/resources/edu/udo/cs/ls14/jf/bpmn/conditionalFlow")
-				.loadResource(basename + ".bpmn").getContents().get(0);
-		return ProcessLoader.getProcessFromDefinitions(definitions);
+				.loadResource(basename + ".bpmn").getContents().get(0))
+				.getDefinitions();
+		return ProcessUtil.getProcessFromDefinitions(definitions);
 	}
 
 }

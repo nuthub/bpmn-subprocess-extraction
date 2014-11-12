@@ -2,7 +2,7 @@ package edu.udo.cs.ls14.jf.transformation.test;
 
 import static org.junit.Assert.assertTrue;
 
-import org.eclipse.bpmn2.Definitions;
+import org.eclipse.bpmn2.DocumentRoot;
 import org.eclipse.bpmn2.Process;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.henshin.interpreter.EGraph;
@@ -18,7 +18,7 @@ import org.eclipse.emf.henshin.model.resource.HenshinResourceSet;
 import org.junit.Test;
 
 import edu.udo.cs.ls14.jf.bpmn.utils.Bpmn2ResourceSet;
-import edu.udo.cs.ls14.jf.bpmn.utils.ProcessLoader;
+import edu.udo.cs.ls14.jf.bpmn.utils.ProcessUtil;
 import edu.udo.cs.ls14.jf.bpmn.utils.ResourceCopier;
 import edu.udo.cs.ls14.jf.transformation.LocationFixer;
 
@@ -39,8 +39,8 @@ public class FixLocationTest {
 		// create two resources from existing resources
 
 		// get process from first resource
-		Process calledElement = ProcessLoader
-				.getProcessFromDefinitions((Definitions) res1.getContents()
+		Process calledElement = ProcessUtil
+				.getProcessFromDocumentRoot((DocumentRoot) res1.getContents()
 						.get(0));
 
 		// transform second resource

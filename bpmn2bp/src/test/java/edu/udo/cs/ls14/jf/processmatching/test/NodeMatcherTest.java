@@ -9,13 +9,14 @@ import java.util.function.Function;
 import java.util.stream.Collectors;
 
 import org.eclipse.bpmn2.Definitions;
+import org.eclipse.bpmn2.DocumentRoot;
 import org.eclipse.bpmn2.FlowElement;
 import org.eclipse.bpmn2.FlowNode;
 import org.eclipse.bpmn2.Process;
 import org.junit.Test;
 
 import edu.udo.cs.ls14.jf.bpmn.utils.Bpmn2ResourceSet;
-import edu.udo.cs.ls14.jf.bpmn.utils.ProcessLoader;
+import edu.udo.cs.ls14.jf.bpmn.utils.ProcessUtil;
 import edu.udo.cs.ls14.jf.bpmnmatching.NodeMatching;
 import edu.udo.cs.ls14.jf.bpmnmatching.NodePair;
 import edu.udo.cs.ls14.jf.processmatching.NodeMatcher;
@@ -26,12 +27,14 @@ public class NodeMatcherTest {
 	public void testNodeMatcher() throws Exception {
 		Bpmn2ResourceSet resSet = new Bpmn2ResourceSet(
 				"src/test/resources/edu/udo/cs/ls14/jf/bpmn");
-		Definitions def1 = (Definitions) resSet
-				.loadResource("PM1-mit-Fragment1.bpmn").getContents().get(0);
-		Definitions def2 = (Definitions) resSet
-				.loadResource("PM3-mit-Fragment2.bpmn").getContents().get(0);
-		Process process1 = ProcessLoader.getProcessFromDefinitions(def1);
-		Process process2 = ProcessLoader.getProcessFromDefinitions(def2);
+		Definitions def1 = ((DocumentRoot) resSet
+				.loadResource("PM1-mit-Fragment1.bpmn").getContents().get(0))
+				.getDefinitions();
+		Definitions def2 = ((DocumentRoot) resSet
+				.loadResource("PM3-mit-Fragment2.bpmn").getContents().get(0))
+				.getDefinitions();
+		Process process1 = ProcessUtil.getProcessFromDefinitions(def1);
+		Process process2 = ProcessUtil.getProcessFromDefinitions(def2);
 		NodeMatching nodeMatching = NodeMatcher.getCorrespondences(process1,
 				process2);
 		nodeMatching.getPairs().forEach(

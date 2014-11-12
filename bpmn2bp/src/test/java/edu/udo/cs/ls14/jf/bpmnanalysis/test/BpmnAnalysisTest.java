@@ -5,6 +5,7 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 
 import org.eclipse.bpmn2.Definitions;
+import org.eclipse.bpmn2.DocumentRoot;
 import org.eclipse.bpmn2.Process;
 import org.junit.Test;
 
@@ -16,7 +17,7 @@ import edu.udo.cs.ls14.jf.analysis.reachabilitygraph.ReachabilityGraph;
 import edu.udo.cs.ls14.jf.analysis.reachabilitygraph.Tracer;
 import edu.udo.cs.ls14.jf.bpmn.utils.BpmnXmlConverter;
 import edu.udo.cs.ls14.jf.bpmn.utils.EObjectXmlConverter;
-import edu.udo.cs.ls14.jf.bpmn.utils.ProcessLoader;
+import edu.udo.cs.ls14.jf.bpmn.utils.ProcessUtil;
 import edu.udo.cs.ls14.jf.bpmnanalysis.BehavioralProfile;
 import edu.udo.cs.ls14.jf.bpmnanalysis.BpmnAnalysisFactory;
 import edu.udo.cs.ls14.jf.bpmnanalysis.ProcessAnalysis;
@@ -42,8 +43,8 @@ public class BpmnAnalysisTest {
 		after = getTime();
 		System.out.println((after - before) + " ms (read file)");
 		before = getTime();
-		Definitions definitions = (Definitions) BpmnXmlConverter.xml2Bpmn(
-				defXml, Definitions.class);
+		Definitions definitions = ((DocumentRoot) BpmnXmlConverter
+				.xml2Bpmn(defXml)).getDefinitions();
 		after = getTime();
 		System.out.println((after - before) + " ms (xml2bpmn)");
 		before = getTime();
@@ -53,7 +54,7 @@ public class BpmnAnalysisTest {
 
 		// Get Process
 		before = getTime();
-		Process process = ProcessLoader.getProcessFromDefinitions(definitions);
+		Process process = ProcessUtil.getProcessFromDefinitions(definitions);
 		after = getTime();
 		System.out.println((after - before) + " ms (get Process)");
 

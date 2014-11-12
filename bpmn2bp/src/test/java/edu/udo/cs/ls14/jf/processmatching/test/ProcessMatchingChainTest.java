@@ -6,6 +6,7 @@ import java.util.function.Predicate;
 
 import org.eclipse.bpmn2.Activity;
 import org.eclipse.bpmn2.Definitions;
+import org.eclipse.bpmn2.DocumentRoot;
 import org.eclipse.bpmn2.Event;
 import org.eclipse.bpmn2.FlowElement;
 import org.junit.Test;
@@ -13,7 +14,7 @@ import org.junit.Test;
 import edu.udo.cs.ls14.jf.bpmn.utils.Bpmn2ResourceSet;
 import edu.udo.cs.ls14.jf.bpmn.utils.FragmentUtil;
 import edu.udo.cs.ls14.jf.bpmnmatching.ProcessMatching;
-import edu.udo.cs.ls14.jf.processmatching.ProcessMatchingChain;
+import edu.udo.cs.ls14.jf.processmatching.ProcessMatcher;
 
 public class ProcessMatchingChainTest {
 
@@ -24,10 +25,12 @@ public class ProcessMatchingChainTest {
 		System.out.println("Testing " + basename1 + " with " + basename2);
 		Bpmn2ResourceSet resSet = new Bpmn2ResourceSet(
 				"src/test/resources/edu/udo/cs/ls14/jf/bpmn/conditionalFlow/");
-		Definitions def1 = (Definitions) resSet
-				.loadResource(basename1 + ".bpmn").getContents().get(0);
-		Definitions def2 = (Definitions) resSet
-				.loadResource(basename2 + ".bpmn").getContents().get(0);
+		Definitions def1 = ((DocumentRoot) resSet
+				.loadResource(basename1 + ".bpmn").getContents().get(0))
+				.getDefinitions();
+		Definitions def2 = ((DocumentRoot) resSet
+				.loadResource(basename2 + ".bpmn").getContents().get(0))
+				.getDefinitions();
 		runTest(def1, def2, 1);
 	}
 
@@ -38,17 +41,19 @@ public class ProcessMatchingChainTest {
 		System.out.println("Testing " + basename1 + " with " + basename2);
 		Bpmn2ResourceSet resSet = new Bpmn2ResourceSet(
 				"src/test/resources/edu/udo/cs/ls14/jf/bpmn/");
-		Definitions def1 = (Definitions) resSet
-				.loadResource(basename1 + ".bpmn").getContents().get(0);
-		Definitions def2 = (Definitions) resSet
-				.loadResource(basename2 + ".bpmn").getContents().get(0);
+		Definitions def1 = ((DocumentRoot) resSet
+				.loadResource(basename1 + ".bpmn").getContents().get(0))
+				.getDefinitions();
+		Definitions def2 = ((DocumentRoot) resSet
+				.loadResource(basename2 + ".bpmn").getContents().get(0))
+				.getDefinitions();
 		runTest(def1, def2, 1);
 	}
 
 	private ProcessMatching runTest(Definitions definitions1,
 			Definitions definitions2, int expectedFCs) throws Exception {
 
-		ProcessMatching matching = ProcessMatchingChain.createProcessMatching(
+		ProcessMatching matching = ProcessMatcher.createProcessMatching(
 				definitions1, definitions2);
 		printMatching(matching);
 		assertEquals(expectedFCs, matching.getFragmentMatching().getPairs()

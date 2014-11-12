@@ -14,14 +14,14 @@ import org.eclipse.dd.di.DiagramElement;
 import org.javatuples.Pair;
 
 import edu.udo.cs.ls14.jf.bpmn.utils.FragmentUtil;
-import edu.udo.cs.ls14.jf.bpmn.utils.ProcessLoader;
+import edu.udo.cs.ls14.jf.bpmn.utils.ProcessUtil;
 import edu.udo.cs.ls14.jf.bpmnanalysis.Fragment;
 
 public class CoordinateCalculator {
 
 	public static Pair<Float, Float> getCoords(FlowNode node,
 			Definitions definitions) throws Exception {
-		BPMNDiagram diagram = ProcessLoader
+		BPMNDiagram diagram = ProcessUtil
 				.getDiagramFromDefinitions(definitions);
 		float x = 0;
 		float y = 0;
@@ -44,7 +44,7 @@ public class CoordinateCalculator {
 		Set<FlowElement> nodes = FragmentUtil.getFlowElements(fragment, filter);
 		Set<String> nodeIds = nodes.stream().map(n -> n.getId())
 				.collect(Collectors.toSet());
-		BPMNDiagram diagram = ProcessLoader.getDiagramFromDefinitions(fragment
+		BPMNDiagram diagram = ProcessUtil.getDiagramFromDefinitions(fragment
 				.getDefinitions());
 		float minX = -1;
 		float maxX = 0;

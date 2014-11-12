@@ -2,7 +2,7 @@ package edu.udo.cs.ls14.jf.analysis.bpmn2ptnet.test;
 
 import static org.junit.Assert.assertEquals;
 
-import org.eclipse.bpmn2.Definitions;
+import org.eclipse.bpmn2.DocumentRoot;
 import org.eclipse.bpmn2.Process;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.junit.Before;
@@ -10,7 +10,7 @@ import org.junit.Test;
 
 import edu.udo.cs.ls14.jf.analysis.bpmn2ptnet.Bpmn2PtnetConverter;
 import edu.udo.cs.ls14.jf.bpmn.utils.Bpmn2ResourceSet;
-import edu.udo.cs.ls14.jf.bpmn.utils.ProcessLoader;
+import edu.udo.cs.ls14.jf.bpmn.utils.ProcessUtil;
 import fr.lip6.move.pnml.ptnet.hlapi.PageHLAPI;
 import fr.lip6.move.pnml.ptnet.hlapi.PetriNetHLAPI;
 
@@ -70,8 +70,8 @@ public class Bpmn2PtnetConverterTest {
 		Resource resource = new Bpmn2ResourceSet(
 				"src/test/resources/edu/udo/cs/ls14/jf/bpmn/")
 				.loadResource(basename + ".bpmn");
-		Process process = ProcessLoader
-				.getProcessFromDefinitions((Definitions) resource.getContents()
+		Process process = ProcessUtil
+				.getProcessFromDocumentRoot((DocumentRoot) resource.getContents()
 						.get(0));
 		PetriNetHLAPI net = converter.convertToPetriNet(process);
 		assertEquals(1, net.getPagesHLAPI().size());

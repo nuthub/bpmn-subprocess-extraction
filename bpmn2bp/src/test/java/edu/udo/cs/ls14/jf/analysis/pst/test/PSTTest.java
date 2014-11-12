@@ -9,6 +9,7 @@ import java.util.function.Function;
 import java.util.stream.Collectors;
 
 import org.eclipse.bpmn2.Definitions;
+import org.eclipse.bpmn2.DocumentRoot;
 import org.jbpt.utils.IOUtils;
 import org.junit.Test;
 
@@ -150,9 +151,10 @@ public class PSTTest {
 	public PST runTest(String basename) throws Exception {
 		System.out.println("Creating PST for " + basename);
 		PST pst = new PST();
-		Definitions definitions = (Definitions) new Bpmn2ResourceSet(
+		Definitions definitions = ((DocumentRoot) new Bpmn2ResourceSet(
 				"src/test/resources/edu/udo/cs/ls14/jf/bpmn/")
-				.loadResource(basename + ".bpmn").getContents().get(0);
+				.loadResource(basename + ".bpmn").getContents().get(0))
+				.getDefinitions();
 		pst.createFromDefinitions(definitions);
 		IOUtils.invokeDOT("/tmp", basename + "-undirectedgraph.png",
 				pst.getGraphAsDot());
