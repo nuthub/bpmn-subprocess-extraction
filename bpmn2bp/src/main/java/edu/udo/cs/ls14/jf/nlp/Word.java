@@ -29,7 +29,7 @@ public class Word {
 	}
 
 	public boolean isSynonymWith(Word word2) throws ClassNotFoundException, SQLException {
-		return OpenThesaurus.areSynonyms(getBaseform(), word2.getBaseform());
+		return OpenThesaurusSQLite.areSynonyms(getBaseform(), word2.getBaseform());
 	}
 
 	public String getBaseform() {

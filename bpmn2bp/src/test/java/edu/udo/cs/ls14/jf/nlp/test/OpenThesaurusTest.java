@@ -7,7 +7,7 @@ import java.sql.SQLException;
 
 import org.junit.Test;
 
-import edu.udo.cs.ls14.jf.nlp.OpenThesaurus;
+import edu.udo.cs.ls14.jf.nlp.OpenThesaurusSQLite;
 
 public class OpenThesaurusTest {
 
@@ -41,11 +41,11 @@ public class OpenThesaurusTest {
 	}
 	
 	private void assertNonSynonyms(String string1, String string2) throws ClassNotFoundException, SQLException {
-		assertFalse(OpenThesaurus.areSynonyms(string1, string2));
+		assertFalse(OpenThesaurusSQLite.areSynonyms(string1, string2));
 
 	}
 	private void assertSynonyms(String string1, String string2) throws ClassNotFoundException, SQLException {
-		assertTrue(OpenThesaurus.areSynonyms(string1, string2));
+		assertTrue(OpenThesaurusSQLite.areSynonyms(string1, string2));
 	}
 
 }

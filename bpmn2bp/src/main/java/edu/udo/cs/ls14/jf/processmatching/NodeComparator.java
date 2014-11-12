@@ -13,7 +13,7 @@ import org.eclipse.bpmn2.IntermediateThrowEvent;
 import org.eclipse.bpmn2.impl.ActivityImpl;
 
 import edu.udo.cs.ls14.jf.nlp.Lemmatizer;
-import edu.udo.cs.ls14.jf.nlp.OpenThesaurus;
+import edu.udo.cs.ls14.jf.nlp.OpenThesaurusSQLite;
 import edu.udo.cs.ls14.jf.nlp.StopWordList;
 
 public class NodeComparator {
@@ -86,7 +86,7 @@ public class NodeComparator {
 					for (String w2 : list2) {
 						if (!StopWordList.contains(LANGUAGE, w2)) {
 							String w2base = Lemmatizer.lemmatize(LANGUAGE, w2);
-							if (OpenThesaurus.areSynonyms(w1base, w2base)) {
+							if (OpenThesaurusSQLite.areSynonyms(w1base, w2base)) {
 								map.put(w1, w2);
 							}
 						}
