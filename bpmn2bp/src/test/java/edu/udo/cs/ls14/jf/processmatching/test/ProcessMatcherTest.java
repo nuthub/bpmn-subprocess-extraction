@@ -16,7 +16,7 @@ import edu.udo.cs.ls14.jf.bpmn.utils.FragmentUtil;
 import edu.udo.cs.ls14.jf.bpmnmatching.ProcessMatching;
 import edu.udo.cs.ls14.jf.processmatching.ProcessMatcher;
 
-public class ProcessMatchingChainTest {
+public class ProcessMatcherTest {
 
 	@Test
 	public void testConditionSequence1ConditionSequence2() throws Exception {

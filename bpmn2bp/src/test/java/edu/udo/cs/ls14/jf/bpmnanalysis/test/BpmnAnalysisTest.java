@@ -24,6 +24,7 @@ import edu.udo.cs.ls14.jf.bpmnanalysis.ProcessAnalysis;
 import edu.udo.cs.ls14.jf.bpmnanalysis.ProcessStructureTree;
 import fr.lip6.move.pnml.ptnet.hlapi.PetriNetHLAPI;
 
+// TODO: Move to another artifact
 public class BpmnAnalysisTest {
 
 	@Test
