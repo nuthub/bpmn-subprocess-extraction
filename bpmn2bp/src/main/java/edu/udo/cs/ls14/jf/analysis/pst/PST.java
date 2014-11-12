@@ -13,6 +13,7 @@ import org.apache.commons.lang3.StringUtils;
 import org.eclipse.bpmn2.Bpmn2Factory;
 import org.eclipse.bpmn2.Definitions;
 import org.eclipse.bpmn2.EndEvent;
+import org.eclipse.bpmn2.FlowElement;
 import org.eclipse.bpmn2.FlowNode;
 import org.eclipse.bpmn2.Process;
 import org.eclipse.bpmn2.SequenceFlow;
@@ -29,7 +30,6 @@ import edu.uci.ics.jung.graph.UndirectedSparseMultigraph;
 import edu.udo.cs.ls14.jf.bpmn.utils.ProcessUtil;
 import edu.udo.cs.ls14.jf.bpmnanalysis.BpmnAnalysisFactory;
 import edu.udo.cs.ls14.jf.bpmnanalysis.Fragment;
-import edu.udo.cs.ls14.jf.utils.bpmn.NodeFinder;
 
 public class PST {
 
@@ -59,8 +59,8 @@ public class PST {
 		edgeStates = new HashMap<SequenceFlow, EdgeState>();
 		bracketSets = new HashMap<SequenceFlow, Set<SequenceFlow>>();
 		spanningTree = new DirectedSparseMultigraph<FlowNode, SequenceFlow>();
-		start = NodeFinder.getStartNode(process);
-		end = NodeFinder.getEndNode(process);
+		start = getStartNode(process);
+		end = getEndNode(process);
 
 		// create undirected graph from process
 		graph = buildGraph(process);
@@ -530,4 +530,24 @@ public class PST {
 		return graph;
 	}
 
+	public StartEvent getStartNode(Process process) {
+		for (FlowElement elem : process.getFlowElements()) {
+			if (elem instanceof StartEvent) {
+				return (StartEvent) elem;
+			}
+		}
+		return null;
+	}
+
+	/*
+	 * TODO: check for multiple end nodes
+	 */
+	public EndEvent getEndNode(Process process) {
+		for (FlowElement elem : process.getFlowElements()) {
+			if (elem instanceof EndEvent) {
+				return (EndEvent) elem;
+			}
+		}
+		return null;
+	}
 }
