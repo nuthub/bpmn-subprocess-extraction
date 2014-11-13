@@ -27,10 +27,11 @@ public class ProcessAnalyzerTest {
 
 	@Test
 	public void testAnalysisPM1() throws Exception {
-		Resource res = new Bpmn2ResourceSet(
-				"src/test/resources/edu/udo/cs/ls14/jf/bpmn/")
+		Resource res = new Bpmn2ResourceSet(getClass().getResource(
+				"/edu/udo/cs/ls14/jf/bpmn/test/").getPath())
 				.loadResource("PM1-mit-Fragment1.bpmn");
-		Definitions def = ((DocumentRoot) res.getContents().get(0)).getDefinitions();
+		Definitions def = ((DocumentRoot) res.getContents().get(0))
+				.getDefinitions();
 		ProcessAnalysis analysis = ProcessAnalyzer.analyze(def);
 		assertEquals(6, getPstSize(analysis));
 		assertEquals(7, getCpSize(analysis));
@@ -38,10 +39,11 @@ public class ProcessAnalyzerTest {
 
 	@Test
 	public void testAnalysisConditionSequence() throws Exception {
-		Resource res = new Bpmn2ResourceSet(
-				"src/test/resources/edu/udo/cs/ls14/jf/bpmn/conditionalFlow/")
-				.loadResource("conditionSequence.bpmn");
-		Definitions def = ((DocumentRoot) res.getContents().get(0)).getDefinitions();
+		Resource res = new Bpmn2ResourceSet(getClass().getResource(
+				"/edu/udo/cs/ls14/jf/bpmn/test/").getPath())
+				.loadResource("conditionalFlow/conditionSequence.bpmn");
+		Definitions def = ((DocumentRoot) res.getContents().get(0))
+				.getDefinitions();
 		ProcessAnalysis analysis = ProcessAnalyzer.analyze(def);
 		assertEquals(5, getPstSize(analysis));
 		assertEquals(5, getCpSize(analysis));
@@ -49,10 +51,11 @@ public class ProcessAnalyzerTest {
 
 	@Test
 	public void testAnalysisConditionSequence2() throws Exception {
-		Resource res = new Bpmn2ResourceSet(
-				"src/test/resources/edu/udo/cs/ls14/jf/bpmn/conditionalFlow/")
-				.loadResource("conditionSequence2.bpmn");
-		Definitions def = ((DocumentRoot) res.getContents().get(0)).getDefinitions();
+		Resource res = new Bpmn2ResourceSet(getClass().getResource(
+				"/edu/udo/cs/ls14/jf/bpmn/test/").getPath())
+				.loadResource("conditionalFlow/conditionSequence2.bpmn");
+		Definitions def = ((DocumentRoot) res.getContents().get(0))
+				.getDefinitions();
 		ProcessAnalysis analysis = ProcessAnalyzer.analyze(def);
 		assertEquals(5, getPstSize(analysis));
 		assertEquals(5, getCpSize(analysis));

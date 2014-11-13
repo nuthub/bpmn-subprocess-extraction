@@ -25,8 +25,8 @@ public class NodeMatcherTest {
 
 	@Test
 	public void testNodeMatcher() throws Exception {
-		Bpmn2ResourceSet resSet = new Bpmn2ResourceSet(
-				"src/test/resources/edu/udo/cs/ls14/jf/bpmn");
+		Bpmn2ResourceSet resSet = new Bpmn2ResourceSet(getClass().getResource(
+				"/edu/udo/cs/ls14/jf/bpmn/test/").getPath());
 		Definitions def1 = ((DocumentRoot) resSet
 				.loadResource("PM1-mit-Fragment1.bpmn").getContents().get(0))
 				.getDefinitions();

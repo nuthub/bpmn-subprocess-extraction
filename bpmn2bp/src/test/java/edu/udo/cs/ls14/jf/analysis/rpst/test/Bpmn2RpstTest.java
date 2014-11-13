@@ -77,9 +77,9 @@ public class Bpmn2RpstTest {
 			throws Exception {
 		System.out.println("----------------------------");
 		System.out.println("Generating RPST for " + basename + ".bpmn");
-		Resource resource = new Bpmn2ResourceSet(
-				"src/test/resources/edu/udo/cs/ls14/jf/bpmn/")
-				.loadResource(basename + ".bpmn");
+		Resource resource = new Bpmn2ResourceSet(getClass().getResource(
+				"/edu/udo/cs/ls14/jf/bpmn/test").getPath()).loadResource(basename
+				+ ".bpmn");
 		Process process = ProcessUtil
 				.getProcessFromDocumentRoot((DocumentRoot) resource
 						.getContents().get(0));

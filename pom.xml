@@ -9,11 +9,14 @@
 		<module>activiti-extensions</module>
 		<module>bpmn-utils</module>
 		<module>bpmn-analysis-model</module>
+		<module>bpmnanalysis-behavioralprofile</module>
+		<module>bpmnanalysis-conditionalprofile</module>
+		<module>bpmnanalysis-pst</module>
+		<module>bpmnanalysis-services</module>
 		<!-- needs some refactorints -->
 		<module>bpmn2bp</module>
 		<!-- examples / tests -->
 		<module>activiti-webservice-example</module>
-		<module>bpmn-metrics-service</module>
 		<module>webapp-example</module>
 		<module>services-ear</module>
 	</modules>
@@ -31,6 +34,16 @@
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>
 			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>ch.qos.logback</groupId>
+			<artifactId>logback-classic</artifactId>
+			<version>1.1.2</version>
+		</dependency>
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-api</artifactId>
+			<version>1.7.7</version>
 		</dependency>
 	</dependencies>
 	<build>
@@ -130,6 +143,63 @@
 				<artifactId>activiti-cxf</artifactId>
 				<version>${activiti-version}</version>
 			</dependency>
+			<dependency>
+				<groupId>edu.udo.cs.ls14.jf</groupId>
+				<artifactId>bpmn-analysis-model</artifactId>
+				<version>0.0.1-SNAPSHOT</version>
+			</dependency>
+			<dependency>
+				<groupId>edu.udo.cs.ls14.jf</groupId>
+				<artifactId>
+					bpmnanalysis-behavioralprofile
+				</artifactId>
+				<version>0.0.1-SNAPSHOT</version>
+			</dependency>
+			<dependency>
+				<groupId>org.apache.commons</groupId>
+				<artifactId>commons-lang3</artifactId>
+				<version>3.3.2</version>
+			</dependency>
+			<dependency>
+				<groupId>net.sf.jung</groupId>
+				<artifactId>jung-visualization</artifactId>
+				<version>2.0.1</version>
+			</dependency>
+			<dependency>
+				<groupId>net.sf.jung</groupId>
+				<artifactId>jung-graph-impl</artifactId>
+				<version>2.0.1</version>
+			</dependency>
+			<dependency>
+				<groupId>net.sf.jung</groupId>
+				<artifactId>jung-io</artifactId>
+				<version>2.0.1</version>
+			</dependency>
+			<dependency>
+				<groupId>org.javatuples</groupId>
+				<artifactId>javatuples</artifactId>
+				<version>1.2</version>
+			</dependency>
+			<dependency>
+				<groupId>org.jbpt</groupId>
+				<artifactId>jbpt-bpm</artifactId>
+				<version>0.2.393</version>
+			</dependency>
+			<dependency>
+				<groupId>org.jbpt</groupId>
+				<artifactId>jbpt-core</artifactId>
+				<version>0.2.393</version>
+			</dependency>
+		<dependency>
+				<groupId>edu.udo.cs.ls14.jf</groupId>
+				<artifactId>bpmnanalysis-conditionalprofile</artifactId>
+				<version>0.0.1-SNAPSHOT</version>
+		</dependency>
+		<dependency>
+			<groupId>edu.udo.cs.ls14.jf</groupId>
+			<artifactId>bpmnanalysis-pst</artifactId>
+			<version>0.0.1-SNAPSHOT</version>
+		</dependency>
 		</dependencies>
 	</dependencyManagement>
 	<repositories>

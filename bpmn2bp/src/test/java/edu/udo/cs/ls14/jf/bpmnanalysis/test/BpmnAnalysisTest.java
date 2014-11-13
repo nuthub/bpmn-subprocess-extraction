@@ -48,7 +48,7 @@ public class BpmnAnalysisTest {
 		// String defXml =
 		// readFile("/edu/udo/cs/ls14/jf/bpmn/conditionalFlow/conditionSequence.bpmn");
 		before = getTime();
-		String defXml = readFile("/edu/udo/cs/ls14/jf/bpmn/PM1-mit-Fragment1.bpmn");
+		String defXml = readFile("/edu/udo/cs/ls14/jf/bpmn/test/PM1-mit-Fragment1.bpmn");
 		after = getTime();
 		System.out.println((after - before) + " ms (read file)");
 		before = getTime();

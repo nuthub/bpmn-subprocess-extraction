@@ -15,7 +15,6 @@
 		<dependency>
 			<groupId>org.apache.commons</groupId>
 			<artifactId>commons-lang3</artifactId>
-			<version>3.3.2</version>
 		</dependency>
 		<dependency>
 			<groupId>org.eclipse.emf</groupId>
@@ -32,17 +31,14 @@
 		<dependency>
 			<groupId>net.sf.jung</groupId>
 			<artifactId>jung-visualization</artifactId>
-			<version>2.0.1</version>
 		</dependency>
 		<dependency>
 			<groupId>net.sf.jung</groupId>
 			<artifactId>jung-graph-impl</artifactId>
-			<version>2.0.1</version>
 		</dependency>
 		<dependency>
 			<groupId>net.sf.jung</groupId>
 			<artifactId>jung-io</artifactId>
-			<version>2.0.1</version>
 		</dependency>
 		<!-- <dependency> <groupId>org.jbpt</groupId> <artifactId>jbpt-deco</artifactId> 
 			<version>0.2.393</version> </dependency> <dependency> <groupId>org.jbpt</groupId> 
@@ -52,7 +48,6 @@
 		<dependency>
 			<groupId>org.jbpt</groupId>
 			<artifactId>jbpt-bpm</artifactId>
-			<version>0.2.393</version>
 		</dependency>
 		<!-- <dependency> <groupId>org.jbpt</groupId> <artifactId>jbpt</artifactId> 
 			<version>0.2.393</version> <type>pom</type> </dependency> <dependency> <groupId>org.jbpt</groupId> 
@@ -80,22 +75,6 @@
 			<version>3.8.5-pre1</version>
 		</dependency>
 		<dependency>
-			<groupId>ch.qos.logback</groupId>
-			<artifactId>logback-classic</artifactId>
-			<version>1.1.2</version>
-		</dependency>
-		<dependency>
-			<groupId>org.slf4j</groupId>
-			<artifactId>slf4j-api</artifactId>
-			<version>1.7.7</version>
-		</dependency>
-		<dependency>
-			<groupId>org.javatuples</groupId>
-			<artifactId>javatuples</artifactId>
-			<version>1.2</version>
-			<scope>compile</scope>
-		</dependency>
-		<dependency>
 			<groupId>org.eclipse.emf.henshin</groupId>
 			<artifactId>org.eclipse.emf.henshin.interpreter</artifactId>
 			<version>1.1.0-SNAPSHOT</version>
@@ -106,35 +85,30 @@
 			<version>1.1.0-SNAPSHOT</version>
 		</dependency>
 		<dependency>
-			<groupId>fr.lip6.move.pnml</groupId>
-			<artifactId>fr.lip6.move.pnml.framework.3rdpartimports</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>fr.lip6.move.pnml</groupId>
-			<artifactId>fr.lip6.move.pnml.framework.utils</artifactId>
-		</dependency>
-		<!-- declare the PNML Framework Petri Net libraries. See below -->
-		<dependency>
-			<groupId>fr.lip6.move.pnml</groupId>
-			<artifactId>fr.lip6.move.pnml.framework.coremodel</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>fr.lip6.move.pnml</groupId>
-			<artifactId>fr.lip6.move.pnml.framework.ptnet</artifactId>
-		</dependency>
-		<!-- <dependency> <groupId>fr.lip6.move.pnml</groupId> <artifactId>fr.lip6.move.pnml.framework.symmetricnet</artifactId> 
-			<version>${pnml.version}</version> </dependency> <dependency> <groupId>fr.lip6.move.pnml</groupId> 
-			<artifactId>fr.lip6.move.pnml.framework.hlpn</artifactId> <version>${pnml.version}</version> 
-			</dependency> <dependency> <groupId>fr.lip6.move.pnml</groupId> <artifactId>fr.lip6.move.pnml.framework.pthlpng</artifactId> 
-			<version>${pnml.version}</version> </dependency> -->
-		<dependency>
 			<groupId>edu.udo.cs.ls14.jf</groupId>
 			<artifactId>bpmn-utils</artifactId>
 		</dependency>
 		<dependency>
 			<groupId>edu.udo.cs.ls14.jf</groupId>
 			<artifactId>bpmn-analysis-model</artifactId>
-			<version>0.0.1-SNAPSHOT</version>
+		</dependency>
+		<dependency>
+			<groupId>edu.udo.cs.ls14.jf</groupId>
+			<artifactId>
+				bpmnanalysis-behavioralprofile
+			</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>edu.udo.cs.ls14.jf</groupId>
+			<artifactId>
+				bpmnanalysis-conditionalprofile
+			</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>edu.udo.cs.ls14.jf</groupId>
+			<artifactId>
+				bpmnanalysis-pst
+			</artifactId>
 		</dependency>
 	</dependencies>
 	<build>

@@ -29,8 +29,8 @@ public class FixLocationTest {
 
 	@Test
 	public void testCallActivityCalledElementRef() throws Exception {
-		Bpmn2ResourceSet resSet = new Bpmn2ResourceSet(
-				"src/test/resources/edu/udo/cs/ls14/jf/bpmn");
+		Bpmn2ResourceSet resSet = new Bpmn2ResourceSet(getClass().getResource(
+				"/edu/udo/cs/ls14/jf/bpmn/test/").getPath());
 		Resource res1 = ResourceCopier.copy(
 				resSet.loadResource("sequence.bpmn"),
 				"/tmp/transformed/myCalledProcess.bpmn");

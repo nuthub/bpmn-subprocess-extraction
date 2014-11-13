@@ -34,8 +34,8 @@ public class DeleteSequenceFlowTest extends HenshinTransformation {
 
 	private void deleteSequenceFlows(String basename, List<String> ids)
 			throws Exception {
-		Bpmn2ResourceSet resSet = new Bpmn2ResourceSet(
-				"src/test/resources/edu/udo/cs/ls14/jf/bpmn");
+		Bpmn2ResourceSet resSet = new Bpmn2ResourceSet(getClass().getResource(
+				"/edu/udo/cs/ls14/jf/bpmn/test/").getPath());
 		Resource res = resSet.loadResource(basename + ".bpmn");
 		EGraph graph = new EGraphImpl(res);
 

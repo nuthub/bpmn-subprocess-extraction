@@ -23,8 +23,8 @@ public class ProcessMatcherTest {
 		String basename1 = "conditionSequence";
 		String basename2 = "conditionSequence2";
 		System.out.println("Testing " + basename1 + " with " + basename2);
-		Bpmn2ResourceSet resSet = new Bpmn2ResourceSet(
-				"src/test/resources/edu/udo/cs/ls14/jf/bpmn/conditionalFlow/");
+		Bpmn2ResourceSet resSet = new Bpmn2ResourceSet(getClass().getResource(
+				"/edu/udo/cs/ls14/jf/bpmn/test/conditionalFlow/").getPath());
 		Definitions def1 = ((DocumentRoot) resSet
 				.loadResource(basename1 + ".bpmn").getContents().get(0))
 				.getDefinitions();
@@ -39,8 +39,8 @@ public class ProcessMatcherTest {
 		String basename1 = "PM1-mit-Fragment1";
 		String basename2 = "PM2-mit-Fragment1";
 		System.out.println("Testing " + basename1 + " with " + basename2);
-		Bpmn2ResourceSet resSet = new Bpmn2ResourceSet(
-				"src/test/resources/edu/udo/cs/ls14/jf/bpmn/");
+		Bpmn2ResourceSet resSet = new Bpmn2ResourceSet(getClass().getResource(
+				"/edu/udo/cs/ls14/jf/bpmn/test/").getPath());
 		Definitions def1 = ((DocumentRoot) resSet
 				.loadResource(basename1 + ".bpmn").getContents().get(0))
 				.getDefinitions();

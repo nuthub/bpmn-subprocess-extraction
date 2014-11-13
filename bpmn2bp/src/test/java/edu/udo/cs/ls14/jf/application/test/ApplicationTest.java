@@ -48,10 +48,13 @@ public class ApplicationTest {
 		// hit the process
 		File targetDir = new File("/tmp/applicationtest/");
 		targetDir.mkdirs();
-		Bpmn2ResourceSet resSet = new Bpmn2ResourceSet("src/test/resources/edu/udo/cs/ls14/jf/bpmn/" + path + "/");
-		Definitions definitions1 = EcoreUtil.copy(resSet.loadDefinitions(basename1 + ".bpmn"));
-		Definitions definitions2 = EcoreUtil.copy(resSet.loadDefinitions(basename2 + ".bpmn"));
-	
+		Bpmn2ResourceSet resSet = new Bpmn2ResourceSet(getClass().getResource(
+				"/edu/udo/cs/ls14/jf/bpmn/test/" + path + "/").getPath());
+		Definitions definitions1 = EcoreUtil.copy(resSet
+				.loadDefinitions(basename1 + ".bpmn"));
+		Definitions definitions2 = EcoreUtil.copy(resSet
+				.loadDefinitions(basename2 + ".bpmn"));
+
 		ProcessMatching pMatching = ProcessMatcher.createProcessMatching(
 				definitions1, definitions2);
 		System.out.println(definitions1);

@@ -15,13 +15,13 @@ public class BpmnXMLConverterTest {
 
 	@Test
 	public void testConditionSequence() throws Exception {
-		String filename = "/edu/udo/cs/ls14/jf/utils/bpmn/test/conditionSequence.bpmn";
+		String filename = "/edu/udo/cs/ls14/jf/bpmn/utils/test/conditionSequence.bpmn";
 		runTest(filename);
 	}
 
 	@Test
 	public void testPM1() throws Exception {
-		String filename = "/edu/udo/cs/ls14/jf/utils/bpmn/test/PM1-mit-Fragment1.bpmn";
+		String filename = "/edu/udo/cs/ls14/jf/bpmn/utils/test/PM1-mit-Fragment1.bpmn";
 		runTest(filename);
 	}
 
