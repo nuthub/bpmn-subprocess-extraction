@@ -56,11 +56,11 @@ public class BpmnMatchingFactoryImpl extends EFactoryImpl implements BpmnMatchin
 	@Override
 	public EObject create(EClass eClass) {
 		switch (eClass.getClassifierID()) {
+			case BpmnMatchingPackage.PROCESS_MATCHING: return createProcessMatching();
 			case BpmnMatchingPackage.NODE_MATCHING: return createNodeMatching();
 			case BpmnMatchingPackage.NODE_PAIR: return createNodePair();
 			case BpmnMatchingPackage.FRAGMENT_MATCHING: return createFragmentMatching();
 			case BpmnMatchingPackage.FRAGMENT_PAIR: return createFragmentPair();
-			case BpmnMatchingPackage.PROCESS_MATCHING: return createProcessMatching();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}

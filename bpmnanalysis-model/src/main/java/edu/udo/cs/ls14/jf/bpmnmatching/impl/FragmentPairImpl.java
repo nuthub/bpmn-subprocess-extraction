@@ -24,6 +24,7 @@ import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
  * <ul>
  *   <li>{@link edu.udo.cs.ls14.jf.bpmnmatching.impl.FragmentPairImpl#getA <em>A</em>}</li>
  *   <li>{@link edu.udo.cs.ls14.jf.bpmnmatching.impl.FragmentPairImpl#getB <em>B</em>}</li>
+ *   <li>{@link edu.udo.cs.ls14.jf.bpmnmatching.impl.FragmentPairImpl#getBetter <em>Better</em>}</li>
  * </ul>
  * </p>
  *
@@ -49,6 +50,16 @@ public class FragmentPairImpl extends MinimalEObjectImpl.Container implements Fr
 	 * @ordered
 	 */
 	protected Fragment b;
+
+	/**
+	 * The cached value of the '{@link #getBetter() <em>Better</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getBetter()
+	 * @generated
+	 * @ordered
+	 */
+	protected Fragment better;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -150,6 +161,44 @@ public class FragmentPairImpl extends MinimalEObjectImpl.Container implements Fr
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public Fragment getBetter() {
+		if (better != null && better.eIsProxy()) {
+			InternalEObject oldBetter = (InternalEObject)better;
+			better = (Fragment)eResolveProxy(oldBetter);
+			if (better != oldBetter) {
+				if (eNotificationRequired())
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, BpmnMatchingPackage.FRAGMENT_PAIR__BETTER, oldBetter, better));
+			}
+		}
+		return better;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public Fragment basicGetBetter() {
+		return better;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setBetter(Fragment newBetter) {
+		Fragment oldBetter = better;
+		better = newBetter;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, BpmnMatchingPackage.FRAGMENT_PAIR__BETTER, oldBetter, better));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
@@ -159,6 +208,9 @@ public class FragmentPairImpl extends MinimalEObjectImpl.Container implements Fr
 			case BpmnMatchingPackage.FRAGMENT_PAIR__B:
 				if (resolve) return getB();
 				return basicGetB();
+			case BpmnMatchingPackage.FRAGMENT_PAIR__BETTER:
+				if (resolve) return getBetter();
+				return basicGetBetter();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -176,6 +228,9 @@ public class FragmentPairImpl extends MinimalEObjectImpl.Container implements Fr
 				return;
 			case BpmnMatchingPackage.FRAGMENT_PAIR__B:
 				setB((Fragment)newValue);
+				return;
+			case BpmnMatchingPackage.FRAGMENT_PAIR__BETTER:
+				setBetter((Fragment)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -195,6 +250,9 @@ public class FragmentPairImpl extends MinimalEObjectImpl.Container implements Fr
 			case BpmnMatchingPackage.FRAGMENT_PAIR__B:
 				setB((Fragment)null);
 				return;
+			case BpmnMatchingPackage.FRAGMENT_PAIR__BETTER:
+				setBetter((Fragment)null);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -211,6 +269,8 @@ public class FragmentPairImpl extends MinimalEObjectImpl.Container implements Fr
 				return a != null;
 			case BpmnMatchingPackage.FRAGMENT_PAIR__B:
 				return b != null;
+			case BpmnMatchingPackage.FRAGMENT_PAIR__BETTER:
+				return better != null;
 		}
 		return super.eIsSet(featureID);
 	}

@@ -221,6 +221,15 @@ public class BpmnMatchingPackageImpl extends EPackageImpl implements BpmnMatchin
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EReference getFragmentPair_Better() {
+		return (EReference)fragmentPairEClass.getEStructuralFeatures().get(2);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EClass getProcessMatching() {
 		return processMatchingEClass;
 	}
@@ -289,6 +298,12 @@ public class BpmnMatchingPackageImpl extends EPackageImpl implements BpmnMatchin
 		isCreated = true;
 
 		// Create classes and their features
+		processMatchingEClass = createEClass(PROCESS_MATCHING);
+		createEReference(processMatchingEClass, PROCESS_MATCHING__ANALYSIS1);
+		createEReference(processMatchingEClass, PROCESS_MATCHING__ANALYSIS2);
+		createEReference(processMatchingEClass, PROCESS_MATCHING__NODE_MATCHING);
+		createEReference(processMatchingEClass, PROCESS_MATCHING__FRAGMENT_MATCHING);
+
 		nodeMatchingEClass = createEClass(NODE_MATCHING);
 		createEReference(nodeMatchingEClass, NODE_MATCHING__PAIRS);
 
@@ -302,12 +317,7 @@ public class BpmnMatchingPackageImpl extends EPackageImpl implements BpmnMatchin
 		fragmentPairEClass = createEClass(FRAGMENT_PAIR);
 		createEReference(fragmentPairEClass, FRAGMENT_PAIR__A);
 		createEReference(fragmentPairEClass, FRAGMENT_PAIR__B);
-
-		processMatchingEClass = createEClass(PROCESS_MATCHING);
-		createEReference(processMatchingEClass, PROCESS_MATCHING__ANALYSIS1);
-		createEReference(processMatchingEClass, PROCESS_MATCHING__ANALYSIS2);
-		createEReference(processMatchingEClass, PROCESS_MATCHING__NODE_MATCHING);
-		createEReference(processMatchingEClass, PROCESS_MATCHING__FRAGMENT_MATCHING);
+		createEReference(fragmentPairEClass, FRAGMENT_PAIR__BETTER);
 	}
 
 	/**
@@ -334,8 +344,8 @@ public class BpmnMatchingPackageImpl extends EPackageImpl implements BpmnMatchin
 		setNsURI(eNS_URI);
 
 		// Obtain other dependent packages
-		Bpmn2Package theBpmn2Package = (Bpmn2Package)EPackage.Registry.INSTANCE.getEPackage(Bpmn2Package.eNS_URI);
 		BpmnAnalysisPackage theBpmnAnalysisPackage = (BpmnAnalysisPackage)EPackage.Registry.INSTANCE.getEPackage(BpmnAnalysisPackage.eNS_URI);
+		Bpmn2Package theBpmn2Package = (Bpmn2Package)EPackage.Registry.INSTANCE.getEPackage(Bpmn2Package.eNS_URI);
 
 		// Create type parameters
 
@@ -344,6 +354,12 @@ public class BpmnMatchingPackageImpl extends EPackageImpl implements BpmnMatchin
 		// Add supertypes to classes
 
 		// Initialize classes, features, and operations; add parameters
+		initEClass(processMatchingEClass, ProcessMatching.class, "ProcessMatching", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getProcessMatching_Analysis1(), theBpmnAnalysisPackage.getProcessAnalysis(), null, "analysis1", null, 0, 1, ProcessMatching.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getProcessMatching_Analysis2(), theBpmnAnalysisPackage.getProcessAnalysis(), null, "analysis2", null, 0, 1, ProcessMatching.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getProcessMatching_NodeMatching(), this.getNodeMatching(), null, "nodeMatching", null, 0, 1, ProcessMatching.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getProcessMatching_FragmentMatching(), this.getFragmentMatching(), null, "fragmentMatching", null, 0, 1, ProcessMatching.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
 		initEClass(nodeMatchingEClass, NodeMatching.class, "NodeMatching", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getNodeMatching_Pairs(), this.getNodePair(), null, "pairs", null, 0, -1, NodeMatching.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
@@ -357,12 +373,7 @@ public class BpmnMatchingPackageImpl extends EPackageImpl implements BpmnMatchin
 		initEClass(fragmentPairEClass, FragmentPair.class, "FragmentPair", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getFragmentPair_A(), theBpmnAnalysisPackage.getFragment(), null, "a", null, 1, 1, FragmentPair.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getFragmentPair_B(), theBpmnAnalysisPackage.getFragment(), null, "b", null, 1, 1, FragmentPair.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-
-		initEClass(processMatchingEClass, ProcessMatching.class, "ProcessMatching", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getProcessMatching_Analysis1(), theBpmnAnalysisPackage.getProcessAnalysis(), null, "analysis1", null, 0, 1, ProcessMatching.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getProcessMatching_Analysis2(), theBpmnAnalysisPackage.getProcessAnalysis(), null, "analysis2", null, 0, 1, ProcessMatching.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getProcessMatching_NodeMatching(), this.getNodeMatching(), null, "nodeMatching", null, 0, 1, ProcessMatching.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getProcessMatching_FragmentMatching(), this.getFragmentMatching(), null, "fragmentMatching", null, 0, 1, ProcessMatching.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getFragmentPair_Better(), theBpmnAnalysisPackage.getFragment(), null, "better", null, 0, 1, FragmentPair.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		// Create resource
 		createResource(eNS_URI);

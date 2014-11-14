@@ -49,9 +49,9 @@
   <eClassifiers xsi:type="ecore:EClass" name="Fragment">
     <eStructuralFeatures xsi:type="ecore:EReference" name="definitions" lowerBound="1"
         eType="ecore:EClass BPMN20.ecore#//Definitions"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="parent" eType="#//Fragment"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="entry" lowerBound="1" eType="ecore:EClass BPMN20.ecore#//SequenceFlow"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="exit" lowerBound="1" eType="ecore:EClass BPMN20.ecore#//SequenceFlow"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="parent" eType="#//Fragment"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Trace">
     <eStructuralFeatures xsi:type="ecore:EReference" name="nodes" upperBound="-1"

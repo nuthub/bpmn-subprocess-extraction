@@ -66,6 +66,12 @@ public class BpmnMatchingSwitch<T> extends Switch<T> {
 	@Override
 	protected T doSwitch(int classifierID, EObject theEObject) {
 		switch (classifierID) {
+			case BpmnMatchingPackage.PROCESS_MATCHING: {
+				ProcessMatching processMatching = (ProcessMatching)theEObject;
+				T result = caseProcessMatching(processMatching);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
 			case BpmnMatchingPackage.NODE_MATCHING: {
 				NodeMatching nodeMatching = (NodeMatching)theEObject;
 				T result = caseNodeMatching(nodeMatching);
@@ -87,12 +93,6 @@ public class BpmnMatchingSwitch<T> extends Switch<T> {
 			case BpmnMatchingPackage.FRAGMENT_PAIR: {
 				FragmentPair fragmentPair = (FragmentPair)theEObject;
 				T result = caseFragmentPair(fragmentPair);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case BpmnMatchingPackage.PROCESS_MATCHING: {
-				ProcessMatching processMatching = (ProcessMatching)theEObject;
-				T result = caseProcessMatching(processMatching);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}

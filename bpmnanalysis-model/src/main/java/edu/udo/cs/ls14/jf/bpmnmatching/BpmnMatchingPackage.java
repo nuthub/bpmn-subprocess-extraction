@@ -63,34 +63,7 @@ public interface BpmnMatchingPackage extends EPackage {
 	 * @see edu.udo.cs.ls14.jf.bpmnmatching.impl.BpmnMatchingPackageImpl#getNodeMatching()
 	 * @generated
 	 */
-	int NODE_MATCHING = 0;
-
-	/**
-	 * The feature id for the '<em><b>Pairs</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int NODE_MATCHING__PAIRS = 0;
-
-	/**
-	 * The number of structural features of the '<em>Node Matching</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int NODE_MATCHING_FEATURE_COUNT = 1;
-
-	/**
-	 * The number of operations of the '<em>Node Matching</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int NODE_MATCHING_OPERATION_COUNT = 0;
+	int NODE_MATCHING = 1;
 
 	/**
 	 * The meta object id for the '{@link edu.udo.cs.ls14.jf.bpmnmatching.impl.NodePairImpl <em>Node Pair</em>}' class.
@@ -100,43 +73,7 @@ public interface BpmnMatchingPackage extends EPackage {
 	 * @see edu.udo.cs.ls14.jf.bpmnmatching.impl.BpmnMatchingPackageImpl#getNodePair()
 	 * @generated
 	 */
-	int NODE_PAIR = 1;
-
-	/**
-	 * The feature id for the '<em><b>A</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int NODE_PAIR__A = 0;
-
-	/**
-	 * The feature id for the '<em><b>B</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int NODE_PAIR__B = 1;
-
-	/**
-	 * The number of structural features of the '<em>Node Pair</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int NODE_PAIR_FEATURE_COUNT = 2;
-
-	/**
-	 * The number of operations of the '<em>Node Pair</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int NODE_PAIR_OPERATION_COUNT = 0;
+	int NODE_PAIR = 2;
 
 	/**
 	 * The meta object id for the '{@link edu.udo.cs.ls14.jf.bpmnmatching.impl.FragmentMatchingImpl <em>Fragment Matching</em>}' class.
@@ -146,34 +83,7 @@ public interface BpmnMatchingPackage extends EPackage {
 	 * @see edu.udo.cs.ls14.jf.bpmnmatching.impl.BpmnMatchingPackageImpl#getFragmentMatching()
 	 * @generated
 	 */
-	int FRAGMENT_MATCHING = 2;
-
-	/**
-	 * The feature id for the '<em><b>Pairs</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int FRAGMENT_MATCHING__PAIRS = 0;
-
-	/**
-	 * The number of structural features of the '<em>Fragment Matching</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int FRAGMENT_MATCHING_FEATURE_COUNT = 1;
-
-	/**
-	 * The number of operations of the '<em>Fragment Matching</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int FRAGMENT_MATCHING_OPERATION_COUNT = 0;
+	int FRAGMENT_MATCHING = 3;
 
 	/**
 	 * The meta object id for the '{@link edu.udo.cs.ls14.jf.bpmnmatching.impl.FragmentPairImpl <em>Fragment Pair</em>}' class.
@@ -183,43 +93,7 @@ public interface BpmnMatchingPackage extends EPackage {
 	 * @see edu.udo.cs.ls14.jf.bpmnmatching.impl.BpmnMatchingPackageImpl#getFragmentPair()
 	 * @generated
 	 */
-	int FRAGMENT_PAIR = 3;
-
-	/**
-	 * The feature id for the '<em><b>A</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int FRAGMENT_PAIR__A = 0;
-
-	/**
-	 * The feature id for the '<em><b>B</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int FRAGMENT_PAIR__B = 1;
-
-	/**
-	 * The number of structural features of the '<em>Fragment Pair</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int FRAGMENT_PAIR_FEATURE_COUNT = 2;
-
-	/**
-	 * The number of operations of the '<em>Fragment Pair</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int FRAGMENT_PAIR_OPERATION_COUNT = 0;
+	int FRAGMENT_PAIR = 4;
 
 	/**
 	 * The meta object id for the '{@link edu.udo.cs.ls14.jf.bpmnmatching.impl.ProcessMatchingImpl <em>Process Matching</em>}' class.
@@ -229,7 +103,7 @@ public interface BpmnMatchingPackage extends EPackage {
 	 * @see edu.udo.cs.ls14.jf.bpmnmatching.impl.BpmnMatchingPackageImpl#getProcessMatching()
 	 * @generated
 	 */
-	int PROCESS_MATCHING = 4;
+	int PROCESS_MATCHING = 0;
 
 	/**
 	 * The feature id for the '<em><b>Analysis1</b></em>' containment reference.
@@ -284,6 +158,141 @@ public interface BpmnMatchingPackage extends EPackage {
 	 * @ordered
 	 */
 	int PROCESS_MATCHING_OPERATION_COUNT = 0;
+
+	/**
+	 * The feature id for the '<em><b>Pairs</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NODE_MATCHING__PAIRS = 0;
+
+	/**
+	 * The number of structural features of the '<em>Node Matching</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NODE_MATCHING_FEATURE_COUNT = 1;
+
+	/**
+	 * The number of operations of the '<em>Node Matching</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NODE_MATCHING_OPERATION_COUNT = 0;
+
+	/**
+	 * The feature id for the '<em><b>A</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NODE_PAIR__A = 0;
+
+	/**
+	 * The feature id for the '<em><b>B</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NODE_PAIR__B = 1;
+
+	/**
+	 * The number of structural features of the '<em>Node Pair</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NODE_PAIR_FEATURE_COUNT = 2;
+
+	/**
+	 * The number of operations of the '<em>Node Pair</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NODE_PAIR_OPERATION_COUNT = 0;
+
+	/**
+	 * The feature id for the '<em><b>Pairs</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FRAGMENT_MATCHING__PAIRS = 0;
+
+	/**
+	 * The number of structural features of the '<em>Fragment Matching</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FRAGMENT_MATCHING_FEATURE_COUNT = 1;
+
+	/**
+	 * The number of operations of the '<em>Fragment Matching</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FRAGMENT_MATCHING_OPERATION_COUNT = 0;
+
+	/**
+	 * The feature id for the '<em><b>A</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FRAGMENT_PAIR__A = 0;
+
+	/**
+	 * The feature id for the '<em><b>B</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FRAGMENT_PAIR__B = 1;
+
+	/**
+	 * The feature id for the '<em><b>Better</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FRAGMENT_PAIR__BETTER = 2;
+
+	/**
+	 * The number of structural features of the '<em>Fragment Pair</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FRAGMENT_PAIR_FEATURE_COUNT = 3;
+
+	/**
+	 * The number of operations of the '<em>Fragment Pair</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FRAGMENT_PAIR_OPERATION_COUNT = 0;
 
 
 	/**
@@ -391,6 +400,17 @@ public interface BpmnMatchingPackage extends EPackage {
 	 * @generated
 	 */
 	EReference getFragmentPair_B();
+
+	/**
+	 * Returns the meta object for the reference '{@link edu.udo.cs.ls14.jf.bpmnmatching.FragmentPair#getBetter <em>Better</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Better</em>'.
+	 * @see edu.udo.cs.ls14.jf.bpmnmatching.FragmentPair#getBetter()
+	 * @see #getFragmentPair()
+	 * @generated
+	 */
+	EReference getFragmentPair_Better();
 
 	/**
 	 * Returns the meta object for class '{@link edu.udo.cs.ls14.jf.bpmnmatching.ProcessMatching <em>Process Matching</em>}'.
@@ -556,6 +576,14 @@ public interface BpmnMatchingPackage extends EPackage {
 		 * @generated
 		 */
 		EReference FRAGMENT_PAIR__B = eINSTANCE.getFragmentPair_B();
+
+		/**
+		 * The meta object literal for the '<em><b>Better</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference FRAGMENT_PAIR__BETTER = eINSTANCE.getFragmentPair_Better();
 
 		/**
 		 * The meta object literal for the '{@link edu.udo.cs.ls14.jf.bpmnmatching.impl.ProcessMatchingImpl <em>Process Matching</em>}' class.

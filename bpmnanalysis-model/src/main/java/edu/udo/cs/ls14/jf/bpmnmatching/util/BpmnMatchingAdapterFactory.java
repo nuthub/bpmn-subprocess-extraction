@@ -68,6 +68,10 @@ public class BpmnMatchingAdapterFactory extends AdapterFactoryImpl {
 	protected BpmnMatchingSwitch<Adapter> modelSwitch =
 		new BpmnMatchingSwitch<Adapter>() {
 			@Override
+			public Adapter caseProcessMatching(ProcessMatching object) {
+				return createProcessMatchingAdapter();
+			}
+			@Override
 			public Adapter caseNodeMatching(NodeMatching object) {
 				return createNodeMatchingAdapter();
 			}
@@ -82,10 +86,6 @@ public class BpmnMatchingAdapterFactory extends AdapterFactoryImpl {
 			@Override
 			public Adapter caseFragmentPair(FragmentPair object) {
 				return createFragmentPairAdapter();
-			}
-			@Override
-			public Adapter caseProcessMatching(ProcessMatching object) {
-				return createProcessMatchingAdapter();
 			}
 			@Override
 			public Adapter defaultCase(EObject object) {

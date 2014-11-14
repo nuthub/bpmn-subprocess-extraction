@@ -16,6 +16,7 @@ import org.eclipse.emf.ecore.EObject;
  * <ul>
  *   <li>{@link edu.udo.cs.ls14.jf.bpmnmatching.FragmentPair#getA <em>A</em>}</li>
  *   <li>{@link edu.udo.cs.ls14.jf.bpmnmatching.FragmentPair#getB <em>B</em>}</li>
+ *   <li>{@link edu.udo.cs.ls14.jf.bpmnmatching.FragmentPair#getBetter <em>Better</em>}</li>
  * </ul>
  * </p>
  *
@@ -75,5 +76,31 @@ public interface FragmentPair extends EObject {
 	 * @generated
 	 */
 	void setB(Fragment value);
+
+	/**
+	 * Returns the value of the '<em><b>Better</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Better</em>' reference isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Better</em>' reference.
+	 * @see #setBetter(Fragment)
+	 * @see edu.udo.cs.ls14.jf.bpmnmatching.BpmnMatchingPackage#getFragmentPair_Better()
+	 * @model
+	 * @generated
+	 */
+	Fragment getBetter();
+
+	/**
+	 * Sets the value of the '{@link edu.udo.cs.ls14.jf.bpmnmatching.FragmentPair#getBetter <em>Better</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Better</em>' reference.
+	 * @see #getBetter()
+	 * @generated
+	 */
+	void setBetter(Fragment value);
 
 } // FragmentPair
