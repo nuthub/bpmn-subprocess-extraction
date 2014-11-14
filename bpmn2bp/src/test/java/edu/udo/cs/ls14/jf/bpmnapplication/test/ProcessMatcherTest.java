@@ -1,4 +1,4 @@
-package edu.udo.cs.ls14.jf.processmatching.test;
+package edu.udo.cs.ls14.jf.bpmnapplication.test;
 
 import static org.junit.Assert.assertEquals;
 
@@ -13,8 +13,8 @@ import org.junit.Test;
 
 import edu.udo.cs.ls14.jf.bpmn.utils.Bpmn2ResourceSet;
 import edu.udo.cs.ls14.jf.bpmn.utils.FragmentUtil;
+import edu.udo.cs.ls14.jf.bpmnapplication.ProcessMatcher;
 import edu.udo.cs.ls14.jf.bpmnmatching.ProcessMatching;
-import edu.udo.cs.ls14.jf.processmatching.ProcessMatcher;
 
 public class ProcessMatcherTest {
 

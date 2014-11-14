@@ -1,4 +1,4 @@
-package edu.udo.cs.ls14.jf.analysis;
+package edu.udo.cs.ls14.jf.bpmnapplication;
 
 import org.eclipse.bpmn2.Definitions;
 import org.eclipse.bpmn2.Process;

@@ -1,4 +1,4 @@
-package edu.udo.cs.ls14.jf.transformation.test;
+package edu.udo.cs.ls14.jf.bpmnapplication.test;
 
 import java.io.File;
 import java.util.Map;
@@ -9,11 +9,11 @@ import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.junit.Test;
 
 import edu.udo.cs.ls14.jf.bpmn.utils.Bpmn2ResourceSet;
+import edu.udo.cs.ls14.jf.bpmnapplication.ProcessExtraction;
+import edu.udo.cs.ls14.jf.bpmnapplication.ProcessMatcher;
 import edu.udo.cs.ls14.jf.bpmnmatching.ProcessMatching;
-import edu.udo.cs.ls14.jf.processmatching.ProcessMatcher;
-import edu.udo.cs.ls14.jf.transformation.Extraction;
 
-public class ExtractionTest {
+public class ProcessExtractionTest {
 
 	@Test
 	public void testSequenceSequence2() throws Exception {
@@ -59,7 +59,7 @@ public class ExtractionTest {
 				definitions1, definitions2);
 		System.out.println(definitions1);
 		System.out.println(definitions2);
-		Extraction app = new Extraction();
+		ProcessExtraction app = new ProcessExtraction();
 		Map<String, Resource> result = app.extract(pMatching);
 		System.out.println(result);
 		// TODO: assertions

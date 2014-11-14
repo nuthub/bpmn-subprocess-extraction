@@ -1,4 +1,4 @@
-package edu.udo.cs.ls14.jf.transformation;
+package edu.udo.cs.ls14.jf.bpmnapplication;
 
 import java.io.File;
 import java.util.HashMap;
@@ -16,6 +16,9 @@ import edu.udo.cs.ls14.jf.bpmn.utils.Bpmn2ResourceSet;
 import edu.udo.cs.ls14.jf.bpmn.utils.ProcessUtil;
 import edu.udo.cs.ls14.jf.bpmnmatching.FragmentPair;
 import edu.udo.cs.ls14.jf.bpmnmatching.ProcessMatching;
+import edu.udo.cs.ls14.jf.transformation.FragmentExtractor;
+import edu.udo.cs.ls14.jf.transformation.LabelGenerator;
+import edu.udo.cs.ls14.jf.transformation.LocationFixer;
 
 /**
  * handles only with definitions
@@ -23,10 +26,10 @@ import edu.udo.cs.ls14.jf.bpmnmatching.ProcessMatching;
  * @author flake
  *
  */
-public class Extraction {
+public class ProcessExtraction {
 
 	private static final Logger LOG = LoggerFactory
-			.getLogger(Extraction.class);
+			.getLogger(ProcessExtraction.class);
 	private String targetDir = "/tmp/resources/";
 	private Bpmn2ResourceSet resourceSet = new Bpmn2ResourceSet(targetDir);
 

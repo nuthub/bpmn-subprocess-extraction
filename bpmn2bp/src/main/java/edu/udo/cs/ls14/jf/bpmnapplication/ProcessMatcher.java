@@ -1,11 +1,10 @@
-package edu.udo.cs.ls14.jf.processmatching;
+package edu.udo.cs.ls14.jf.bpmnapplication;
 
 import org.eclipse.bpmn2.Definitions;
 import org.eclipse.bpmn2.Process;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import edu.udo.cs.ls14.jf.analysis.ProcessAnalyzer;
 import edu.udo.cs.ls14.jf.bpmn.utils.ProcessUtil;
 import edu.udo.cs.ls14.jf.bpmnanalysis.Fragment;
 import edu.udo.cs.ls14.jf.bpmnanalysis.ProcessAnalysis;
@@ -15,6 +14,13 @@ import edu.udo.cs.ls14.jf.bpmnmatching.FragmentMatching;
 import edu.udo.cs.ls14.jf.bpmnmatching.FragmentPair;
 import edu.udo.cs.ls14.jf.bpmnmatching.ProcessMatching;
 import edu.udo.cs.ls14.jf.bpmnmatching.nodematching.NodeMatcher;
+import edu.udo.cs.ls14.jf.processmatching.FragmentRankerSize;
+import edu.udo.cs.ls14.jf.processmatching.InequivalentBehaviourFCFilter;
+import edu.udo.cs.ls14.jf.processmatching.InequivalentConditionsFCFilter;
+import edu.udo.cs.ls14.jf.processmatching.InequivalentNodeFCFilter;
+import edu.udo.cs.ls14.jf.processmatching.NestedFCFilter;
+import edu.udo.cs.ls14.jf.processmatching.SequentialFCJointer;
+import edu.udo.cs.ls14.jf.processmatching.TrivialFCFilter;
 
 public class ProcessMatcher {
 
@@ -94,7 +100,7 @@ public class ProcessMatcher {
 		LOG.info(m.getFragmentMatching().getPairs().size()
 				+ " fragment correspondences left.");
 
-		// determine order in fragmentpairs
+		// determine ranking in fragment pairs
 		LOG.info("Determining order in fragment pairs");
 		FragmentRankerSize ranker = new FragmentRankerSize();
 		m.setFragmentMatching(ranker.rankFragments(m.getFragmentMatching()));
