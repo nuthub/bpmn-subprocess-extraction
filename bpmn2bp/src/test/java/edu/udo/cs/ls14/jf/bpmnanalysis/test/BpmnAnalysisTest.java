@@ -13,7 +13,7 @@ import org.junit.Test;
 import edu.udo.cs.ls14.jf.analysis.behaviorprofile.BehavioralProfiler;
 import edu.udo.cs.ls14.jf.analysis.bpmn2ptnet.Bpmn2PtnetConverter;
 import edu.udo.cs.ls14.jf.analysis.conditionalprofile.ConditionalProfiler;
-import edu.udo.cs.ls14.jf.analysis.pst.PST;
+import edu.udo.cs.ls14.jf.analysis.pst.PSTBuilder;
 import edu.udo.cs.ls14.jf.analysis.reachabilitygraph.ReachabilityGraph;
 import edu.udo.cs.ls14.jf.analysis.reachabilitygraph.Tracer;
 import edu.udo.cs.ls14.jf.bpmn.utils.BpmnXmlConverter;
@@ -22,7 +22,6 @@ import edu.udo.cs.ls14.jf.bpmn.utils.ProcessUtil;
 import edu.udo.cs.ls14.jf.bpmnanalysis.BehavioralProfile;
 import edu.udo.cs.ls14.jf.bpmnanalysis.BpmnAnalysisFactory;
 import edu.udo.cs.ls14.jf.bpmnanalysis.ProcessAnalysis;
-import edu.udo.cs.ls14.jf.bpmnanalysis.ProcessStructureTree;
 import edu.udo.cs.ls14.jf.bpmnanalysis.util.BpmnAnalysisResourceFactoryImpl;
 import fr.lip6.move.pnml.ptnet.hlapi.PetriNetHLAPI;
 
@@ -84,16 +83,13 @@ public class BpmnAnalysisTest {
 		a.getResults().put("behavioralProfile", eBp);
 
 		// ConditionalProfile
+		ConditionalProfiler cProfiler = new ConditionalProfiler();
 		a.getResults().put("conditionalProfile",
-				ConditionalProfiler.generateProfile(process));
+				cProfiler.generateProfile(process));
 
 		// PST
-		ProcessStructureTree ePst = BpmnAnalysisFactory.eINSTANCE
-				.createProcessStructureTree();
-		PST pst = new PST();
-		pst.createFromDefinitions(definitions);
-		ePst.getFragments().addAll(pst.getFragments());
-		a.getResults().put("pst", ePst);
+		PSTBuilder pstBuilder = new PSTBuilder();
+		a.getResults().put("pst", pstBuilder.getTree(definitions));
 		after = getTime();
 		System.out.println((after - before) + " ms (complete analysis)");
 

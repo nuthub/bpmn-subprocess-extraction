@@ -3,8 +3,8 @@ package edu.udo.cs.ls14.jf.analysis.pst.test;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
+import java.util.List;
 import java.util.Map;
-import java.util.Set;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 
@@ -13,17 +13,18 @@ import org.eclipse.bpmn2.DocumentRoot;
 import org.jbpt.utils.IOUtils;
 import org.junit.Test;
 
-import edu.udo.cs.ls14.jf.analysis.pst.PST;
+import edu.udo.cs.ls14.jf.analysis.pst.PSTBuilder;
 import edu.udo.cs.ls14.jf.bpmn.utils.Bpmn2ResourceSet;
 import edu.udo.cs.ls14.jf.bpmnanalysis.Fragment;
+import edu.udo.cs.ls14.jf.bpmnanalysis.ProcessStructureTree;
 
 public class PSTTest {
 
 	@Test
 	public void testEventBasedGatewayExclusive() throws Exception {
 		String basename = "event-based-gateway-exclusive";
-		PST pst = runTest(basename);
-		Set<Fragment> frags = pst.getFragments();
+		ProcessStructureTree pst = runTest(basename);
+		List<Fragment> frags = pst.getFragments();
 		assertEquals(3, frags.size());
 		assertFragsContainByName(frags, "1", "6");
 		assertFragsContainByName(frags, "2", "4");
@@ -47,8 +48,8 @@ public class PSTTest {
 	@Test
 	public void testEventBasedGatewayParallel() throws Exception {
 		String basename = "event-based-gateway-parallel";
-		PST pst = runTest(basename);
-		Set<Fragment> frags = pst.getFragments();
+		ProcessStructureTree pst = runTest(basename);
+		List<Fragment> frags = pst.getFragments();
 		assertEquals(3, frags.size());
 		assertFragsContainByName(frags, "1", "6");
 		assertFragsContainByName(frags, "2", "4");
@@ -58,8 +59,8 @@ public class PSTTest {
 	@Test
 	public void testPM1() throws Exception {
 		String basename = "PM1-mit-Fragment1";
-		PST pst = runTest(basename);
-		Set<Fragment> frags = pst.getFragments();
+		ProcessStructureTree pst = runTest(basename);
+		List<Fragment> frags = pst.getFragments();
 		assertEquals(6, frags.size());
 		assertFragsContainByName(frags, "1", "2");
 		assertFragsContainByName(frags, "2", "9");
@@ -72,8 +73,8 @@ public class PSTTest {
 	@Test
 	public void testPM2() throws Exception {
 		String basename = "PM2-mit-Fragment1";
-		PST pst = runTest(basename);
-		Set<Fragment> frags = pst.getFragments();
+		ProcessStructureTree pst = runTest(basename);
+		List<Fragment> frags = pst.getFragments();
 		assertEquals(7, frags.size());
 		assertFragsContainByName(frags, "1", "2");
 		assertFragsContainByName(frags, "2", "11");
@@ -87,8 +88,8 @@ public class PSTTest {
 	@Test
 	public void testSequence() throws Exception {
 		String basename = "sequence";
-		PST pst = runTest(basename);
-		Set<Fragment> frags = pst.getFragments();
+		ProcessStructureTree pst = runTest(basename);
+		List<Fragment> frags = pst.getFragments();
 		assertEquals(5, frags.size());
 		assertFragsContainByName(frags, "1", "2");
 		assertFragsContainByName(frags, "2", "3");
@@ -100,8 +101,8 @@ public class PSTTest {
 	@Test
 	public void testXorExample() throws Exception {
 		String basename = "xor-example";
-		PST pst = runTest(basename);
-		Set<Fragment> frags = pst.getFragments();
+		ProcessStructureTree pst = runTest(basename);
+		List<Fragment> frags = pst.getFragments();
 		assertEquals(4, frags.size());
 		assertFragsContainByName(frags, "1", "2");
 		assertFragsContainByName(frags, "2", "7");
@@ -112,8 +113,8 @@ public class PSTTest {
 	@Test
 	public void testOverlapping() throws Exception {
 		String basename = "overlapping";
-		PST pst = runTest(basename);
-		Set<Fragment> frags = pst.getFragments();
+		ProcessStructureTree pst = runTest(basename);
+		List<Fragment> frags = pst.getFragments();
 		assertEquals(6, frags.size());
 		assertFragsContainByName(frags, "1", "7");
 		assertFragsContainByName(frags, "3", "5");
@@ -126,8 +127,8 @@ public class PSTTest {
 	@Test
 	public void testLoopingXor() throws Exception {
 		String basename = "looping-xor";
-		PST pst = runTest(basename);
-		Set<Fragment> frags = pst.getFragments();
+		ProcessStructureTree pst = runTest(basename);
+		List<Fragment> frags = pst.getFragments();
 		assertEquals(5, frags.size());
 		assertFragsContainByName(frags, "1", "10");
 		assertFragsContainByName(frags, "2", "3");
@@ -139,8 +140,8 @@ public class PSTTest {
 	@Test
 	public void testLoopingEvents() throws Exception {
 		String basename = "looping-events-example";
-		PST pst = runTest(basename);
-		Set<Fragment> frags = pst.getFragments();
+		ProcessStructureTree pst = runTest(basename);
+		List<Fragment> frags = pst.getFragments();
 		assertEquals(4, frags.size());
 		assertFragsContainByName(frags, "f1", "f2");
 		assertFragsContainByName(frags, "f2", "f7");
@@ -148,24 +149,24 @@ public class PSTTest {
 		assertFragsContainByName(frags, "f5", "f6");
 	}
 
-	public PST runTest(String basename) throws Exception {
+	public ProcessStructureTree runTest(String basename) throws Exception {
 		System.out.println("Creating PST for " + basename);
-		PST pst = new PST();
 		Definitions definitions = ((DocumentRoot) new Bpmn2ResourceSet(
 				getClass().getResource("/edu/udo/cs/ls14/jf/bpmn/test/")
 						.getPath()).loadResource(basename + ".bpmn")
 				.getContents().get(0)).getDefinitions();
-		pst.createFromDefinitions(definitions);
+		PSTBuilder pstBuilder = new PSTBuilder();
+		ProcessStructureTree pst = pstBuilder.getTree(definitions);
 		IOUtils.invokeDOT("/tmp", basename + "-undirectedgraph.png",
-				pst.getGraphAsDot());
+				pstBuilder.getGraphAsDot());
 		IOUtils.invokeDOT("/tmp", basename + "-spanningtree.png",
-				pst.getSpanningTreeAsDot());
+				pstBuilder.getSpanningTreeAsDot());
 		IOUtils.invokeDOT("/tmp", basename + "-pst.png",
-				pst.getStructureTreeAsDot());
+				pstBuilder.getStructureTreeAsDot());
 		return pst;
 	}
 
-	private void assertFragsContainByName(Set<Fragment> frags, String entryId,
+	private void assertFragsContainByName(List<Fragment> frags, String entryId,
 			String exitId) {
 		boolean contains = false;
 		for (Fragment f : frags) {

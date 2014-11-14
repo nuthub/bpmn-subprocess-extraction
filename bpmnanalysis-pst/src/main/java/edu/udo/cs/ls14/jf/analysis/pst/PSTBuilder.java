@@ -30,12 +30,12 @@ import edu.uci.ics.jung.graph.UndirectedSparseMultigraph;
 import edu.udo.cs.ls14.jf.bpmn.utils.ProcessUtil;
 import edu.udo.cs.ls14.jf.bpmnanalysis.BpmnAnalysisFactory;
 import edu.udo.cs.ls14.jf.bpmnanalysis.Fragment;
+import edu.udo.cs.ls14.jf.bpmnanalysis.ProcessStructureTree;
 
-public class PST {
+public class PSTBuilder {
 
-	private static final Logger LOG = LoggerFactory.getLogger(PST.class);
+	private static final Logger LOG = LoggerFactory.getLogger(PSTBuilder.class);
 
-	private Definitions definitions;
 	private Process process;
 	private UndirectedGraph<FlowNode, SequenceFlow> graph;
 	private DirectedGraph<FlowNode, SequenceFlow> spanningTree;
@@ -51,8 +51,17 @@ public class PST {
 
 	private Set<Pair<SequenceFlow, SequenceFlow>> yieldedFragments;
 
-	public void createFromDefinitions(Definitions definitions) throws Exception {
-		this.definitions = definitions;
+	public ProcessStructureTree getTree(Definitions definitions)
+			throws Exception {
+		ProcessStructureTree tree = BpmnAnalysisFactory.eINSTANCE
+				.createProcessStructureTree();
+		createFromDefinitions(definitions);
+		tree.getFragments().addAll(canonicalFragments);
+		return tree;
+	}
+
+	private void createFromDefinitions(Definitions definitions)
+			throws Exception {
 		this.process = ProcessUtil.getProcessFromDefinitions(definitions);
 
 		// initialize
@@ -81,7 +90,7 @@ public class PST {
 		// yield all sese-fragments from edgestates
 		LOG.debug("yielding Fragments ...");
 		yieldedFragments = new HashSet<Pair<SequenceFlow, SequenceFlow>>();
-		fragments = yieldFragments(start, end);
+		fragments = yieldFragments(start, end, definitions);
 		fragments.forEach(f -> LOG.debug(f.toString()));
 
 		// filter canonical sese-fragments from all sese-fragments
@@ -98,10 +107,6 @@ public class PST {
 		decompleteGraph(insertEdge);
 
 		LOG.debug("done ...");
-	}
-
-	public Set<Fragment> getFragments() {
-		return canonicalFragments;
 	}
 
 	/**
@@ -264,7 +269,8 @@ public class PST {
 	 * @param start
 	 * @param end
 	 */
-	private Set<Fragment> yieldFragments(FlowNode start, FlowNode end) {
+	private Set<Fragment> yieldFragments(FlowNode start, FlowNode end,
+			Definitions definitions) {
 		Set<Fragment> fragments = new HashSet<Fragment>();
 		for (SequenceFlow e : spanningTree.getEdges()) {
 			for (SequenceFlow f : spanningTree.getEdges()) {

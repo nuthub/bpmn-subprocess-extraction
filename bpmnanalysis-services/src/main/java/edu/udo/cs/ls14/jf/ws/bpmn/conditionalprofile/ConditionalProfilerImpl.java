@@ -15,7 +15,8 @@ public class ConditionalProfilerImpl implements ConditionalProfilerSEI {
 	@Override
 	public ConditionalProfile profile(Definitions definitions) throws Exception {
 		Process process = ProcessUtil.getProcessFromDefinitions(definitions);
-		return ConditionalProfiler.generateProfile(process);
+		ConditionalProfiler profiler = new ConditionalProfiler();
+		return profiler.generateProfile(process);
 	}
 
 }
