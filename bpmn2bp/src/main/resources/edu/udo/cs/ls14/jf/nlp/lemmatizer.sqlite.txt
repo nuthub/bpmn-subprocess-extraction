@@ -1,1 +1,0 @@
-lemmatizer von http://www.danielnaber.de/morphologie/
