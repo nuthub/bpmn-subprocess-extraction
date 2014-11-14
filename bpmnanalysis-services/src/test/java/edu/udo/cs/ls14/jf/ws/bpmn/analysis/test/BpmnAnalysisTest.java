@@ -32,6 +32,7 @@ public class BpmnAnalysisTest {
 	private Endpoint endpoint;
 	private Service service;
 	private BpmnAnalysisSEI port;
+	private Bpmn2ResourceSet resSet;
 
 	@Before
 	public void setUp() throws Exception {
@@ -45,8 +46,9 @@ public class BpmnAnalysisTest {
 				"BpmnAnalysisImplService");
 		service = Service.create(new URL(url + "?wsdl"), serviceName);
 		port = service.getPort(BpmnAnalysisSEI.class);
-		System.out.println(service.getWSDLDocumentLocation());
 
+		resSet = new Bpmn2ResourceSet(getClass().getResource(
+				"/edu/udo/cs/ls14/jf/bpmn/test/").getFile());
 		// Register resource factories
 		Map<String, Object> map = Resource.Factory.Registry.INSTANCE
 				.getExtensionToFactoryMap();
@@ -71,8 +73,7 @@ public class BpmnAnalysisTest {
 	// TODO: unignore
 	public void testAnalyze() throws Exception {
 		// create some test data
-		Resource resource = new Bpmn2ResourceSet(getClass().getResource(
-				"/edu/udo/cs/ls14/jf/bpmn/test").getPath())
+		Resource resource = resSet
 				.loadResource("PM1-mit-Fragment1.bpmn");
 		Definitions definitions = ((DocumentRoot) resource.getContents().get(0))
 				.getDefinitions();

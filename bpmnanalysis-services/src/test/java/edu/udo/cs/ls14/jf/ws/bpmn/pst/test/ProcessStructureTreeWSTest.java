@@ -30,6 +30,7 @@ public class ProcessStructureTreeWSTest {
 	private Endpoint endpoint;
 	private Service service;
 	private ProcessStructureTreeSEI port;
+	private Bpmn2ResourceSet resSet;
 
 	@Before
 	public void setUp() throws Exception {
@@ -42,9 +43,10 @@ public class ProcessStructureTreeWSTest {
 				"ProcessStructureTreeImplService");
 		service = Service.create(new URL(url + "?wsdl"), serviceName);
 		port = service.getPort(ProcessStructureTreeSEI.class);
-		System.out.println(service.getWSDLDocumentLocation());
 
 		// Register resource factories
+		resSet = new Bpmn2ResourceSet(getClass().getResource(
+				"/edu/udo/cs/ls14/jf/bpmn/test/").getFile());
 		Map<String, Object> map = Resource.Factory.Registry.INSTANCE
 				.getExtensionToFactoryMap();
 		map.putIfAbsent("bpmn", new Bpmn2ResourceFactoryImpl());
@@ -66,9 +68,7 @@ public class ProcessStructureTreeWSTest {
 	@Test
 	public void testAnalyze() throws Exception {
 		// create some test data
-		Resource resource = new Bpmn2ResourceSet(getClass().getResource(
-				"/edu/udo/cs/ls14/jf/bpmn/test/").getFile())
-				.loadResource("PM1-mit-Fragment1.bpmn");
+		Resource resource = resSet.loadResource("PM1-mit-Fragment1.bpmn");
 		Definitions definitions = ((DocumentRoot) resource.getContents().get(0))
 				.getDefinitions();
 		ProcessStructureTree pst = port.getPst(definitions);
