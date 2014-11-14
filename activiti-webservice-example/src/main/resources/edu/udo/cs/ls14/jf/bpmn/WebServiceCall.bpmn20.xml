@@ -8,7 +8,7 @@
 	targetNamespace="http://www.activiti.org/test">
 
 	<import importType="http://schemas.xmlsoap.org/wsdl/"
-		location="http://localhost:8080/activiti-webservice-example/StringSizeService?wsdl"
+		location="http://localhost:9090/activiti-webservice-example/StringSizeService?wsdl"
 		namespace="http://services.jf.ls14.cs.udo.edu/" />
 
 	<!-- QNames of input and output elements -->

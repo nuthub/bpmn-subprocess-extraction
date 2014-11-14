@@ -93,7 +93,7 @@
 				<configuration>
 					<goalPrefix>embedded-glassfish</goalPrefix>
 					<app>target/${project.artifactId}.war</app>
-					<port>8080</port>
+					<port>9090</port>
 					<contextRoot>${project.artifactId}</contextRoot>
 					<autoDelete>true</autoDelete>
 				</configuration>
