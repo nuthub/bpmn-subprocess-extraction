@@ -1,4 +1,4 @@
-package edu.udo.cs.ls14.jf.application;
+package edu.udo.cs.ls14.jf.transformation;
 
 import java.io.File;
 import java.util.HashMap;
@@ -14,13 +14,8 @@ import org.slf4j.LoggerFactory;
 
 import edu.udo.cs.ls14.jf.bpmn.utils.Bpmn2ResourceSet;
 import edu.udo.cs.ls14.jf.bpmn.utils.ProcessUtil;
-import edu.udo.cs.ls14.jf.bpmnanalysis.Fragment;
 import edu.udo.cs.ls14.jf.bpmnmatching.FragmentPair;
 import edu.udo.cs.ls14.jf.bpmnmatching.ProcessMatching;
-import edu.udo.cs.ls14.jf.transformation.FragmentComparatorSize;
-import edu.udo.cs.ls14.jf.transformation.FragmentExtractor;
-import edu.udo.cs.ls14.jf.transformation.LabelGenerator;
-import edu.udo.cs.ls14.jf.transformation.LocationFixer;
 
 /**
  * handles only with definitions
@@ -28,10 +23,10 @@ import edu.udo.cs.ls14.jf.transformation.LocationFixer;
  * @author flake
  *
  */
-public class Application {
+public class Extraction {
 
 	private static final Logger LOG = LoggerFactory
-			.getLogger(Application.class);
+			.getLogger(Extraction.class);
 	private String targetDir = "/tmp/resources/";
 	private Bpmn2ResourceSet resourceSet = new Bpmn2ResourceSet(targetDir);
 
@@ -58,14 +53,9 @@ public class Application {
 		// Loop over all fragment matchings
 		int fragmentCounter = 1;
 		for (FragmentPair fPair : pMatching.getFragmentMatching().getPairs()) {
-			// 1. Determine "better" fragment
-			// TODO: let this be part of matching model, to choose better-function in process
-			Fragment fragmentToExtract = FragmentComparatorSize
-					.getBetter(fPair);
-
 			// create new (sub)process
 			String idExtracted = getExtractedProcessIdPrefix(fPair) + fragmentCounter++;
-			Definitions defsExtracted = EcoreUtil.copy(fragmentToExtract
+			Definitions defsExtracted = EcoreUtil.copy(fPair.getBetter()
 					.getDefinitions());
 			Resource resExtracted = resourceSet.createResource(idExtracted
 					+ ".bpmn", defsExtracted);
@@ -73,7 +63,7 @@ public class Application {
 					.toLowerCase());
 
 			extractor.cropFragment(resExtracted, defsExtracted,
-					fragmentToExtract);
+					fPair.getBetter());
 			extractor.replaceId(resExtracted, ProcessUtil
 					.getProcessFromDefinitions(defsExtracted).getId(),
 					EcoreUtil.generateUUID());
@@ -82,7 +72,7 @@ public class Application {
 
 			// callActivity parameters
 			String callActivityName = LabelGenerator
-					.getLabel(fragmentToExtract);
+					.getLabel(fPair.getBetter());
 			Process calledElement = ProcessUtil
 					.getProcessFromDefinitions(defsExtracted);
 			System.out.println(calledElement.getId());

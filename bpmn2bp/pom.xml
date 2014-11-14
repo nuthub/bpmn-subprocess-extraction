@@ -91,16 +91,6 @@
 			<version>2.2.8</version>
 		</dependency>
 		<dependency>
-			<groupId>mysql</groupId>
-			<artifactId>mysql-connector-java</artifactId>
-			<version>5.1.32</version>
-		</dependency>
-		<dependency>
-			<groupId>org.xerial</groupId>
-			<artifactId>sqlite-jdbc</artifactId>
-			<version>3.8.5-pre1</version>
-		</dependency>
-		<dependency>
 			<groupId>org.eclipse.emf.henshin</groupId>
 			<artifactId>org.eclipse.emf.henshin.interpreter</artifactId>
 			<version>1.1.0-SNAPSHOT</version>
@@ -111,66 +101,9 @@
 			<version>1.1.0-SNAPSHOT</version>
 		</dependency>
 
+		<dependency>
+			<groupId>edu.udo.cs.ls14.jf</groupId>
+			<artifactId>word-utils</artifactId>
+		</dependency>
 	</dependencies>
-	<build>
-		<plugins>
-			<plugin>
-				<groupId>org.jvnet.jax-ws-commons</groupId>
-				<artifactId>jaxws-maven-plugin</artifactId>
-				<version>2.2</version>
-				<executions>
-					<execution>
-						<goals>
-							<goal>wsimport</goal>
-						</goals>
-						<configuration>
-							<!-- <packageName>edu.udo.cs.ls14.jf.wortschatz</packageName> -->
-							<wsdlUrls>
-								<wsdlUrl>http://wortschatz.uni-leipzig.de/axis/services/Baseform?wsdl</wsdlUrl>
-								<wsdlUrl>http://wortschatz.uni-leipzig.de/axis/services/Synonyms?wsdl</wsdlUrl>
-								<wsdlUrl>http://wortschatz.uni-leipzig.de/axis/services/Thesaurus?wsdl</wsdlUrl>
-								<wsdlUrl>http://wortschatz.uni-leipzig.de/axis/services/Similarity?wsdl</wsdlUrl>
-							</wsdlUrls>
-						</configuration>
-					</execution>
-				</executions>
-			</plugin>
-		</plugins>
-		<pluginManagement>
-			<plugins>
-				<!--This plugin's configuration is used to store Eclipse m2e settings 
-					only. It has no influence on the Maven build itself. -->
-				<plugin>
-					<groupId>org.eclipse.m2e</groupId>
-					<artifactId>lifecycle-mapping</artifactId>
-					<version>1.0.0</version>
-					<configuration>
-						<lifecycleMappingMetadata>
-							<pluginExecutions>
-								<pluginExecution>
-									<pluginExecutionFilter>
-										<groupId>
-											org.jvnet.jax-ws-commons
-										</groupId>
-										<artifactId>
-											jaxws-maven-plugin
-										</artifactId>
-										<versionRange>
-											[2.1,)
-										</versionRange>
-										<goals>
-											<goal>wsimport</goal>
-										</goals>
-									</pluginExecutionFilter>
-									<action>
-										<ignore></ignore>
-									</action>
-								</pluginExecution>
-							</pluginExecutions>
-						</lifecycleMappingMetadata>
-					</configuration>
-				</plugin>
-			</plugins>
-		</pluginManagement>
-	</build>
-</project>
+	</project>
