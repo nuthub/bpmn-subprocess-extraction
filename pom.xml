@@ -6,8 +6,9 @@
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>pom</packaging>
 	<modules>
-		<module>activiti-extensions</module>
+		<module>word-utils</module>
 		<module>bpmn-utils</module>
+		<module>bpmnanalysis-model</module>
 		<module>bpmnanalysis-behavioralprofile</module>
 		<module>bpmnanalysis-conditionalprofile</module>
 		<module>bpmnanalysis-pst</module>
@@ -15,10 +16,10 @@
 		<!-- needs some refactorints -->
 		<module>bpmn2bp</module>
 		<!-- examples / tests -->
+		<module>activiti-extensions</module>
 		<module>activiti-webservice-example</module>
 		<module>webapp-example</module>
 		<module>services-ear</module>
-		<module>bpmnanalysis-model</module>
 	</modules>
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -198,6 +199,21 @@
 		<dependency>
 			<groupId>edu.udo.cs.ls14.jf</groupId>
 			<artifactId>bpmnanalysis-model</artifactId>
+			<version>0.0.1-SNAPSHOT</version>
+		</dependency>
+		<dependency>
+			<groupId>mysql</groupId>
+			<artifactId>mysql-connector-java</artifactId>
+			<version>5.1.32</version>
+		</dependency>
+		<dependency>
+			<groupId>org.xerial</groupId>
+			<artifactId>sqlite-jdbc</artifactId>
+			<version>3.8.5-pre1</version>
+		</dependency>
+		<dependency>
+			<groupId>edu.udo.cs.ls14.jf</groupId>
+			<artifactId>word-utils</artifactId>
 			<version>0.0.1-SNAPSHOT</version>
 		</dependency>
 		</dependencies>

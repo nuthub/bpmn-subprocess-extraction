@@ -11,6 +11,7 @@ import java.util.stream.Collectors;
 import org.eclipse.bpmn2.Definitions;
 import org.eclipse.bpmn2.DocumentRoot;
 import org.jbpt.utils.IOUtils;
+import org.junit.Before;
 import org.junit.Test;
 
 import edu.udo.cs.ls14.jf.analysis.pst.PSTBuilder;
@@ -19,6 +20,13 @@ import edu.udo.cs.ls14.jf.bpmnanalysis.Fragment;
 import edu.udo.cs.ls14.jf.bpmnanalysis.ProcessStructureTree;
 
 public class PSTTest {
+	private Bpmn2ResourceSet resSet = null;
+
+	@Before
+	public void setUp() {
+		resSet = new Bpmn2ResourceSet(getClass().getResource(
+				"/edu/udo/cs/ls14/jf/bpmn/test/").getPath());
+	}
 
 	@Test
 	public void testEventBasedGatewayExclusive() throws Exception {
@@ -35,7 +43,7 @@ public class PSTTest {
 						Collectors.toMap(f -> f.getEntry().getName() + "#"
 								+ f.getExit().getName(),
 								Function.<Fragment> identity()));
-		System.out.println("MAP: " + fragMap);
+
 		assertEquals(null, fragMap.get("1#6").getParent());
 		// parent(2,4) == (1,6)
 		assertEquals("1", fragMap.get("2#4").getParent().getEntry().getName());
@@ -151,10 +159,9 @@ public class PSTTest {
 
 	public ProcessStructureTree runTest(String basename) throws Exception {
 		System.out.println("Creating PST for " + basename);
-		Definitions definitions = ((DocumentRoot) new Bpmn2ResourceSet(
-				getClass().getResource("/edu/udo/cs/ls14/jf/bpmn/test/")
-						.getPath()).loadResource(basename + ".bpmn")
-				.getContents().get(0)).getDefinitions();
+		Definitions definitions = ((DocumentRoot) resSet
+				.loadResource(basename + ".bpmn").getContents().get(0))
+				.getDefinitions();
 		PSTBuilder pstBuilder = new PSTBuilder();
 		ProcessStructureTree pst = pstBuilder.getTree(definitions);
 		IOUtils.invokeDOT("/tmp", basename + "-undirectedgraph.png",
