@@ -1,4 +1,4 @@
-package edu.udo.cs.ls14.jf.processmatching.test;
+package edu.udo.cs.ls14.jf.bpmnmatching.nodematching.test;
 
 import static org.junit.Assert.assertTrue;
 
@@ -6,7 +6,7 @@ import org.eclipse.bpmn2.Bpmn2Factory;
 import org.eclipse.bpmn2.FlowNode;
 import org.junit.Test;
 
-import edu.udo.cs.ls14.jf.processmatching.NodeComparator;
+import edu.udo.cs.ls14.jf.bpmnmatching.nodematching.NodeComparator;
 
 public class NodeComparatorTest {
 

@@ -14,6 +14,7 @@ import edu.udo.cs.ls14.jf.bpmnmatching.BpmnMatchingFactory;
 import edu.udo.cs.ls14.jf.bpmnmatching.FragmentMatching;
 import edu.udo.cs.ls14.jf.bpmnmatching.FragmentPair;
 import edu.udo.cs.ls14.jf.bpmnmatching.ProcessMatching;
+import edu.udo.cs.ls14.jf.bpmnmatching.nodematching.NodeMatcher;
 
 public class ProcessMatcher {
 

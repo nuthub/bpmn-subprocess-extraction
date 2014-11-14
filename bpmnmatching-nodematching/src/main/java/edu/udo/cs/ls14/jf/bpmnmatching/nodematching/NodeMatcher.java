@@ -1,4 +1,4 @@
-package edu.udo.cs.ls14.jf.processmatching;
+package edu.udo.cs.ls14.jf.bpmnmatching.nodematching;
 
 import org.eclipse.bpmn2.FlowElement;
 import org.eclipse.bpmn2.FlowNode;

@@ -1,4 +1,4 @@
-package edu.udo.cs.ls14.jf.processmatching.test;
+package edu.udo.cs.ls14.jf.bpmnmatching.nodematching.test;
 
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
@@ -19,7 +19,7 @@ import edu.udo.cs.ls14.jf.bpmn.utils.Bpmn2ResourceSet;
 import edu.udo.cs.ls14.jf.bpmn.utils.ProcessUtil;
 import edu.udo.cs.ls14.jf.bpmnmatching.NodeMatching;
 import edu.udo.cs.ls14.jf.bpmnmatching.NodePair;
-import edu.udo.cs.ls14.jf.processmatching.NodeMatcher;
+import edu.udo.cs.ls14.jf.bpmnmatching.nodematching.NodeMatcher;
 
 public class NodeMatcherTest {
 
