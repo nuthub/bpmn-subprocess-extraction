@@ -105,5 +105,9 @@
 			<groupId>edu.udo.cs.ls14.jf</groupId>
 			<artifactId>word-utils</artifactId>
 		</dependency>
+		<dependency>
+			<groupId>edu.udo.cs.ls14.jf</groupId>
+			<artifactId>bpmnmatching-nodematching</artifactId>
+		</dependency>
 	</dependencies>
 	</project>
