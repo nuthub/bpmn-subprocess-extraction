@@ -8,7 +8,6 @@
 	<modules>
 		<module>activiti-extensions</module>
 		<module>bpmn-utils</module>
-		<module>bpmn-analysis-model</module>
 		<module>bpmnanalysis-behavioralprofile</module>
 		<module>bpmnanalysis-conditionalprofile</module>
 		<module>bpmnanalysis-pst</module>
@@ -19,6 +18,7 @@
 		<module>activiti-webservice-example</module>
 		<module>webapp-example</module>
 		<module>services-ear</module>
+		<module>bpmnanalysis-model</module>
 	</modules>
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -145,11 +145,6 @@
 			</dependency>
 			<dependency>
 				<groupId>edu.udo.cs.ls14.jf</groupId>
-				<artifactId>bpmn-analysis-model</artifactId>
-				<version>0.0.1-SNAPSHOT</version>
-			</dependency>
-			<dependency>
-				<groupId>edu.udo.cs.ls14.jf</groupId>
 				<artifactId>
 					bpmnanalysis-behavioralprofile
 				</artifactId>
@@ -198,6 +193,11 @@
 		<dependency>
 			<groupId>edu.udo.cs.ls14.jf</groupId>
 			<artifactId>bpmnanalysis-pst</artifactId>
+			<version>0.0.1-SNAPSHOT</version>
+		</dependency>
+		<dependency>
+			<groupId>edu.udo.cs.ls14.jf</groupId>
+			<artifactId>bpmnanalysis-model</artifactId>
 			<version>0.0.1-SNAPSHOT</version>
 		</dependency>
 		</dependencies>

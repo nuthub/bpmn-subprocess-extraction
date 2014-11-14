@@ -31,7 +31,7 @@
 		</dependency>
 		<dependency>
 			<groupId>edu.udo.cs.ls14.jf</groupId>
-			<artifactId>bpmn-analysis-model</artifactId>
+			<artifactId>bpmnanalysis-model</artifactId>
 		</dependency>
 	</dependencies>
 </project>

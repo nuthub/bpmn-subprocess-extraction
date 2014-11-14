@@ -10,10 +10,6 @@
 	<dependencies>
 		<dependency>
 			<groupId>edu.udo.cs.ls14.jf</groupId>
-			<artifactId>bpmn-analysis-model</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>edu.udo.cs.ls14.jf</groupId>
 			<artifactId>bpmn-utils</artifactId>
 		</dependency>
 		<dependency>
