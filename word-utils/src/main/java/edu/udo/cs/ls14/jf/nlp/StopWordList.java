@@ -15,13 +15,12 @@ public class StopWordList {
 			.getLogger(StopWordList.class);
 
 	private static final String DRIVER = "org.sqlite.JDBC";
-	private static final String CONNECTION = "jdbc:sqlite:"
-			+ Lemmatizer.class.getResource("stopwords.sqlite").getPath();
+	private static final String CONNECTION = "jdbc:sqlite::resource:edu/udo/cs/ls14/jf/nlp/stopwords.sqlite";
 	private static Connection c = null;
 
 	private static void connect() throws ClassNotFoundException, SQLException {
 		Class.forName(DRIVER);
-		LOG.debug("Trying to connect to " + CONNECTION);
+		LOG.info("Trying to connect to " + CONNECTION);
 		c = DriverManager.getConnection(CONNECTION);
 		LOG.info("Connected to " + CONNECTION);
 	}

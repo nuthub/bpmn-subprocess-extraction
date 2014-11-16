@@ -17,11 +17,11 @@ import org.slf4j.LoggerFactory;
  */
 public class OpenThesaurusSQLite {
 
-	private static final Logger LOG = LoggerFactory.getLogger(OpenThesaurusSQLite.class);
-	
+	private static final Logger LOG = LoggerFactory
+			.getLogger(OpenThesaurusSQLite.class);
+
 	private static final String DRIVER = "org.sqlite.JDBC";
-	private static final String CONNECTION = "jdbc:sqlite:"
-			+ OpenThesaurusSQLite.class.getResource("openthesaurus.sqlite").getPath();
+	private static final String CONNECTION = "jdbc:sqlite::resource:edu/udo/cs/ls14/jf/nlp/openthesaurus.sqlite";
 	private static Connection connection = null;
 
 	private static void connect() throws SQLException, ClassNotFoundException {
@@ -36,7 +36,7 @@ public class OpenThesaurusSQLite {
 		// SELECT t1.synset_id,t1.word,t2.word FROM term AS t1 LEFT JOIN term AS
 		// t2 ON t1.synset_id=t2.synset_id WHERE t1.word='Gut' AND
 		// t2.word='Ware';
-		if(word1.equals(word2)) {
+		if (word1.equals(word2)) {
 			return true;
 		}
 		if (connection == null) {

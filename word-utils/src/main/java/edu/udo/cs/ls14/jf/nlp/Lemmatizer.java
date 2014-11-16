@@ -13,8 +13,7 @@ public class Lemmatizer {
 
 	private static final Logger LOG = LoggerFactory.getLogger(Lemmatizer.class);
 	private static final String DRIVER = "org.sqlite.JDBC";
-	private static final String CONNECTION = "jdbc:sqlite:"
-			+ Lemmatizer.class.getResource("lemmatizer.sqlite").getPath();
+	private static final String CONNECTION = "jdbc:sqlite::resource:edu/udo/cs/ls14/jf/nlp/lemmatizer.sqlite";
 	private static Connection c = null;
 
 	private static void connect() throws ClassNotFoundException, SQLException {
