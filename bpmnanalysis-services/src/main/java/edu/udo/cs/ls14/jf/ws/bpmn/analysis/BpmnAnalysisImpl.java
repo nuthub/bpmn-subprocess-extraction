@@ -24,15 +24,6 @@ public class BpmnAnalysisImpl implements BpmnAnalysisSEI {
 	private static final Logger LOG = LoggerFactory
 			.getLogger(BpmnAnalysisImpl.class);
 
-	@PostConstruct
-	public void init() {
-		Map<String, Object> map = Resource.Factory.Registry.INSTANCE
-				.getExtensionToFactoryMap();
-		LOG.info("Registering Factories");
-		map.putIfAbsent("bpmn", new Bpmn2ResourceFactoryImpl());
-		map.putIfAbsent("bpmnanalysis", new BpmnAnalysisResourceFactoryImpl());
-	}
-
 	/**
 	 * local version just calls other service implementations
 	 */
