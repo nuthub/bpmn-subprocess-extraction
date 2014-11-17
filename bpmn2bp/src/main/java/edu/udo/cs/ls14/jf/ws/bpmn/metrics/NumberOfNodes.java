@@ -1,13 +1,11 @@
 package edu.udo.cs.ls14.jf.ws.bpmn.metrics;
 
-import java.util.logging.Logger;
-
 import javax.jws.WebService;
 
 @WebService
 public class NumberOfNodes {
-	private static final Logger LOG = Logger.getLogger(NumberOfNodes.class
-			.getName());
+//	private static final Logger LOG = Logger.getLogger(NumberOfNodes.class
+//			.getName());
 
 	/**
 	 * Expects xmi of definitions object

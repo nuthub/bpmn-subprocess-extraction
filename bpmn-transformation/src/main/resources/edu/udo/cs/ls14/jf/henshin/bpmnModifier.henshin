@@ -1,0 +1,838 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<henshin:Module xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:henshin="http://www.eclipse.org/emf/2011/Henshin" xmi:id="_hm3ucE7rEeSxqchWGzsm5Q">
+  <imports href="http://www.omg.org/spec/BPMN/20100524/MODEL-XMI#/"/>
+  <imports href="http://www.omg.org/spec/BPMN/20100524/DI-XMI#/"/>
+  <imports href="http://www.omg.org/spec/DD/20100524/DC-XMI#/"/>
+  <units xsi:type="henshin:Rule" xmi:id="_96O1UE-6EeSxqchWGzsm5Q" name="deleteFlowNode">
+    <parameters xmi:id="_0N9ngE--EeSxqchWGzsm5Q" name="id"/>
+    <lhs xmi:id="_96kzkE-6EeSxqchWGzsm5Q" name="Lhs">
+      <nodes xmi:id="_IAsvAE-7EeSxqchWGzsm5Q" incoming="_VEU9YE-7EeSxqchWGzsm5Q _k8kocE-7EeSxqchWGzsm5Q">
+        <type href="http://www.omg.org/spec/BPMN/20100524/MODEL-XMI#//FlowNode"/>
+        <attributes xmi:id="_Kj9V8E-7EeSxqchWGzsm5Q" value="id">
+          <type href="http://www.omg.org/spec/BPMN/20100524/MODEL-XMI#//BaseElement/id"/>
+        </attributes>
+      </nodes>
+      <nodes xmi:id="_S-464E-7EeSxqchWGzsm5Q" outgoing="_VEU9YE-7EeSxqchWGzsm5Q">
+        <type href="http://www.omg.org/spec/BPMN/20100524/MODEL-XMI#//Process"/>
+      </nodes>
+      <nodes xmi:id="_XxREwE-7EeSxqchWGzsm5Q" incoming="_jIW40E-7EeSxqchWGzsm5Q" outgoing="_k8kocE-7EeSxqchWGzsm5Q _w20z8E-7EeSxqchWGzsm5Q">
+        <type href="http://www.omg.org/spec/BPMN/20100524/DI-XMI#//BPMNShape"/>
+      </nodes>
+      <nodes xmi:id="_gLXjQE-7EeSxqchWGzsm5Q" outgoing="_jIW40E-7EeSxqchWGzsm5Q">
+        <type href="http://www.omg.org/spec/BPMN/20100524/DI-XMI#//BPMNPlane"/>
+      </nodes>
+      <nodes xmi:id="_o1CHwE-7EeSxqchWGzsm5Q" incoming="_w20z8E-7EeSxqchWGzsm5Q" outgoing="_v34fcE-7EeSxqchWGzsm5Q">
+        <type href="http://www.omg.org/spec/BPMN/20100524/DI-XMI#//BPMNLabel"/>
+      </nodes>
+      <nodes xmi:id="_uYuZ0E-7EeSxqchWGzsm5Q" incoming="_v34fcE-7EeSxqchWGzsm5Q">
+        <type href="http://www.omg.org/spec/BPMN/20100524/DI-XMI#//BPMNLabelStyle"/>
+      </nodes>
+      <edges xmi:id="_VEU9YE-7EeSxqchWGzsm5Q" source="_S-464E-7EeSxqchWGzsm5Q" target="_IAsvAE-7EeSxqchWGzsm5Q">
+        <type href="http://www.omg.org/spec/BPMN/20100524/MODEL-XMI#//FlowElementsContainer/flowElements"/>
+      </edges>
+      <edges xmi:id="_jIW40E-7EeSxqchWGzsm5Q" source="_gLXjQE-7EeSxqchWGzsm5Q" target="_XxREwE-7EeSxqchWGzsm5Q">
+        <type href="http://www.omg.org/spec/DD/20100524/DI-XMI#//Plane/planeElement"/>
+      </edges>
+      <edges xmi:id="_k8kocE-7EeSxqchWGzsm5Q" source="_XxREwE-7EeSxqchWGzsm5Q" target="_IAsvAE-7EeSxqchWGzsm5Q">
+        <type href="http://www.omg.org/spec/BPMN/20100524/DI-XMI#//BPMNShape/bpmnElement"/>
+      </edges>
+      <edges xmi:id="_v34fcE-7EeSxqchWGzsm5Q" source="_o1CHwE-7EeSxqchWGzsm5Q" target="_uYuZ0E-7EeSxqchWGzsm5Q">
+        <type href="http://www.omg.org/spec/BPMN/20100524/DI-XMI#//BPMNLabel/labelStyle"/>
+      </edges>
+      <edges xmi:id="_w20z8E-7EeSxqchWGzsm5Q" source="_XxREwE-7EeSxqchWGzsm5Q" target="_o1CHwE-7EeSxqchWGzsm5Q">
+        <type href="http://www.omg.org/spec/BPMN/20100524/DI-XMI#//BPMNShape/label"/>
+      </edges>
+    </lhs>
+    <rhs xmi:id="_96-cME-6EeSxqchWGzsm5Q" name="Rhs">
+      <nodes xmi:id="_S-5h8E-7EeSxqchWGzsm5Q">
+        <type href="http://www.omg.org/spec/BPMN/20100524/MODEL-XMI#//Process"/>
+      </nodes>
+      <nodes xmi:id="_gLXjQU-7EeSxqchWGzsm5Q">
+        <type href="http://www.omg.org/spec/BPMN/20100524/DI-XMI#//BPMNPlane"/>
+      </nodes>
+      <nodes xmi:id="_uYuZ0U-7EeSxqchWGzsm5Q">
+        <type href="http://www.omg.org/spec/BPMN/20100524/DI-XMI#//BPMNLabelStyle"/>
+      </nodes>
+    </rhs>
+    <mappings xmi:id="_S-5h8U-7EeSxqchWGzsm5Q" origin="_S-464E-7EeSxqchWGzsm5Q" image="_S-5h8E-7EeSxqchWGzsm5Q"/>
+    <mappings xmi:id="_gLXjQk-7EeSxqchWGzsm5Q" origin="_gLXjQE-7EeSxqchWGzsm5Q" image="_gLXjQU-7EeSxqchWGzsm5Q"/>
+    <mappings xmi:id="_uYuZ0k-7EeSxqchWGzsm5Q" origin="_uYuZ0E-7EeSxqchWGzsm5Q" image="_uYuZ0U-7EeSxqchWGzsm5Q"/>
+  </units>
+  <units xsi:type="henshin:Rule" xmi:id="_FQXGoE_BEeSxqchWGzsm5Q" name="deleteSequenceFlowClean" description="">
+    <parameters xmi:id="_GDvrYE_BEeSxqchWGzsm5Q" name="id"/>
+    <lhs xmi:id="_FQY70E_BEeSxqchWGzsm5Q" name="Lhs">
+      <nodes xmi:id="_G6JH4E_BEeSxqchWGzsm5Q" incoming="_Si5TsE_BEeSxqchWGzsm5Q _ZXJOsE_BEeSxqchWGzsm5Q" outgoing="_5hl88E_BEeSxqchWGzsm5Q _5608UE_BEeSxqchWGzsm5Q">
+        <type href="http://www.omg.org/spec/BPMN/20100524/MODEL-XMI#//SequenceFlow"/>
+        <attributes xmi:id="_KtUekE_BEeSxqchWGzsm5Q" value="id">
+          <type href="http://www.omg.org/spec/BPMN/20100524/MODEL-XMI#//BaseElement/id"/>
+        </attributes>
+      </nodes>
+      <nodes xmi:id="_Iy0gwE_BEeSxqchWGzsm5Q" incoming="_TNPRME_BEeSxqchWGzsm5Q _bX5lgE_BEeSxqchWGzsm5Q _5608UE_BEeSxqchWGzsm5Q">
+        <type href="http://www.omg.org/spec/BPMN/20100524/MODEL-XMI#//FlowNode"/>
+      </nodes>
+      <nodes xmi:id="_JNj8AE_BEeSxqchWGzsm5Q" incoming="_S6WxcE_BEeSxqchWGzsm5Q _brOxME_BEeSxqchWGzsm5Q _5hl88E_BEeSxqchWGzsm5Q">
+        <type href="http://www.omg.org/spec/BPMN/20100524/MODEL-XMI#//FlowNode"/>
+      </nodes>
+      <nodes xmi:id="_KCZ5UE_BEeSxqchWGzsm5Q" outgoing="_Si5TsE_BEeSxqchWGzsm5Q _S6WxcE_BEeSxqchWGzsm5Q _TNPRME_BEeSxqchWGzsm5Q">
+        <type href="http://www.omg.org/spec/BPMN/20100524/MODEL-XMI#//Process"/>
+      </nodes>
+      <nodes xmi:id="_N-lbAE_BEeSxqchWGzsm5Q" incoming="_VEyBoE_BEeSxqchWGzsm5Q" outgoing="_ZXJOsE_BEeSxqchWGzsm5Q _aVnCEE_BEeSxqchWGzsm5Q _axnBkE_BEeSxqchWGzsm5Q _kXKmkE_BEeSxqchWGzsm5Q">
+        <type href="http://www.omg.org/spec/BPMN/20100524/DI-XMI#//BPMNEdge"/>
+      </nodes>
+      <nodes xmi:id="_PlDCgE_BEeSxqchWGzsm5Q" incoming="_VyD-YE_BEeSxqchWGzsm5Q _axnBkE_BEeSxqchWGzsm5Q" outgoing="_brOxME_BEeSxqchWGzsm5Q">
+        <type href="http://www.omg.org/spec/BPMN/20100524/DI-XMI#//BPMNShape"/>
+      </nodes>
+      <nodes xmi:id="_QLZQ0E_BEeSxqchWGzsm5Q" incoming="_Vayt4E_BEeSxqchWGzsm5Q _aVnCEE_BEeSxqchWGzsm5Q" outgoing="_bX5lgE_BEeSxqchWGzsm5Q">
+        <type href="http://www.omg.org/spec/BPMN/20100524/DI-XMI#//BPMNShape"/>
+      </nodes>
+      <nodes xmi:id="_UMUIkE_BEeSxqchWGzsm5Q" outgoing="_VEyBoE_BEeSxqchWGzsm5Q _Vayt4E_BEeSxqchWGzsm5Q _VyD-YE_BEeSxqchWGzsm5Q">
+        <type href="http://www.omg.org/spec/BPMN/20100524/DI-XMI#//BPMNPlane"/>
+      </nodes>
+      <nodes xmi:id="_hh_JME_BEeSxqchWGzsm5Q" incoming="_kXKmkE_BEeSxqchWGzsm5Q" outgoing="_kpV7sE_BEeSxqchWGzsm5Q">
+        <type href="http://www.omg.org/spec/BPMN/20100524/DI-XMI#//BPMNLabel"/>
+      </nodes>
+      <nodes xmi:id="_jT5ywE_BEeSxqchWGzsm5Q" incoming="_kpV7sE_BEeSxqchWGzsm5Q">
+        <type href="http://www.omg.org/spec/BPMN/20100524/DI-XMI#//BPMNLabelStyle"/>
+      </nodes>
+      <edges xmi:id="_Si5TsE_BEeSxqchWGzsm5Q" source="_KCZ5UE_BEeSxqchWGzsm5Q" target="_G6JH4E_BEeSxqchWGzsm5Q">
+        <type href="http://www.omg.org/spec/BPMN/20100524/MODEL-XMI#//FlowElementsContainer/flowElements"/>
+      </edges>
+      <edges xmi:id="_S6WxcE_BEeSxqchWGzsm5Q" source="_KCZ5UE_BEeSxqchWGzsm5Q" target="_JNj8AE_BEeSxqchWGzsm5Q">
+        <type href="http://www.omg.org/spec/BPMN/20100524/MODEL-XMI#//FlowElementsContainer/flowElements"/>
+      </edges>
+      <edges xmi:id="_TNPRME_BEeSxqchWGzsm5Q" source="_KCZ5UE_BEeSxqchWGzsm5Q" target="_Iy0gwE_BEeSxqchWGzsm5Q">
+        <type href="http://www.omg.org/spec/BPMN/20100524/MODEL-XMI#//FlowElementsContainer/flowElements"/>
+      </edges>
+      <edges xmi:id="_VEyBoE_BEeSxqchWGzsm5Q" source="_UMUIkE_BEeSxqchWGzsm5Q" target="_N-lbAE_BEeSxqchWGzsm5Q">
+        <type href="http://www.omg.org/spec/DD/20100524/DI-XMI#//Plane/planeElement"/>
+      </edges>
+      <edges xmi:id="_Vayt4E_BEeSxqchWGzsm5Q" source="_UMUIkE_BEeSxqchWGzsm5Q" target="_QLZQ0E_BEeSxqchWGzsm5Q">
+        <type href="http://www.omg.org/spec/DD/20100524/DI-XMI#//Plane/planeElement"/>
+      </edges>
+      <edges xmi:id="_VyD-YE_BEeSxqchWGzsm5Q" source="_UMUIkE_BEeSxqchWGzsm5Q" target="_PlDCgE_BEeSxqchWGzsm5Q">
+        <type href="http://www.omg.org/spec/DD/20100524/DI-XMI#//Plane/planeElement"/>
+      </edges>
+      <edges xmi:id="_ZXJOsE_BEeSxqchWGzsm5Q" source="_N-lbAE_BEeSxqchWGzsm5Q" target="_G6JH4E_BEeSxqchWGzsm5Q">
+        <type href="http://www.omg.org/spec/BPMN/20100524/DI-XMI#//BPMNEdge/bpmnElement"/>
+      </edges>
+      <edges xmi:id="_aVnCEE_BEeSxqchWGzsm5Q" source="_N-lbAE_BEeSxqchWGzsm5Q" target="_QLZQ0E_BEeSxqchWGzsm5Q">
+        <type href="http://www.omg.org/spec/BPMN/20100524/DI-XMI#//BPMNEdge/targetElement"/>
+      </edges>
+      <edges xmi:id="_axnBkE_BEeSxqchWGzsm5Q" source="_N-lbAE_BEeSxqchWGzsm5Q" target="_PlDCgE_BEeSxqchWGzsm5Q">
+        <type href="http://www.omg.org/spec/BPMN/20100524/DI-XMI#//BPMNEdge/sourceElement"/>
+      </edges>
+      <edges xmi:id="_bX5lgE_BEeSxqchWGzsm5Q" source="_QLZQ0E_BEeSxqchWGzsm5Q" target="_Iy0gwE_BEeSxqchWGzsm5Q">
+        <type href="http://www.omg.org/spec/BPMN/20100524/DI-XMI#//BPMNShape/bpmnElement"/>
+      </edges>
+      <edges xmi:id="_brOxME_BEeSxqchWGzsm5Q" source="_PlDCgE_BEeSxqchWGzsm5Q" target="_JNj8AE_BEeSxqchWGzsm5Q">
+        <type href="http://www.omg.org/spec/BPMN/20100524/DI-XMI#//BPMNShape/bpmnElement"/>
+      </edges>
+      <edges xmi:id="_kXKmkE_BEeSxqchWGzsm5Q" source="_N-lbAE_BEeSxqchWGzsm5Q" target="_hh_JME_BEeSxqchWGzsm5Q">
+        <type href="http://www.omg.org/spec/BPMN/20100524/DI-XMI#//BPMNEdge/label"/>
+      </edges>
+      <edges xmi:id="_kpV7sE_BEeSxqchWGzsm5Q" source="_hh_JME_BEeSxqchWGzsm5Q" target="_jT5ywE_BEeSxqchWGzsm5Q">
+        <type href="http://www.omg.org/spec/BPMN/20100524/DI-XMI#//BPMNLabel/labelStyle"/>
+      </edges>
+      <edges xmi:id="_5hl88E_BEeSxqchWGzsm5Q" source="_G6JH4E_BEeSxqchWGzsm5Q" target="_JNj8AE_BEeSxqchWGzsm5Q">
+        <type href="http://www.omg.org/spec/BPMN/20100524/MODEL-XMI#//SequenceFlow/sourceRef"/>
+      </edges>
+      <edges xmi:id="_5608UE_BEeSxqchWGzsm5Q" source="_G6JH4E_BEeSxqchWGzsm5Q" target="_Iy0gwE_BEeSxqchWGzsm5Q">
+        <type href="http://www.omg.org/spec/BPMN/20100524/MODEL-XMI#//SequenceFlow/targetRef"/>
+      </edges>
+    </lhs>
+    <rhs xmi:id="_FQY70U_BEeSxqchWGzsm5Q" name="Rhs">
+      <nodes xmi:id="_Iy0gwU_BEeSxqchWGzsm5Q" incoming="_TNPRMU_BEeSxqchWGzsm5Q _bX5lgU_BEeSxqchWGzsm5Q">
+        <type href="http://www.omg.org/spec/BPMN/20100524/MODEL-XMI#//FlowNode"/>
+      </nodes>
+      <nodes xmi:id="_JNj8AU_BEeSxqchWGzsm5Q" incoming="_S6WxcU_BEeSxqchWGzsm5Q _brOxMU_BEeSxqchWGzsm5Q">
+        <type href="http://www.omg.org/spec/BPMN/20100524/MODEL-XMI#//FlowNode"/>
+      </nodes>
+      <nodes xmi:id="_KCZ5UU_BEeSxqchWGzsm5Q" outgoing="_S6WxcU_BEeSxqchWGzsm5Q _TNPRMU_BEeSxqchWGzsm5Q">
+        <type href="http://www.omg.org/spec/BPMN/20100524/MODEL-XMI#//Process"/>
+      </nodes>
+      <nodes xmi:id="_PlDCgU_BEeSxqchWGzsm5Q" incoming="_VyD-YU_BEeSxqchWGzsm5Q" outgoing="_brOxMU_BEeSxqchWGzsm5Q">
+        <type href="http://www.omg.org/spec/BPMN/20100524/DI-XMI#//BPMNShape"/>
+      </nodes>
+      <nodes xmi:id="_QLZQ0U_BEeSxqchWGzsm5Q" incoming="_VazU8E_BEeSxqchWGzsm5Q" outgoing="_bX5lgU_BEeSxqchWGzsm5Q">
+        <type href="http://www.omg.org/spec/BPMN/20100524/DI-XMI#//BPMNShape"/>
+      </nodes>
+      <nodes xmi:id="_UMUIkU_BEeSxqchWGzsm5Q" outgoing="_VazU8E_BEeSxqchWGzsm5Q _VyD-YU_BEeSxqchWGzsm5Q">
+        <type href="http://www.omg.org/spec/BPMN/20100524/DI-XMI#//BPMNPlane"/>
+      </nodes>
+      <nodes xmi:id="_jT5ywU_BEeSxqchWGzsm5Q">
+        <type href="http://www.omg.org/spec/BPMN/20100524/DI-XMI#//BPMNLabelStyle"/>
+      </nodes>
+      <edges xmi:id="_S6WxcU_BEeSxqchWGzsm5Q" source="_KCZ5UU_BEeSxqchWGzsm5Q" target="_JNj8AU_BEeSxqchWGzsm5Q">
+        <type href="http://www.omg.org/spec/BPMN/20100524/MODEL-XMI#//FlowElementsContainer/flowElements"/>
+      </edges>
+      <edges xmi:id="_TNPRMU_BEeSxqchWGzsm5Q" source="_KCZ5UU_BEeSxqchWGzsm5Q" target="_Iy0gwU_BEeSxqchWGzsm5Q">
+        <type href="http://www.omg.org/spec/BPMN/20100524/MODEL-XMI#//FlowElementsContainer/flowElements"/>
+      </edges>
+      <edges xmi:id="_VazU8E_BEeSxqchWGzsm5Q" source="_UMUIkU_BEeSxqchWGzsm5Q" target="_QLZQ0U_BEeSxqchWGzsm5Q">
+        <type href="http://www.omg.org/spec/DD/20100524/DI-XMI#//Plane/planeElement"/>
+      </edges>
+      <edges xmi:id="_VyD-YU_BEeSxqchWGzsm5Q" source="_UMUIkU_BEeSxqchWGzsm5Q" target="_PlDCgU_BEeSxqchWGzsm5Q">
+        <type href="http://www.omg.org/spec/DD/20100524/DI-XMI#//Plane/planeElement"/>
+      </edges>
+      <edges xmi:id="_bX5lgU_BEeSxqchWGzsm5Q" source="_QLZQ0U_BEeSxqchWGzsm5Q" target="_Iy0gwU_BEeSxqchWGzsm5Q">
+        <type href="http://www.omg.org/spec/BPMN/20100524/DI-XMI#//BPMNShape/bpmnElement"/>
+      </edges>
+      <edges xmi:id="_brOxMU_BEeSxqchWGzsm5Q" source="_PlDCgU_BEeSxqchWGzsm5Q" target="_JNj8AU_BEeSxqchWGzsm5Q">
+        <type href="http://www.omg.org/spec/BPMN/20100524/DI-XMI#//BPMNShape/bpmnElement"/>
+      </edges>
+    </rhs>
+    <mappings xmi:id="_Iy0gwk_BEeSxqchWGzsm5Q" origin="_Iy0gwE_BEeSxqchWGzsm5Q" image="_Iy0gwU_BEeSxqchWGzsm5Q"/>
+    <mappings xmi:id="_JNj8Ak_BEeSxqchWGzsm5Q" origin="_JNj8AE_BEeSxqchWGzsm5Q" image="_JNj8AU_BEeSxqchWGzsm5Q"/>
+    <mappings xmi:id="_KCZ5Uk_BEeSxqchWGzsm5Q" origin="_KCZ5UE_BEeSxqchWGzsm5Q" image="_KCZ5UU_BEeSxqchWGzsm5Q"/>
+    <mappings xmi:id="_PlDCgk_BEeSxqchWGzsm5Q" origin="_PlDCgE_BEeSxqchWGzsm5Q" image="_PlDCgU_BEeSxqchWGzsm5Q"/>
+    <mappings xmi:id="_QLZQ0k_BEeSxqchWGzsm5Q" origin="_QLZQ0E_BEeSxqchWGzsm5Q" image="_QLZQ0U_BEeSxqchWGzsm5Q"/>
+    <mappings xmi:id="_UMUIkk_BEeSxqchWGzsm5Q" origin="_UMUIkE_BEeSxqchWGzsm5Q" image="_UMUIkU_BEeSxqchWGzsm5Q"/>
+    <mappings xmi:id="_jT5ywk_BEeSxqchWGzsm5Q" origin="_jT5ywE_BEeSxqchWGzsm5Q" image="_jT5ywU_BEeSxqchWGzsm5Q"/>
+  </units>
+  <units xsi:type="henshin:Rule" xmi:id="_9hiH0E_CEeSxqchWGzsm5Q" name="setTargetRef">
+    <parameters xmi:id="_elS_YFPDEeS_zfeF7kE1Gg" name="id"/>
+    <parameters xmi:id="_A912oU_DEeSxqchWGzsm5Q" name="targetId"/>
+    <lhs xmi:id="_9hj9AE_CEeSxqchWGzsm5Q" name="Lhs">
+      <nodes xmi:id="_EoQS4E_DEeSxqchWGzsm5Q" name="" incoming="_ejU4UE_EEeSxqchWGzsm5Q" outgoing="_INLLIE_DEeSxqchWGzsm5Q">
+        <type href="http://www.omg.org/spec/BPMN/20100524/MODEL-XMI#//SequenceFlow"/>
+        <attributes xmi:id="_dPkikFPDEeS_zfeF7kE1Gg" value="id">
+          <type href="http://www.omg.org/spec/BPMN/20100524/MODEL-XMI#//BaseElement/id"/>
+        </attributes>
+      </nodes>
+      <nodes xmi:id="_FXbGAE_DEeSxqchWGzsm5Q" incoming="_INLLIE_DEeSxqchWGzsm5Q _bq4hAE_DEeSxqchWGzsm5Q">
+        <type href="http://www.omg.org/spec/BPMN/20100524/MODEL-XMI#//FlowNode"/>
+      </nodes>
+      <nodes xmi:id="_GJA7AE_DEeSxqchWGzsm5Q" incoming="_bWx5QE_DEeSxqchWGzsm5Q">
+        <type href="http://www.omg.org/spec/BPMN/20100524/MODEL-XMI#//FlowNode"/>
+        <attributes xmi:id="_LbqgYE_DEeSxqchWGzsm5Q" value="targetId">
+          <type href="http://www.omg.org/spec/BPMN/20100524/MODEL-XMI#//BaseElement/id"/>
+        </attributes>
+      </nodes>
+      <nodes xmi:id="_URWusE_DEeSxqchWGzsm5Q" outgoing="_akpRsE_DEeSxqchWGzsm5Q _ejU4UE_EEeSxqchWGzsm5Q">
+        <type href="http://www.omg.org/spec/BPMN/20100524/DI-XMI#//BPMNEdge"/>
+      </nodes>
+      <nodes xmi:id="_U_BF8E_DEeSxqchWGzsm5Q" incoming="_akpRsE_DEeSxqchWGzsm5Q" outgoing="_bq4hAE_DEeSxqchWGzsm5Q">
+        <type href="http://www.omg.org/spec/BPMN/20100524/DI-XMI#//BPMNShape"/>
+      </nodes>
+      <nodes xmi:id="_VaeS4E_DEeSxqchWGzsm5Q" outgoing="_bWx5QE_DEeSxqchWGzsm5Q">
+        <type href="http://www.omg.org/spec/BPMN/20100524/DI-XMI#//BPMNShape"/>
+      </nodes>
+      <edges xmi:id="_INLLIE_DEeSxqchWGzsm5Q" source="_EoQS4E_DEeSxqchWGzsm5Q" target="_FXbGAE_DEeSxqchWGzsm5Q">
+        <type href="http://www.omg.org/spec/BPMN/20100524/MODEL-XMI#//SequenceFlow/targetRef"/>
+      </edges>
+      <edges xmi:id="_akpRsE_DEeSxqchWGzsm5Q" source="_URWusE_DEeSxqchWGzsm5Q" target="_U_BF8E_DEeSxqchWGzsm5Q">
+        <type href="http://www.omg.org/spec/BPMN/20100524/DI-XMI#//BPMNEdge/targetElement"/>
+      </edges>
+      <edges xmi:id="_bWx5QE_DEeSxqchWGzsm5Q" source="_VaeS4E_DEeSxqchWGzsm5Q" target="_GJA7AE_DEeSxqchWGzsm5Q">
+        <type href="http://www.omg.org/spec/BPMN/20100524/DI-XMI#//BPMNShape/bpmnElement"/>
+      </edges>
+      <edges xmi:id="_bq4hAE_DEeSxqchWGzsm5Q" source="_U_BF8E_DEeSxqchWGzsm5Q" target="_FXbGAE_DEeSxqchWGzsm5Q">
+        <type href="http://www.omg.org/spec/BPMN/20100524/DI-XMI#//BPMNShape/bpmnElement"/>
+      </edges>
+      <edges xmi:id="_ejU4UE_EEeSxqchWGzsm5Q" source="_URWusE_DEeSxqchWGzsm5Q" target="_EoQS4E_DEeSxqchWGzsm5Q">
+        <type href="http://www.omg.org/spec/BPMN/20100524/DI-XMI#//BPMNEdge/bpmnElement"/>
+      </edges>
+    </lhs>
+    <rhs xmi:id="_9hj9AU_CEeSxqchWGzsm5Q" name="Rhs">
+      <nodes xmi:id="_EoQS4U_DEeSxqchWGzsm5Q" name="" incoming="_ejU4UU_EEeSxqchWGzsm5Q" outgoing="_IjVBUE_DEeSxqchWGzsm5Q">
+        <type href="http://www.omg.org/spec/BPMN/20100524/MODEL-XMI#//SequenceFlow"/>
+        <attributes xmi:id="_dPlJoFPDEeS_zfeF7kE1Gg" value="id">
+          <type href="http://www.omg.org/spec/BPMN/20100524/MODEL-XMI#//BaseElement/id"/>
+        </attributes>
+      </nodes>
+      <nodes xmi:id="_FXbGAU_DEeSxqchWGzsm5Q" incoming="_bq4hAU_DEeSxqchWGzsm5Q">
+        <type href="http://www.omg.org/spec/BPMN/20100524/MODEL-XMI#//FlowNode"/>
+      </nodes>
+      <nodes xmi:id="_GJA7AU_DEeSxqchWGzsm5Q" incoming="_IjVBUE_DEeSxqchWGzsm5Q _bWx5QU_DEeSxqchWGzsm5Q">
+        <type href="http://www.omg.org/spec/BPMN/20100524/MODEL-XMI#//FlowNode"/>
+        <attributes xmi:id="_LbqgYU_DEeSxqchWGzsm5Q" value="targetId">
+          <type href="http://www.omg.org/spec/BPMN/20100524/MODEL-XMI#//BaseElement/id"/>
+        </attributes>
+      </nodes>
+      <nodes xmi:id="_URWusU_DEeSxqchWGzsm5Q" outgoing="_a9ugEE_DEeSxqchWGzsm5Q _ejU4UU_EEeSxqchWGzsm5Q">
+        <type href="http://www.omg.org/spec/BPMN/20100524/DI-XMI#//BPMNEdge"/>
+      </nodes>
+      <nodes xmi:id="_U_BF8U_DEeSxqchWGzsm5Q" outgoing="_bq4hAU_DEeSxqchWGzsm5Q">
+        <type href="http://www.omg.org/spec/BPMN/20100524/DI-XMI#//BPMNShape"/>
+      </nodes>
+      <nodes xmi:id="_VaeS4U_DEeSxqchWGzsm5Q" incoming="_a9ugEE_DEeSxqchWGzsm5Q" outgoing="_bWx5QU_DEeSxqchWGzsm5Q">
+        <type href="http://www.omg.org/spec/BPMN/20100524/DI-XMI#//BPMNShape"/>
+      </nodes>
+      <edges xmi:id="_IjVBUE_DEeSxqchWGzsm5Q" source="_EoQS4U_DEeSxqchWGzsm5Q" target="_GJA7AU_DEeSxqchWGzsm5Q">
+        <type href="http://www.omg.org/spec/BPMN/20100524/MODEL-XMI#//SequenceFlow/targetRef"/>
+      </edges>
+      <edges xmi:id="_bWx5QU_DEeSxqchWGzsm5Q" source="_VaeS4U_DEeSxqchWGzsm5Q" target="_GJA7AU_DEeSxqchWGzsm5Q">
+        <type href="http://www.omg.org/spec/BPMN/20100524/DI-XMI#//BPMNShape/bpmnElement"/>
+      </edges>
+      <edges xmi:id="_bq4hAU_DEeSxqchWGzsm5Q" source="_U_BF8U_DEeSxqchWGzsm5Q" target="_FXbGAU_DEeSxqchWGzsm5Q">
+        <type href="http://www.omg.org/spec/BPMN/20100524/DI-XMI#//BPMNShape/bpmnElement"/>
+      </edges>
+      <edges xmi:id="_a9ugEE_DEeSxqchWGzsm5Q" source="_URWusU_DEeSxqchWGzsm5Q" target="_VaeS4U_DEeSxqchWGzsm5Q">
+        <type href="http://www.omg.org/spec/BPMN/20100524/DI-XMI#//BPMNEdge/sourceElement"/>
+      </edges>
+      <edges xmi:id="_ejU4UU_EEeSxqchWGzsm5Q" source="_URWusU_DEeSxqchWGzsm5Q" target="_EoQS4U_DEeSxqchWGzsm5Q">
+        <type href="http://www.omg.org/spec/BPMN/20100524/DI-XMI#//BPMNEdge/bpmnElement"/>
+      </edges>
+    </rhs>
+    <mappings xmi:id="_EoQS4k_DEeSxqchWGzsm5Q" origin="_EoQS4E_DEeSxqchWGzsm5Q" image="_EoQS4U_DEeSxqchWGzsm5Q"/>
+    <mappings xmi:id="_FXbGAk_DEeSxqchWGzsm5Q" origin="_FXbGAE_DEeSxqchWGzsm5Q" image="_FXbGAU_DEeSxqchWGzsm5Q"/>
+    <mappings xmi:id="_GJA7Ak_DEeSxqchWGzsm5Q" origin="_GJA7AE_DEeSxqchWGzsm5Q" image="_GJA7AU_DEeSxqchWGzsm5Q"/>
+    <mappings xmi:id="_URXVwE_DEeSxqchWGzsm5Q" origin="_URWusE_DEeSxqchWGzsm5Q" image="_URWusU_DEeSxqchWGzsm5Q"/>
+    <mappings xmi:id="_U_BF8k_DEeSxqchWGzsm5Q" origin="_U_BF8E_DEeSxqchWGzsm5Q" image="_U_BF8U_DEeSxqchWGzsm5Q"/>
+    <mappings xmi:id="_VaeS4k_DEeSxqchWGzsm5Q" origin="_VaeS4E_DEeSxqchWGzsm5Q" image="_VaeS4U_DEeSxqchWGzsm5Q"/>
+  </units>
+  <units xsi:type="henshin:Rule" xmi:id="_Y2ClYE_EEeSxqchWGzsm5Q" name="setSourceRef">
+    <parameters xmi:id="_aTbJYE_EEeSxqchWGzsm5Q" name="id"/>
+    <parameters xmi:id="_aTbJYU_EEeSxqchWGzsm5Q" name="sourceId"/>
+    <lhs xmi:id="_Y2EakE_EEeSxqchWGzsm5Q" name="Lhs">
+      <nodes xmi:id="_dI46oE_EEeSxqchWGzsm5Q" incoming="_n6p0EE_EEeSxqchWGzsm5Q" outgoing="_o5DWAE_EEeSxqchWGzsm5Q">
+        <type href="http://www.omg.org/spec/BPMN/20100524/MODEL-XMI#//SequenceFlow"/>
+        <attributes xmi:id="_tZDWcE_EEeSxqchWGzsm5Q" value="id">
+          <type href="http://www.omg.org/spec/BPMN/20100524/MODEL-XMI#//BaseElement/id"/>
+        </attributes>
+      </nodes>
+      <nodes xmi:id="_hF47sE_EEeSxqchWGzsm5Q" incoming="_o5DWAE_EEeSxqchWGzsm5Q _JWX88E_FEeSxqchWGzsm5Q">
+        <type href="http://www.omg.org/spec/BPMN/20100524/MODEL-XMI#//FlowNode"/>
+      </nodes>
+      <nodes xmi:id="_h2FCgE_EEeSxqchWGzsm5Q" incoming="_Mp7_cE_FEeSxqchWGzsm5Q">
+        <type href="http://www.omg.org/spec/BPMN/20100524/MODEL-XMI#//FlowNode"/>
+        <attributes xmi:id="_t7hxYE_EEeSxqchWGzsm5Q" value="sourceId">
+          <type href="http://www.omg.org/spec/BPMN/20100524/MODEL-XMI#//BaseElement/id"/>
+        </attributes>
+      </nodes>
+      <nodes xmi:id="_jIWisE_EEeSxqchWGzsm5Q" outgoing="_n6p0EE_EEeSxqchWGzsm5Q _KdbroE_FEeSxqchWGzsm5Q">
+        <type href="http://www.omg.org/spec/BPMN/20100524/DI-XMI#//BPMNEdge"/>
+      </nodes>
+      <nodes xmi:id="_ID3zQE_FEeSxqchWGzsm5Q" outgoing="_Mp7_cE_FEeSxqchWGzsm5Q">
+        <type href="http://www.omg.org/spec/BPMN/20100524/DI-XMI#//BPMNShape"/>
+      </nodes>
+      <nodes xmi:id="_IPYfsE_FEeSxqchWGzsm5Q" incoming="_KdbroE_FEeSxqchWGzsm5Q" outgoing="_JWX88E_FEeSxqchWGzsm5Q">
+        <type href="http://www.omg.org/spec/BPMN/20100524/DI-XMI#//BPMNShape"/>
+      </nodes>
+      <edges xmi:id="_n6p0EE_EEeSxqchWGzsm5Q" source="_jIWisE_EEeSxqchWGzsm5Q" target="_dI46oE_EEeSxqchWGzsm5Q">
+        <type href="http://www.omg.org/spec/BPMN/20100524/DI-XMI#//BPMNEdge/bpmnElement"/>
+      </edges>
+      <edges xmi:id="_o5DWAE_EEeSxqchWGzsm5Q" source="_dI46oE_EEeSxqchWGzsm5Q" target="_hF47sE_EEeSxqchWGzsm5Q">
+        <type href="http://www.omg.org/spec/BPMN/20100524/MODEL-XMI#//SequenceFlow/sourceRef"/>
+      </edges>
+      <edges xmi:id="_JWX88E_FEeSxqchWGzsm5Q" source="_IPYfsE_FEeSxqchWGzsm5Q" target="_hF47sE_EEeSxqchWGzsm5Q">
+        <type href="http://www.omg.org/spec/BPMN/20100524/DI-XMI#//BPMNShape/bpmnElement"/>
+      </edges>
+      <edges xmi:id="_KdbroE_FEeSxqchWGzsm5Q" source="_jIWisE_EEeSxqchWGzsm5Q" target="_IPYfsE_FEeSxqchWGzsm5Q">
+        <type href="http://www.omg.org/spec/BPMN/20100524/DI-XMI#//BPMNEdge/sourceElement"/>
+      </edges>
+      <edges xmi:id="_Mp7_cE_FEeSxqchWGzsm5Q" source="_ID3zQE_FEeSxqchWGzsm5Q" target="_h2FCgE_EEeSxqchWGzsm5Q">
+        <type href="http://www.omg.org/spec/BPMN/20100524/DI-XMI#//BPMNShape/bpmnElement"/>
+      </edges>
+    </lhs>
+    <rhs xmi:id="_Y2EakU_EEeSxqchWGzsm5Q" name="Rhs">
+      <nodes xmi:id="_dI46oU_EEeSxqchWGzsm5Q" incoming="_n6p0EU_EEeSxqchWGzsm5Q" outgoing="_pXaF8E_EEeSxqchWGzsm5Q">
+        <type href="http://www.omg.org/spec/BPMN/20100524/MODEL-XMI#//SequenceFlow"/>
+        <attributes xmi:id="_tZFysE_EEeSxqchWGzsm5Q" value="id">
+          <type href="http://www.omg.org/spec/BPMN/20100524/MODEL-XMI#//BaseElement/id"/>
+        </attributes>
+      </nodes>
+      <nodes xmi:id="_hF47sU_EEeSxqchWGzsm5Q" incoming="_JWX88U_FEeSxqchWGzsm5Q">
+        <type href="http://www.omg.org/spec/BPMN/20100524/MODEL-XMI#//FlowNode"/>
+      </nodes>
+      <nodes xmi:id="_h2FCgU_EEeSxqchWGzsm5Q" incoming="_pXaF8E_EEeSxqchWGzsm5Q _Mp8mgE_FEeSxqchWGzsm5Q">
+        <type href="http://www.omg.org/spec/BPMN/20100524/MODEL-XMI#//FlowNode"/>
+        <attributes xmi:id="_t7hxYU_EEeSxqchWGzsm5Q" value="sourceId">
+          <type href="http://www.omg.org/spec/BPMN/20100524/MODEL-XMI#//BaseElement/id"/>
+        </attributes>
+      </nodes>
+      <nodes xmi:id="_jIWisU_EEeSxqchWGzsm5Q" outgoing="_n6p0EU_EEeSxqchWGzsm5Q _K7pRoE_FEeSxqchWGzsm5Q">
+        <type href="http://www.omg.org/spec/BPMN/20100524/DI-XMI#//BPMNEdge"/>
+      </nodes>
+      <nodes xmi:id="_ID3zQU_FEeSxqchWGzsm5Q" incoming="_K7pRoE_FEeSxqchWGzsm5Q" outgoing="_Mp8mgE_FEeSxqchWGzsm5Q">
+        <type href="http://www.omg.org/spec/BPMN/20100524/DI-XMI#//BPMNShape"/>
+      </nodes>
+      <nodes xmi:id="_IPYfsU_FEeSxqchWGzsm5Q" outgoing="_JWX88U_FEeSxqchWGzsm5Q">
+        <type href="http://www.omg.org/spec/BPMN/20100524/DI-XMI#//BPMNShape"/>
+      </nodes>
+      <edges xmi:id="_n6p0EU_EEeSxqchWGzsm5Q" source="_jIWisU_EEeSxqchWGzsm5Q" target="_dI46oU_EEeSxqchWGzsm5Q">
+        <type href="http://www.omg.org/spec/BPMN/20100524/DI-XMI#//BPMNEdge/bpmnElement"/>
+      </edges>
+      <edges xmi:id="_pXaF8E_EEeSxqchWGzsm5Q" source="_dI46oU_EEeSxqchWGzsm5Q" target="_h2FCgU_EEeSxqchWGzsm5Q">
+        <type href="http://www.omg.org/spec/BPMN/20100524/MODEL-XMI#//SequenceFlow/sourceRef"/>
+      </edges>
+      <edges xmi:id="_JWX88U_FEeSxqchWGzsm5Q" source="_IPYfsU_FEeSxqchWGzsm5Q" target="_hF47sU_EEeSxqchWGzsm5Q">
+        <type href="http://www.omg.org/spec/BPMN/20100524/DI-XMI#//BPMNShape/bpmnElement"/>
+      </edges>
+      <edges xmi:id="_K7pRoE_FEeSxqchWGzsm5Q" source="_jIWisU_EEeSxqchWGzsm5Q" target="_ID3zQU_FEeSxqchWGzsm5Q">
+        <type href="http://www.omg.org/spec/BPMN/20100524/DI-XMI#//BPMNEdge/sourceElement"/>
+      </edges>
+      <edges xmi:id="_Mp8mgE_FEeSxqchWGzsm5Q" source="_ID3zQU_FEeSxqchWGzsm5Q" target="_h2FCgU_EEeSxqchWGzsm5Q">
+        <type href="http://www.omg.org/spec/BPMN/20100524/DI-XMI#//BPMNShape/bpmnElement"/>
+      </edges>
+    </rhs>
+    <mappings xmi:id="_dI46ok_EEeSxqchWGzsm5Q" origin="_dI46oE_EEeSxqchWGzsm5Q" image="_dI46oU_EEeSxqchWGzsm5Q"/>
+    <mappings xmi:id="_hF47sk_EEeSxqchWGzsm5Q" origin="_hF47sE_EEeSxqchWGzsm5Q" image="_hF47sU_EEeSxqchWGzsm5Q"/>
+    <mappings xmi:id="_h2FCgk_EEeSxqchWGzsm5Q" origin="_h2FCgE_EEeSxqchWGzsm5Q" image="_h2FCgU_EEeSxqchWGzsm5Q"/>
+    <mappings xmi:id="_jIWisk_EEeSxqchWGzsm5Q" origin="_jIWisE_EEeSxqchWGzsm5Q" image="_jIWisU_EEeSxqchWGzsm5Q"/>
+    <mappings xmi:id="_ID3zQk_FEeSxqchWGzsm5Q" origin="_ID3zQE_FEeSxqchWGzsm5Q" image="_ID3zQU_FEeSxqchWGzsm5Q"/>
+    <mappings xmi:id="_IPYfsk_FEeSxqchWGzsm5Q" origin="_IPYfsE_FEeSxqchWGzsm5Q" image="_IPYfsU_FEeSxqchWGzsm5Q"/>
+  </units>
+  <units xsi:type="henshin:Rule" xmi:id="_egUyME_FEeSxqchWGzsm5Q" name="createCallActivity">
+    <parameters xmi:id="_TnqUoE_HEeSxqchWGzsm5Q" name="id"/>
+    <parameters xmi:id="_Tnq7sE_HEeSxqchWGzsm5Q" name="name"/>
+    <parameters xmi:id="_e8OtQE_UEeSxqchWGzsm5Q" name="x"/>
+    <parameters xmi:id="_e8OtQU_UEeSxqchWGzsm5Q" name="y"/>
+    <parameters xmi:id="_8pdMQFMjEeSQIc3c9royVw" name="calledElement"/>
+    <lhs xmi:id="_egWnYE_FEeSxqchWGzsm5Q" name="Lhs">
+      <nodes xmi:id="_rRLOgE_FEeSxqchWGzsm5Q">
+        <type href="http://www.omg.org/spec/BPMN/20100524/MODEL-XMI#//Process"/>
+      </nodes>
+      <nodes xmi:id="_r2dF0E_FEeSxqchWGzsm5Q">
+        <type href="http://www.omg.org/spec/BPMN/20100524/DI-XMI#//BPMNPlane"/>
+      </nodes>
+      <nodes xmi:id="_hp98UE_IEeSxqchWGzsm5Q">
+        <type href="http://www.omg.org/spec/BPMN/20100524/DI-XMI#//BPMNLabelStyle"/>
+      </nodes>
+      <nodes xmi:id="_9xlR8FMjEeSQIc3c9royVw" name="calledElement">
+        <type href="http://www.omg.org/spec/BPMN/20100524/MODEL-XMI#//Process"/>
+      </nodes>
+    </lhs>
+    <rhs xmi:id="_egXOcE_FEeSxqchWGzsm5Q" name="Rhs">
+      <nodes xmi:id="_g62T4E_FEeSxqchWGzsm5Q" incoming="_99SvYE_FEeSxqchWGzsm5Q __MefUE_FEeSxqchWGzsm5Q" outgoing="_7ILLMGdlEeSg4fIiiFtO4Q">
+        <type href="http://www.omg.org/spec/BPMN/20100524/MODEL-XMI#//CallActivity"/>
+        <attributes xmi:id="_jd5fcE_FEeSxqchWGzsm5Q" value="id">
+          <type href="http://www.omg.org/spec/BPMN/20100524/MODEL-XMI#//BaseElement/id"/>
+        </attributes>
+        <attributes xmi:id="_nLLCcE_FEeSxqchWGzsm5Q" value="name">
+          <type href="http://www.omg.org/spec/BPMN/20100524/MODEL-XMI#//FlowElement/name"/>
+        </attributes>
+      </nodes>
+      <nodes xmi:id="_hxJCsE_FEeSxqchWGzsm5Q" incoming="_8tU8UE_FEeSxqchWGzsm5Q" outgoing="_9J91AE_FEeSxqchWGzsm5Q __MefUE_FEeSxqchWGzsm5Q _59iN4E_IEeSxqchWGzsm5Q">
+        <type href="http://www.omg.org/spec/BPMN/20100524/DI-XMI#//BPMNShape"/>
+      </nodes>
+      <nodes xmi:id="_ibEwgE_FEeSxqchWGzsm5Q" incoming="_9J91AE_FEeSxqchWGzsm5Q" outgoing="_i2HmYE_IEeSxqchWGzsm5Q _6X4nkE_IEeSxqchWGzsm5Q">
+        <type href="http://www.omg.org/spec/BPMN/20100524/DI-XMI#//BPMNLabel"/>
+      </nodes>
+      <nodes xmi:id="_rRLOgU_FEeSxqchWGzsm5Q" outgoing="_99SvYE_FEeSxqchWGzsm5Q">
+        <type href="http://www.omg.org/spec/BPMN/20100524/MODEL-XMI#//Process"/>
+      </nodes>
+      <nodes xmi:id="_r2dF0U_FEeSxqchWGzsm5Q" outgoing="_8tU8UE_FEeSxqchWGzsm5Q">
+        <type href="http://www.omg.org/spec/BPMN/20100524/DI-XMI#//BPMNPlane"/>
+      </nodes>
+      <nodes xmi:id="_iPklxE_IEeSxqchWGzsm5Q" incoming="_i2HmYE_IEeSxqchWGzsm5Q">
+        <type href="http://www.omg.org/spec/BPMN/20100524/DI-XMI#//BPMNLabelStyle"/>
+      </nodes>
+      <nodes xmi:id="_3m2qYE_IEeSxqchWGzsm5Q" incoming="_6X4nkE_IEeSxqchWGzsm5Q">
+        <type href="http://www.omg.org/spec/DD/20100524/DC-XMI#//Bounds"/>
+        <attributes xmi:id="_AKv-EE_JEeSxqchWGzsm5Q" value="x-65">
+          <type href="http://www.omg.org/spec/DD/20100524/DC-XMI#//Bounds/x"/>
+        </attributes>
+        <attributes xmi:id="_AnK0UE_JEeSxqchWGzsm5Q" value="y-15">
+          <type href="http://www.omg.org/spec/DD/20100524/DC-XMI#//Bounds/y"/>
+        </attributes>
+        <attributes xmi:id="_A4J2oE_JEeSxqchWGzsm5Q" value="130">
+          <type href="http://www.omg.org/spec/DD/20100524/DC-XMI#//Bounds/width"/>
+        </attributes>
+        <attributes xmi:id="_A97ugE_JEeSxqchWGzsm5Q" value="30">
+          <type href="http://www.omg.org/spec/DD/20100524/DC-XMI#//Bounds/height"/>
+        </attributes>
+      </nodes>
+      <nodes xmi:id="_4By58E_IEeSxqchWGzsm5Q" incoming="_59iN4E_IEeSxqchWGzsm5Q">
+        <type href="http://www.omg.org/spec/DD/20100524/DC-XMI#//Bounds"/>
+        <attributes xmi:id="_8VbSUE_IEeSxqchWGzsm5Q" value="x-75">
+          <type href="http://www.omg.org/spec/DD/20100524/DC-XMI#//Bounds/x"/>
+        </attributes>
+        <attributes xmi:id="_9Bz3ME_IEeSxqchWGzsm5Q" value="y-40">
+          <type href="http://www.omg.org/spec/DD/20100524/DC-XMI#//Bounds/y"/>
+        </attributes>
+        <attributes xmi:id="_-XxkkE_IEeSxqchWGzsm5Q" value="150">
+          <type href="http://www.omg.org/spec/DD/20100524/DC-XMI#//Bounds/width"/>
+        </attributes>
+        <attributes xmi:id="__hK1kE_IEeSxqchWGzsm5Q" value="80">
+          <type href="http://www.omg.org/spec/DD/20100524/DC-XMI#//Bounds/height"/>
+        </attributes>
+      </nodes>
+      <nodes xmi:id="_-dwbcFMjEeSQIc3c9royVw" name="calledElement" incoming="_7ILLMGdlEeSg4fIiiFtO4Q">
+        <type href="http://www.omg.org/spec/BPMN/20100524/MODEL-XMI#//Process"/>
+      </nodes>
+      <edges xmi:id="_99SvYE_FEeSxqchWGzsm5Q" source="_rRLOgU_FEeSxqchWGzsm5Q" target="_g62T4E_FEeSxqchWGzsm5Q">
+        <type href="http://www.omg.org/spec/BPMN/20100524/MODEL-XMI#//FlowElementsContainer/flowElements"/>
+      </edges>
+      <edges xmi:id="__MefUE_FEeSxqchWGzsm5Q" source="_hxJCsE_FEeSxqchWGzsm5Q" target="_g62T4E_FEeSxqchWGzsm5Q">
+        <type href="http://www.omg.org/spec/BPMN/20100524/DI-XMI#//BPMNShape/bpmnElement"/>
+      </edges>
+      <edges xmi:id="_8tU8UE_FEeSxqchWGzsm5Q" source="_r2dF0U_FEeSxqchWGzsm5Q" target="_hxJCsE_FEeSxqchWGzsm5Q">
+        <type href="http://www.omg.org/spec/DD/20100524/DI-XMI#//Plane/planeElement"/>
+      </edges>
+      <edges xmi:id="_9J91AE_FEeSxqchWGzsm5Q" source="_hxJCsE_FEeSxqchWGzsm5Q" target="_ibEwgE_FEeSxqchWGzsm5Q">
+        <type href="http://www.omg.org/spec/BPMN/20100524/DI-XMI#//BPMNShape/label"/>
+      </edges>
+      <edges xmi:id="_i2HmYE_IEeSxqchWGzsm5Q" source="_ibEwgE_FEeSxqchWGzsm5Q" target="_iPklxE_IEeSxqchWGzsm5Q">
+        <type href="http://www.omg.org/spec/BPMN/20100524/DI-XMI#//BPMNLabel/labelStyle"/>
+      </edges>
+      <edges xmi:id="_59iN4E_IEeSxqchWGzsm5Q" source="_hxJCsE_FEeSxqchWGzsm5Q" target="_4By58E_IEeSxqchWGzsm5Q">
+        <type href="http://www.omg.org/spec/DD/20100524/DI-XMI#//Shape/bounds"/>
+      </edges>
+      <edges xmi:id="_6X4nkE_IEeSxqchWGzsm5Q" source="_ibEwgE_FEeSxqchWGzsm5Q" target="_3m2qYE_IEeSxqchWGzsm5Q">
+        <type href="http://www.omg.org/spec/DD/20100524/DI-XMI#//Label/bounds"/>
+      </edges>
+      <edges xmi:id="_7ILLMGdlEeSg4fIiiFtO4Q" source="_g62T4E_FEeSxqchWGzsm5Q" target="_-dwbcFMjEeSQIc3c9royVw">
+        <type href="http://www.omg.org/spec/BPMN/20100524/MODEL-XMI#//CallActivity/calledElementRef"/>
+      </edges>
+    </rhs>
+    <mappings xmi:id="_rRLOgk_FEeSxqchWGzsm5Q" origin="_rRLOgE_FEeSxqchWGzsm5Q" image="_rRLOgU_FEeSxqchWGzsm5Q"/>
+    <mappings xmi:id="_r2dF0k_FEeSxqchWGzsm5Q" origin="_r2dF0E_FEeSxqchWGzsm5Q" image="_r2dF0U_FEeSxqchWGzsm5Q"/>
+    <mappings xmi:id="_iPkl4E_IEeSxqchWGzsm5Q" origin="_hp98UE_IEeSxqchWGzsm5Q" image="_iPklxE_IEeSxqchWGzsm5Q"/>
+    <mappings xmi:id="_-dwbcVMjEeSQIc3c9royVw" origin="_9xlR8FMjEeSQIc3c9royVw" image="_-dwbcFMjEeSQIc3c9royVw"/>
+  </units>
+  <units xsi:type="henshin:Rule" xmi:id="_dbIpYFICEeSC8Y6zH3LPOA" name="createStartEvent">
+    <parameters xmi:id="_iEYFYFICEeSC8Y6zH3LPOA" name="id"/>
+    <parameters xmi:id="_lKHuUFICEeSC8Y6zH3LPOA" name="name"/>
+    <parameters xmi:id="_lKHuUVICEeSC8Y6zH3LPOA" name="shapeId"/>
+    <parameters xmi:id="_iEYscVICEeSC8Y6zH3LPOA" name="x"/>
+    <parameters xmi:id="_iEYsclICEeSC8Y6zH3LPOA" name="y"/>
+    <lhs xmi:id="_dbX58FICEeSC8Y6zH3LPOA" name="Lhs">
+      <nodes xmi:id="_r8FxYFICEeSC8Y6zH3LPOA">
+        <type href="http://www.omg.org/spec/BPMN/20100524/MODEL-XMI#//Process"/>
+      </nodes>
+      <nodes xmi:id="_se8m0FICEeSC8Y6zH3LPOA">
+        <type href="http://www.omg.org/spec/BPMN/20100524/DI-XMI#//BPMNPlane"/>
+      </nodes>
+      <nodes xmi:id="_uj3r8FICEeSC8Y6zH3LPOA">
+        <type href="http://www.omg.org/spec/BPMN/20100524/DI-XMI#//BPMNLabelStyle"/>
+      </nodes>
+    </lhs>
+    <rhs xmi:id="_dbX58VICEeSC8Y6zH3LPOA" name="Rhs">
+      <nodes xmi:id="_o8cwcFICEeSC8Y6zH3LPOA" incoming="_3Y1hgFICEeSC8Y6zH3LPOA _4PSoYFICEeSC8Y6zH3LPOA">
+        <type href="http://www.omg.org/spec/BPMN/20100524/MODEL-XMI#//StartEvent"/>
+        <attributes xmi:id="__GiNAFICEeSC8Y6zH3LPOA" value="id">
+          <type href="http://www.omg.org/spec/BPMN/20100524/MODEL-XMI#//BaseElement/id"/>
+        </attributes>
+        <attributes xmi:id="__pyrEFICEeSC8Y6zH3LPOA" value="name">
+          <type href="http://www.omg.org/spec/BPMN/20100524/MODEL-XMI#//FlowElement/name"/>
+        </attributes>
+      </nodes>
+      <nodes xmi:id="_pzaNoFICEeSC8Y6zH3LPOA" incoming="_3IkQ4FICEeSC8Y6zH3LPOA" outgoing="_4PSoYFICEeSC8Y6zH3LPOA _41wygFICEeSC8Y6zH3LPOA _5kPpIFICEeSC8Y6zH3LPOA">
+        <type href="http://www.omg.org/spec/BPMN/20100524/DI-XMI#//BPMNShape"/>
+        <attributes xmi:id="_CO8vcFIDEeSC8Y6zH3LPOA" value="shapeId">
+          <type href="http://www.omg.org/spec/DD/20100524/DI-XMI#//DiagramElement/id"/>
+        </attributes>
+      </nodes>
+      <nodes xmi:id="_r8FxYVICEeSC8Y6zH3LPOA" outgoing="_3Y1hgFICEeSC8Y6zH3LPOA">
+        <type href="http://www.omg.org/spec/BPMN/20100524/MODEL-XMI#//Process"/>
+      </nodes>
+      <nodes xmi:id="_se8m0VICEeSC8Y6zH3LPOA" outgoing="_3IkQ4FICEeSC8Y6zH3LPOA">
+        <type href="http://www.omg.org/spec/BPMN/20100524/DI-XMI#//BPMNPlane"/>
+      </nodes>
+      <nodes xmi:id="_tSotkFICEeSC8Y6zH3LPOA" incoming="_5Nn44FICEeSC8Y6zH3LPOA">
+        <type href="http://www.omg.org/spec/DD/20100524/DC-XMI#//Bounds"/>
+        <attributes xmi:id="_QjQikFIDEeSC8Y6zH3LPOA" value="x-16">
+          <type href="http://www.omg.org/spec/DD/20100524/DC-XMI#//Bounds/x"/>
+        </attributes>
+        <attributes xmi:id="_RNo8UFIDEeSC8Y6zH3LPOA" value="y-16">
+          <type href="http://www.omg.org/spec/DD/20100524/DC-XMI#//Bounds/y"/>
+        </attributes>
+        <attributes xmi:id="_R3LokFIDEeSC8Y6zH3LPOA" value="32">
+          <type href="http://www.omg.org/spec/DD/20100524/DC-XMI#//Bounds/width"/>
+        </attributes>
+        <attributes xmi:id="_SWVCsFIDEeSC8Y6zH3LPOA" value="32">
+          <type href="http://www.omg.org/spec/DD/20100524/DC-XMI#//Bounds/height"/>
+        </attributes>
+      </nodes>
+      <nodes xmi:id="_t4DHwFICEeSC8Y6zH3LPOA" incoming="_5kPpIFICEeSC8Y6zH3LPOA" outgoing="_5-BbEFICEeSC8Y6zH3LPOA _5Nn44FICEeSC8Y6zH3LPOA">
+        <type href="http://www.omg.org/spec/BPMN/20100524/DI-XMI#//BPMNLabel"/>
+      </nodes>
+      <nodes xmi:id="_uj4TAFICEeSC8Y6zH3LPOA" incoming="_5-BbEFICEeSC8Y6zH3LPOA">
+        <type href="http://www.omg.org/spec/BPMN/20100524/DI-XMI#//BPMNLabelStyle"/>
+      </nodes>
+      <nodes xmi:id="_yV06oFICEeSC8Y6zH3LPOA" incoming="_41wygFICEeSC8Y6zH3LPOA">
+        <type href="http://www.omg.org/spec/DD/20100524/DC-XMI#//Bounds"/>
+        <attributes xmi:id="_ESZN4FIDEeSC8Y6zH3LPOA" value="x-18">
+          <type href="http://www.omg.org/spec/DD/20100524/DC-XMI#//Bounds/x"/>
+        </attributes>
+        <attributes xmi:id="_FINbkFIDEeSC8Y6zH3LPOA" value="y-18">
+          <type href="http://www.omg.org/spec/DD/20100524/DC-XMI#//Bounds/y"/>
+        </attributes>
+        <attributes xmi:id="_F1h0kFIDEeSC8Y6zH3LPOA" value="36">
+          <type href="http://www.omg.org/spec/DD/20100524/DC-XMI#//Bounds/width"/>
+        </attributes>
+        <attributes xmi:id="_G3uRYFIDEeSC8Y6zH3LPOA" value="36">
+          <type href="http://www.omg.org/spec/DD/20100524/DC-XMI#//Bounds/height"/>
+        </attributes>
+      </nodes>
+      <edges xmi:id="_3IkQ4FICEeSC8Y6zH3LPOA" source="_se8m0VICEeSC8Y6zH3LPOA" target="_pzaNoFICEeSC8Y6zH3LPOA">
+        <type href="http://www.omg.org/spec/DD/20100524/DI-XMI#//Plane/planeElement"/>
+      </edges>
+      <edges xmi:id="_4PSoYFICEeSC8Y6zH3LPOA" source="_pzaNoFICEeSC8Y6zH3LPOA" target="_o8cwcFICEeSC8Y6zH3LPOA">
+        <type href="http://www.omg.org/spec/BPMN/20100524/DI-XMI#//BPMNShape/bpmnElement"/>
+      </edges>
+      <edges xmi:id="_41wygFICEeSC8Y6zH3LPOA" source="_pzaNoFICEeSC8Y6zH3LPOA" target="_yV06oFICEeSC8Y6zH3LPOA">
+        <type href="http://www.omg.org/spec/DD/20100524/DI-XMI#//Shape/bounds"/>
+      </edges>
+      <edges xmi:id="_5kPpIFICEeSC8Y6zH3LPOA" source="_pzaNoFICEeSC8Y6zH3LPOA" target="_t4DHwFICEeSC8Y6zH3LPOA">
+        <type href="http://www.omg.org/spec/BPMN/20100524/DI-XMI#//BPMNShape/label"/>
+      </edges>
+      <edges xmi:id="_3Y1hgFICEeSC8Y6zH3LPOA" source="_r8FxYVICEeSC8Y6zH3LPOA" target="_o8cwcFICEeSC8Y6zH3LPOA">
+        <type href="http://www.omg.org/spec/BPMN/20100524/MODEL-XMI#//FlowElementsContainer/flowElements"/>
+      </edges>
+      <edges xmi:id="_5Nn44FICEeSC8Y6zH3LPOA" source="_t4DHwFICEeSC8Y6zH3LPOA" target="_tSotkFICEeSC8Y6zH3LPOA">
+        <type href="http://www.omg.org/spec/DD/20100524/DI-XMI#//Label/bounds"/>
+      </edges>
+      <edges xmi:id="_5-BbEFICEeSC8Y6zH3LPOA" source="_t4DHwFICEeSC8Y6zH3LPOA" target="_uj4TAFICEeSC8Y6zH3LPOA">
+        <type href="http://www.omg.org/spec/BPMN/20100524/DI-XMI#//BPMNLabel/labelStyle"/>
+      </edges>
+    </rhs>
+    <mappings xmi:id="_r8FxYlICEeSC8Y6zH3LPOA" origin="_r8FxYFICEeSC8Y6zH3LPOA" image="_r8FxYVICEeSC8Y6zH3LPOA"/>
+    <mappings xmi:id="_se8m0lICEeSC8Y6zH3LPOA" origin="_se8m0FICEeSC8Y6zH3LPOA" image="_se8m0VICEeSC8Y6zH3LPOA"/>
+    <mappings xmi:id="_uj4TAVICEeSC8Y6zH3LPOA" origin="_uj3r8FICEeSC8Y6zH3LPOA" image="_uj4TAFICEeSC8Y6zH3LPOA"/>
+  </units>
+  <units xsi:type="henshin:Rule" xmi:id="_SV2sIFIEEeSC8Y6zH3LPOA" name="createEndEvent">
+    <parameters xmi:id="_eqaOAFIEEeSC8Y6zH3LPOA" name="id"/>
+    <parameters xmi:id="_eqaOAVIEEeSC8Y6zH3LPOA" name="name"/>
+    <parameters xmi:id="_eqa1EFIEEeSC8Y6zH3LPOA" name="shapeId"/>
+    <parameters xmi:id="_eqa1EVIEEeSC8Y6zH3LPOA" name="x"/>
+    <parameters xmi:id="_eqa1ElIEEeSC8Y6zH3LPOA" name="y"/>
+    <lhs xmi:id="_SV8ywFIEEeSC8Y6zH3LPOA" name="Lhs">
+      <nodes xmi:id="_WBR1AFIEEeSC8Y6zH3LPOA">
+        <type href="http://www.omg.org/spec/BPMN/20100524/MODEL-XMI#//Process"/>
+      </nodes>
+      <nodes xmi:id="_WdczoFIEEeSC8Y6zH3LPOA">
+        <type href="http://www.omg.org/spec/BPMN/20100524/DI-XMI#//BPMNPlane"/>
+      </nodes>
+      <nodes xmi:id="_Yy6PIFIEEeSC8Y6zH3LPOA">
+        <type href="http://www.omg.org/spec/BPMN/20100524/DI-XMI#//BPMNLabelStyle"/>
+      </nodes>
+    </lhs>
+    <rhs xmi:id="_SV8ywVIEEeSC8Y6zH3LPOA" name="Rhs">
+      <nodes xmi:id="_WBR1AVIEEeSC8Y6zH3LPOA" outgoing="_fb2SAFIEEeSC8Y6zH3LPOA">
+        <type href="http://www.omg.org/spec/BPMN/20100524/MODEL-XMI#//Process"/>
+      </nodes>
+      <nodes xmi:id="_WddasFIEEeSC8Y6zH3LPOA" outgoing="_gC9VUFIEEeSC8Y6zH3LPOA">
+        <type href="http://www.omg.org/spec/BPMN/20100524/DI-XMI#//BPMNPlane"/>
+      </nodes>
+      <nodes xmi:id="_W2NR4FIEEeSC8Y6zH3LPOA" incoming="_fb2SAFIEEeSC8Y6zH3LPOA _iSUI0FIEEeSC8Y6zH3LPOA">
+        <type href="http://www.omg.org/spec/BPMN/20100524/MODEL-XMI#//EndEvent"/>
+        <attributes xmi:id="_kGzlQFIEEeSC8Y6zH3LPOA" value="id">
+          <type href="http://www.omg.org/spec/BPMN/20100524/MODEL-XMI#//BaseElement/id"/>
+        </attributes>
+        <attributes xmi:id="_lkKUEFIEEeSC8Y6zH3LPOA" value="name">
+          <type href="http://www.omg.org/spec/BPMN/20100524/MODEL-XMI#//FlowElement/name"/>
+        </attributes>
+      </nodes>
+      <nodes xmi:id="_XNnsUFIEEeSC8Y6zH3LPOA" incoming="_gC9VUFIEEeSC8Y6zH3LPOA" outgoing="_gdD3YFIEEeSC8Y6zH3LPOA _hMaQsFIEEeSC8Y6zH3LPOA _iSUI0FIEEeSC8Y6zH3LPOA">
+        <type href="http://www.omg.org/spec/BPMN/20100524/DI-XMI#//BPMNShape"/>
+        <attributes xmi:id="_jQ_-oFIEEeSC8Y6zH3LPOA" value="shapeId">
+          <type href="http://www.omg.org/spec/DD/20100524/DI-XMI#//DiagramElement/id"/>
+        </attributes>
+      </nodes>
+      <nodes xmi:id="_YMDDcFIEEeSC8Y6zH3LPOA" incoming="_gdD3YFIEEeSC8Y6zH3LPOA" outgoing="_g0e44FIEEeSC8Y6zH3LPOA _hkTzUFIEEeSC8Y6zH3LPOA">
+        <type href="http://www.omg.org/spec/BPMN/20100524/DI-XMI#//BPMNLabel"/>
+      </nodes>
+      <nodes xmi:id="_Yy6PIVIEEeSC8Y6zH3LPOA" incoming="_g0e44FIEEeSC8Y6zH3LPOA">
+        <type href="http://www.omg.org/spec/BPMN/20100524/DI-XMI#//BPMNLabelStyle"/>
+      </nodes>
+      <nodes xmi:id="_ZOMc8FIEEeSC8Y6zH3LPOA" incoming="_hkTzUFIEEeSC8Y6zH3LPOA">
+        <type href="http://www.omg.org/spec/DD/20100524/DC-XMI#//Bounds"/>
+        <attributes xmi:id="_pEKQEFIEEeSC8Y6zH3LPOA" value="x-14">
+          <type href="http://www.omg.org/spec/DD/20100524/DC-XMI#//Bounds/x"/>
+        </attributes>
+        <attributes xmi:id="_qL8-kFIEEeSC8Y6zH3LPOA" value="y-14">
+          <type href="http://www.omg.org/spec/DD/20100524/DC-XMI#//Bounds/y"/>
+        </attributes>
+        <attributes xmi:id="_q7-tUFIEEeSC8Y6zH3LPOA" value="32">
+          <type href="http://www.omg.org/spec/DD/20100524/DC-XMI#//Bounds/width"/>
+        </attributes>
+        <attributes xmi:id="_rkZYMFIEEeSC8Y6zH3LPOA" value="32">
+          <type href="http://www.omg.org/spec/DD/20100524/DC-XMI#//Bounds/height"/>
+        </attributes>
+      </nodes>
+      <nodes xmi:id="_ZjUYYFIEEeSC8Y6zH3LPOA" incoming="_hMaQsFIEEeSC8Y6zH3LPOA">
+        <type href="http://www.omg.org/spec/DD/20100524/DC-XMI#//Bounds"/>
+        <attributes xmi:id="_mRZNgFIEEeSC8Y6zH3LPOA" value="x-18">
+          <type href="http://www.omg.org/spec/DD/20100524/DC-XMI#//Bounds/x"/>
+        </attributes>
+        <attributes xmi:id="_mxXuEFIEEeSC8Y6zH3LPOA" value="y-18">
+          <type href="http://www.omg.org/spec/DD/20100524/DC-XMI#//Bounds/y"/>
+        </attributes>
+        <attributes xmi:id="_naGiAFIEEeSC8Y6zH3LPOA" value="36">
+          <type href="http://www.omg.org/spec/DD/20100524/DC-XMI#//Bounds/width"/>
+        </attributes>
+        <attributes xmi:id="_oN6kkFIEEeSC8Y6zH3LPOA" value="36">
+          <type href="http://www.omg.org/spec/DD/20100524/DC-XMI#//Bounds/height"/>
+        </attributes>
+      </nodes>
+      <edges xmi:id="_fb2SAFIEEeSC8Y6zH3LPOA" source="_WBR1AVIEEeSC8Y6zH3LPOA" target="_W2NR4FIEEeSC8Y6zH3LPOA">
+        <type href="http://www.omg.org/spec/BPMN/20100524/MODEL-XMI#//FlowElementsContainer/flowElements"/>
+      </edges>
+      <edges xmi:id="_iSUI0FIEEeSC8Y6zH3LPOA" source="_XNnsUFIEEeSC8Y6zH3LPOA" target="_W2NR4FIEEeSC8Y6zH3LPOA">
+        <type href="http://www.omg.org/spec/BPMN/20100524/DI-XMI#//BPMNShape/bpmnElement"/>
+      </edges>
+      <edges xmi:id="_gC9VUFIEEeSC8Y6zH3LPOA" source="_WddasFIEEeSC8Y6zH3LPOA" target="_XNnsUFIEEeSC8Y6zH3LPOA">
+        <type href="http://www.omg.org/spec/DD/20100524/DI-XMI#//Plane/planeElement"/>
+      </edges>
+      <edges xmi:id="_gdD3YFIEEeSC8Y6zH3LPOA" source="_XNnsUFIEEeSC8Y6zH3LPOA" target="_YMDDcFIEEeSC8Y6zH3LPOA">
+        <type href="http://www.omg.org/spec/BPMN/20100524/DI-XMI#//BPMNShape/label"/>
+      </edges>
+      <edges xmi:id="_hMaQsFIEEeSC8Y6zH3LPOA" source="_XNnsUFIEEeSC8Y6zH3LPOA" target="_ZjUYYFIEEeSC8Y6zH3LPOA">
+        <type href="http://www.omg.org/spec/DD/20100524/DI-XMI#//Shape/bounds"/>
+      </edges>
+      <edges xmi:id="_hkTzUFIEEeSC8Y6zH3LPOA" source="_YMDDcFIEEeSC8Y6zH3LPOA" target="_ZOMc8FIEEeSC8Y6zH3LPOA">
+        <type href="http://www.omg.org/spec/DD/20100524/DI-XMI#//Label/bounds"/>
+      </edges>
+      <edges xmi:id="_g0e44FIEEeSC8Y6zH3LPOA" source="_YMDDcFIEEeSC8Y6zH3LPOA" target="_Yy6PIVIEEeSC8Y6zH3LPOA">
+        <type href="http://www.omg.org/spec/BPMN/20100524/DI-XMI#//BPMNLabel/labelStyle"/>
+      </edges>
+    </rhs>
+    <mappings xmi:id="_WBR1AlIEEeSC8Y6zH3LPOA" origin="_WBR1AFIEEeSC8Y6zH3LPOA" image="_WBR1AVIEEeSC8Y6zH3LPOA"/>
+    <mappings xmi:id="_WddasVIEEeSC8Y6zH3LPOA" origin="_WdczoFIEEeSC8Y6zH3LPOA" image="_WddasFIEEeSC8Y6zH3LPOA"/>
+    <mappings xmi:id="_Yy6PIlIEEeSC8Y6zH3LPOA" origin="_Yy6PIFIEEeSC8Y6zH3LPOA" image="_Yy6PIVIEEeSC8Y6zH3LPOA"/>
+  </units>
+  <units xsi:type="henshin:Rule" xmi:id="_whdnoFhxEeSQUIz1B5ANEQ" name="removeDefaultRefs">
+    <parameters xmi:id="_FLdxgFhyEeSQUIz1B5ANEQ" name="id"/>
+    <lhs xmi:id="_whpN0FhxEeSQUIz1B5ANEQ" name="Lhs">
+      <nodes xmi:id="_M49osFhyEeSQUIz1B5ANEQ">
+        <type href="http://www.omg.org/spec/BPMN/20100524/MODEL-XMI#//SequenceFlow"/>
+        <attributes xmi:id="_v0VJ8FhzEeSQUIz1B5ANEQ" value="id">
+          <type href="http://www.omg.org/spec/BPMN/20100524/MODEL-XMI#//BaseElement/id"/>
+        </attributes>
+      </nodes>
+    </lhs>
+    <rhs xmi:id="_whpN0VhxEeSQUIz1B5ANEQ" name="Rhs">
+      <nodes xmi:id="_M4-PwFhyEeSQUIz1B5ANEQ">
+        <type href="http://www.omg.org/spec/BPMN/20100524/MODEL-XMI#//SequenceFlow"/>
+        <attributes xmi:id="_v0XmMFhzEeSQUIz1B5ANEQ" value="id">
+          <type href="http://www.omg.org/spec/BPMN/20100524/MODEL-XMI#//BaseElement/id"/>
+        </attributes>
+      </nodes>
+    </rhs>
+    <mappings xmi:id="_M4-20FhyEeSQUIz1B5ANEQ" origin="_M49osFhyEeSQUIz1B5ANEQ" image="_M4-PwFhyEeSQUIz1B5ANEQ"/>
+    <multiRules xmi:id="_IXJN4FhzEeSQUIz1B5ANEQ">
+      <parameters xmi:id="_IXi2gFhzEeSQUIz1B5ANEQ" name="id"/>
+      <lhs xmi:id="_IXYecFhzEeSQUIz1B5ANEQ" name="Lhs">
+        <nodes xmi:id="_IXZFgVhzEeSQUIz1B5ANEQ" incoming="_OOClQFhyEeSQUIz1B5ANEQ">
+          <type href="http://www.omg.org/spec/BPMN/20100524/MODEL-XMI#//SequenceFlow"/>
+        </nodes>
+        <nodes xmi:id="_NiXLAFhyEeSQUIz1B5ANEQ" outgoing="_OOClQFhyEeSQUIz1B5ANEQ">
+          <type href="http://www.omg.org/spec/BPMN/20100524/MODEL-XMI#//ExclusiveGateway"/>
+        </nodes>
+        <edges xmi:id="_OOClQFhyEeSQUIz1B5ANEQ" source="_NiXLAFhyEeSQUIz1B5ANEQ" target="_IXZFgVhzEeSQUIz1B5ANEQ">
+          <type href="http://www.omg.org/spec/BPMN/20100524/MODEL-XMI#//ExclusiveGateway/default"/>
+        </edges>
+      </lhs>
+      <rhs xmi:id="_IXYecVhzEeSQUIz1B5ANEQ" name="Rhs">
+        <nodes xmi:id="_IXYeclhzEeSQUIz1B5ANEQ">
+          <type href="http://www.omg.org/spec/BPMN/20100524/MODEL-XMI#//SequenceFlow"/>
+        </nodes>
+        <nodes xmi:id="_NiXLAVhyEeSQUIz1B5ANEQ">
+          <type href="http://www.omg.org/spec/BPMN/20100524/MODEL-XMI#//ExclusiveGateway"/>
+        </nodes>
+      </rhs>
+      <mappings xmi:id="_IXZFhlhzEeSQUIz1B5ANEQ" origin="_IXZFgVhzEeSQUIz1B5ANEQ" image="_IXYeclhzEeSQUIz1B5ANEQ"/>
+      <mappings xmi:id="_NiXyEFhyEeSQUIz1B5ANEQ" origin="_NiXLAFhyEeSQUIz1B5ANEQ" image="_NiXLAVhyEeSQUIz1B5ANEQ"/>
+      <multiMappings xmi:id="_IXZFgFhzEeSQUIz1B5ANEQ" origin="_M4-PwFhyEeSQUIz1B5ANEQ" image="_IXYeclhzEeSQUIz1B5ANEQ"/>
+      <multiMappings xmi:id="_IXZFglhzEeSQUIz1B5ANEQ" origin="_M49osFhyEeSQUIz1B5ANEQ" image="_IXZFgVhzEeSQUIz1B5ANEQ"/>
+    </multiRules>
+  </units>
+  <units xsi:type="henshin:SequentialUnit" xmi:id="_0V2fQFhxEeSQUIz1B5ANEQ" name="deleteSequenceFlow" subUnits="_whdnoFhxEeSQUIz1B5ANEQ _8aPFEFh0EeSQUIz1B5ANEQ _FQXGoE_BEeSxqchWGzsm5Q">
+    <parameters xmi:id="_8YeR4FhxEeSQUIz1B5ANEQ" name="id"/>
+    <parameterMappings xmi:id="_GGwVEFhyEeSQUIz1B5ANEQ" source="_8YeR4FhxEeSQUIz1B5ANEQ" target="_FLdxgFhyEeSQUIz1B5ANEQ"/>
+    <parameterMappings xmi:id="_GGwVEVhyEeSQUIz1B5ANEQ" source="_FLdxgFhyEeSQUIz1B5ANEQ" target="_8YeR4FhxEeSQUIz1B5ANEQ"/>
+    <parameterMappings xmi:id="__m5OUFh0EeSQUIz1B5ANEQ" source="_8YeR4FhxEeSQUIz1B5ANEQ" target="_9zglIFh0EeSQUIz1B5ANEQ"/>
+    <parameterMappings xmi:id="__m51YFh0EeSQUIz1B5ANEQ" source="_9zglIFh0EeSQUIz1B5ANEQ" target="_8YeR4FhxEeSQUIz1B5ANEQ"/>
+    <parameterMappings xmi:id="_FJmo8Fh1EeSQUIz1B5ANEQ" source="_8YeR4FhxEeSQUIz1B5ANEQ" target="_GDvrYE_BEeSxqchWGzsm5Q"/>
+    <parameterMappings xmi:id="_FJmo8Vh1EeSQUIz1B5ANEQ" source="_GDvrYE_BEeSxqchWGzsm5Q" target="_8YeR4FhxEeSQUIz1B5ANEQ"/>
+  </units>
+  <units xsi:type="henshin:Rule" xmi:id="_8aPFEFh0EeSQUIz1B5ANEQ" name="deleteExpression">
+    <parameters xmi:id="_9zglIFh0EeSQUIz1B5ANEQ" name="id"/>
+    <lhs xmi:id="_8aYPAFh0EeSQUIz1B5ANEQ" name="Lhs">
+      <nodes xmi:id="_ItCTcFh1EeSQUIz1B5ANEQ">
+        <type href="http://www.omg.org/spec/BPMN/20100524/MODEL-XMI#//SequenceFlow"/>
+        <attributes xmi:id="_JSLA0Fh1EeSQUIz1B5ANEQ" value="id">
+          <type href="http://www.omg.org/spec/BPMN/20100524/MODEL-XMI#//BaseElement/id"/>
+        </attributes>
+      </nodes>
+    </lhs>
+    <rhs xmi:id="_8aYPAVh0EeSQUIz1B5ANEQ" name="Rhs">
+      <nodes xmi:id="_ItCTcVh1EeSQUIz1B5ANEQ">
+        <type href="http://www.omg.org/spec/BPMN/20100524/MODEL-XMI#//SequenceFlow"/>
+        <attributes xmi:id="_JSLA0Vh1EeSQUIz1B5ANEQ" value="id">
+          <type href="http://www.omg.org/spec/BPMN/20100524/MODEL-XMI#//BaseElement/id"/>
+        </attributes>
+      </nodes>
+    </rhs>
+    <mappings xmi:id="_ItCTclh1EeSQUIz1B5ANEQ" origin="_ItCTcFh1EeSQUIz1B5ANEQ" image="_ItCTcVh1EeSQUIz1B5ANEQ"/>
+    <multiRules xmi:id="_E_-8AFj7EeSQUIz1B5ANEQ">
+      <parameters xmi:id="_FAAxMFj7EeSQUIz1B5ANEQ" name="id"/>
+      <lhs xmi:id="_FAAKIFj7EeSQUIz1B5ANEQ" name="Lhs">
+        <nodes xmi:id="_FAAKJVj7EeSQUIz1B5ANEQ" outgoing="_BxOhAFj7EeSQUIz1B5ANEQ">
+          <type href="http://www.omg.org/spec/BPMN/20100524/MODEL-XMI#//SequenceFlow"/>
+          <attributes xmi:id="_FAAKJlj7EeSQUIz1B5ANEQ" value="id">
+            <type href="http://www.omg.org/spec/BPMN/20100524/MODEL-XMI#//BaseElement/id"/>
+          </attributes>
+        </nodes>
+        <nodes xmi:id="_AoTKEFj7EeSQUIz1B5ANEQ" incoming="_BxOhAFj7EeSQUIz1B5ANEQ">
+          <type href="http://www.omg.org/spec/BPMN/20100524/MODEL-XMI#//FormalExpression"/>
+        </nodes>
+        <edges xmi:id="_BxOhAFj7EeSQUIz1B5ANEQ" source="_FAAKJVj7EeSQUIz1B5ANEQ" target="_AoTKEFj7EeSQUIz1B5ANEQ">
+          <type href="http://www.omg.org/spec/BPMN/20100524/MODEL-XMI#//SequenceFlow/conditionExpression"/>
+        </edges>
+      </lhs>
+      <rhs xmi:id="_FAAKIVj7EeSQUIz1B5ANEQ" name="Rhs">
+        <nodes xmi:id="_FAAKIlj7EeSQUIz1B5ANEQ">
+          <type href="http://www.omg.org/spec/BPMN/20100524/MODEL-XMI#//SequenceFlow"/>
+          <attributes xmi:id="_FAAKI1j7EeSQUIz1B5ANEQ" value="id">
+            <type href="http://www.omg.org/spec/BPMN/20100524/MODEL-XMI#//BaseElement/id"/>
+          </attributes>
+        </nodes>
+      </rhs>
+      <mappings xmi:id="_FAAKK1j7EeSQUIz1B5ANEQ" origin="_FAAKJVj7EeSQUIz1B5ANEQ" image="_FAAKIlj7EeSQUIz1B5ANEQ"/>
+      <multiMappings xmi:id="_FAAKJFj7EeSQUIz1B5ANEQ" origin="_ItCTcVh1EeSQUIz1B5ANEQ" image="_FAAKIlj7EeSQUIz1B5ANEQ"/>
+      <multiMappings xmi:id="_FAAKJ1j7EeSQUIz1B5ANEQ" origin="_ItCTcFh1EeSQUIz1B5ANEQ" image="_FAAKJVj7EeSQUIz1B5ANEQ"/>
+    </multiRules>
+  </units>
+  <units xsi:type="henshin:Rule" xmi:id="_XuY0cFnCEeSQUIz1B5ANEQ" name="setName">
+    <parameters xmi:id="_1R1HYFnGEeSQUIz1B5ANEQ" name="id"/>
+    <parameters xmi:id="_ZnGFsFnGEeSQUIz1B5ANEQ" name="oldName"/>
+    <parameters xmi:id="_4UL6kFnFEeSQUIz1B5ANEQ" name="newName"/>
+    <lhs xmi:id="_XubQsFnCEeSQUIz1B5ANEQ" name="Lhs">
+      <nodes xmi:id="_cl3gwFnCEeSQUIz1B5ANEQ">
+        <type href="http://www.omg.org/spec/BPMN/20100524/MODEL-XMI#//FlowElement"/>
+        <attributes xmi:id="_dfWGcFnCEeSQUIz1B5ANEQ" value="oldName">
+          <type href="http://www.omg.org/spec/BPMN/20100524/MODEL-XMI#//FlowElement/name"/>
+        </attributes>
+        <attributes xmi:id="_2JhkYFnGEeSQUIz1B5ANEQ" value="id">
+          <type href="http://www.omg.org/spec/BPMN/20100524/MODEL-XMI#//BaseElement/id"/>
+        </attributes>
+      </nodes>
+    </lhs>
+    <rhs xmi:id="_XubQsVnCEeSQUIz1B5ANEQ" name="Rhs">
+      <nodes xmi:id="_cl3gwVnCEeSQUIz1B5ANEQ">
+        <type href="http://www.omg.org/spec/BPMN/20100524/MODEL-XMI#//FlowElement"/>
+        <attributes xmi:id="_dfWGcVnCEeSQUIz1B5ANEQ" value="newName">
+          <type href="http://www.omg.org/spec/BPMN/20100524/MODEL-XMI#//FlowElement/name"/>
+        </attributes>
+        <attributes xmi:id="_2JhkYVnGEeSQUIz1B5ANEQ" value="id">
+          <type href="http://www.omg.org/spec/BPMN/20100524/MODEL-XMI#//BaseElement/id"/>
+        </attributes>
+      </nodes>
+    </rhs>
+    <mappings xmi:id="_cl3gwlnCEeSQUIz1B5ANEQ" origin="_cl3gwFnCEeSQUIz1B5ANEQ" image="_cl3gwVnCEeSQUIz1B5ANEQ"/>
+  </units>
+  <units xsi:type="henshin:Rule" xmi:id="_af7hwGclEeSg4fIiiFtO4Q" name="setId">
+    <parameters xmi:id="_b4VfIGclEeSg4fIiiFtO4Q" name="oldId"/>
+    <parameters xmi:id="_b4WtQGclEeSg4fIiiFtO4Q" name="newId"/>
+    <lhs xmi:id="_aiZm8GclEeSg4fIiiFtO4Q" name="Lhs">
+      <nodes xmi:id="_dK56QGclEeSg4fIiiFtO4Q">
+        <type href="http://www.omg.org/spec/BPMN/20100524/MODEL-XMI#//BaseElement"/>
+        <attributes xmi:id="_faJZAGclEeSg4fIiiFtO4Q" value="oldId">
+          <type href="http://www.omg.org/spec/BPMN/20100524/MODEL-XMI#//BaseElement/id"/>
+        </attributes>
+      </nodes>
+    </lhs>
+    <rhs xmi:id="_aicDMGclEeSg4fIiiFtO4Q" name="Rhs">
+      <nodes xmi:id="_dK7IYGclEeSg4fIiiFtO4Q">
+        <type href="http://www.omg.org/spec/BPMN/20100524/MODEL-XMI#//BaseElement"/>
+        <attributes xmi:id="_faKnIGclEeSg4fIiiFtO4Q" value="newId">
+          <type href="http://www.omg.org/spec/BPMN/20100524/MODEL-XMI#//BaseElement/id"/>
+        </attributes>
+      </nodes>
+    </rhs>
+    <mappings xmi:id="_dK7IYWclEeSg4fIiiFtO4Q" origin="_dK56QGclEeSg4fIiiFtO4Q" image="_dK7IYGclEeSg4fIiiFtO4Q"/>
+  </units>
+</henshin:Module>

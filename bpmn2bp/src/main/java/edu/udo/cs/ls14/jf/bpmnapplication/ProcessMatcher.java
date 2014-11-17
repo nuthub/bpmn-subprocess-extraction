@@ -6,14 +6,10 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import edu.udo.cs.ls14.jf.bpmn.utils.ProcessUtil;
-import edu.udo.cs.ls14.jf.bpmnanalysis.Fragment;
-import edu.udo.cs.ls14.jf.bpmnanalysis.ProcessAnalysis;
-import edu.udo.cs.ls14.jf.bpmnanalysis.ProcessStructureTree;
 import edu.udo.cs.ls14.jf.bpmnmatching.BpmnMatchingFactory;
-import edu.udo.cs.ls14.jf.bpmnmatching.FragmentMatching;
-import edu.udo.cs.ls14.jf.bpmnmatching.FragmentPair;
 import edu.udo.cs.ls14.jf.bpmnmatching.ProcessMatching;
 import edu.udo.cs.ls14.jf.bpmnmatching.nodematching.NodeMatcher;
+import edu.udo.cs.ls14.jf.processmatching.FragmentPairBuilder;
 import edu.udo.cs.ls14.jf.processmatching.FragmentRankerSize;
 import edu.udo.cs.ls14.jf.processmatching.InequivalentBehaviourFCFilter;
 import edu.udo.cs.ls14.jf.processmatching.InequivalentConditionsFCFilter;
@@ -27,12 +23,11 @@ public class ProcessMatcher {
 	private static final Logger LOG = LoggerFactory
 			.getLogger(ProcessMatcher.class);
 
-	public static ProcessMatching createProcessMatching(Definitions definitions1,
-			Definitions definitions2) throws Exception {
-		Process process1 = ProcessUtil
-				.getProcessFromDefinitions(definitions1);
-		Process process2 = ProcessUtil
-				.getProcessFromDefinitions(definitions2);
+	public static ProcessMatching createProcessMatching(
+			Definitions definitions1, Definitions definitions2)
+			throws Exception {
+		Process process1 = ProcessUtil.getProcessFromDefinitions(definitions1);
+		Process process2 = ProcessUtil.getProcessFromDefinitions(definitions2);
 
 		// create processmatching object
 		ProcessMatching m = BpmnMatchingFactory.eINSTANCE
@@ -53,7 +48,7 @@ public class ProcessMatcher {
 
 		// get all possible Fragment Correspondences
 		LOG.info("create all possible fragment correspondences.");
-		m.setFragmentMatching(getAllFragmentPairs(m.getAnalysis1(),
+		m.setFragmentMatching(FragmentPairBuilder.getAllPairs(m.getAnalysis1(),
 				m.getAnalysis2()));
 		LOG.info(m.getFragmentMatching().getPairs().size()
 				+ " possible fragment correspondences.");
@@ -104,28 +99,7 @@ public class ProcessMatcher {
 		LOG.info("Determining order in fragment pairs");
 		FragmentRankerSize ranker = new FragmentRankerSize();
 		m.setFragmentMatching(ranker.rankFragments(m.getFragmentMatching()));
-		
+
 		return m;
 	}
-
-	private static FragmentMatching getAllFragmentPairs(
-			ProcessAnalysis analysis1, ProcessAnalysis analysis2) {
-		FragmentMatching matching = BpmnMatchingFactory.eINSTANCE
-				.createFragmentMatching();
-		ProcessStructureTree pst1 = ((ProcessStructureTree) analysis1
-				.getResults().get("pst"));
-		ProcessStructureTree pst2 = ((ProcessStructureTree) analysis2
-				.getResults().get("pst"));
-		for (Fragment f1 : pst1.getFragments()) {
-			for (Fragment f2 : pst2.getFragments()) {
-				FragmentPair pair = BpmnMatchingFactory.eINSTANCE
-						.createFragmentPair();
-				pair.setA(f1);
-				pair.setB(f2);
-				matching.getPairs().add(pair);
-			}
-		}
-		return matching;
-	}
-
 }

@@ -13,9 +13,7 @@ import edu.udo.cs.ls14.jf.analysis.reachabilitygraph.Tracer;
 import edu.udo.cs.ls14.jf.bpmn.utils.ProcessUtil;
 import edu.udo.cs.ls14.jf.bpmnanalysis.BehavioralProfile;
 import edu.udo.cs.ls14.jf.bpmnanalysis.BpmnAnalysisFactory;
-import edu.udo.cs.ls14.jf.bpmnanalysis.ConditionalProfile;
 import edu.udo.cs.ls14.jf.bpmnanalysis.ProcessAnalysis;
-import edu.udo.cs.ls14.jf.bpmnanalysis.ProcessStructureTree;
 import edu.udo.cs.ls14.jf.bpmnanalysis.Trace;
 import fr.lip6.move.pnml.ptnet.hlapi.PetriNetHLAPI;
 
