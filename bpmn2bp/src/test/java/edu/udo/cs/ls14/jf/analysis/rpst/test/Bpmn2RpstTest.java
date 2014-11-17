@@ -21,6 +21,7 @@ import edu.udo.cs.ls14.jf.analysis.rpst.BpmnPathVertex;
 import edu.udo.cs.ls14.jf.bpmn.utils.Bpmn2ResourceSet;
 import edu.udo.cs.ls14.jf.bpmn.utils.ProcessUtil;
 
+@Ignore
 public class Bpmn2RpstTest {
 
 	@Test

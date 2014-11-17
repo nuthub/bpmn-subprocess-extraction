@@ -43,6 +43,7 @@ import fr.lip6.move.pnml.ptnet.hlapi.PetriNetHLAPI;
 import fr.lip6.move.pnml.ptnet.hlapi.PlaceHLAPI;
 import fr.lip6.move.pnml.ptnet.hlapi.TransitionHLAPI;
 
+@Ignore
 public class UnfoldedNetTest {
 
 	@Test
