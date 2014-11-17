@@ -684,8 +684,8 @@
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="BPMNEdge_SequenceFlow_7" bpmnElement="SequenceFlow_7" sourceElement="BPMNShape_ParallelGateway_3" targetElement="BPMNShape_Task_3">
         <di:waypoint xsi:type="dc:Point" x="575.0" y="260.0"/>
-        <di:waypoint xsi:type="dc:Point" x="575.0" y="314.0"/>
-        <di:waypoint xsi:type="dc:Point" x="680.0" y="314.0"/>
+        <di:waypoint xsi:type="dc:Point" x="575.0" y="323.0"/>
+        <di:waypoint xsi:type="dc:Point" x="680.0" y="323.0"/>
         <bpmndi:BPMNLabel id="BPMNLabel_22" labelStyle="BPMNLabelStyle_1"/>
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="BPMNEdge_SequenceFlow_8" bpmnElement="SequenceFlow_8" sourceElement="BPMNShape_Task_3" targetElement="BPMNShape_ParallelGateway_4">
@@ -726,9 +726,8 @@
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="BPMNEdge_DataInputAssociation_5" bpmnElement="DataInputAssociation_5">
         <di:waypoint xsi:type="dc:Point" x="535.0" y="405.0"/>
-        <di:waypoint xsi:type="dc:Point" x="600.0" y="405.0"/>
-        <di:waypoint xsi:type="dc:Point" x="600.0" y="330.0"/>
-        <di:waypoint xsi:type="dc:Point" x="680.0" y="330.0"/>
+        <di:waypoint xsi:type="dc:Point" x="735.0" y="405.0"/>
+        <di:waypoint xsi:type="dc:Point" x="735.0" y="348.0"/>
         <bpmndi:BPMNLabel id="BPMNLabel_32" labelStyle="BPMNLabelStyle_1"/>
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="BPMNEdge_DataInputAssociation_6" bpmnElement="DataInputAssociation_6">
