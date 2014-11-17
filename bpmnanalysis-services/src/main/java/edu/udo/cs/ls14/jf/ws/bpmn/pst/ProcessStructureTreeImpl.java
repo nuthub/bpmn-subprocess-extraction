@@ -13,7 +13,6 @@ public class ProcessStructureTreeImpl implements ProcessStructureTreeSEI {
 	@Override
 	public ProcessStructureTree getPst(Definitions definitions)
 			throws Exception {
-		System.out.println(definitions);
 		PSTBuilder pst = new PSTBuilder();
 		return pst.getTree(definitions);
 	}
