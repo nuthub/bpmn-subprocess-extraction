@@ -21,6 +21,7 @@
 		<module>webapp-example</module>
 		<module>services-ear</module>
 		<module>bpmnmatching-nodematching</module>
+		<module>bpmn-transformation</module>
 	</modules>
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -220,6 +221,21 @@
 		<dependency>
 			<groupId>edu.udo.cs.ls14.jf</groupId>
 			<artifactId>bpmnmatching-nodematching</artifactId>
+			<version>0.0.1-SNAPSHOT</version>
+		</dependency>
+		<dependency>
+			<groupId>org.eclipse.emf.henshin</groupId>
+			<artifactId>org.eclipse.emf.henshin.interpreter</artifactId>
+			<version>1.1.0-SNAPSHOT</version>
+		</dependency>
+		<dependency>
+			<groupId>org.eclipse.emf.henshin</groupId>
+			<artifactId>org.eclipse.emf.henshin.model</artifactId>
+			<version>1.1.0-SNAPSHOT</version>
+		</dependency>
+		<dependency>
+			<groupId>edu.udo.cs.ls14.jf</groupId>
+			<artifactId>bpmn-transformation</artifactId>
 			<version>0.0.1-SNAPSHOT</version>
 		</dependency>
 		</dependencies>
