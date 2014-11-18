@@ -12,8 +12,16 @@ import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.Resource.Factory;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.ecore.xmi.XMLResource;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import edu.udo.cs.ls14.jf.bpmnmatching.FragmentMatching;
+import edu.udo.cs.ls14.jf.bpmnmatching.FragmentPair;
 
 public class EObjectXmlConverter {
+
+	private static final Logger LOG = LoggerFactory
+			.getLogger(EObjectXmlConverter.class);
 
 	/**
 	 * Requires factories registered via
@@ -36,6 +44,14 @@ public class EObjectXmlConverter {
 		}
 		Resource res = factory.createResource(URI.createURI(EcoreUtil
 				.generateUUID() + "." + extension));
+		LOG.info(
+				"Trying to serialize: " + eObject);
+		for(EObject eObj : eObject.eContents()) {
+			LOG.info(eObj.toString());
+			if(eObj instanceof FragmentMatching) {
+				LOG.info("  " + eObj.eContents());
+			}
+		}
 		res.getContents().add(eObject);
 		ByteArrayOutputStream os = new ByteArrayOutputStream();
 		res.save(os, getOptions());

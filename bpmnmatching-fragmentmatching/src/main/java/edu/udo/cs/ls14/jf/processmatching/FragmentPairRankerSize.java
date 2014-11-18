@@ -13,7 +13,7 @@ import edu.udo.cs.ls14.jf.bpmnmatching.FragmentPair;
 
 public class FragmentPairRankerSize {
 
-	public FragmentMatching rankFragments(FragmentMatching matching) {
+	public static FragmentMatching rankFragments(FragmentMatching matching) {
 		for(FragmentPair pair : matching.getPairs()) {
 			Predicate<FlowElement> filter = e -> e instanceof Activity
 					|| e instanceof Event || e instanceof Gateway;

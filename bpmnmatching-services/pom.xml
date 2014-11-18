@@ -1,0 +1,24 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <parent>
+    <groupId>edu.udo.cs.ls14.jf</groupId>
+    <artifactId>bpmn-subprocess-extraction-parent</artifactId>
+    <version>0.0.1-SNAPSHOT</version>
+  </parent>
+  <artifactId>bpmnmatching-services</artifactId>
+  <dependencies>
+  	<dependency>
+  		<groupId>edu.udo.cs.ls14.jf</groupId>
+  		<artifactId>bpmnanalysis-model</artifactId>
+  	</dependency>
+  	<dependency>
+  		<groupId>edu.udo.cs.ls14.jf</groupId>
+  		<artifactId>bpmnmatching-fragmentmatching</artifactId>
+  	</dependency>
+  	<dependency>
+  		<groupId>edu.udo.cs.ls14.jf</groupId>
+  		<artifactId>bpmnmatching-nodematching</artifactId>
+  	</dependency>
+  </dependencies>
+  <packaging>war</packaging>
+</project>

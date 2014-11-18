@@ -1,5 +1,6 @@
 package edu.udo.cs.ls14.jf.processmatching;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -16,7 +17,6 @@ import edu.udo.cs.ls14.jf.bpmn.utils.FragmentUtil;
 import edu.udo.cs.ls14.jf.bpmnanalysis.ConditionalProfile;
 import edu.udo.cs.ls14.jf.bpmnanalysis.Fragment;
 import edu.udo.cs.ls14.jf.bpmnanalysis.ProcessAnalysis;
-import edu.udo.cs.ls14.jf.bpmnmatching.BpmnMatchingFactory;
 import edu.udo.cs.ls14.jf.bpmnmatching.FragmentMatching;
 import edu.udo.cs.ls14.jf.bpmnmatching.FragmentPair;
 import edu.udo.cs.ls14.jf.bpmnmatching.NodeMatching;
@@ -30,14 +30,13 @@ public class FragmentPairFilterConditions {
 	/**
 	 * TODO: könnte eleganter gelöst werden / funktional
 	 * 
-	 * @param matchingIn
+	 * @param matching
 	 * @return
 	 */
-	public static FragmentMatching filter(FragmentMatching matchingIn,
+	public static FragmentMatching filter(FragmentMatching matching,
 			NodeMatching nodeMatching, ProcessAnalysis analysis1, ProcessAnalysis analysis2) {
-		FragmentMatching matchingOut = BpmnMatchingFactory.eINSTANCE
-				.createFragmentMatching();
-		for (FragmentPair pair : matchingIn.getPairs()) {
+		List<FragmentPair> removePairs = new ArrayList<FragmentPair>();
+		for (FragmentPair pair : matching.getPairs()) {
 			Fragment f1 = pair.getA();
 			Fragment f2 = pair.getB();
 			LOG.debug("-------------");
@@ -61,7 +60,7 @@ public class FragmentPairFilterConditions {
 			// Für alle Knoten n1 von Prozess1
 			for (FlowNode n1 : nodes1) {
 				// hole korrespondierenden Knoten n2
-				FlowNode n2 = getMatchingNode(matchingIn, nodeMatching, n1);
+				FlowNode n2 = getMatchingNode(matching, nodeMatching, n1);
 				LOG.debug("Now comparing conditions of:");
 				LOG.debug("n1 = " + n1);
 				LOG.debug("n2 = " + n2);
@@ -113,12 +112,13 @@ public class FragmentPairFilterConditions {
 			} // forall nodes of fragment1
 			if (allConditionsMatch) {
 				LOG.info("Conditions equivalent fragments: " + f1 + " / " + f2);
-				matchingOut.getPairs().add(pair);
 			} else {
 				LOG.debug(f1 + " and " + f2 + " are not conditions equivalent.");
+				removePairs.add(pair);
 			}
 		}
-		return matchingOut;
+		matching.getPairs().removeAll(removePairs);
+		return matching;
 	}
 
 	private static Map<FlowNode, Set<FormalExpression>> getFragmentFnc(

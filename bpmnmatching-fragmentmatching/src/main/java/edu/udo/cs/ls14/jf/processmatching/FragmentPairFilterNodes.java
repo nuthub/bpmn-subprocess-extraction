@@ -1,5 +1,7 @@
 package edu.udo.cs.ls14.jf.processmatching;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -8,7 +10,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import edu.udo.cs.ls14.jf.bpmn.utils.FragmentUtil;
-import edu.udo.cs.ls14.jf.bpmnmatching.BpmnMatchingFactory;
 import edu.udo.cs.ls14.jf.bpmnmatching.FragmentMatching;
 import edu.udo.cs.ls14.jf.bpmnmatching.FragmentPair;
 import edu.udo.cs.ls14.jf.bpmnmatching.NodeMatching;
@@ -31,13 +32,11 @@ public class FragmentPairFilterNodes {
 	 * @param nodeMapping
 	 * @return
 	 */
-	public static FragmentMatching filter(NodeMatching nodeMatching,
-			FragmentMatching matchingIn) {
+	public static FragmentMatching filter(FragmentMatching matching,
+			NodeMatching nodeMatching) {
 
-		FragmentMatching matchingOut = BpmnMatchingFactory.eINSTANCE
-				.createFragmentMatching();
-
-		for (FragmentPair pair : matchingIn.getPairs()) {
+		List<FragmentPair> removePairs = new ArrayList<FragmentPair>();
+		for (FragmentPair pair : matching.getPairs()) {
 			LOG.debug("Checking pair " + pair);
 			// Get nodes of Fragments
 			Set<FlowNode> nodes1 = FragmentUtil.getEventsAndActivites(pair
@@ -56,6 +55,7 @@ public class FragmentPairFilterNodes {
 					.map(p -> p.getB()).collect(Collectors.toSet());
 			if (!nodes1.equals(nodes1Mapped) || !nodes2.equals(nodes2Mapped)) {
 				LOG.debug("Fragments are not node equivalent.");
+				removePairs.add(pair);
 				continue;
 			}
 			LOG.info("Fragments are node equivalent: " + pair.getA() + " / "
@@ -66,9 +66,9 @@ public class FragmentPairFilterNodes {
 			LOG.debug("Nodes of Process 2: "
 					+ nodes2.stream().map(n -> n.getName())
 							.collect(Collectors.toSet()));
-			matchingOut.getPairs().add(pair);
 		}
-		return matchingOut;
+		matching.getPairs().removeAll(removePairs);
+		return matching;
 	}
 
 }

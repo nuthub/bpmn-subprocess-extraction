@@ -16,10 +16,11 @@ import org.eclipse.bpmn2.Process;
 import org.junit.Test;
 
 import edu.udo.cs.ls14.jf.bpmn.utils.Bpmn2ResourceSet;
+import edu.udo.cs.ls14.jf.bpmn.utils.ProcessMatchingFactory;
 import edu.udo.cs.ls14.jf.bpmn.utils.ProcessUtil;
 import edu.udo.cs.ls14.jf.bpmnmatching.NodeMatching;
 import edu.udo.cs.ls14.jf.bpmnmatching.NodePair;
-import edu.udo.cs.ls14.jf.bpmnmatching.nodematching.NodeMatcher;
+import edu.udo.cs.ls14.jf.bpmnmatching.nodematching.NodePairFilter;
 
 public class NodeMatcherTest {
 
@@ -33,15 +34,16 @@ public class NodeMatcherTest {
 		Definitions def2 = ((DocumentRoot) resSet
 				.loadResource("PM3-mit-Fragment2.bpmn").getContents().get(0))
 				.getDefinitions();
-		Process process1 = ProcessUtil.getProcessFromDefinitions(def1);
-		Process process2 = ProcessUtil.getProcessFromDefinitions(def2);
-		NodeMatching nodeMatching = NodeMatcher.getCorrespondences(process1,
-				process2);
+		NodeMatching nodeMatching = ProcessMatchingFactory.getFullNodeMatching(
+				def1, def2);
+		nodeMatching = NodePairFilter.filter(nodeMatching);
 		nodeMatching.getPairs().forEach(
 				p -> System.out.println(p.getA().getId() + " , "
 						+ p.getB().getId()));
 
 		// make some assertions
+		Process process1 = ProcessUtil.getProcessFromDefinitions(def1);
+		Process process2 = ProcessUtil.getProcessFromDefinitions(def2);
 		Set<FlowNode> nodes = new HashSet<FlowNode>();
 		nodes.add((FlowNode) getElement(process1,
 				"sid-0EC98739-28B8-4098-9212-D6FCCD59E1DB"));

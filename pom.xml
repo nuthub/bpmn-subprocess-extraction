@@ -23,6 +23,7 @@
 		<module>bpmnmatching-nodematching</module>
 		<module>bpmn-transformation</module>
 		<module>bpmnmatching-fragmentmatching</module>
+		<module>bpmnmatching-services</module>
 	</modules>
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -212,7 +213,7 @@
 		<dependency>
 			<groupId>org.xerial</groupId>
 			<artifactId>sqlite-jdbc</artifactId>
-			<version>3.8.5-pre1</version>
+			<version>3.8.7</version>
 		</dependency>
 		<dependency>
 			<groupId>edu.udo.cs.ls14.jf</groupId>
@@ -242,6 +243,11 @@
 		<dependency>
 			<groupId>edu.udo.cs.ls14.jf</groupId>
 			<artifactId>bpmnmatching-fragmentmatching</artifactId>
+			<version>0.0.1-SNAPSHOT</version>
+		</dependency>
+		<dependency>
+			<groupId>edu.udo.cs.ls14.jf</groupId>
+			<artifactId>bpmnanalysis-services</artifactId>
 			<version>0.0.1-SNAPSHOT</version>
 		</dependency>
 		</dependencies>

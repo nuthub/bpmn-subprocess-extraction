@@ -1,5 +1,6 @@
 package edu.udo.cs.ls14.jf.processmatching;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
@@ -12,7 +13,6 @@ import edu.udo.cs.ls14.jf.bpmnanalysis.BehavioralProfile;
 import edu.udo.cs.ls14.jf.bpmnanalysis.BehavioralRelation;
 import edu.udo.cs.ls14.jf.bpmnanalysis.BehavioralRelationType;
 import edu.udo.cs.ls14.jf.bpmnanalysis.ProcessAnalysis;
-import edu.udo.cs.ls14.jf.bpmnmatching.BpmnMatchingFactory;
 import edu.udo.cs.ls14.jf.bpmnmatching.FragmentMatching;
 import edu.udo.cs.ls14.jf.bpmnmatching.FragmentPair;
 import edu.udo.cs.ls14.jf.bpmnmatching.NodeMatching;
@@ -24,11 +24,10 @@ public class FragmentPairFilterBehavior {
 			.getLogger(FragmentPairFilterBehavior.class);
 
 	public static FragmentMatching filter(FragmentMatching fragmentMatching,
-			NodeMatching nodeMatching, ProcessAnalysis analysis1, ProcessAnalysis analysis2) {
+			NodeMatching nodeMatching, ProcessAnalysis analysis1,
+			ProcessAnalysis analysis2) {
 		// LOG.debug("Have to compare behaviour profiles");
-		FragmentMatching matching = BpmnMatchingFactory.eINSTANCE
-				.createFragmentMatching();
-
+		List<FragmentPair> removePairs = new ArrayList<FragmentPair>();
 		for (FragmentPair pair : fragmentMatching.getPairs()) {
 			Set<FlowNode> nodes1 = FragmentUtil.getEventsAndActivites(pair
 					.getA());
@@ -47,14 +46,15 @@ public class FragmentPairFilterBehavior {
 			if (match) {
 				LOG.info("Behaviour equivalent fragments: " + pair.getA()
 						+ " / " + pair.getB());
-				matching.getPairs().add(pair);
 			} else {
 				LOG.debug(pair.getA() + " and " + pair.getB()
 						+ " are not behaviour equivalent.");
+				removePairs.add(pair);
 			}
 
 		}
-		return matching;
+		fragmentMatching.getPairs().removeAll(removePairs);
+		return fragmentMatching;
 	}
 
 	private static boolean behaviourProfilesMatch(Set<FlowNode> nodes1,
