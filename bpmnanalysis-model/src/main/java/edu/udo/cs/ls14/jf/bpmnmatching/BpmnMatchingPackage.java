@@ -160,7 +160,7 @@ public interface BpmnMatchingPackage extends EPackage {
 	int PROCESS_MATCHING_OPERATION_COUNT = 0;
 
 	/**
-	 * The feature id for the '<em><b>Pairs</b></em>' reference list.
+	 * The feature id for the '<em><b>Pairs</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -223,7 +223,7 @@ public interface BpmnMatchingPackage extends EPackage {
 	int NODE_PAIR_OPERATION_COUNT = 0;
 
 	/**
-	 * The feature id for the '<em><b>Pairs</b></em>' reference list.
+	 * The feature id for the '<em><b>Pairs</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -306,10 +306,10 @@ public interface BpmnMatchingPackage extends EPackage {
 	EClass getNodeMatching();
 
 	/**
-	 * Returns the meta object for the reference list '{@link edu.udo.cs.ls14.jf.bpmnmatching.NodeMatching#getPairs <em>Pairs</em>}'.
+	 * Returns the meta object for the containment reference list '{@link edu.udo.cs.ls14.jf.bpmnmatching.NodeMatching#getPairs <em>Pairs</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference list '<em>Pairs</em>'.
+	 * @return the meta object for the containment reference list '<em>Pairs</em>'.
 	 * @see edu.udo.cs.ls14.jf.bpmnmatching.NodeMatching#getPairs()
 	 * @see #getNodeMatching()
 	 * @generated
@@ -359,10 +359,10 @@ public interface BpmnMatchingPackage extends EPackage {
 	EClass getFragmentMatching();
 
 	/**
-	 * Returns the meta object for the reference list '{@link edu.udo.cs.ls14.jf.bpmnmatching.FragmentMatching#getPairs <em>Pairs</em>}'.
+	 * Returns the meta object for the containment reference list '{@link edu.udo.cs.ls14.jf.bpmnmatching.FragmentMatching#getPairs <em>Pairs</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference list '<em>Pairs</em>'.
+	 * @return the meta object for the containment reference list '<em>Pairs</em>'.
 	 * @see edu.udo.cs.ls14.jf.bpmnmatching.FragmentMatching#getPairs()
 	 * @see #getFragmentMatching()
 	 * @generated
@@ -500,7 +500,7 @@ public interface BpmnMatchingPackage extends EPackage {
 		EClass NODE_MATCHING = eINSTANCE.getNodeMatching();
 
 		/**
-		 * The meta object literal for the '<em><b>Pairs</b></em>' reference list feature.
+		 * The meta object literal for the '<em><b>Pairs</b></em>' containment reference list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
@@ -544,7 +544,7 @@ public interface BpmnMatchingPackage extends EPackage {
 		EClass FRAGMENT_MATCHING = eINSTANCE.getFragmentMatching();
 
 		/**
-		 * The meta object literal for the '<em><b>Pairs</b></em>' reference list feature.
+		 * The meta object literal for the '<em><b>Pairs</b></em>' containment reference list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated

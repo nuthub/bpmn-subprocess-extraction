@@ -14,7 +14,7 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="NodeMatching">
     <eStructuralFeatures xsi:type="ecore:EReference" name="pairs" upperBound="-1"
-        eType="#//NodePair"/>
+        eType="#//NodePair" containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="NodePair">
     <eStructuralFeatures xsi:type="ecore:EReference" name="a" lowerBound="1" eType="ecore:EClass BPMN20.ecore#//FlowNode"/>
@@ -22,7 +22,7 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="FragmentMatching">
     <eStructuralFeatures xsi:type="ecore:EReference" name="pairs" upperBound="-1"
-        eType="#//FragmentPair"/>
+        eType="#//FragmentPair" containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="FragmentPair">
     <eStructuralFeatures xsi:type="ecore:EReference" name="a" lowerBound="1" eType="ecore:EClass BpmnAnalysis.ecore#//Fragment"/>

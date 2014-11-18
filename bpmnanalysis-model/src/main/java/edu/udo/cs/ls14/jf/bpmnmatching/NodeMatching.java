@@ -23,7 +23,7 @@ import org.eclipse.emf.ecore.EObject;
  */
 public interface NodeMatching extends EObject {
 	/**
-	 * Returns the value of the '<em><b>Pairs</b></em>' reference list.
+	 * Returns the value of the '<em><b>Pairs</b></em>' containment reference list.
 	 * The list contents are of type {@link edu.udo.cs.ls14.jf.bpmnmatching.NodePair}.
 	 * <!-- begin-user-doc -->
 	 * <p>
@@ -31,9 +31,9 @@ public interface NodeMatching extends EObject {
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Pairs</em>' reference list.
+	 * @return the value of the '<em>Pairs</em>' containment reference list.
 	 * @see edu.udo.cs.ls14.jf.bpmnmatching.BpmnMatchingPackage#getNodeMatching_Pairs()
-	 * @model
+	 * @model containment="true"
 	 * @generated
 	 */
 	List<NodePair> getPairs();

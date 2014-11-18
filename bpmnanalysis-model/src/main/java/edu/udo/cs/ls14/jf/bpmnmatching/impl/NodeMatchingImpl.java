@@ -5,17 +5,15 @@ package edu.udo.cs.ls14.jf.bpmnmatching.impl;
 import edu.udo.cs.ls14.jf.bpmnmatching.BpmnMatchingPackage;
 import edu.udo.cs.ls14.jf.bpmnmatching.NodeMatching;
 import edu.udo.cs.ls14.jf.bpmnmatching.NodePair;
-
 import java.util.Collection;
-
 import java.util.List;
+import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.common.util.EList;
-
 import org.eclipse.emf.ecore.EClass;
-
+import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
-
-import org.eclipse.emf.ecore.util.EObjectResolvingEList;
+import org.eclipse.emf.ecore.util.EObjectContainmentEList;
+import org.eclipse.emf.ecore.util.InternalEList;
 
 /**
  * <!-- begin-user-doc -->
@@ -32,7 +30,7 @@ import org.eclipse.emf.ecore.util.EObjectResolvingEList;
  */
 public class NodeMatchingImpl extends MinimalEObjectImpl.Container implements NodeMatching {
 	/**
-	 * The cached value of the '{@link #getPairs() <em>Pairs</em>}' reference list.
+	 * The cached value of the '{@link #getPairs() <em>Pairs</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see #getPairs()
@@ -67,9 +65,23 @@ public class NodeMatchingImpl extends MinimalEObjectImpl.Container implements No
 	 */
 	public List<NodePair> getPairs() {
 		if (pairs == null) {
-			pairs = new EObjectResolvingEList<NodePair>(NodePair.class, this, BpmnMatchingPackage.NODE_MATCHING__PAIRS);
+			pairs = new EObjectContainmentEList<NodePair>(NodePair.class, this, BpmnMatchingPackage.NODE_MATCHING__PAIRS);
 		}
 		return pairs;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+		switch (featureID) {
+			case BpmnMatchingPackage.NODE_MATCHING__PAIRS:
+				return ((InternalEList<?>)getPairs()).basicRemove(otherEnd, msgs);
+		}
+		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
 
 	/**

@@ -5,17 +5,15 @@ package edu.udo.cs.ls14.jf.bpmnmatching.impl;
 import edu.udo.cs.ls14.jf.bpmnmatching.BpmnMatchingPackage;
 import edu.udo.cs.ls14.jf.bpmnmatching.FragmentMatching;
 import edu.udo.cs.ls14.jf.bpmnmatching.FragmentPair;
-
 import java.util.Collection;
-
 import java.util.List;
+import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.common.util.EList;
-
 import org.eclipse.emf.ecore.EClass;
-
+import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
-
-import org.eclipse.emf.ecore.util.EObjectResolvingEList;
+import org.eclipse.emf.ecore.util.EObjectContainmentEList;
+import org.eclipse.emf.ecore.util.InternalEList;
 
 /**
  * <!-- begin-user-doc -->
@@ -32,7 +30,7 @@ import org.eclipse.emf.ecore.util.EObjectResolvingEList;
  */
 public class FragmentMatchingImpl extends MinimalEObjectImpl.Container implements FragmentMatching {
 	/**
-	 * The cached value of the '{@link #getPairs() <em>Pairs</em>}' reference list.
+	 * The cached value of the '{@link #getPairs() <em>Pairs</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see #getPairs()
@@ -67,9 +65,23 @@ public class FragmentMatchingImpl extends MinimalEObjectImpl.Container implement
 	 */
 	public List<FragmentPair> getPairs() {
 		if (pairs == null) {
-			pairs = new EObjectResolvingEList<FragmentPair>(FragmentPair.class, this, BpmnMatchingPackage.FRAGMENT_MATCHING__PAIRS);
+			pairs = new EObjectContainmentEList<FragmentPair>(FragmentPair.class, this, BpmnMatchingPackage.FRAGMENT_MATCHING__PAIRS);
 		}
 		return pairs;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+		switch (featureID) {
+			case BpmnMatchingPackage.FRAGMENT_MATCHING__PAIRS:
+				return ((InternalEList<?>)getPairs()).basicRemove(otherEnd, msgs);
+		}
+		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
 
 	/**
