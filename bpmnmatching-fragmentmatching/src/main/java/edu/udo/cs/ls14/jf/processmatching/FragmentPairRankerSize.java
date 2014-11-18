@@ -11,7 +11,7 @@ import edu.udo.cs.ls14.jf.bpmn.utils.FragmentUtil;
 import edu.udo.cs.ls14.jf.bpmnmatching.FragmentMatching;
 import edu.udo.cs.ls14.jf.bpmnmatching.FragmentPair;
 
-public class FragmentRankerSize {
+public class FragmentPairRankerSize {
 
 	public FragmentMatching rankFragments(FragmentMatching matching) {
 		for(FragmentPair pair : matching.getPairs()) {

@@ -10,10 +10,10 @@ import edu.udo.cs.ls14.jf.bpmnmatching.BpmnMatchingFactory;
 import edu.udo.cs.ls14.jf.bpmnmatching.FragmentMatching;
 import edu.udo.cs.ls14.jf.bpmnmatching.FragmentPair;
 
-public class SequentialFCJointer {
+public class FragmentPairJointerSequential {
 
 	private static final Logger LOG = LoggerFactory
-			.getLogger(SequentialFCJointer.class);
+			.getLogger(FragmentPairJointerSequential.class);
 
 	public static FragmentMatching joinSequences(FragmentMatching matchingIn) {
 		FragmentMatching matchingOut = BpmnMatchingFactory.eINSTANCE

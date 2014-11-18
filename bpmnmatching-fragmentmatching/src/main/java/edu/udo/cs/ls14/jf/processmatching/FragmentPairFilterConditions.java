@@ -22,10 +22,10 @@ import edu.udo.cs.ls14.jf.bpmnmatching.FragmentPair;
 import edu.udo.cs.ls14.jf.bpmnmatching.NodeMatching;
 import edu.udo.cs.ls14.jf.bpmnmatching.NodePair;
 
-public class InequivalentConditionsFCFilter {
+public class FragmentPairFilterConditions {
 
 	private static final Logger LOG = LoggerFactory
-			.getLogger(InequivalentConditionsFCFilter.class);
+			.getLogger(FragmentPairFilterConditions.class);
 
 	/**
 	 * TODO: könnte eleganter gelöst werden / funktional

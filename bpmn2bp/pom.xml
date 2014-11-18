@@ -103,5 +103,9 @@
 			<groupId>edu.udo.cs.ls14.jf</groupId>
 			<artifactId>bpmn-transformation</artifactId>
 		</dependency>
+		<dependency>
+			<groupId>edu.udo.cs.ls14.jf</groupId>
+			<artifactId>bpmnmatching-fragmentmatching</artifactId>
+		</dependency>
 	</dependencies>
 	</project>

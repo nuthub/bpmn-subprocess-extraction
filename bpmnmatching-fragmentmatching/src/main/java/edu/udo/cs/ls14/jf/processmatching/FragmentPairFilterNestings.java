@@ -8,10 +8,10 @@ import edu.udo.cs.ls14.jf.bpmnmatching.BpmnMatchingFactory;
 import edu.udo.cs.ls14.jf.bpmnmatching.FragmentMatching;
 import edu.udo.cs.ls14.jf.bpmnmatching.FragmentPair;
 
-public class NestedFCFilter {
+public class FragmentPairFilterNestings {
 
 	private static final Logger LOG = LoggerFactory
-			.getLogger(NestedFCFilter.class.getName());
+			.getLogger(FragmentPairFilterNestings.class.getName());
 
 	public static FragmentMatching filter(FragmentMatching matchingIn) {
 		FragmentMatching matchingOut = BpmnMatchingFactory.eINSTANCE

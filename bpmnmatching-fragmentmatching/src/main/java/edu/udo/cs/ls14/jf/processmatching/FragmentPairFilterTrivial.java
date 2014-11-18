@@ -9,9 +9,9 @@ import edu.udo.cs.ls14.jf.bpmnmatching.BpmnMatchingFactory;
 import edu.udo.cs.ls14.jf.bpmnmatching.FragmentMatching;
 import edu.udo.cs.ls14.jf.bpmnmatching.FragmentPair;
 
-public class TrivialFCFilter {
+public class FragmentPairFilterTrivial {
 	private static final Logger LOG = LoggerFactory
-			.getLogger(TrivialFCFilter.class);
+			.getLogger(FragmentPairFilterTrivial.class);
 
 	public static FragmentMatching filter(FragmentMatching matchingIn) {
 		FragmentMatching matchingOut = BpmnMatchingFactory.eINSTANCE

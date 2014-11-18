@@ -18,10 +18,10 @@ import edu.udo.cs.ls14.jf.bpmnmatching.FragmentPair;
 import edu.udo.cs.ls14.jf.bpmnmatching.NodeMatching;
 import edu.udo.cs.ls14.jf.bpmnmatching.NodePair;
 
-public class InequivalentBehaviourFCFilter {
+public class FragmentPairFilterBehavior {
 
 	private static final Logger LOG = LoggerFactory
-			.getLogger(InequivalentBehaviourFCFilter.class);
+			.getLogger(FragmentPairFilterBehavior.class);
 
 	public static FragmentMatching filter(FragmentMatching fragmentMatching,
 			NodeMatching nodeMatching, ProcessAnalysis analysis1, ProcessAnalysis analysis2) {

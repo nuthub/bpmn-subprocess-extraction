@@ -22,6 +22,7 @@
 		<module>services-ear</module>
 		<module>bpmnmatching-nodematching</module>
 		<module>bpmn-transformation</module>
+		<module>bpmnmatching-fragmentmatching</module>
 	</modules>
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -236,6 +237,11 @@
 		<dependency>
 			<groupId>edu.udo.cs.ls14.jf</groupId>
 			<artifactId>bpmn-transformation</artifactId>
+			<version>0.0.1-SNAPSHOT</version>
+		</dependency>
+		<dependency>
+			<groupId>edu.udo.cs.ls14.jf</groupId>
+			<artifactId>bpmnmatching-fragmentmatching</artifactId>
 			<version>0.0.1-SNAPSHOT</version>
 		</dependency>
 		</dependencies>

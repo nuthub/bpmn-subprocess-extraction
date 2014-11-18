@@ -14,10 +14,10 @@ import edu.udo.cs.ls14.jf.bpmnmatching.FragmentPair;
 import edu.udo.cs.ls14.jf.bpmnmatching.NodeMatching;
 import edu.udo.cs.ls14.jf.bpmnmatching.NodePair;
 
-public class InequivalentNodeFCFilter {
+public class FragmentPairFilterNodes {
 
 	private final static Logger LOG = LoggerFactory
-			.getLogger(InequivalentNodeFCFilter.class);
+			.getLogger(FragmentPairFilterNodes.class);
 
 	/**
 	 * Returns all fragment correspondences
