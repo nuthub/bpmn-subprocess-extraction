@@ -13,6 +13,8 @@ import org.junit.Test;
 
 import edu.udo.cs.ls14.jf.bpmn.utils.Bpmn2ResourceSet;
 import edu.udo.cs.ls14.jf.bpmn.utils.FragmentUtil;
+import edu.udo.cs.ls14.jf.bpmnanalysis.ProcessAnalysis;
+import edu.udo.cs.ls14.jf.bpmnapplication.ProcessAnalyzer;
 import edu.udo.cs.ls14.jf.bpmnapplication.ProcessMatcher;
 import edu.udo.cs.ls14.jf.bpmnmatching.ProcessMatching;
 
@@ -53,8 +55,13 @@ public class ProcessMatcherTest {
 	private ProcessMatching runTest(Definitions definitions1,
 			Definitions definitions2, int expectedFCs) throws Exception {
 
+		// analyze process1
+		ProcessAnalysis analysis1 = ProcessAnalyzer.analyze(definitions1);
+		// analyze process2
+		ProcessAnalysis analysis2 = ProcessAnalyzer.analyze(definitions2);
+
 		ProcessMatching matching = ProcessMatcher.createProcessMatching(
-				definitions1, definitions2);
+				analysis1, analysis2);
 		printMatching(matching);
 		assertEquals(expectedFCs, matching.getFragmentMatching().getPairs()
 				.size());

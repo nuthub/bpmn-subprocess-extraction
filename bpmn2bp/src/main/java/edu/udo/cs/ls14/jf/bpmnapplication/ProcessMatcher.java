@@ -1,11 +1,9 @@
 package edu.udo.cs.ls14.jf.bpmnapplication;
 
-import org.eclipse.bpmn2.Definitions;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import edu.udo.cs.ls14.jf.bpmn.utils.ProcessMatchingFactory;
-import edu.udo.cs.ls14.jf.bpmn.utils.ProcessUtil;
 import edu.udo.cs.ls14.jf.bpmnanalysis.ProcessAnalysis;
 import edu.udo.cs.ls14.jf.bpmnmatching.ProcessMatching;
 import edu.udo.cs.ls14.jf.bpmnmatching.nodematching.NodePairFilter;
@@ -41,18 +39,8 @@ public class ProcessMatcher {
 			.getLogger(ProcessMatcher.class);
 
 	public static ProcessMatching createProcessMatching(
-			Definitions definitions1, Definitions definitions2)
+			ProcessAnalysis analysis1, ProcessAnalysis analysis2)
 			throws Exception {
-
-		// analyze process1
-		LOG.debug("Analyze process 1: "
-				+ ProcessUtil.getProcessFromDefinitions(definitions1).getName());
-		ProcessAnalysis analysis1 = ProcessAnalyzer.analyze(definitions1);
-
-		// analyze process2
-		LOG.debug("Analyze process 2: "
-				+ ProcessUtil.getProcessFromDefinitions(definitions2).getName());
-		ProcessAnalysis analysis2 = ProcessAnalyzer.analyze(definitions2);
 
 		// create ProcessMatching object
 		LOG.info("create ProcessMatching with all possible fragment and node correspondences.");

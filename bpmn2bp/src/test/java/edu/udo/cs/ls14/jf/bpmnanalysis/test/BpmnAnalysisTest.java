@@ -6,6 +6,7 @@ import java.nio.file.Paths;
 
 import org.eclipse.bpmn2.Definitions;
 import org.eclipse.bpmn2.Process;
+import org.eclipse.bpmn2.util.Bpmn2ResourceFactoryImpl;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.junit.Before;
 import org.junit.Test;
@@ -16,7 +17,6 @@ import edu.udo.cs.ls14.jf.analysis.conditionalprofile.ConditionalProfiler;
 import edu.udo.cs.ls14.jf.analysis.pst.PSTBuilder;
 import edu.udo.cs.ls14.jf.analysis.reachabilitygraph.ReachabilityGraph;
 import edu.udo.cs.ls14.jf.analysis.reachabilitygraph.Tracer;
-import edu.udo.cs.ls14.jf.bpmn.utils.BpmnXmlConverter;
 import edu.udo.cs.ls14.jf.bpmn.utils.EObjectXmlConverter;
 import edu.udo.cs.ls14.jf.bpmn.utils.ProcessUtil;
 import edu.udo.cs.ls14.jf.bpmnanalysis.BehavioralProfile;
@@ -30,6 +30,8 @@ public class BpmnAnalysisTest {
 
 	@Before
 	public void setUp() {
+		Resource.Factory.Registry.INSTANCE.getExtensionToFactoryMap().put(
+				"bpmn", new Bpmn2ResourceFactoryImpl());
 		Resource.Factory.Registry.INSTANCE.getExtensionToFactoryMap().put(
 				"bpmnanalysis", new BpmnAnalysisResourceFactoryImpl());
 	}
@@ -51,7 +53,8 @@ public class BpmnAnalysisTest {
 		after = getTime();
 		System.out.println((after - before) + " ms (read file)");
 		before = getTime();
-		Definitions definitions = BpmnXmlConverter.xml2Bpmn(defXml);
+		Definitions definitions = (Definitions) EObjectXmlConverter
+				.xml2EObject("bpmn", defXml);
 		after = getTime();
 		System.out.println((after - before) + " ms (xml2bpmn)");
 		before = getTime();
