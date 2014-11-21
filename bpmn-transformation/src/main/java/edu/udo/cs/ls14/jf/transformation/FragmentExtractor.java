@@ -12,6 +12,8 @@ import org.eclipse.bpmn2.FlowElement;
 import org.eclipse.bpmn2.FlowNode;
 import org.eclipse.bpmn2.Process;
 import org.eclipse.bpmn2.SequenceFlow;
+import org.eclipse.bpmn2.util.Bpmn2ResourceFactoryImpl;
+import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.henshin.interpreter.EGraph;
@@ -26,23 +28,24 @@ public class FragmentExtractor extends HenshinTransformation {
 
 	private static final String RULEFILE = "bpmnModifier";
 	private static final String RULEPATH = "src/main/resources/edu/udo/cs/ls14/jf/henshin/";
+	private Bpmn2ResourceFactoryImpl resourceFactory;
 
 	@Override
 	protected String getRulePath() {
 		return RULEPATH;
 	}
 
-	public void replaceId(Resource resource, String oldId, String newId)
+	public void replaceId(Definitions definitions, String oldId, String newId)
 			throws Exception {
-		EGraph graph = new EGraphImpl(resource);
+		EGraph graph = new EGraphImpl(getTmpResource(definitions));
 		Map<String, Object> parameters = new HashMap<String, Object>();
 		parameters.put("oldId", oldId);
 		parameters.put("newId", newId);
 		applyRule(graph, RULEFILE, "setId", parameters);
 	}
 
-	public void cropFragment(Resource resource, Definitions definitions,
-			Fragment fragment) throws Exception {
+	public void cropFragment(Definitions definitions, Fragment fragment)
+			throws Exception {
 		Process process = ProcessUtil.getProcessFromDefinitions(definitions);
 		Pair<Float, Float> startEventCoords = CoordinateCalculator.getCoords(
 				fragment.getEntry().getSourceRef(), definitions);
@@ -62,7 +65,9 @@ public class FragmentExtractor extends HenshinTransformation {
 		Set<FlowElement> deleteEdges = deleteElements.stream()
 				.filter(e -> e instanceof SequenceFlow)
 				.collect(Collectors.toSet());
-		EGraph graph = new EGraphImpl(resource);
+
+		EGraph graph = new EGraphImpl(getTmpResource(definitions));
+
 		Map<String, Object> parameters = new HashMap<String, Object>();
 		// create startevent
 		String startEventId = EcoreUtil.generateUUID();
@@ -116,7 +121,6 @@ public class FragmentExtractor extends HenshinTransformation {
 		parameters.clear();
 		for (FlowElement flow : deleteEdges) {
 			parameters.put("id", flow.getId());
-			System.out.println(flow.getId());
 			applyRule(graph, RULEFILE, "deleteSequenceFlow", parameters);
 		}
 		// remove flownodes
@@ -127,11 +131,12 @@ public class FragmentExtractor extends HenshinTransformation {
 		}
 	}
 
-	public void replaceFragmentByCallActivity(Resource resource,
+	public void replaceFragmentByCallActivity(Definitions definitions,
 			Fragment fragment, String name, CallableElement calledElement)
 			throws Exception {
 		Pair<Float, Float> coords = CoordinateCalculator.getCoords(fragment);
-		EGraph graph = new EGraphImpl(resource);
+
+		EGraph graph = new EGraphImpl(getTmpResource(definitions));
 
 		Set<String> deleteNodeIds = new HashSet<String>();
 		Set<String> deleteEdgeIds = new HashSet<String>();
@@ -181,5 +186,15 @@ public class FragmentExtractor extends HenshinTransformation {
 			applyRule(graph, RULEFILE, "deleteFlowNode", parameters);
 		}
 
+	}
+
+	private Resource getTmpResource(Definitions definitions) {
+		if (resourceFactory == null) {
+			resourceFactory = new Bpmn2ResourceFactoryImpl();
+		}
+		Resource res = resourceFactory.createResource(URI.createURI(EcoreUtil
+				.generateUUID()));
+		res.getContents().add(definitions);
+		return res;
 	}
 }

@@ -7,6 +7,12 @@ import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.henshin.interpreter.EGraph;
 import org.eclipse.emf.henshin.interpreter.impl.EGraphImpl;
 
+/**
+ * @deprecated a lambda expression does the same
+ * @author flake
+ *
+ */
+@Deprecated
 public class LocationFixer extends HenshinTransformation {
 
 	protected static final String RULEPATH = "src/main/resources/edu/udo/cs/ls14/jf/henshin/";
