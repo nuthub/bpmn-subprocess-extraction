@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ecore:EPackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="bpmntransformation" nsURI="http://jf.ls14.cs.udo.edu/bpmntransformation/1.0"
+    nsPrefix="bpmntransformation">
+  <eClassifiers xsi:type="ecore:EClass" name="ProcessExtraction">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="processMatching" lowerBound="1"
+        eType="ecore:EClass BpmnMatching.ecore#//ProcessMatching" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="results" upperBound="-1"
+        eType="#//ExtractionResultEntry" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ExtractionResultEntry" instanceClassName="java.util.Map$Entry">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="key" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="value" lowerBound="1" eType="ecore:EClass BPMN20.ecore#//Definitions"
+        containment="true"/>
+  </eClassifiers>
+</ecore:EPackage>

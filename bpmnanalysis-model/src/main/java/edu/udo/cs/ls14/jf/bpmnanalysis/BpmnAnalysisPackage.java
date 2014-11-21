@@ -427,13 +427,22 @@ public interface BpmnAnalysisPackage extends EPackage {
 	int FRAGMENT__DEFINITIONS = 0;
 
 	/**
+	 * The feature id for the '<em><b>Parent</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FRAGMENT__PARENT = 1;
+
+	/**
 	 * The feature id for the '<em><b>Entry</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int FRAGMENT__ENTRY = 1;
+	int FRAGMENT__ENTRY = 2;
 
 	/**
 	 * The feature id for the '<em><b>Exit</b></em>' reference.
@@ -442,16 +451,25 @@ public interface BpmnAnalysisPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int FRAGMENT__EXIT = 2;
+	int FRAGMENT__EXIT = 3;
 
 	/**
-	 * The feature id for the '<em><b>Parent</b></em>' reference.
+	 * The feature id for the '<em><b>Label</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int FRAGMENT__PARENT = 3;
+	int FRAGMENT__LABEL = 4;
+
+	/**
+	 * The feature id for the '<em><b>Center</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FRAGMENT__CENTER = 5;
 
 	/**
 	 * The number of structural features of the '<em>Fragment</em>' class.
@@ -460,7 +478,7 @@ public interface BpmnAnalysisPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int FRAGMENT_FEATURE_COUNT = 4;
+	int FRAGMENT_FEATURE_COUNT = 6;
 
 	/**
 	 * The number of operations of the '<em>Fragment</em>' class.
@@ -847,6 +865,28 @@ public interface BpmnAnalysisPackage extends EPackage {
 	EReference getFragment_Exit();
 
 	/**
+	 * Returns the meta object for the attribute '{@link edu.udo.cs.ls14.jf.bpmnanalysis.Fragment#getLabel <em>Label</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Label</em>'.
+	 * @see edu.udo.cs.ls14.jf.bpmnanalysis.Fragment#getLabel()
+	 * @see #getFragment()
+	 * @generated
+	 */
+	EAttribute getFragment_Label();
+
+	/**
+	 * Returns the meta object for the reference '{@link edu.udo.cs.ls14.jf.bpmnanalysis.Fragment#getCenter <em>Center</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Center</em>'.
+	 * @see edu.udo.cs.ls14.jf.bpmnanalysis.Fragment#getCenter()
+	 * @see #getFragment()
+	 * @generated
+	 */
+	EReference getFragment_Center();
+
+	/**
 	 * Returns the meta object for the reference '{@link edu.udo.cs.ls14.jf.bpmnanalysis.Fragment#getParent <em>Parent</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1168,6 +1208,22 @@ public interface BpmnAnalysisPackage extends EPackage {
 		 * @generated
 		 */
 		EReference FRAGMENT__EXIT = eINSTANCE.getFragment_Exit();
+
+		/**
+		 * The meta object literal for the '<em><b>Label</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute FRAGMENT__LABEL = eINSTANCE.getFragment_Label();
+
+		/**
+		 * The meta object literal for the '<em><b>Center</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference FRAGMENT__CENTER = eINSTANCE.getFragment_Center();
 
 		/**
 		 * The meta object literal for the '<em><b>Parent</b></em>' reference feature.

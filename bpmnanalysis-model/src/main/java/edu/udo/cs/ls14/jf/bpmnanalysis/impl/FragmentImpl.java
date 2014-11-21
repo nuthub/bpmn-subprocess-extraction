@@ -8,6 +8,7 @@ import edu.udo.cs.ls14.jf.bpmnanalysis.Fragment;
 import org.eclipse.bpmn2.Definitions;
 import org.eclipse.bpmn2.SequenceFlow;
 
+import org.eclipse.dd.dc.Point;
 import org.eclipse.emf.common.notify.Notification;
 
 import org.eclipse.emf.ecore.EClass;
@@ -24,9 +25,11 @@ import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
  * The following features are implemented:
  * <ul>
  *   <li>{@link edu.udo.cs.ls14.jf.bpmnanalysis.impl.FragmentImpl#getDefinitions <em>Definitions</em>}</li>
+ *   <li>{@link edu.udo.cs.ls14.jf.bpmnanalysis.impl.FragmentImpl#getParent <em>Parent</em>}</li>
  *   <li>{@link edu.udo.cs.ls14.jf.bpmnanalysis.impl.FragmentImpl#getEntry <em>Entry</em>}</li>
  *   <li>{@link edu.udo.cs.ls14.jf.bpmnanalysis.impl.FragmentImpl#getExit <em>Exit</em>}</li>
- *   <li>{@link edu.udo.cs.ls14.jf.bpmnanalysis.impl.FragmentImpl#getParent <em>Parent</em>}</li>
+ *   <li>{@link edu.udo.cs.ls14.jf.bpmnanalysis.impl.FragmentImpl#getLabel <em>Label</em>}</li>
+ *   <li>{@link edu.udo.cs.ls14.jf.bpmnanalysis.impl.FragmentImpl#getCenter <em>Center</em>}</li>
  * </ul>
  * </p>
  *
@@ -42,6 +45,16 @@ public class FragmentImpl extends MinimalEObjectImpl.Container implements Fragme
 	 * @ordered
 	 */
 	protected Definitions definitions;
+
+	/**
+	 * The cached value of the '{@link #getParent() <em>Parent</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getParent()
+	 * @generated
+	 * @ordered
+	 */
+	protected Fragment parent;
 
 	/**
 	 * The cached value of the '{@link #getEntry() <em>Entry</em>}' reference.
@@ -64,14 +77,34 @@ public class FragmentImpl extends MinimalEObjectImpl.Container implements Fragme
 	protected SequenceFlow exit;
 
 	/**
-	 * The cached value of the '{@link #getParent() <em>Parent</em>}' reference.
+	 * The default value of the '{@link #getLabel() <em>Label</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getParent()
+	 * @see #getLabel()
 	 * @generated
 	 * @ordered
 	 */
-	protected Fragment parent;
+	protected static final String LABEL_EDEFAULT = null;
+
+	/**
+	 * The cached value of the '{@link #getLabel() <em>Label</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getLabel()
+	 * @generated
+	 * @ordered
+	 */
+	protected String label = LABEL_EDEFAULT;
+
+	/**
+	 * The cached value of the '{@link #getCenter() <em>Center</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getCenter()
+	 * @generated
+	 * @ordered
+	 */
+	protected Point center;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -211,6 +244,65 @@ public class FragmentImpl extends MinimalEObjectImpl.Container implements Fragme
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public String getLabel() {
+		return label;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setLabel(String newLabel) {
+		String oldLabel = label;
+		label = newLabel;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, BpmnAnalysisPackage.FRAGMENT__LABEL, oldLabel, label));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public Point getCenter() {
+		if (center != null && center.eIsProxy()) {
+			InternalEObject oldCenter = (InternalEObject)center;
+			center = (Point)eResolveProxy(oldCenter);
+			if (center != oldCenter) {
+				if (eNotificationRequired())
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, BpmnAnalysisPackage.FRAGMENT__CENTER, oldCenter, center));
+			}
+		}
+		return center;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public Point basicGetCenter() {
+		return center;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setCenter(Point newCenter) {
+		Point oldCenter = center;
+		center = newCenter;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, BpmnAnalysisPackage.FRAGMENT__CENTER, oldCenter, center));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public Fragment getParent() {
 		if (parent != null && parent.eIsProxy()) {
 			InternalEObject oldParent = (InternalEObject)parent;
@@ -255,15 +347,20 @@ public class FragmentImpl extends MinimalEObjectImpl.Container implements Fragme
 			case BpmnAnalysisPackage.FRAGMENT__DEFINITIONS:
 				if (resolve) return getDefinitions();
 				return basicGetDefinitions();
+			case BpmnAnalysisPackage.FRAGMENT__PARENT:
+				if (resolve) return getParent();
+				return basicGetParent();
 			case BpmnAnalysisPackage.FRAGMENT__ENTRY:
 				if (resolve) return getEntry();
 				return basicGetEntry();
 			case BpmnAnalysisPackage.FRAGMENT__EXIT:
 				if (resolve) return getExit();
 				return basicGetExit();
-			case BpmnAnalysisPackage.FRAGMENT__PARENT:
-				if (resolve) return getParent();
-				return basicGetParent();
+			case BpmnAnalysisPackage.FRAGMENT__LABEL:
+				return getLabel();
+			case BpmnAnalysisPackage.FRAGMENT__CENTER:
+				if (resolve) return getCenter();
+				return basicGetCenter();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -279,14 +376,20 @@ public class FragmentImpl extends MinimalEObjectImpl.Container implements Fragme
 			case BpmnAnalysisPackage.FRAGMENT__DEFINITIONS:
 				setDefinitions((Definitions)newValue);
 				return;
+			case BpmnAnalysisPackage.FRAGMENT__PARENT:
+				setParent((Fragment)newValue);
+				return;
 			case BpmnAnalysisPackage.FRAGMENT__ENTRY:
 				setEntry((SequenceFlow)newValue);
 				return;
 			case BpmnAnalysisPackage.FRAGMENT__EXIT:
 				setExit((SequenceFlow)newValue);
 				return;
-			case BpmnAnalysisPackage.FRAGMENT__PARENT:
-				setParent((Fragment)newValue);
+			case BpmnAnalysisPackage.FRAGMENT__LABEL:
+				setLabel((String)newValue);
+				return;
+			case BpmnAnalysisPackage.FRAGMENT__CENTER:
+				setCenter((Point)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -303,14 +406,20 @@ public class FragmentImpl extends MinimalEObjectImpl.Container implements Fragme
 			case BpmnAnalysisPackage.FRAGMENT__DEFINITIONS:
 				setDefinitions((Definitions)null);
 				return;
+			case BpmnAnalysisPackage.FRAGMENT__PARENT:
+				setParent((Fragment)null);
+				return;
 			case BpmnAnalysisPackage.FRAGMENT__ENTRY:
 				setEntry((SequenceFlow)null);
 				return;
 			case BpmnAnalysisPackage.FRAGMENT__EXIT:
 				setExit((SequenceFlow)null);
 				return;
-			case BpmnAnalysisPackage.FRAGMENT__PARENT:
-				setParent((Fragment)null);
+			case BpmnAnalysisPackage.FRAGMENT__LABEL:
+				setLabel(LABEL_EDEFAULT);
+				return;
+			case BpmnAnalysisPackage.FRAGMENT__CENTER:
+				setCenter((Point)null);
 				return;
 		}
 		super.eUnset(featureID);
@@ -326,14 +435,34 @@ public class FragmentImpl extends MinimalEObjectImpl.Container implements Fragme
 		switch (featureID) {
 			case BpmnAnalysisPackage.FRAGMENT__DEFINITIONS:
 				return definitions != null;
+			case BpmnAnalysisPackage.FRAGMENT__PARENT:
+				return parent != null;
 			case BpmnAnalysisPackage.FRAGMENT__ENTRY:
 				return entry != null;
 			case BpmnAnalysisPackage.FRAGMENT__EXIT:
 				return exit != null;
-			case BpmnAnalysisPackage.FRAGMENT__PARENT:
-				return parent != null;
+			case BpmnAnalysisPackage.FRAGMENT__LABEL:
+				return LABEL_EDEFAULT == null ? label != null : !LABEL_EDEFAULT.equals(label);
+			case BpmnAnalysisPackage.FRAGMENT__CENTER:
+				return center != null;
 		}
 		return super.eIsSet(featureID);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public String toString() {
+		if (eIsProxy()) return super.toString();
+
+		StringBuffer result = new StringBuffer(super.toString());
+		result.append(" (label: ");
+		result.append(label);
+		result.append(')');
+		return result.toString();
 	}
 
 } //FragmentImpl

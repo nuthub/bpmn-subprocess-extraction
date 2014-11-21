@@ -5,6 +5,7 @@ package edu.udo.cs.ls14.jf.bpmnanalysis;
 import org.eclipse.bpmn2.Definitions;
 import org.eclipse.bpmn2.SequenceFlow;
 
+import org.eclipse.dd.dc.Point;
 import org.eclipse.emf.ecore.EObject;
 
 /**
@@ -16,9 +17,11 @@ import org.eclipse.emf.ecore.EObject;
  * The following features are supported:
  * <ul>
  *   <li>{@link edu.udo.cs.ls14.jf.bpmnanalysis.Fragment#getDefinitions <em>Definitions</em>}</li>
+ *   <li>{@link edu.udo.cs.ls14.jf.bpmnanalysis.Fragment#getParent <em>Parent</em>}</li>
  *   <li>{@link edu.udo.cs.ls14.jf.bpmnanalysis.Fragment#getEntry <em>Entry</em>}</li>
  *   <li>{@link edu.udo.cs.ls14.jf.bpmnanalysis.Fragment#getExit <em>Exit</em>}</li>
- *   <li>{@link edu.udo.cs.ls14.jf.bpmnanalysis.Fragment#getParent <em>Parent</em>}</li>
+ *   <li>{@link edu.udo.cs.ls14.jf.bpmnanalysis.Fragment#getLabel <em>Label</em>}</li>
+ *   <li>{@link edu.udo.cs.ls14.jf.bpmnanalysis.Fragment#getCenter <em>Center</em>}</li>
  * </ul>
  * </p>
  *
@@ -104,6 +107,58 @@ public interface Fragment extends EObject {
 	 * @generated
 	 */
 	void setExit(SequenceFlow value);
+
+	/**
+	 * Returns the value of the '<em><b>Label</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Label</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Label</em>' attribute.
+	 * @see #setLabel(String)
+	 * @see edu.udo.cs.ls14.jf.bpmnanalysis.BpmnAnalysisPackage#getFragment_Label()
+	 * @model
+	 * @generated
+	 */
+	String getLabel();
+
+	/**
+	 * Sets the value of the '{@link edu.udo.cs.ls14.jf.bpmnanalysis.Fragment#getLabel <em>Label</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Label</em>' attribute.
+	 * @see #getLabel()
+	 * @generated
+	 */
+	void setLabel(String value);
+
+	/**
+	 * Returns the value of the '<em><b>Center</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Center</em>' reference isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Center</em>' reference.
+	 * @see #setCenter(Point)
+	 * @see edu.udo.cs.ls14.jf.bpmnanalysis.BpmnAnalysisPackage#getFragment_Center()
+	 * @model
+	 * @generated
+	 */
+	Point getCenter();
+
+	/**
+	 * Sets the value of the '{@link edu.udo.cs.ls14.jf.bpmnanalysis.Fragment#getCenter <em>Center</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Center</em>' reference.
+	 * @see #getCenter()
+	 * @generated
+	 */
+	void setCenter(Point value);
 
 	/**
 	 * Returns the value of the '<em><b>Parent</b></em>' reference.
