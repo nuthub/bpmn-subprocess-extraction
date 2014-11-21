@@ -1,7 +1,5 @@
 package edu.udo.cs.ls14.jf.bpmnapplication.test;
 
-import java.util.Map.Entry;
-
 import org.eclipse.bpmn2.Bpmn2Package;
 import org.eclipse.bpmn2.Definitions;
 import org.eclipse.emf.ecore.EPackage;
@@ -76,23 +74,18 @@ public class ProcessExtractionTest {
 				.loadDefinitions(basename1 + ".bpmn"));
 		Definitions definitions2 = EcoreUtil.copy(resSetIn
 				.loadDefinitions(basename2 + ".bpmn"));
+
+		// START
 		// analyze process1
 		ProcessAnalysis analysis1 = ProcessAnalyzer.analyze(definitions1);
 		// analyze process2
 		ProcessAnalysis analysis2 = ProcessAnalyzer.analyze(definitions2);
-
-		ProcessMatching pMatching = ProcessMatcher.createProcessMatching(
-				analysis1, analysis2);
-		ProcessExtractor extractor = new ProcessExtractor();
-		
+		// match process1 and process2
+		ProcessMatching matching = ProcessMatcher.match(analysis1, analysis2);
 		// Do the extraction
-		ProcessExtraction extraction = extractor.extract(pMatching);
-		System.out.println(extraction.getResults());
+		ProcessExtraction extraction = ProcessExtractor.extract(matching);
+		// END
 
-		for (Entry<String, Definitions> entry : extraction.getResults()
-				.entrySet()) {
-			System.out.println(entry.getKey() + " => " + entry.getValue());
-		}
 		// write out
 		ProcessExtractionUtil.writeResults("/tmp/applicationtest/", extraction);
 		// TODO: assertions

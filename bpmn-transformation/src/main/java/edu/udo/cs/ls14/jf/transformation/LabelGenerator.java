@@ -21,14 +21,10 @@ public class LabelGenerator {
 	 * @return
 	 * @throws Exception
 	 */
-
-	public static String getLabel(Fragment fragment)
-			throws Exception {
+	public static String getLabel(Fragment fragment) throws Exception {
 		// TODO respect flow relation order of nodes
-
-		List<String> names = getNamesAcc(fragment,
-				fragment.getEntry(), new ArrayList<String>(),
-				new HashSet<FlowNode>());
+		List<String> names = getNamesAcc(fragment, fragment.getEntry(),
+				new ArrayList<String>(), new HashSet<FlowNode>());
 		return StringUtils.join(names.toArray(), ", ");
 	}
 

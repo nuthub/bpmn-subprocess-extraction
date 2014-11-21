@@ -131,12 +131,11 @@ public class FragmentExtractor extends HenshinTransformation {
 		}
 	}
 
-	public void replaceFragmentByCallActivity(Definitions definitions,
-			Fragment fragment, String name, CallableElement calledElement)
-			throws Exception {
+	public void replaceFragmentByCallActivity(Fragment fragment, String name,
+			CallableElement calledElement) throws Exception {
 		Pair<Float, Float> coords = CoordinateCalculator.getCoords(fragment);
 
-		EGraph graph = new EGraphImpl(getTmpResource(definitions));
+		EGraph graph = new EGraphImpl(getTmpResource(fragment.getDefinitions()));
 
 		Set<String> deleteNodeIds = new HashSet<String>();
 		Set<String> deleteEdgeIds = new HashSet<String>();

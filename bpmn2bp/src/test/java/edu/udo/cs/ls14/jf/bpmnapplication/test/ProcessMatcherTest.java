@@ -60,7 +60,7 @@ public class ProcessMatcherTest {
 		// analyze process2
 		ProcessAnalysis analysis2 = ProcessAnalyzer.analyze(definitions2);
 
-		ProcessMatching matching = ProcessMatcher.createProcessMatching(
+		ProcessMatching matching = ProcessMatcher.match(
 				analysis1, analysis2);
 		printMatching(matching);
 		assertEquals(expectedFCs, matching.getFragmentMatching().getPairs()

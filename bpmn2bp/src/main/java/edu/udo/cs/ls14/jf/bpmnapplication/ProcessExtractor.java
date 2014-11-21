@@ -24,7 +24,7 @@ public class ProcessExtractor {
 	private static final Logger LOG = LoggerFactory
 			.getLogger(ProcessExtractor.class);
 
-	public ProcessExtraction extract(ProcessMatching pMatching)
+	public static ProcessExtraction extract(ProcessMatching pMatching)
 			throws Exception {
 
 		String filename1 = ProcessUtil.getProcessFromDefinitions(
@@ -33,9 +33,9 @@ public class ProcessExtractor {
 		String filename2 = ProcessUtil.getProcessFromDefinitions(
 				pMatching.getAnalysis2().getDefinitions()).getName()
 				+ "_transformed.bpmn";
-
 		ProcessExtraction extraction = BpmnTransformationFactory.eINSTANCE
 				.createProcessExtraction();
+
 		FragmentExtractor extractor = new FragmentExtractor();
 		// Loop over all fragment matchings
 		int fragmentCounter = 1;
@@ -46,7 +46,8 @@ public class ProcessExtractor {
 					.getDefinitions());
 			String idExtracted = getExtractedProcessIdPrefix(fPair)
 					+ fragmentCounter++;
-			defsExtracted.setTargetNamespace("http://" + idExtracted.toLowerCase());
+			defsExtracted.setTargetNamespace("http://"
+					+ idExtracted.toLowerCase());
 			extractor.replaceId(defsExtracted, ProcessUtil
 					.getProcessFromDefinitions(defsExtracted).getId(),
 					EcoreUtil.generateUUID());
@@ -55,35 +56,33 @@ public class ProcessExtractor {
 			LOG.info("SubProcess extracted.");
 
 			// callActivity parameters
-			String callActivityName = LabelGenerator
-					.getLabel(fPair.getBetter());
 			Process calledElement = ProcessUtil
 					.getProcessFromDefinitions(defsExtracted);
+			fPair.getBetter().setLabel(
+					LabelGenerator.getLabel(fPair.getBetter()));
 
 			// replace fragment in Process1
 			LOG.info("Replacing " + fPair.getA());
-			extractor.replaceFragmentByCallActivity(fPair.getA()
-					.getDefinitions(), fPair.getA(), callActivityName,
-					calledElement);
-			extraction.getResults().put(filename1,
-					fPair.getA().getDefinitions());
+			extractor.replaceFragmentByCallActivity(fPair.getA(), fPair
+					.getBetter().getLabel(), calledElement);
 			LOG.info("Replaced " + fPair.getA());
 
 			// replace fragment in Process2
 			LOG.info("Replacing " + fPair.getB());
-			extractor.replaceFragmentByCallActivity(fPair.getB()
-					.getDefinitions(), fPair.getB(), callActivityName,
-					calledElement);
-			extraction.getResults().put(filename2,
-					fPair.getB().getDefinitions());
+			extractor.replaceFragmentByCallActivity(fPair.getB(), fPair
+					.getBetter().getLabel(), calledElement);
 			LOG.info("Replaced " + fPair.getB());
 
+			// Add definitions to result
+			extraction.getResults().put(filename1,
+					fPair.getA().getDefinitions());
+			extraction.getResults().put(filename2,
+					fPair.getB().getDefinitions());
 		}
-
 		return extraction;
 	}
 
-	private String getExtractedProcessIdPrefix(FragmentPair fPair)
+	private static String getExtractedProcessIdPrefix(FragmentPair fPair)
 			throws Exception {
 		return ProcessUtil.getProcessFromDefinitions(
 				fPair.getA().getDefinitions()).getName()

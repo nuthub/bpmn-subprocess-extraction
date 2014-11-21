@@ -38,7 +38,7 @@ public class ProcessMatcher {
 	private static final Logger LOG = LoggerFactory
 			.getLogger(ProcessMatcher.class);
 
-	public static ProcessMatching createProcessMatching(
+	public static ProcessMatching match(
 			ProcessAnalysis analysis1, ProcessAnalysis analysis2)
 			throws Exception {
 
