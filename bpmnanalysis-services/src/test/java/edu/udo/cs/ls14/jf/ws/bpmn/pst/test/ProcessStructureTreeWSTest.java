@@ -18,6 +18,8 @@ import org.junit.Before;
 import org.junit.Test;
 
 import edu.udo.cs.ls14.jf.bpmn.utils.Bpmn2ResourceSet;
+import edu.udo.cs.ls14.jf.bpmn.utils.ProcessAnalysisFactory;
+import edu.udo.cs.ls14.jf.bpmnanalysis.ProcessAnalysis;
 import edu.udo.cs.ls14.jf.bpmnanalysis.ProcessStructureTree;
 import edu.udo.cs.ls14.jf.bpmnanalysis.util.BpmnAnalysisResourceFactoryImpl;
 import edu.udo.cs.ls14.jf.bpmnmatching.util.BpmnMatchingResourceFactoryImpl;
@@ -71,7 +73,11 @@ public class ProcessStructureTreeWSTest {
 		Resource resource = resSet.loadResource("PM1-mit-Fragment1.bpmn");
 		Definitions definitions = ((DocumentRoot) resource.getContents().get(0))
 				.getDefinitions();
-		ProcessStructureTree pst = port.getPst(definitions);
+		ProcessAnalysis analysis = ProcessAnalysisFactory
+				.createAnalysis(definitions);
+		analysis = port.getPst(analysis);
+		ProcessStructureTree pst = (ProcessStructureTree) analysis.getResults()
+				.get("pst");
 		assertNotNull(pst);
 		// TODO: assertions
 	}

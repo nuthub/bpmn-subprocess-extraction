@@ -19,7 +19,9 @@ import org.junit.Before;
 import org.junit.Test;
 
 import edu.udo.cs.ls14.jf.bpmn.utils.Bpmn2ResourceSet;
+import edu.udo.cs.ls14.jf.bpmn.utils.ProcessAnalysisFactory;
 import edu.udo.cs.ls14.jf.bpmnanalysis.BehavioralProfile;
+import edu.udo.cs.ls14.jf.bpmnanalysis.ProcessAnalysis;
 import edu.udo.cs.ls14.jf.bpmnanalysis.util.BpmnAnalysisResourceFactoryImpl;
 import edu.udo.cs.ls14.jf.bpmnmatching.util.BpmnMatchingResourceFactoryImpl;
 import edu.udo.cs.ls14.jf.ws.bpmn.behavioralprofile.BehavioralProfilerImpl;
@@ -73,7 +75,11 @@ public class BehavioralProfilerWSTest {
 		Resource resource = resSet.loadResource("PM1-mit-Fragment1.bpmn");
 		Definitions definitions = ((DocumentRoot) resource.getContents().get(0))
 				.getDefinitions();
-		BehavioralProfile profile = port.profile(definitions);
+		ProcessAnalysis analysis = ProcessAnalysisFactory
+				.createAnalysis(definitions);
+		analysis = port.profile(analysis);
+		BehavioralProfile profile = (BehavioralProfile) analysis.getResults().get(
+				"behavioralProfile");
 		assertNotNull(profile);
 		assertEquals(49, profile.getRelations().size());
 	}

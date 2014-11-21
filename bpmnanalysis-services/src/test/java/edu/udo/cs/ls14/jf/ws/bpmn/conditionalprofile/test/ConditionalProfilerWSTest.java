@@ -19,7 +19,9 @@ import org.junit.Before;
 import org.junit.Test;
 
 import edu.udo.cs.ls14.jf.bpmn.utils.Bpmn2ResourceSet;
+import edu.udo.cs.ls14.jf.bpmn.utils.ProcessAnalysisFactory;
 import edu.udo.cs.ls14.jf.bpmnanalysis.ConditionalProfile;
+import edu.udo.cs.ls14.jf.bpmnanalysis.ProcessAnalysis;
 import edu.udo.cs.ls14.jf.bpmnanalysis.util.BpmnAnalysisResourceFactoryImpl;
 import edu.udo.cs.ls14.jf.bpmnmatching.util.BpmnMatchingResourceFactoryImpl;
 import edu.udo.cs.ls14.jf.ws.bpmn.conditionalprofile.ConditionalProfilerImpl;
@@ -73,7 +75,11 @@ public class ConditionalProfilerWSTest {
 		Resource resource = resSet.loadResource("PM1-mit-Fragment1.bpmn");
 		Definitions definitions = ((DocumentRoot) resource.getContents().get(0))
 				.getDefinitions();
-		ConditionalProfile profile = port.profile(definitions);
+		ProcessAnalysis analysis = ProcessAnalysisFactory
+				.createAnalysis(definitions);
+		analysis = port.profile(analysis);
+		ConditionalProfile profile = (ConditionalProfile) analysis.getResults()
+				.get("conditionalProfile");
 		assertNotNull(profile);
 		assertEquals(7, profile.getRelations().size());
 		// TODO: assertions

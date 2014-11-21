@@ -6,19 +6,15 @@ import javax.jws.WebResult;
 import javax.jws.WebService;
 import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 
-import org.eclipse.bpmn2.Definitions;
-
-import edu.udo.cs.ls14.jf.bpmnanalysis.ProcessStructureTree;
-import edu.udo.cs.ls14.jf.ws.adapter.XmlDefinitionsAdapter;
-import edu.udo.cs.ls14.jf.ws.adapter.XmlProcessStructureTreeAdapter;
+import edu.udo.cs.ls14.jf.bpmnanalysis.ProcessAnalysis;
+import edu.udo.cs.ls14.jf.ws.adapter.XmlProcessAnalysisAdapter;
 
 @WebService
 public interface ProcessStructureTreeSEI {
 
 	@WebMethod
-	@WebResult(name = "processStructureTreeXml")
-	@XmlJavaTypeAdapter(XmlProcessStructureTreeAdapter.class)
-	public ProcessStructureTree getPst(
-			@WebParam(name = "definitionsXml") @XmlJavaTypeAdapter(XmlDefinitionsAdapter.class) Definitions definitions)
-			throws Exception;
+	@WebResult(name = "analysisXml")
+	@XmlJavaTypeAdapter(XmlProcessAnalysisAdapter.class)
+	public ProcessAnalysis getPst(
+			@WebParam(name = "analysisXml") @XmlJavaTypeAdapter(XmlProcessAnalysisAdapter.class) ProcessAnalysis processAnalysis);
 }
