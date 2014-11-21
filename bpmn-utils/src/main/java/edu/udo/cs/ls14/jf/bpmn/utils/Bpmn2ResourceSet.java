@@ -45,10 +45,10 @@ public class Bpmn2ResourceSet extends ResourceSetImpl {
 	}
 
 	public Resource createResource(String filename,
-			Definitions subProcessDefinitions) {
+			Definitions definitions) {
 		URI fileURI = getCompletePathURI(filename, directory, true);
 		Resource resource = resourceFactory.createResource(fileURI);
-		resource.getContents().add(subProcessDefinitions);
+		resource.getContents().add(definitions);
 		getResources().add(resource);
 		return resource;
 	}
