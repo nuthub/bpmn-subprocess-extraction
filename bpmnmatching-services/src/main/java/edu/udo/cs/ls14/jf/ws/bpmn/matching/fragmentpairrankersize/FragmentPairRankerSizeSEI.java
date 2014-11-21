@@ -16,6 +16,6 @@ public interface FragmentPairRankerSizeSEI {
 	@WebResult(name = "processMatchingXml")
 	@XmlJavaTypeAdapter(XmlProcessMatchingAdapter.class)
 	public ProcessMatching setFragmentPairRankings(
-			@WebParam(name = "processMatchingXml") @XmlJavaTypeAdapter(XmlProcessMatchingAdapter.class) ProcessMatching matching);
+			@WebParam(name = "processMatchingXml") @XmlJavaTypeAdapter(XmlProcessMatchingAdapter.class) ProcessMatching processMatching);
 
 }

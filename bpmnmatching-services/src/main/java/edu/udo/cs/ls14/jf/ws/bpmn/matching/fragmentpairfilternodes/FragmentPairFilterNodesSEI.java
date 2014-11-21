@@ -16,6 +16,6 @@ public interface FragmentPairFilterNodesSEI {
 	@WebResult(name = "processMatchingXml")
 	@XmlJavaTypeAdapter(XmlProcessMatchingAdapter.class)
 	public ProcessMatching filter(
-			@WebParam(name = "processMatchingXml") @XmlJavaTypeAdapter(XmlProcessMatchingAdapter.class) ProcessMatching matching);
+			@WebParam(name = "processMatchingXml") @XmlJavaTypeAdapter(XmlProcessMatchingAdapter.class) ProcessMatching processMatching);
 
 }

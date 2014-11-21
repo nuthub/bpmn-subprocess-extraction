@@ -17,18 +17,18 @@ public class FragmentPairFilterNodesImpl implements FragmentPairFilterNodesSEI {
 			.getLogger(FragmentPairFilterNodesImpl.class);
 
 	@Override
-	public ProcessMatching filter(ProcessMatching matching) {
-		LOG.info("Service input: " + matching);
-		if (matching == null) {
+	public ProcessMatching filter(ProcessMatching processMatching) {
+		LOG.info("Service input: " + processMatching);
+		if (processMatching == null) {
 			LOG.error("Input matching is null!");
 			return null;
 		}
-		NodeMatching nMatching = matching.getNodeMatching();
-		FragmentMatching fMatching = matching.getFragmentMatching();
+		NodeMatching nMatching = processMatching.getNodeMatching();
+		FragmentMatching fMatching = processMatching.getFragmentMatching();
 		FragmentMatching filteredFMatching = FragmentPairFilterNodes.filter(
 				fMatching, nMatching);
-		matching.setFragmentMatching(filteredFMatching);
-		return matching;
+		processMatching.setFragmentMatching(filteredFMatching);
+		return processMatching;
 	}
 
 }

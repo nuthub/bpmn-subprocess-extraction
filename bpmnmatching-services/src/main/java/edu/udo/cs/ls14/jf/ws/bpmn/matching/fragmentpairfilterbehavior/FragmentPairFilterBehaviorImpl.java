@@ -19,20 +19,20 @@ public class FragmentPairFilterBehaviorImpl implements
 			.getLogger(FragmentPairFilterBehaviorImpl.class);
 
 	@Override
-	public ProcessMatching filter(ProcessMatching matching) {
-		LOG.info("Service input: " + matching);
-		if (matching == null) {
+	public ProcessMatching filter(ProcessMatching processMatching) {
+		LOG.info("Service input: " + processMatching);
+		if (processMatching == null) {
 			LOG.error("Input matching is null!");
 			return null;
 		}
-		NodeMatching nMatching = matching.getNodeMatching();
-		FragmentMatching fMatching = matching.getFragmentMatching();
-		ProcessAnalysis analysis1 = matching.getAnalysis1();
-		ProcessAnalysis analysis2 = matching.getAnalysis2();
+		NodeMatching nMatching = processMatching.getNodeMatching();
+		FragmentMatching fMatching = processMatching.getFragmentMatching();
+		ProcessAnalysis analysis1 = processMatching.getAnalysis1();
+		ProcessAnalysis analysis2 = processMatching.getAnalysis2();
 		FragmentMatching filteredFMatching = FragmentPairFilterBehavior.filter(
 				fMatching, nMatching, analysis1, analysis2);
-		matching.setFragmentMatching(filteredFMatching);
-		return matching;
+		processMatching.setFragmentMatching(filteredFMatching);
+		return processMatching;
 	}
 
 }

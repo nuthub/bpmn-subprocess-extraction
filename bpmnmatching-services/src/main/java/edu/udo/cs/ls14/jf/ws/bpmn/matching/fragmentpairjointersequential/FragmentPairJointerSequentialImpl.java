@@ -17,17 +17,17 @@ public class FragmentPairJointerSequentialImpl implements
 			.getLogger(FragmentPairJointerSequentialImpl.class);
 
 	@Override
-	public ProcessMatching join(ProcessMatching matching) {
-		LOG.info("Service input: " + matching);
-		if (matching == null) {
+	public ProcessMatching join(ProcessMatching processMatching) {
+		LOG.info("Service input: " + processMatching);
+		if (processMatching == null) {
 			LOG.error("Input matching is null!");
 			return null;
 		}
-		FragmentMatching fMatching = matching.getFragmentMatching();
+		FragmentMatching fMatching = processMatching.getFragmentMatching();
 		FragmentMatching filteredFMatching = FragmentPairJointerSequential
 				.join(fMatching);
-		matching.setFragmentMatching(filteredFMatching);
-		return matching;
+		processMatching.setFragmentMatching(filteredFMatching);
+		return processMatching;
 	}
 
 }

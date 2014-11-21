@@ -17,17 +17,17 @@ public class FragmentPairFilterNestingsImpl implements
 			.getLogger(FragmentPairFilterNestingsImpl.class);
 
 	@Override
-	public ProcessMatching filter(ProcessMatching matching) {
-		LOG.info("Service input: " + matching);
-		if (matching == null) {
+	public ProcessMatching filter(ProcessMatching processMatching) {
+		LOG.info("Service input: " + processMatching);
+		if (processMatching == null) {
 			LOG.error("Input matching is null!");
 			return null;
 		}
-		FragmentMatching fMatching = matching.getFragmentMatching();
+		FragmentMatching fMatching = processMatching.getFragmentMatching();
 		FragmentMatching filteredFMatching = FragmentPairFilterNestings
 				.filter(fMatching);
-		matching.setFragmentMatching(filteredFMatching);
-		return matching;
+		processMatching.setFragmentMatching(filteredFMatching);
+		return processMatching;
 	}
 
 }

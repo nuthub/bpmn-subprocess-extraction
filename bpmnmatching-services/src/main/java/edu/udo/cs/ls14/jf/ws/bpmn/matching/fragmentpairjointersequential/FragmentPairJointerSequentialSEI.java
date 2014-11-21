@@ -16,6 +16,6 @@ public interface FragmentPairJointerSequentialSEI {
 	@WebResult(name = "processMatchingXml")
 	@XmlJavaTypeAdapter(XmlProcessMatchingAdapter.class)
 	public ProcessMatching join(
-			@WebParam(name = "processMatchingXml") @XmlJavaTypeAdapter(XmlProcessMatchingAdapter.class) ProcessMatching matching);
+			@WebParam(name = "processMatchingXml") @XmlJavaTypeAdapter(XmlProcessMatchingAdapter.class) ProcessMatching processMatching);
 
 }

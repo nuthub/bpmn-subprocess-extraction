@@ -1,0 +1,224 @@
+<pnml xmlns="http://www.pnml.org/version-2009/grammar/pnml">
+  <net id="net0" type="http://www.pnml.org/version-2009/grammar/ptnet">
+    <page id="page0">
+      <transition id="sid-0EC98739-28B8-4098-9212-D6FCCD59E1DB">
+        <name>
+          <text>Ware verpacken</text>
+        </name>
+      </transition>
+      <transition id="sid-24BB1352-5C62-4E83-A253-378A2D086D85">
+        <name>
+          <text>Task A</text>
+        </name>
+      </transition>
+      <transition id="sid-88383928-E961-4E4A-9725-55B02E86FD0E">
+        <name>
+          <text></text>
+        </name>
+      </transition>
+      <place id="P-sid-88383928-E961-4E4A-9725-55B02E86FD0E-null">
+        <name>
+          <text>P--null</text>
+        </name>
+      </place>
+      <arc id="Arc-sid-88383928-E961-4E4A-9725-55B02E86FD0E---P-sid-88383928-E961-4E4A-9725-55B02E86FD0E-null" source="sid-88383928-E961-4E4A-9725-55B02E86FD0E" target="P-sid-88383928-E961-4E4A-9725-55B02E86FD0E-null">
+        <name>
+          <text>Arc-fr.lip6.move.pnml.ptnet.hlapi.NameHLAPI@25c75248---fr.lip6.move.pnml.ptnet.hlapi.NameHLAPI@40eb0858</text>
+        </name>
+      </arc>
+      <transition id="sid-E886E7E9-C4EA-42F6-ABCB-882EF9EB8B38">
+        <name>
+          <text>Lieferschein erstellen</text>
+        </name>
+      </transition>
+      <transition id="sid-F4D68AC5-D815-48C5-B160-CEBA4C1421DC">
+        <name>
+          <text></text>
+        </name>
+      </transition>
+      <transition id="sid-94CA3CAB-AA15-484C-A00C-7372185C0A79">
+        <name>
+          <text></text>
+        </name>
+      </transition>
+      <place id="P-null-sid-94CA3CAB-AA15-484C-A00C-7372185C0A79">
+        <name>
+          <text>P-</text>
+        </name>
+        <initialMarking>
+          <text>1</text>
+        </initialMarking>
+      </place>
+      <arc id="Arc-P-null-sid-94CA3CAB-AA15-484C-A00C-7372185C0A79---sid-94CA3CAB-AA15-484C-A00C-7372185C0A79" source="P-null-sid-94CA3CAB-AA15-484C-A00C-7372185C0A79" target="sid-94CA3CAB-AA15-484C-A00C-7372185C0A79">
+        <name>
+          <text>Arc-P----</text>
+        </name>
+      </arc>
+      <transition id="sid-0E079D7D-0098-428D-97A2-ABF51024CB72">
+        <name>
+          <text>Task B</text>
+        </name>
+      </transition>
+      <transition id="sid-29EB2FC1-7050-4603-BF12-D0CD6B6116F1">
+        <name>
+          <text>Rechnung erstellen</text>
+        </name>
+      </transition>
+      <transition id="sid-D98FE8D4-32DF-476A-9C41-F9E569B0DA71">
+        <name>
+          <text></text>
+        </name>
+      </transition>
+      <place id="P-sid-F4D68AC5-D815-48C5-B160-CEBA4C1421DC-sid-29EB2FC1-7050-4603-BF12-D0CD6B6116F1">
+        <name>
+          <text>P--Rechnung erstellen</text>
+        </name>
+      </place>
+      <arc id="Arc-P-sid-F4D68AC5-D815-48C5-B160-CEBA4C1421DC-sid-29EB2FC1-7050-4603-BF12-D0CD6B6116F1---sid-29EB2FC1-7050-4603-BF12-D0CD6B6116F1" source="P-sid-F4D68AC5-D815-48C5-B160-CEBA4C1421DC-sid-29EB2FC1-7050-4603-BF12-D0CD6B6116F1" target="sid-29EB2FC1-7050-4603-BF12-D0CD6B6116F1">
+        <name>
+          <text>Arc-P-sid-F4D68AC5-D815-48C5-B160-CEBA4C1421DC-sid-29EB2FC1-7050-4603-BF12-D0CD6B6116F1---sid-29EB2FC1-7050-4603-BF12-D0CD6B6116F1</text>
+        </name>
+      </arc>
+      <arc id="Arc-sid-F4D68AC5-D815-48C5-B160-CEBA4C1421DC---P-sid-F4D68AC5-D815-48C5-B160-CEBA4C1421DC-sid-29EB2FC1-7050-4603-BF12-D0CD6B6116F1" source="sid-F4D68AC5-D815-48C5-B160-CEBA4C1421DC" target="P-sid-F4D68AC5-D815-48C5-B160-CEBA4C1421DC-sid-29EB2FC1-7050-4603-BF12-D0CD6B6116F1">
+        <name>
+          <text>Arc-sid-F4D68AC5-D815-48C5-B160-CEBA4C1421DC---P-sid-F4D68AC5-D815-48C5-B160-CEBA4C1421DC-sid-29EB2FC1-7050-4603-BF12-D0CD6B6116F1</text>
+        </name>
+      </arc>
+      <place id="P-sid-24BB1352-5C62-4E83-A253-378A2D086D85-sid-F4D68AC5-D815-48C5-B160-CEBA4C1421DC">
+        <name>
+          <text>P-Task A-</text>
+        </name>
+      </place>
+      <arc id="Arc-P-sid-24BB1352-5C62-4E83-A253-378A2D086D85-sid-F4D68AC5-D815-48C5-B160-CEBA4C1421DC---sid-F4D68AC5-D815-48C5-B160-CEBA4C1421DC" source="P-sid-24BB1352-5C62-4E83-A253-378A2D086D85-sid-F4D68AC5-D815-48C5-B160-CEBA4C1421DC" target="sid-F4D68AC5-D815-48C5-B160-CEBA4C1421DC">
+        <name>
+          <text>Arc-P-sid-24BB1352-5C62-4E83-A253-378A2D086D85-sid-F4D68AC5-D815-48C5-B160-CEBA4C1421DC---sid-F4D68AC5-D815-48C5-B160-CEBA4C1421DC</text>
+        </name>
+      </arc>
+      <arc id="Arc-sid-24BB1352-5C62-4E83-A253-378A2D086D85---P-sid-24BB1352-5C62-4E83-A253-378A2D086D85-sid-F4D68AC5-D815-48C5-B160-CEBA4C1421DC" source="sid-24BB1352-5C62-4E83-A253-378A2D086D85" target="P-sid-24BB1352-5C62-4E83-A253-378A2D086D85-sid-F4D68AC5-D815-48C5-B160-CEBA4C1421DC">
+        <name>
+          <text>Arc-sid-24BB1352-5C62-4E83-A253-378A2D086D85---P-sid-24BB1352-5C62-4E83-A253-378A2D086D85-sid-F4D68AC5-D815-48C5-B160-CEBA4C1421DC</text>
+        </name>
+      </arc>
+      <place id="P-sid-F4D68AC5-D815-48C5-B160-CEBA4C1421DC-sid-E886E7E9-C4EA-42F6-ABCB-882EF9EB8B38">
+        <name>
+          <text>P--Lieferschein erstellen</text>
+        </name>
+      </place>
+      <arc id="Arc-P-sid-F4D68AC5-D815-48C5-B160-CEBA4C1421DC-sid-E886E7E9-C4EA-42F6-ABCB-882EF9EB8B38---sid-E886E7E9-C4EA-42F6-ABCB-882EF9EB8B38" source="P-sid-F4D68AC5-D815-48C5-B160-CEBA4C1421DC-sid-E886E7E9-C4EA-42F6-ABCB-882EF9EB8B38" target="sid-E886E7E9-C4EA-42F6-ABCB-882EF9EB8B38">
+        <name>
+          <text>Arc-P-sid-F4D68AC5-D815-48C5-B160-CEBA4C1421DC-sid-E886E7E9-C4EA-42F6-ABCB-882EF9EB8B38---sid-E886E7E9-C4EA-42F6-ABCB-882EF9EB8B38</text>
+        </name>
+      </arc>
+      <arc id="Arc-sid-F4D68AC5-D815-48C5-B160-CEBA4C1421DC---P-sid-F4D68AC5-D815-48C5-B160-CEBA4C1421DC-sid-E886E7E9-C4EA-42F6-ABCB-882EF9EB8B38" source="sid-F4D68AC5-D815-48C5-B160-CEBA4C1421DC" target="P-sid-F4D68AC5-D815-48C5-B160-CEBA4C1421DC-sid-E886E7E9-C4EA-42F6-ABCB-882EF9EB8B38">
+        <name>
+          <text>Arc-sid-F4D68AC5-D815-48C5-B160-CEBA4C1421DC---P-sid-F4D68AC5-D815-48C5-B160-CEBA4C1421DC-sid-E886E7E9-C4EA-42F6-ABCB-882EF9EB8B38</text>
+        </name>
+      </arc>
+      <place id="P-sid-29EB2FC1-7050-4603-BF12-D0CD6B6116F1-sid-D98FE8D4-32DF-476A-9C41-F9E569B0DA71">
+        <name>
+          <text>P-Rechnung erstellen-</text>
+        </name>
+      </place>
+      <arc id="Arc-P-sid-29EB2FC1-7050-4603-BF12-D0CD6B6116F1-sid-D98FE8D4-32DF-476A-9C41-F9E569B0DA71---sid-D98FE8D4-32DF-476A-9C41-F9E569B0DA71" source="P-sid-29EB2FC1-7050-4603-BF12-D0CD6B6116F1-sid-D98FE8D4-32DF-476A-9C41-F9E569B0DA71" target="sid-D98FE8D4-32DF-476A-9C41-F9E569B0DA71">
+        <name>
+          <text>Arc-P-sid-29EB2FC1-7050-4603-BF12-D0CD6B6116F1-sid-D98FE8D4-32DF-476A-9C41-F9E569B0DA71---sid-D98FE8D4-32DF-476A-9C41-F9E569B0DA71</text>
+        </name>
+      </arc>
+      <arc id="Arc-sid-29EB2FC1-7050-4603-BF12-D0CD6B6116F1---P-sid-29EB2FC1-7050-4603-BF12-D0CD6B6116F1-sid-D98FE8D4-32DF-476A-9C41-F9E569B0DA71" source="sid-29EB2FC1-7050-4603-BF12-D0CD6B6116F1" target="P-sid-29EB2FC1-7050-4603-BF12-D0CD6B6116F1-sid-D98FE8D4-32DF-476A-9C41-F9E569B0DA71">
+        <name>
+          <text>Arc-sid-29EB2FC1-7050-4603-BF12-D0CD6B6116F1---P-sid-29EB2FC1-7050-4603-BF12-D0CD6B6116F1-sid-D98FE8D4-32DF-476A-9C41-F9E569B0DA71</text>
+        </name>
+      </arc>
+      <place id="P-sid-F4D68AC5-D815-48C5-B160-CEBA4C1421DC-sid-0EC98739-28B8-4098-9212-D6FCCD59E1DB">
+        <name>
+          <text>P--Ware verpacken</text>
+        </name>
+      </place>
+      <arc id="Arc-P-sid-F4D68AC5-D815-48C5-B160-CEBA4C1421DC-sid-0EC98739-28B8-4098-9212-D6FCCD59E1DB---sid-0EC98739-28B8-4098-9212-D6FCCD59E1DB" source="P-sid-F4D68AC5-D815-48C5-B160-CEBA4C1421DC-sid-0EC98739-28B8-4098-9212-D6FCCD59E1DB" target="sid-0EC98739-28B8-4098-9212-D6FCCD59E1DB">
+        <name>
+          <text>Arc-P-sid-F4D68AC5-D815-48C5-B160-CEBA4C1421DC-sid-0EC98739-28B8-4098-9212-D6FCCD59E1DB---sid-0EC98739-28B8-4098-9212-D6FCCD59E1DB</text>
+        </name>
+      </arc>
+      <arc id="Arc-sid-F4D68AC5-D815-48C5-B160-CEBA4C1421DC---P-sid-F4D68AC5-D815-48C5-B160-CEBA4C1421DC-sid-0EC98739-28B8-4098-9212-D6FCCD59E1DB" source="sid-F4D68AC5-D815-48C5-B160-CEBA4C1421DC" target="P-sid-F4D68AC5-D815-48C5-B160-CEBA4C1421DC-sid-0EC98739-28B8-4098-9212-D6FCCD59E1DB">
+        <name>
+          <text>Arc-sid-F4D68AC5-D815-48C5-B160-CEBA4C1421DC---P-sid-F4D68AC5-D815-48C5-B160-CEBA4C1421DC-sid-0EC98739-28B8-4098-9212-D6FCCD59E1DB</text>
+        </name>
+      </arc>
+      <place id="P-sid-94CA3CAB-AA15-484C-A00C-7372185C0A79-sid-24BB1352-5C62-4E83-A253-378A2D086D85">
+        <name>
+          <text>P--Task A</text>
+        </name>
+      </place>
+      <arc id="Arc-P-sid-94CA3CAB-AA15-484C-A00C-7372185C0A79-sid-24BB1352-5C62-4E83-A253-378A2D086D85---sid-24BB1352-5C62-4E83-A253-378A2D086D85" source="P-sid-94CA3CAB-AA15-484C-A00C-7372185C0A79-sid-24BB1352-5C62-4E83-A253-378A2D086D85" target="sid-24BB1352-5C62-4E83-A253-378A2D086D85">
+        <name>
+          <text>Arc-P-sid-94CA3CAB-AA15-484C-A00C-7372185C0A79-sid-24BB1352-5C62-4E83-A253-378A2D086D85---sid-24BB1352-5C62-4E83-A253-378A2D086D85</text>
+        </name>
+      </arc>
+      <arc id="Arc-sid-94CA3CAB-AA15-484C-A00C-7372185C0A79---P-sid-94CA3CAB-AA15-484C-A00C-7372185C0A79-sid-24BB1352-5C62-4E83-A253-378A2D086D85" source="sid-94CA3CAB-AA15-484C-A00C-7372185C0A79" target="P-sid-94CA3CAB-AA15-484C-A00C-7372185C0A79-sid-24BB1352-5C62-4E83-A253-378A2D086D85">
+        <name>
+          <text>Arc-sid-94CA3CAB-AA15-484C-A00C-7372185C0A79---P-sid-94CA3CAB-AA15-484C-A00C-7372185C0A79-sid-24BB1352-5C62-4E83-A253-378A2D086D85</text>
+        </name>
+      </arc>
+      <place id="P-sid-0EC98739-28B8-4098-9212-D6FCCD59E1DB-sid-D98FE8D4-32DF-476A-9C41-F9E569B0DA71">
+        <name>
+          <text>P-Ware verpacken-</text>
+        </name>
+      </place>
+      <arc id="Arc-P-sid-0EC98739-28B8-4098-9212-D6FCCD59E1DB-sid-D98FE8D4-32DF-476A-9C41-F9E569B0DA71---sid-D98FE8D4-32DF-476A-9C41-F9E569B0DA71" source="P-sid-0EC98739-28B8-4098-9212-D6FCCD59E1DB-sid-D98FE8D4-32DF-476A-9C41-F9E569B0DA71" target="sid-D98FE8D4-32DF-476A-9C41-F9E569B0DA71">
+        <name>
+          <text>Arc-P-sid-0EC98739-28B8-4098-9212-D6FCCD59E1DB-sid-D98FE8D4-32DF-476A-9C41-F9E569B0DA71---sid-D98FE8D4-32DF-476A-9C41-F9E569B0DA71</text>
+        </name>
+      </arc>
+      <arc id="Arc-sid-0EC98739-28B8-4098-9212-D6FCCD59E1DB---P-sid-0EC98739-28B8-4098-9212-D6FCCD59E1DB-sid-D98FE8D4-32DF-476A-9C41-F9E569B0DA71" source="sid-0EC98739-28B8-4098-9212-D6FCCD59E1DB" target="P-sid-0EC98739-28B8-4098-9212-D6FCCD59E1DB-sid-D98FE8D4-32DF-476A-9C41-F9E569B0DA71">
+        <name>
+          <text>Arc-sid-0EC98739-28B8-4098-9212-D6FCCD59E1DB---P-sid-0EC98739-28B8-4098-9212-D6FCCD59E1DB-sid-D98FE8D4-32DF-476A-9C41-F9E569B0DA71</text>
+        </name>
+      </arc>
+      <place id="P-sid-0E079D7D-0098-428D-97A2-ABF51024CB72-sid-88383928-E961-4E4A-9725-55B02E86FD0E">
+        <name>
+          <text>P-Task B-</text>
+        </name>
+      </place>
+      <arc id="Arc-P-sid-0E079D7D-0098-428D-97A2-ABF51024CB72-sid-88383928-E961-4E4A-9725-55B02E86FD0E---sid-88383928-E961-4E4A-9725-55B02E86FD0E" source="P-sid-0E079D7D-0098-428D-97A2-ABF51024CB72-sid-88383928-E961-4E4A-9725-55B02E86FD0E" target="sid-88383928-E961-4E4A-9725-55B02E86FD0E">
+        <name>
+          <text>Arc-P-sid-0E079D7D-0098-428D-97A2-ABF51024CB72-sid-88383928-E961-4E4A-9725-55B02E86FD0E---sid-88383928-E961-4E4A-9725-55B02E86FD0E</text>
+        </name>
+      </arc>
+      <arc id="Arc-sid-0E079D7D-0098-428D-97A2-ABF51024CB72---P-sid-0E079D7D-0098-428D-97A2-ABF51024CB72-sid-88383928-E961-4E4A-9725-55B02E86FD0E" source="sid-0E079D7D-0098-428D-97A2-ABF51024CB72" target="P-sid-0E079D7D-0098-428D-97A2-ABF51024CB72-sid-88383928-E961-4E4A-9725-55B02E86FD0E">
+        <name>
+          <text>Arc-sid-0E079D7D-0098-428D-97A2-ABF51024CB72---P-sid-0E079D7D-0098-428D-97A2-ABF51024CB72-sid-88383928-E961-4E4A-9725-55B02E86FD0E</text>
+        </name>
+      </arc>
+      <place id="P-sid-D98FE8D4-32DF-476A-9C41-F9E569B0DA71-sid-0E079D7D-0098-428D-97A2-ABF51024CB72">
+        <name>
+          <text>P--Task B</text>
+        </name>
+      </place>
+      <arc id="Arc-P-sid-D98FE8D4-32DF-476A-9C41-F9E569B0DA71-sid-0E079D7D-0098-428D-97A2-ABF51024CB72---sid-0E079D7D-0098-428D-97A2-ABF51024CB72" source="P-sid-D98FE8D4-32DF-476A-9C41-F9E569B0DA71-sid-0E079D7D-0098-428D-97A2-ABF51024CB72" target="sid-0E079D7D-0098-428D-97A2-ABF51024CB72">
+        <name>
+          <text>Arc-P-sid-D98FE8D4-32DF-476A-9C41-F9E569B0DA71-sid-0E079D7D-0098-428D-97A2-ABF51024CB72---sid-0E079D7D-0098-428D-97A2-ABF51024CB72</text>
+        </name>
+      </arc>
+      <arc id="Arc-sid-D98FE8D4-32DF-476A-9C41-F9E569B0DA71---P-sid-D98FE8D4-32DF-476A-9C41-F9E569B0DA71-sid-0E079D7D-0098-428D-97A2-ABF51024CB72" source="sid-D98FE8D4-32DF-476A-9C41-F9E569B0DA71" target="P-sid-D98FE8D4-32DF-476A-9C41-F9E569B0DA71-sid-0E079D7D-0098-428D-97A2-ABF51024CB72">
+        <name>
+          <text>Arc-sid-D98FE8D4-32DF-476A-9C41-F9E569B0DA71---P-sid-D98FE8D4-32DF-476A-9C41-F9E569B0DA71-sid-0E079D7D-0098-428D-97A2-ABF51024CB72</text>
+        </name>
+      </arc>
+      <place id="P-sid-E886E7E9-C4EA-42F6-ABCB-882EF9EB8B38-sid-D98FE8D4-32DF-476A-9C41-F9E569B0DA71">
+        <name>
+          <text>P-Lieferschein erstellen-</text>
+        </name>
+      </place>
+      <arc id="Arc-P-sid-E886E7E9-C4EA-42F6-ABCB-882EF9EB8B38-sid-D98FE8D4-32DF-476A-9C41-F9E569B0DA71---sid-D98FE8D4-32DF-476A-9C41-F9E569B0DA71" source="P-sid-E886E7E9-C4EA-42F6-ABCB-882EF9EB8B38-sid-D98FE8D4-32DF-476A-9C41-F9E569B0DA71" target="sid-D98FE8D4-32DF-476A-9C41-F9E569B0DA71">
+        <name>
+          <text>Arc-P-sid-E886E7E9-C4EA-42F6-ABCB-882EF9EB8B38-sid-D98FE8D4-32DF-476A-9C41-F9E569B0DA71---sid-D98FE8D4-32DF-476A-9C41-F9E569B0DA71</text>
+        </name>
+      </arc>
+      <arc id="Arc-sid-E886E7E9-C4EA-42F6-ABCB-882EF9EB8B38---P-sid-E886E7E9-C4EA-42F6-ABCB-882EF9EB8B38-sid-D98FE8D4-32DF-476A-9C41-F9E569B0DA71" source="sid-E886E7E9-C4EA-42F6-ABCB-882EF9EB8B38" target="P-sid-E886E7E9-C4EA-42F6-ABCB-882EF9EB8B38-sid-D98FE8D4-32DF-476A-9C41-F9E569B0DA71">
+        <name>
+          <text>Arc-sid-E886E7E9-C4EA-42F6-ABCB-882EF9EB8B38---P-sid-E886E7E9-C4EA-42F6-ABCB-882EF9EB8B38-sid-D98FE8D4-32DF-476A-9C41-F9E569B0DA71</text>
+        </name>
+      </arc>
+    </page>
+  </net>
+</pnml>

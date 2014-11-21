@@ -16,17 +16,17 @@ public class FragmentPairRankerSizeImpl implements FragmentPairRankerSizeSEI {
 			.getLogger(FragmentPairRankerSizeImpl.class);
 
 	@Override
-	public ProcessMatching setFragmentPairRankings(ProcessMatching matching) {
-		LOG.info("Service input: " + matching);
-		if (matching == null) {
+	public ProcessMatching setFragmentPairRankings(ProcessMatching processMatching) {
+		LOG.info("Service input: " + processMatching);
+		if (processMatching == null) {
 			LOG.error("Input matching is null!");
 			return null;
 		}
-		FragmentMatching fMatching = matching.getFragmentMatching();
+		FragmentMatching fMatching = processMatching.getFragmentMatching();
 		FragmentMatching rankedFMatching = FragmentPairRankerSize
 				.rankFragments(fMatching);
-		matching.setFragmentMatching(rankedFMatching);
-		return matching;
+		processMatching.setFragmentMatching(rankedFMatching);
+		return processMatching;
 	}
 
 }

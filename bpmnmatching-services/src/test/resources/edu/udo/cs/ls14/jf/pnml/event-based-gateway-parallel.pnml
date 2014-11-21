@@ -1,0 +1,149 @@
+<pnml xmlns="http://www.pnml.org/version-2009/grammar/pnml">
+  <net id="net0" type="http://www.pnml.org/version-2009/grammar/ptnet">
+    <page id="page0">
+      <transition id="EndEvent_1">
+        <name>
+          <text>End Event 1</text>
+        </name>
+      </transition>
+      <place id="P-EndEvent_1-null">
+        <name>
+          <text>P-End Event 1-null</text>
+        </name>
+      </place>
+      <arc id="Arc-EndEvent_1---P-EndEvent_1-null" source="EndEvent_1" target="P-EndEvent_1-null">
+        <name>
+          <text>Arc-fr.lip6.move.pnml.ptnet.hlapi.NameHLAPI@225e2e0d---fr.lip6.move.pnml.ptnet.hlapi.NameHLAPI@5521691b</text>
+        </name>
+      </arc>
+      <transition id="EventBasedGateway_1">
+        <name>
+          <text></text>
+        </name>
+      </transition>
+      <transition id="StartEvent_1">
+        <name>
+          <text>Start Event 1</text>
+        </name>
+      </transition>
+      <place id="P-null-StartEvent_1">
+        <name>
+          <text>P-Start Event 1</text>
+        </name>
+        <initialMarking>
+          <text>1</text>
+        </initialMarking>
+      </place>
+      <arc id="Arc-P-null-StartEvent_1---StartEvent_1" source="P-null-StartEvent_1" target="StartEvent_1">
+        <name>
+          <text>Arc-P-Start Event 1---Start Event 1</text>
+        </name>
+      </arc>
+      <transition id="IntermediateThrowEvent_1">
+        <name>
+          <text>Intermediate Throw Event 1</text>
+        </name>
+      </transition>
+      <transition id="ParallelGateway_1">
+        <name>
+          <text></text>
+        </name>
+      </transition>
+      <transition id="Task_1">
+        <name>
+          <text>Task 1</text>
+        </name>
+      </transition>
+      <place id="P-StartEvent_1-EventBasedGateway_1">
+        <name>
+          <text>P-Start Event 1-</text>
+        </name>
+      </place>
+      <arc id="Arc-P-StartEvent_1-EventBasedGateway_1---EventBasedGateway_1" source="P-StartEvent_1-EventBasedGateway_1" target="EventBasedGateway_1">
+        <name>
+          <text>Arc-P-StartEvent_1-EventBasedGateway_1---EventBasedGateway_1</text>
+        </name>
+      </arc>
+      <arc id="Arc-StartEvent_1---P-StartEvent_1-EventBasedGateway_1" source="StartEvent_1" target="P-StartEvent_1-EventBasedGateway_1">
+        <name>
+          <text>Arc-StartEvent_1---P-StartEvent_1-EventBasedGateway_1</text>
+        </name>
+      </arc>
+      <place id="P-EventBasedGateway_1-IntermediateThrowEvent_1">
+        <name>
+          <text>P--Intermediate Throw Event 1</text>
+        </name>
+      </place>
+      <arc id="Arc-P-EventBasedGateway_1-IntermediateThrowEvent_1---IntermediateThrowEvent_1" source="P-EventBasedGateway_1-IntermediateThrowEvent_1" target="IntermediateThrowEvent_1">
+        <name>
+          <text>Arc-P-EventBasedGateway_1-IntermediateThrowEvent_1---IntermediateThrowEvent_1</text>
+        </name>
+      </arc>
+      <arc id="Arc-EventBasedGateway_1---P-EventBasedGateway_1-IntermediateThrowEvent_1" source="EventBasedGateway_1" target="P-EventBasedGateway_1-IntermediateThrowEvent_1">
+        <name>
+          <text>Arc-EventBasedGateway_1---P-EventBasedGateway_1-IntermediateThrowEvent_1</text>
+        </name>
+      </arc>
+      <place id="P-ParallelGateway_1-EndEvent_1">
+        <name>
+          <text>P--End Event 1</text>
+        </name>
+      </place>
+      <arc id="Arc-P-ParallelGateway_1-EndEvent_1---EndEvent_1" source="P-ParallelGateway_1-EndEvent_1" target="EndEvent_1">
+        <name>
+          <text>Arc-P-ParallelGateway_1-EndEvent_1---EndEvent_1</text>
+        </name>
+      </arc>
+      <arc id="Arc-ParallelGateway_1---P-ParallelGateway_1-EndEvent_1" source="ParallelGateway_1" target="P-ParallelGateway_1-EndEvent_1">
+        <name>
+          <text>Arc-ParallelGateway_1---P-ParallelGateway_1-EndEvent_1</text>
+        </name>
+      </arc>
+      <place id="P-IntermediateThrowEvent_1-ParallelGateway_1">
+        <name>
+          <text>P-Intermediate Throw Event 1-</text>
+        </name>
+      </place>
+      <arc id="Arc-P-IntermediateThrowEvent_1-ParallelGateway_1---ParallelGateway_1" source="P-IntermediateThrowEvent_1-ParallelGateway_1" target="ParallelGateway_1">
+        <name>
+          <text>Arc-P-IntermediateThrowEvent_1-ParallelGateway_1---ParallelGateway_1</text>
+        </name>
+      </arc>
+      <arc id="Arc-IntermediateThrowEvent_1---P-IntermediateThrowEvent_1-ParallelGateway_1" source="IntermediateThrowEvent_1" target="P-IntermediateThrowEvent_1-ParallelGateway_1">
+        <name>
+          <text>Arc-IntermediateThrowEvent_1---P-IntermediateThrowEvent_1-ParallelGateway_1</text>
+        </name>
+      </arc>
+      <place id="P-EventBasedGateway_1-Task_1">
+        <name>
+          <text>P--Task 1</text>
+        </name>
+      </place>
+      <arc id="Arc-P-EventBasedGateway_1-Task_1---Task_1" source="P-EventBasedGateway_1-Task_1" target="Task_1">
+        <name>
+          <text>Arc-P-EventBasedGateway_1-Task_1---Task_1</text>
+        </name>
+      </arc>
+      <arc id="Arc-EventBasedGateway_1---P-EventBasedGateway_1-Task_1" source="EventBasedGateway_1" target="P-EventBasedGateway_1-Task_1">
+        <name>
+          <text>Arc-EventBasedGateway_1---P-EventBasedGateway_1-Task_1</text>
+        </name>
+      </arc>
+      <place id="P-Task_1-ParallelGateway_1">
+        <name>
+          <text>P-Task 1-</text>
+        </name>
+      </place>
+      <arc id="Arc-P-Task_1-ParallelGateway_1---ParallelGateway_1" source="P-Task_1-ParallelGateway_1" target="ParallelGateway_1">
+        <name>
+          <text>Arc-P-Task_1-ParallelGateway_1---ParallelGateway_1</text>
+        </name>
+      </arc>
+      <arc id="Arc-Task_1---P-Task_1-ParallelGateway_1" source="Task_1" target="P-Task_1-ParallelGateway_1">
+        <name>
+          <text>Arc-Task_1---P-Task_1-ParallelGateway_1</text>
+        </name>
+      </arc>
+    </page>
+  </net>
+</pnml>
