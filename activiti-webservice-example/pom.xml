@@ -46,7 +46,6 @@
 		<dependency>
 			<groupId>edu.udo.cs.ls14.jf</groupId>
 			<artifactId>activiti-extensions</artifactId>
-			<version>0.0.1-SNAPSHOT</version>
 		</dependency>
 	</dependencies>
 	<build>

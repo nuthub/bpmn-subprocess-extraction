@@ -24,6 +24,7 @@
 		<module>bpmn-transformation</module>
 		<module>bpmnmatching-fragmentmatching</module>
 		<module>bpmnmatching-services</module>
+		<module>bpmntransformation-services</module>
 	</modules>
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -248,6 +249,11 @@
 		<dependency>
 			<groupId>edu.udo.cs.ls14.jf</groupId>
 			<artifactId>bpmnanalysis-services</artifactId>
+			<version>0.0.1-SNAPSHOT</version>
+		</dependency>
+		<dependency>
+			<groupId>edu.udo.cs.ls14.jf</groupId>
+			<artifactId>activiti-extensions</artifactId>
 			<version>0.0.1-SNAPSHOT</version>
 		</dependency>
 		</dependencies>
