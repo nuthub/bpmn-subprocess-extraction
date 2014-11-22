@@ -2,10 +2,12 @@ package edu.udo.cs.ls14.jf.bpmnapplication;
 
 import org.eclipse.bpmn2.Definitions;
 import org.eclipse.bpmn2.Process;
+import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import edu.udo.cs.ls14.jf.bpmn.utils.ProcessExtractionFactory;
 import edu.udo.cs.ls14.jf.bpmn.utils.ProcessUtil;
 import edu.udo.cs.ls14.jf.bpmnmatching.FragmentPair;
 import edu.udo.cs.ls14.jf.bpmnmatching.ProcessMatching;
@@ -33,8 +35,8 @@ public class ProcessExtractor {
 		String filename2 = ProcessUtil.getProcessFromDefinitions(
 				pMatching.getAnalysis2().getDefinitions()).getName()
 				+ "_transformed.bpmn";
-		ProcessExtraction extraction = BpmnTransformationFactory.eINSTANCE
-				.createProcessExtraction();
+		ProcessExtraction extraction = ProcessExtractionFactory
+				.createProcessTransformation(pMatching);
 
 		FragmentExtractor extractor = new FragmentExtractor();
 		// Loop over all fragment matchings
@@ -48,6 +50,7 @@ public class ProcessExtractor {
 					+ fragmentCounter++;
 			defsExtracted.setTargetNamespace("http://"
 					+ idExtracted.toLowerCase());
+			defsExtracted.setId(EcoreUtil.generateUUID());
 			extractor.replaceId(defsExtracted, ProcessUtil
 					.getProcessFromDefinitions(defsExtracted).getId(),
 					EcoreUtil.generateUUID());
@@ -58,6 +61,8 @@ public class ProcessExtractor {
 			// callActivity parameters
 			Process calledElement = ProcessUtil
 					.getProcessFromDefinitions(defsExtracted);
+			calledElement.setName(idExtracted);
+			calledElement.setId(idExtracted.toLowerCase());
 			fPair.getBetter().setLabel(
 					LabelGenerator.getLabel(fPair.getBetter()));
 
