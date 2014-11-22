@@ -2,7 +2,6 @@ package edu.udo.cs.ls14.jf.bpmnapplication;
 
 import org.eclipse.bpmn2.Definitions;
 import org.eclipse.bpmn2.Process;
-import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -11,7 +10,6 @@ import edu.udo.cs.ls14.jf.bpmn.utils.ProcessExtractionFactory;
 import edu.udo.cs.ls14.jf.bpmn.utils.ProcessUtil;
 import edu.udo.cs.ls14.jf.bpmnmatching.FragmentPair;
 import edu.udo.cs.ls14.jf.bpmnmatching.ProcessMatching;
-import edu.udo.cs.ls14.jf.bpmntransformation.BpmnTransformationFactory;
 import edu.udo.cs.ls14.jf.bpmntransformation.ProcessExtraction;
 import edu.udo.cs.ls14.jf.transformation.FragmentExtractor;
 import edu.udo.cs.ls14.jf.transformation.LabelGenerator;

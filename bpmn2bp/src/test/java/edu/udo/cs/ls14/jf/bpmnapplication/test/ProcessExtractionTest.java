@@ -66,6 +66,7 @@ public class ProcessExtractionTest {
 
 	private void runTest(String basename1, String basename2, String path)
 			throws Exception {
+		String targetDir = "/tmp/applicationtest/";
 		// hit the process
 		Bpmn2ResourceSet resSetIn = new Bpmn2ResourceSet(getClass()
 				.getResource("/edu/udo/cs/ls14/jf/bpmn/test/" + path + "/")
@@ -74,6 +75,11 @@ public class ProcessExtractionTest {
 				.loadDefinitions(basename1 + ".bpmn"));
 		Definitions definitions2 = EcoreUtil.copy(resSetIn
 				.loadDefinitions(basename2 + ".bpmn"));
+
+		// Create resources for source definitions
+		Bpmn2ResourceSet resSetOut = new Bpmn2ResourceSet(targetDir);
+		resSetOut.createResource(basename1 + "_transformed.bpmn", definitions1);
+		resSetOut.createResource(basename2 + "_transformed.bpmn", definitions2);
 
 		// START
 		// analyze process1
@@ -87,7 +93,7 @@ public class ProcessExtractionTest {
 		// END
 
 		// write out
-		ProcessExtractionUtil.writeResults("/tmp/applicationtest/", extraction);
+		ProcessExtractionUtil.writeResults(targetDir, extraction);
 		// TODO: assertions
 	}
 }
