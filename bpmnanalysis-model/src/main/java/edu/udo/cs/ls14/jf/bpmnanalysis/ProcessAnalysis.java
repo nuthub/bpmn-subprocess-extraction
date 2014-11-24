@@ -25,6 +25,11 @@ import org.eclipse.emf.ecore.EObject;
  * @generated
  */
 public interface ProcessAnalysis extends EObject {
+	
+	public static final String BEHAVIORALPROFILE = "behavioralProfile";
+	public static final String PROCESSTRUCTURETREE = "pst";
+	public static final String CONDITIONALPROFILE = "conditionalProfile";
+	
 	/**
 	 * Returns the value of the '<em><b>Id</b></em>' attribute.
 	 * <!-- begin-user-doc -->

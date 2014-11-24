@@ -135,26 +135,26 @@ public interface Fragment extends EObject {
 	void setLabel(String value);
 
 	/**
-	 * Returns the value of the '<em><b>Center</b></em>' reference.
+	 * Returns the value of the '<em><b>Center</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Center</em>' reference isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Center</em>' reference.
+	 * @return the value of the '<em>Center</em>' containment reference.
 	 * @see #setCenter(Point)
 	 * @see edu.udo.cs.ls14.jf.bpmnanalysis.BpmnAnalysisPackage#getFragment_Center()
-	 * @model
+	 * @model containment="true"
 	 * @generated
 	 */
 	Point getCenter();
 
 	/**
-	 * Sets the value of the '{@link edu.udo.cs.ls14.jf.bpmnanalysis.Fragment#getCenter <em>Center</em>}' reference.
+	 * Sets the value of the '{@link edu.udo.cs.ls14.jf.bpmnanalysis.Fragment#getCenter <em>Center</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Center</em>' reference.
+	 * @param value the new value of the '<em>Center</em>' containment reference.
 	 * @see #getCenter()
 	 * @generated
 	 */

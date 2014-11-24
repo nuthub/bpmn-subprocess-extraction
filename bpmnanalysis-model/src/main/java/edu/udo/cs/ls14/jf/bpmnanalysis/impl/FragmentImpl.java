@@ -11,6 +11,7 @@ import org.eclipse.bpmn2.SequenceFlow;
 import org.eclipse.dd.dc.Point;
 import org.eclipse.emf.common.notify.Notification;
 
+import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 
@@ -97,7 +98,7 @@ public class FragmentImpl extends MinimalEObjectImpl.Container implements Fragme
 	protected String label = LABEL_EDEFAULT;
 
 	/**
-	 * The cached value of the '{@link #getCenter() <em>Center</em>}' reference.
+	 * The cached value of the '{@link #getCenter() <em>Center</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see #getCenter()
@@ -266,14 +267,6 @@ public class FragmentImpl extends MinimalEObjectImpl.Container implements Fragme
 	 * @generated
 	 */
 	public Point getCenter() {
-		if (center != null && center.eIsProxy()) {
-			InternalEObject oldCenter = (InternalEObject)center;
-			center = (Point)eResolveProxy(oldCenter);
-			if (center != oldCenter) {
-				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, BpmnAnalysisPackage.FRAGMENT__CENTER, oldCenter, center));
-			}
-		}
 		return center;
 	}
 
@@ -282,8 +275,14 @@ public class FragmentImpl extends MinimalEObjectImpl.Container implements Fragme
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Point basicGetCenter() {
-		return center;
+	public NotificationChain basicSetCenter(Point newCenter, NotificationChain msgs) {
+		Point oldCenter = center;
+		center = newCenter;
+		if (eNotificationRequired()) {
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, BpmnAnalysisPackage.FRAGMENT__CENTER, oldCenter, newCenter);
+			if (msgs == null) msgs = notification; else msgs.add(notification);
+		}
+		return msgs;
 	}
 
 	/**
@@ -292,10 +291,31 @@ public class FragmentImpl extends MinimalEObjectImpl.Container implements Fragme
 	 * @generated
 	 */
 	public void setCenter(Point newCenter) {
-		Point oldCenter = center;
-		center = newCenter;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, BpmnAnalysisPackage.FRAGMENT__CENTER, oldCenter, center));
+		if (newCenter != center) {
+			NotificationChain msgs = null;
+			if (center != null)
+				msgs = ((InternalEObject)center).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - BpmnAnalysisPackage.FRAGMENT__CENTER, null, msgs);
+			if (newCenter != null)
+				msgs = ((InternalEObject)newCenter).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - BpmnAnalysisPackage.FRAGMENT__CENTER, null, msgs);
+			msgs = basicSetCenter(newCenter, msgs);
+			if (msgs != null) msgs.dispatch();
+		}
+		else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, BpmnAnalysisPackage.FRAGMENT__CENTER, newCenter, newCenter));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+		switch (featureID) {
+			case BpmnAnalysisPackage.FRAGMENT__CENTER:
+				return basicSetCenter(null, msgs);
+		}
+		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
 
 	/**
@@ -359,8 +379,7 @@ public class FragmentImpl extends MinimalEObjectImpl.Container implements Fragme
 			case BpmnAnalysisPackage.FRAGMENT__LABEL:
 				return getLabel();
 			case BpmnAnalysisPackage.FRAGMENT__CENTER:
-				if (resolve) return getCenter();
-				return basicGetCenter();
+				return getCenter();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}

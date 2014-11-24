@@ -463,7 +463,7 @@ public interface BpmnAnalysisPackage extends EPackage {
 	int FRAGMENT__LABEL = 4;
 
 	/**
-	 * The feature id for the '<em><b>Center</b></em>' reference.
+	 * The feature id for the '<em><b>Center</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -876,10 +876,10 @@ public interface BpmnAnalysisPackage extends EPackage {
 	EAttribute getFragment_Label();
 
 	/**
-	 * Returns the meta object for the reference '{@link edu.udo.cs.ls14.jf.bpmnanalysis.Fragment#getCenter <em>Center</em>}'.
+	 * Returns the meta object for the containment reference '{@link edu.udo.cs.ls14.jf.bpmnanalysis.Fragment#getCenter <em>Center</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Center</em>'.
+	 * @return the meta object for the containment reference '<em>Center</em>'.
 	 * @see edu.udo.cs.ls14.jf.bpmnanalysis.Fragment#getCenter()
 	 * @see #getFragment()
 	 * @generated
@@ -1218,7 +1218,7 @@ public interface BpmnAnalysisPackage extends EPackage {
 		EAttribute FRAGMENT__LABEL = eINSTANCE.getFragment_Label();
 
 		/**
-		 * The meta object literal for the '<em><b>Center</b></em>' reference feature.
+		 * The meta object literal for the '<em><b>Center</b></em>' containment reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated

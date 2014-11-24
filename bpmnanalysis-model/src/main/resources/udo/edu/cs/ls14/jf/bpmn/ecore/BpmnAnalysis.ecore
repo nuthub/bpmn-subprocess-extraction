@@ -53,7 +53,8 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="entry" lowerBound="1" eType="ecore:EClass BPMN20.ecore#//SequenceFlow"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="exit" lowerBound="1" eType="ecore:EClass BPMN20.ecore#//SequenceFlow"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="label" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="center" eType="ecore:EClass DC.ecore#//Point"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="center" eType="ecore:EClass DC.ecore#//Point"
+        containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Trace">
     <eStructuralFeatures xsi:type="ecore:EReference" name="nodes" upperBound="-1"
