@@ -21,7 +21,7 @@ import edu.udo.cs.ls14.jf.bpmnanalysis.ConditionalProfile;
 
 public class ConditionalProfiler {
 
-	public ConditionalProfile generateProfile(Process process)
+	public static ConditionalProfile generateProfile(Process process)
 			throws Exception {
 		ConditionalProfile cp = BpmnAnalysisFactory.eINSTANCE
 				.createConditionalProfile();
@@ -58,7 +58,7 @@ public class ConditionalProfiler {
 		return cp;
 	}
 
-	private Set<FlowNode> getAffectedNodes(SequenceFlow flow,
+	private static Set<FlowNode> getAffectedNodes(SequenceFlow flow,
 			Set<FlowNode> nodes) throws Exception {
 		FlowNode tgt = flow.getTargetRef();
 		if (tgt instanceof Event || tgt instanceof Activity) {
