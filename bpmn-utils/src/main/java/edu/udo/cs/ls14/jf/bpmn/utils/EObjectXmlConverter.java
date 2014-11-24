@@ -14,9 +14,6 @@ import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.ecore.xmi.XMLResource;
 
 public class EObjectXmlConverter {
-//
-//	private static final Logger LOG = LoggerFactory
-//			.getLogger(EObjectXmlConverter.class);
 
 	/**
 	 * Requires factories registered via
