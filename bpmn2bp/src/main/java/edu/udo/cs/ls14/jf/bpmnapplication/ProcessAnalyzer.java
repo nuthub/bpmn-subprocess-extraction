@@ -49,9 +49,8 @@ public class ProcessAnalyzer {
 		analysis.getResults().put("behavioralProfile", behavioralProfile);
 
 		// create conditional profile
-		ConditionalProfiler cProfiler = new ConditionalProfiler();
 		analysis.getResults().put("conditionalProfile",
-				cProfiler.generateProfile(process));
+				ConditionalProfiler.generateProfile(process));
 
 		// create PST
 		PSTBuilder pstBuilder = new PSTBuilder();

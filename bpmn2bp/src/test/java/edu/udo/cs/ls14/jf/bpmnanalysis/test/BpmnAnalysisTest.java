@@ -86,9 +86,8 @@ public class BpmnAnalysisTest {
 		a.getResults().put("behavioralProfile", eBp);
 
 		// ConditionalProfile
-		ConditionalProfiler cProfiler = new ConditionalProfiler();
 		a.getResults().put("conditionalProfile",
-				cProfiler.generateProfile(process));
+				ConditionalProfiler.generateProfile(process));
 
 		// PST
 		PSTBuilder pstBuilder = new PSTBuilder();
