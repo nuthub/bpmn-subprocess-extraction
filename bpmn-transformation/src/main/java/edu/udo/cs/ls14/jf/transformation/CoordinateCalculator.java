@@ -10,6 +10,8 @@ import org.eclipse.bpmn2.FlowNode;
 import org.eclipse.bpmn2.di.BPMNDiagram;
 import org.eclipse.bpmn2.di.BPMNShape;
 import org.eclipse.dd.dc.Bounds;
+import org.eclipse.dd.dc.DcFactory;
+import org.eclipse.dd.dc.Point;
 import org.eclipse.dd.di.DiagramElement;
 import org.javatuples.Pair;
 
@@ -19,8 +21,8 @@ import edu.udo.cs.ls14.jf.bpmnanalysis.Fragment;
 
 public class CoordinateCalculator {
 
-	public static Pair<Float, Float> getCoords(FlowNode node,
-			Definitions definitions) throws Exception {
+	public static Point getCenter(FlowNode node, Definitions definitions)
+			throws Exception {
 		BPMNDiagram diagram = ProcessUtil
 				.getDiagramFromDefinitions(definitions);
 		float x = 0;
@@ -35,11 +37,13 @@ public class CoordinateCalculator {
 				}
 			}
 		}
-		return Pair.with(x, y);
+		Point point = DcFactory.eINSTANCE.createPoint();
+		point.setX(x);
+		point.setY(y);
+		return point;
 	}
 
-	public static Pair<Float, Float> getCoords(Fragment fragment)
-			throws Exception {
+	public static Point getCenter(Fragment fragment) throws Exception {
 		Predicate<FlowElement> filter = e -> e instanceof FlowNode;
 		Set<FlowElement> nodes = FragmentUtil.getFlowElements(fragment, filter);
 		Set<String> nodeIds = nodes.stream().map(n -> n.getId())
@@ -68,8 +72,10 @@ public class CoordinateCalculator {
 			minY = minY == -1 ? centerY : Math.min(minY, centerY);
 			maxY = Math.max(maxY, centerY);
 		}
-		return Pair
-				.with(minX + ((maxX - minX) / 2), minY + ((maxY - minY) / 2));
+		Point point = DcFactory.eINSTANCE.createPoint();
+		point.setX(minX + ((maxX - minX) / 2));
+		point.setY(minY + ((maxY - minY) / 2));
+		return point;
 	}
 
 }
