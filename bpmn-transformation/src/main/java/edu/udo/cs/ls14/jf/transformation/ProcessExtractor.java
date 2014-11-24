@@ -30,7 +30,7 @@ public class ProcessExtractor {
 				.getDefinitions());
 		Definitions definitions2 = EcoreUtil.copy(pMatching.getAnalysis2()
 				.getDefinitions());
-		
+
 		// Create extraction object (-> process?)
 		ProcessExtraction extraction = ProcessExtractionFactory
 				.createProcessTransformation(pMatching);
@@ -50,7 +50,7 @@ public class ProcessExtractor {
 			defsExtracted.setId(EcoreUtil.generateUUID());
 			extractor.replaceId(defsExtracted, ProcessUtil
 					.getProcessFromDefinitions(defsExtracted).getId(),
-					idExtracted);
+					EcoreUtil.generateUUID());
 			extractor.cropFragment(defsExtracted, fPair.getBetter());
 			extraction.getResults().put(idExtracted + ".bpmn", defsExtracted);
 			LOG.info("SubProcess extracted.");
@@ -74,13 +74,14 @@ public class ProcessExtractor {
 					fPair.getBetter().getLabel(), calledElement);
 			LOG.info("Replaced " + fPair.getB());
 
-			// Add definitions to result
-			extraction.getResults().put(ProcessUtil.getProcessFromDefinitions(definitions1)
-					.getName() + "_transformed.bpmn", definitions1);
-			extraction.getResults().put(ProcessUtil.getProcessFromDefinitions(definitions2)
-					.getName() + "_transformed.bpmn", definitions2);
-
 		}
+		// Add definitions to result
+		extraction.getResults().put(
+				ProcessUtil.getProcessFromDefinitions(definitions1).getName()
+						+ "_transformed.bpmn", definitions1);
+		extraction.getResults().put(
+				ProcessUtil.getProcessFromDefinitions(definitions2).getName()
+						+ "_transformed.bpmn", definitions2);
 		return extraction;
 	}
 

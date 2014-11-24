@@ -216,7 +216,7 @@ public class FragmentExtractor {
 		}
 		Resource res = resourceFactory.createResource(URI.createURI(EcoreUtil
 				.generateUUID()));
-		res.getContents().add(EcoreUtil.copy(definitions));
+		res.getContents().add(definitions);
 		return res;
 	}
 
