@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
+import java.util.UUID;
 import java.util.stream.Collectors;
 
 import org.eclipse.bpmn2.Bpmn2Package;
@@ -70,10 +71,10 @@ public class FragmentExtractor {
 	public void cropFragment(Definitions definitions, Fragment fragment)
 			throws Exception {
 		Process process = ProcessUtil.getProcessFromDefinitions(definitions);
-		Point startEventCoords = CoordinateCalculator.getCenter(
-				fragment.getEntry().getSourceRef(), definitions);
-		Point endEventCoords = CoordinateCalculator.getCenter(
-				fragment.getExit().getTargetRef(), definitions);
+		Point startEventCoords = CoordinateCalculator.getCenter(fragment
+				.getEntry().getSourceRef(), definitions);
+		Point endEventCoords = CoordinateCalculator.getCenter(fragment
+				.getExit().getTargetRef(), definitions);
 
 		Set<String> preserveElementIds = FragmentUtil
 				.getFlowElements(fragment, e -> true).stream()
@@ -94,7 +95,7 @@ public class FragmentExtractor {
 
 		Map<String, Object> parameters = new HashMap<String, Object>();
 		// create startevent
-		String startEventId = EcoreUtil.generateUUID();
+		String startEventId = UUID.randomUUID().toString();
 		parameters.clear();
 		parameters.put("id", startEventId);
 		parameters.put("name", "Start");
@@ -118,7 +119,7 @@ public class FragmentExtractor {
 		parameters.put("id", fragment.getEntry().getId());
 		applyRule(graph, RULEFILE, "deleteExpression", parameters);
 		// create endevent
-		String endEventId = EcoreUtil.generateUUID();
+		String endEventId = UUID.randomUUID().toString();
 		parameters.clear();
 		parameters.put("id", endEventId);
 		parameters.put("name", "End");
@@ -175,7 +176,7 @@ public class FragmentExtractor {
 		// create call activity
 		parameters.clear();
 		// TODO: use object instead of ID
-		String callActivityUuid = EcoreUtil.generateUUID();
+		String callActivityUuid = UUID.randomUUID().toString();
 		parameters.put("id", callActivityUuid);
 		parameters.put("name", name);
 		parameters.put("x", fragment.getCenter().getX());
@@ -214,8 +215,8 @@ public class FragmentExtractor {
 		if (resourceFactory == null) {
 			resourceFactory = new Bpmn2ResourceFactoryImpl();
 		}
-		Resource res = resourceFactory.createResource(URI.createURI(EcoreUtil
-				.generateUUID()));
+		Resource res = resourceFactory.createResource(URI.createURI(UUID
+				.randomUUID().toString()));
 		res.getContents().add(definitions);
 		return res;
 	}

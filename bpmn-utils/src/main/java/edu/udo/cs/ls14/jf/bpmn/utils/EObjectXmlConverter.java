@@ -5,6 +5,7 @@ import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.UUID;
 
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
@@ -34,8 +35,7 @@ public class EObjectXmlConverter {
 							+ extension
 							+ ". Appropriate Resource.Factory has to be registered manually.");
 		}
-		Resource res = factory.createResource(URI.createURI(EcoreUtil
-				.generateUUID() + "." + extension));
+		Resource res = factory.createResource(URI.createURI(UUID.randomUUID().toString() + "." + extension));
 		res.getContents().add(eObject);
 		ByteArrayOutputStream os = new ByteArrayOutputStream();
 		res.save(os, getOptions());
@@ -60,8 +60,7 @@ public class EObjectXmlConverter {
 							+ extension
 							+ "'. Appropriate Resource.Factory has to be registered manually.");
 		}
-		Resource xres = factory.createResource(URI.createURI(EcoreUtil
-				.generateUUID() + "." + extension));
+		Resource xres = factory.createResource(URI.createURI(UUID.randomUUID().toString() + "." + extension));
 		xres.load(new ByteArrayInputStream(xmlString.trim().getBytes()),
 				getOptions());
 		return xres.getContents().get(0);

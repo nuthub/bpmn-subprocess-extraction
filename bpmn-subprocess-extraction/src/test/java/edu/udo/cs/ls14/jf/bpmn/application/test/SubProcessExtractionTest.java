@@ -34,7 +34,9 @@ public class SubProcessExtractionTest {
 				path).getPath());
 		Definitions defs1 = resSet.loadDefinitions(resourceName1);
 		Definitions defs2 = resSet.loadDefinitions(resourceName2);
+		long start = System.currentTimeMillis();
 		ProcessExtraction extraction = app.getExtraction(defs1, defs2);
+		long end = System.currentTimeMillis();
 		// Write out
 		for (Entry<String, Definitions> result : extraction.getResults()
 				.entrySet()) {
@@ -47,6 +49,7 @@ public class SubProcessExtractionTest {
 				+ "/extraction.xml", extraction);
 		ProcessExtractionUtil.writeResults("/tmp/results/" + key + "/",
 				extraction);
+		System.out.println("Took " + (end-start) + "ms for the extraction process");
 	}
 
 }

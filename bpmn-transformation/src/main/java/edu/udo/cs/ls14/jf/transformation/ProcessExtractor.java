@@ -1,5 +1,7 @@
 package edu.udo.cs.ls14.jf.transformation;
 
+import java.util.UUID;
+
 import org.eclipse.bpmn2.Definitions;
 import org.eclipse.bpmn2.Process;
 import org.eclipse.emf.ecore.util.EcoreUtil;
@@ -47,10 +49,10 @@ public class ProcessExtractor {
 					+ fragmentCounter++;
 			defsExtracted.setTargetNamespace("http://"
 					+ idExtracted.toLowerCase());
-			defsExtracted.setId(EcoreUtil.generateUUID());
+			defsExtracted.setId(UUID.randomUUID().toString());
 			extractor.replaceId(defsExtracted, ProcessUtil
 					.getProcessFromDefinitions(defsExtracted).getId(),
-					EcoreUtil.generateUUID());
+					UUID.randomUUID().toString());
 			extractor.cropFragment(defsExtracted, fPair.getBetter());
 			extraction.getResults().put(idExtracted + ".bpmn", defsExtracted);
 			LOG.info("SubProcess extracted.");

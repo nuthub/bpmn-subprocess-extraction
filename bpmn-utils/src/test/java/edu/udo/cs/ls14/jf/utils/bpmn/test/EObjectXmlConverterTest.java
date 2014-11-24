@@ -5,12 +5,12 @@ import static org.junit.Assert.assertEquals;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.util.UUID;
 
 import org.eclipse.bpmn2.Definitions;
 import org.eclipse.bpmn2.util.Bpmn2ResourceFactoryImpl;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
-import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -45,7 +45,7 @@ public class EObjectXmlConverterTest {
 	public void testProcessAnalysis() throws Exception {
 		ProcessAnalysis analysis = BpmnAnalysisFactory.eINSTANCE
 				.createProcessAnalysis();
-		analysis.setId(EcoreUtil.generateUUID());
+		analysis.setId(UUID.randomUUID().toString());
 		String xml = EObjectXmlConverter.eObject2Xml("bpmnanalysis", analysis);
 		ProcessAnalysis analysis2 = (ProcessAnalysis) EObjectXmlConverter
 				.xml2EObject("bpmnanalysis", xml);
