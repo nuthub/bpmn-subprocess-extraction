@@ -6,11 +6,13 @@ import java.util.HashMap;
 import java.util.Map;
 
 import org.eclipse.bpmn2.Definitions;
+import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import edu.udo.cs.ls14.jf.bpmntransformation.ProcessExtraction;
+import edu.udo.cs.ls14.jf.bpmntransformation.util.BpmnTransformationResourceFactoryImpl;
 
 public class ProcessExtractionUtil {
 
@@ -64,5 +66,22 @@ public class ProcessExtractionUtil {
 			LOG.info("Fixed " + res.getURI());
 		}
 
+	}
+
+	public static String toXml(ProcessExtraction extraction) throws Exception {
+		Resource.Factory.Registry.INSTANCE.getExtensionToFactoryMap()
+				.putIfAbsent("bpmntransformation",
+						new BpmnTransformationResourceFactoryImpl());
+		return EObjectXmlConverter
+				.eObject2Xml("bpmntransformation", extraction);
+	}
+
+	public static void writeToFile(String filename, ProcessExtraction extraction)
+			throws IOException {
+		Resource res = new BpmnTransformationResourceFactoryImpl()
+				.createResource(URI.createFileURI(filename));
+		res.getContents().add(extraction);
+		res.save(null);
+		LOG.info("Written extraction result to " + filename);
 	}
 }
