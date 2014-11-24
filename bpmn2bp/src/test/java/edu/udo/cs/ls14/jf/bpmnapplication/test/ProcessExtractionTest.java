@@ -12,12 +12,12 @@ import edu.udo.cs.ls14.jf.bpmn.utils.Bpmn2ResourceSet;
 import edu.udo.cs.ls14.jf.bpmn.utils.ProcessExtractionUtil;
 import edu.udo.cs.ls14.jf.bpmnanalysis.ProcessAnalysis;
 import edu.udo.cs.ls14.jf.bpmnapplication.ProcessAnalyzer;
-import edu.udo.cs.ls14.jf.bpmnapplication.ProcessExtractor;
 import edu.udo.cs.ls14.jf.bpmnapplication.ProcessMatcher;
 import edu.udo.cs.ls14.jf.bpmnmatching.ProcessMatching;
 import edu.udo.cs.ls14.jf.bpmntransformation.BpmnTransformationPackage;
 import edu.udo.cs.ls14.jf.bpmntransformation.ProcessExtraction;
 import edu.udo.cs.ls14.jf.bpmntransformation.util.BpmnTransformationResourceFactoryImpl;
+import edu.udo.cs.ls14.jf.transformation.ProcessExtractor;
 
 public class ProcessExtractionTest {
 
@@ -77,9 +77,9 @@ public class ProcessExtractionTest {
 				.loadDefinitions(basename2 + ".bpmn"));
 
 		// Create resources for source definitions
-		Bpmn2ResourceSet resSetOut = new Bpmn2ResourceSet(targetDir);
-		resSetOut.createResource(basename1 + "_transformed.bpmn", definitions1);
-		resSetOut.createResource(basename2 + "_transformed.bpmn", definitions2);
+//		Bpmn2ResourceSet resSetOut = new Bpmn2ResourceSet(targetDir);
+//		resSetOut.createResource(basename1 + "_transformed.bpmn", definitions1);
+//		resSetOut.createResource(basename2 + "_transformed.bpmn", definitions2);
 
 		// START
 		// analyze process1

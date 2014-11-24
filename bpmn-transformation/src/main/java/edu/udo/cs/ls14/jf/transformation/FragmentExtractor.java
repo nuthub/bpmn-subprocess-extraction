@@ -6,6 +6,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.stream.Collectors;
 
+import org.eclipse.bpmn2.Bpmn2Package;
 import org.eclipse.bpmn2.CallableElement;
 import org.eclipse.bpmn2.Definitions;
 import org.eclipse.bpmn2.FlowElement;
@@ -13,28 +14,50 @@ import org.eclipse.bpmn2.FlowNode;
 import org.eclipse.bpmn2.Process;
 import org.eclipse.bpmn2.SequenceFlow;
 import org.eclipse.bpmn2.util.Bpmn2ResourceFactoryImpl;
+import org.eclipse.dd.dc.Point;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.henshin.interpreter.EGraph;
+import org.eclipse.emf.henshin.interpreter.Engine;
+import org.eclipse.emf.henshin.interpreter.UnitApplication;
 import org.eclipse.emf.henshin.interpreter.impl.EGraphImpl;
-import org.javatuples.Pair;
+import org.eclipse.emf.henshin.interpreter.impl.EngineImpl;
+import org.eclipse.emf.henshin.interpreter.impl.UnitApplicationImpl;
+import org.eclipse.emf.henshin.model.Module;
+import org.eclipse.emf.henshin.model.Unit;
+import org.eclipse.emf.henshin.model.resource.HenshinResourceSet;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import edu.udo.cs.ls14.jf.bpmn.utils.FragmentUtil;
 import edu.udo.cs.ls14.jf.bpmn.utils.ProcessUtil;
 import edu.udo.cs.ls14.jf.bpmnanalysis.Fragment;
 
-public class FragmentExtractor extends HenshinTransformation {
+public class FragmentExtractor {
 
+	private static final Logger LOG = LoggerFactory
+			.getLogger(FragmentExtractor.class);
+
+	private static final String RESOURCEPATH = "/edu/udo/cs/ls14/jf/henshin";
 	private static final String RULEFILE = "bpmnModifier";
-	private static final String RULEPATH = "src/main/resources/edu/udo/cs/ls14/jf/henshin/";
-	private Bpmn2ResourceFactoryImpl resourceFactory;
 
-	@Override
-	protected String getRulePath() {
-		return RULEPATH;
+	private Bpmn2ResourceFactoryImpl resourceFactory;
+	private Engine engine = null;
+	private HenshinResourceSet resourceSet = null;
+
+	private void init() {
+		engine = new EngineImpl();
+		resourceSet = new HenshinResourceSet(getClass().getResource(
+				RESOURCEPATH).getPath());
+		resourceSet.registerXMIResourceFactories("bpmn2");
+		resourceSet.getPackageRegistry().put(Bpmn2Package.eNS_URI,
+				Bpmn2Package.eINSTANCE);
+		resourceSet.getResourceFactoryRegistry().getExtensionToFactoryMap()
+				.put("bpmn2", new Bpmn2ResourceFactoryImpl());
 	}
 
+	// TODO: Check if really required
 	public void replaceId(Definitions definitions, String oldId, String newId)
 			throws Exception {
 		EGraph graph = new EGraphImpl(getTmpResource(definitions));
@@ -47,9 +70,9 @@ public class FragmentExtractor extends HenshinTransformation {
 	public void cropFragment(Definitions definitions, Fragment fragment)
 			throws Exception {
 		Process process = ProcessUtil.getProcessFromDefinitions(definitions);
-		Pair<Float, Float> startEventCoords = CoordinateCalculator.getCoords(
+		Point startEventCoords = CoordinateCalculator.getCenter(
 				fragment.getEntry().getSourceRef(), definitions);
-		Pair<Float, Float> endEventCoords = CoordinateCalculator.getCoords(
+		Point endEventCoords = CoordinateCalculator.getCenter(
 				fragment.getExit().getTargetRef(), definitions);
 
 		Set<String> preserveElementIds = FragmentUtil
@@ -60,10 +83,11 @@ public class FragmentExtractor extends HenshinTransformation {
 		Set<FlowElement> deleteElements = process.getFlowElements().stream()
 				.filter(e -> !preserveElementIds.contains(e.getId()))
 				.collect(Collectors.toSet());
-		Set<FlowElement> deleteNodes = deleteElements.stream()
-				.filter(e -> e instanceof FlowNode).collect(Collectors.toSet());
-		Set<FlowElement> deleteEdges = deleteElements.stream()
-				.filter(e -> e instanceof SequenceFlow)
+		Set<String> deleteNodeIds = deleteElements.stream()
+				.filter(e -> e instanceof FlowNode).map(e -> e.getId())
+				.collect(Collectors.toSet());
+		Set<String> deleteEdgeIds = deleteElements.stream()
+				.filter(e -> e instanceof SequenceFlow).map(e -> e.getId())
 				.collect(Collectors.toSet());
 
 		EGraph graph = new EGraphImpl(getTmpResource(definitions));
@@ -75,8 +99,8 @@ public class FragmentExtractor extends HenshinTransformation {
 		parameters.put("id", startEventId);
 		parameters.put("name", "Start");
 		parameters.put("shapeId", startEventId + "_gui");
-		parameters.put("x", startEventCoords.getValue0());
-		parameters.put("y", startEventCoords.getValue1());
+		parameters.put("x", startEventCoords.getX());
+		parameters.put("y", startEventCoords.getY());
 		applyRule(graph, RULEFILE, "createStartEvent", parameters);
 		// set sourceRef of entry edge
 		parameters.clear();
@@ -99,8 +123,8 @@ public class FragmentExtractor extends HenshinTransformation {
 		parameters.put("id", endEventId);
 		parameters.put("name", "End");
 		parameters.put("shapeId", endEventId + "_gui");
-		parameters.put("x", endEventCoords.getValue0());
-		parameters.put("y", endEventCoords.getValue1());
+		parameters.put("x", endEventCoords.getX());
+		parameters.put("y", endEventCoords.getY());
 		applyRule(graph, RULEFILE, "createEndEvent", parameters);
 		// set targetRef of exit edge
 		parameters.clear();
@@ -119,23 +143,22 @@ public class FragmentExtractor extends HenshinTransformation {
 		applyRule(graph, RULEFILE, "setName", parameters);
 		// remove sequenceflows
 		parameters.clear();
-		for (FlowElement flow : deleteEdges) {
-			parameters.put("id", flow.getId());
+		for (String id : deleteEdgeIds) {
+			parameters.put("id", id);
 			applyRule(graph, RULEFILE, "deleteSequenceFlow", parameters);
 		}
 		// remove flownodes
 		parameters.clear();
-		for (FlowElement node : deleteNodes) {
-			parameters.put("id", node.getId());
+		for (String id : deleteNodeIds) {
+			parameters.put("id", id);
 			applyRule(graph, RULEFILE, "deleteFlowNode", parameters);
 		}
 	}
 
-	public void replaceFragmentByCallActivity(Fragment fragment, String name,
-			CallableElement calledElement) throws Exception {
-		Pair<Float, Float> coords = CoordinateCalculator.getCoords(fragment);
-
-		EGraph graph = new EGraphImpl(getTmpResource(fragment.getDefinitions()));
+	public void replaceFragmentByCallActivity(Definitions definitions,
+			Fragment fragment, String name, CallableElement calledElement)
+			throws Exception {
+		EGraph graph = new EGraphImpl(getTmpResource(definitions));
 
 		Set<String> deleteNodeIds = new HashSet<String>();
 		Set<String> deleteEdgeIds = new HashSet<String>();
@@ -155,8 +178,8 @@ public class FragmentExtractor extends HenshinTransformation {
 		String callActivityUuid = EcoreUtil.generateUUID();
 		parameters.put("id", callActivityUuid);
 		parameters.put("name", name);
-		parameters.put("x", coords.getValue0());
-		parameters.put("y", coords.getValue1());
+		parameters.put("x", fragment.getCenter().getX());
+		parameters.put("y", fragment.getCenter().getY());
 		parameters.put("calledElement", calledElement);
 		applyRule(graph, RULEFILE, "createCallActivity", parameters);
 
@@ -193,7 +216,32 @@ public class FragmentExtractor extends HenshinTransformation {
 		}
 		Resource res = resourceFactory.createResource(URI.createURI(EcoreUtil
 				.generateUUID()));
-		res.getContents().add(definitions);
+		res.getContents().add(EcoreUtil.copy(definitions));
 		return res;
+	}
+
+	private void applyRule(EGraph graph, String rulefileBaseName,
+			String ruleName, Map<String, Object> parameters) throws Exception {
+		if (engine == null || resourceSet == null) {
+			init();
+		}
+		// Load rule
+		Module module = resourceSet.getModule(rulefileBaseName + ".henshin");
+		Unit unit = module.getUnit(ruleName);
+		if (unit == null) {
+			throw new Exception("Could not get Unit: " + rulefileBaseName
+					+ " / " + ruleName);
+		}
+		UnitApplication app = new UnitApplicationImpl(engine, graph, unit, null);
+		// Basically a copy of parameters :( no better way with ruleapplication
+		// api)
+		for (Map.Entry<String, Object> p : parameters.entrySet()) {
+			app.setParameterValue(p.getKey(), p.getValue());
+		}
+		if (!app.execute(new HenshinApplicationMonitor())) {
+			LOG.error("Rule execution failed: " + ruleName + " / " + parameters);
+			throw new Exception("Could not apply rule: " + rulefileBaseName
+					+ "->" + ruleName + " with " + parameters);
+		}
 	}
 }

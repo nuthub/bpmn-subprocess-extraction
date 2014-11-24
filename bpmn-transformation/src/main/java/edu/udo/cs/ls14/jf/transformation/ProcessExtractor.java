@@ -1,4 +1,4 @@
-package edu.udo.cs.ls14.jf.bpmnapplication;
+package edu.udo.cs.ls14.jf.transformation;
 
 import org.eclipse.bpmn2.Definitions;
 import org.eclipse.bpmn2.Process;
@@ -11,8 +11,6 @@ import edu.udo.cs.ls14.jf.bpmn.utils.ProcessUtil;
 import edu.udo.cs.ls14.jf.bpmnmatching.FragmentPair;
 import edu.udo.cs.ls14.jf.bpmnmatching.ProcessMatching;
 import edu.udo.cs.ls14.jf.bpmntransformation.ProcessExtraction;
-import edu.udo.cs.ls14.jf.transformation.FragmentExtractor;
-import edu.udo.cs.ls14.jf.transformation.LabelGenerator;
 
 /**
  * 
@@ -27,12 +25,13 @@ public class ProcessExtractor {
 	public static ProcessExtraction extract(ProcessMatching pMatching)
 			throws Exception {
 
-		String filename1 = ProcessUtil.getProcessFromDefinitions(
-				pMatching.getAnalysis1().getDefinitions()).getName()
-				+ "_transformed.bpmn";
-		String filename2 = ProcessUtil.getProcessFromDefinitions(
-				pMatching.getAnalysis2().getDefinitions()).getName()
-				+ "_transformed.bpmn";
+		// Copy definitions of matched processes
+		Definitions definitions1 = EcoreUtil.copy(pMatching.getAnalysis1()
+				.getDefinitions());
+		Definitions definitions2 = EcoreUtil.copy(pMatching.getAnalysis2()
+				.getDefinitions());
+		
+		// Create extraction object (-> process?)
 		ProcessExtraction extraction = ProcessExtractionFactory
 				.createProcessTransformation(pMatching);
 
@@ -51,7 +50,7 @@ public class ProcessExtractor {
 			defsExtracted.setId(EcoreUtil.generateUUID());
 			extractor.replaceId(defsExtracted, ProcessUtil
 					.getProcessFromDefinitions(defsExtracted).getId(),
-					EcoreUtil.generateUUID());
+					idExtracted);
 			extractor.cropFragment(defsExtracted, fPair.getBetter());
 			extraction.getResults().put(idExtracted + ".bpmn", defsExtracted);
 			LOG.info("SubProcess extracted.");
@@ -61,26 +60,26 @@ public class ProcessExtractor {
 					.getProcessFromDefinitions(defsExtracted);
 			calledElement.setName(idExtracted);
 			calledElement.setId(idExtracted.toLowerCase());
-			fPair.getBetter().setLabel(
-					LabelGenerator.getLabel(fPair.getBetter()));
 
 			// replace fragment in Process1
 			LOG.info("Replacing " + fPair.getA());
-			extractor.replaceFragmentByCallActivity(fPair.getA(), fPair
-					.getBetter().getLabel(), calledElement);
+
+			extractor.replaceFragmentByCallActivity(definitions1, fPair.getA(),
+					fPair.getBetter().getLabel(), calledElement);
 			LOG.info("Replaced " + fPair.getA());
 
-			// replace fragment in Process2
+			// /replace fragment in Process2
 			LOG.info("Replacing " + fPair.getB());
-			extractor.replaceFragmentByCallActivity(fPair.getB(), fPair
-					.getBetter().getLabel(), calledElement);
+			extractor.replaceFragmentByCallActivity(definitions2, fPair.getB(),
+					fPair.getBetter().getLabel(), calledElement);
 			LOG.info("Replaced " + fPair.getB());
 
 			// Add definitions to result
-			extraction.getResults().put(filename1,
-					fPair.getA().getDefinitions());
-			extraction.getResults().put(filename2,
-					fPair.getB().getDefinitions());
+			extraction.getResults().put(ProcessUtil.getProcessFromDefinitions(definitions1)
+					.getName() + "_transformed.bpmn", definitions1);
+			extraction.getResults().put(ProcessUtil.getProcessFromDefinitions(definitions2)
+					.getName() + "_transformed.bpmn", definitions2);
+
 		}
 		return extraction;
 	}
