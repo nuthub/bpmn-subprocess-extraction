@@ -8,23 +8,24 @@
 	<modules>
 		<module>word-utils</module>
 		<module>bpmn-utils</module>
+		<module>bpmn-subprocess-extraction</module>
 		<module>bpmnanalysis-model</module>
 		<module>bpmnanalysis-behavioralprofile</module>
 		<module>bpmnanalysis-conditionalprofile</module>
 		<module>bpmnanalysis-pst</module>
 		<module>bpmnanalysis-services</module>
-		<!-- needs some refactorints -->
+		<module>bpmnmatching-fragmentmatching</module>
+		<module>bpmnmatching-nodematching</module>
+		<module>bpmnmatching-services</module>
+		<module>bpmn-transformation</module>
+		<module>bpmntransformation-services</module>
+		<!-- needs some refactorings -->
 		<module>bpmn2bp</module>
 		<!-- examples / tests -->
 		<module>activiti-extensions</module>
 		<module>activiti-webservice-example</module>
 		<module>webapp-example</module>
 		<module>services-ear</module>
-		<module>bpmnmatching-nodematching</module>
-		<module>bpmn-transformation</module>
-		<module>bpmnmatching-fragmentmatching</module>
-		<module>bpmnmatching-services</module>
-		<module>bpmntransformation-services</module>
 	</modules>
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
