@@ -22,7 +22,7 @@ public class FragmentPairRankerSize {
 			if (sizeA <= sizeB) {
 				pair.setBetter(pair.getA());
 			} else {
-				pair.setBetter(pair.getA());
+				pair.setBetter(pair.getB());
 			}
 		}
 		return matching;
