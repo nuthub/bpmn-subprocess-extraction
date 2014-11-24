@@ -24,12 +24,18 @@ public class ProcessMatchingFactory {
 	private static final Logger LOG = LoggerFactory
 			.getLogger(ProcessMatchingFactory.class);
 
-	public static ProcessMatching createFullMatching(ProcessAnalysis analysis1,
-			ProcessAnalysis analysis2) {
+	public static ProcessMatching createEmptyMatching(
+			ProcessAnalysis analysis1, ProcessAnalysis analysis2) {
 		ProcessMatching matching = BpmnMatchingFactory.eINSTANCE
 				.createProcessMatching();
 		matching.setAnalysis1(analysis1);
 		matching.setAnalysis2(analysis2);
+		return matching;
+	}
+
+	public static ProcessMatching createFullMatching(ProcessAnalysis analysis1,
+			ProcessAnalysis analysis2) {
+		ProcessMatching matching = createEmptyMatching(analysis1, analysis2);
 		matching.setNodeMatching(getFullNodeMatching(
 				analysis1.getDefinitions(), analysis2.getDefinitions()));
 		matching.setFragmentMatching(getFullFragmentMatching(analysis1,
@@ -97,5 +103,4 @@ public class ProcessMatchingFactory {
 		}
 		return matching;
 	}
-
 }
