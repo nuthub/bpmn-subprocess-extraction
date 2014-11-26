@@ -1,6 +1,7 @@
 package edu.udo.cs.ls14.jf.analysis.reachabilitygraph;
 
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import org.eclipse.bpmn2.FlowElement;
@@ -13,13 +14,14 @@ import org.slf4j.LoggerFactory;
 
 import edu.udo.cs.ls14.jf.bpmnanalysis.BpmnAnalysisFactory;
 import edu.udo.cs.ls14.jf.bpmnanalysis.Trace;
+import edu.udo.cs.ls14.jf.bpmnanalysis.TraceProfile;
 
 public class Tracer {
 
 	private static final Logger LOG = LoggerFactory.getLogger(Tracer.class);
 
-	public static EList<Trace> getTraces(Process process, ReachabilityGraph rg)
-			throws Exception {
+	public static TraceProfile getTraceProfile(Process process,
+			ReachabilityGraph rg) throws Exception {
 		Set<Marking> startNodes = new HashSet<Marking>();
 		Set<Marking> endNodes = new HashSet<Marking>();
 		for (Marking m : rg.getVertices()) {
@@ -44,8 +46,14 @@ public class Tracer {
 		}
 		Marking start = startNodes.iterator().next();
 		Marking end = endNodes.iterator().next();
-		return getTraces(process, rg, start, end, BpmnAnalysisFactory.eINSTANCE.createTrace(),
+		List<Trace> traces = getTraces(process, rg, start, end,
+				BpmnAnalysisFactory.eINSTANCE.createTrace(),
 				new HashSet<Edge>());
+		TraceProfile profile = BpmnAnalysisFactory.eINSTANCE
+				.createTraceProfile();
+		profile.getTraces().addAll(traces);
+		return profile;
+
 	}
 
 	private static EList<Trace> getTraces(Process process,
@@ -64,7 +72,7 @@ public class Tracer {
 			// Wenn kante keine stille Transition repräsentiert
 			if (!isSilentTransition(process, edge.getT())) {
 				// Füge die Kante dem Trace hinzu
-				trace.getNodes().add(getFlowNode(process,edge));
+				trace.getNodes().add(getFlowNode(process, edge));
 			}
 			// Wenn Kante noch nicht durchlaufen wurde, Rekursion
 			if (!visited.contains(edge)) {
@@ -87,8 +95,8 @@ public class Tracer {
 
 	private static FlowNode getFlowNode(Process process, Edge edge) {
 		edge.getT();
-		for(FlowElement e: process.getFlowElements()) {
-			if(e instanceof FlowNode && e.getId().equals(edge.getT())) {
+		for (FlowElement e : process.getFlowElements()) {
+			if (e instanceof FlowNode && e.getId().equals(edge.getT())) {
 				return (FlowNode) e;
 			}
 		}

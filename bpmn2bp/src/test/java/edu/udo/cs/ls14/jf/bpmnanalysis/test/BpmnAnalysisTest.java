@@ -22,6 +22,7 @@ import edu.udo.cs.ls14.jf.bpmn.utils.ProcessUtil;
 import edu.udo.cs.ls14.jf.bpmnanalysis.BehavioralProfile;
 import edu.udo.cs.ls14.jf.bpmnanalysis.BpmnAnalysisFactory;
 import edu.udo.cs.ls14.jf.bpmnanalysis.ProcessAnalysis;
+import edu.udo.cs.ls14.jf.bpmnanalysis.TraceProfile;
 import edu.udo.cs.ls14.jf.bpmnanalysis.util.BpmnAnalysisResourceFactoryImpl;
 import fr.lip6.move.pnml.ptnet.hlapi.PetriNetHLAPI;
 
@@ -76,14 +77,13 @@ public class BpmnAnalysisTest {
 		rg.createFromPTNet(ptnet.getContainedItem());
 		// BehavioralProfile
 		// - Traces
-		BehavioralProfile eBp = BpmnAnalysisFactory.eINSTANCE
-				.createBehavioralProfile();
+		TraceProfile traceProfile = Tracer.getTraceProfile(process, rg);
 		// TODO: Bad Smell: addAll
-		eBp.getTraces().addAll(Tracer.getTraces(process, rg));
-		// - BehavioralRelations
-		eBp.getRelations().addAll(
-				BehavioralProfiler.generateProfile(process, eBp.getTraces()));
-		a.getResults().put("behavioralProfile", eBp);
+
+		// - BehavioralProfile
+		BehavioralProfile eBp = BehavioralProfiler.generateProfile(process,
+				traceProfile);
+		a.getResults().put(ProcessAnalysis.BEHAVIORALPROFILE, eBp);
 
 		// ConditionalProfile
 		a.getResults().put("conditionalProfile",

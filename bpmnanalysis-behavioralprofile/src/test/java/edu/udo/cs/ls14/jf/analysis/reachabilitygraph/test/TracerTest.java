@@ -3,6 +3,7 @@ package edu.udo.cs.ls14.jf.analysis.reachabilitygraph.test;
 import static org.junit.Assert.assertEquals;
 
 import java.io.File;
+import java.util.List;
 
 import org.eclipse.bpmn2.DocumentRoot;
 import org.eclipse.bpmn2.Process;
@@ -15,6 +16,7 @@ import edu.udo.cs.ls14.jf.analysis.reachabilitygraph.Tracer;
 import edu.udo.cs.ls14.jf.bpmn.utils.Bpmn2ResourceSet;
 import edu.udo.cs.ls14.jf.bpmn.utils.ProcessUtil;
 import edu.udo.cs.ls14.jf.bpmnanalysis.Trace;
+import edu.udo.cs.ls14.jf.bpmnanalysis.TraceProfile;
 
 public class TracerTest {
 
@@ -77,9 +79,9 @@ public class TracerTest {
 		rg.createFromPnml(file);
 		System.out.println("|V| = " + rg.getVertices().size());
 		System.out.println("|E| = " + rg.getEdges().size());
-		EList<Trace> traces = Tracer.getTraces(process, rg);
-		traces.forEach(t -> System.out.println(t));
-		assertEquals(expectedTracesSize, traces.size());
+		TraceProfile traceProfile = Tracer.getTraceProfile(process, rg);
+		traceProfile.getTraces().forEach(t -> System.out.println(t));
+		assertEquals(expectedTracesSize, traceProfile.getTraces().size());
 	}
 
 }
