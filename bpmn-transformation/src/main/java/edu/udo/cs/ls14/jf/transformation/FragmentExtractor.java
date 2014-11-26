@@ -1,5 +1,6 @@
 package edu.udo.cs.ls14.jf.transformation;
 
+import java.net.URL;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
@@ -18,7 +19,6 @@ import org.eclipse.bpmn2.util.Bpmn2ResourceFactoryImpl;
 import org.eclipse.dd.dc.Point;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.resource.Resource;
-import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.henshin.interpreter.EGraph;
 import org.eclipse.emf.henshin.interpreter.Engine;
 import org.eclipse.emf.henshin.interpreter.UnitApplication;
@@ -40,7 +40,7 @@ public class FragmentExtractor {
 	private static final Logger LOG = LoggerFactory
 			.getLogger(FragmentExtractor.class);
 
-	private static final String RESOURCEPATH = "/edu/udo/cs/ls14/jf/henshin";
+	private static final String RESOURCEPATH = "edu/udo/cs/ls14/jf/henshin";
 	private static final String RULEFILE = "bpmnModifier";
 
 	private Bpmn2ResourceFactoryImpl resourceFactory;
@@ -49,8 +49,7 @@ public class FragmentExtractor {
 
 	private void init() {
 		engine = new EngineImpl();
-		resourceSet = new HenshinResourceSet(getClass().getResource(
-				RESOURCEPATH).getPath());
+		resourceSet = new HenshinResourceSet();
 		resourceSet.registerXMIResourceFactories("bpmn2");
 		resourceSet.getPackageRegistry().put(Bpmn2Package.eNS_URI,
 				Bpmn2Package.eINSTANCE);
@@ -226,8 +225,11 @@ public class FragmentExtractor {
 		if (engine == null || resourceSet == null) {
 			init();
 		}
-		// Load rule
-		Module module = resourceSet.getModule(rulefileBaseName + ".henshin");
+		// Load rule, build rule URI to avoid henshin's createFileURI
+		URL ruleUrl = Thread.currentThread().getContextClassLoader().getResource(
+				RESOURCEPATH + "/" + rulefileBaseName + ".henshin");
+		URI uri = URI.createURI(ruleUrl.toExternalForm());
+		Module module = resourceSet.getModule(uri, true);
 		Unit unit = module.getUnit(ruleName);
 		if (unit == null) {
 			throw new Exception("Could not get Unit: " + rulefileBaseName

@@ -29,6 +29,7 @@ public class ConditionalProfiler {
 		Map<SequenceFlow, FormalExpression> sequenceFlowConditions = new HashMap<SequenceFlow, FormalExpression>();
 		Map<Expression, SequenceFlow> expressions = new HashMap<Expression, SequenceFlow>();
 
+		// 1. Collect FormalExpressions for every Sequence Flow
 		for (FlowElement element : process.getFlowElements()) {
 			if (element instanceof Gateway) {
 				// do nothing
@@ -46,8 +47,8 @@ public class ConditionalProfiler {
 			}
 		}
 
+		// 2. For every conditional flow, determine affected Nodes
 		for (SequenceFlow flow : sequenceFlowConditions.keySet()) {
-
 			Set<FlowNode> nodes = getAffectedNodes(flow,
 					new HashSet<FlowNode>());
 			for (FlowNode node : nodes) {

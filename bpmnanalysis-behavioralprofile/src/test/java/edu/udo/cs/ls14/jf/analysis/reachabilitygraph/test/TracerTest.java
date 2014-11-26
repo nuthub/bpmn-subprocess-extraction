@@ -3,11 +3,9 @@ package edu.udo.cs.ls14.jf.analysis.reachabilitygraph.test;
 import static org.junit.Assert.assertEquals;
 
 import java.io.File;
-import java.util.List;
 
 import org.eclipse.bpmn2.DocumentRoot;
 import org.eclipse.bpmn2.Process;
-import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.junit.Test;
 
@@ -15,7 +13,6 @@ import edu.udo.cs.ls14.jf.analysis.reachabilitygraph.ReachabilityGraph;
 import edu.udo.cs.ls14.jf.analysis.reachabilitygraph.Tracer;
 import edu.udo.cs.ls14.jf.bpmn.utils.Bpmn2ResourceSet;
 import edu.udo.cs.ls14.jf.bpmn.utils.ProcessUtil;
-import edu.udo.cs.ls14.jf.bpmnanalysis.Trace;
 import edu.udo.cs.ls14.jf.bpmnanalysis.TraceProfile;
 
 public class TracerTest {

@@ -9,6 +9,7 @@ import edu.udo.cs.ls14.jf.transformation.LabelGenerator;
 
 public class LabelGeneratorDelegate implements JavaDelegate {
 
+	// TODO: let this happen outside the dumb delegate
 	@Override
 	public void execute(DelegateExecution execution) throws Exception {
 		ProcessMatching matching = (ProcessMatching) execution.getVariable("matching");

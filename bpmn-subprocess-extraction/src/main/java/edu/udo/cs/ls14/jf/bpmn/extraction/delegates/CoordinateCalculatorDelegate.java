@@ -9,6 +9,7 @@ import edu.udo.cs.ls14.jf.transformation.CoordinateCalculator;
 
 public class CoordinateCalculatorDelegate implements JavaDelegate {
 
+	// TODO: let this happen outside the dumb delegate
 	@Override
 	public void execute(DelegateExecution execution) throws Exception {
 		ProcessMatching matching = (ProcessMatching) execution

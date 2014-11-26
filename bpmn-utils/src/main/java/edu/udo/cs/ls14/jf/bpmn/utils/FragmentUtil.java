@@ -14,8 +14,6 @@ import org.eclipse.bpmn2.FlowNode;
 import org.eclipse.bpmn2.SequenceFlow;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.bpmn2.Process;
-import org.eclipse.bpmn2.impl.ProcessImpl;
 
 import edu.udo.cs.ls14.jf.bpmnanalysis.Fragment;
 

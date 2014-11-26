@@ -13,10 +13,14 @@ import edu.udo.cs.ls14.jf.bpmn.utils.ProcessExtractionUtil;
 import edu.udo.cs.ls14.jf.bpmnanalysis.ProcessAnalysis;
 import edu.udo.cs.ls14.jf.bpmnapplication.ProcessAnalyzer;
 import edu.udo.cs.ls14.jf.bpmnapplication.ProcessMatcher;
+import edu.udo.cs.ls14.jf.bpmnmatching.FragmentPair;
 import edu.udo.cs.ls14.jf.bpmnmatching.ProcessMatching;
 import edu.udo.cs.ls14.jf.bpmntransformation.BpmnTransformationPackage;
 import edu.udo.cs.ls14.jf.bpmntransformation.ProcessExtraction;
 import edu.udo.cs.ls14.jf.bpmntransformation.util.BpmnTransformationResourceFactoryImpl;
+import edu.udo.cs.ls14.jf.processmatching.FragmentPairRankerSize;
+import edu.udo.cs.ls14.jf.transformation.CoordinateCalculator;
+import edu.udo.cs.ls14.jf.transformation.LabelGenerator;
 import edu.udo.cs.ls14.jf.transformation.ProcessExtractor;
 
 public class ProcessExtractionTest {
@@ -88,7 +92,23 @@ public class ProcessExtractionTest {
 		ProcessAnalysis analysis2 = ProcessAnalyzer.analyze(definitions2);
 		// match process1 and process2
 		ProcessMatching matching = ProcessMatcher.match(analysis1, analysis2);
+		
+		
 		// Do the extraction
+		// 1. determine order in fragments
+		matching.setFragmentMatching(FragmentPairRankerSize
+				.rankFragments(matching.getFragmentMatching()));
+		// 2. compute coords
+		for (FragmentPair pair : matching.getFragmentMatching().getPairs()) {
+			pair.getA().setCenter(CoordinateCalculator.getCenter(pair.getA()));
+			pair.getB().setCenter(CoordinateCalculator.getCenter(pair.getB()));
+		}
+		// 3. generate lables
+		for(FragmentPair pair : matching.getFragmentMatching().getPairs()) {
+			pair.getA().setLabel(LabelGenerator.getLabel(pair.getA()));
+			pair.getB().setLabel(LabelGenerator.getLabel(pair.getB()));
+		}
+		// 4. extract processes
 		ProcessExtraction extraction = ProcessExtractor.extract(matching);
 		// END
 

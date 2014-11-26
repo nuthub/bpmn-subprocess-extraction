@@ -14,15 +14,13 @@ public class ConditionalProfileTest {
 
 	@Test
 	public void testConditionSequence() throws Exception {
-		ConditionalProfiler profiler = new ConditionalProfiler();
-
 		Process p1 = getResource("conditionSequence");
-		ConditionalProfile cp1 = profiler.generateProfile(p1);
+		ConditionalProfile cp1 = ConditionalProfiler.generateProfile(p1);
 		System.out.println(cp1);
 		// TODO: assertions
 
 		Process p2 = getResource("conditionSequence2");
-		ConditionalProfile cp2 = profiler.generateProfile(p2);
+		ConditionalProfile cp2 = ConditionalProfiler.generateProfile(p2);
 		System.out.println(cp2);
 		// TODO: assertions
 	}
