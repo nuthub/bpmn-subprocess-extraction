@@ -4,17 +4,12 @@ package edu.udo.cs.ls14.jf.bpmnanalysis.impl;
 
 import edu.udo.cs.ls14.jf.bpmnanalysis.BpmnAnalysisPackage;
 import edu.udo.cs.ls14.jf.bpmnanalysis.Fragment;
-
-import org.eclipse.bpmn2.Definitions;
 import org.eclipse.bpmn2.SequenceFlow;
-
 import org.eclipse.dd.dc.Point;
 import org.eclipse.emf.common.notify.Notification;
-
 import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
-
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 
@@ -25,7 +20,6 @@ import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link edu.udo.cs.ls14.jf.bpmnanalysis.impl.FragmentImpl#getDefinitions <em>Definitions</em>}</li>
  *   <li>{@link edu.udo.cs.ls14.jf.bpmnanalysis.impl.FragmentImpl#getParent <em>Parent</em>}</li>
  *   <li>{@link edu.udo.cs.ls14.jf.bpmnanalysis.impl.FragmentImpl#getEntry <em>Entry</em>}</li>
  *   <li>{@link edu.udo.cs.ls14.jf.bpmnanalysis.impl.FragmentImpl#getExit <em>Exit</em>}</li>
@@ -37,16 +31,6 @@ import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
  * @generated
  */
 public class FragmentImpl extends MinimalEObjectImpl.Container implements Fragment {
-	/**
-	 * The cached value of the '{@link #getDefinitions() <em>Definitions</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getDefinitions()
-	 * @generated
-	 * @ordered
-	 */
-	protected Definitions definitions;
-
 	/**
 	 * The cached value of the '{@link #getParent() <em>Parent</em>}' reference.
 	 * <!-- begin-user-doc -->
@@ -124,44 +108,6 @@ public class FragmentImpl extends MinimalEObjectImpl.Container implements Fragme
 	@Override
 	protected EClass eStaticClass() {
 		return BpmnAnalysisPackage.Literals.FRAGMENT;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public Definitions getDefinitions() {
-		if (definitions != null && definitions.eIsProxy()) {
-			InternalEObject oldDefinitions = (InternalEObject)definitions;
-			definitions = (Definitions)eResolveProxy(oldDefinitions);
-			if (definitions != oldDefinitions) {
-				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, BpmnAnalysisPackage.FRAGMENT__DEFINITIONS, oldDefinitions, definitions));
-			}
-		}
-		return definitions;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public Definitions basicGetDefinitions() {
-		return definitions;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setDefinitions(Definitions newDefinitions) {
-		Definitions oldDefinitions = definitions;
-		definitions = newDefinitions;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, BpmnAnalysisPackage.FRAGMENT__DEFINITIONS, oldDefinitions, definitions));
 	}
 
 	/**
@@ -364,9 +310,6 @@ public class FragmentImpl extends MinimalEObjectImpl.Container implements Fragme
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case BpmnAnalysisPackage.FRAGMENT__DEFINITIONS:
-				if (resolve) return getDefinitions();
-				return basicGetDefinitions();
 			case BpmnAnalysisPackage.FRAGMENT__PARENT:
 				if (resolve) return getParent();
 				return basicGetParent();
@@ -392,9 +335,6 @@ public class FragmentImpl extends MinimalEObjectImpl.Container implements Fragme
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case BpmnAnalysisPackage.FRAGMENT__DEFINITIONS:
-				setDefinitions((Definitions)newValue);
-				return;
 			case BpmnAnalysisPackage.FRAGMENT__PARENT:
 				setParent((Fragment)newValue);
 				return;
@@ -422,9 +362,6 @@ public class FragmentImpl extends MinimalEObjectImpl.Container implements Fragme
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case BpmnAnalysisPackage.FRAGMENT__DEFINITIONS:
-				setDefinitions((Definitions)null);
-				return;
 			case BpmnAnalysisPackage.FRAGMENT__PARENT:
 				setParent((Fragment)null);
 				return;
@@ -452,8 +389,6 @@ public class FragmentImpl extends MinimalEObjectImpl.Container implements Fragme
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case BpmnAnalysisPackage.FRAGMENT__DEFINITIONS:
-				return definitions != null;
 			case BpmnAnalysisPackage.FRAGMENT__PARENT:
 				return parent != null;
 			case BpmnAnalysisPackage.FRAGMENT__ENTRY:

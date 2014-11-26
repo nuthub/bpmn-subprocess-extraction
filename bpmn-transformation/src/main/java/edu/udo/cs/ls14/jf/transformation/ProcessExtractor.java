@@ -8,6 +8,7 @@ import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import edu.udo.cs.ls14.jf.bpmn.utils.FragmentUtil;
 import edu.udo.cs.ls14.jf.bpmn.utils.ProcessExtractionFactory;
 import edu.udo.cs.ls14.jf.bpmn.utils.ProcessUtil;
 import edu.udo.cs.ls14.jf.bpmnmatching.FragmentPair;
@@ -43,16 +44,16 @@ public class ProcessExtractor {
 		for (FragmentPair fPair : pMatching.getFragmentMatching().getPairs()) {
 			// create new (sub)process
 			LOG.info("Extracting SubProcess.");
-			Definitions defsExtracted = EcoreUtil.copy(fPair.getBetter()
-					.getDefinitions());
+			Definitions defsExtracted = EcoreUtil.copy(FragmentUtil
+					.getDefinitions(fPair.getBetter()));
 			String idExtracted = getExtractedProcessIdPrefix(fPair)
 					+ fragmentCounter++;
 			defsExtracted.setTargetNamespace("http://"
 					+ idExtracted.toLowerCase());
 			defsExtracted.setId(UUID.randomUUID().toString());
 			extractor.replaceId(defsExtracted, ProcessUtil
-					.getProcessFromDefinitions(defsExtracted).getId(),
-					UUID.randomUUID().toString());
+					.getProcessFromDefinitions(defsExtracted).getId(), UUID
+					.randomUUID().toString());
 			extractor.cropFragment(defsExtracted, fPair.getBetter());
 			extraction.getResults().put(idExtracted + ".bpmn", defsExtracted);
 			LOG.info("SubProcess extracted.");
@@ -90,10 +91,10 @@ public class ProcessExtractor {
 	private static String getExtractedProcessIdPrefix(FragmentPair fPair)
 			throws Exception {
 		return ProcessUtil.getProcessFromDefinitions(
-				fPair.getA().getDefinitions()).getName()
+				FragmentUtil.getDefinitions(fPair.getA())).getName()
 				+ "_"
 				+ ProcessUtil.getProcessFromDefinitions(
-						fPair.getB().getDefinitions()).getName()
+						FragmentUtil.getDefinitions(fPair.getB())).getName()
 				+ "_extracted_process-";
 	}
 

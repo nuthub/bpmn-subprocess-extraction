@@ -13,7 +13,6 @@ import org.eclipse.dd.dc.Bounds;
 import org.eclipse.dd.dc.DcFactory;
 import org.eclipse.dd.dc.Point;
 import org.eclipse.dd.di.DiagramElement;
-import org.javatuples.Pair;
 
 import edu.udo.cs.ls14.jf.bpmn.utils.FragmentUtil;
 import edu.udo.cs.ls14.jf.bpmn.utils.ProcessUtil;
@@ -48,8 +47,8 @@ public class CoordinateCalculator {
 		Set<FlowElement> nodes = FragmentUtil.getFlowElements(fragment, filter);
 		Set<String> nodeIds = nodes.stream().map(n -> n.getId())
 				.collect(Collectors.toSet());
-		BPMNDiagram diagram = ProcessUtil.getDiagramFromDefinitions(fragment
-				.getDefinitions());
+		BPMNDiagram diagram = ProcessUtil.getDiagramFromDefinitions(FragmentUtil
+				.getDefinitions(fragment));
 		float minX = -1;
 		float maxX = 0;
 		float minY = -1;

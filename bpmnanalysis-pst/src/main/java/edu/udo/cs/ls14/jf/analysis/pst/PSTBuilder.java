@@ -310,7 +310,6 @@ public class PSTBuilder {
 								&& !yieldedFragments.contains(Pair.with(e, f))) {
 							Fragment newFragment = BpmnAnalysisFactory.eINSTANCE
 									.createFragment();
-							newFragment.setDefinitions(definitions);
 							newFragment.setEntry(e);
 							newFragment.setExit(f);
 							fragments.add(newFragment);

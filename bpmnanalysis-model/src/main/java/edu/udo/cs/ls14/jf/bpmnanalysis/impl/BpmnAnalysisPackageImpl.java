@@ -406,17 +406,8 @@ public class BpmnAnalysisPackageImpl extends EPackageImpl implements BpmnAnalysi
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getFragment_Definitions() {
-		return (EReference)fragmentEClass.getEStructuralFeatures().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public EReference getFragment_Entry() {
-		return (EReference)fragmentEClass.getEStructuralFeatures().get(2);
+		return (EReference)fragmentEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
@@ -425,7 +416,7 @@ public class BpmnAnalysisPackageImpl extends EPackageImpl implements BpmnAnalysi
 	 * @generated
 	 */
 	public EReference getFragment_Exit() {
-		return (EReference)fragmentEClass.getEStructuralFeatures().get(3);
+		return (EReference)fragmentEClass.getEStructuralFeatures().get(2);
 	}
 
 	/**
@@ -434,7 +425,7 @@ public class BpmnAnalysisPackageImpl extends EPackageImpl implements BpmnAnalysi
 	 * @generated
 	 */
 	public EAttribute getFragment_Label() {
-		return (EAttribute)fragmentEClass.getEStructuralFeatures().get(4);
+		return (EAttribute)fragmentEClass.getEStructuralFeatures().get(3);
 	}
 
 	/**
@@ -443,7 +434,7 @@ public class BpmnAnalysisPackageImpl extends EPackageImpl implements BpmnAnalysi
 	 * @generated
 	 */
 	public EReference getFragment_Center() {
-		return (EReference)fragmentEClass.getEStructuralFeatures().get(5);
+		return (EReference)fragmentEClass.getEStructuralFeatures().get(4);
 	}
 
 	/**
@@ -452,7 +443,7 @@ public class BpmnAnalysisPackageImpl extends EPackageImpl implements BpmnAnalysi
 	 * @generated
 	 */
 	public EReference getFragment_Parent() {
-		return (EReference)fragmentEClass.getEStructuralFeatures().get(1);
+		return (EReference)fragmentEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -568,7 +559,6 @@ public class BpmnAnalysisPackageImpl extends EPackageImpl implements BpmnAnalysi
 		createEReference(processStructureTreeEClass, PROCESS_STRUCTURE_TREE__FRAGMENTS);
 
 		fragmentEClass = createEClass(FRAGMENT);
-		createEReference(fragmentEClass, FRAGMENT__DEFINITIONS);
 		createEReference(fragmentEClass, FRAGMENT__PARENT);
 		createEReference(fragmentEClass, FRAGMENT__ENTRY);
 		createEReference(fragmentEClass, FRAGMENT__EXIT);
@@ -656,7 +646,6 @@ public class BpmnAnalysisPackageImpl extends EPackageImpl implements BpmnAnalysi
 		initEReference(getProcessStructureTree_Fragments(), this.getFragment(), null, "fragments", null, 0, -1, ProcessStructureTree.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(fragmentEClass, Fragment.class, "Fragment", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getFragment_Definitions(), theBpmn2Package.getDefinitions(), null, "definitions", null, 1, 1, Fragment.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getFragment_Parent(), this.getFragment(), null, "parent", null, 0, 1, Fragment.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getFragment_Entry(), theBpmn2Package.getSequenceFlow(), null, "entry", null, 1, 1, Fragment.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getFragment_Exit(), theBpmn2Package.getSequenceFlow(), null, "exit", null, 1, 1, Fragment.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
