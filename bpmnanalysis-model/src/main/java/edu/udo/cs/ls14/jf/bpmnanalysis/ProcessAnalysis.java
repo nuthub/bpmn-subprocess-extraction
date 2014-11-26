@@ -26,6 +26,7 @@ import org.eclipse.emf.ecore.EObject;
  */
 public interface ProcessAnalysis extends EObject {
 	
+	public static final String TRACEPROFILE = "traceProfile";
 	public static final String BEHAVIORALPROFILE = "behavioralProfile";
 	public static final String PROCESSTRUCTURETREE = "pst";
 	public static final String CONDITIONALPROFILE = "conditionalProfile";

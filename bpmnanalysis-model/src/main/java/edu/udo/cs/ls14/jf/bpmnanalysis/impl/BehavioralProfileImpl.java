@@ -5,18 +5,12 @@ package edu.udo.cs.ls14.jf.bpmnanalysis.impl;
 import edu.udo.cs.ls14.jf.bpmnanalysis.BehavioralProfile;
 import edu.udo.cs.ls14.jf.bpmnanalysis.BehavioralRelation;
 import edu.udo.cs.ls14.jf.bpmnanalysis.BpmnAnalysisPackage;
-import edu.udo.cs.ls14.jf.bpmnanalysis.Trace;
-
 import java.util.Collection;
-
 import java.util.List;
 import org.eclipse.emf.common.notify.NotificationChain;
-
 import org.eclipse.emf.common.util.EList;
-
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
-
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 
@@ -27,7 +21,6 @@ import org.eclipse.emf.ecore.util.InternalEList;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link edu.udo.cs.ls14.jf.bpmnanalysis.impl.BehavioralProfileImpl#getTraces <em>Traces</em>}</li>
  *   <li>{@link edu.udo.cs.ls14.jf.bpmnanalysis.impl.BehavioralProfileImpl#getRelations <em>Relations</em>}</li>
  * </ul>
  * </p>
@@ -35,16 +28,6 @@ import org.eclipse.emf.ecore.util.InternalEList;
  * @generated
  */
 public class BehavioralProfileImpl extends ProcessAnalysisResultImpl implements BehavioralProfile {
-	/**
-	 * The cached value of the '{@link #getTraces() <em>Traces</em>}' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getTraces()
-	 * @generated
-	 * @ordered
-	 */
-	protected EList<Trace> traces;
-
 	/**
 	 * The cached value of the '{@link #getRelations() <em>Relations</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
@@ -79,18 +62,6 @@ public class BehavioralProfileImpl extends ProcessAnalysisResultImpl implements 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public List<Trace> getTraces() {
-		if (traces == null) {
-			traces = new EObjectContainmentEList<Trace>(Trace.class, this, BpmnAnalysisPackage.BEHAVIORAL_PROFILE__TRACES);
-		}
-		return traces;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public List<BehavioralRelation> getRelations() {
 		if (relations == null) {
 			relations = new EObjectContainmentEList<BehavioralRelation>(BehavioralRelation.class, this, BpmnAnalysisPackage.BEHAVIORAL_PROFILE__RELATIONS);
@@ -106,8 +77,6 @@ public class BehavioralProfileImpl extends ProcessAnalysisResultImpl implements 
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-			case BpmnAnalysisPackage.BEHAVIORAL_PROFILE__TRACES:
-				return ((InternalEList<?>)getTraces()).basicRemove(otherEnd, msgs);
 			case BpmnAnalysisPackage.BEHAVIORAL_PROFILE__RELATIONS:
 				return ((InternalEList<?>)getRelations()).basicRemove(otherEnd, msgs);
 		}
@@ -122,8 +91,6 @@ public class BehavioralProfileImpl extends ProcessAnalysisResultImpl implements 
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case BpmnAnalysisPackage.BEHAVIORAL_PROFILE__TRACES:
-				return getTraces();
 			case BpmnAnalysisPackage.BEHAVIORAL_PROFILE__RELATIONS:
 				return getRelations();
 		}
@@ -139,10 +106,6 @@ public class BehavioralProfileImpl extends ProcessAnalysisResultImpl implements 
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case BpmnAnalysisPackage.BEHAVIORAL_PROFILE__TRACES:
-				getTraces().clear();
-				getTraces().addAll((Collection<? extends Trace>)newValue);
-				return;
 			case BpmnAnalysisPackage.BEHAVIORAL_PROFILE__RELATIONS:
 				getRelations().clear();
 				getRelations().addAll((Collection<? extends BehavioralRelation>)newValue);
@@ -159,9 +122,6 @@ public class BehavioralProfileImpl extends ProcessAnalysisResultImpl implements 
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case BpmnAnalysisPackage.BEHAVIORAL_PROFILE__TRACES:
-				getTraces().clear();
-				return;
 			case BpmnAnalysisPackage.BEHAVIORAL_PROFILE__RELATIONS:
 				getRelations().clear();
 				return;
@@ -177,8 +137,6 @@ public class BehavioralProfileImpl extends ProcessAnalysisResultImpl implements 
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case BpmnAnalysisPackage.BEHAVIORAL_PROFILE__TRACES:
-				return traces != null && !traces.isEmpty();
 			case BpmnAnalysisPackage.BEHAVIORAL_PROFILE__RELATIONS:
 				return relations != null && !relations.isEmpty();
 		}

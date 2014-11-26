@@ -1,5 +1,7 @@
 package edu.udo.cs.ls14.jf.analysis.behaviorprofile.test;
 
+import java.util.List;
+
 import org.eclipse.bpmn2.DocumentRoot;
 import org.eclipse.bpmn2.FlowNode;
 import org.eclipse.bpmn2.Process;
@@ -86,9 +88,9 @@ public class BehavioralProfileTest {
 		// Create Traces
 		BehavioralProfile bp = BpmnAnalysisFactory.eINSTANCE
 				.createBehavioralProfile();
-		bp.getTraces().addAll(Tracer.getTraces(process, rg));
+		List<Trace> traces = Tracer.getTraces(process, rg);
 		// output traces
-		for (Trace trace : bp.getTraces()) {
+		for (Trace trace : traces) {
 			System.out.println(trace);
 			for (FlowNode node : trace.getNodes()) {
 				System.out.println(" " + node.getId());
@@ -97,7 +99,7 @@ public class BehavioralProfileTest {
 
 		// create Behavioral Profile
 		bp.getRelations().addAll(
-				BehavioralProfiler.generateProfile(process, bp.getTraces()));
+				BehavioralProfiler.generateProfile(process, traces));
 		return bp;
 	}
 

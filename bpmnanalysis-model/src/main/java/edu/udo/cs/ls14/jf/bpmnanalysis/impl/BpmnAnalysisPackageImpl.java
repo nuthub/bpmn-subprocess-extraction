@@ -280,17 +280,8 @@ public class BpmnAnalysisPackageImpl extends EPackageImpl implements BpmnAnalysi
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getBehavioralProfile_Traces() {
-		return (EReference)behavioralProfileEClass.getEStructuralFeatures().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public EReference getBehavioralProfile_Relations() {
-		return (EReference)behavioralProfileEClass.getEStructuralFeatures().get(1);
+		return (EReference)behavioralProfileEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -540,7 +531,6 @@ public class BpmnAnalysisPackageImpl extends EPackageImpl implements BpmnAnalysi
 		processAnalysisResultEClass = createEClass(PROCESS_ANALYSIS_RESULT);
 
 		behavioralProfileEClass = createEClass(BEHAVIORAL_PROFILE);
-		createEReference(behavioralProfileEClass, BEHAVIORAL_PROFILE__TRACES);
 		createEReference(behavioralProfileEClass, BEHAVIORAL_PROFILE__RELATIONS);
 
 		behavioralRelationEClass = createEClass(BEHAVIORAL_RELATION);
@@ -627,7 +617,6 @@ public class BpmnAnalysisPackageImpl extends EPackageImpl implements BpmnAnalysi
 		initEClass(processAnalysisResultEClass, ProcessAnalysisResult.class, "ProcessAnalysisResult", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
 		initEClass(behavioralProfileEClass, BehavioralProfile.class, "BehavioralProfile", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getBehavioralProfile_Traces(), this.getTrace(), null, "traces", null, 0, -1, BehavioralProfile.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getBehavioralProfile_Relations(), this.getBehavioralRelation(), null, "relations", null, 0, -1, BehavioralProfile.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(behavioralRelationEClass, BehavioralRelation.class, "BehavioralRelation", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);

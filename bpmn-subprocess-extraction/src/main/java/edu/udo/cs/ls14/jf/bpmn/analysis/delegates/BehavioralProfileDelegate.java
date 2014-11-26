@@ -1,5 +1,7 @@
 package edu.udo.cs.ls14.jf.bpmn.analysis.delegates;
 
+import java.util.List;
+
 import org.camunda.bpm.engine.delegate.DelegateExecution;
 import org.camunda.bpm.engine.delegate.JavaDelegate;
 import org.eclipse.bpmn2.Process;
@@ -12,6 +14,8 @@ import edu.udo.cs.ls14.jf.bpmn.utils.ProcessUtil;
 import edu.udo.cs.ls14.jf.bpmnanalysis.BehavioralProfile;
 import edu.udo.cs.ls14.jf.bpmnanalysis.BpmnAnalysisFactory;
 import edu.udo.cs.ls14.jf.bpmnanalysis.ProcessAnalysis;
+import edu.udo.cs.ls14.jf.bpmnanalysis.Trace;
+import edu.udo.cs.ls14.jf.bpmnanalysis.TraceProfile;
 import fr.lip6.move.pnml.ptnet.hlapi.PetriNetHLAPI;
 
 public class BehavioralProfileDelegate implements JavaDelegate {
@@ -27,14 +31,20 @@ public class BehavioralProfileDelegate implements JavaDelegate {
 				.convertToPetriNet(process);
 		ReachabilityGraph rg = new ReachabilityGraph();
 		rg.createFromPTNet(ptnet.getContainedItem());
+		// Create trace profile
+		TraceProfile traceProfile = BpmnAnalysisFactory.eINSTANCE
+				.createTraceProfile();
+		traceProfile.getTraces().addAll(Tracer.getTraces(process, rg));
 		// create profile
-		BehavioralProfile profile = BpmnAnalysisFactory.eINSTANCE
+		BehavioralProfile behavioralProfile = BpmnAnalysisFactory.eINSTANCE
 				.createBehavioralProfile();
-		profile.getTraces().addAll(Tracer.getTraces(process, rg));
-		profile.getRelations()
-				.addAll(BehavioralProfiler.generateProfile(process,
-						profile.getTraces()));
-		analysis.getResults().put(ProcessAnalysis.BEHAVIORALPROFILE, profile);
+		behavioralProfile.getRelations().addAll(
+				BehavioralProfiler.generateProfile(process,
+						traceProfile.getTraces()));
+
+		analysis.getResults().put(ProcessAnalysis.TRACEPROFILE, traceProfile);
+		analysis.getResults().put(ProcessAnalysis.BEHAVIORALPROFILE,
+				behavioralProfile);
 		execution.setVariable("processanalysis", analysis);
 	}
 }

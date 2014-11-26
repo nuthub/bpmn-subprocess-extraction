@@ -197,22 +197,13 @@ public interface BpmnAnalysisPackage extends EPackage {
 	int BEHAVIORAL_PROFILE = 3;
 
 	/**
-	 * The feature id for the '<em><b>Traces</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int BEHAVIORAL_PROFILE__TRACES = PROCESS_ANALYSIS_RESULT_FEATURE_COUNT + 0;
-
-	/**
 	 * The feature id for the '<em><b>Relations</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int BEHAVIORAL_PROFILE__RELATIONS = PROCESS_ANALYSIS_RESULT_FEATURE_COUNT + 1;
+	int BEHAVIORAL_PROFILE__RELATIONS = PROCESS_ANALYSIS_RESULT_FEATURE_COUNT + 0;
 
 	/**
 	 * The number of structural features of the '<em>Behavioral Profile</em>' class.
@@ -221,7 +212,7 @@ public interface BpmnAnalysisPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int BEHAVIORAL_PROFILE_FEATURE_COUNT = PROCESS_ANALYSIS_RESULT_FEATURE_COUNT + 2;
+	int BEHAVIORAL_PROFILE_FEATURE_COUNT = PROCESS_ANALYSIS_RESULT_FEATURE_COUNT + 1;
 
 	/**
 	 * The number of operations of the '<em>Behavioral Profile</em>' class.
@@ -672,17 +663,6 @@ public interface BpmnAnalysisPackage extends EPackage {
 	EClass getBehavioralProfile();
 
 	/**
-	 * Returns the meta object for the containment reference list '{@link edu.udo.cs.ls14.jf.bpmnanalysis.BehavioralProfile#getTraces <em>Traces</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference list '<em>Traces</em>'.
-	 * @see edu.udo.cs.ls14.jf.bpmnanalysis.BehavioralProfile#getTraces()
-	 * @see #getBehavioralProfile()
-	 * @generated
-	 */
-	EReference getBehavioralProfile_Traces();
-
-	/**
 	 * Returns the meta object for the containment reference list '{@link edu.udo.cs.ls14.jf.bpmnanalysis.BehavioralProfile#getRelations <em>Relations</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1042,14 +1022,6 @@ public interface BpmnAnalysisPackage extends EPackage {
 		 * @generated
 		 */
 		EClass BEHAVIORAL_PROFILE = eINSTANCE.getBehavioralProfile();
-
-		/**
-		 * The meta object literal for the '<em><b>Traces</b></em>' containment reference list feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference BEHAVIORAL_PROFILE__TRACES = eINSTANCE.getBehavioralProfile_Traces();
 
 		/**
 		 * The meta object literal for the '<em><b>Relations</b></em>' containment reference list feature.

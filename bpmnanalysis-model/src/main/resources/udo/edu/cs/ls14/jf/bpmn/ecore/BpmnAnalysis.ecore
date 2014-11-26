@@ -16,8 +16,6 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="ProcessAnalysisResult" abstract="true"/>
   <eClassifiers xsi:type="ecore:EClass" name="BehavioralProfile" eSuperTypes="#//ProcessAnalysisResult">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="traces" upperBound="-1"
-        eType="#//Trace" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="relations" upperBound="-1"
         eType="#//BehavioralRelation" containment="true"/>
   </eClassifiers>
