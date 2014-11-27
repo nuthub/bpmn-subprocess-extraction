@@ -23,17 +23,26 @@ public class Marking extends ArrayList<Place> {
 	public void setInitialMarking(boolean initialMarking) {
 		this.initialMarking = initialMarking;
 	}
-	
+
 	public String getLabel() {
 		List<String> labels = new ArrayList<String>();
-		for(Place p: this) {
+		for (Place p : this) {
 			labels.add(p.getId());
 		}
 		return labels.toString();
 	}
-	
+
+	public String getDotLabel() {
+		StringBuffer sb = new StringBuffer();
+		for (Place p : this) {
+			sb.append(p.getName().getText());
+			sb.append(System.getProperty("line.separator"));
+		}
+		return sb.toString();
+	}
+
 	public String toString() {
-		return StringUtils.join(this,"+");
+		return StringUtils.join(this, "+");
 	}
 
 }

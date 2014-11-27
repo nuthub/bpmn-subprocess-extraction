@@ -190,9 +190,9 @@ public class ReachabilityGraph extends DirectedSparseMultigraph<Marking, Edge> {
 		sb.append(System.getProperty("line.separator"));
 
 		for (Edge edge : getEdges()) {
-			sb.append("\"" + getSource(edge).getLabel() + "\"");
+			sb.append("\"" + getSource(edge).getDotLabel() + "\"");
 			sb.append(" -> ");
-			sb.append("\"" + getDest(edge).getLabel() + "\"");
+			sb.append("\"" + getDest(edge).getDotLabel() + "\"");
 			sb.append(" [label=\"" + edge.getT() + "\"]");
 			sb.append(System.getProperty("line.separator"));
 		}
