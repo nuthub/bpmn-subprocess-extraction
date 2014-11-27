@@ -32,19 +32,21 @@ public class NodeComparator {
 
 	public boolean isEquivalent(FlowNode e1, FlowNode e2) {
 		// is e1 of relevant type?
+		// TODO: Not comparators job
 		if (!isClassOfInterest(e1.getClass())) {
 			return false;
 		}
 		// is e2 of relevant type?
+		// TODO: Not comparators job
 		if (!isClassOfInterest(e2.getClass())) {
 			return false;
 		}
-		// are they of the same class?
-		if (!e1.getClass().equals(e2.getClass())) {
+		// are e1 and e2 type equivalent?
+		if (!isTypeEquivalent(e1, e2)) {
 			return false;
 		}
-		// do they have the equivalent labels (names)?
-		if (!equivalent(e1.getName(), e2.getName())) {
+		// are e1 and e2 label equivalent?
+		if (!isLabelEquivalent(e1.getName(), e2.getName())) {
 			return false;
 		}
 		return true;
@@ -59,7 +61,11 @@ public class NodeComparator {
 		return false;
 	}
 
-	private boolean equivalent(String str1, String str2) {
+	private boolean isTypeEquivalent(FlowNode e1, FlowNode e2) {
+		return e1.getClass().equals(e2.getClass());
+	}
+	
+	private boolean isLabelEquivalent(String str1, String str2) {
 		// remove special chars and split strings
 		List<String> list1 = Arrays.asList(StringUtils.split(str1.replaceAll(
 				SPECIAL_CHARACTERS_PATTERN, " ")));
