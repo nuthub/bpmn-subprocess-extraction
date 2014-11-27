@@ -14,6 +14,7 @@ import edu.udo.cs.ls14.jf.analysis.reachabilitygraph.Tracer;
 import edu.udo.cs.ls14.jf.bpmn.utils.Bpmn2ResourceSet;
 import edu.udo.cs.ls14.jf.bpmn.utils.ProcessUtil;
 import edu.udo.cs.ls14.jf.bpmnanalysis.BehavioralProfile;
+import edu.udo.cs.ls14.jf.bpmnanalysis.BehavioralRelation;
 import edu.udo.cs.ls14.jf.bpmnanalysis.Trace;
 import edu.udo.cs.ls14.jf.bpmnanalysis.TraceProfile;
 import fr.lip6.move.pnml.ptnet.hlapi.PetriNetHLAPI;
@@ -25,7 +26,14 @@ public class BehavioralProfileTest {
 		String basename = "PM1-mit-Fragment1";
 		BehavioralProfile bp = createBpFromBpmn(basename);
 		// print profile
-		System.out.println(bp);
+		outputBp(bp);
+	}
+
+	private void outputBp(BehavioralProfile bp) {
+		for (BehavioralRelation rel :bp.getRelations()) {
+			System.out.println(rel.getLeft().getName() + " / " + rel.getRight().getName() + " : " + rel.getRelation().toString());
+		}
+		
 	}
 
 	@Test
@@ -80,19 +88,26 @@ public class BehavioralProfileTest {
 		ReachabilityGraph rg = new ReachabilityGraph();
 		rg.createFromPTNet(ptnet.getContainedItem());
 		String dot = rg.toDot();
-		System.out.println(dot);
+
 		IOUtils.invokeDOT("/tmp", basename + "-reachabilityGraph.png", dot);
 
 		// Create Traces
 		TraceProfile traceProfile = Tracer.getTraceProfile(process, rg);
 		// output traces
 		for (Trace trace : traceProfile.getTraces()) {
-			System.out.println(trace);
 			for (FlowNode node : trace.getNodes()) {
-				System.out.println(" " + node.getId());
+				System.out
+						.print(" -> "
+								+ (node.getName() != null
+										&& !node.getName().equals("") ? node
+										.getName() : node.getId()));
+			}
+			if (trace.isFinished()) {
+				System.out.println(" .");
+			} else {
+				System.out.println(" ...");
 			}
 		}
-
 		// create Behavioral Profile
 		BehavioralProfile bp = BehavioralProfiler.generateProfile(process,
 				traceProfile);
