@@ -4,6 +4,8 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+import org.eclipse.bpmn2.Activity;
+import org.eclipse.bpmn2.Event;
 import org.eclipse.bpmn2.FlowElement;
 import org.eclipse.bpmn2.FlowNode;
 import org.eclipse.bpmn2.Process;
@@ -71,14 +73,13 @@ public class Tracer {
 			trace.getNodes().addAll(prefix.getNodes());
 			// Wenn kante keine stille Transition repräsentiert
 			if (!isSilentTransition(process, edge.getT())) {
-				// Füge die Kante dem Trace hinzu
+				// Füge die Kante (=FlowNode) dem Trace hinzu
 				trace.getNodes().add(getFlowNode(process, edge));
 			}
 			// Wenn Kante noch nicht durchlaufen wurde, Rekursion
 			if (!visited.contains(edge)) {
 				// Vorher merken, dass Kante bereits durchlaufen wurde (nur,
 				// wenn keine Stille Kante
-				// TODO: isSilent
 				if (edge.getT() != null && !edge.getT().equals("")) {
 					visited.add(edge);
 				}
@@ -111,7 +112,8 @@ public class Tracer {
 			return true;
 		}
 		for (FlowElement elem : process.getFlowElements()) {
-			if (elem.getId().equals(id)) {
+			if (elem.getId().equals(id)
+					&& (elem instanceof Activity || elem instanceof Event)) {
 				return false;
 			}
 		}
