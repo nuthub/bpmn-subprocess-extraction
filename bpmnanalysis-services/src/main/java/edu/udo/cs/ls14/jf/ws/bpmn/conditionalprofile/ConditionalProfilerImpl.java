@@ -22,10 +22,10 @@ public class ConditionalProfilerImpl implements ConditionalProfilerSEI {
 			e.printStackTrace();
 			return null;
 		}
-		ConditionalProfiler profiler = new ConditionalProfiler();
 		try {
-			processAnalysis.getResults().put("conditionalProfile",
-					profiler.generateProfile(process));
+			processAnalysis.getResults().put(
+					ProcessAnalysis.CONDITIONALPROFILE,
+					ConditionalProfiler.generateProfile(process));
 			return processAnalysis;
 		} catch (Exception e) {
 			// TODO Auto-generated catch block

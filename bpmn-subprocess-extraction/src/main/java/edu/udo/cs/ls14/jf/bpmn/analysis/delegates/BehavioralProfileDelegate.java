@@ -23,8 +23,11 @@ public class BehavioralProfileDelegate implements JavaDelegate {
 		Process process = ProcessUtil.getProcessFromDefinitions(analysis
 				.getDefinitions());
 		// TODO: add ptnet / rg as results to analysis
+
+		// Create Petri net
 		PetriNetHLAPI ptnet = new Bpmn2PtnetConverter()
 				.convertToPetriNet(process);
+		// Create Reachability Graph
 		ReachabilityGraph rg = new ReachabilityGraph();
 		rg.createFromPTNet(ptnet.getContainedItem());
 

@@ -21,7 +21,8 @@ public class ProcessStructureTreeImpl implements ProcessStructureTreeSEI {
 		try {
 			ProcessStructureTree pst = pstBuilder.getTree(processAnalysis
 					.getDefinitions());
-			processAnalysis.getResults().put("pst", pst);
+			processAnalysis.getResults().put(
+					ProcessAnalysis.PROCESSTRUCTURETREE, pst);
 			return processAnalysis;
 		} catch (Exception e) {
 			e.printStackTrace();
