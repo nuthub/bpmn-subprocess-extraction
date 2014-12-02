@@ -6,6 +6,7 @@
 		<artifactId>bpmn-subprocess-extraction-parent</artifactId>
 		<version>0.0.1-SNAPSHOT</version>
 	</parent>
+	<artifactId>bpmn-subprocess-extraction</artifactId>
 	<dependencies>
 		<dependency>
 			<groupId>org.camunda.bpm</groupId>
@@ -65,5 +66,5 @@
 			<scope>test</scope>
 		</dependency>
 	</dependencies>
-	<artifactId>bpmn-subprocess-extraction</artifactId>
+
 </project>

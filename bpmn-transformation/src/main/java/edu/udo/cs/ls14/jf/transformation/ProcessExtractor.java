@@ -6,7 +6,7 @@ import edu.udo.cs.ls14.jf.bpmntransformation.ProcessExtraction;
 
 /**
  * This is also available as modeled process
- *  
+ * 
  * @author flake
  *
  */
@@ -24,7 +24,7 @@ public class ProcessExtractor {
 			pair.getA().setCenter(CoordinateCalculator.getCenter(pair.getA()));
 			pair.getB().setCenter(CoordinateCalculator.getCenter(pair.getB()));
 		}
-		// 3. generate lables
+		// 3. generate labels
 		for (FragmentPair pair : pMatching.getFragmentMatching().getPairs()) {
 			pair.getA().setLabel(LabelGenerator.getLabel(pair.getA()));
 			pair.getB().setLabel(LabelGenerator.getLabel(pair.getB()));

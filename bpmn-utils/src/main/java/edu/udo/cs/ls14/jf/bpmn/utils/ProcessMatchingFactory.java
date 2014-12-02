@@ -1,11 +1,14 @@
 package edu.udo.cs.ls14.jf.bpmn.utils;
 
+import java.util.UUID;
+
 import org.eclipse.bpmn2.Activity;
 import org.eclipse.bpmn2.Definitions;
 import org.eclipse.bpmn2.Event;
 import org.eclipse.bpmn2.FlowElement;
 import org.eclipse.bpmn2.FlowNode;
 import org.eclipse.bpmn2.Process;
+import org.eclipse.emf.common.util.URI;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -28,6 +31,11 @@ public class ProcessMatchingFactory {
 			ProcessAnalysis analysis1, ProcessAnalysis analysis2) {
 		ProcessMatching matching = BpmnMatchingFactory.eINSTANCE
 				.createProcessMatching();
+		Bpmn2ResourceSet
+				.getInstance()
+				.createResource(
+						URI.createFileURI(UUID.randomUUID().toString()
+								+ ".bpmnmatching")).getContents().add(matching);
 		matching.setAnalysis1(analysis1);
 		matching.setAnalysis2(analysis2);
 		return matching;

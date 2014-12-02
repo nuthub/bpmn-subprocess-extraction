@@ -4,15 +4,12 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 
 import java.net.URL;
-import java.util.Map;
 
 import javax.xml.namespace.QName;
 import javax.xml.ws.Endpoint;
 import javax.xml.ws.Service;
 
 import org.eclipse.bpmn2.Definitions;
-import org.eclipse.bpmn2.util.Bpmn2ResourceFactoryImpl;
-import org.eclipse.emf.ecore.resource.Resource;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -21,8 +18,6 @@ import edu.udo.cs.ls14.jf.bpmn.utils.Bpmn2ResourceSet;
 import edu.udo.cs.ls14.jf.bpmn.utils.ProcessAnalysisFactory;
 import edu.udo.cs.ls14.jf.bpmnanalysis.ConditionalProfile;
 import edu.udo.cs.ls14.jf.bpmnanalysis.ProcessAnalysis;
-import edu.udo.cs.ls14.jf.bpmnanalysis.util.BpmnAnalysisResourceFactoryImpl;
-import edu.udo.cs.ls14.jf.bpmnmatching.util.BpmnMatchingResourceFactoryImpl;
 import edu.udo.cs.ls14.jf.registry.Registries;
 import edu.udo.cs.ls14.jf.ws.bpmn.conditionalprofile.ConditionalProfilerImpl;
 import edu.udo.cs.ls14.jf.ws.bpmn.conditionalprofile.ConditionalProfilerSEI;

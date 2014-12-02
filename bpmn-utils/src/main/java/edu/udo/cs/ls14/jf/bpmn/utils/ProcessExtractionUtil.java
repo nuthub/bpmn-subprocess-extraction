@@ -27,14 +27,20 @@ public class ProcessExtractionUtil {
 	 */
 	public static void writeResults(String targetDir,
 			ProcessExtraction extraction) throws Exception {
+		writeResults(targetDir, extraction.getResults());
+	}
+
+	public static void writeResults(String targetDir,
+			Map<String, Definitions> results) throws Exception {
+		// TODO Auto-generated method stub
+
 		new File(targetDir).mkdirs();
-		Bpmn2ResourceSet resSetOut = new Bpmn2ResourceSet(targetDir);
+		Bpmn2ResourceSet resSetOut = Bpmn2ResourceSet.getInstance();
 
 		// Create resources for all definitions
 		Map<String, Resource> resMap = new HashMap<String, Resource>();
-		for (Map.Entry<String, Definitions> entry : extraction.getResults()
-				.entrySet()) {
-			Resource res = resSetOut.createResource(entry.getKey(),
+		for (Map.Entry<String, Definitions> entry : results.entrySet()) {
+			Resource res = resSetOut.createResource(targetDir + "/" + entry.getKey(),
 					entry.getValue());
 			resMap.put(entry.getKey(), res);
 		}
@@ -95,4 +101,5 @@ public class ProcessExtractionUtil {
 		res.save(null);
 		LOG.info("Written extraction result to " + filename);
 	}
+
 }

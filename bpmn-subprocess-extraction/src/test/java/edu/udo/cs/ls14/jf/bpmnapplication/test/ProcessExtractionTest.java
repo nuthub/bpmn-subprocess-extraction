@@ -17,6 +17,13 @@ import edu.udo.cs.ls14.jf.bpmntransformation.ProcessExtraction;
 import edu.udo.cs.ls14.jf.registry.Registries;
 import edu.udo.cs.ls14.jf.transformation.ProcessExtractor;
 
+/**
+ * @deprecated See ProcessExtractionHybridTest
+ * 
+ * @author flake
+ *
+ */
+@Deprecated
 public class ProcessExtractionTest {
 
 	@Before

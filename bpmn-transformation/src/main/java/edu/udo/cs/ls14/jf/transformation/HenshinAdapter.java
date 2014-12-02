@@ -15,7 +15,6 @@ import org.eclipse.bpmn2.FlowElement;
 import org.eclipse.bpmn2.FlowNode;
 import org.eclipse.bpmn2.Process;
 import org.eclipse.bpmn2.SequenceFlow;
-import org.eclipse.bpmn2.util.Bpmn2ResourceFactoryImpl;
 import org.eclipse.dd.dc.Point;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.resource.Resource;
@@ -31,9 +30,10 @@ import org.eclipse.emf.henshin.model.resource.HenshinResourceSet;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import edu.udo.cs.ls14.jf.bpmn.utils.FragmentUtil;
 import edu.udo.cs.ls14.jf.bpmn.utils.DefinitionsUtil;
+import edu.udo.cs.ls14.jf.bpmn.utils.FragmentUtil;
 import edu.udo.cs.ls14.jf.bpmnanalysis.Fragment;
+import edu.udo.cs.ls14.jf.registry.Registries;
 
 public class HenshinAdapter {
 
@@ -43,32 +43,32 @@ public class HenshinAdapter {
 	private static final String RESOURCEPATH = "edu/udo/cs/ls14/jf/henshin";
 	private static final String RULEFILE = "bpmnModifier";
 
-	private Bpmn2ResourceFactoryImpl resourceFactory;
 	private Engine engine = null;
 	private HenshinResourceSet resourceSet = null;
 
-	private void init() {
+	private void init() throws Exception {
 		engine = new EngineImpl();
 		resourceSet = new HenshinResourceSet();
-		resourceSet.registerXMIResourceFactories("bpmn2");
+		resourceSet.registerXMIResourceFactories("bpmn");
 		resourceSet.getPackageRegistry().put(Bpmn2Package.eNS_URI,
 				Bpmn2Package.eINSTANCE);
 		resourceSet.getResourceFactoryRegistry().getExtensionToFactoryMap()
-				.put("bpmn2", new Bpmn2ResourceFactoryImpl());
+				.put("bpmn", Registries.getResourceFactory("bpmn"));
 	}
 
 	// TODO: Check if really required
-	public void replaceId(Definitions definitions, String oldId, String newId)
+	public void replaceId(Resource res, String oldId, String newId)
 			throws Exception {
-		EGraph graph = new EGraphImpl(getTmpResource(definitions));
+		EGraph graph = new EGraphImpl(res);
 		Map<String, Object> parameters = new HashMap<String, Object>();
 		parameters.put("oldId", oldId);
 		parameters.put("newId", newId);
 		applyRule(graph, RULEFILE, "setId", parameters);
 	}
 
-	public void cropFragment(Definitions definitions, Fragment fragment)
+	public void cropFragment(Resource res, Fragment fragment)
 			throws Exception {
+		Definitions definitions = (Definitions) res.getContents().get(0);
 		Process process = DefinitionsUtil.getProcess(definitions);
 		Point startEventCoords = CoordinateCalculator.getCenter(fragment
 				.getEntry().getSourceRef(), definitions);
@@ -90,7 +90,7 @@ public class HenshinAdapter {
 				.filter(e -> e instanceof SequenceFlow).map(e -> e.getId())
 				.collect(Collectors.toSet());
 
-		EGraph graph = new EGraphImpl(getTmpResource(definitions));
+		EGraph graph = new EGraphImpl(res);
 
 		Map<String, Object> parameters = new HashMap<String, Object>();
 		// create startevent
@@ -155,10 +155,10 @@ public class HenshinAdapter {
 		}
 	}
 
-	public void replaceFragmentByCallActivity(Definitions definitions,
+	public void replaceFragmentByCallActivity(Resource res, Definitions definitions,
 			Fragment fragment, String name, CallableElement calledElement)
 			throws Exception {
-		EGraph graph = new EGraphImpl(getTmpResource(definitions));
+		EGraph graph = new EGraphImpl(res);
 
 		Set<String> deleteNodeIds = new HashSet<String>();
 		Set<String> deleteEdgeIds = new HashSet<String>();
@@ -210,12 +210,10 @@ public class HenshinAdapter {
 
 	}
 
-	private Resource getTmpResource(Definitions definitions) {
-		if (resourceFactory == null) {
-			resourceFactory = new Bpmn2ResourceFactoryImpl();
-		}
-		Resource res = resourceFactory.createResource(URI.createURI(UUID
-				.randomUUID().toString()));
+	@Deprecated
+	private Resource getTmpResource(Definitions definitions) throws Exception {
+		Resource res = Registries.getResourceFactory("bpmn").createResource(
+				URI.createURI(UUID.randomUUID().toString()));
 		res.getContents().add(definitions);
 		return res;
 	}
@@ -226,8 +224,10 @@ public class HenshinAdapter {
 			init();
 		}
 		// Load rule, build rule URI to avoid henshin's createFileURI
-		URL ruleUrl = Thread.currentThread().getContextClassLoader().getResource(
-				RESOURCEPATH + "/" + rulefileBaseName + ".henshin");
+		URL ruleUrl = Thread
+				.currentThread()
+				.getContextClassLoader()
+				.getResource(RESOURCEPATH + "/" + rulefileBaseName + ".henshin");
 		URI uri = URI.createURI(ruleUrl.toExternalForm());
 		Module module = resourceSet.getModule(uri, true);
 		Unit unit = module.getUnit(ruleName);

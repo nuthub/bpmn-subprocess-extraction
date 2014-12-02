@@ -8,19 +8,35 @@ import org.eclipse.bpmn2.Definitions;
 import org.eclipse.bpmn2.DocumentRoot;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 
 import edu.udo.cs.ls14.jf.registry.Registries;
 
 public class Bpmn2ResourceSet extends ResourceSetImpl {
-	private String directory;
+	private static Bpmn2ResourceSet instance;
+	private String directory = "";
 
+	private Bpmn2ResourceSet() {
+		super();
+	}
+
+	public static Bpmn2ResourceSet getInstance() {
+		if (instance == null) {
+			instance = new Bpmn2ResourceSet();
+		}
+		return instance;
+	}
+
+	@Deprecated
 	public Bpmn2ResourceSet(String baseDir) {
 		super();
+		packageRegistry = EPackage.Registry.INSTANCE;
 		directory = baseDir;
 	}
 
+	@Deprecated
 	public String getDirectory() {
 		return directory;
 	}
@@ -46,6 +62,7 @@ public class Bpmn2ResourceSet extends ResourceSetImpl {
 	public Definitions loadDefinitions(String filename) throws Exception {
 		System.out.println(filename);
 		URI fileURI = getCompletePathURI(filename, directory, true);
+		System.out.println(fileURI);
 		Resource resource = Registries.getResourceFactory("bpmn")
 				.createResource(fileURI);
 		System.out.println(fileURI);

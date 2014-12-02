@@ -47,30 +47,7 @@ public class FragmentPairJointerSequential {
 		}
 		return null;
 	}
-/**
- * Works:
- * @param matching
- * @param sequence
- * @return
- */
-//	private static FragmentMatching joinSequence(FragmentMatching matching,
-//	Pair<FragmentPair, FragmentPair> sequence) {
-//FragmentPair p = sequence.getValue0();
-//FragmentPair q = sequence.getValue1();
-//// Create new unioned fragment
-//Fragment union0 = EcoreUtil.copy(p.getA());
-//union0.setExit(q.getA().getExit());
-//Fragment union1 = EcoreUtil.copy(p.getB());
-//union1.setExit(q.getB().getExit());
-//
-//FragmentPair pair = BpmnMatchingFactory.eINSTANCE.createFragmentPair();
-//pair.setA(union0);
-//pair.setB(union1);
-//matching.getPairs().add(pair);
-//matching.getPairs().remove(p);
-//matching.getPairs().remove(q);
-//return matching;
-//}
+
 	private static FragmentMatching joinSequence(FragmentMatching matching,
 			Pair<FragmentPair, FragmentPair> sequence) {
 		FragmentPair p = sequence.getValue0();

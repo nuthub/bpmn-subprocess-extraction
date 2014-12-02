@@ -4,12 +4,16 @@ import java.util.UUID;
 
 import org.eclipse.bpmn2.Definitions;
 import org.eclipse.bpmn2.Process;
+import org.eclipse.emf.common.util.URI;
+import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import edu.udo.cs.ls14.jf.bpmn.utils.FragmentUtil;
+import edu.udo.cs.ls14.jf.bpmn.utils.Bpmn2ResourceSet;
 import edu.udo.cs.ls14.jf.bpmn.utils.DefinitionsUtil;
+import edu.udo.cs.ls14.jf.bpmn.utils.FragmentUtil;
+import edu.udo.cs.ls14.jf.bpmn.utils.ProcessExtractionFactory;
 import edu.udo.cs.ls14.jf.bpmnmatching.FragmentPair;
 import edu.udo.cs.ls14.jf.bpmnmatching.ProcessMatching;
 import edu.udo.cs.ls14.jf.bpmntransformation.BpmnTransformationFactory;
@@ -17,11 +21,9 @@ import edu.udo.cs.ls14.jf.bpmntransformation.ProcessExtraction;
 
 public class FragmentExtractor {
 
-
 	private static final Logger LOG = LoggerFactory
 			.getLogger(FragmentExtractor.class);
 
-	
 	public static ProcessExtraction extract(ProcessMatching pMatching)
 			throws Exception {
 
@@ -54,43 +56,55 @@ public class FragmentExtractor {
 		definitions1.setTargetNamespace("http://" + UUID.randomUUID());
 		definitions2.setTargetNamespace("http://" + UUID.randomUUID());
 
+		Bpmn2ResourceSet resSet = Bpmn2ResourceSet.getInstance();
+		Resource res1 = resSet.createResource(URI.createFileURI(UUID
+				.randomUUID().toString() + ".bpmn"));
+		res1.getContents().add(definitions1);
+		Resource res2 = resSet.createResource(URI.createFileURI(UUID
+				.randomUUID().toString() + ".bpmn"));
+		res2.getContents().add(definitions2);
+
 		HenshinAdapter extractor = new HenshinAdapter();
 		// Loop over all fragment matchings
 		int fragmentCounter = 1;
 		for (FragmentPair fPair : pMatching.getFragmentMatching().getPairs()) {
 			// create new (sub)process
 			LOG.info("Extracting SubProcess.");
-			Definitions defsExtracted = EcoreUtil.copy(FragmentUtil
-					.getDefinitions(fPair.getBetter()));
+			Resource resExtracted = resSet.createResource(URI.createURI(UUID
+					.randomUUID().toString() + ".bpmn"));
+			resExtracted.getContents().add(
+					EcoreUtil.copy(FragmentUtil.getDefinitions(fPair
+							.getBetter())));
+			Definitions defsExtracted = (Definitions) resExtracted
+					.getContents().get(0);
 			String idExtracted = getExtractedProcessIdPrefix(fPair)
 					+ fragmentCounter++;
 			defsExtracted.setTargetNamespace("http://"
 					+ idExtracted.toLowerCase());
-			// defsExtracted.setId(UUID.randomUUID().toString());
-			extractor.replaceId(defsExtracted, DefinitionsUtil
-					.getProcess(defsExtracted).getId(), UUID
-					.randomUUID().toString());
-			extractor.cropFragment(defsExtracted, fPair.getBetter());
+//			defsExtracted.setId(UUID.randomUUID().toString());
+			extractor.replaceId(resExtracted,
+					DefinitionsUtil.getProcess(defsExtracted).getId(), UUID
+							.randomUUID().toString());
+//			System.out.println("resource: " + resExtracted);
+			extractor.cropFragment(resExtracted, fPair.getBetter());
 			extraction.getResults().put(idExtracted + ".bpmn", defsExtracted);
 			LOG.info("SubProcess extracted.");
 
 			// callActivity parameters
-			Process calledElement = DefinitionsUtil
-					.getProcess(defsExtracted);
+			Process calledElement = DefinitionsUtil.getProcess(defsExtracted);
 			calledElement.setName(idExtracted);
 			calledElement.setId(idExtracted.toLowerCase());
 
 			// replace fragment in Process1
 			LOG.info("Replacing " + fPair.getA());
-
-			extractor.replaceFragmentByCallActivity(definitions1, fPair.getA(),
-					fPair.getBetter().getLabel(), calledElement);
+			extractor.replaceFragmentByCallActivity(res1, definitions1,
+					fPair.getA(), fPair.getBetter().getLabel(), calledElement);
 			LOG.info("Replaced " + fPair.getA());
 
 			// /replace fragment in Process2
 			LOG.info("Replacing " + fPair.getB());
-			extractor.replaceFragmentByCallActivity(definitions2, fPair.getB(),
-					fPair.getBetter().getLabel(), calledElement);
+			extractor.replaceFragmentByCallActivity(res2, definitions2,
+					fPair.getB(), fPair.getBetter().getLabel(), calledElement);
 			LOG.info("Replaced " + fPair.getB());
 
 		}

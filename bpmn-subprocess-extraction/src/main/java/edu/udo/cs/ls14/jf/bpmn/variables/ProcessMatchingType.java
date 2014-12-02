@@ -2,7 +2,6 @@ package edu.udo.cs.ls14.jf.bpmn.variables;
 
 import org.camunda.bpm.engine.impl.variable.ValueFields;
 import org.camunda.bpm.engine.impl.variable.VariableType;
-import org.eclipse.emf.ecore.EObject;
 
 import edu.udo.cs.ls14.jf.bpmn.utils.EObjectXmlConverter;
 import edu.udo.cs.ls14.jf.bpmnmatching.ProcessMatching;

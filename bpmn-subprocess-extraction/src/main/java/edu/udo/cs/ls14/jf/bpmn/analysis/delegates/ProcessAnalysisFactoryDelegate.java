@@ -15,8 +15,8 @@ public class ProcessAnalysisFactoryDelegate implements JavaDelegate {
 	public void execute(DelegateExecution execution) throws Exception {
 		Definitions definitions = (Definitions) execution
 				.getVariable("definitions");
-		definitions.setTargetNamespace(definitions.getTargetNamespace() + "/"
-				+ UUID.randomUUID());
+//		definitions.setTargetNamespace(definitions.getTargetNamespace() + "/"
+//				+ UUID.randomUUID());
 		ProcessAnalysis analysis = ProcessAnalysisFactory
 				.createAnalysis(definitions);
 		execution.setVariable("analysis", analysis);
