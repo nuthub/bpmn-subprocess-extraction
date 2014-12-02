@@ -32,6 +32,13 @@ public class BpmnMatchingPackageImpl extends EPackageImpl implements BpmnMatchin
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	private EClass processMatchingEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	private EClass nodeMatchingEClass = null;
 
 	/**
@@ -54,13 +61,6 @@ public class BpmnMatchingPackageImpl extends EPackageImpl implements BpmnMatchin
 	 * @generated
 	 */
 	private EClass fragmentPairEClass = null;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private EClass processMatchingEClass = null;
 
 	/**
 	 * Creates an instance of the model <b>Package</b>, registered with
@@ -124,6 +124,51 @@ public class BpmnMatchingPackageImpl extends EPackageImpl implements BpmnMatchin
 		// Update the registry and return the package
 		EPackage.Registry.INSTANCE.put(BpmnMatchingPackage.eNS_URI, theBpmnMatchingPackage);
 		return theBpmnMatchingPackage;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getProcessMatching() {
+		return processMatchingEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getProcessMatching_Analysis1() {
+		return (EReference)processMatchingEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getProcessMatching_Analysis2() {
+		return (EReference)processMatchingEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getProcessMatching_NodeMatching() {
+		return (EReference)processMatchingEClass.getEStructuralFeatures().get(2);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getProcessMatching_FragmentMatching() {
+		return (EReference)processMatchingEClass.getEStructuralFeatures().get(3);
 	}
 
 	/**
@@ -223,51 +268,6 @@ public class BpmnMatchingPackageImpl extends EPackageImpl implements BpmnMatchin
 	 */
 	public EReference getFragmentPair_Better() {
 		return (EReference)fragmentPairEClass.getEStructuralFeatures().get(2);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EClass getProcessMatching() {
-		return processMatchingEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EReference getProcessMatching_Analysis1() {
-		return (EReference)processMatchingEClass.getEStructuralFeatures().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EReference getProcessMatching_Analysis2() {
-		return (EReference)processMatchingEClass.getEStructuralFeatures().get(1);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EReference getProcessMatching_NodeMatching() {
-		return (EReference)processMatchingEClass.getEStructuralFeatures().get(2);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EReference getProcessMatching_FragmentMatching() {
-		return (EReference)processMatchingEClass.getEStructuralFeatures().get(3);
 	}
 
 	/**

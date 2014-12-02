@@ -56,46 +56,6 @@ public interface BpmnMatchingPackage extends EPackage {
 	BpmnMatchingPackage eINSTANCE = edu.udo.cs.ls14.jf.bpmnmatching.impl.BpmnMatchingPackageImpl.init();
 
 	/**
-	 * The meta object id for the '{@link edu.udo.cs.ls14.jf.bpmnmatching.impl.NodeMatchingImpl <em>Node Matching</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see edu.udo.cs.ls14.jf.bpmnmatching.impl.NodeMatchingImpl
-	 * @see edu.udo.cs.ls14.jf.bpmnmatching.impl.BpmnMatchingPackageImpl#getNodeMatching()
-	 * @generated
-	 */
-	int NODE_MATCHING = 1;
-
-	/**
-	 * The meta object id for the '{@link edu.udo.cs.ls14.jf.bpmnmatching.impl.NodePairImpl <em>Node Pair</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see edu.udo.cs.ls14.jf.bpmnmatching.impl.NodePairImpl
-	 * @see edu.udo.cs.ls14.jf.bpmnmatching.impl.BpmnMatchingPackageImpl#getNodePair()
-	 * @generated
-	 */
-	int NODE_PAIR = 2;
-
-	/**
-	 * The meta object id for the '{@link edu.udo.cs.ls14.jf.bpmnmatching.impl.FragmentMatchingImpl <em>Fragment Matching</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see edu.udo.cs.ls14.jf.bpmnmatching.impl.FragmentMatchingImpl
-	 * @see edu.udo.cs.ls14.jf.bpmnmatching.impl.BpmnMatchingPackageImpl#getFragmentMatching()
-	 * @generated
-	 */
-	int FRAGMENT_MATCHING = 3;
-
-	/**
-	 * The meta object id for the '{@link edu.udo.cs.ls14.jf.bpmnmatching.impl.FragmentPairImpl <em>Fragment Pair</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see edu.udo.cs.ls14.jf.bpmnmatching.impl.FragmentPairImpl
-	 * @see edu.udo.cs.ls14.jf.bpmnmatching.impl.BpmnMatchingPackageImpl#getFragmentPair()
-	 * @generated
-	 */
-	int FRAGMENT_PAIR = 4;
-
-	/**
 	 * The meta object id for the '{@link edu.udo.cs.ls14.jf.bpmnmatching.impl.ProcessMatchingImpl <em>Process Matching</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -160,6 +120,16 @@ public interface BpmnMatchingPackage extends EPackage {
 	int PROCESS_MATCHING_OPERATION_COUNT = 0;
 
 	/**
+	 * The meta object id for the '{@link edu.udo.cs.ls14.jf.bpmnmatching.impl.NodeMatchingImpl <em>Node Matching</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see edu.udo.cs.ls14.jf.bpmnmatching.impl.NodeMatchingImpl
+	 * @see edu.udo.cs.ls14.jf.bpmnmatching.impl.BpmnMatchingPackageImpl#getNodeMatching()
+	 * @generated
+	 */
+	int NODE_MATCHING = 1;
+
+	/**
 	 * The feature id for the '<em><b>Pairs</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -185,6 +155,16 @@ public interface BpmnMatchingPackage extends EPackage {
 	 * @ordered
 	 */
 	int NODE_MATCHING_OPERATION_COUNT = 0;
+
+	/**
+	 * The meta object id for the '{@link edu.udo.cs.ls14.jf.bpmnmatching.impl.NodePairImpl <em>Node Pair</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see edu.udo.cs.ls14.jf.bpmnmatching.impl.NodePairImpl
+	 * @see edu.udo.cs.ls14.jf.bpmnmatching.impl.BpmnMatchingPackageImpl#getNodePair()
+	 * @generated
+	 */
+	int NODE_PAIR = 2;
 
 	/**
 	 * The feature id for the '<em><b>A</b></em>' reference.
@@ -223,6 +203,16 @@ public interface BpmnMatchingPackage extends EPackage {
 	int NODE_PAIR_OPERATION_COUNT = 0;
 
 	/**
+	 * The meta object id for the '{@link edu.udo.cs.ls14.jf.bpmnmatching.impl.FragmentMatchingImpl <em>Fragment Matching</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see edu.udo.cs.ls14.jf.bpmnmatching.impl.FragmentMatchingImpl
+	 * @see edu.udo.cs.ls14.jf.bpmnmatching.impl.BpmnMatchingPackageImpl#getFragmentMatching()
+	 * @generated
+	 */
+	int FRAGMENT_MATCHING = 3;
+
+	/**
 	 * The feature id for the '<em><b>Pairs</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -248,6 +238,16 @@ public interface BpmnMatchingPackage extends EPackage {
 	 * @ordered
 	 */
 	int FRAGMENT_MATCHING_OPERATION_COUNT = 0;
+
+	/**
+	 * The meta object id for the '{@link edu.udo.cs.ls14.jf.bpmnmatching.impl.FragmentPairImpl <em>Fragment Pair</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see edu.udo.cs.ls14.jf.bpmnmatching.impl.FragmentPairImpl
+	 * @see edu.udo.cs.ls14.jf.bpmnmatching.impl.BpmnMatchingPackageImpl#getFragmentPair()
+	 * @generated
+	 */
+	int FRAGMENT_PAIR = 4;
 
 	/**
 	 * The feature id for the '<em><b>A</b></em>' reference.
@@ -294,6 +294,60 @@ public interface BpmnMatchingPackage extends EPackage {
 	 */
 	int FRAGMENT_PAIR_OPERATION_COUNT = 0;
 
+
+	/**
+	 * Returns the meta object for class '{@link edu.udo.cs.ls14.jf.bpmnmatching.ProcessMatching <em>Process Matching</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Process Matching</em>'.
+	 * @see edu.udo.cs.ls14.jf.bpmnmatching.ProcessMatching
+	 * @generated
+	 */
+	EClass getProcessMatching();
+
+	/**
+	 * Returns the meta object for the containment reference '{@link edu.udo.cs.ls14.jf.bpmnmatching.ProcessMatching#getAnalysis1 <em>Analysis1</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference '<em>Analysis1</em>'.
+	 * @see edu.udo.cs.ls14.jf.bpmnmatching.ProcessMatching#getAnalysis1()
+	 * @see #getProcessMatching()
+	 * @generated
+	 */
+	EReference getProcessMatching_Analysis1();
+
+	/**
+	 * Returns the meta object for the containment reference '{@link edu.udo.cs.ls14.jf.bpmnmatching.ProcessMatching#getAnalysis2 <em>Analysis2</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference '<em>Analysis2</em>'.
+	 * @see edu.udo.cs.ls14.jf.bpmnmatching.ProcessMatching#getAnalysis2()
+	 * @see #getProcessMatching()
+	 * @generated
+	 */
+	EReference getProcessMatching_Analysis2();
+
+	/**
+	 * Returns the meta object for the containment reference '{@link edu.udo.cs.ls14.jf.bpmnmatching.ProcessMatching#getNodeMatching <em>Node Matching</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference '<em>Node Matching</em>'.
+	 * @see edu.udo.cs.ls14.jf.bpmnmatching.ProcessMatching#getNodeMatching()
+	 * @see #getProcessMatching()
+	 * @generated
+	 */
+	EReference getProcessMatching_NodeMatching();
+
+	/**
+	 * Returns the meta object for the containment reference '{@link edu.udo.cs.ls14.jf.bpmnmatching.ProcessMatching#getFragmentMatching <em>Fragment Matching</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference '<em>Fragment Matching</em>'.
+	 * @see edu.udo.cs.ls14.jf.bpmnmatching.ProcessMatching#getFragmentMatching()
+	 * @see #getProcessMatching()
+	 * @generated
+	 */
+	EReference getProcessMatching_FragmentMatching();
 
 	/**
 	 * Returns the meta object for class '{@link edu.udo.cs.ls14.jf.bpmnmatching.NodeMatching <em>Node Matching</em>}'.
@@ -413,60 +467,6 @@ public interface BpmnMatchingPackage extends EPackage {
 	EReference getFragmentPair_Better();
 
 	/**
-	 * Returns the meta object for class '{@link edu.udo.cs.ls14.jf.bpmnmatching.ProcessMatching <em>Process Matching</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Process Matching</em>'.
-	 * @see edu.udo.cs.ls14.jf.bpmnmatching.ProcessMatching
-	 * @generated
-	 */
-	EClass getProcessMatching();
-
-	/**
-	 * Returns the meta object for the containment reference '{@link edu.udo.cs.ls14.jf.bpmnmatching.ProcessMatching#getAnalysis1 <em>Analysis1</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference '<em>Analysis1</em>'.
-	 * @see edu.udo.cs.ls14.jf.bpmnmatching.ProcessMatching#getAnalysis1()
-	 * @see #getProcessMatching()
-	 * @generated
-	 */
-	EReference getProcessMatching_Analysis1();
-
-	/**
-	 * Returns the meta object for the containment reference '{@link edu.udo.cs.ls14.jf.bpmnmatching.ProcessMatching#getAnalysis2 <em>Analysis2</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference '<em>Analysis2</em>'.
-	 * @see edu.udo.cs.ls14.jf.bpmnmatching.ProcessMatching#getAnalysis2()
-	 * @see #getProcessMatching()
-	 * @generated
-	 */
-	EReference getProcessMatching_Analysis2();
-
-	/**
-	 * Returns the meta object for the containment reference '{@link edu.udo.cs.ls14.jf.bpmnmatching.ProcessMatching#getNodeMatching <em>Node Matching</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference '<em>Node Matching</em>'.
-	 * @see edu.udo.cs.ls14.jf.bpmnmatching.ProcessMatching#getNodeMatching()
-	 * @see #getProcessMatching()
-	 * @generated
-	 */
-	EReference getProcessMatching_NodeMatching();
-
-	/**
-	 * Returns the meta object for the containment reference '{@link edu.udo.cs.ls14.jf.bpmnmatching.ProcessMatching#getFragmentMatching <em>Fragment Matching</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference '<em>Fragment Matching</em>'.
-	 * @see edu.udo.cs.ls14.jf.bpmnmatching.ProcessMatching#getFragmentMatching()
-	 * @see #getProcessMatching()
-	 * @generated
-	 */
-	EReference getProcessMatching_FragmentMatching();
-
-	/**
 	 * Returns the factory that creates the instances of the model.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -489,6 +489,48 @@ public interface BpmnMatchingPackage extends EPackage {
 	 * @generated
 	 */
 	interface Literals {
+		/**
+		 * The meta object literal for the '{@link edu.udo.cs.ls14.jf.bpmnmatching.impl.ProcessMatchingImpl <em>Process Matching</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see edu.udo.cs.ls14.jf.bpmnmatching.impl.ProcessMatchingImpl
+		 * @see edu.udo.cs.ls14.jf.bpmnmatching.impl.BpmnMatchingPackageImpl#getProcessMatching()
+		 * @generated
+		 */
+		EClass PROCESS_MATCHING = eINSTANCE.getProcessMatching();
+
+		/**
+		 * The meta object literal for the '<em><b>Analysis1</b></em>' containment reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference PROCESS_MATCHING__ANALYSIS1 = eINSTANCE.getProcessMatching_Analysis1();
+
+		/**
+		 * The meta object literal for the '<em><b>Analysis2</b></em>' containment reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference PROCESS_MATCHING__ANALYSIS2 = eINSTANCE.getProcessMatching_Analysis2();
+
+		/**
+		 * The meta object literal for the '<em><b>Node Matching</b></em>' containment reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference PROCESS_MATCHING__NODE_MATCHING = eINSTANCE.getProcessMatching_NodeMatching();
+
+		/**
+		 * The meta object literal for the '<em><b>Fragment Matching</b></em>' containment reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference PROCESS_MATCHING__FRAGMENT_MATCHING = eINSTANCE.getProcessMatching_FragmentMatching();
+
 		/**
 		 * The meta object literal for the '{@link edu.udo.cs.ls14.jf.bpmnmatching.impl.NodeMatchingImpl <em>Node Matching</em>}' class.
 		 * <!-- begin-user-doc -->
@@ -584,48 +626,6 @@ public interface BpmnMatchingPackage extends EPackage {
 		 * @generated
 		 */
 		EReference FRAGMENT_PAIR__BETTER = eINSTANCE.getFragmentPair_Better();
-
-		/**
-		 * The meta object literal for the '{@link edu.udo.cs.ls14.jf.bpmnmatching.impl.ProcessMatchingImpl <em>Process Matching</em>}' class.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @see edu.udo.cs.ls14.jf.bpmnmatching.impl.ProcessMatchingImpl
-		 * @see edu.udo.cs.ls14.jf.bpmnmatching.impl.BpmnMatchingPackageImpl#getProcessMatching()
-		 * @generated
-		 */
-		EClass PROCESS_MATCHING = eINSTANCE.getProcessMatching();
-
-		/**
-		 * The meta object literal for the '<em><b>Analysis1</b></em>' containment reference feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference PROCESS_MATCHING__ANALYSIS1 = eINSTANCE.getProcessMatching_Analysis1();
-
-		/**
-		 * The meta object literal for the '<em><b>Analysis2</b></em>' containment reference feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference PROCESS_MATCHING__ANALYSIS2 = eINSTANCE.getProcessMatching_Analysis2();
-
-		/**
-		 * The meta object literal for the '<em><b>Node Matching</b></em>' containment reference feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference PROCESS_MATCHING__NODE_MATCHING = eINSTANCE.getProcessMatching_NodeMatching();
-
-		/**
-		 * The meta object literal for the '<em><b>Fragment Matching</b></em>' containment reference feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference PROCESS_MATCHING__FRAGMENT_MATCHING = eINSTANCE.getProcessMatching_FragmentMatching();
 
 	}
 

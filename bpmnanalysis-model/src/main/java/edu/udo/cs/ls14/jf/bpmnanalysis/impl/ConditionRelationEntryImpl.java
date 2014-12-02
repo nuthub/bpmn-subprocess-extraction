@@ -5,8 +5,8 @@ package edu.udo.cs.ls14.jf.bpmnanalysis.impl;
 import edu.udo.cs.ls14.jf.bpmnanalysis.BpmnAnalysisPackage;
 
 import java.util.Collection;
-
 import java.util.List;
+
 import org.eclipse.bpmn2.FlowNode;
 import org.eclipse.bpmn2.FormalExpression;
 

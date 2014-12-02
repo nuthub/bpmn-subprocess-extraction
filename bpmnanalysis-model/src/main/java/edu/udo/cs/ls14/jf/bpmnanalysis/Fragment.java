@@ -3,7 +3,9 @@
 package edu.udo.cs.ls14.jf.bpmnanalysis;
 
 import org.eclipse.bpmn2.SequenceFlow;
+
 import org.eclipse.dd.dc.Point;
+
 import org.eclipse.emf.ecore.EObject;
 
 /**
@@ -27,6 +29,32 @@ import org.eclipse.emf.ecore.EObject;
  * @generated
  */
 public interface Fragment extends EObject {
+	/**
+	 * Returns the value of the '<em><b>Parent</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Parent</em>' reference isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Parent</em>' reference.
+	 * @see #setParent(Fragment)
+	 * @see edu.udo.cs.ls14.jf.bpmnanalysis.BpmnAnalysisPackage#getFragment_Parent()
+	 * @model
+	 * @generated
+	 */
+	Fragment getParent();
+
+	/**
+	 * Sets the value of the '{@link edu.udo.cs.ls14.jf.bpmnanalysis.Fragment#getParent <em>Parent</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Parent</em>' reference.
+	 * @see #getParent()
+	 * @generated
+	 */
+	void setParent(Fragment value);
+
 	/**
 	 * Returns the value of the '<em><b>Entry</b></em>' reference.
 	 * <!-- begin-user-doc -->
@@ -109,7 +137,7 @@ public interface Fragment extends EObject {
 	 * Returns the value of the '<em><b>Center</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Center</em>' reference isn't clear,
+	 * If the meaning of the '<em>Center</em>' containment reference isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
@@ -130,31 +158,5 @@ public interface Fragment extends EObject {
 	 * @generated
 	 */
 	void setCenter(Point value);
-
-	/**
-	 * Returns the value of the '<em><b>Parent</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Parent</em>' reference isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Parent</em>' reference.
-	 * @see #setParent(Fragment)
-	 * @see edu.udo.cs.ls14.jf.bpmnanalysis.BpmnAnalysisPackage#getFragment_Parent()
-	 * @model
-	 * @generated
-	 */
-	Fragment getParent();
-
-	/**
-	 * Sets the value of the '{@link edu.udo.cs.ls14.jf.bpmnanalysis.Fragment#getParent <em>Parent</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Parent</em>' reference.
-	 * @see #getParent()
-	 * @generated
-	 */
-	void setParent(Fragment value);
 
 } // Fragment

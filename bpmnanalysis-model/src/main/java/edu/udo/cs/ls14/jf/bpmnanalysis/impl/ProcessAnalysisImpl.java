@@ -7,6 +7,7 @@ import edu.udo.cs.ls14.jf.bpmnanalysis.ProcessAnalysis;
 import edu.udo.cs.ls14.jf.bpmnanalysis.ProcessAnalysisResult;
 
 import java.util.Map;
+
 import org.eclipse.bpmn2.Definitions;
 
 import org.eclipse.emf.common.notify.Notification;

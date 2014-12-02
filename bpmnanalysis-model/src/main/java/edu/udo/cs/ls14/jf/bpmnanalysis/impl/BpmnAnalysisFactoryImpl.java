@@ -3,15 +3,20 @@
 package edu.udo.cs.ls14.jf.bpmnanalysis.impl;
 
 import edu.udo.cs.ls14.jf.bpmnanalysis.*;
+
 import java.util.List;
 import java.util.Map;
+
 import org.eclipse.bpmn2.FlowNode;
 import org.eclipse.bpmn2.FormalExpression;
+
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EDataType;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
+
 import org.eclipse.emf.ecore.impl.EFactoryImpl;
+
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
 
 /**

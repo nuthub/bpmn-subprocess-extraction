@@ -3,7 +3,9 @@
 package edu.udo.cs.ls14.jf.bpmnanalysis;
 
 import java.util.List;
+
 import org.eclipse.bpmn2.FlowNode;
+
 import org.eclipse.emf.ecore.EObject;
 
 /**

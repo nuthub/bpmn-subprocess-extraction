@@ -2,9 +2,8 @@
 <genmodel:GenModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore"
     xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" modelDirectory="/bpmnanalysis-model/src/main/java" modelPluginID=""
     modelName="BpmnAnalysis" updateClasspath="false" rootExtendsClass="org.eclipse.emf.ecore.impl.MinimalEObjectImpl$Container"
-    suppressEMFTypes="true" testsDirectory="/bpmn-analysis-model.tests/src/test/java"
-    importerID="org.eclipse.emf.importer.ecore" bundleManifest="false" complianceLevel="8.0"
-    copyrightFields="false" usedGenPackages="BPMN20.genmodel#//bpmn2 BPMN20.genmodel#//di BPMN20.genmodel#//di.1 BPMN20.genmodel#//dc"
+    suppressEMFTypes="true" testsDirectory="/bpmnanalysis-model/src/test/java" importerID="org.eclipse.emf.importer.ecore"
+    bundleManifest="false" complianceLevel="8.0" copyrightFields="false" usedGenPackages="BPMN20.genmodel#//bpmn2 BPMN20.genmodel#//di BPMN20.genmodel#//di.1 BPMN20.genmodel#//dc"
     operationReflection="true" importOrganizing="true">
   <foreignModel>BpmnAnalysis.ecore</foreignModel>
   <genPackages prefix="BpmnAnalysis" basePackage="edu.udo.cs.ls14.jf" resource="XML"

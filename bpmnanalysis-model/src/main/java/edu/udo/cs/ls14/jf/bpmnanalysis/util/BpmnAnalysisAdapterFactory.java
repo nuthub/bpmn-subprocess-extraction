@@ -3,13 +3,18 @@
 package edu.udo.cs.ls14.jf.bpmnanalysis.util;
 
 import edu.udo.cs.ls14.jf.bpmnanalysis.*;
+
 import java.util.List;
 import java.util.Map;
+
 import org.eclipse.bpmn2.FlowNode;
 import org.eclipse.bpmn2.FormalExpression;
+
 import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notifier;
+
 import org.eclipse.emf.common.notify.impl.AdapterFactoryImpl;
+
 import org.eclipse.emf.ecore.EObject;
 
 /**

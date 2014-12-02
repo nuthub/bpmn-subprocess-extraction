@@ -22,6 +22,15 @@ public interface BpmnMatchingFactory extends EFactory {
 	BpmnMatchingFactory eINSTANCE = edu.udo.cs.ls14.jf.bpmnmatching.impl.BpmnMatchingFactoryImpl.init();
 
 	/**
+	 * Returns a new object of class '<em>Process Matching</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Process Matching</em>'.
+	 * @generated
+	 */
+	ProcessMatching createProcessMatching();
+
+	/**
 	 * Returns a new object of class '<em>Node Matching</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -56,15 +65,6 @@ public interface BpmnMatchingFactory extends EFactory {
 	 * @generated
 	 */
 	FragmentPair createFragmentPair();
-
-	/**
-	 * Returns a new object of class '<em>Process Matching</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Process Matching</em>'.
-	 * @generated
-	 */
-	ProcessMatching createProcessMatching();
 
 	/**
 	 * Returns the package supported by this factory.

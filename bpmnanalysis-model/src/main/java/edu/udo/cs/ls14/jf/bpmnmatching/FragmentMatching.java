@@ -3,6 +3,7 @@
 package edu.udo.cs.ls14.jf.bpmnmatching;
 
 import java.util.List;
+
 import org.eclipse.emf.ecore.EObject;
 
 /**
@@ -27,7 +28,7 @@ public interface FragmentMatching extends EObject {
 	 * The list contents are of type {@link edu.udo.cs.ls14.jf.bpmnmatching.FragmentPair}.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Pairs</em>' reference list isn't clear,
+	 * If the meaning of the '<em>Pairs</em>' containment reference list isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->

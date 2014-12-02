@@ -71,6 +71,16 @@ public class BpmnMatchingFactoryImpl extends EFactoryImpl implements BpmnMatchin
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public ProcessMatching createProcessMatching() {
+		ProcessMatchingImpl processMatching = new ProcessMatchingImpl();
+		return processMatching;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public NodeMatching createNodeMatching() {
 		NodeMatchingImpl nodeMatching = new NodeMatchingImpl();
 		return nodeMatching;
@@ -104,16 +114,6 @@ public class BpmnMatchingFactoryImpl extends EFactoryImpl implements BpmnMatchin
 	public FragmentPair createFragmentPair() {
 		FragmentPairImpl fragmentPair = new FragmentPairImpl();
 		return fragmentPair;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public ProcessMatching createProcessMatching() {
-		ProcessMatchingImpl processMatching = new ProcessMatchingImpl();
-		return processMatching;
 	}
 
 	/**

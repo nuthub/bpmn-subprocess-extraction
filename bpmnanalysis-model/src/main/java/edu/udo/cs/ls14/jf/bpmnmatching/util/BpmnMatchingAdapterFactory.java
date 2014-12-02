@@ -108,6 +108,20 @@ public class BpmnMatchingAdapterFactory extends AdapterFactoryImpl {
 
 
 	/**
+	 * Creates a new adapter for an object of class '{@link edu.udo.cs.ls14.jf.bpmnmatching.ProcessMatching <em>Process Matching</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see edu.udo.cs.ls14.jf.bpmnmatching.ProcessMatching
+	 * @generated
+	 */
+	public Adapter createProcessMatchingAdapter() {
+		return null;
+	}
+
+	/**
 	 * Creates a new adapter for an object of class '{@link edu.udo.cs.ls14.jf.bpmnmatching.NodeMatching <em>Node Matching</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
@@ -160,20 +174,6 @@ public class BpmnMatchingAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createFragmentPairAdapter() {
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link edu.udo.cs.ls14.jf.bpmnmatching.ProcessMatching <em>Process Matching</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see edu.udo.cs.ls14.jf.bpmnmatching.ProcessMatching
-	 * @generated
-	 */
-	public Adapter createProcessMatchingAdapter() {
 		return null;
 	}
 

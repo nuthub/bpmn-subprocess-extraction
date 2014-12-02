@@ -388,6 +388,15 @@ public class BpmnAnalysisPackageImpl extends EPackageImpl implements BpmnAnalysi
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EReference getFragment_Parent() {
+		return (EReference)fragmentEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EReference getFragment_Entry() {
 		return (EReference)fragmentEClass.getEStructuralFeatures().get(1);
 	}
@@ -417,15 +426,6 @@ public class BpmnAnalysisPackageImpl extends EPackageImpl implements BpmnAnalysi
 	 */
 	public EReference getFragment_Center() {
 		return (EReference)fragmentEClass.getEStructuralFeatures().get(4);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EReference getFragment_Parent() {
-		return (EReference)fragmentEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**

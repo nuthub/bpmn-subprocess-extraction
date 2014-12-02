@@ -783,6 +783,17 @@ public interface BpmnAnalysisPackage extends EPackage {
 	EClass getFragment();
 
 	/**
+	 * Returns the meta object for the reference '{@link edu.udo.cs.ls14.jf.bpmnanalysis.Fragment#getParent <em>Parent</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Parent</em>'.
+	 * @see edu.udo.cs.ls14.jf.bpmnanalysis.Fragment#getParent()
+	 * @see #getFragment()
+	 * @generated
+	 */
+	EReference getFragment_Parent();
+
+	/**
 	 * Returns the meta object for the reference '{@link edu.udo.cs.ls14.jf.bpmnanalysis.Fragment#getEntry <em>Entry</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -825,17 +836,6 @@ public interface BpmnAnalysisPackage extends EPackage {
 	 * @generated
 	 */
 	EReference getFragment_Center();
-
-	/**
-	 * Returns the meta object for the reference '{@link edu.udo.cs.ls14.jf.bpmnanalysis.Fragment#getParent <em>Parent</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Parent</em>'.
-	 * @see edu.udo.cs.ls14.jf.bpmnanalysis.Fragment#getParent()
-	 * @see #getFragment()
-	 * @generated
-	 */
-	EReference getFragment_Parent();
 
 	/**
 	 * Returns the meta object for class '{@link edu.udo.cs.ls14.jf.bpmnanalysis.Trace <em>Trace</em>}'.
@@ -1110,6 +1110,14 @@ public interface BpmnAnalysisPackage extends EPackage {
 		EClass FRAGMENT = eINSTANCE.getFragment();
 
 		/**
+		 * The meta object literal for the '<em><b>Parent</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference FRAGMENT__PARENT = eINSTANCE.getFragment_Parent();
+
+		/**
 		 * The meta object literal for the '<em><b>Entry</b></em>' reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -1140,14 +1148,6 @@ public interface BpmnAnalysisPackage extends EPackage {
 		 * @generated
 		 */
 		EReference FRAGMENT__CENTER = eINSTANCE.getFragment_Center();
-
-		/**
-		 * The meta object literal for the '<em><b>Parent</b></em>' reference feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference FRAGMENT__PARENT = eINSTANCE.getFragment_Parent();
 
 		/**
 		 * The meta object literal for the '{@link edu.udo.cs.ls14.jf.bpmnanalysis.impl.TraceImpl <em>Trace</em>}' class.

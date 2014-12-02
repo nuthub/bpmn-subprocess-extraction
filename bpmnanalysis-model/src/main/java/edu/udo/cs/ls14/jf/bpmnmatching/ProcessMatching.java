@@ -30,7 +30,7 @@ public interface ProcessMatching extends EObject {
 	 * Returns the value of the '<em><b>Analysis1</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Analysis1</em>' reference isn't clear,
+	 * If the meaning of the '<em>Analysis1</em>' containment reference isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
@@ -56,7 +56,7 @@ public interface ProcessMatching extends EObject {
 	 * Returns the value of the '<em><b>Analysis2</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Analysis2</em>' reference isn't clear,
+	 * If the meaning of the '<em>Analysis2</em>' containment reference isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
