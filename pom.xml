@@ -23,8 +23,6 @@
 		<module>bpmn2bp</module>
 		<!-- examples / tests -->
 		<module>activiti-webservice-example</module>
-		<module>webapp-example</module>
-		<module>services-ear</module>
 	</modules>
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
