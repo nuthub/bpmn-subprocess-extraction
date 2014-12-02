@@ -68,17 +68,29 @@ public class ProcessExtractionUtil {
 
 	}
 
+	/**
+	 * Ensure, that factories and packages are registered
+	 * 
+	 * @param extraction
+	 * @return
+	 * @throws Exception
+	 */
 	public static String toXml(ProcessExtraction extraction) throws Exception {
-		Resource.Factory.Registry.INSTANCE.getExtensionToFactoryMap()
-				.putIfAbsent("bpmntransformation",
-						new BpmnTransformationResourceFactoryImpl());
 		return EObjectXmlConverter
 				.eObject2Xml("bpmntransformation", extraction);
 	}
 
+	/**
+	 * Ensure, that factories and packages are registered
+	 * 
+	 * @param extraction
+	 * @return
+	 * @throws Exception
+	 */
 	public static void writeToFile(String filename, ProcessExtraction extraction)
 			throws IOException {
-		Resource res = new BpmnTransformationResourceFactoryImpl()
+		Resource res = ((Resource.Factory) Resource.Factory.Registry.INSTANCE
+				.getExtensionToFactoryMap().get("bpmntransformation"))
 				.createResource(URI.createFileURI(filename));
 		res.getContents().add(extraction);
 		res.save(null);

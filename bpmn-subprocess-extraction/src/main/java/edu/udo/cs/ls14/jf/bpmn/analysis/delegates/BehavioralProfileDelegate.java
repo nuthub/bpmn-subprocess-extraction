@@ -19,7 +19,7 @@ public class BehavioralProfileDelegate implements JavaDelegate {
 	@Override
 	public void execute(DelegateExecution execution) throws Exception {
 		ProcessAnalysis analysis = (ProcessAnalysis) execution
-				.getVariable("processanalysis");
+				.getVariable("analysis");
 		Process process = ProcessUtil.getProcessFromDefinitions(analysis
 				.getDefinitions());
 		// TODO: add ptnet / rg as results to analysis
@@ -41,6 +41,6 @@ public class BehavioralProfileDelegate implements JavaDelegate {
 		analysis.getResults().put(ProcessAnalysis.BEHAVIORALPROFILE,
 				behavioralProfile);
 
-		execution.setVariable("processanalysis", analysis);
+		execution.setVariable("analysis", analysis);
 	}
 }

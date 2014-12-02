@@ -355,10 +355,10 @@ public class BpmnMatchingPackageImpl extends EPackageImpl implements BpmnMatchin
 
 		// Initialize classes, features, and operations; add parameters
 		initEClass(processMatchingEClass, ProcessMatching.class, "ProcessMatching", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getProcessMatching_Analysis1(), theBpmnAnalysisPackage.getProcessAnalysis(), null, "analysis1", null, 0, 1, ProcessMatching.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getProcessMatching_Analysis2(), theBpmnAnalysisPackage.getProcessAnalysis(), null, "analysis2", null, 0, 1, ProcessMatching.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getProcessMatching_NodeMatching(), this.getNodeMatching(), null, "nodeMatching", null, 0, 1, ProcessMatching.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getProcessMatching_FragmentMatching(), this.getFragmentMatching(), null, "fragmentMatching", null, 0, 1, ProcessMatching.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getProcessMatching_Analysis1(), theBpmnAnalysisPackage.getProcessAnalysis(), null, "analysis1", null, 1, 1, ProcessMatching.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getProcessMatching_Analysis2(), theBpmnAnalysisPackage.getProcessAnalysis(), null, "analysis2", null, 1, 1, ProcessMatching.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getProcessMatching_NodeMatching(), this.getNodeMatching(), null, "nodeMatching", null, 1, 1, ProcessMatching.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getProcessMatching_FragmentMatching(), this.getFragmentMatching(), null, "fragmentMatching", null, 1, 1, ProcessMatching.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(nodeMatchingEClass, NodeMatching.class, "NodeMatching", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getNodeMatching_Pairs(), this.getNodePair(), null, "pairs", null, 0, -1, NodeMatching.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

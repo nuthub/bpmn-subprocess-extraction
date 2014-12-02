@@ -6,9 +6,8 @@ import java.util.HashSet;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-import org.eclipse.bpmn2.DocumentRoot;
+import org.eclipse.bpmn2.Definitions;
 import org.eclipse.bpmn2.Process;
-import org.eclipse.emf.ecore.resource.Resource;
 import org.jbpt.algo.tree.rpst.IRPSTNode;
 import org.jbpt.algo.tree.rpst.RPST;
 import org.jbpt.algo.tree.tctree.TCType;
@@ -78,12 +77,10 @@ public class Bpmn2RpstTest {
 			throws Exception {
 		System.out.println("----------------------------");
 		System.out.println("Generating RPST for " + basename + ".bpmn");
-		Resource resource = new Bpmn2ResourceSet(getClass().getResource(
-				"/edu/udo/cs/ls14/jf/bpmn/test").getPath()).loadResource(basename
-				+ ".bpmn");
-		Process process = ProcessUtil
-				.getProcessFromDocumentRoot((DocumentRoot) resource
-						.getContents().get(0));
+		Definitions definitions = new Bpmn2ResourceSet(getClass().getResource(
+				"/edu/udo/cs/ls14/jf/bpmn/test").getPath())
+				.loadDefinitions(basename + ".bpmn");
+		Process process = ProcessUtil.getProcessFromDefinitions(definitions);
 		RPST<BpmnPathEdge, BpmnPathVertex> rpst = Bpmn2Rpst.getRPST(process,
 				true);
 		// output

@@ -208,17 +208,8 @@ public class BpmnAnalysisPackageImpl extends EPackageImpl implements BpmnAnalysi
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getProcessAnalysis_Id() {
-		return (EAttribute)processAnalysisEClass.getEStructuralFeatures().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public EReference getProcessAnalysis_Definitions() {
-		return (EReference)processAnalysisEClass.getEStructuralFeatures().get(1);
+		return (EReference)processAnalysisEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -227,7 +218,7 @@ public class BpmnAnalysisPackageImpl extends EPackageImpl implements BpmnAnalysi
 	 * @generated
 	 */
 	public EReference getProcessAnalysis_Results() {
-		return (EReference)processAnalysisEClass.getEStructuralFeatures().get(2);
+		return (EReference)processAnalysisEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
@@ -520,7 +511,6 @@ public class BpmnAnalysisPackageImpl extends EPackageImpl implements BpmnAnalysi
 
 		// Create classes and their features
 		processAnalysisEClass = createEClass(PROCESS_ANALYSIS);
-		createEAttribute(processAnalysisEClass, PROCESS_ANALYSIS__ID);
 		createEReference(processAnalysisEClass, PROCESS_ANALYSIS__DEFINITIONS);
 		createEReference(processAnalysisEClass, PROCESS_ANALYSIS__RESULTS);
 
@@ -606,7 +596,6 @@ public class BpmnAnalysisPackageImpl extends EPackageImpl implements BpmnAnalysi
 
 		// Initialize classes, features, and operations; add parameters
 		initEClass(processAnalysisEClass, ProcessAnalysis.class, "ProcessAnalysis", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getProcessAnalysis_Id(), ecorePackage.getEString(), "id", null, 0, 1, ProcessAnalysis.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getProcessAnalysis_Definitions(), theBpmn2Package.getDefinitions(), null, "definitions", null, 1, 1, ProcessAnalysis.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getProcessAnalysis_Results(), this.getProcessAnalysisResultEntry(), null, "results", null, 0, -1, ProcessAnalysis.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 

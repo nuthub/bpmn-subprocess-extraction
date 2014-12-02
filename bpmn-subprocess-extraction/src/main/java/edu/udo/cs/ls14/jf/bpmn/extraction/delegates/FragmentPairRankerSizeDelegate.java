@@ -4,7 +4,7 @@ import org.camunda.bpm.engine.delegate.DelegateExecution;
 import org.camunda.bpm.engine.delegate.JavaDelegate;
 
 import edu.udo.cs.ls14.jf.bpmnmatching.ProcessMatching;
-import edu.udo.cs.ls14.jf.processmatching.FragmentPairRankerSize;
+import edu.udo.cs.ls14.jf.transformation.FragmentPairRankerSize;
 
 public class FragmentPairRankerSizeDelegate implements JavaDelegate {
 

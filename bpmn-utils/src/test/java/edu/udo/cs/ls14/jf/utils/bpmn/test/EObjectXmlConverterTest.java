@@ -45,11 +45,9 @@ public class EObjectXmlConverterTest {
 	public void testProcessAnalysis() throws Exception {
 		ProcessAnalysis analysis = BpmnAnalysisFactory.eINSTANCE
 				.createProcessAnalysis();
-		analysis.setId(UUID.randomUUID().toString());
 		String xml = EObjectXmlConverter.eObject2Xml("bpmnanalysis", analysis);
 		ProcessAnalysis analysis2 = (ProcessAnalysis) EObjectXmlConverter
 				.xml2EObject("bpmnanalysis", xml);
-		assertEquals(analysis.getId(), analysis2.getId());
 	}
 
 	private void runTest(String fileName) throws Exception {

@@ -4,7 +4,7 @@
     <bpmn2:callActivity id="CallActivity_1" name="Analyze Model 1" calledElement="processanalysis">
       <bpmn2:extensionElements>
         <camunda:in source="definitions1" target="definitions"/>
-        <camunda:out source="processanalysis" target="analysis1"/>
+        <camunda:out source="analysis" target="analysis1"/>
       </bpmn2:extensionElements>
       <bpmn2:incoming>SequenceFlow_2</bpmn2:incoming>
       <bpmn2:outgoing>SequenceFlow_5</bpmn2:outgoing>
@@ -12,7 +12,7 @@
     <bpmn2:callActivity id="CallActivity_2" name="Analyze Model 2" calledElement="processanalysis">
       <bpmn2:extensionElements>
         <camunda:in source="definitions2" target="definitions"/>
-        <camunda:out source="processanalysis" target="analysis2"/>
+        <camunda:out source="analysis" target="analysis2"/>
       </bpmn2:extensionElements>
       <bpmn2:incoming>SequenceFlow_3</bpmn2:incoming>
       <bpmn2:outgoing>SequenceFlow_7</bpmn2:outgoing>

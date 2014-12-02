@@ -12,10 +12,10 @@ public class ProcessStructureTreeDelegate implements JavaDelegate {
 	@Override
 	public void execute(DelegateExecution execution) throws Exception {
 		ProcessAnalysis analysis = (ProcessAnalysis) execution
-				.getVariable("processanalysis");
+				.getVariable("analysis");
 		ProcessStructureTree pst = new PSTBuilder().getTree(analysis
 				.getDefinitions());
 		analysis.getResults().put(ProcessAnalysis.PROCESSTRUCTURETREE, pst);
-		execution.setVariable("processanalysis", analysis);
+		execution.setVariable("analysis", analysis);
 	}
 }

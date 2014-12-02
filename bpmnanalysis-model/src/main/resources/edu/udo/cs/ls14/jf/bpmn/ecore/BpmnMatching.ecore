@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ecore:EPackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="bpmnmatching" nsURI="http://jf.ls14.cs.udo.edu/bpmnmatching/1.0"
+    nsPrefix="bpmnmatching">
+  <eClassifiers xsi:type="ecore:EClass" name="ProcessMatching">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="analysis1" lowerBound="1"
+        eType="ecore:EClass BpmnAnalysis.ecore#//ProcessAnalysis" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="analysis2" lowerBound="1"
+        eType="ecore:EClass BpmnAnalysis.ecore#//ProcessAnalysis" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="nodeMatching" lowerBound="1"
+        eType="#//NodeMatching" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="fragmentMatching" lowerBound="1"
+        eType="#//FragmentMatching" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="NodeMatching">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="pairs" upperBound="-1"
+        eType="#//NodePair" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="NodePair">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="a" lowerBound="1" eType="ecore:EClass BPMN20.ecore#//FlowNode"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="b" lowerBound="1" eType="ecore:EClass BPMN20.ecore#//FlowNode"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="FragmentMatching">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="pairs" upperBound="-1"
+        eType="#//FragmentPair" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="FragmentPair">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="a" lowerBound="1" eType="ecore:EClass BpmnAnalysis.ecore#//Fragment"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="b" lowerBound="1" eType="ecore:EClass BpmnAnalysis.ecore#//Fragment"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="better" eType="ecore:EClass BpmnAnalysis.ecore#//Fragment"/>
+  </eClassifiers>
+</ecore:EPackage>

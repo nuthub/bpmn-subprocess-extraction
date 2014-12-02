@@ -8,32 +8,63 @@ import java.util.Set;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 
+import org.eclipse.bpmn2.Bpmn2Package;
 import org.eclipse.bpmn2.Definitions;
-import org.eclipse.bpmn2.DocumentRoot;
 import org.eclipse.bpmn2.FlowElement;
 import org.eclipse.bpmn2.FlowNode;
 import org.eclipse.bpmn2.Process;
+import org.eclipse.bpmn2.util.Bpmn2ResourceFactoryImpl;
+import org.eclipse.emf.ecore.EPackage;
+import org.eclipse.emf.ecore.resource.Resource;
+import org.junit.Before;
 import org.junit.Test;
 
 import edu.udo.cs.ls14.jf.bpmn.utils.Bpmn2ResourceSet;
 import edu.udo.cs.ls14.jf.bpmn.utils.ProcessMatchingFactory;
 import edu.udo.cs.ls14.jf.bpmn.utils.ProcessUtil;
+import edu.udo.cs.ls14.jf.bpmnanalysis.BpmnAnalysisPackage;
+import edu.udo.cs.ls14.jf.bpmnanalysis.util.BpmnAnalysisResourceFactoryImpl;
+import edu.udo.cs.ls14.jf.bpmnmatching.BpmnMatchingPackage;
 import edu.udo.cs.ls14.jf.bpmnmatching.NodeMatching;
 import edu.udo.cs.ls14.jf.bpmnmatching.NodePair;
 import edu.udo.cs.ls14.jf.bpmnmatching.nodematching.NodePairFilter;
+import edu.udo.cs.ls14.jf.bpmnmatching.util.BpmnMatchingResourceFactoryImpl;
+import edu.udo.cs.ls14.jf.bpmntransformation.BpmnTransformationPackage;
+import edu.udo.cs.ls14.jf.bpmntransformation.util.BpmnTransformationResourceFactoryImpl;
 
 public class NodeMatcherTest {
+
+	@Before
+	public void setUp() {
+		Resource.Factory.Registry.INSTANCE.getExtensionToFactoryMap()
+				.putIfAbsent("bpmn", new Bpmn2ResourceFactoryImpl());
+		Resource.Factory.Registry.INSTANCE.getExtensionToFactoryMap()
+				.putIfAbsent("bpmnanalysis",
+						new BpmnAnalysisResourceFactoryImpl());
+		Resource.Factory.Registry.INSTANCE.getExtensionToFactoryMap()
+				.putIfAbsent("bpmnmatching",
+						new BpmnMatchingResourceFactoryImpl());
+		Resource.Factory.Registry.INSTANCE.getExtensionToFactoryMap()
+				.putIfAbsent("bpmnextraction",
+						new BpmnTransformationResourceFactoryImpl());
+
+		EPackage.Registry.INSTANCE.put(Bpmn2Package.eNS_URI,
+				Bpmn2Package.eINSTANCE);
+		EPackage.Registry.INSTANCE.put(BpmnAnalysisPackage.eNS_URI,
+				BpmnAnalysisPackage.eINSTANCE);
+		EPackage.Registry.INSTANCE.put(BpmnMatchingPackage.eNS_URI,
+				BpmnMatchingPackage.eINSTANCE);
+		EPackage.Registry.INSTANCE.put(BpmnTransformationPackage.eNS_URI,
+				BpmnTransformationPackage.eINSTANCE);
+
+	}
 
 	@Test
 	public void testNodeMatcher() throws Exception {
 		Bpmn2ResourceSet resSet = new Bpmn2ResourceSet(getClass().getResource(
 				"/edu/udo/cs/ls14/jf/bpmn/test/").getPath());
-		Definitions def1 = ((DocumentRoot) resSet
-				.loadResource("PM1-mit-Fragment1.bpmn").getContents().get(0))
-				.getDefinitions();
-		Definitions def2 = ((DocumentRoot) resSet
-				.loadResource("PM3-mit-Fragment2.bpmn").getContents().get(0))
-				.getDefinitions();
+		Definitions def1 = resSet.loadDefinitions("PM1-mit-Fragment1.bpmn");
+		Definitions def2 = resSet.loadDefinitions("PM3-mit-Fragment2.bpmn");
 		NodeMatching nodeMatching = ProcessMatchingFactory.getFullNodeMatching(
 				def1, def2);
 		nodeMatching = NodePairFilter.filter(nodeMatching);

@@ -68,22 +68,13 @@ public interface BpmnAnalysisPackage extends EPackage {
 	int PROCESS_ANALYSIS = 0;
 
 	/**
-	 * The feature id for the '<em><b>Id</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PROCESS_ANALYSIS__ID = 0;
-
-	/**
 	 * The feature id for the '<em><b>Definitions</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int PROCESS_ANALYSIS__DEFINITIONS = 1;
+	int PROCESS_ANALYSIS__DEFINITIONS = 0;
 
 	/**
 	 * The feature id for the '<em><b>Results</b></em>' map.
@@ -92,7 +83,7 @@ public interface BpmnAnalysisPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int PROCESS_ANALYSIS__RESULTS = 2;
+	int PROCESS_ANALYSIS__RESULTS = 1;
 
 	/**
 	 * The number of structural features of the '<em>Process Analysis</em>' class.
@@ -101,7 +92,7 @@ public interface BpmnAnalysisPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int PROCESS_ANALYSIS_FEATURE_COUNT = 3;
+	int PROCESS_ANALYSIS_FEATURE_COUNT = 2;
 
 	/**
 	 * The number of operations of the '<em>Process Analysis</em>' class.
@@ -576,17 +567,6 @@ public interface BpmnAnalysisPackage extends EPackage {
 	EClass getProcessAnalysis();
 
 	/**
-	 * Returns the meta object for the attribute '{@link edu.udo.cs.ls14.jf.bpmnanalysis.ProcessAnalysis#getId <em>Id</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Id</em>'.
-	 * @see edu.udo.cs.ls14.jf.bpmnanalysis.ProcessAnalysis#getId()
-	 * @see #getProcessAnalysis()
-	 * @generated
-	 */
-	EAttribute getProcessAnalysis_Id();
-
-	/**
 	 * Returns the meta object for the containment reference '{@link edu.udo.cs.ls14.jf.bpmnanalysis.ProcessAnalysis#getDefinitions <em>Definitions</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -952,14 +932,6 @@ public interface BpmnAnalysisPackage extends EPackage {
 		 * @generated
 		 */
 		EClass PROCESS_ANALYSIS = eINSTANCE.getProcessAnalysis();
-
-		/**
-		 * The meta object literal for the '<em><b>Id</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute PROCESS_ANALYSIS__ID = eINSTANCE.getProcessAnalysis_Id();
 
 		/**
 		 * The meta object literal for the '<em><b>Definitions</b></em>' containment reference feature.

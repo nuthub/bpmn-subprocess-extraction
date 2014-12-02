@@ -14,12 +14,12 @@ public class ConditionalProfileDelegate implements JavaDelegate {
 	@Override
 	public void execute(DelegateExecution execution) throws Exception {
 		ProcessAnalysis analysis = (ProcessAnalysis) execution
-				.getVariable("processanalysis");
+				.getVariable("analysis");
 		Process process = ProcessUtil.getProcessFromDefinitions(analysis
 				.getDefinitions());
 		ConditionalProfile profile = ConditionalProfiler
 				.generateProfile(process);
 		analysis.getResults().put(ProcessAnalysis.CONDITIONALPROFILE, profile);
-		execution.setVariable("processanalysis", analysis);
+		execution.setVariable("analysis", analysis);
 	}
 }

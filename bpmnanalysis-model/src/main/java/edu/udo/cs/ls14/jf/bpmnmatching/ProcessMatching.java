@@ -37,7 +37,7 @@ public interface ProcessMatching extends EObject {
 	 * @return the value of the '<em>Analysis1</em>' containment reference.
 	 * @see #setAnalysis1(ProcessAnalysis)
 	 * @see edu.udo.cs.ls14.jf.bpmnmatching.BpmnMatchingPackage#getProcessMatching_Analysis1()
-	 * @model containment="true"
+	 * @model containment="true" required="true"
 	 * @generated
 	 */
 	ProcessAnalysis getAnalysis1();
@@ -63,7 +63,7 @@ public interface ProcessMatching extends EObject {
 	 * @return the value of the '<em>Analysis2</em>' containment reference.
 	 * @see #setAnalysis2(ProcessAnalysis)
 	 * @see edu.udo.cs.ls14.jf.bpmnmatching.BpmnMatchingPackage#getProcessMatching_Analysis2()
-	 * @model containment="true"
+	 * @model containment="true" required="true"
 	 * @generated
 	 */
 	ProcessAnalysis getAnalysis2();
@@ -89,7 +89,7 @@ public interface ProcessMatching extends EObject {
 	 * @return the value of the '<em>Node Matching</em>' containment reference.
 	 * @see #setNodeMatching(NodeMatching)
 	 * @see edu.udo.cs.ls14.jf.bpmnmatching.BpmnMatchingPackage#getProcessMatching_NodeMatching()
-	 * @model containment="true"
+	 * @model containment="true" required="true"
 	 * @generated
 	 */
 	NodeMatching getNodeMatching();
@@ -115,7 +115,7 @@ public interface ProcessMatching extends EObject {
 	 * @return the value of the '<em>Fragment Matching</em>' containment reference.
 	 * @see #setFragmentMatching(FragmentMatching)
 	 * @see edu.udo.cs.ls14.jf.bpmnmatching.BpmnMatchingPackage#getProcessMatching_FragmentMatching()
-	 * @model containment="true"
+	 * @model containment="true" required="true"
 	 * @generated
 	 */
 	FragmentMatching getFragmentMatching();

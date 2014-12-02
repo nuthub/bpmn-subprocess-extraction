@@ -31,7 +31,6 @@ import org.eclipse.emf.ecore.util.InternalEList;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link edu.udo.cs.ls14.jf.bpmnanalysis.impl.ProcessAnalysisImpl#getId <em>Id</em>}</li>
  *   <li>{@link edu.udo.cs.ls14.jf.bpmnanalysis.impl.ProcessAnalysisImpl#getDefinitions <em>Definitions</em>}</li>
  *   <li>{@link edu.udo.cs.ls14.jf.bpmnanalysis.impl.ProcessAnalysisImpl#getResults <em>Results</em>}</li>
  * </ul>
@@ -40,26 +39,6 @@ import org.eclipse.emf.ecore.util.InternalEList;
  * @generated
  */
 public class ProcessAnalysisImpl extends MinimalEObjectImpl.Container implements ProcessAnalysis {
-	/**
-	 * The default value of the '{@link #getId() <em>Id</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getId()
-	 * @generated
-	 * @ordered
-	 */
-	protected static final String ID_EDEFAULT = null;
-
-	/**
-	 * The cached value of the '{@link #getId() <em>Id</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getId()
-	 * @generated
-	 * @ordered
-	 */
-	protected String id = ID_EDEFAULT;
-
 	/**
 	 * The cached value of the '{@link #getDefinitions() <em>Definitions</em>}' containment reference.
 	 * <!-- begin-user-doc -->
@@ -97,27 +76,6 @@ public class ProcessAnalysisImpl extends MinimalEObjectImpl.Container implements
 	@Override
 	protected EClass eStaticClass() {
 		return BpmnAnalysisPackage.Literals.PROCESS_ANALYSIS;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public String getId() {
-		return id;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setId(String newId) {
-		String oldId = id;
-		id = newId;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, BpmnAnalysisPackage.PROCESS_ANALYSIS__ID, oldId, id));
 	}
 
 	/**
@@ -199,8 +157,6 @@ public class ProcessAnalysisImpl extends MinimalEObjectImpl.Container implements
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case BpmnAnalysisPackage.PROCESS_ANALYSIS__ID:
-				return getId();
 			case BpmnAnalysisPackage.PROCESS_ANALYSIS__DEFINITIONS:
 				return getDefinitions();
 			case BpmnAnalysisPackage.PROCESS_ANALYSIS__RESULTS:
@@ -218,9 +174,6 @@ public class ProcessAnalysisImpl extends MinimalEObjectImpl.Container implements
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case BpmnAnalysisPackage.PROCESS_ANALYSIS__ID:
-				setId((String)newValue);
-				return;
 			case BpmnAnalysisPackage.PROCESS_ANALYSIS__DEFINITIONS:
 				setDefinitions((Definitions)newValue);
 				return;
@@ -239,9 +192,6 @@ public class ProcessAnalysisImpl extends MinimalEObjectImpl.Container implements
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case BpmnAnalysisPackage.PROCESS_ANALYSIS__ID:
-				setId(ID_EDEFAULT);
-				return;
 			case BpmnAnalysisPackage.PROCESS_ANALYSIS__DEFINITIONS:
 				setDefinitions((Definitions)null);
 				return;
@@ -260,30 +210,12 @@ public class ProcessAnalysisImpl extends MinimalEObjectImpl.Container implements
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case BpmnAnalysisPackage.PROCESS_ANALYSIS__ID:
-				return ID_EDEFAULT == null ? id != null : !ID_EDEFAULT.equals(id);
 			case BpmnAnalysisPackage.PROCESS_ANALYSIS__DEFINITIONS:
 				return definitions != null;
 			case BpmnAnalysisPackage.PROCESS_ANALYSIS__RESULTS:
 				return results != null && !results.isEmpty();
 		}
 		return super.eIsSet(featureID);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public String toString() {
-		if (eIsProxy()) return super.toString();
-
-		StringBuffer result = new StringBuffer(super.toString());
-		result.append(" (id: ");
-		result.append(id);
-		result.append(')');
-		return result.toString();
 	}
 
 } //ProcessAnalysisImpl

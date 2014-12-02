@@ -33,17 +33,6 @@ public class ProcessMatchingFactory {
 		return matching;
 	}
 
-	public static ProcessMatching createFullMatching(ProcessAnalysis analysis1,
-			ProcessAnalysis analysis2) {
-		ProcessMatching matching = createEmptyMatching(analysis1, analysis2);
-		matching.setNodeMatching(getFullNodeMatching(
-				analysis1.getDefinitions(), analysis2.getDefinitions()));
-		matching.setFragmentMatching(getFullFragmentMatching(analysis1,
-				analysis2));
-		return matching;
-
-	}
-
 	public static NodeMatching getFullNodeMatching(Definitions definitions1,
 			Definitions definitions2) {
 		NodeMatching matching = BpmnMatchingFactory.eINSTANCE

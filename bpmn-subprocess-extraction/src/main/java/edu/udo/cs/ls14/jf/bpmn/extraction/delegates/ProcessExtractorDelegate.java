@@ -7,6 +7,7 @@ import edu.udo.cs.ls14.jf.bpmnmatching.ProcessMatching;
 import edu.udo.cs.ls14.jf.bpmntransformation.ProcessExtraction;
 import edu.udo.cs.ls14.jf.transformation.ProcessExtractor;
 
+@Deprecated
 public class ProcessExtractorDelegate implements JavaDelegate {
 
 	@Override

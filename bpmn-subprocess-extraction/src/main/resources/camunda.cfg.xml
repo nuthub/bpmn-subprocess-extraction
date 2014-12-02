@@ -5,12 +5,18 @@
 	<bean id="processEngineConfiguration"
 		class="edu.udo.cs.ls14.jf.bpmn.cfg.MyProcessEngineConfiguration">
 
-		<property name="jdbcUrl" value="jdbc:h2:mem:camunda;DB_CLOSE_DELAY=1000" />
+ 		<property name="jdbcUrl" value="jdbc:h2:mem:camunda;DB_CLOSE_DELAY=1000" />
 		<property name="jdbcDriver" value="org.h2.Driver" />
 		<property name="jdbcUsername" value="sa" />
 		<property name="jdbcPassword" value="" />
-
-		<property name="databaseSchemaUpdate" value="true" />
+ 	
+<!--  		
+		<property name="jdbcUrl" value="jdbc:mysql://localhost/camunda" />
+		<property name="jdbcDriver" value="com.mysql.jdbc.Driver" />
+		<property name="jdbcUsername" value="camunda" />
+		<property name="jdbcPassword" value="camunda" />
+ -->		
+ 		<property name="databaseSchemaUpdate" value="true" />
 		<property name="history" value="audit" />
 
 		<property name="jobExecutorActivate" value="false" />

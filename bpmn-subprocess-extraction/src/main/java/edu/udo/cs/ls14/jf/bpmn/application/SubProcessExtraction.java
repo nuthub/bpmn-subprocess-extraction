@@ -4,11 +4,13 @@ import java.util.HashMap;
 import java.util.Map;
 
 import org.camunda.bpm.engine.ProcessEngine;
+import org.camunda.bpm.engine.repository.Deployment;
 import org.camunda.bpm.engine.runtime.ProcessInstance;
 import org.eclipse.bpmn2.Definitions;
-import org.eclipse.emf.ecore.util.EcoreUtil;
 
 import edu.udo.cs.ls14.jf.bpmn.cfg.MyProcessEngineConfiguration;
+import edu.udo.cs.ls14.jf.bpmnanalysis.ProcessAnalysis;
+import edu.udo.cs.ls14.jf.bpmnmatching.ProcessMatching;
 import edu.udo.cs.ls14.jf.bpmntransformation.ProcessExtraction;
 
 public class SubProcessExtraction {
@@ -23,22 +25,34 @@ public class SubProcessExtraction {
 		// deploy processes
 		String[] processes = { "subprocessextraction", "processanalysis",
 				"processmatching", "processextraction" };
+		for (Deployment d : processEngine.getRepositoryService()
+				.createDeploymentQuery().list()) {
+			processEngine.getRepositoryService().deleteDeployment(d.getId());
+		}
 		for (String process : processes) {
 			processEngine.getRepositoryService().createDeployment()
 					.enableDuplicateFiltering()
-					.addClasspathResource(process + ".bpmn").deploy();
+					.addClasspathResource(process + ".bpmn").name(process)
+					.deploy();
 		}
 	}
 
-	public ProcessExtraction getExtraction(Definitions definitions1,
+	/**
+	 * (definitions1, definitions2) -> extraction
+	 * 
+	 * @param definitions1
+	 * @param definitions2
+	 * @return
+	 * @throws Exception
+	 */
+	public ProcessExtraction runSubProcessExtraction(Definitions definitions1,
 			Definitions definitions2) throws Exception {
 		// Start process instance
 		Map<String, Object> variables = new HashMap<String, Object>();
-		variables.put("definitions1", EcoreUtil.copy(definitions1));
-		variables.put("definitions2", EcoreUtil.copy(definitions2));
+		variables.put("definitions1", definitions1);
+		variables.put("definitions2", definitions2);
 		ProcessInstance instance = processEngine.getRuntimeService()
 				.startProcessInstanceByKey("subprocessextraction", variables);
-
 		// Return Result
 		ProcessExtraction extraction = (ProcessExtraction) processEngine
 				.getHistoryService().createHistoricVariableInstanceQuery()
@@ -47,4 +61,61 @@ public class SubProcessExtraction {
 		return extraction;
 	}
 
+	/**
+	 * definitions -> matching
+	 * 
+	 * @param definitions
+	 * @return
+	 */
+	public ProcessAnalysis runProcessAnalysis(Definitions definitions) {
+		Map<String, Object> variables = new HashMap<String, Object>();
+		variables.put("definitions", definitions);
+		ProcessInstance instance = processEngine.getRuntimeService()
+				.startProcessInstanceByKey("processanalysis", variables);
+		// Return Result
+		ProcessAnalysis analysis = (ProcessAnalysis) processEngine
+				.getHistoryService().createHistoricVariableInstanceQuery()
+				.processInstanceId(instance.getId()).variableName("analysis")
+				.singleResult().getValue();
+		return analysis;
+	}
+
+	/*
+	 * (analysis1, analysis2) -> matching
+	 */
+	public ProcessMatching runProcessMatching(ProcessAnalysis analysis1,
+			ProcessAnalysis analysis2) {
+		// Start process instance
+		Map<String, Object> variables = new HashMap<String, Object>();
+		variables.put("analysis1", analysis1);
+		variables.put("analysis2", analysis2);
+		ProcessInstance instance = processEngine.getRuntimeService()
+				.startProcessInstanceByKey("processmatching", variables);
+		// Return Result
+		ProcessMatching matching = (ProcessMatching) processEngine
+				.getHistoryService().createHistoricVariableInstanceQuery()
+				.processInstanceId(instance.getId()).variableName("matching")
+				.singleResult().getValue();
+		return matching;
+	}
+
+	/**
+	 * matching -> extraction
+	 * 
+	 * @param matching
+	 * @return
+	 */
+	public ProcessExtraction runProcessExtraction(ProcessMatching matching) {
+		// Start process instance
+		Map<String, Object> variables = new HashMap<String, Object>();
+		variables.put("matching", matching);
+		ProcessInstance instance = processEngine.getRuntimeService()
+				.startProcessInstanceByKey("processextraction", variables);
+		// Return Result
+		ProcessExtraction extraction = (ProcessExtraction) processEngine
+				.getHistoryService().createHistoricVariableInstanceQuery()
+				.processInstanceId(instance.getId()).variableName("extraction")
+				.singleResult().getValue();
+		return extraction;
+	}
 }
