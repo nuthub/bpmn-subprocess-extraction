@@ -1,4 +1,4 @@
-package edu.udo.cs.ls14.jf.activiti.variables;
+package edu.udo.cs.ls14.jf.examples.ws;
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;

@@ -19,10 +19,9 @@
 		<module>bpmnmatching-services</module>
 		<module>bpmn-transformation</module>
 		<module>bpmntransformation-services</module>
-		<!-- needs some refactorings -->
+		<!-- subject to removal -->
 		<module>bpmn2bp</module>
 		<!-- examples / tests -->
-		<module>activiti-extensions</module>
 		<module>activiti-webservice-example</module>
 		<module>webapp-example</module>
 		<module>services-ear</module>
@@ -115,11 +114,6 @@
 					fr.lip6.move.pnml.framework.utils
 				</artifactId>
 				<version>${pnml.version}</version>
-			</dependency>
-			<dependency>
-				<groupId>edu.udo.cs.ls14.jf</groupId>
-				<artifactId>emf-dependencies</artifactId>
-				<version>0.0.1-SNAPSHOT</version>
 			</dependency>
 			<dependency>
 				<groupId>fr.lip6.move.pnml</groupId>
@@ -254,7 +248,7 @@
 		</dependency>
 		<dependency>
 			<groupId>edu.udo.cs.ls14.jf</groupId>
-			<artifactId>activiti-extensions</artifactId>
+			<artifactId>bpmn-subprocess-extraction</artifactId>
 			<version>0.0.1-SNAPSHOT</version>
 		</dependency>
 		</dependencies>
