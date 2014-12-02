@@ -1,10 +1,6 @@
 package edu.udo.cs.ls14.jf.bpmnapplication.test;
 
-import org.eclipse.bpmn2.Bpmn2Package;
 import org.eclipse.bpmn2.Definitions;
-import org.eclipse.bpmn2.util.Bpmn2ResourceFactoryImpl;
-import org.eclipse.emf.ecore.EPackage;
-import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.junit.Before;
 import org.junit.Test;
@@ -13,43 +9,19 @@ import edu.udo.cs.ls14.jf.bpmn.utils.Bpmn2ResourceSet;
 import edu.udo.cs.ls14.jf.bpmn.utils.ProcessAnalysisUtil;
 import edu.udo.cs.ls14.jf.bpmn.utils.ProcessExtractionUtil;
 import edu.udo.cs.ls14.jf.bpmn.utils.ProcessMatchingUtil;
-import edu.udo.cs.ls14.jf.bpmnanalysis.BpmnAnalysisPackage;
 import edu.udo.cs.ls14.jf.bpmnanalysis.ProcessAnalysis;
-import edu.udo.cs.ls14.jf.bpmnanalysis.util.BpmnAnalysisResourceFactoryImpl;
 import edu.udo.cs.ls14.jf.bpmnapplication.ProcessAnalyzer;
 import edu.udo.cs.ls14.jf.bpmnapplication.ProcessMatcher;
-import edu.udo.cs.ls14.jf.bpmnmatching.BpmnMatchingPackage;
 import edu.udo.cs.ls14.jf.bpmnmatching.ProcessMatching;
-import edu.udo.cs.ls14.jf.bpmnmatching.util.BpmnMatchingResourceFactoryImpl;
-import edu.udo.cs.ls14.jf.bpmntransformation.BpmnTransformationPackage;
 import edu.udo.cs.ls14.jf.bpmntransformation.ProcessExtraction;
-import edu.udo.cs.ls14.jf.bpmntransformation.util.BpmnTransformationResourceFactoryImpl;
+import edu.udo.cs.ls14.jf.registry.Registries;
 import edu.udo.cs.ls14.jf.transformation.ProcessExtractor;
 
 public class ProcessExtractionTest {
 
 	@Before
 	public void setUp() {
-		Resource.Factory.Registry.INSTANCE.getExtensionToFactoryMap()
-				.putIfAbsent("bpmn", new Bpmn2ResourceFactoryImpl());
-		Resource.Factory.Registry.INSTANCE.getExtensionToFactoryMap()
-				.putIfAbsent("bpmnanalysis",
-						new BpmnAnalysisResourceFactoryImpl());
-		Resource.Factory.Registry.INSTANCE.getExtensionToFactoryMap()
-				.putIfAbsent("bpmnmatching",
-						new BpmnMatchingResourceFactoryImpl());
-		Resource.Factory.Registry.INSTANCE.getExtensionToFactoryMap()
-				.putIfAbsent("bpmntransformation",
-						new BpmnTransformationResourceFactoryImpl());
-
-		EPackage.Registry.INSTANCE.put(Bpmn2Package.eNS_URI,
-				Bpmn2Package.eINSTANCE);
-		EPackage.Registry.INSTANCE.put(BpmnAnalysisPackage.eNS_URI,
-				BpmnAnalysisPackage.eINSTANCE);
-		EPackage.Registry.INSTANCE.put(BpmnMatchingPackage.eNS_URI,
-				BpmnMatchingPackage.eINSTANCE);
-		EPackage.Registry.INSTANCE.put(BpmnTransformationPackage.eNS_URI,
-				BpmnTransformationPackage.eINSTANCE);
+		Registries.registerAll();
 	}
 
 	@Test

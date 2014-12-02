@@ -10,7 +10,7 @@ import edu.udo.cs.ls14.jf.analysis.pst.PSTBuilder;
 import edu.udo.cs.ls14.jf.analysis.reachabilitygraph.ReachabilityGraph;
 import edu.udo.cs.ls14.jf.analysis.reachabilitygraph.Tracer;
 import edu.udo.cs.ls14.jf.bpmn.utils.ProcessAnalysisFactory;
-import edu.udo.cs.ls14.jf.bpmn.utils.ProcessUtil;
+import edu.udo.cs.ls14.jf.bpmn.utils.DefinitionsUtil;
 import edu.udo.cs.ls14.jf.bpmnanalysis.BehavioralProfile;
 import edu.udo.cs.ls14.jf.bpmnanalysis.ProcessAnalysis;
 import edu.udo.cs.ls14.jf.bpmnanalysis.TraceProfile;
@@ -20,7 +20,7 @@ public class ProcessAnalyzer {
 
 	public static ProcessAnalysis analyze(Definitions definitions)
 			throws Exception {
-		Process process = ProcessUtil.getProcessFromDefinitions(definitions);
+		Process process = DefinitionsUtil.getProcess(definitions);
 
 		// Create Analysis object
 		ProcessAnalysis analysis = ProcessAnalysisFactory

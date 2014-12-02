@@ -27,7 +27,7 @@ import edu.uci.ics.jung.graph.DirectedSparseGraph;
 import edu.uci.ics.jung.graph.DirectedSparseMultigraph;
 import edu.uci.ics.jung.graph.UndirectedGraph;
 import edu.uci.ics.jung.graph.UndirectedSparseMultigraph;
-import edu.udo.cs.ls14.jf.bpmn.utils.ProcessUtil;
+import edu.udo.cs.ls14.jf.bpmn.utils.DefinitionsUtil;
 import edu.udo.cs.ls14.jf.bpmnanalysis.BpmnAnalysisFactory;
 import edu.udo.cs.ls14.jf.bpmnanalysis.Fragment;
 import edu.udo.cs.ls14.jf.bpmnanalysis.ProcessStructureTree;
@@ -62,7 +62,7 @@ public class PSTBuilder {
 
 	private void createFromDefinitions(Definitions definitions)
 			throws Exception {
-		this.process = ProcessUtil.getProcessFromDefinitions(definitions);
+		this.process = DefinitionsUtil.getProcess(definitions);
 
 		// initialize
 		edgeStates = new HashMap<SequenceFlow, EdgeState>();

@@ -5,7 +5,7 @@ import org.camunda.bpm.engine.delegate.JavaDelegate;
 import org.eclipse.bpmn2.Process;
 
 import edu.udo.cs.ls14.jf.analysis.conditionalprofile.ConditionalProfiler;
-import edu.udo.cs.ls14.jf.bpmn.utils.ProcessUtil;
+import edu.udo.cs.ls14.jf.bpmn.utils.DefinitionsUtil;
 import edu.udo.cs.ls14.jf.bpmnanalysis.ConditionalProfile;
 import edu.udo.cs.ls14.jf.bpmnanalysis.ProcessAnalysis;
 
@@ -15,7 +15,7 @@ public class ConditionalProfileDelegate implements JavaDelegate {
 	public void execute(DelegateExecution execution) throws Exception {
 		ProcessAnalysis analysis = (ProcessAnalysis) execution
 				.getVariable("analysis");
-		Process process = ProcessUtil.getProcessFromDefinitions(analysis
+		Process process = DefinitionsUtil.getProcess(analysis
 				.getDefinitions());
 		ConditionalProfile profile = ConditionalProfiler
 				.generateProfile(process);

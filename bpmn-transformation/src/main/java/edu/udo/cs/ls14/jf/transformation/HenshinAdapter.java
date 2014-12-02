@@ -32,7 +32,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import edu.udo.cs.ls14.jf.bpmn.utils.FragmentUtil;
-import edu.udo.cs.ls14.jf.bpmn.utils.ProcessUtil;
+import edu.udo.cs.ls14.jf.bpmn.utils.DefinitionsUtil;
 import edu.udo.cs.ls14.jf.bpmnanalysis.Fragment;
 
 public class HenshinAdapter {
@@ -69,7 +69,7 @@ public class HenshinAdapter {
 
 	public void cropFragment(Definitions definitions, Fragment fragment)
 			throws Exception {
-		Process process = ProcessUtil.getProcessFromDefinitions(definitions);
+		Process process = DefinitionsUtil.getProcess(definitions);
 		Point startEventCoords = CoordinateCalculator.getCenter(fragment
 				.getEntry().getSourceRef(), definitions);
 		Point endEventCoords = CoordinateCalculator.getCenter(fragment

@@ -18,7 +18,7 @@ import edu.udo.cs.ls14.jf.analysis.rpst.Bpmn2Rpst;
 import edu.udo.cs.ls14.jf.analysis.rpst.BpmnPathEdge;
 import edu.udo.cs.ls14.jf.analysis.rpst.BpmnPathVertex;
 import edu.udo.cs.ls14.jf.bpmn.utils.Bpmn2ResourceSet;
-import edu.udo.cs.ls14.jf.bpmn.utils.ProcessUtil;
+import edu.udo.cs.ls14.jf.bpmn.utils.DefinitionsUtil;
 
 @Ignore
 public class Bpmn2RpstTest {
@@ -80,7 +80,7 @@ public class Bpmn2RpstTest {
 		Definitions definitions = new Bpmn2ResourceSet(getClass().getResource(
 				"/edu/udo/cs/ls14/jf/bpmn/test").getPath())
 				.loadDefinitions(basename + ".bpmn");
-		Process process = ProcessUtil.getProcessFromDefinitions(definitions);
+		Process process = DefinitionsUtil.getProcess(definitions);
 		RPST<BpmnPathEdge, BpmnPathVertex> rpst = Bpmn2Rpst.getRPST(process,
 				true);
 		// output

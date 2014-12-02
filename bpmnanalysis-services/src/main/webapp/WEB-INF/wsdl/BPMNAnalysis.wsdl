@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<wsdl:definitions xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+	xmlns:tns="http://bpmnanalysis.bpmn.ws.jf.ls14.cs.udo.edu/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+	xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="BPMNAnalysis"
+	targetNamespace="http://bpmnanalysis.bpmn.ws.jf.ls14.cs.udo.edu/">
+	<wsdl:types>
+		<xsd:schema targetNamespace="http://bpmnanalysis.bpmn.ws.jf.ls14.cs.udo.edu/">
+			<xsd:element name="profile" type="tns:definitionsXmlType" />
+			<xsd:element name="profileResponse" type="tns:responseXmlType" />
+			<xsd:element name="conditionalProfile" type="xsd:string" />
+			<xsd:element name="getPst" type="xsd:string" />
+			<xsd:element name="getPstResponse" type="xsd:string"/>
+			<xsd:complexType name="definitionsXmlType">
+				<xsd:sequence>
+					<xsd:element name="definitionsXml" type="xsd:string"
+						minOccurs="1" maxOccurs="1" />
+				</xsd:sequence>
+			</xsd:complexType>
+			<xsd:complexType name="responseXmlType">
+				<xsd:sequence>
+					<xsd:element name="responseXml" type="xsd:string"
+						minOccurs="1" maxOccurs="1" />
+				</xsd:sequence>
+			</xsd:complexType>
+		</xsd:schema>
+	</wsdl:types>
+	<wsdl:message name="behavioralProfileRequest">
+		<wsdl:part name="parameters" element="tns:profile"></wsdl:part>
+	</wsdl:message>
+	<wsdl:message name="behavioralProfileResponse">
+		<wsdl:part name="parameters" element="tns:profileResponse"></wsdl:part>
+	</wsdl:message>
+	<wsdl:message name="getPstRequest">
+		<wsdl:part name="parameters" element="tns:getPst"></wsdl:part>
+	</wsdl:message>
+	<wsdl:message name="getPstResponse">
+		<wsdl:part name="parameters" element="tns:getPstResponse"></wsdl:part>
+	</wsdl:message>
+	<wsdl:message name="conditionalProfileRequest">
+		<wsdl:part name="parameters" element="tns:profile"></wsdl:part>
+	</wsdl:message>
+	<wsdl:message name="conditionalProfileResponse">
+		<wsdl:part name="parameters" element="tns:profileResponse"></wsdl:part>
+	</wsdl:message>
+	<wsdl:portType name="BehavioralProfilerSEI">
+		<wsdl:operation name="profile">
+			<wsdl:input message="tns:behavioralProfileRequest"></wsdl:input>
+			<wsdl:output message="tns:behavioralProfileResponse"></wsdl:output>
+		</wsdl:operation>
+	</wsdl:portType>
+	<wsdl:portType name="ConditionalProfilerSEI">
+		<wsdl:operation name="profile">
+			<wsdl:input message="tns:conditionalProfileRequest"></wsdl:input>
+			<wsdl:output message="tns:conditionalProfileResponse"></wsdl:output>
+		</wsdl:operation>
+	</wsdl:portType>
+	<wsdl:portType name="ProcessStructureTreeSEI">
+		<wsdl:operation name="getPst">
+			<wsdl:input message="tns:getPstRequest"></wsdl:input>
+			<wsdl:output message="tns:getPstResponse"></wsdl:output>
+		</wsdl:operation>
+	</wsdl:portType>
+	<wsdl:binding name="BehavioralProfilerBinding" type="tns:BehavioralProfilerSEI">
+		<soap:binding style="document"
+			transport="http://schemas.xmlsoap.org/soap/http" />
+		<wsdl:operation name="profile">
+			<soap:operation soapAction="http://bpmnanalysis.bpmn.ws.jf.ls14.cs.udo.edu/profile" />
+			<wsdl:input>
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+	</wsdl:binding>
+	<wsdl:binding name="ConditionalProfilerBinding" type="tns:ConditionalProfilerSEI">
+		<soap:binding style="document"
+			transport="http://schemas.xmlsoap.org/soap/http" />
+		<wsdl:operation name="profile">
+			<soap:operation soapAction="http://bpmnanalysis2.bpmn.ws.jf.ls14.cs.udo.edu/profile" />
+			<wsdl:input>
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+	</wsdl:binding>
+	<wsdl:binding name="ProcessStructureTreeBinding" type="tns:ProcessStructureTreeSEI">
+		<soap:binding style="document"
+			transport="http://schemas.xmlsoap.org/soap/http" />
+		<wsdl:operation name="getPst">
+			<soap:operation soapAction="http://bpmnanalysis.bpmn.ws.jf.ls14.cs.udo.edu/getPst" />
+			<wsdl:input>
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+	</wsdl:binding>
+	<wsdl:service name="BehavioralProfilerImplService">
+		<wsdl:port name="BehavioralProfilerImplPort" binding="tns:BehavioralProfilerBinding">
+			<soap:address
+				location="http://localhost:8080/bpmnanalysis-services/BehavioralProfilerImplService" />
+		</wsdl:port>
+	</wsdl:service>
+	<wsdl:service name="ConditionalProfilerImplService">
+		<wsdl:port name="ConditionalProfilerImplPort" binding="tns:ConditionalProfilerBinding">
+			<soap:address
+				location="http://localhost:8080/bpmnanalysis-services/ConditionalProfilerImplService" />
+		</wsdl:port>
+	</wsdl:service>
+	<wsdl:service name="ProcessStructureTreeImplService">
+		<wsdl:port binding="tns:ProcessStructureTreeBinding" name="ProcessStructureTreeImplPort">
+			<soap:address
+				location="http://localhost:8080/bpmnanalysis-services/ProcessStructureTreeImplService" />
+		</wsdl:port>
+	</wsdl:service>
+</wsdl:definitions>

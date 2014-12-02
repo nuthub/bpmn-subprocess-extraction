@@ -4,16 +4,12 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 
 import java.net.URL;
-import java.util.Map;
 
 import javax.xml.namespace.QName;
 import javax.xml.ws.Endpoint;
 import javax.xml.ws.Service;
 
 import org.eclipse.bpmn2.Definitions;
-import org.eclipse.bpmn2.DocumentRoot;
-import org.eclipse.bpmn2.util.Bpmn2ResourceFactoryImpl;
-import org.eclipse.emf.ecore.resource.Resource;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -22,8 +18,7 @@ import edu.udo.cs.ls14.jf.bpmn.utils.Bpmn2ResourceSet;
 import edu.udo.cs.ls14.jf.bpmn.utils.ProcessAnalysisFactory;
 import edu.udo.cs.ls14.jf.bpmnanalysis.BehavioralProfile;
 import edu.udo.cs.ls14.jf.bpmnanalysis.ProcessAnalysis;
-import edu.udo.cs.ls14.jf.bpmnanalysis.util.BpmnAnalysisResourceFactoryImpl;
-import edu.udo.cs.ls14.jf.bpmnmatching.util.BpmnMatchingResourceFactoryImpl;
+import edu.udo.cs.ls14.jf.registry.Registries;
 import edu.udo.cs.ls14.jf.ws.bpmn.behavioralprofile.BehavioralProfilerImpl;
 import edu.udo.cs.ls14.jf.ws.bpmn.behavioralprofile.BehavioralProfilerSEI;
 
@@ -48,15 +43,11 @@ public class BehavioralProfilerWSTest {
 		service = Service.create(new URL(url + "?wsdl"), serviceName);
 		port = service.getPort(BehavioralProfilerSEI.class);
 
+		// Register resource factories
+		Registries.registerAll();
+		// Create Resource Set
 		resSet = new Bpmn2ResourceSet(getClass().getResource(
 				"/edu/udo/cs/ls14/jf/bpmn/test/").getFile());
-		// Register resource factories
-		Map<String, Object> map = Resource.Factory.Registry.INSTANCE
-				.getExtensionToFactoryMap();
-		map.putIfAbsent("bpmn", new Bpmn2ResourceFactoryImpl());
-		map.putIfAbsent("bpmnanalysis", new BpmnAnalysisResourceFactoryImpl());
-		map.putIfAbsent("bpmnmatching", new BpmnMatchingResourceFactoryImpl());
-
 	}
 
 	@After
@@ -72,14 +63,13 @@ public class BehavioralProfilerWSTest {
 	@Test
 	public void testAnalyze() throws Exception {
 		// create some test data
-		Resource resource = resSet.loadResource("PM1-mit-Fragment1.bpmn");
-		Definitions definitions = ((DocumentRoot) resource.getContents().get(0))
-				.getDefinitions();
+		Definitions definitions = resSet
+				.loadDefinitions("PM1-mit-Fragment1.bpmn");
 		ProcessAnalysis analysis = ProcessAnalysisFactory
 				.createAnalysis(definitions);
 		analysis = port.profile(analysis);
-		BehavioralProfile profile = (BehavioralProfile) analysis.getResults().get(
-				"behavioralProfile");
+		BehavioralProfile profile = (BehavioralProfile) analysis.getResults()
+				.get("behavioralProfile");
 		assertNotNull(profile);
 		assertEquals(49, profile.getRelations().size());
 	}

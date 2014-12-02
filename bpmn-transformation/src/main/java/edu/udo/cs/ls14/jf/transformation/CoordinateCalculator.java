@@ -15,15 +15,15 @@ import org.eclipse.dd.dc.Point;
 import org.eclipse.dd.di.DiagramElement;
 
 import edu.udo.cs.ls14.jf.bpmn.utils.FragmentUtil;
-import edu.udo.cs.ls14.jf.bpmn.utils.ProcessUtil;
+import edu.udo.cs.ls14.jf.bpmn.utils.DefinitionsUtil;
 import edu.udo.cs.ls14.jf.bpmnanalysis.Fragment;
 
 public class CoordinateCalculator {
 
 	public static Point getCenter(FlowNode node, Definitions definitions)
 			throws Exception {
-		BPMNDiagram diagram = ProcessUtil
-				.getDiagramFromDefinitions(definitions);
+		BPMNDiagram diagram = DefinitionsUtil
+				.getDiagram(definitions);
 		float x = 0;
 		float y = 0;
 		for (DiagramElement element : diagram.getPlane().getPlaneElement()) {
@@ -47,7 +47,7 @@ public class CoordinateCalculator {
 		Set<FlowElement> nodes = FragmentUtil.getFlowElements(fragment, filter);
 		Set<String> nodeIds = nodes.stream().map(n -> n.getId())
 				.collect(Collectors.toSet());
-		BPMNDiagram diagram = ProcessUtil.getDiagramFromDefinitions(FragmentUtil
+		BPMNDiagram diagram = DefinitionsUtil.getDiagram(FragmentUtil
 				.getDefinitions(fragment));
 		float minX = -1;
 		float maxX = 0;

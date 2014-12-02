@@ -3,12 +3,15 @@ package edu.udo.cs.ls14.jf.bpmn.utils;
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.UUID;
 
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.Resource.Factory;
+import org.eclipse.emf.ecore.xmi.XMLResource;
 
 public class EObjectXmlConverter {
 
@@ -35,7 +38,7 @@ public class EObjectXmlConverter {
 				.toString() + "." + extension));
 		res.getContents().add(eObject);
 		ByteArrayOutputStream os = new ByteArrayOutputStream();
-		res.save(os, null);
+		res.save(os, getOptions());
 		return os.toString();
 	}
 
@@ -59,7 +62,14 @@ public class EObjectXmlConverter {
 		}
 		Resource xres = factory.createResource(URI.createURI(UUID.randomUUID()
 				.toString() + "." + extension));
-		xres.load(new ByteArrayInputStream(xmlString.trim().getBytes()), null);
+		xres.load(new ByteArrayInputStream(xmlString.trim().getBytes()),
+				getOptions());
 		return xres.getContents().get(0);
+	}
+
+	private static Map<String, Object> getOptions() {
+		Map<String, Object> options = new HashMap<String, Object>();
+		options.put(XMLResource.OPTION_SUPPRESS_DOCUMENT_ROOT, Boolean.TRUE);
+		return options;
 	}
 }

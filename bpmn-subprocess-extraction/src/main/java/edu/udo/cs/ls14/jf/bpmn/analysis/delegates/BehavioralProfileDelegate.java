@@ -8,7 +8,7 @@ import edu.udo.cs.ls14.jf.analysis.behaviorprofile.BehavioralProfiler;
 import edu.udo.cs.ls14.jf.analysis.bpmn2ptnet.Bpmn2PtnetConverter;
 import edu.udo.cs.ls14.jf.analysis.reachabilitygraph.ReachabilityGraph;
 import edu.udo.cs.ls14.jf.analysis.reachabilitygraph.Tracer;
-import edu.udo.cs.ls14.jf.bpmn.utils.ProcessUtil;
+import edu.udo.cs.ls14.jf.bpmn.utils.DefinitionsUtil;
 import edu.udo.cs.ls14.jf.bpmnanalysis.BehavioralProfile;
 import edu.udo.cs.ls14.jf.bpmnanalysis.ProcessAnalysis;
 import edu.udo.cs.ls14.jf.bpmnanalysis.TraceProfile;
@@ -20,7 +20,7 @@ public class BehavioralProfileDelegate implements JavaDelegate {
 	public void execute(DelegateExecution execution) throws Exception {
 		ProcessAnalysis analysis = (ProcessAnalysis) execution
 				.getVariable("analysis");
-		Process process = ProcessUtil.getProcessFromDefinitions(analysis
+		Process process = DefinitionsUtil.getProcess(analysis
 				.getDefinitions());
 		// TODO: add ptnet / rg as results to analysis
 

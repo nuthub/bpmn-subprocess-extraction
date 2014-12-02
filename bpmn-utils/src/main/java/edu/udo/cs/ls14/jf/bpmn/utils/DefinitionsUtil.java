@@ -4,13 +4,12 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import org.eclipse.bpmn2.Definitions;
-import org.eclipse.bpmn2.DocumentRoot;
 import org.eclipse.bpmn2.Process;
 import org.eclipse.bpmn2.di.BPMNDiagram;
 
-public class ProcessUtil {
+public class DefinitionsUtil {
 
-	public static BPMNDiagram getDiagramFromDefinitions(Definitions definitions)
+	public static BPMNDiagram getDiagram(Definitions definitions)
 			throws Exception {
 		List<BPMNDiagram> diagrams = definitions.getDiagrams();
 		if (diagrams.size() < 1) {
@@ -22,7 +21,7 @@ public class ProcessUtil {
 		return diagrams.get(0);
 	}
 
-	public static Process getProcessFromDefinitions(Definitions definitions)
+	public static Process getProcess(Definitions definitions)
 			throws Exception {
 		List<Process> processes = definitions.getRootElements().stream()
 				.filter(r -> r instanceof Process).map(p -> (Process) p)
@@ -34,11 +33,6 @@ public class ProcessUtil {
 					"Definitions object contains more than one Process");
 		}
 		return processes.get(0);
-	}
-
-	public static Process getProcessFromDocumentRoot(DocumentRoot docRoot)
-			throws Exception {
-		return getProcessFromDefinitions(docRoot.getDefinitions());
 	}
 
 }

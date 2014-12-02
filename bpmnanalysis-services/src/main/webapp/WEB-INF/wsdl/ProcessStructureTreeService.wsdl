@@ -1,0 +1,50 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<definitions
+	xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd"
+	xmlns:wsp="http://www.w3.org/ns/ws-policy" xmlns:wsp1_2="http://schemas.xmlsoap.org/ws/2004/09/policy"
+	xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+	xmlns:tns="http://pst.bpmn.ws.jf.ls14.cs.udo.edu/" xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+	xmlns="http://schemas.xmlsoap.org/wsdl/" targetNamespace="http://pst.bpmn.ws.jf.ls14.cs.udo.edu/"
+	name="ProcessStructureTreeImplService">
+	<types>
+		<xsd:schema>
+			<xsd:import namespace="http://pst.bpmn.ws.jf.ls14.cs.udo.edu/"
+				schemaLocation="ProcessStructureTreeService.xsd" />
+		</xsd:schema>
+	</types>
+	<message name="getPst">
+		<part name="parameters" element="tns:getPst" />
+	</message>
+	<message name="getPstResponse">
+		<part name="parameters" element="tns:getPstResponse" />
+	</message>
+	<portType name="ProcessStructureTreeSEI">
+		<operation name="getPst">
+			<input
+				wsam:Action="http://pst.bpmn.ws.jf.ls14.cs.udo.edu/ProcessStructureTreeSEI/getPstRequest"
+				message="tns:getPst" />
+			<output
+				wsam:Action="http://pst.bpmn.ws.jf.ls14.cs.udo.edu/ProcessStructureTreeSEI/getPstResponse"
+				message="tns:getPstResponse" />
+		</operation>
+	</portType>
+	<binding name="ProcessStructureTreeImplPortBinding" type="tns:ProcessStructureTreeSEI">
+		<soap:binding transport="http://schemas.xmlsoap.org/soap/http"
+			style="document" />
+		<operation name="getPst">
+			<soap:operation soapAction="" />
+			<input>
+				<soap:body use="literal" />
+			</input>
+			<output>
+				<soap:body use="literal" />
+			</output>
+		</operation>
+	</binding>
+	<service name="ProcessStructureTreeImplService">
+		<port name="ProcessStructureTreeImplPort" binding="tns:ProcessStructureTreeImplPortBinding">
+			<soap:address
+				location="http://localhost:8080/bpmnanalysis-services/ProcessStructureTreeImplService" />
+		</port>
+	</service>
+</definitions>

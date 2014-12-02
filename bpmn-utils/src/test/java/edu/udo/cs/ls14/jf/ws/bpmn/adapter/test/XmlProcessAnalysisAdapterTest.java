@@ -7,16 +7,23 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 
 import org.eclipse.bpmn2.Definitions;
+import org.junit.Before;
 import org.junit.Test;
 
-import edu.udo.cs.ls14.jf.bpmn.utils.ProcessUtil;
+import edu.udo.cs.ls14.jf.bpmn.utils.DefinitionsUtil;
 import edu.udo.cs.ls14.jf.bpmnanalysis.BpmnAnalysisFactory;
 import edu.udo.cs.ls14.jf.bpmnanalysis.ProcessAnalysis;
+import edu.udo.cs.ls14.jf.registry.Registries;
 import edu.udo.cs.ls14.jf.ws.adapter.XmlDefinitionsAdapter;
 import edu.udo.cs.ls14.jf.ws.adapter.XmlProcessAnalysisAdapter;
 
 public class XmlProcessAnalysisAdapterTest {
 
+	@Before
+	public void setUp() {
+		Registries.registerAll();
+	}
+	
 	@Test
 	public void testXml() throws Exception {
 		String xml = readFile("/edu/udo/cs/ls14/jf/bpmn/utils/test/bpmnAnalysis.xml");
@@ -25,7 +32,7 @@ public class XmlProcessAnalysisAdapterTest {
 		assertEquals("Definitions_1", analysis2.getDefinitions().getId());
 		assertEquals(
 				"process_1",
-				ProcessUtil.getProcessFromDefinitions(
+				DefinitionsUtil.getProcess(
 						analysis2.getDefinitions()).getId());
 	}
 
@@ -46,7 +53,7 @@ public class XmlProcessAnalysisAdapterTest {
 
 		// System.out.println(xml2);
 		// System.out.println(analysis2.getDefinitions());
-		System.out.println(ProcessUtil.getProcessFromDefinitions(analysis2
+		System.out.println(DefinitionsUtil.getProcess(analysis2
 				.getDefinitions()));
 	}
 

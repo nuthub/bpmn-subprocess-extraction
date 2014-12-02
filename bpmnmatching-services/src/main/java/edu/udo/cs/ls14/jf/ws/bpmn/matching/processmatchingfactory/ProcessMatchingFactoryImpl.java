@@ -28,8 +28,14 @@ public class ProcessMatchingFactoryImpl implements ProcessMatchingFactorySEI {
 			LOG.error("analysis2 is null");
 			return null;
 		}
-		// TODO: in eigene non-web-service-Klasse auslagern?
-		return ProcessMatchingFactory.createFullMatching(analysis1, analysis2);
-	}
 
+		ProcessMatching matching = ProcessMatchingFactory.createEmptyMatching(
+				analysis1, analysis2);
+		matching.setNodeMatching(ProcessMatchingFactory.getFullNodeMatching(
+				analysis1.getDefinitions(), analysis2.getDefinitions()));
+		matching.setFragmentMatching(ProcessMatchingFactory
+				.getFullFragmentMatching(analysis1, analysis2));
+		return matching;
+
+	}
 }

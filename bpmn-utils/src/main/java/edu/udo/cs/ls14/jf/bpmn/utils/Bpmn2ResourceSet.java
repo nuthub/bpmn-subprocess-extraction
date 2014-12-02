@@ -3,8 +3,6 @@ package edu.udo.cs.ls14.jf.bpmn.utils;
 import java.io.BufferedInputStream;
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.IOException;
 
 import org.eclipse.bpmn2.Definitions;
 import org.eclipse.bpmn2.DocumentRoot;
@@ -13,18 +11,13 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 
+import edu.udo.cs.ls14.jf.registry.Registries;
+
 public class Bpmn2ResourceSet extends ResourceSetImpl {
 	private String directory;
-	private Resource.Factory resourceFactory;
-
-	private Bpmn2ResourceSet() {
-		super();
-		resourceFactory = (Resource.Factory) Resource.Factory.Registry.INSTANCE
-				.getExtensionToFactoryMap().get("bpmn");
-	}
 
 	public Bpmn2ResourceSet(String baseDir) {
-		this();
+		super();
 		directory = baseDir;
 	}
 
@@ -40,19 +33,21 @@ public class Bpmn2ResourceSet extends ResourceSetImpl {
 				.getAbsolutePath() : builder.toString());
 	}
 
-	public Resource createResource(String filename, Definitions definitions) {
+	public Resource createResource(String filename, Definitions definitions)
+			throws Exception {
 		URI fileURI = getCompletePathURI(filename, directory, true);
-		Resource resource = resourceFactory.createResource(fileURI);
+		Resource resource = Registries.getResourceFactory("bpmn")
+				.createResource(fileURI);
 		resource.getContents().add(definitions);
 		getResources().add(resource);
 		return resource;
 	}
 
-	public Definitions loadDefinitions(String filename)
-			throws FileNotFoundException, IOException {
+	public Definitions loadDefinitions(String filename) throws Exception {
 		System.out.println(filename);
 		URI fileURI = getCompletePathURI(filename, directory, true);
-		Resource resource = resourceFactory.createResource(fileURI);
+		Resource resource = Registries.getResourceFactory("bpmn")
+				.createResource(fileURI);
 		System.out.println(fileURI);
 		resource.load(new BufferedInputStream(new FileInputStream(resource
 				.getURI().toFileString())), null);

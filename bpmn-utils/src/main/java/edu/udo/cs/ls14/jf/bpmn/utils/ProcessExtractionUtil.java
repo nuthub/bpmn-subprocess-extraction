@@ -12,7 +12,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import edu.udo.cs.ls14.jf.bpmntransformation.ProcessExtraction;
-import edu.udo.cs.ls14.jf.bpmntransformation.util.BpmnTransformationResourceFactoryImpl;
 
 public class ProcessExtractionUtil {
 
@@ -27,7 +26,7 @@ public class ProcessExtractionUtil {
 	 * @throws IOException
 	 */
 	public static void writeResults(String targetDir,
-			ProcessExtraction extraction) throws IOException {
+			ProcessExtraction extraction) throws Exception {
 		new File(targetDir).mkdirs();
 		Bpmn2ResourceSet resSetOut = new Bpmn2ResourceSet(targetDir);
 

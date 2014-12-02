@@ -1,0 +1,65 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<definitions
+	xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd"
+	xmlns:wsp="http://www.w3.org/ns/ws-policy" xmlns:wsp1_2="http://schemas.xmlsoap.org/ws/2004/09/policy"
+	xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+	xmlns:tns="http://behavioralprofile.bpmn.ws.jf.ls14.cs.udo.edu/"
+	xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://schemas.xmlsoap.org/wsdl/"
+	targetNamespace="http://behavioralprofile.bpmn.ws.jf.ls14.cs.udo.edu/"
+	name="BehavioralProfilerImplService">
+	<types>
+		<xsd:schema xmlns:tns="http://behavioralprofile.bpmn.ws.jf.ls14.cs.udo.edu/"
+			xmlns:xs="http://www.w3.org/2001/XMLSchema" version="1.0"
+			targetNamespace="http://behavioralprofile.bpmn.ws.jf.ls14.cs.udo.edu/">
+			<xsd:element name="definitions" type="tns:definitionsXmlType" />
+			<xsd:element name="response" type="tns:responseXmlType" />
+			<xsd:complexType name="definitionsXmlType">
+				<xsd:sequence>
+					<xsd:element name="definitionsXml" type="xsd:string"
+						minOccurs="0" />
+				</xsd:sequence>
+			</xsd:complexType>
+			<xsd:complexType name="responseXmlType">
+				<xsd:sequence>
+					<xsd:element name="responseXml" type="xsd:string"
+						minOccurs="0" />
+				</xsd:sequence>
+			</xsd:complexType>
+		</xsd:schema>
+	</types>
+	<message name="profile">
+		<part name="parameters" element="tns:definitions" />
+	</message>
+	<message name="profileResponse">
+		<part name="parameters" element="tns:response" />
+	</message>
+	<portType name="BehavioralProfilerSEI">
+		<operation name="profile">
+			<input
+				wsam:Action="http://behavioralprofile.bpmn.ws.jf.ls14.cs.udo.edu/BehavioralProfilerSEI/profileRequest"
+				message="tns:profile" />
+			<output
+				wsam:Action="http://behavioralprofile.bpmn.ws.jf.ls14.cs.udo.edu/BehavioralProfilerSEI/profileResponse"
+				message="tns:profileResponse" />
+		</operation>
+	</portType>
+	<binding name="BehavioralProfilerImplPortBinding" type="tns:BehavioralProfilerSEI">
+		<soap:binding transport="http://schemas.xmlsoap.org/soap/http"
+			style="document" />
+		<operation name="profile">
+			<soap:operation soapAction="" />
+			<input>
+				<soap:body use="literal" />
+			</input>
+			<output>
+				<soap:body use="literal" />
+			</output>
+		</operation>
+	</binding>
+	<service name="BehavioralProfilerImplService">
+		<port name="BehavioralProfilerImplPort" binding="tns:BehavioralProfilerImplPortBinding">
+			<soap:address
+				location="http://localhost:8080/bpmnanalysis-services/BehavioralProfilerImplService" />
+		</port>
+	</service>
+</definitions>

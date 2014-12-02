@@ -5,26 +5,21 @@ import static org.junit.Assert.assertEquals;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
 import javax.xml.namespace.QName;
 import javax.xml.ws.Endpoint;
 import javax.xml.ws.Service;
 
 import org.eclipse.bpmn2.Definitions;
-import org.eclipse.bpmn2.DocumentRoot;
-import org.eclipse.bpmn2.util.Bpmn2ResourceFactoryImpl;
-import org.eclipse.emf.ecore.resource.Resource;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
 import edu.udo.cs.ls14.jf.bpmn.utils.Bpmn2ResourceSet;
 import edu.udo.cs.ls14.jf.bpmnanalysis.ProcessAnalysis;
-import edu.udo.cs.ls14.jf.bpmnanalysis.util.BpmnAnalysisResourceFactoryImpl;
 import edu.udo.cs.ls14.jf.bpmnapplication.ProcessAnalyzer;
 import edu.udo.cs.ls14.jf.bpmnmatching.ProcessMatching;
-import edu.udo.cs.ls14.jf.bpmnmatching.util.BpmnMatchingResourceFactoryImpl;
+import edu.udo.cs.ls14.jf.registry.Registries;
 import edu.udo.cs.ls14.jf.ws.bpmn.matching.fragmentpairfilterbehavior.FragmentPairFilterBehaviorImpl;
 import edu.udo.cs.ls14.jf.ws.bpmn.matching.fragmentpairfilterbehavior.FragmentPairFilterBehaviorSEI;
 import edu.udo.cs.ls14.jf.ws.bpmn.matching.fragmentpairfilterconditions.FragmentPairFilterConditionsImpl;
@@ -152,14 +147,9 @@ public class BpmnMatchingTest {
 				FragmentPairRankerSizeSEI.class);
 
 		// Register resource factories
+		Registries.registerAll();
 		resSet = new Bpmn2ResourceSet(getClass().getResource(
 				"/edu/udo/cs/ls14/jf/bpmn/test/").getFile());
-
-		Map<String, Object> map = Resource.Factory.Registry.INSTANCE
-				.getExtensionToFactoryMap();
-		map.putIfAbsent("bpmn", new Bpmn2ResourceFactoryImpl());
-		map.putIfAbsent("bpmnanalysis", new BpmnAnalysisResourceFactoryImpl());
-		map.putIfAbsent("bpmnmatching", new BpmnMatchingResourceFactoryImpl());
 
 	}
 
@@ -173,12 +163,10 @@ public class BpmnMatchingTest {
 	@Test
 	public void testPM1PM2() throws Exception {
 		// create some test data
-		Definitions definitions1 = ((DocumentRoot) resSet
-				.loadResource("PM1-mit-Fragment1.bpmn").getContents().get(0))
-				.getDefinitions();
-		Definitions definitions2 = ((DocumentRoot) resSet
-				.loadResource("PM2-mit-Fragment1.bpmn").getContents().get(0))
-				.getDefinitions();
+		Definitions definitions1 = resSet
+				.loadDefinitions("PM1-mit-Fragment1.bpmn");
+		Definitions definitions2 = resSet
+				.loadDefinitions("PM2-mit-Fragment1.bpmn");
 		ProcessAnalysis analysis1 = ProcessAnalyzer.analyze(definitions1);
 		ProcessAnalysis analysis2 = ProcessAnalyzer.analyze(definitions2);
 		// ProcessMatchingFactory

@@ -7,7 +7,7 @@ import org.slf4j.LoggerFactory;
 
 import edu.udo.cs.ls14.jf.bpmnmatching.FragmentMatching;
 import edu.udo.cs.ls14.jf.bpmnmatching.ProcessMatching;
-import edu.udo.cs.ls14.jf.processmatching.FragmentPairRankerSize;
+import edu.udo.cs.ls14.jf.transformation.FragmentPairRankerSize;
 
 @WebService(endpointInterface = "edu.udo.cs.ls14.jf.ws.bpmn.matching.fragmentpairrankersize.FragmentPairRankerSizeSEI")
 public class FragmentPairRankerSizeImpl implements FragmentPairRankerSizeSEI {

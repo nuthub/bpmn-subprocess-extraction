@@ -40,13 +40,13 @@ public class ProcessMatchingFactory {
 		Process process1 = null;
 		Process process2 = null;
 		try {
-			process1 = ProcessUtil.getProcessFromDefinitions(definitions1);
+			process1 = DefinitionsUtil.getProcess(definitions1);
 		} catch (Exception e) {
 			LOG.error("Could not get Process from Definitions1");
 			return null;
 		}
 		try {
-			process2 = ProcessUtil.getProcessFromDefinitions(definitions2);
+			process2 = DefinitionsUtil.getProcess(definitions2);
 		} catch (Exception e) {
 			LOG.error("Could not get Process from Definitions2");
 			return null;

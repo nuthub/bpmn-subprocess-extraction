@@ -1,0 +1,23 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<xs:schema xmlns:tns="http://behavioralprofile.bpmn.ws.jf.ls14.cs.udo.edu/"
+	xmlns:xs="http://www.w3.org/2001/XMLSchema" version="1.0"
+	targetNamespace="http://behavioralprofile.bpmn.ws.jf.ls14.cs.udo.edu/">
+
+	<xs:element name="profile" type="tns:profile" />
+
+	<xs:element name="profileResponse" type="tns:profileResponse" />
+
+	<xs:complexType name="profile">
+		<xs:sequence>
+			<xs:element name="definitionsXml" type="xs:string"
+				minOccurs="0" />
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="profileResponse">
+		<xs:sequence>
+			<xs:element name="behavioralProfileXml" type="xs:string"
+				minOccurs="0" />
+		</xs:sequence>
+	</xs:complexType>
+</xs:schema>

@@ -1,0 +1,23 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<xs:schema xmlns:tns="http://pst.bpmn.ws.jf.ls14.cs.udo.edu/"
+	xmlns:xs="http://www.w3.org/2001/XMLSchema" version="1.0"
+	targetNamespace="http://pst.bpmn.ws.jf.ls14.cs.udo.edu/">
+
+	<xs:element name="getPst" type="tns:getPst" />
+
+	<xs:element name="getPstResponse" type="tns:getPstResponse" />
+
+	<xs:complexType name="getPst">
+		<xs:sequence>
+			<xs:element name="definitionsXml" type="xs:string"
+				minOccurs="0" />
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="getPstResponse">
+		<xs:sequence>
+			<xs:element name="processStructureTreeXml" type="xs:string"
+				minOccurs="0" />
+		</xs:sequence>
+	</xs:complexType>
+</xs:schema>

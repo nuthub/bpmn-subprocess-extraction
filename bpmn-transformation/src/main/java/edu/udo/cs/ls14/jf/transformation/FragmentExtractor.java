@@ -9,7 +9,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import edu.udo.cs.ls14.jf.bpmn.utils.FragmentUtil;
-import edu.udo.cs.ls14.jf.bpmn.utils.ProcessUtil;
+import edu.udo.cs.ls14.jf.bpmn.utils.DefinitionsUtil;
 import edu.udo.cs.ls14.jf.bpmnmatching.FragmentPair;
 import edu.udo.cs.ls14.jf.bpmnmatching.ProcessMatching;
 import edu.udo.cs.ls14.jf.bpmntransformation.BpmnTransformationFactory;
@@ -67,16 +67,16 @@ public class FragmentExtractor {
 			defsExtracted.setTargetNamespace("http://"
 					+ idExtracted.toLowerCase());
 			// defsExtracted.setId(UUID.randomUUID().toString());
-			extractor.replaceId(defsExtracted, ProcessUtil
-					.getProcessFromDefinitions(defsExtracted).getId(), UUID
+			extractor.replaceId(defsExtracted, DefinitionsUtil
+					.getProcess(defsExtracted).getId(), UUID
 					.randomUUID().toString());
 			extractor.cropFragment(defsExtracted, fPair.getBetter());
 			extraction.getResults().put(idExtracted + ".bpmn", defsExtracted);
 			LOG.info("SubProcess extracted.");
 
 			// callActivity parameters
-			Process calledElement = ProcessUtil
-					.getProcessFromDefinitions(defsExtracted);
+			Process calledElement = DefinitionsUtil
+					.getProcess(defsExtracted);
 			calledElement.setName(idExtracted);
 			calledElement.setId(idExtracted.toLowerCase());
 
@@ -96,20 +96,20 @@ public class FragmentExtractor {
 		}
 		// Add definitions to result
 		extraction.getResults().put(
-				ProcessUtil.getProcessFromDefinitions(definitions1).getName()
+				DefinitionsUtil.getProcess(definitions1).getName()
 						+ "_transformed.bpmn", definitions1);
 		extraction.getResults().put(
-				ProcessUtil.getProcessFromDefinitions(definitions2).getName()
+				DefinitionsUtil.getProcess(definitions2).getName()
 						+ "_transformed.bpmn", definitions2);
 		return extraction;
 	}
 
 	private static String getExtractedProcessIdPrefix(FragmentPair fPair)
 			throws Exception {
-		return ProcessUtil.getProcessFromDefinitions(
+		return DefinitionsUtil.getProcess(
 				FragmentUtil.getDefinitions(fPair.getA())).getName()
 				+ "_"
-				+ ProcessUtil.getProcessFromDefinitions(
+				+ DefinitionsUtil.getProcess(
 						FragmentUtil.getDefinitions(fPair.getB())).getName()
 				+ "_extracted_process-";
 	}

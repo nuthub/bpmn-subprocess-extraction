@@ -24,9 +24,7 @@
 
 		<dependency>
 			<groupId>edu.udo.cs.ls14.jf</groupId>
-			<artifactId>bpmn2pnml</artifactId>
-			<version>0.0.1-SNAPSHOT</version>
-			<scope>test</scope>
+			<artifactId>bpmn-subprocess-extraction</artifactId>
 		</dependency>
 	</dependencies>
 </project>

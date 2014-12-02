@@ -10,7 +10,6 @@ import javax.xml.ws.Endpoint;
 import javax.xml.ws.Service;
 
 import org.eclipse.bpmn2.Definitions;
-import org.eclipse.bpmn2.DocumentRoot;
 import org.eclipse.bpmn2.util.Bpmn2ResourceFactoryImpl;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.junit.After;
@@ -23,6 +22,7 @@ import edu.udo.cs.ls14.jf.bpmnanalysis.ProcessAnalysis;
 import edu.udo.cs.ls14.jf.bpmnanalysis.ProcessStructureTree;
 import edu.udo.cs.ls14.jf.bpmnanalysis.util.BpmnAnalysisResourceFactoryImpl;
 import edu.udo.cs.ls14.jf.bpmnmatching.util.BpmnMatchingResourceFactoryImpl;
+import edu.udo.cs.ls14.jf.registry.Registries;
 import edu.udo.cs.ls14.jf.ws.bpmn.pst.ProcessStructureTreeImpl;
 import edu.udo.cs.ls14.jf.ws.bpmn.pst.ProcessStructureTreeSEI;
 
@@ -49,11 +49,7 @@ public class ProcessStructureTreeWSTest {
 		// Register resource factories
 		resSet = new Bpmn2ResourceSet(getClass().getResource(
 				"/edu/udo/cs/ls14/jf/bpmn/test/").getFile());
-		Map<String, Object> map = Resource.Factory.Registry.INSTANCE
-				.getExtensionToFactoryMap();
-		map.putIfAbsent("bpmn", new Bpmn2ResourceFactoryImpl());
-		map.putIfAbsent("bpmnanalysis", new BpmnAnalysisResourceFactoryImpl());
-		map.putIfAbsent("bpmnmatching", new BpmnMatchingResourceFactoryImpl());
+		Registries.registerAll();
 
 	}
 
@@ -70,9 +66,7 @@ public class ProcessStructureTreeWSTest {
 	@Test
 	public void testAnalyze() throws Exception {
 		// create some test data
-		Resource resource = resSet.loadResource("PM1-mit-Fragment1.bpmn");
-		Definitions definitions = ((DocumentRoot) resource.getContents().get(0))
-				.getDefinitions();
+		Definitions definitions = resSet.loadDefinitions("PM1-mit-Fragment1.bpmn");
 		ProcessAnalysis analysis = ProcessAnalysisFactory
 				.createAnalysis(definitions);
 		analysis = port.getPst(analysis);

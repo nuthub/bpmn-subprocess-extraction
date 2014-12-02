@@ -18,12 +18,13 @@ import edu.udo.cs.ls14.jf.analysis.pst.PSTBuilder;
 import edu.udo.cs.ls14.jf.analysis.reachabilitygraph.ReachabilityGraph;
 import edu.udo.cs.ls14.jf.analysis.reachabilitygraph.Tracer;
 import edu.udo.cs.ls14.jf.bpmn.utils.EObjectXmlConverter;
-import edu.udo.cs.ls14.jf.bpmn.utils.ProcessUtil;
+import edu.udo.cs.ls14.jf.bpmn.utils.DefinitionsUtil;
 import edu.udo.cs.ls14.jf.bpmnanalysis.BehavioralProfile;
 import edu.udo.cs.ls14.jf.bpmnanalysis.BpmnAnalysisFactory;
 import edu.udo.cs.ls14.jf.bpmnanalysis.ProcessAnalysis;
 import edu.udo.cs.ls14.jf.bpmnanalysis.TraceProfile;
 import edu.udo.cs.ls14.jf.bpmnanalysis.util.BpmnAnalysisResourceFactoryImpl;
+import edu.udo.cs.ls14.jf.registry.Registries;
 import fr.lip6.move.pnml.ptnet.hlapi.PetriNetHLAPI;
 
 // TODO: Move to another artifact
@@ -31,10 +32,7 @@ public class BpmnAnalysisTest {
 
 	@Before
 	public void setUp() {
-		Resource.Factory.Registry.INSTANCE.getExtensionToFactoryMap().put(
-				"bpmn", new Bpmn2ResourceFactoryImpl());
-		Resource.Factory.Registry.INSTANCE.getExtensionToFactoryMap().put(
-				"bpmnanalysis", new BpmnAnalysisResourceFactoryImpl());
+		Registries.registerAll();
 	}
 
 	@Test
@@ -65,7 +63,7 @@ public class BpmnAnalysisTest {
 
 		// Get Process
 		before = getTime();
-		Process process = ProcessUtil.getProcessFromDefinitions(definitions);
+		Process process = DefinitionsUtil.getProcess(definitions);
 		after = getTime();
 		System.out.println((after - before) + " ms (get Process)");
 

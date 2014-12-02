@@ -1,10 +1,6 @@
 package edu.udo.cs.ls14.jf.bpmn.application.test;
 
-import org.eclipse.bpmn2.Bpmn2Package;
 import org.eclipse.bpmn2.Definitions;
-import org.eclipse.bpmn2.util.Bpmn2ResourceFactoryImpl;
-import org.eclipse.emf.ecore.EPackage;
-import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.junit.Before;
 import org.junit.Test;
@@ -12,13 +8,8 @@ import org.junit.Test;
 import edu.udo.cs.ls14.jf.bpmn.application.SubProcessExtraction;
 import edu.udo.cs.ls14.jf.bpmn.utils.Bpmn2ResourceSet;
 import edu.udo.cs.ls14.jf.bpmn.utils.ProcessExtractionUtil;
-import edu.udo.cs.ls14.jf.bpmnanalysis.BpmnAnalysisPackage;
-import edu.udo.cs.ls14.jf.bpmnanalysis.util.BpmnAnalysisResourceFactoryImpl;
-import edu.udo.cs.ls14.jf.bpmnmatching.BpmnMatchingPackage;
-import edu.udo.cs.ls14.jf.bpmnmatching.util.BpmnMatchingResourceFactoryImpl;
-import edu.udo.cs.ls14.jf.bpmntransformation.BpmnTransformationPackage;
 import edu.udo.cs.ls14.jf.bpmntransformation.ProcessExtraction;
-import edu.udo.cs.ls14.jf.bpmntransformation.util.BpmnTransformationResourceFactoryImpl;
+import edu.udo.cs.ls14.jf.registry.Registries;
 
 public class SubProcessExtractionTest {
 
@@ -28,27 +19,7 @@ public class SubProcessExtractionTest {
 
 	@Before
 	public void setUp() {
-		Resource.Factory.Registry.INSTANCE.getExtensionToFactoryMap()
-				.putIfAbsent("bpmn", new Bpmn2ResourceFactoryImpl());
-		Resource.Factory.Registry.INSTANCE.getExtensionToFactoryMap()
-				.putIfAbsent("bpmnanalysis",
-						new BpmnAnalysisResourceFactoryImpl());
-		Resource.Factory.Registry.INSTANCE.getExtensionToFactoryMap()
-				.putIfAbsent("bpmnmatching",
-						new BpmnMatchingResourceFactoryImpl());
-		Resource.Factory.Registry.INSTANCE.getExtensionToFactoryMap()
-				.putIfAbsent("bpmnextraction",
-						new BpmnTransformationResourceFactoryImpl());
-
-		EPackage.Registry.INSTANCE.put(Bpmn2Package.eNS_URI,
-				Bpmn2Package.eINSTANCE);
-		EPackage.Registry.INSTANCE.put(BpmnAnalysisPackage.eNS_URI,
-				BpmnAnalysisPackage.eINSTANCE);
-		EPackage.Registry.INSTANCE.put(BpmnMatchingPackage.eNS_URI,
-				BpmnMatchingPackage.eINSTANCE);
-		EPackage.Registry.INSTANCE.put(BpmnTransformationPackage.eNS_URI,
-				BpmnTransformationPackage.eINSTANCE);
-
+		Registries.registerAll();
 		app = new SubProcessExtraction();
 		app.init();
 	}
@@ -70,7 +41,8 @@ public class SubProcessExtractionTest {
 		Definitions defs2 = EcoreUtil.copy(resSet
 				.loadDefinitions(resourceName2));
 		long start = System.currentTimeMillis();
-		ProcessExtraction extraction = app.runSubProcessExtraction(defs1, defs2);
+		ProcessExtraction extraction = app
+				.runSubProcessExtraction(defs1, defs2);
 		long end = System.currentTimeMillis();
 		// Write out
 		// for (Entry<String, Definitions> result : extraction.getResults()

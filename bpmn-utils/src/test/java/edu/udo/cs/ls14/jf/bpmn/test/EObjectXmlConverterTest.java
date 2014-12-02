@@ -1,32 +1,28 @@
-package edu.udo.cs.ls14.jf.utils.bpmn.test;
+package edu.udo.cs.ls14.jf.bpmn.test;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
 
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
-import java.util.UUID;
 
 import org.eclipse.bpmn2.Definitions;
-import org.eclipse.bpmn2.util.Bpmn2ResourceFactoryImpl;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.resource.Resource;
 import org.junit.Before;
 import org.junit.Test;
 
 import edu.udo.cs.ls14.jf.bpmn.utils.EObjectXmlConverter;
 import edu.udo.cs.ls14.jf.bpmnanalysis.BpmnAnalysisFactory;
 import edu.udo.cs.ls14.jf.bpmnanalysis.ProcessAnalysis;
-import edu.udo.cs.ls14.jf.bpmnanalysis.util.BpmnAnalysisResourceFactoryImpl;
+import edu.udo.cs.ls14.jf.registry.Registries;
 
 public class EObjectXmlConverterTest {
 
 	@Before
 	public void setUp() {
-		Resource.Factory.Registry.INSTANCE.getExtensionToFactoryMap().put(
-				"bpmn", new Bpmn2ResourceFactoryImpl());
-		Resource.Factory.Registry.INSTANCE.getExtensionToFactoryMap().put(
-				"bpmnanalysis", new BpmnAnalysisResourceFactoryImpl());
+		Registries.registerBpmn();
+		Registries.registerBpmnAnalysis();
 	}
 
 	@Test
@@ -48,6 +44,7 @@ public class EObjectXmlConverterTest {
 		String xml = EObjectXmlConverter.eObject2Xml("bpmnanalysis", analysis);
 		ProcessAnalysis analysis2 = (ProcessAnalysis) EObjectXmlConverter
 				.xml2EObject("bpmnanalysis", xml);
+		assertNotNull(analysis2);
 	}
 
 	private void runTest(String fileName) throws Exception {
