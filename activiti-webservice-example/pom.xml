@@ -44,8 +44,16 @@
 			<scope>test</scope>
 		</dependency>
 		<dependency>
-			<groupId>edu.udo.cs.ls14.jf</groupId>
-			<artifactId>activiti-extensions</artifactId>
+			<groupId>org.eclipse.emf</groupId>
+			<artifactId>org.eclipse.emf.ecore</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.eclipse.emf</groupId>
+			<artifactId>org.eclipse.emf.ecore.xmi</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.eclipse.emf</groupId>
+			<artifactId>org.eclipse.emf.common</artifactId>
 		</dependency>
 	</dependencies>
 	<build>

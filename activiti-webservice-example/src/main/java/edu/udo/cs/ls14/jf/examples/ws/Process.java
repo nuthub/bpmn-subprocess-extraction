@@ -17,7 +17,7 @@ public class Process {
 
 	private static final Logger LOG = LoggerFactory
 			.getLogger(Process.class);
-	private static final String PROCESS_MODEL = "edu/udo/cs/ls14/jf/bpmn/WebServiceCall.bpmn20.xml";
+	private static final String PROCESS_MODEL = "WebServiceCall.bpmn20.xml";
 	private ProcessEngine processEngine;
 	private RepositoryService repositoryService;
 	private RuntimeService runtimeService;
