@@ -28,6 +28,7 @@ import edu.uci.ics.jung.graph.DirectedSparseMultigraph;
 import edu.uci.ics.jung.graph.UndirectedGraph;
 import edu.uci.ics.jung.graph.UndirectedSparseMultigraph;
 import edu.udo.cs.ls14.jf.bpmn.utils.DefinitionsUtil;
+import edu.udo.cs.ls14.jf.bpmn.utils.DotUtil;
 import edu.udo.cs.ls14.jf.bpmn.utils.FragmentUtil;
 import edu.udo.cs.ls14.jf.bpmnanalysis.BpmnAnalysisFactory;
 import edu.udo.cs.ls14.jf.bpmnanalysis.Fragment;
@@ -83,7 +84,7 @@ public class PSTBuilder {
 		undirectedDFS(graph, graph.getVertices().iterator().next(),
 				new ArrayList<FlowNode>());
 		bracketSets.entrySet().forEach(
-				e -> LOG.debug(e.getKey().getName()
+				e -> LOG.debug(getEdgeLabel(e.getKey())
 						+ ": "
 						+ e.getValue().stream().map(b -> b.getName())
 								.collect(Collectors.toSet())));
@@ -222,8 +223,7 @@ public class PSTBuilder {
 					// add edge to tree edges
 					edgeStates.put(edge, EdgeState.TREE);
 					spanningTree.addEdge(edge, v, w);
-					LOG.debug("adding tree edge from " + v.getName() + " to "
-							+ w.getName());
+					LOG.debug("adding tree edge: " + getEdgeLabel(edge));
 					// save childrens' bracket sets
 					Set<SequenceFlow> childBrackets = undirectedDFS(g, w,
 							visited);
@@ -233,8 +233,7 @@ public class PSTBuilder {
 					// add edge to back edges
 					edgeStates.put(edge, EdgeState.BACK);
 					spanningTree.addEdge(edge, v, w);
-					LOG.debug("adding back edge from " + v.getName() + " to "
-							+ w.getName());
+					LOG.debug("adding back edge: " + getEdgeLabel(edge));
 					bracketSets.put(edge, new HashSet<SequenceFlow>());
 					// save backedge from v to ancestor(v)
 					brackets.add(edge);
@@ -540,7 +539,7 @@ public class PSTBuilder {
 		return graph;
 	}
 
-	public StartEvent getStartNode(Process process) {
+	private StartEvent getStartNode(Process process) {
 		for (FlowElement elem : process.getFlowElements()) {
 			if (elem instanceof StartEvent) {
 				return (StartEvent) elem;
@@ -549,15 +548,37 @@ public class PSTBuilder {
 		return null;
 	}
 
+	private String getEdgeLabel(SequenceFlow edge) {
+		return (edge.getName() != null && !edge.getName().equals("") ? edge
+				.getName() : "[" + edge.getId() + "]");
+	}
+
 	/*
 	 * TODO: check for multiple end nodes
 	 */
-	public EndEvent getEndNode(Process process) {
+	private EndEvent getEndNode(Process process) {
 		for (FlowElement elem : process.getFlowElements()) {
 			if (elem instanceof EndEvent) {
 				return (EndEvent) elem;
 			}
 		}
 		return null;
+	}
+
+	public void writeDebugFiles(String path, String basename) throws Exception {
+		// ps output
+		DotUtil.writeDot(path, basename + "-undirectedgraph", getGraphAsDot(),
+				"ps");
+		DotUtil.writeDot(path, basename + "-spanningtree", getGraphAsDot(),
+				"ps");
+		DotUtil.writeDot(path, basename + "-pst", getStructureTreeAsDot(), "ps");
+		// png output
+		DotUtil.writeDot(path, basename + "-undirectedgraph", getGraphAsDot(),
+				"png");
+		DotUtil.writeDot(path, basename + "-spanningtree", getGraphAsDot(),
+				"png");
+		DotUtil.writeDot(path, basename + "-pst", getStructureTreeAsDot(),
+				"png");
+
 	}
 }

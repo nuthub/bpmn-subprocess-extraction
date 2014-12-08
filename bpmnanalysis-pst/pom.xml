@@ -26,10 +26,5 @@
 			<artifactId>commons-lang3</artifactId>
 		</dependency>
 		<!-- TODO: just for IOUtils.invokeDot(...) -->
-		<dependency>
-			<groupId>org.jbpt</groupId>
-			<artifactId>jbpt-core</artifactId>
-			<scope>test</scope>
-		</dependency>
 	</dependencies>
 </project>

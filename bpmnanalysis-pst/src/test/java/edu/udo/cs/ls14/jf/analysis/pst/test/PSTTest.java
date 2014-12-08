@@ -9,7 +9,6 @@ import java.util.function.Function;
 import java.util.stream.Collectors;
 
 import org.eclipse.bpmn2.Definitions;
-import org.jbpt.utils.IOUtils;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -163,12 +162,7 @@ public class PSTTest {
 		Definitions definitions = resSet.loadDefinitions(basename + ".bpmn");
 		PSTBuilder pstBuilder = new PSTBuilder();
 		ProcessStructureTree pst = pstBuilder.getTree(definitions);
-		IOUtils.invokeDOT("/tmp", basename + "-undirectedgraph.png",
-				pstBuilder.getGraphAsDot());
-		IOUtils.invokeDOT("/tmp", basename + "-spanningtree.png",
-				pstBuilder.getSpanningTreeAsDot());
-		IOUtils.invokeDOT("/tmp", basename + "-pst.png",
-				pstBuilder.getStructureTreeAsDot());
+		pstBuilder.writeDebugFiles("/tmp/", basename);
 		return pst;
 	}
 
