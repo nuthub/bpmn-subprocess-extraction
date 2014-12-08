@@ -19,15 +19,17 @@ import edu.udo.cs.ls14.jf.bpmnanalysis.Fragment;
 
 /**
  * TODO move to Fragment / FragmentImpl
+ * 
  * @author flake
  *
  */
 public class FragmentUtil {
 
 	public static Definitions getDefinitions(Fragment fragment) {
-		return (Definitions) getContainer(fragment, Bpmn2Package.eINSTANCE.getDefinitions());
+		return (Definitions) getContainer(fragment,
+				Bpmn2Package.eINSTANCE.getDefinitions());
 	}
-	
+
 	public static EObject getContainer(Fragment fragment, EClass eClass) {
 		EObject eObject = fragment.getEntry();
 		for (EObject parent = eObject; parent != null; parent = parent
@@ -92,6 +94,20 @@ public class FragmentUtil {
 					filter, visited));
 		}
 		return elements;
+	}
+
+	public static String toString(Fragment f) {
+		StringBuilder sb = new StringBuilder();
+		sb.append("(");
+		sb.append(f.getEntry().getName() != null
+				&& !f.getEntry().getName().equals("") ? f.getEntry().getName()
+				: "[" + f.getEntry().getId() + "]");
+		sb.append(",");
+		sb.append(f.getExit().getName() != null
+				&& !f.getExit().getName().equals("") ? f.getExit().getName()
+				: "[" + f.getExit().getId() + "]");
+		sb.append(")");
+		return sb.toString();
 	}
 
 }

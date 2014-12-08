@@ -28,6 +28,7 @@ import edu.uci.ics.jung.graph.DirectedSparseMultigraph;
 import edu.uci.ics.jung.graph.UndirectedGraph;
 import edu.uci.ics.jung.graph.UndirectedSparseMultigraph;
 import edu.udo.cs.ls14.jf.bpmn.utils.DefinitionsUtil;
+import edu.udo.cs.ls14.jf.bpmn.utils.FragmentUtil;
 import edu.udo.cs.ls14.jf.bpmnanalysis.BpmnAnalysisFactory;
 import edu.udo.cs.ls14.jf.bpmnanalysis.Fragment;
 import edu.udo.cs.ls14.jf.bpmnanalysis.ProcessStructureTree;
@@ -91,12 +92,12 @@ public class PSTBuilder {
 		LOG.debug("yielding Fragments ...");
 		yieldedFragments = new HashSet<Pair<SequenceFlow, SequenceFlow>>();
 		fragments = yieldFragments(start, end, definitions);
-		fragments.forEach(f -> LOG.debug(f.toString()));
+		fragments.forEach(f -> LOG.debug(FragmentUtil.toString(f)));
 
 		// filter canonical sese-fragments from all sese-fragments
 		LOG.debug("Filtering canonical fragments...");
 		canonicalFragments = canoncialFragments(start, end, fragments);
-		canonicalFragments.forEach(f -> LOG.debug(f.toString()));
+		canonicalFragments.forEach(f -> LOG.debug(FragmentUtil.toString(f)));
 
 		// create pst from canonical sese-fragments
 		LOG.debug("building structure tree ...");
@@ -342,8 +343,10 @@ public class PSTBuilder {
 					if (e.getEntry().equals(f.getEntry())
 							&& !dominates(start, e.getExit(), f.getExit())) {
 						LOG.debug(e.getExit().getName() + " does not dominate "
-								+ f.getExit().getName() + ", so " + e
-								+ " is not canonical, because of " + f);
+								+ f.getExit().getName() + ", so "
+								+ FragmentUtil.toString(e)
+								+ " is not canonical, because of "
+								+ FragmentUtil.toString(f));
 						isCanonical = false;
 					}
 					// // a postdominates a'
@@ -351,8 +354,10 @@ public class PSTBuilder {
 							&& !postDominates(end, e.getEntry(), f.getEntry())) {
 						LOG.debug(e.getEntry().getName()
 								+ " does not postdominate "
-								+ f.getEntry().getName() + ", so " + e
-								+ " is not canonical, because of " + f);
+								+ f.getEntry().getName() + ", so "
+								+ FragmentUtil.toString(e)
+								+ " is not canonical, because of "
+								+ FragmentUtil.toString(f));
 						isCanonical = false;
 					}
 				}
