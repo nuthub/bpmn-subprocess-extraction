@@ -29,6 +29,21 @@ public class PSTTest {
 	}
 
 	@Test
+	public void testComplete() throws Exception {
+		String basename = "complete2";
+		System.out.println("Creating PST for " + basename);
+		Definitions definitions = Bpmn2ResourceSet.getInstance()
+				.loadDefinitions(
+						getClass().getResource(
+								"/bpmn/complete/" + basename + ".bpmn")
+								.getPath());
+		PSTBuilder pstBuilder = new PSTBuilder();
+		ProcessStructureTree pst = pstBuilder.getTree(definitions);
+		pstBuilder.writeDebugFiles("/tmp/", basename);
+		System.out.println(pst);
+	}
+
+	@Test
 	public void testEventBasedGatewayExclusive() throws Exception {
 		String basename = "event-based-gateway-exclusive";
 		ProcessStructureTree pst = runTest(basename);
