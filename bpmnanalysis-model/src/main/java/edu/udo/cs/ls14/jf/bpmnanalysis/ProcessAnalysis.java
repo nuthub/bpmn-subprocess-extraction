@@ -15,10 +15,8 @@ import org.eclipse.emf.ecore.EObject;
  * <p>
  * The following features are supported:
  * <ul>
- * <li>{@link edu.udo.cs.ls14.jf.bpmnanalysis.ProcessAnalysis#getDefinitions
- * <em>Definitions</em>}</li>
- * <li>{@link edu.udo.cs.ls14.jf.bpmnanalysis.ProcessAnalysis#getResults <em>
- * Results</em>}</li>
+ *   <li>{@link edu.udo.cs.ls14.jf.bpmnanalysis.ProcessAnalysis#getDefinitions <em>Definitions</em>}</li>
+ *   <li>{@link edu.udo.cs.ls14.jf.bpmnanalysis.ProcessAnalysis#getResults <em>Results</em>}</li>
  * </ul>
  * </p>
  *
@@ -33,14 +31,13 @@ public interface ProcessAnalysis extends EObject {
 	public static final String CONDITIONALPROFILE = "conditionalProfile";
 
 	/**
-	 * Returns the value of the '<em><b>Definitions</b></em>' containment
-	 * reference. <!-- begin-user-doc -->
+	 * Returns the value of the '<em><b>Definitions</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Definitions</em>' containment reference isn't
 	 * clear, there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the value of the '<em>Definitions</em>' containment reference.
 	 * @see #setDefinitions(Definitions)
 	 * @see edu.udo.cs.ls14.jf.bpmnanalysis.BpmnAnalysisPackage#getProcessAnalysis_Definitions()
@@ -50,14 +47,10 @@ public interface ProcessAnalysis extends EObject {
 	Definitions getDefinitions();
 
 	/**
-	 * Sets the value of the '
-	 * {@link edu.udo.cs.ls14.jf.bpmnanalysis.ProcessAnalysis#getDefinitions
-	 * <em>Definitions</em>}' containment reference. <!-- begin-user-doc -->
+	 * Sets the value of the '{@link edu.udo.cs.ls14.jf.bpmnanalysis.ProcessAnalysis#getDefinitions <em>Definitions</em>}' containment reference.
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
-	 * @param value
-	 *            the new value of the '<em>Definitions</em>' containment
-	 *            reference.
+	 * @param value the new value of the '<em>Definitions</em>' containment reference.
 	 * @see #getDefinitions()
 	 * @generated
 	 */

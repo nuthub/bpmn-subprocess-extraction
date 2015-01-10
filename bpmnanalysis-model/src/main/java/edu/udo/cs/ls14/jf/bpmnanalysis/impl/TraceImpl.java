@@ -2,24 +2,19 @@
  */
 package edu.udo.cs.ls14.jf.bpmnanalysis.impl;
 
-import edu.udo.cs.ls14.jf.bpmnanalysis.BpmnAnalysisPackage;
-import edu.udo.cs.ls14.jf.bpmnanalysis.Trace;
-
 import java.util.Collection;
 import java.util.List;
 
 import org.eclipse.bpmn2.FlowNode;
-
 import org.eclipse.emf.common.notify.Notification;
-
 import org.eclipse.emf.common.util.EList;
-
 import org.eclipse.emf.ecore.EClass;
-
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 
-import org.eclipse.emf.ecore.util.EObjectResolvingEList;
+import edu.udo.cs.ls14.jf.bpmnanalysis.BpmnAnalysisPackage;
+import edu.udo.cs.ls14.jf.bpmnanalysis.Trace;
+import edu.udo.cs.ls14.jf.bpmnanalysis.util.NonUniqueList;
 
 /**
  * <!-- begin-user-doc -->
@@ -88,11 +83,12 @@ public class TraceImpl extends MinimalEObjectImpl.Container implements Trace {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	public List<FlowNode> getNodes() {
 		if (nodes == null) {
-			nodes = new EObjectResolvingEList<FlowNode>(FlowNode.class, this, BpmnAnalysisPackage.TRACE__NODES);
+			nodes = new NonUniqueList<FlowNode>(FlowNode.class, this, BpmnAnalysisPackage.TRACE__NODES);
+//			nodes = new EObjectEList<FlowNode>(FlowNode.class, this, BpmnAnalysisPackage.TRACE__NODES);
 		}
 		return nodes;
 	}

@@ -3,7 +3,6 @@
 package edu.udo.cs.ls14.jf.bpmnmatching;
 
 import edu.udo.cs.ls14.jf.bpmnanalysis.ProcessAnalysis;
-
 import org.eclipse.emf.ecore.EObject;
 
 /**

@@ -37,7 +37,7 @@ public interface Trace extends EObject {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Nodes</em>' reference list.
 	 * @see edu.udo.cs.ls14.jf.bpmnanalysis.BpmnAnalysisPackage#getTrace_Nodes()
-	 * @model
+	 * @model resolveProxies="false"
 	 * @generated
 	 */
 	List<FlowNode> getNodes();

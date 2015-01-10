@@ -216,7 +216,7 @@ public class Bpmn2PtnetConverter {
 	private void handleActivity(Activity n) throws Exception {
 		if (n instanceof Task) {
 			TransitionHLAPI t = new TransitionHLAPI(n.getId(), new NameHLAPI(
-					n.getName()), null, page);
+					"" + n.getName()), null, page);
 
 			for (SequenceFlow f : n.getIncoming()) {
 				prePlaces.add(new Pair<String, Set<TransitionHLAPI>>(
@@ -240,7 +240,7 @@ public class Bpmn2PtnetConverter {
 	private void handleEvent(Event n) throws Exception {
 		if (n instanceof StartEvent) {
 			TransitionHLAPI t = new TransitionHLAPI(n.getId(), new NameHLAPI(
-					n.getName()), null, page);
+					"" + n.getName()), null, page);
 			PlaceHLAPI p = new PlaceHLAPI("P-null-" + n.getId(), new NameHLAPI(
 					"P-" + n.getName()), null, new PTMarkingHLAPI(1), page);
 			new ArcHLAPI("Arc-" + p.getId() + "---" + t.getId(), new NameHLAPI(
@@ -253,7 +253,7 @@ public class Bpmn2PtnetConverter {
 			}
 		} else if (n instanceof EndEvent) {
 			TransitionHLAPI t = new TransitionHLAPI(n.getId(), new NameHLAPI(
-					n.getName()), null, page);
+					"" + n.getName()), null, page);
 			PlaceHLAPI p = new PlaceHLAPI("P-" + n.getId() + "-null",
 					new NameHLAPI("P-" + n.getName() + "-null"), null, null,
 					page);
@@ -268,7 +268,7 @@ public class Bpmn2PtnetConverter {
 		} else if (n instanceof IntermediateCatchEvent
 				|| n instanceof IntermediateThrowEvent) {
 			TransitionHLAPI t = new TransitionHLAPI(n.getId(), new NameHLAPI(
-					n.getName()), null, page);
+					"" + n.getName()), null, page);
 			for (SequenceFlow f : n.getIncoming()) {
 				prePlaces.add(new Pair<String, Set<TransitionHLAPI>>(
 						f.getId(), new HashSet<TransitionHLAPI>(Arrays
