@@ -1,9 +1,13 @@
 package edu.udo.cs.ls14.jf.analysis.behaviorprofile.test;
 
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertTrue;
+
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
 
+import org.eclipse.bpmn2.Bpmn2Factory;
 import org.eclipse.bpmn2.Definitions;
 import org.eclipse.bpmn2.FlowNode;
 import org.eclipse.bpmn2.Process;
@@ -20,6 +24,7 @@ import edu.udo.cs.ls14.jf.bpmn.utils.DefinitionsUtil;
 import edu.udo.cs.ls14.jf.bpmn.utils.DotUtil;
 import edu.udo.cs.ls14.jf.bpmnanalysis.BehavioralProfile;
 import edu.udo.cs.ls14.jf.bpmnanalysis.BehavioralRelation;
+import edu.udo.cs.ls14.jf.bpmnanalysis.BpmnAnalysisFactory;
 import edu.udo.cs.ls14.jf.bpmnanalysis.Trace;
 import edu.udo.cs.ls14.jf.bpmnanalysis.TraceProfile;
 import edu.udo.cs.ls14.jf.registry.Registries;
@@ -30,6 +35,14 @@ public class BehavioralProfileTest {
 	@Before
 	public void setUp() {
 		Registries.registerAll();
+	}
+
+	@Test
+	public void testPM1() throws Exception {
+		String basename = "PM1-mit-Fragment1";
+		BehavioralProfile bp = createBpFromBpmnOld(basename);
+		// print profile
+		System.out.println(bp);
 	}
 
 	@Test
@@ -65,24 +78,62 @@ public class BehavioralProfileTest {
 	}
 
 	@Test
-	public void testPM1() throws Exception {
+	public void testParallelism1() throws Exception {
 		String pathname = "/bpmn/parallelGateway/";
 		String basename = "parallelism1";
-
 		BehavioralProfile bp = createBpFromBpmn(pathname, basename);
-		// print profile
-		outputBp(bp);
+		assertNotNull(bp);
 	}
 
 	@Test
-	public void testComplete() throws Exception {
+	public void testParallelism2() throws Exception {
+		String pathname = "/bpmn/parallelGateway/";
+		String basename = "parallelism2";
+		BehavioralProfile bp = createBpFromBpmn(pathname, basename);
+		assertNotNull(bp);
+	}
+
+	@Test
+	public void testParallelism3() throws Exception {
+		String pathname = "/bpmn/parallelGateway/";
+		String basename = "parallelism3";
+		BehavioralProfile bp = createBpFromBpmn(pathname, basename);
+		assertNotNull(bp);
+	}
+
+	@Test
+	public void testComplete1() throws Exception {
+		String pathname = "/bpmn/complete/";
+		String basename = "complete1";
+		BehavioralProfile bp = createBpFromBpmn(pathname, basename);
+		assertNotNull(bp);
+	}
+
+	@Test
+	public void testComplete2() throws Exception {
 		String pathname = "/bpmn/complete/";
 		String basename = "complete2";
 		BehavioralProfile bp = createBpFromBpmn(pathname, basename);
-		String bpStr = outputBp(bp);
-
+		assertNotNull(bp);
 	}
 
+	@Test
+	public void testTrace() {
+		Trace t = BpmnAnalysisFactory.eINSTANCE.createTrace();
+		System.out.println(t.getNodes().getClass().getName());
+		FlowNode n = Bpmn2Factory.eINSTANCE.createTask();
+		n.setId("bla");
+		n.setName("blub");
+		assertTrue(t.getNodes().add(n));
+		System.out.println(traceToString(t));
+		assertTrue(t.getNodes().add(n));
+		System.out.println(traceToString(t));
+		assertTrue(t.getNodes().add(n));
+		System.out.println(traceToString(t));
+		assertTrue(t.getNodes().add(n));
+		System.out.println(traceToString(t));
+	}
+	
 	private BehavioralProfile createBpFromBpmn(String pathname, String basename)
 			throws Exception {
 		System.out.println("Now profiling " + basename + ".bpmn");
@@ -100,6 +151,11 @@ public class BehavioralProfileTest {
 		Bpmn2PtnetConverter converter = new Bpmn2PtnetConverter();
 		PetriNetHLAPI ptnet = converter.convertToPetriNet(process);
 		converter.saveToPnmlFile("/tmp/" + pathname + basename + ".pnml");
+		BufferedWriter out = new BufferedWriter(new FileWriter("/tmp"
+				+ pathname + basename + "-ptnet.dot"));
+		out.write(converter.toDot());
+		out.flush();
+		out.close();
 
 		// create Reachability Graph from petri net
 		ReachabilityGraph rg = new ReachabilityGraph();
@@ -126,7 +182,7 @@ public class BehavioralProfileTest {
 			}
 			sb.append(System.getProperty("line.separator"));
 		}
-		BufferedWriter out = new BufferedWriter(new FileWriter("/tmp"
+		out = new BufferedWriter(new FileWriter("/tmp"
 				+ pathname + basename + "-traces.txt"));
 		out.write(sb.toString());
 		out.flush();
@@ -203,4 +259,16 @@ public class BehavioralProfileTest {
 		return sb.toString();
 	}
 
+	private String traceToString(Trace t) {
+		StringBuffer sb = new StringBuffer();
+		for (FlowNode n : t.getNodes()) {
+			sb.append(n.getName() + ", ");
+		}
+		if (t.isFinished()) {
+			sb.append(".");
+		} else {
+			sb.append("...");
+		}
+		return sb.toString();
+	}
 }

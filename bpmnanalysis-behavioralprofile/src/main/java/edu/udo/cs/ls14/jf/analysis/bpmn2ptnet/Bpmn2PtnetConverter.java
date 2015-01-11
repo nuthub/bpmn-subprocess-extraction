@@ -54,7 +54,8 @@ import fr.lip6.move.pnml.ptnet.hlapi.TransitionHLAPI;
 
 public class Bpmn2PtnetConverter {
 
-	private static final Logger LOG = LoggerFactory.getLogger(Bpmn2PtnetConverter.class);
+	private static final Logger LOG = LoggerFactory
+			.getLogger(Bpmn2PtnetConverter.class);
 
 	private PetriNetHLAPI net;
 	private PageHLAPI page;
@@ -154,11 +155,11 @@ public class Bpmn2PtnetConverter {
 				|| (n instanceof EventBasedGateway && ((EventBasedGateway) n)
 						.getEventGatewayType() == EventBasedGatewayType.PARALLEL)) {
 			// TODO: Test with mixed gateway directions
-			TransitionHLAPI t = new TransitionHLAPI(n.getId(), new NameHLAPI(""), null, page);
+			TransitionHLAPI t = new TransitionHLAPI(n.getId(),
+					new NameHLAPI(""), null, page);
 			for (SequenceFlow f : n.getIncoming()) {
-				prePlaces.add(new Pair<String, Set<TransitionHLAPI>>(
-						f.getId(), new HashSet<TransitionHLAPI>(Arrays
-								.asList(t))));
+				prePlaces.add(new Pair<String, Set<TransitionHLAPI>>(f.getId(),
+						new HashSet<TransitionHLAPI>(Arrays.asList(t))));
 			}
 			for (SequenceFlow f : n.getOutgoing()) {
 				postPlaces.add(new Pair<Set<TransitionHLAPI>, String>(
@@ -193,8 +194,8 @@ public class Bpmn2PtnetConverter {
 							.asList(t))));
 				}
 				for (SequenceFlow f : ((Gateway) n).getOutgoing()) {
-					postPlaces.add(new Pair<Set<TransitionHLAPI>, String>(ts,
-							f.getId()));
+					postPlaces.add(new Pair<Set<TransitionHLAPI>, String>(ts, f
+							.getId()));
 				}
 			} else {
 				// TODO: check if there is a way for supporting mixed
@@ -215,13 +216,12 @@ public class Bpmn2PtnetConverter {
 
 	private void handleActivity(Activity n) throws Exception {
 		if (n instanceof Task) {
-			TransitionHLAPI t = new TransitionHLAPI(n.getId(), new NameHLAPI(
-					"" + n.getName()), null, page);
+			TransitionHLAPI t = new TransitionHLAPI(n.getId(), new NameHLAPI(""
+					+ n.getName()), null, page);
 
 			for (SequenceFlow f : n.getIncoming()) {
-				prePlaces.add(new Pair<String, Set<TransitionHLAPI>>(
-						f.getId(), new HashSet<TransitionHLAPI>(Arrays
-								.asList(t))));
+				prePlaces.add(new Pair<String, Set<TransitionHLAPI>>(f.getId(),
+						new HashSet<TransitionHLAPI>(Arrays.asList(t))));
 			}
 			for (SequenceFlow f : n.getOutgoing()) {
 				postPlaces.add(new Pair<Set<TransitionHLAPI>, String>(
@@ -239,8 +239,8 @@ public class Bpmn2PtnetConverter {
 
 	private void handleEvent(Event n) throws Exception {
 		if (n instanceof StartEvent) {
-			TransitionHLAPI t = new TransitionHLAPI(n.getId(), new NameHLAPI(
-					"" + n.getName()), null, page);
+			TransitionHLAPI t = new TransitionHLAPI(n.getId(), new NameHLAPI(""
+					+ n.getName()), null, page);
 			PlaceHLAPI p = new PlaceHLAPI("P-null-" + n.getId(), new NameHLAPI(
 					"P-" + n.getName()), null, new PTMarkingHLAPI(1), page);
 			new ArcHLAPI("Arc-" + p.getId() + "---" + t.getId(), new NameHLAPI(
@@ -252,8 +252,8 @@ public class Bpmn2PtnetConverter {
 								.getId()));
 			}
 		} else if (n instanceof EndEvent) {
-			TransitionHLAPI t = new TransitionHLAPI(n.getId(), new NameHLAPI(
-					"" + n.getName()), null, page);
+			TransitionHLAPI t = new TransitionHLAPI(n.getId(), new NameHLAPI(""
+					+ n.getName()), null, page);
 			PlaceHLAPI p = new PlaceHLAPI("P-" + n.getId() + "-null",
 					new NameHLAPI("P-" + n.getName() + "-null"), null, null,
 					page);
@@ -261,18 +261,16 @@ public class Bpmn2PtnetConverter {
 					"Arc-" + t.getNameHLAPI() + "---" + p.getNameHLAPI()), t,
 					p, null, null, page);
 			for (SequenceFlow f : n.getIncoming()) {
-				prePlaces.add(new Pair<String, Set<TransitionHLAPI>>(
-						f.getId(), new HashSet<TransitionHLAPI>(Arrays
-								.asList(t))));
+				prePlaces.add(new Pair<String, Set<TransitionHLAPI>>(f.getId(),
+						new HashSet<TransitionHLAPI>(Arrays.asList(t))));
 			}
 		} else if (n instanceof IntermediateCatchEvent
 				|| n instanceof IntermediateThrowEvent) {
-			TransitionHLAPI t = new TransitionHLAPI(n.getId(), new NameHLAPI(
-					"" + n.getName()), null, page);
+			TransitionHLAPI t = new TransitionHLAPI(n.getId(), new NameHLAPI(""
+					+ n.getName()), null, page);
 			for (SequenceFlow f : n.getIncoming()) {
-				prePlaces.add(new Pair<String, Set<TransitionHLAPI>>(
-						f.getId(), new HashSet<TransitionHLAPI>(Arrays
-								.asList(t))));
+				prePlaces.add(new Pair<String, Set<TransitionHLAPI>>(f.getId(),
+						new HashSet<TransitionHLAPI>(Arrays.asList(t))));
 			}
 			for (SequenceFlow f : n.getOutgoing()) {
 				postPlaces.add(new Pair<Set<TransitionHLAPI>, String>(
@@ -328,6 +326,38 @@ public class Bpmn2PtnetConverter {
 		sb.append(System.getProperty("line.separator"));
 		sb.append("---------------------------------");
 		sb.append(System.getProperty("line.separator"));
+		return sb.toString();
+	}
+
+	public String toDot() {
+		String nl = System.getProperty("line.separator");
+		StringBuffer sb = new StringBuffer();
+		sb.append("strict digraph \"net0\" {" + nl);
+		sb.append("overlap=scale;" + nl);
+		sb.append("splines=true;" + nl);
+		sb.append("rankdir=LR;" + nl);
+		sb.append("node[fixedsize=false;fontsize=32];" + nl);
+		sb.append("edge[];" + nl);
+		sb.append("ordering=out;" + nl);
+		sb.append("color=black;" + nl);
+		for (PlaceHLAPI p : page.getObjects_PlaceHLAPI()) {
+			sb.append("  \"" + p.getId()
+					+ "\" [shape=circle, height=.40, width=.40,label=\"\"];"
+					+ nl);
+		}
+		for (TransitionHLAPI t : page.getObjects_TransitionHLAPI()) {
+			sb.append("  \"" + t.getId()
+					+ "\" [shape=box, height=.50, width=.20,label=\""
+					+ t.getName().getText() + "\"];" + nl);
+		}
+		for (ArcHLAPI a : page.getObjects_ArcHLAPI()) {
+			sb.append("  \"" + a.getSourceHLAPI().getId() + "\"");
+			sb.append(" ->");
+			sb.append(" \"" + a.getTargetHLAPI().getId() + "\"");
+			sb.append("[label=\"\"];");
+			sb.append(nl);
+		}
+		sb.append("}" + nl);
 		return sb.toString();
 	}
 }

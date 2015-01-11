@@ -103,8 +103,6 @@ public class ReachabilityGraph extends DirectedSparseMultigraph<Marking, Edge> {
 			pending.remove(m);
 			visited.add(m);
 			// foreach transition t activated in m do
-			// TODO: Check, ob durch das feuern einer Transition eine andere
-			// deaktiviert werden könnte (Stellen-Kapazitäten beachten?)
 			for (Transition t : getActiveTransitions(m, transitions)) {
 				// calculate m' such that m \xrightarrow{t} m'
 				Marking mPrime = getMPrime(m, t);
@@ -118,18 +116,6 @@ public class ReachabilityGraph extends DirectedSparseMultigraph<Marking, Edge> {
 			}
 		}
 	}
-
-	/*
-	 * public File saveGraphML(String filename) throws IOException { // Save as
-	 * GraphML GraphMLWriter<Marking, Edge> gw = new GraphMLWriter<Marking,
-	 * Edge>(); gw.addEdgeData("label", "The edge's label", "", new
-	 * Transformer<Edge, String>() { public String transform(Edge e) { return
-	 * e.getT(); } }); gw.addVertexData("initial",
-	 * "true, if marking is initial", "false", new Transformer<Marking,
-	 * String>() { public String transform(Marking m) { return
-	 * m.isInitialMarking() ? "true" : "false"; } }); File file = new
-	 * File(filename); gw.save(this, new FileWriter(file)); return file; }
-	 */
 
 	private Marking getMPrime(Marking m, Transition t) throws Exception {
 		Marking mPrime = new Marking();

@@ -35,8 +35,8 @@ public class Marking extends ArrayList<Place> {
 	public String getDotLabel() {
 		StringBuffer sb = new StringBuffer();
 		for (Place p : this) {
-			sb.append(p.getName().getText());
-			sb.append(System.getProperty("line.separator"));
+			sb.append(p.getId());
+			sb.append("; ");
 		}
 		return sb.toString();
 	}

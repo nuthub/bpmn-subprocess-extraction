@@ -61,37 +61,36 @@ public class Tracer {
 	private static EList<Trace> getTraces(Process process,
 			ReachabilityGraph graph, Marking start, Marking end, Trace prefix,
 			Set<Edge> visited) {
-		EList<Trace> traces = new BasicEList<Trace>();
+		EList<Trace> prefixes = new BasicEList<Trace>();
 		if (start == end) {
 			prefix.setFinished(true);
-			traces.add(prefix);
-			return traces;
+			prefixes.add(prefix);
+			return prefixes;
 		}
 		for (Edge edge : graph.getOutEdges(start)) {
-			// erstelle neuen Trace aus Prefix
-			Trace trace = BpmnAnalysisFactory.eINSTANCE.createTrace();
-			trace.getNodes().addAll(prefix.getNodes());
-			// Wenn kante keine stille Transition repräsentiert
-			if (!isSilentTransition(process, edge.getT())) {
-				// Füge die Kante (=FlowNode) dem Trace hinzu
-				trace.getNodes().add(getFlowNode(process, edge));
+			// Kante repräsentiert eine Transition
+			// Transition repräsentiert evtl FlowNode
+			FlowNode currentNode = getFlowNode(process, edge);
+			// erstelle neuen Präfix aus altem Prefix
+			Trace newPrefix = BpmnAnalysisFactory.eINSTANCE.createTrace();
+			newPrefix.getNodes().addAll(prefix.getNodes());
+			// Wenn node FlowNode ist (!=null) und eine Aktivität oder ein
+			// Ereignis ist (also keine stille Transition)
+			if (isAE(currentNode)) {
+				// Füge FlowNode dem neuen Präfix hinzu, auch wenn schon enthalten
+				newPrefix.getNodes().add(currentNode);				
 			}
-			// Wenn Kante noch nicht durchlaufen wurde, Rekursion
-			if (!visited.contains(edge)) {
-				// Vorher merken, dass Kante bereits durchlaufen wurde (nur,
-				// wenn keine Stille Kante
-				if (edge.getT() != null && !edge.getT().equals("")) {
-					visited.add(edge);
-				}
-				// Rekursion
-				traces.addAll(getTraces(process, graph, graph.getDest(edge),
-						end, trace, visited));
+			// Wenn node bereits in altem präfix enthalten, keine Rekursion
+			if (prefix.getNodes().contains(currentNode)) {
+				newPrefix.setFinished(false);
+				prefixes.add(newPrefix);
 			} else {
-				trace.setFinished(false);
-				traces.add(trace);
+				// Ansonsten Rekursion
+				prefixes.addAll(getTraces(process, graph, graph.getDest(edge),
+						end, newPrefix, visited));
 			}
 		}
-		return traces;
+		return prefixes;
 	}
 
 	private static FlowNode getFlowNode(Process process, Edge edge) {
@@ -104,19 +103,7 @@ public class Tracer {
 		return null;
 	}
 
-	private static boolean isSilentTransition(Process process, String id) {
-		if (id == null) {
-			return true;
-		}
-		if (id.equals("")) {
-			return true;
-		}
-		for (FlowElement elem : process.getFlowElements()) {
-			if (elem.getId().equals(id)
-					&& (elem instanceof Activity || elem instanceof Event)) {
-				return false;
-			}
-		}
-		return true;
+	private static boolean isAE(FlowNode node) {
+		return (node instanceof Activity || node instanceof Event);
 	}
 }
