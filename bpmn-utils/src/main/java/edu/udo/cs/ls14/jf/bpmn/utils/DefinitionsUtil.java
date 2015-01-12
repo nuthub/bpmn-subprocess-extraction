@@ -3,7 +3,11 @@ package edu.udo.cs.ls14.jf.bpmn.utils;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import org.eclipse.bpmn2.Activity;
 import org.eclipse.bpmn2.Definitions;
+import org.eclipse.bpmn2.Event;
+import org.eclipse.bpmn2.FlowElement;
+import org.eclipse.bpmn2.FlowNode;
 import org.eclipse.bpmn2.Process;
 import org.eclipse.bpmn2.di.BPMNDiagram;
 
@@ -21,8 +25,7 @@ public class DefinitionsUtil {
 		return diagrams.get(0);
 	}
 
-	public static Process getProcess(Definitions definitions)
-			throws Exception {
+	public static Process getProcess(Definitions definitions) throws Exception {
 		List<Process> processes = definitions.getRootElements().stream()
 				.filter(r -> r instanceof Process).map(p -> (Process) p)
 				.collect(Collectors.toList());
@@ -35,4 +38,16 @@ public class DefinitionsUtil {
 		return processes.get(0);
 	}
 
+	public static FlowNode getFlowNode(Process process, String id) {
+		for (FlowElement e : process.getFlowElements()) {
+			if (e instanceof FlowNode && e.getId().equals(id)) {
+				return (FlowNode) e;
+			}
+		}
+		return null;
+	}
+
+	public static boolean isAE(FlowNode node) {
+		return (node instanceof Activity || node instanceof Event);
+	}
 }

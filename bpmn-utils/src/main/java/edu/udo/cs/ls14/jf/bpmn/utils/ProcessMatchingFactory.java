@@ -3,7 +3,9 @@ package edu.udo.cs.ls14.jf.bpmn.utils;
 import java.util.UUID;
 
 import org.eclipse.bpmn2.Activity;
+import org.eclipse.bpmn2.Bpmn2Factory;
 import org.eclipse.bpmn2.Definitions;
+import org.eclipse.bpmn2.DocumentRoot;
 import org.eclipse.bpmn2.Event;
 import org.eclipse.bpmn2.FlowElement;
 import org.eclipse.bpmn2.FlowNode;

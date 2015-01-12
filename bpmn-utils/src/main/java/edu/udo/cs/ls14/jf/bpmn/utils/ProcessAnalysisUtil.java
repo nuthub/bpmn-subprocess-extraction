@@ -16,13 +16,20 @@ public class ProcessAnalysisUtil {
 
 	public static void writeToFile(String filename, ProcessAnalysis analysis)
 			throws IOException {
-		Resource res = ((Resource.Factory) Resource.Factory.Registry.INSTANCE
-				.getExtensionToFactoryMap().get("bpmnanalysis"))
-				.createResource(URI.createFileURI(filename));
+		Resource res = Bpmn2ResourceSet.getInstance().createResource(
+				URI.createFileURI(filename));
 		res.getContents().add(analysis);
 		res.save(null);
 		LOG.info("Written analysis result to " + filename);
 
+	}
+
+	public static ProcessAnalysis loadFromFile(String filename)
+			throws IOException {
+		Resource res = Bpmn2ResourceSet.getInstance().createResource(
+				URI.createFileURI(filename));
+		res.load(null);
+		return (ProcessAnalysis) res.getContents().get(0);
 	}
 
 }

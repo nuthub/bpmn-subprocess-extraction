@@ -40,8 +40,8 @@ public class ProcessExtractionUtil {
 		// Create resources for all definitions
 		Map<String, Resource> resMap = new HashMap<String, Resource>();
 		for (Map.Entry<String, Definitions> entry : results.entrySet()) {
-			Resource res = resSetOut.createResource(targetDir + "/" + entry.getKey(),
-					entry.getValue());
+			Resource res = resSetOut.createResource(
+					targetDir + "/" + entry.getKey(), entry.getValue());
 			resMap.put(entry.getKey(), res);
 		}
 		// Write all resources
@@ -94,9 +94,8 @@ public class ProcessExtractionUtil {
 	 */
 	public static void writeToFile(String filename, ProcessExtraction extraction)
 			throws IOException {
-		Resource res = ((Resource.Factory) Resource.Factory.Registry.INSTANCE
-				.getExtensionToFactoryMap().get("bpmntransformation"))
-				.createResource(URI.createFileURI(filename));
+		Resource res = Bpmn2ResourceSet.getInstance().createResource(
+				URI.createFileURI(filename));
 		res.getContents().add(extraction);
 		res.save(null);
 		LOG.info("Written extraction result to " + filename);

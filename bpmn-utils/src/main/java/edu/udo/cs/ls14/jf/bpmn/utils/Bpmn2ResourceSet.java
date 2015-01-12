@@ -60,12 +60,9 @@ public class Bpmn2ResourceSet extends ResourceSetImpl {
 	}
 
 	public Definitions loadDefinitions(String filename) throws Exception {
-		System.out.println(filename);
 		URI fileURI = getCompletePathURI(filename, directory, true);
-		System.out.println(fileURI);
 		Resource resource = Registries.getResourceFactory("bpmn")
 				.createResource(fileURI);
-		System.out.println(fileURI);
 		resource.load(new BufferedInputStream(new FileInputStream(resource
 				.getURI().toFileString())), null);
 		getResources().add(resource);

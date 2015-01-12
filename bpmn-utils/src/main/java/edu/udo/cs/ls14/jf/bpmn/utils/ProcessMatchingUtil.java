@@ -8,6 +8,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import edu.udo.cs.ls14.jf.bpmnmatching.ProcessMatching;
+import edu.udo.cs.ls14.jf.bpmnmatching.util.BpmnMatchingResourceImpl;
 
 public class ProcessMatchingUtil {
 
@@ -16,14 +17,19 @@ public class ProcessMatchingUtil {
 
 	public static void writeToFile(String filename, ProcessMatching matching)
 			throws IOException {
-		// TODO retrieve from factory
-		Resource res = ((Resource.Factory) Resource.Factory.Registry.INSTANCE
-				.getExtensionToFactoryMap().get("bpmnmatching"))
-				.createResource(URI.createFileURI(filename));
+		Resource res = Bpmn2ResourceSet.getInstance().createResource(
+				URI.createFileURI(filename));
 		res.getContents().add(matching);
 		res.save(null);
 		LOG.info("Written analysis result to " + filename);
+	}
 
+	public static ProcessMatching loadFromFile(String filename)
+			throws IOException {
+		Resource res = Bpmn2ResourceSet.getInstance().createResource(
+				URI.createFileURI(filename));
+		res.load(null);
+		return (ProcessMatching) res.getContents().get(0);
 	}
 
 }
