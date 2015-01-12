@@ -340,7 +340,8 @@ public class PSTBuilder {
 					// b dominates b'
 					if (e.getEntry().equals(f.getEntry())
 							&& !dominates(start, e.getExit(), f.getExit())) {
-						LOG.debug(getEdgeLabel(e.getExit()) + " does not dominate "
+						LOG.debug(getEdgeLabel(e.getExit())
+								+ " does not dominate "
 								+ getEdgeLabel(f.getExit()) + ", so "
 								+ FragmentUtil.toString(e)
 								+ " is not canonical, because of "
@@ -485,10 +486,11 @@ public class PSTBuilder {
 			sb.append("[");
 			sb.append("label=\"");
 			sb.append(getEdgeLabel(edge));
-			if(edgeStates.get(edge) == EdgeState.TREE) {
+			if (edgeStates.get(edge) == EdgeState.TREE) {
 				sb.append(" {");
 				sb.append(StringUtils.join(
-						bracketSets.get(edge).stream().map(b -> getEdgeLabel(b))
+						bracketSets.get(edge).stream()
+								.map(b -> getEdgeLabel(b))
 								.collect(Collectors.toSet()), ","));
 				sb.append("}");
 			}
@@ -507,9 +509,10 @@ public class PSTBuilder {
 	}
 
 	public String getStructureTreeAsDot() {
+		String nl = System.getProperty("line.separator");
 		StringBuffer sb = new StringBuffer();
-		sb.append("digraph {");
-		sb.append(System.getProperty("line.separator"));
+		sb.append("digraph {" + nl);
+		sb.append("node[fontsize=60];" + nl);
 		for (Object edge : structureTree.getEdges()) {
 			if (structureTree.getSource(edge).getEntry() == null) {
 				sb.append("\"" + process.getName() + "\"");
@@ -521,7 +524,8 @@ public class PSTBuilder {
 						+ ")\"");
 			}
 			sb.append(" -> ");
-			sb.append("\"(" + getEdgeLabel(structureTree.getDest(edge).getEntry())
+			sb.append("\"("
+					+ getEdgeLabel(structureTree.getDest(edge).getEntry())
 					+ "," + getEdgeLabel(structureTree.getDest(edge).getExit())
 					+ ")\"");
 			sb.append(";");
@@ -572,19 +576,18 @@ public class PSTBuilder {
 	}
 
 	public void writeDebugFiles(String path, String basename) throws Exception {
-		// ps output
-		DotUtil.writeDot(path, basename + "-undirectedgraph", getGraphAsDot(),
-				"ps");
+		// dot output
+		DotUtil.writeDot(path, basename + "-undirectedgraph", getGraphAsDot());
 		DotUtil.writeDot(path, basename + "-spanningtree",
-				getSpanningTreeAsDot(), "ps");
-		DotUtil.writeDot(path, basename + "-pst", getStructureTreeAsDot(), "ps");
+				getSpanningTreeAsDot());
+		DotUtil.writeDot(path, basename + "-pst", getStructureTreeAsDot());
 		// png output
-		DotUtil.writeDot(path, basename + "-undirectedgraph", getGraphAsDot(),
-				"png");
-		DotUtil.writeDot(path, basename + "-spanningtree",
-				getSpanningTreeAsDot(), "png");
-		DotUtil.writeDot(path, basename + "-pst", getStructureTreeAsDot(),
-				"png");
+//		DotUtil.writeAndRunDot(path, basename + "-undirectedgraph",
+//				getGraphAsDot(), "png");
+//		DotUtil.writeAndRunDot(path, basename + "-spanningtree",
+//				getSpanningTreeAsDot(), "png");
+//		DotUtil.writeAndRunDot(path, basename + "-pst",
+//				getStructureTreeAsDot(), "png");
 
 	}
 }
