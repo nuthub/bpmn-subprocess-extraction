@@ -5,6 +5,7 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Map.Entry;
 import java.util.Set;
 import java.util.Stack;
 import java.util.stream.Collectors;
@@ -18,7 +19,6 @@ import org.eclipse.bpmn2.FlowNode;
 import org.eclipse.bpmn2.Process;
 import org.eclipse.bpmn2.SequenceFlow;
 import org.eclipse.bpmn2.StartEvent;
-import org.javatuples.Pair;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -39,19 +39,18 @@ public class PSTBuilder {
 	private static final Logger LOG = LoggerFactory.getLogger(PSTBuilder.class);
 
 	private Process process;
-	private UndirectedGraph<FlowNode, SequenceFlow> graph;
-	private DirectedGraph<FlowNode, SequenceFlow> spanningTree;
-	private Map<SequenceFlow, EdgeState> edgeStates;
-	private Map<SequenceFlow, Set<SequenceFlow>> bracketSets;
-	private Set<Fragment> fragments;
-	private Set<Fragment> canonicalFragments;
-	private DirectedGraph<Fragment, Object> structureTree;
-
 	private StartEvent start;
 	private EndEvent end;
 	private SequenceFlow insertEdge;
 
-	private Set<Pair<SequenceFlow, SequenceFlow>> yieldedFragments;
+	private UndirectedGraph<FlowNode, SequenceFlow> graph;
+	private DirectedGraph<FlowNode, SequenceFlow> spanningTree;
+	private Map<SequenceFlow, EdgeState> edgeStates;
+	private Map<SequenceFlow, Set<SequenceFlow>> bracketSets;
+	private Map<Set<SequenceFlow>, Set<SequenceFlow>> cycleEqCls;
+	private Map<Set<SequenceFlow>, List<SequenceFlow>> sortedCycleEqCls;
+	private List<Fragment> canonicalFragments;
+	private DirectedGraph<Fragment, Object> structureTree;
 
 	public ProcessStructureTree getTree(Definitions definitions)
 			throws Exception {
@@ -89,15 +88,35 @@ public class PSTBuilder {
 						+ e.getValue().stream().map(b -> getEdgeLabel(b))
 								.collect(Collectors.toSet())));
 
-		// yield all sese-fragments from edgestates
-		LOG.debug("yielding Fragments ...");
-		yieldedFragments = new HashSet<Pair<SequenceFlow, SequenceFlow>>();
-		fragments = yieldFragments(start, end, definitions);
-		fragments.forEach(f -> LOG.debug(FragmentUtil.toString(f)));
+		// create cycle equivalent classes
+		LOG.debug("creating cycle equivalent classes ...");
+		cycleEqCls = createCycleEqCls(bracketSets);
+		for (Entry<Set<SequenceFlow>, Set<SequenceFlow>> entry : cycleEqCls
+				.entrySet()) {
+			List<String> brackets = entry.getKey().stream()
+					.map(e -> e.getName()).collect(Collectors.toList());
+			List<String> members = entry.getValue().stream()
+					.map(e -> e.getName()).collect(Collectors.toList());
+			LOG.debug("{" + StringUtils.join(brackets, ", ") + "} => {"
+					+ StringUtils.join(members, ", ") + "}");
+		}
 
-		// filter canonical sese-fragments from all sese-fragments
-		LOG.debug("Filtering canonical fragments...");
-		canonicalFragments = canoncialFragments(start, end, fragments);
+		// sort cycle equivalent classes
+		LOG.debug("sorting cycle equivalent classes ...");
+		sortedCycleEqCls = sortCycleEqCls(cycleEqCls);
+		for (Entry<Set<SequenceFlow>, List<SequenceFlow>> entry : sortedCycleEqCls
+				.entrySet()) {
+			List<String> brackets = entry.getKey().stream()
+					.map(e -> e.getName()).collect(Collectors.toList());
+			List<String> members = entry.getValue().stream()
+					.map(e -> e.getName()).collect(Collectors.toList());
+			LOG.debug("{" + StringUtils.join(brackets, ", ") + "} => {"
+					+ StringUtils.join(members, ", ") + "}");
+		}
+
+		// get canonicalFragments From sorted cycle equivalent classes
+		LOG.debug("yielding canonical fragments from sorted cycle equivalent classes ...");
+		canonicalFragments = yieldCanonicalFragmentsFromSortedCycleEqCls(sortedCycleEqCls);
 		canonicalFragments.forEach(f -> LOG.debug(FragmentUtil.toString(f)));
 
 		// create pst from canonical sese-fragments
@@ -112,6 +131,159 @@ public class PSTBuilder {
 	}
 
 	/**
+	 * Definition 5: A SESE region (a,b) is canonical provided
+	 * 
+	 * 1. b dominates b' for any SESE region (a,b'), and
+	 * 
+	 * 2. a postdominates a' for any SESE region (a',b) .
+	 * 
+	 * During an undirected depth-first traversal, we can compute the set of
+	 * brackets for each tree edge. When retreating out of a node, we form the
+	 * union of bracket sets from the node's children, together with the set of
+	 * backedges from the node to an ancestor, minus the set of backedges from a
+	 * descendant to the node; the result is the bracket set for the tree edge
+	 * into the current node. Intuitively, the set of brackets of a tree edge is
+	 * a name for the edge's cycle equivalence class; by comparing these sets,
+	 * we find cycle equivalent edges. However, building and comparing sets is
+	 * expensive, so the algorithm is inefficient.
+	 * 
+	 * @param fragments
+	 * @return
+	 */
+	private List<Fragment> yieldCanonicalFragmentsFromSortedCycleEqCls(
+			Map<Set<SequenceFlow>, List<SequenceFlow>> classes) {
+		List<Fragment> canonicalFragments = new ArrayList<Fragment>();
+		for (List<SequenceFlow> ceClass : classes.values()) {
+			if (ceClass.size() < 2) {
+				continue;
+			}
+			for (int i = 0; i < ceClass.size() - 1; i++) {
+				Fragment f = BpmnAnalysisFactory.eINSTANCE.createFragment();
+				f.setEntry(ceClass.get(i));
+				f.setExit(ceClass.get(i + 1));
+				canonicalFragments.add(f);
+			}
+		}
+		return canonicalFragments;
+	}
+
+	private Map<Set<SequenceFlow>, List<SequenceFlow>> sortCycleEqCls(
+			Map<Set<SequenceFlow>, Set<SequenceFlow>> classes) {
+		Map<Set<SequenceFlow>, List<SequenceFlow>> sorted = new HashMap<Set<SequenceFlow>, List<SequenceFlow>>();
+		for (Entry<Set<SequenceFlow>, Set<SequenceFlow>> entry : classes
+				.entrySet()) {
+			List<SequenceFlow> currentCls = new ArrayList<SequenceFlow>(
+					entry.getValue());
+			for (int i = 0; i < currentCls.size() - 1; i++) {
+				for (int j = i + 1; j < currentCls.size(); j++) {
+					if (dominates(start, currentCls.get(j), currentCls.get(i))) {
+						SequenceFlow dominator = currentCls.get(j);
+						currentCls.set(j, currentCls.get(i));
+						currentCls.set(i, dominator);
+					}
+				}
+			}
+			sorted.put(entry.getKey(), currentCls);
+		}
+		return sorted;
+	}
+
+	/**
+	 * 
+	 * Now consider whether two edges in U are cycle equivalent. Two backedges
+	 * cannot be cycle equivalent since the cycle formed from a backedge
+	 * together with the tree path connecting its endpoints contains no other
+	 * backedges. On the other hand, a tree edge and a backedge or two tree
+	 * edges may be cycle equivalent. The following theorems establish
+	 * conditions for detecting these equivalences.
+	 * 
+	 * Theorem 4: A backedge b and a tree edge t are cycle equivalent if and
+	 * only if b is the only bracket of t.
+	 * 
+	 * Theorem 5: Tree edges s and t are cycle equivalent in U if and only if
+	 * they have the same set of brackets in any depth-first spanning tree of U.
+	 * 
+	 * @param start
+	 * @param end
+	 */
+	private Map<Set<SequenceFlow>, Set<SequenceFlow>> createCycleEqCls(
+			Map<SequenceFlow, Set<SequenceFlow>> bracketSets) {
+		Map<Set<SequenceFlow>, Set<SequenceFlow>> classes = new HashMap<Set<SequenceFlow>, Set<SequenceFlow>>();
+		for (Entry<SequenceFlow, Set<SequenceFlow>> bracketSet : bracketSets
+				.entrySet()) {
+			if (!classes.containsKey(bracketSet.getValue())) {
+				classes.put(bracketSet.getValue(), new HashSet<SequenceFlow>());
+			}
+			if (bracketSet.getKey() != insertEdge) {
+				classes.get(bracketSet.getValue()).add(bracketSet.getKey());
+			}
+		}
+		for (Entry<Set<SequenceFlow>, Set<SequenceFlow>> cls : classes
+				.entrySet()) {
+			if (cls.getKey().size() == 1) {
+				for (SequenceFlow flow : cls.getKey()) {
+					if (flow != insertEdge) {
+						cls.getValue().add(flow);
+					}
+				}
+			}
+		}
+		return classes;
+	}
+
+	// - private Set<Fragment> yieldFragments(FlowNode start, FlowNode end,
+	// - Definitions definitions) {
+	// - Set<Fragment> fragments = new HashSet<Fragment>();
+	// - for (SequenceFlow e : spanningTree.getEdges()) {
+	// - for (SequenceFlow f : spanningTree.getEdges()) {
+	// -
+	// - if (!e.equals(f) && !f.equals(insertEdge)) {
+	// - boolean isFragment = false;
+	// - if (edgeStates.get(e) == EdgeState.BACK
+	// - && edgeStates.get(f) == EdgeState.BACK) {
+	// - // can't be a fragment
+	// - } else if (edgeStates.get(e) == EdgeState.BACK
+	// - && edgeStates.get(f) == EdgeState.TREE) {
+	// - // is fragment, if e is only bracket of f
+	// - if (bracketSets.get(f).size() == 1
+	// - && bracketSets.get(f).contains(e)) {
+	// - isFragment = true;
+	// - }
+	// - } else if (edgeStates.get(e) == EdgeState.TREE
+	// - && edgeStates.get(f) == EdgeState.BACK) {
+	// - // is fragment, if f is only bracket of e
+	// - if (bracketSets.get(e).size() == 1
+	// - && bracketSets.get(e).contains(f)) {
+	// - isFragment = true;
+	// - }
+	// - } else if (edgeStates.get(e) == EdgeState.TREE
+	// - && edgeStates.get(f) == EdgeState.TREE) {
+	// - // is fragment, if bracket sets of e and f are the
+	// - // same
+	// - if (bracketSets.get(e).equals(bracketSets.get(f))) {
+	// - isFragment = true;
+	// - }
+	// - } else {
+	// - // no chance to get here
+	// - }
+	// - // Wenn es ein Fragment ist
+	// - if (isFragment) {
+	// - if (dominates(start, e, f)
+	// - && !yieldedFragments.contains(Pair.with(e, f))) {
+	// - Fragment newFragment = BpmnAnalysisFactory.eINSTANCE
+	// - .createFragment();
+	// - newFragment.setEntry(e);
+	// - newFragment.setExit(f);
+	// - fragments.add(newFragment);
+	// - }
+	// - }
+	// - }
+	// - }
+	// - }
+	// - return fragments;
+	// - }
+	// -
+	/**
 	 * DFS through process, when entering a fragment, put on stack
 	 * 
 	 * TODO: respect multiple start / end nodes
@@ -120,7 +292,7 @@ public class PSTBuilder {
 	 * @return
 	 */
 	private DirectedGraph<Fragment, Object> buildStructureTree(
-			Set<Fragment> canonicalFragments) {
+			List<Fragment> canonicalFragments) {
 		structureTree = new DirectedSparseGraph<Fragment, Object>();
 		buildStructureTreeAcc(canonicalFragments, start.getOutgoing().get(0),
 				BpmnAnalysisFactory.eINSTANCE.createFragment(),
@@ -128,7 +300,7 @@ public class PSTBuilder {
 		return structureTree;
 	}
 
-	private void buildStructureTreeAcc(Set<Fragment> canonicalFragments,
+	private void buildStructureTreeAcc(List<Fragment> canonicalFragments,
 			SequenceFlow edge, Fragment root, Stack<Fragment> parents,
 			Set<SequenceFlow> visited) {
 		if (visited.contains(edge)) {
@@ -172,13 +344,13 @@ public class PSTBuilder {
 	private SequenceFlow completeGraph() {
 		FlowNode start = this.start;
 		FlowNode end = this.end;
-		SequenceFlow edge = Bpmn2Factory.eINSTANCE.createSequenceFlow();
-		edge.setId("inserted-edge");
-		edge.setName(edge.getId());
-		edge.setSourceRef(end);
-		edge.setTargetRef(start);
-		graph.addEdge(edge, start, end);
-		return edge;
+		insertEdge = Bpmn2Factory.eINSTANCE.createSequenceFlow();
+		insertEdge.setId("inserted-edge");
+		insertEdge.setName(insertEdge.getId());
+		insertEdge.setSourceRef(end);
+		insertEdge.setTargetRef(start);
+		graph.addEdge(insertEdge, start, end);
+		return insertEdge;
 	}
 
 	/**
@@ -251,124 +423,6 @@ public class PSTBuilder {
 	}
 
 	/**
-	 * 
-	 * Now consider whether two edges in U are cycle equivalent. Two backedges
-	 * cannot be cycle equivalent since the cycle formed from a backedge
-	 * together with the tree path connecting its endpoints contains no other
-	 * backedges. On the other hand, a tree edge and a backedge or two tree
-	 * edges may be cycle equivalent. The following theorems establish
-	 * conditions for detecting these equivalences.
-	 * 
-	 * Theorem 4: A backedge b and a tree edge t are cycle equivalent if and
-	 * only if b is the only bracket of t.
-	 * 
-	 * Theorem 5: Tree edges s and t are cycle equivalent in U if and only if
-	 * they have the same set of brackets in any depth-first spanning tree of U.
-	 * 
-	 * @param start
-	 * @param end
-	 */
-	private Set<Fragment> yieldFragments(FlowNode start, FlowNode end,
-			Definitions definitions) {
-		Set<Fragment> fragments = new HashSet<Fragment>();
-		for (SequenceFlow e : spanningTree.getEdges()) {
-			for (SequenceFlow f : spanningTree.getEdges()) {
-
-				if (!e.equals(f) && !f.equals(insertEdge)) {
-					boolean isFragment = false;
-					if (edgeStates.get(e) == EdgeState.BACK
-							&& edgeStates.get(f) == EdgeState.BACK) {
-						// can't be a fragment
-					} else if (edgeStates.get(e) == EdgeState.BACK
-							&& edgeStates.get(f) == EdgeState.TREE) {
-						// is fragment, if e is only bracket of f
-						if (bracketSets.get(f).size() == 1
-								&& bracketSets.get(f).contains(e)) {
-							isFragment = true;
-						}
-					} else if (edgeStates.get(e) == EdgeState.TREE
-							&& edgeStates.get(f) == EdgeState.BACK) {
-						// is fragment, if f is only bracket of e
-						if (bracketSets.get(e).size() == 1
-								&& bracketSets.get(e).contains(f)) {
-							isFragment = true;
-						}
-					} else if (edgeStates.get(e) == EdgeState.TREE
-							&& edgeStates.get(f) == EdgeState.TREE) {
-						// is fragment, if bracket sets of e and f are the
-						// same
-						if (bracketSets.get(e).equals(bracketSets.get(f))) {
-							isFragment = true;
-						}
-					} else {
-						// no chance to get here
-					}
-					// Wenn es ein Fragment ist
-					if (isFragment) {
-						if (dominates(start, e, f)
-								&& !yieldedFragments.contains(Pair.with(e, f))) {
-							Fragment newFragment = BpmnAnalysisFactory.eINSTANCE
-									.createFragment();
-							newFragment.setEntry(e);
-							newFragment.setExit(f);
-							fragments.add(newFragment);
-						}
-					}
-				}
-			}
-		}
-		return fragments;
-	}
-
-	/**
-	 * Definition 5: A SESE region (a,b) is canonical provided
-	 * 
-	 * 1. b dominates b' for any SESE region (a,b'), and
-	 * 
-	 * 2. a postdominates a' for any SESE region (a',b) .
-	 * 
-	 * @param fragments
-	 * @return
-	 */
-	private Set<Fragment> canoncialFragments(FlowNode start, FlowNode end,
-			Set<Fragment> fragments) {
-		Set<Fragment> canonicalFragments = new HashSet<Fragment>();
-		for (Fragment e : fragments) {
-			boolean isCanonical = true;
-			for (Fragment f : fragments) {
-				if (!e.equals(f)) {
-					// b dominates b'
-					if (e.getEntry().equals(f.getEntry())
-							&& !dominates(start, e.getExit(), f.getExit())) {
-						LOG.debug(getEdgeLabel(e.getExit())
-								+ " does not dominate "
-								+ getEdgeLabel(f.getExit()) + ", so "
-								+ FragmentUtil.toString(e)
-								+ " is not canonical, because of "
-								+ FragmentUtil.toString(f));
-						isCanonical = false;
-					}
-					// // a postdominates a'
-					if (e.getExit().equals(f.getExit())
-							&& !postDominates(end, e.getEntry(), f.getEntry())) {
-						LOG.debug(getEdgeLabel(e.getEntry())
-								+ " does not postdominate "
-								+ getEdgeLabel(f.getEntry()) + ", so "
-								+ FragmentUtil.toString(e)
-								+ " is not canonical, because of "
-								+ FragmentUtil.toString(f));
-						isCanonical = false;
-					}
-				}
-			}
-			if (isCanonical) {
-				canonicalFragments.add(e);
-			}
-		}
-		return canonicalFragments;
-	}
-
-	/**
 	 * Definition 2
 	 * 
 	 * A node x is said to dominate node y in a directed graph if every path
@@ -417,18 +471,19 @@ public class PSTBuilder {
 	 * @param y
 	 * @return
 	 */
-	private boolean postDominates(FlowNode end, SequenceFlow x, SequenceFlow y) {
-		for (SequenceFlow to : end.getIncoming()) {
-			Set<List<SequenceFlow>> paths = getPaths(y, to,
-					new ArrayList<SequenceFlow>());
-			for (List<SequenceFlow> path : paths) {
-				if (!path.contains(x)) {
-					return false;
-				}
-			}
-		}
-		return true;
-	}
+	// private boolean postDominates(FlowNode end, SequenceFlow x, SequenceFlow
+	// y) {
+	// for (SequenceFlow to : end.getIncoming()) {
+	// Set<List<SequenceFlow>> paths = getPaths(y, to,
+	// new ArrayList<SequenceFlow>());
+	// for (List<SequenceFlow> path : paths) {
+	// if (!path.contains(x)) {
+	// return false;
+	// }
+	// }
+	// }
+	// return true;
+	// }
 
 	/**
 	 * Returns all paths between two sequence flows
@@ -453,7 +508,70 @@ public class PSTBuilder {
 		}
 	}
 
-	public String getGraphAsDot() {
+	private UndirectedGraph<FlowNode, SequenceFlow> buildGraph(Process process) {
+		UndirectedGraph<FlowNode, SequenceFlow> graph = new UndirectedSparseMultigraph<FlowNode, SequenceFlow>();
+		process.getFlowElements()
+				.stream()
+				.filter(f -> f instanceof SequenceFlow)
+				.map(f -> (SequenceFlow) f)
+				.forEach(
+						f -> graph.addEdge(f, f.getSourceRef(),
+								f.getTargetRef()));
+		return graph;
+	}
+
+	/**
+	 * TODO: check for multiple end nodes
+	 */
+	private StartEvent getStartNode(Process process) {
+		for (FlowElement elem : process.getFlowElements()) {
+			if (elem instanceof StartEvent) {
+				return (StartEvent) elem;
+			}
+		}
+		return null;
+	}
+
+	/**
+	 * TODO: check for multiple end nodes
+	 */
+	private EndEvent getEndNode(Process process) {
+		for (FlowElement elem : process.getFlowElements()) {
+			if (elem instanceof EndEvent) {
+				return (EndEvent) elem;
+			}
+		}
+		return null;
+	}
+
+	private String getEdgeLabel(SequenceFlow edge) {
+		return (edge.getName() != null && !edge.getName().equals("") ? edge
+				.getName() : "[" + edge.getId() + "]");
+	}
+
+	public void writeDebugFiles(String path, String basename) throws Exception {
+		// dot output
+		DotUtil.writeDot(path, basename + "-undirectedgraph",
+				undirectedGraphToDot());
+		DotUtil.writeDot(path, basename + "-spanningtree", spanningTreeToDot());
+		DotUtil.writeTxtFile(cycleEqClsToTex(), path + basename
+				+ "-ceClasses.tex");
+		DotUtil.writeTxtFile(sortedCycleEqClsToTex(), path + basename
+				+ "-sortedCeClasses.tex");
+		DotUtil.writeTxtFile(canonicalFragmentsToTex(), path + basename
+				+ "-canonicalFragments.tex");
+		DotUtil.writeDot(path, basename + "-pst", structureTreeToDot());
+		// png output
+		// DotUtil.writeAndRunDot(path, basename + "-undirectedgraph",
+		// getGraphAsDot(), "png");
+		// DotUtil.writeAndRunDot(path, basename + "-spanningtree",
+		// getSpanningTreeAsDot(), "png");
+		// DotUtil.writeAndRunDot(path, basename + "-pst",
+		// getStructureTreeAsDot(), "png");
+
+	}
+
+	public String undirectedGraphToDot() {
 		StringBuffer sb = new StringBuffer();
 		sb.append("graph {");
 		sb.append(System.getProperty("line.separator"));
@@ -474,12 +592,11 @@ public class PSTBuilder {
 		return sb.toString();
 	}
 
-	public String getSpanningTreeAsDot() {
+	public String spanningTreeToDot() {
 		StringBuffer sb = new StringBuffer();
 		sb.append("digraph {");
 		sb.append(System.getProperty("line.separator"));
 		for (SequenceFlow edge : spanningTree.getEdges()) {
-
 			sb.append("\"" + spanningTree.getSource(edge).getName() + "\"");
 			sb.append(" -> ");
 			sb.append("\"" + spanningTree.getDest(edge).getName() + "\"");
@@ -508,7 +625,7 @@ public class PSTBuilder {
 
 	}
 
-	public String getStructureTreeAsDot() {
+	public String structureTreeToDot() {
 		String nl = System.getProperty("line.separator");
 		StringBuffer sb = new StringBuffer();
 		sb.append("digraph {" + nl);
@@ -537,57 +654,40 @@ public class PSTBuilder {
 
 	}
 
-	private UndirectedGraph<FlowNode, SequenceFlow> buildGraph(Process process) {
-		UndirectedGraph<FlowNode, SequenceFlow> graph = new UndirectedSparseMultigraph<FlowNode, SequenceFlow>();
-		process.getFlowElements()
-				.stream()
-				.filter(f -> f instanceof SequenceFlow)
-				.map(f -> (SequenceFlow) f)
-				.forEach(
-						f -> graph.addEdge(f, f.getSourceRef(),
-								f.getTargetRef()));
-		return graph;
-	}
-
-	private StartEvent getStartNode(Process process) {
-		for (FlowElement elem : process.getFlowElements()) {
-			if (elem instanceof StartEvent) {
-				return (StartEvent) elem;
-			}
+	private String canonicalFragmentsToTex() {
+		String nl = System.getProperty("line.separator");
+		List<String> fragments = new ArrayList<String>();
+		for (Fragment f : canonicalFragments) {
+			fragments.add("(" + f.getEntry().getName() + ","
+					+ f.getExit().getName() + ")");
 		}
-		return null;
+		return "$" + StringUtils.join(fragments, ", \\allowbreak" + nl) + "$";
 	}
 
-	private String getEdgeLabel(SequenceFlow edge) {
-		return (edge.getName() != null && !edge.getName().equals("") ? edge
-				.getName() : "[" + edge.getId() + "]");
-	}
-
-	/*
-	 * TODO: check for multiple end nodes
-	 */
-	private EndEvent getEndNode(Process process) {
-		for (FlowElement elem : process.getFlowElements()) {
-			if (elem instanceof EndEvent) {
-				return (EndEvent) elem;
+	private String sortedCycleEqClsToTex() {
+		String nl = System.getProperty("line.separator");
+		List<String> classes = new ArrayList<String>();
+		for (List<SequenceFlow> cls : sortedCycleEqCls.values()) {
+			List<String> clsSets = new ArrayList<String>();
+			for (SequenceFlow flow : cls) {
+				clsSets.add(flow.getName());
 			}
+			classes.add("\\langle" + StringUtils.join(clsSets, ",")
+					+ "\\rangle");
 		}
-		return null;
+		return "$" + StringUtils.join(classes, ", \\allowbreak" + nl) + "$";
 	}
 
-	public void writeDebugFiles(String path, String basename) throws Exception {
-		// dot output
-		DotUtil.writeDot(path, basename + "-undirectedgraph", getGraphAsDot());
-		DotUtil.writeDot(path, basename + "-spanningtree",
-				getSpanningTreeAsDot());
-		DotUtil.writeDot(path, basename + "-pst", getStructureTreeAsDot());
-		// png output
-//		DotUtil.writeAndRunDot(path, basename + "-undirectedgraph",
-//				getGraphAsDot(), "png");
-//		DotUtil.writeAndRunDot(path, basename + "-spanningtree",
-//				getSpanningTreeAsDot(), "png");
-//		DotUtil.writeAndRunDot(path, basename + "-pst",
-//				getStructureTreeAsDot(), "png");
-
+	private String cycleEqClsToTex() {
+		String nl = System.getProperty("line.separator");
+		List<String> classes = new ArrayList<String>();
+		for (Set<SequenceFlow> cls : cycleEqCls.values()) {
+			List<String> clsSets = new ArrayList<String>();
+			for (SequenceFlow flow : cls) {
+				clsSets.add(flow.getName());
+			}
+			classes.add("\\{" + StringUtils.join(clsSets, ",") + "\\}");
+		}
+		return "$" + StringUtils.join(classes, ", \\allowbreak" + nl) + "$";
 	}
 }

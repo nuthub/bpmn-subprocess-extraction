@@ -11,12 +11,12 @@
       <bpmn2:incoming>SequenceFlow_18</bpmn2:incoming>
       <bpmn2:outgoing>SequenceFlow_14</bpmn2:outgoing>
     </bpmn2:task>
-    <bpmn2:exclusiveGateway id="ExclusiveGateway_8" gatewayDirection="Converging">
+    <bpmn2:exclusiveGateway id="ExclusiveGateway_8" gatewayDirection="Diverging">
       <bpmn2:incoming>SequenceFlow_20</bpmn2:incoming>
       <bpmn2:outgoing>SequenceFlow_24</bpmn2:outgoing>
       <bpmn2:outgoing>SequenceFlow_30</bpmn2:outgoing>
     </bpmn2:exclusiveGateway>
-    <bpmn2:exclusiveGateway id="ExclusiveGateway_10" gatewayDirection="Diverging">
+    <bpmn2:exclusiveGateway id="ExclusiveGateway_10" gatewayDirection="Converging">
       <bpmn2:incoming>SequenceFlow_16</bpmn2:incoming>
       <bpmn2:incoming>SequenceFlow_27</bpmn2:incoming>
       <bpmn2:outgoing>SequenceFlow_22</bpmn2:outgoing>
