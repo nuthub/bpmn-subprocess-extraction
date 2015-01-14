@@ -1,4 +1,4 @@
-package edu.udo.cs.ls14.jf.analysis.rpst.test;
+/*package edu.udo.cs.ls14.jf.analysis.rpst.test;
 
 import static org.junit.Assert.assertEquals;
 
@@ -142,3 +142,4 @@ public class Bpmn2RpstTest {
 	}
 
 }
+*/

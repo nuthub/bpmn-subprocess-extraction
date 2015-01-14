@@ -48,10 +48,5 @@
 			<artifactId>jung-graph-impl</artifactId>
 		</dependency>
 		<!-- TODO: just needed for IOUtils.invokeDot(...) -->
-		<dependency>
-			<groupId>org.jbpt</groupId>
-			<artifactId>jbpt-bpm</artifactId>
-			<scope>test</scope>
-		</dependency>
 	</dependencies>
 </project>

@@ -174,16 +174,6 @@
 				<artifactId>javatuples</artifactId>
 				<version>1.2</version>
 			</dependency>
-			<dependency>
-				<groupId>org.jbpt</groupId>
-				<artifactId>jbpt-bpm</artifactId>
-				<version>0.2.393</version>
-			</dependency>
-			<dependency>
-				<groupId>org.jbpt</groupId>
-				<artifactId>jbpt-core</artifactId>
-				<version>0.2.393</version>
-			</dependency>
 		<dependency>
 				<groupId>edu.udo.cs.ls14.jf</groupId>
 				<artifactId>bpmnanalysis-conditionalprofile</artifactId>

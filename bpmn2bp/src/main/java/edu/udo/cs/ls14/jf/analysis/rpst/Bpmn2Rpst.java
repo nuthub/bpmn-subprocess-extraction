@@ -1,3 +1,4 @@
+/*
 package edu.udo.cs.ls14.jf.analysis.rpst;
 
 import java.io.IOException;
@@ -14,7 +15,6 @@ import org.jbpt.algo.tree.rpst.RPST;
 import org.jbpt.utils.IOUtils;
 
 public class Bpmn2Rpst {
-
 	public static RPST<BpmnPathEdge, BpmnPathVertex> getRPST(Process process)
 			throws IOException {
 		return getRPST(process, false);
@@ -63,4 +63,5 @@ public class Bpmn2Rpst {
 								vertices.get(f.getTargetRef().getId())));
 		return g;
 	}
-}
+	}
+*/

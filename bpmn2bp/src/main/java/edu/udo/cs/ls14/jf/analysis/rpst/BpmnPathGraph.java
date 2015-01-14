@@ -1,4 +1,4 @@
-package edu.udo.cs.ls14.jf.analysis.rpst;
+/*package edu.udo.cs.ls14.jf.analysis.rpst;
 
 import org.jbpt.graph.abs.AbstractMultiDirectedGraph;
 
@@ -12,3 +12,4 @@ public class BpmnPathGraph extends
 	}
 
 }
+*/
