@@ -22,7 +22,7 @@ import edu.udo.cs.ls14.jf.analysis.reachabilitygraph.ReachabilityGraph;
 import edu.udo.cs.ls14.jf.analysis.reachabilitygraph.Tracer;
 import edu.udo.cs.ls14.jf.bpmn.utils.Bpmn2ResourceSet;
 import edu.udo.cs.ls14.jf.bpmn.utils.DefinitionsUtil;
-import edu.udo.cs.ls14.jf.bpmn.utils.DotUtil;
+import edu.udo.cs.ls14.jf.bpmn.utils.IOUtil;
 import edu.udo.cs.ls14.jf.bpmnanalysis.BehavioralProfile;
 import edu.udo.cs.ls14.jf.bpmnanalysis.BehavioralRelation;
 import edu.udo.cs.ls14.jf.bpmnanalysis.BehavioralRelationType;
@@ -168,20 +168,20 @@ public class BehavioralProfileTest {
 		Bpmn2PtnetConverter converter = new Bpmn2PtnetConverter();
 		PetriNetHLAPI ptnet = converter.convertToPetriNet(process);
 		converter.saveToPnmlFile("/tmp/" + pathname + basename + ".pnml");
-		DotUtil.writeDot("/tmp" + pathname, basename + "-ptnet",
+		IOUtil.writeDot("/tmp" + pathname, basename + "-ptnet",
 				converter.toDot());
 
 		// create Reachability Graph from petri net
 		ReachabilityGraph rg = new ReachabilityGraph();
 		rg.createFromPTNet(ptnet.getContainedItem());
 		String dot = rg.toDot(process, ptnet.getContainedItem());
-		DotUtil.writeDot("/tmp" + pathname, basename + "-reachabilityGraph",
+		IOUtil.writeDot("/tmp" + pathname, basename + "-reachabilityGraph",
 				dot);
 
 		// Create Traces
 		TraceProfile traceProfile = Tracer.getTraceProfile(process, rg);
 		// output traces
-		DotUtil.writeTxtFile(tracesToString(traceProfile), "/tmp/" + pathname
+		IOUtil.writeTxtFile(tracesToString(traceProfile), "/tmp/" + pathname
 				+ basename + "-traces.txt");
 		System.out.println("Wrote traces to /tmp" + pathname + basename
 				+ "-traces.txt");
@@ -192,11 +192,11 @@ public class BehavioralProfileTest {
 		// + "-behavioralProfile.txt");
 		// System.out.println("Wrote Behavioral Profile to /tmp" + pathname
 		// + basename + "-behavioralProfile.txt");
-		DotUtil.writeTxtFile(bpToSuccRelTabular(nodes, bp), "/tmp" + pathname
+		IOUtil.writeTxtFile(bpToSuccRelTabular(nodes, bp), "/tmp" + pathname
 				+ basename + "-nachfolgerelation.tex");
 		System.out.println("Wrote succession relation to /tmp" + pathname
 				+ basename + "-nachfolgerelation.tex");
-		DotUtil.writeTxtFile(bpToTabular(nodes, bp), "/tmp" + pathname
+		IOUtil.writeTxtFile(bpToTabular(nodes, bp), "/tmp" + pathname
 				+ basename + "-verhaltensprofil.tex");
 		System.out.println("Wrote Behavioral Profile to /tmp" + pathname
 				+ basename + "-verhaltensprofil.tex");
@@ -222,7 +222,7 @@ public class BehavioralProfileTest {
 		ReachabilityGraph rg = new ReachabilityGraph();
 		rg.createFromPTNet(ptnet.getContainedItem());
 		String dot = rg.toDot(process, ptnet.getContainedItem());
-		DotUtil.writeAndRunDot("/tmp/", basename, dot, "png");
+		IOUtil.writeAndRunDot("/tmp/", basename, dot, "png");
 
 		// Create Traces
 		TraceProfile traceProfile = Tracer.getTraceProfile(process, rg);

@@ -7,7 +7,7 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 
-public class DotUtil {
+public class IOUtil {
 
 	private static final String DOT_PATH = "/usr/bin/dot";
 

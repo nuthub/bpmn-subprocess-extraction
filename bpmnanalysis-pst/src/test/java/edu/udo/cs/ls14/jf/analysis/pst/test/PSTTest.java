@@ -14,7 +14,7 @@ import org.junit.Test;
 
 import edu.udo.cs.ls14.jf.analysis.pst.PSTBuilder;
 import edu.udo.cs.ls14.jf.bpmn.utils.Bpmn2ResourceSet;
-import edu.udo.cs.ls14.jf.bpmn.utils.DotUtil;
+import edu.udo.cs.ls14.jf.bpmn.utils.IOUtil;
 import edu.udo.cs.ls14.jf.bpmnanalysis.Fragment;
 import edu.udo.cs.ls14.jf.bpmnanalysis.ProcessStructureTree;
 import edu.udo.cs.ls14.jf.registry.Registries;
@@ -188,17 +188,17 @@ public class PSTTest {
 			PSTBuilder builder, int fontsizeGraph, int fontsizeSpTree,
 			int fontsizePst) throws Exception {
 		// dot output
-		DotUtil.writeDot(path, basename + "-undirectedgraph",
+		IOUtil.writeDot(path, basename + "-undirectedgraph",
 				builder.undirectedGraphToDot(fontsizeGraph));
-		DotUtil.writeDot(path, basename + "-spanningtree",
+		IOUtil.writeDot(path, basename + "-spanningtree",
 				builder.spanningTreeToDot(fontsizeSpTree));
-		DotUtil.writeTxtFile(builder.cycleEqClsToTex(), path + basename
+		IOUtil.writeTxtFile(builder.cycleEqClsToTex(), path + basename
 				+ "-ceClasses.tex");
-		DotUtil.writeTxtFile(builder.sortedCycleEqClsToTex(), path + basename
+		IOUtil.writeTxtFile(builder.sortedCycleEqClsToTex(), path + basename
 				+ "-sortedCeClasses.tex");
-		DotUtil.writeTxtFile(builder.canonicalFragmentsToTex(), path + basename
+		IOUtil.writeTxtFile(builder.canonicalFragmentsToTex(), path + basename
 				+ "-canonicalFragments.tex");
-		DotUtil.writeDot(path, basename + "-pst",
+		IOUtil.writeDot(path, basename + "-pst",
 				builder.structureTreeToDot(fontsizePst));
 	}
 
