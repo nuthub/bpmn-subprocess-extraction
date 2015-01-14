@@ -28,7 +28,6 @@ import edu.uci.ics.jung.graph.DirectedSparseMultigraph;
 import edu.uci.ics.jung.graph.UndirectedGraph;
 import edu.uci.ics.jung.graph.UndirectedSparseMultigraph;
 import edu.udo.cs.ls14.jf.bpmn.utils.DefinitionsUtil;
-import edu.udo.cs.ls14.jf.bpmn.utils.DotUtil;
 import edu.udo.cs.ls14.jf.bpmn.utils.FragmentUtil;
 import edu.udo.cs.ls14.jf.bpmnanalysis.BpmnAnalysisFactory;
 import edu.udo.cs.ls14.jf.bpmnanalysis.Fragment;
@@ -52,23 +51,16 @@ public class PSTBuilder {
 	private List<Fragment> canonicalFragments;
 	private DirectedGraph<Fragment, Object> structureTree;
 
-	public ProcessStructureTree getTree(Definitions definitions)
-			throws Exception {
-		ProcessStructureTree tree = BpmnAnalysisFactory.eINSTANCE
-				.createProcessStructureTree();
-		createFromDefinitions(definitions);
-		tree.getFragments().addAll(canonicalFragments);
-		return tree;
-	}
+	String newline = System.getProperty("line.separator");
 
-	private void createFromDefinitions(Definitions definitions)
+	public ProcessStructureTree getTree(Definitions definitions)
 			throws Exception {
 		this.process = DefinitionsUtil.getProcess(definitions);
 
 		// initialize
+		spanningTree = new DirectedSparseMultigraph<FlowNode, SequenceFlow>();
 		edgeStates = new HashMap<SequenceFlow, EdgeState>();
 		bracketSets = new HashMap<SequenceFlow, Set<SequenceFlow>>();
-		spanningTree = new DirectedSparseMultigraph<FlowNode, SequenceFlow>();
 		start = getStartNode(process);
 		end = getEndNode(process);
 
@@ -80,12 +72,13 @@ public class PSTBuilder {
 		// create (directed) spanning tree and seperate edges into set of tree
 		// edges and back edges, determine bracket sets per edge
 		LOG.debug("creating spanning tree and computing bracket sets ...");
-		undirectedDFS(graph, graph.getVertices().iterator().next(),
-				new ArrayList<FlowNode>());
+		// start with startevent, although it is irrelevant which node is start
+		// node
+		undirectedDFS(graph, start, new ArrayList<FlowNode>());
 		bracketSets.entrySet().forEach(
-				e -> LOG.debug(getEdgeLabel(e.getKey())
+				e -> LOG.debug(getLabel(e.getKey())
 						+ ": "
-						+ e.getValue().stream().map(b -> getEdgeLabel(b))
+						+ e.getValue().stream().map(b -> getLabel(b))
 								.collect(Collectors.toSet())));
 
 		// create cycle equivalent classes
@@ -94,9 +87,9 @@ public class PSTBuilder {
 		for (Entry<Set<SequenceFlow>, Set<SequenceFlow>> entry : cycleEqCls
 				.entrySet()) {
 			List<String> brackets = entry.getKey().stream()
-					.map(e -> e.getName()).collect(Collectors.toList());
+					.map(e -> getLabel(e)).collect(Collectors.toList());
 			List<String> members = entry.getValue().stream()
-					.map(e -> e.getName()).collect(Collectors.toList());
+					.map(e -> getLabel(e)).collect(Collectors.toList());
 			LOG.debug("{" + StringUtils.join(brackets, ", ") + "} => {"
 					+ StringUtils.join(members, ", ") + "}");
 		}
@@ -107,9 +100,9 @@ public class PSTBuilder {
 		for (Entry<Set<SequenceFlow>, List<SequenceFlow>> entry : sortedCycleEqCls
 				.entrySet()) {
 			List<String> brackets = entry.getKey().stream()
-					.map(e -> e.getName()).collect(Collectors.toList());
+					.map(e -> getLabel(e)).collect(Collectors.toList());
 			List<String> members = entry.getValue().stream()
-					.map(e -> e.getName()).collect(Collectors.toList());
+					.map(e -> getLabel(e)).collect(Collectors.toList());
 			LOG.debug("{" + StringUtils.join(brackets, ", ") + "} => {"
 					+ StringUtils.join(members, ", ") + "}");
 		}
@@ -128,6 +121,12 @@ public class PSTBuilder {
 		decompleteGraph(insertEdge);
 
 		LOG.debug("done ...");
+
+		ProcessStructureTree tree = BpmnAnalysisFactory.eINSTANCE
+				.createProcessStructureTree();
+		tree.getFragments().addAll(canonicalFragments);
+		return tree;
+
 	}
 
 	/**
@@ -345,7 +344,7 @@ public class PSTBuilder {
 		FlowNode start = this.start;
 		FlowNode end = this.end;
 		insertEdge = Bpmn2Factory.eINSTANCE.createSequenceFlow();
-		insertEdge.setId("inserted-edge");
+		insertEdge.setId("inserted");
 		insertEdge.setName(insertEdge.getId());
 		insertEdge.setSourceRef(end);
 		insertEdge.setTargetRef(start);
@@ -395,7 +394,7 @@ public class PSTBuilder {
 					// add edge to tree edges
 					edgeStates.put(edge, EdgeState.TREE);
 					spanningTree.addEdge(edge, v, w);
-					LOG.debug("adding tree edge: " + getEdgeLabel(edge));
+					LOG.debug("adding tree edge: " + getLabel(edge));
 					// save childrens' bracket sets
 					Set<SequenceFlow> childBrackets = undirectedDFS(g, w,
 							visited);
@@ -405,7 +404,7 @@ public class PSTBuilder {
 					// add edge to back edges
 					edgeStates.put(edge, EdgeState.BACK);
 					spanningTree.addEdge(edge, v, w);
-					LOG.debug("adding back edge: " + getEdgeLabel(edge));
+					LOG.debug("adding back edge: " + getLabel(edge));
 					// save backedge from v to ancestor(v)
 					brackets.add(edge);
 				}
@@ -544,150 +543,126 @@ public class PSTBuilder {
 		return null;
 	}
 
-	private String getEdgeLabel(SequenceFlow edge) {
-		return (edge.getName() != null && !edge.getName().equals("") ? edge
-				.getName() : "[" + edge.getId() + "]");
+	private String getLabel(FlowElement element) {
+		return (element.getName() == null || element.getName().equals("") ? "["
+				+ element.getId() + "]" : element.getName());
 	}
 
-	public void writeDebugFiles(String path, String basename) throws Exception {
-		// dot output
-		DotUtil.writeDot(path, basename + "-undirectedgraph",
-				undirectedGraphToDot());
-		DotUtil.writeDot(path, basename + "-spanningtree", spanningTreeToDot());
-		DotUtil.writeTxtFile(cycleEqClsToTex(), path + basename
-				+ "-ceClasses.tex");
-		DotUtil.writeTxtFile(sortedCycleEqClsToTex(), path + basename
-				+ "-sortedCeClasses.tex");
-		DotUtil.writeTxtFile(canonicalFragmentsToTex(), path + basename
-				+ "-canonicalFragments.tex");
-		DotUtil.writeDot(path, basename + "-pst", structureTreeToDot());
-		// png output
-		// DotUtil.writeAndRunDot(path, basename + "-undirectedgraph",
-		// getGraphAsDot(), "png");
-		// DotUtil.writeAndRunDot(path, basename + "-spanningtree",
-		// getSpanningTreeAsDot(), "png");
-		// DotUtil.writeAndRunDot(path, basename + "-pst",
-		// getStructureTreeAsDot(), "png");
-
-	}
-
-	public String undirectedGraphToDot() {
+	public String undirectedGraphToDot(int fontsize) {
 		StringBuffer sb = new StringBuffer();
-		sb.append("graph {");
-		sb.append(System.getProperty("line.separator"));
+		sb.append("graph {" + newline);
+		sb.append("  rankdir=LR;" + newline);
+		sb.append("  node[fontsize=" + fontsize + "];" + newline);
+		sb.append("  edge[fontsize=" + fontsize + "];" + newline);
+		sb.append("  \"" + getLabel(start) + "\"" + newline);
 		for (SequenceFlow edge : graph.getEdges()) {
-			sb.append("\"" + edge.getSourceRef().getName() + "\"");
+			sb.append("  \"" + getLabel(edge.getSourceRef()) + "\"");
 			sb.append(" -- ");
-			sb.append("\"" + edge.getTargetRef().getName() + "\"");
-			sb.append("[");
-			sb.append("label=\"");
-			sb.append(getEdgeLabel(edge));
-			sb.append("\"");
-			sb.append("]");
-			sb.append(";");
-			sb.append(System.getProperty("line.separator"));
+			sb.append("\"" + getLabel(edge.getTargetRef()) + "\"");
+			sb.append("[label=\"" + getLabel(edge) + "\", weight=1];" + newline);
 		}
-		sb.append("}");
-		sb.append(System.getProperty("line.separator"));
+		sb.append(" \"" + getLabel(start) + "\" -- \"" + getLabel(end)
+				+ "\" [label=\"" + getLabel(insertEdge) + "\", weight=0];"
+				+ newline);
+		sb.append("}" + newline);
 		return sb.toString();
 	}
 
-	public String spanningTreeToDot() {
+	public String spanningTreeToDot(int fontsize) {
 		StringBuffer sb = new StringBuffer();
-		sb.append("digraph {");
-		sb.append(System.getProperty("line.separator"));
+		sb.append("digraph {" + newline);
+		sb.append("  node[fontsize=" + fontsize + "];" + newline);
+		sb.append("  edge[fontsize=" + fontsize + "];" + newline);
+		sb.append("  \"" + getLabel(start) + "\";" + newline);
 		for (SequenceFlow edge : spanningTree.getEdges()) {
-			sb.append("\"" + spanningTree.getSource(edge).getName() + "\"");
+			sb.append("  \"" + getLabel(spanningTree.getSource(edge)) + "\"");
 			sb.append(" -> ");
-			sb.append("\"" + spanningTree.getDest(edge).getName() + "\"");
+			sb.append("\"" + getLabel(spanningTree.getDest(edge)) + "\"");
 			sb.append("[");
+			// edge label
 			sb.append("label=\"");
-			sb.append(getEdgeLabel(edge));
+			sb.append(getLabel(edge));
+			// bracket sets, wenn tree edge
 			if (edgeStates.get(edge) == EdgeState.TREE) {
 				sb.append(" {");
 				sb.append(StringUtils.join(
-						bracketSets.get(edge).stream()
-								.map(b -> getEdgeLabel(b))
+						bracketSets.get(edge).stream().map(b -> getLabel(b))
 								.collect(Collectors.toSet()), ","));
 				sb.append("}");
 			}
 			sb.append("\"");
+			// dotted edge for back edges
 			if (edgeStates.get(edge) == EdgeState.BACK) {
-				sb.append(", style=\"dotted\"");
+				sb.append(", style=\"dotted\", weight=1");
+			} else {
+				sb.append(", weight=2");
 			}
-			sb.append("]");
-			sb.append(";");
-			sb.append(System.getProperty("line.separator"));
+			sb.append("];" + newline);
 		}
-		sb.append("}");
-		sb.append(System.getProperty("line.separator"));
+		sb.append("}" + newline);
 		return sb.toString();
 
 	}
 
-	public String structureTreeToDot() {
-		String nl = System.getProperty("line.separator");
+	public String structureTreeToDot(int fontsize) {
 		StringBuffer sb = new StringBuffer();
-		sb.append("digraph {" + nl);
-		sb.append("node[fontsize=60];" + nl);
+		sb.append("digraph {" + newline);
+		sb.append("node[fontsize=" + fontsize + "];" + newline);
 		for (Object edge : structureTree.getEdges()) {
 			if (structureTree.getSource(edge).getEntry() == null) {
 				sb.append("\"" + process.getName() + "\"");
 			} else {
 				sb.append("\"("
-						+ getEdgeLabel(structureTree.getSource(edge).getEntry())
+						+ getLabel(structureTree.getSource(edge).getEntry())
 						+ ","
-						+ getEdgeLabel(structureTree.getSource(edge).getExit())
+						+ getLabel(structureTree.getSource(edge).getExit())
 						+ ")\"");
 			}
 			sb.append(" -> ");
-			sb.append("\"("
-					+ getEdgeLabel(structureTree.getDest(edge).getEntry())
-					+ "," + getEdgeLabel(structureTree.getDest(edge).getExit())
+			sb.append("\"(" + getLabel(structureTree.getDest(edge).getEntry())
+					+ "," + getLabel(structureTree.getDest(edge).getExit())
 					+ ")\"");
-			sb.append(";");
-			sb.append(System.getProperty("line.separator"));
+			sb.append(";" + newline);
 		}
-		sb.append("}");
-		sb.append(System.getProperty("line.separator"));
+		sb.append("}" + newline);
 		return sb.toString();
 
 	}
 
-	private String canonicalFragmentsToTex() {
-		String nl = System.getProperty("line.separator");
+	public String canonicalFragmentsToTex() {
 		List<String> fragments = new ArrayList<String>();
 		for (Fragment f : canonicalFragments) {
-			fragments.add("(" + f.getEntry().getName() + ","
-					+ f.getExit().getName() + ")");
+			fragments.add("(" + getLabel(f.getEntry()) + ","
+					+ getLabel(f.getExit()) + ")");
 		}
-		return "$" + StringUtils.join(fragments, ", \\allowbreak" + nl) + "$";
+		return "$" + StringUtils.join(fragments, ", \\allowbreak" + newline)
+				+ "$";
 	}
 
-	private String sortedCycleEqClsToTex() {
-		String nl = System.getProperty("line.separator");
+	public String sortedCycleEqClsToTex() {
 		List<String> classes = new ArrayList<String>();
 		for (List<SequenceFlow> cls : sortedCycleEqCls.values()) {
 			List<String> clsSets = new ArrayList<String>();
 			for (SequenceFlow flow : cls) {
-				clsSets.add(flow.getName());
+				clsSets.add(getLabel(flow));
 			}
 			classes.add("\\langle" + StringUtils.join(clsSets, ",")
 					+ "\\rangle");
 		}
-		return "$" + StringUtils.join(classes, ", \\allowbreak" + nl) + "$";
+		return "$" + StringUtils.join(classes, ", \\allowbreak" + newline)
+				+ "$";
 	}
 
-	private String cycleEqClsToTex() {
-		String nl = System.getProperty("line.separator");
+	public String cycleEqClsToTex() {
 		List<String> classes = new ArrayList<String>();
 		for (Set<SequenceFlow> cls : cycleEqCls.values()) {
 			List<String> clsSets = new ArrayList<String>();
 			for (SequenceFlow flow : cls) {
-				clsSets.add(flow.getName());
+				clsSets.add(getLabel(flow));
 			}
 			classes.add("\\{" + StringUtils.join(clsSets, ",") + "\\}");
 		}
-		return "$" + StringUtils.join(classes, ", \\allowbreak" + nl) + "$";
+		return "$" + StringUtils.join(classes, ", \\allowbreak" + newline)
+				+ "$";
 	}
 }

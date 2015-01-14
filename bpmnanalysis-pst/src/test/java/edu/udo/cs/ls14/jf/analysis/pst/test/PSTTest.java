@@ -14,6 +14,7 @@ import org.junit.Test;
 
 import edu.udo.cs.ls14.jf.analysis.pst.PSTBuilder;
 import edu.udo.cs.ls14.jf.bpmn.utils.Bpmn2ResourceSet;
+import edu.udo.cs.ls14.jf.bpmn.utils.DotUtil;
 import edu.udo.cs.ls14.jf.bpmnanalysis.Fragment;
 import edu.udo.cs.ls14.jf.bpmnanalysis.ProcessStructureTree;
 import edu.udo.cs.ls14.jf.registry.Registries;
@@ -29,16 +30,15 @@ public class PSTTest {
 	public void testComplete1() throws Exception {
 		String basename = "complete1";
 		String pathname = "/bpmn/complete/";
-		ProcessStructureTree pst = runTest(pathname, basename);
-		assertEquals(14,pst.getFragments().size());
+		ProcessStructureTree pst = runTest(pathname, basename, 32, 32, 60);
+		assertEquals(14, pst.getFragments().size());
 	}
-
 
 	@Test
 	public void testEventBasedGatewayExclusive() throws Exception {
 		String pathname = "/bpmn/eventBasedGateway/";
 		String basename = "event-based-gateway-exclusive";
-		ProcessStructureTree pst = runTest(pathname, basename);
+		ProcessStructureTree pst = runTest(pathname, basename, 32, 32, 60);
 		List<Fragment> frags = pst.getFragments();
 		assertEquals(3, frags.size());
 		assertFragsContainByName(frags, "1", "6");
@@ -64,7 +64,7 @@ public class PSTTest {
 	public void testEventBasedGatewayParallel() throws Exception {
 		String pathname = "/bpmn/eventBasedGateway/";
 		String basename = "event-based-gateway-parallel";
-		ProcessStructureTree pst = runTest(pathname, basename);
+		ProcessStructureTree pst = runTest(pathname, basename, 32, 32, 60);
 		List<Fragment> frags = pst.getFragments();
 		assertEquals(3, frags.size());
 		assertFragsContainByName(frags, "1", "6");
@@ -76,7 +76,7 @@ public class PSTTest {
 	public void testPM1() throws Exception {
 		String pathname = "/bpmn/";
 		String basename = "PM1-mit-Fragment1";
-		ProcessStructureTree pst = runTest(pathname, basename);
+		ProcessStructureTree pst = runTest(pathname, basename, 32, 32, 60);
 		List<Fragment> frags = pst.getFragments();
 		assertEquals(6, frags.size());
 		assertFragsContainByName(frags, "1", "2");
@@ -91,7 +91,7 @@ public class PSTTest {
 	public void testPM2() throws Exception {
 		String pathname = "/bpmn/";
 		String basename = "PM2-mit-Fragment1";
-		ProcessStructureTree pst = runTest(pathname, basename);
+		ProcessStructureTree pst = runTest(pathname, basename, 32, 32, 60);
 		List<Fragment> frags = pst.getFragments();
 		assertEquals(7, frags.size());
 		assertFragsContainByName(frags, "1", "2");
@@ -107,7 +107,7 @@ public class PSTTest {
 	public void testSequence() throws Exception {
 		String pathname = "/bpmn/sequences/";
 		String basename = "sequence1";
-		ProcessStructureTree pst = runTest(pathname, basename);
+		ProcessStructureTree pst = runTest(pathname, basename, 32, 32, 60);
 		List<Fragment> frags = pst.getFragments();
 		assertEquals(5, frags.size());
 		assertFragsContainByName(frags, "1", "2");
@@ -121,7 +121,7 @@ public class PSTTest {
 	public void testXorExample() throws Exception {
 		String pathname = "/bpmn/exclusiveGateway/";
 		String basename = "xor-example";
-		ProcessStructureTree pst = runTest(pathname, basename);
+		ProcessStructureTree pst = runTest(pathname, basename, 32, 32, 60);
 		List<Fragment> frags = pst.getFragments();
 		assertEquals(4, frags.size());
 		assertFragsContainByName(frags, "1", "2");
@@ -134,7 +134,7 @@ public class PSTTest {
 	public void testLoopingXor() throws Exception {
 		String pathname = "/bpmn/exclusiveGateway/";
 		String basename = "looping-xor";
-		ProcessStructureTree pst = runTest(pathname, basename);
+		ProcessStructureTree pst = runTest(pathname, basename, 32, 32, 60);
 		List<Fragment> frags = pst.getFragments();
 		assertEquals(5, frags.size());
 		assertFragsContainByName(frags, "1", "10");
@@ -148,7 +148,7 @@ public class PSTTest {
 	public void testLoopingEvents() throws Exception {
 		String pathname = "/bpmn/loops/";
 		String basename = "looping-events-example";
-		ProcessStructureTree pst = runTest(pathname, basename);
+		ProcessStructureTree pst = runTest(pathname, basename, 32, 32, 60);
 		List<Fragment> frags = pst.getFragments();
 		assertEquals(4, frags.size());
 		assertFragsContainByName(frags, "f1", "f2");
@@ -157,7 +157,9 @@ public class PSTTest {
 		assertFragsContainByName(frags, "f5", "f6");
 	}
 
-	public ProcessStructureTree runTest(String pathname, String basename) throws Exception {
+	public ProcessStructureTree runTest(String pathname, String basename,
+			int fontsizeGraph, int fontsizeSpTree, int fontsizePst)
+			throws Exception {
 		System.out.println("Creating PST for " + basename);
 		Definitions definitions = Bpmn2ResourceSet.getInstance()
 				.loadDefinitions(
@@ -165,7 +167,8 @@ public class PSTTest {
 								.getPath());
 		PSTBuilder pstBuilder = new PSTBuilder();
 		ProcessStructureTree pst = pstBuilder.getTree(definitions);
-		pstBuilder.writeDebugFiles("/tmp/" + pathname, basename);
+		writeDebugFiles("/tmp/" + pathname, basename, pstBuilder,
+				fontsizeGraph, fontsizeSpTree, fontsizePst);
 		return pst;
 	}
 
@@ -179,6 +182,24 @@ public class PSTTest {
 			}
 		}
 		assertTrue(contains);
-
 	}
+
+	public void writeDebugFiles(String path, String basename,
+			PSTBuilder builder, int fontsizeGraph, int fontsizeSpTree,
+			int fontsizePst) throws Exception {
+		// dot output
+		DotUtil.writeDot(path, basename + "-undirectedgraph",
+				builder.undirectedGraphToDot(fontsizeGraph));
+		DotUtil.writeDot(path, basename + "-spanningtree",
+				builder.spanningTreeToDot(fontsizeSpTree));
+		DotUtil.writeTxtFile(builder.cycleEqClsToTex(), path + basename
+				+ "-ceClasses.tex");
+		DotUtil.writeTxtFile(builder.sortedCycleEqClsToTex(), path + basename
+				+ "-sortedCeClasses.tex");
+		DotUtil.writeTxtFile(builder.canonicalFragmentsToTex(), path + basename
+				+ "-canonicalFragments.tex");
+		DotUtil.writeDot(path, basename + "-pst",
+				builder.structureTreeToDot(fontsizePst));
+	}
+
 }

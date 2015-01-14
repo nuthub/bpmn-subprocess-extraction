@@ -1,6 +1,7 @@
 package edu.udo.cs.ls14.jf.analysis.reachabilitygraph;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import org.apache.commons.lang3.StringUtils;
@@ -24,7 +25,7 @@ public class Marking extends ArrayList<Place> {
 		this.initialMarking = initialMarking;
 	}
 
-	public String getLabel() {
+	public String getId() {
 		List<String> labels = new ArrayList<String>();
 		for (Place p : this) {
 			labels.add(p.getId());
@@ -33,12 +34,12 @@ public class Marking extends ArrayList<Place> {
 	}
 
 	public String getDotLabel() {
-		StringBuffer sb = new StringBuffer();
+		List<String> places = new ArrayList<String>();
 		for (Place p : this) {
-			sb.append(p.getId());
-			sb.append("; ");
+			places.add(p.getName().getText());
 		}
-		return sb.toString();
+		Collections.sort(places);
+		return StringUtils.join(places.toArray(), " ");
 	}
 
 	public String toString() {

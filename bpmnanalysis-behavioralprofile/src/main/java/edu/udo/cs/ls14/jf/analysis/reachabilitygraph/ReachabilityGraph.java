@@ -10,10 +10,13 @@ import java.util.Map;
 import java.util.Set;
 
 import org.apache.commons.lang3.NotImplementedException;
+import org.eclipse.bpmn2.FlowNode;
+import org.eclipse.bpmn2.Process;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import edu.uci.ics.jung.graph.DirectedSparseMultigraph;
+import edu.udo.cs.ls14.jf.bpmn.utils.DefinitionsUtil;
 import fr.lip6.move.pnml.framework.hlapi.HLAPIRootClass;
 import fr.lip6.move.pnml.framework.utils.PNMLUtils;
 import fr.lip6.move.pnml.ptnet.Arc;
@@ -32,7 +35,6 @@ public class ReachabilityGraph extends DirectedSparseMultigraph<Marking, Edge> {
 	private static final long serialVersionUID = 4381590121431152940L;
 	private static final Logger LOG = LoggerFactory
 			.getLogger(ReachabilityGraph.class);
-
 
 	public void createFromPnml(File file) throws Exception {
 		HLAPIRootClass rc = PNMLUtils.importPnmlDocument(file, false);
@@ -120,7 +122,6 @@ public class ReachabilityGraph extends DirectedSparseMultigraph<Marking, Edge> {
 	private Marking getMPrime(Marking m, Transition t) throws Exception {
 		Marking mPrime = new Marking();
 		mPrime.addAll(m);
-		// TODO: Prüfen, ob t überhaupt aktiviert ist
 		// 1. Vorbereich aus Markierung entfernen
 		for (Arc arc : t.getInArcs()) {
 			if (!(arc.getSource() instanceof Place)) {
@@ -170,21 +171,42 @@ public class ReachabilityGraph extends DirectedSparseMultigraph<Marking, Edge> {
 
 	}
 
-	public String toDot() {
+	public String toDot(Process process, PetriNet ptnet) {
+		String nl = System.getProperty("line.separator");
 		StringBuffer sb = new StringBuffer();
-		sb.append("digraph {");
-		sb.append(System.getProperty("line.separator"));
-
+		sb.append("digraph {" + nl);
+		sb.append("node[fixedsize=false; fontsize=48];" + nl);
+		sb.append("edge[fontsize=48];" + nl);
+		for (Marking marking : getVertices()) {
+			if (marking.get(0).getInitialMarking() != null) {
+				sb.append("\"" + marking.getId() + "\" [shape=oval, label=\""
+						+ (marking.getDotLabel()) + "\"];");
+				sb.append(nl);
+			}
+		}
+		for (Marking marking : getVertices()) {
+			if (marking.get(0).getInitialMarking() == null) {
+				sb.append("\"" + marking.getId() + "\" [shape=oval, label=\""
+						+ (marking.getDotLabel()) + "\"];");
+				sb.append(nl);
+			}
+		}
 		for (Edge edge : getEdges()) {
-			sb.append("\"" + getSource(edge).getDotLabel() + "\"");
+			sb.append("\"" + getSource(edge).getId() + "\"");
 			sb.append(" -> ");
-			sb.append("\"" + getDest(edge).getDotLabel() + "\"");
-			sb.append(" [label=\"" + edge.getT() + "\"]");
-			sb.append(System.getProperty("line.separator"));
+			sb.append("\"" + getDest(edge).getId() + "\"");
+			FlowNode flowNode = DefinitionsUtil.getFlowNode(process,
+					edge.getT());
+			if (DefinitionsUtil.isAE(flowNode)) {
+				sb.append(" [label=\"" + flowNode.getName() + "\"]");
+			} else {
+				sb.append(" [label=\"\"]");
+			}
+			sb.append(";");
+			sb.append(nl);
 		}
 		sb.append("}");
-		sb.append(System.getProperty("line.separator"));
+		sb.append(nl);
 		return sb.toString();
 	}
-
 }

@@ -4,9 +4,6 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-import org.eclipse.bpmn2.Activity;
-import org.eclipse.bpmn2.Event;
-import org.eclipse.bpmn2.FlowElement;
 import org.eclipse.bpmn2.FlowNode;
 import org.eclipse.bpmn2.Process;
 import org.eclipse.emf.common.util.BasicEList;
@@ -14,6 +11,7 @@ import org.eclipse.emf.common.util.EList;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import edu.udo.cs.ls14.jf.bpmn.utils.DefinitionsUtil;
 import edu.udo.cs.ls14.jf.bpmnanalysis.BpmnAnalysisFactory;
 import edu.udo.cs.ls14.jf.bpmnanalysis.Trace;
 import edu.udo.cs.ls14.jf.bpmnanalysis.TraceProfile;
@@ -70,13 +68,13 @@ public class Tracer {
 		for (Edge edge : graph.getOutEdges(start)) {
 			// Kante repräsentiert eine Transition
 			// Transition repräsentiert evtl FlowNode
-			FlowNode currentNode = getFlowNode(process, edge);
+			FlowNode currentNode = DefinitionsUtil.getFlowNode(process, edge.getT());
 			// erstelle neuen Präfix aus altem Prefix
 			Trace newPrefix = BpmnAnalysisFactory.eINSTANCE.createTrace();
 			newPrefix.getNodes().addAll(prefix.getNodes());
 			// Wenn node FlowNode ist (!=null) und eine Aktivität oder ein
 			// Ereignis ist (also keine stille Transition)
-			if (isAE(currentNode)) {
+			if (DefinitionsUtil.isAE(currentNode)) {
 				// Füge FlowNode dem neuen Präfix hinzu, auch wenn schon enthalten
 				newPrefix.getNodes().add(currentNode);				
 			}
@@ -93,17 +91,4 @@ public class Tracer {
 		return prefixes;
 	}
 
-	private static FlowNode getFlowNode(Process process, Edge edge) {
-		edge.getT();
-		for (FlowElement e : process.getFlowElements()) {
-			if (e instanceof FlowNode && e.getId().equals(edge.getT())) {
-				return (FlowNode) e;
-			}
-		}
-		return null;
-	}
-
-	private static boolean isAE(FlowNode node) {
-		return (node instanceof Activity || node instanceof Event);
-	}
 }

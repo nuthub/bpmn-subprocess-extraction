@@ -62,6 +62,7 @@ public class Bpmn2PtnetConverter {
 	private PetriNetDocHLAPI doc;
 	private Set<Pair<String, Set<TransitionHLAPI>>> prePlaces;
 	private Set<Pair<Set<TransitionHLAPI>, String>> postPlaces;
+	private int pCount = 0;
 
 	public PetriNetHLAPI convertToPetriNet(Process process) throws Exception {
 		createPetrinetFromProcess(process);
@@ -127,10 +128,7 @@ public class Bpmn2PtnetConverter {
 					PlaceHLAPI place = new PlaceHLAPI("P-"
 							+ getConcatenatedIds(p.getValue0()) + "-"
 							+ getConcatenatedIds(p2.getValue1()),
-							new NameHLAPI("P-"
-									+ getConcatenatedNames(p.getValue0()) + "-"
-									+ getConcatenatedNames(p2.getValue1())),
-							null, null, page);
+							new NameHLAPI("p" + pCount++), null, null, page);
 					for (TransitionHLAPI t : p2.getValue1()) {
 						String arcId = "Arc-" + place.getId() + "---"
 								+ t.getId();
@@ -242,7 +240,7 @@ public class Bpmn2PtnetConverter {
 			TransitionHLAPI t = new TransitionHLAPI(n.getId(), new NameHLAPI(""
 					+ n.getName()), null, page);
 			PlaceHLAPI p = new PlaceHLAPI("P-null-" + n.getId(), new NameHLAPI(
-					"P-" + n.getName()), null, new PTMarkingHLAPI(1), page);
+					"p" + pCount++), null, new PTMarkingHLAPI(1), page);
 			new ArcHLAPI("Arc-" + p.getId() + "---" + t.getId(), new NameHLAPI(
 					"Arc-" + p.getName().getText() + "---"
 							+ t.getName().getText()), p, t, null, null, page);
@@ -255,8 +253,7 @@ public class Bpmn2PtnetConverter {
 			TransitionHLAPI t = new TransitionHLAPI(n.getId(), new NameHLAPI(""
 					+ n.getName()), null, page);
 			PlaceHLAPI p = new PlaceHLAPI("P-" + n.getId() + "-null",
-					new NameHLAPI("P-" + n.getName() + "-null"), null, null,
-					page);
+					new NameHLAPI("p" + pCount++), null, null, page);
 			new ArcHLAPI("Arc-" + t.getId() + "---" + p.getId(), new NameHLAPI(
 					"Arc-" + t.getNameHLAPI() + "---" + p.getNameHLAPI()), t,
 					p, null, null, page);
@@ -290,14 +287,6 @@ public class Bpmn2PtnetConverter {
 		List<String> tIds = new ArrayList<String>();
 		for (TransitionHLAPI t : ts) {
 			tIds.add(t.getId());
-		}
-		return StringUtils.join(tIds, ".");
-	}
-
-	private String getConcatenatedNames(Set<TransitionHLAPI> ts) {
-		List<String> tIds = new ArrayList<String>();
-		for (TransitionHLAPI t : ts) {
-			tIds.add(t.getNameHLAPI().getText());
 		}
 		return StringUtils.join(tIds, ".");
 	}
@@ -342,12 +331,13 @@ public class Bpmn2PtnetConverter {
 		sb.append("color=black;" + nl);
 		for (PlaceHLAPI p : page.getObjects_PlaceHLAPI()) {
 			sb.append("  \"" + p.getId()
-					+ "\" [shape=circle, height=.40, width=.40,label=\"\"];"
-					+ nl);
+					+ "\" [shape=circle, height=.75,label=\""
+					+ p.getName().getText()
+					+ "\", fixedsize=true, fontsize=28];" + nl);
 		}
 		for (TransitionHLAPI t : page.getObjects_TransitionHLAPI()) {
 			sb.append("  \"" + t.getId()
-					+ "\" [shape=box, height=.50, width=.20,label=\""
+					+ "\" [shape=box, height=.75, width=.20,label=\""
 					+ t.getName().getText() + "\"];" + nl);
 		}
 		for (ArcHLAPI a : page.getObjects_ArcHLAPI()) {
