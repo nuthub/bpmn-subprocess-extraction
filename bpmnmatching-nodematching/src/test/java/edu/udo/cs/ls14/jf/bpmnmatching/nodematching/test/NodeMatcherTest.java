@@ -32,10 +32,12 @@ public class NodeMatcherTest {
 
 	@Test
 	public void testNodeMatcher() throws Exception {
-		Bpmn2ResourceSet resSet = new Bpmn2ResourceSet(getClass().getResource(
-				"/edu/udo/cs/ls14/jf/bpmn/test/").getPath());
-		Definitions def1 = resSet.loadDefinitions("PM1-mit-Fragment1.bpmn");
-		Definitions def2 = resSet.loadDefinitions("PM3-mit-Fragment2.bpmn");
+		Bpmn2ResourceSet resSet = Bpmn2ResourceSet.getInstance();
+		String pathname = "/bpmn/parallelGateway/";
+		Definitions def1 = resSet.loadDefinitions(getClass().getResource(
+				pathname + "PM1-mit-Fragment1.bpmn").getPath());
+		Definitions def2 = resSet.loadDefinitions(getClass().getResource(
+				pathname + "PM2-mit-Fragment1.bpmn").getPath());
 		NodeMatching nodeMatching = ProcessMatchingFactory.getFullNodeMatching(
 				def1, def2);
 		nodeMatching = NodePairFilter.filter(nodeMatching);
