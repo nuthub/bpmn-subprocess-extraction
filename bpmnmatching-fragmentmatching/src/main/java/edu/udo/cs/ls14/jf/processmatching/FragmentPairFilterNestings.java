@@ -34,7 +34,7 @@ public class FragmentPairFilterNestings {
 				}
 			}
 			if (!isContainedInOther) {
-				LOG.info(FragmentUtil.toString(c1.getA()) + "/"
+				LOG.info(FragmentUtil.toString(c1.getA()) + " / "
 						+ FragmentUtil.toString(c1.getB())
 						+ " is not contained in any other fragment");
 			}
