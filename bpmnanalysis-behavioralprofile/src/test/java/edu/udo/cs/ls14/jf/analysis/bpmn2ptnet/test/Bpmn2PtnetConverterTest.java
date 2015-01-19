@@ -26,51 +26,58 @@ public class Bpmn2PtnetConverterTest {
 
 	@Test
 	public void testLoopTransformation() throws Exception {
+		String pathname = "/bpmn/loops/";
 		String basename = "looping-events-example";
-		runTest(basename, 9, 9, 18);
+		runTest(pathname, basename, 9, 9, 18);
 	}
 
 	@Test
 	public void testXorWEventsTransformation() throws Exception {
+		String pathname = "/bpmn/exclusiveGateway/";
 		String basename = "xor-example";
-		runTest(basename, 9, 9, 18);
+		runTest(pathname, basename, 9, 9, 18);
 	}
 
 	@Test
 	public void testLoopingXorTransformation() throws Exception {
+		String pathname = "/bpmn/loops/";
 		String basename = "looping-xor";
-		runTest(basename, 12, 13, 26);
+		runTest(pathname, basename, 12, 13, 26);
 	}
 
 	@Test
 	public void testPM1() throws Exception {
+		String pathname = "/bpmn/parallelGateway/";
 		String basename = "PM1-mit-Fragment1";
-		runTest(basename, 12, 9, 22);
+		runTest(pathname, basename, 12, 9, 22);
 	}
 
 	@Test
 	public void testPM2() throws Exception {
+		String pathname = "/bpmn/parallelGateway/";
 		String basename = "PM2-mit-Fragment1";
-		runTest(basename, 14, 11, 26);
+		runTest(pathname, basename, 14, 11, 26);
 	}
 
 	@Test
 	public void testEventBasedGatewayExclusive() throws Exception {
+		String pathname = "/bpmn/eventBasedGateway/";
 		String basename = "event-based-gateway-exclusive";
-		runTest(basename, 8, 8, 16);
+		runTest(pathname, basename, 8, 8, 16);
 	}
 
 	@Test
 	public void testEventBasedGatewayParallel() throws Exception {
+		String pathname = "/bpmn/eventBasedGateway/";
 		String basename = "event-based-gateway-parallel";
-		runTest(basename, 8, 6, 14);
+		runTest(pathname, basename, 8, 6, 14);
 	}
 
-	private void runTest(String basename, int expectedPlaceCount,
+	private void runTest(String pathname, String basename, int expectedPlaceCount,
 			int expectedTransitionCount, int expectedArcCount) throws Exception {
-		Definitions definitions = new Bpmn2ResourceSet(getClass().getResource(
-				"/edu/udo/cs/ls14/jf/bpmn/test/").getPath())
-				.loadDefinitions(basename + ".bpmn");
+		Definitions definitions = Bpmn2ResourceSet.getInstance()
+				.loadDefinitions(getClass().getResource(
+						pathname + basename + ".bpmn").getPath());
 		Process process = DefinitionsUtil.getProcess(definitions);
 		PetriNetHLAPI net = converter.convertToPetriNet(process);
 		assertEquals(1, net.getPagesHLAPI().size());
@@ -79,7 +86,7 @@ public class Bpmn2PtnetConverterTest {
 		assertEquals(expectedTransitionCount, page.getObjects_TransitionHLAPI()
 				.size());
 		assertEquals(expectedArcCount, page.getObjects_ArcHLAPI().size());
-		converter.saveToPnmlFile("/tmp/" + basename + ".pnml");
+		converter.saveToPnmlFile("/tmp/" + pathname + basename + ".pnml");
 
 	}
 
