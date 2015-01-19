@@ -46,8 +46,8 @@ public class BehavioralProfilerWSTest {
 		// Register resource factories
 		Registries.registerAll();
 		// Create Resource Set
-		resSet = new Bpmn2ResourceSet(getClass().getResource(
-				"/edu/udo/cs/ls14/jf/bpmn/test/").getFile());
+		resSet = Bpmn2ResourceSet.getInstance();
+
 	}
 
 	@After
@@ -63,8 +63,10 @@ public class BehavioralProfilerWSTest {
 	@Test
 	public void testAnalyze() throws Exception {
 		// create some test data
-		Definitions definitions = resSet
-				.loadDefinitions("PM1-mit-Fragment1.bpmn");
+		Definitions definitions = resSet.loadDefinitions(getClass()
+				.getResource(
+						"/bpmn/parallelGateway/PM1-mit-Fragment1.bpmn")
+				.getFile());
 		ProcessAnalysis analysis = ProcessAnalysisFactory
 				.createAnalysis(definitions);
 		analysis = port.profile(analysis);

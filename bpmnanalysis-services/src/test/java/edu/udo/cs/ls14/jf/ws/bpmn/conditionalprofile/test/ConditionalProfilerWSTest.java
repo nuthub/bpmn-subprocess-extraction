@@ -43,8 +43,7 @@ public class ConditionalProfilerWSTest {
 		service = Service.create(new URL(url + "?wsdl"), serviceName);
 		port = service.getPort(ConditionalProfilerSEI.class);
 
-		resSet = new Bpmn2ResourceSet(getClass().getResource(
-				"/edu/udo/cs/ls14/jf/bpmn/test/").getFile());
+		resSet = Bpmn2ResourceSet.getInstance(); 
 		// Register resource factories
 		Registries.registerAll();
 	}
@@ -62,7 +61,8 @@ public class ConditionalProfilerWSTest {
 	@Test
 	public void testAnalyze() throws Exception {
 		// create some test data
-		Definitions definitions = resSet.loadDefinitions("PM1-mit-Fragment1.bpmn");
+		Definitions definitions = resSet.loadDefinitions(getClass().getResource(
+				"/bpmn/parallelGateway/PM1-mit-Fragment1.bpmn").getFile());
 		ProcessAnalysis analysis = ProcessAnalysisFactory
 				.createAnalysis(definitions);
 		analysis = port.profile(analysis);

@@ -42,8 +42,7 @@ public class BpmnAnalysisTest {
 		service = Service.create(new URL(url + "?wsdl"), serviceName);
 		port = service.getPort(BpmnAnalysisSEI.class);
 
-		resSet = new Bpmn2ResourceSet(getClass().getResource(
-				"/edu/udo/cs/ls14/jf/bpmn/test/").getFile());
+		resSet = Bpmn2ResourceSet.getInstance();
 		// Register resource factories
 		Registries.registerAll();
 	}
@@ -64,7 +63,8 @@ public class BpmnAnalysisTest {
 	public void testAnalyze() throws Exception {
 		// create some test data
 		Definitions definitions = resSet
-				.loadDefinitions("PM1-mit-Fragment1.bpmn");
+				.loadDefinitions(getClass().getResource(
+						"/bpmn/parallelGateway/PM1-mit-Fragment1.bpmn").getPath());
 		System.out.println("Request: " + definitions);
 		ProcessAnalysis analysisOut = port.analyze(definitions);
 		System.out.println("Response: " + analysisOut.getResults());
