@@ -1,5 +1,7 @@
 package edu.udo.cs.ls14.jf.analysis.conditionalprofile.test;
 
+import static org.junit.Assert.*;
+
 import org.eclipse.bpmn2.Definitions;
 import org.eclipse.bpmn2.Process;
 import org.junit.Before;
@@ -21,21 +23,24 @@ public class ConditionalProfileTest {
 
 	@Test
 	public void testConditionSequence() throws Exception {
-		Process p1 = getResource("conditionSequence");
+		String pathname = "/bpmn/conditionalFlow/";
+		Process p1 = getResource(pathname, "conditionSequence1");
 		ConditionalProfile cp1 = ConditionalProfiler.generateProfile(p1);
-		System.out.println(cp1);
 		// TODO: assertions
+		assertNotNull(cp1);
 
-		Process p2 = getResource("conditionSequence2");
+		Process p2 = getResource(pathname, "conditionSequence2");
 		ConditionalProfile cp2 = ConditionalProfiler.generateProfile(p2);
-		System.out.println(cp2);
 		// TODO: assertions
+		assertNotNull(cp2);
 	}
 
-	private Process getResource(String basename) throws Exception {
-		Definitions definitions = new Bpmn2ResourceSet(getClass().getResource(
-				"/edu/udo/cs/ls14/jf/bpmn/test/conditionalFlow").getPath())
-				.loadDefinitions(basename + ".bpmn");
+	private Process getResource(String pathname, String basename)
+			throws Exception {
+		Definitions definitions = Bpmn2ResourceSet.getInstance()
+				.loadDefinitions(
+						getClass().getResource(pathname + basename + ".bpmn")
+								.getPath());
 		return DefinitionsUtil.getProcess(definitions);
 	}
 }
