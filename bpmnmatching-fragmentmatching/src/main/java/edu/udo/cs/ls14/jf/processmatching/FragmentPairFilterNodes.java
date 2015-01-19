@@ -54,12 +54,15 @@ public class FragmentPairFilterNodes {
 			Set<FlowNode> nodes2Mapped = relevantMappings.stream()
 					.map(p -> p.getB()).collect(Collectors.toSet());
 			if (!nodes1.equals(nodes1Mapped) || !nodes2.equals(nodes2Mapped)) {
-				LOG.debug("Fragments are not node equivalent.");
+				LOG.debug("Fragments are not node equivalent: "
+						+ FragmentUtil.toString(pair.getA()) + " / "
+						+ FragmentUtil.toString(pair.getB()));
 				removePairs.add(pair);
 				continue;
 			}
-			LOG.info("Fragments are node equivalent: " + pair.getA() + " / "
-					+ pair.getB());
+			LOG.info("Fragments are node equivalent: "
+					+ FragmentUtil.toString(pair.getA()) + " / "
+					+ FragmentUtil.toString(pair.getB()));
 			LOG.debug("Nodes of Process 1: "
 					+ nodes1.stream().map(n -> n.getName())
 							.collect(Collectors.toSet()));

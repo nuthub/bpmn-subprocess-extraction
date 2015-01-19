@@ -111,9 +111,13 @@ public class FragmentPairFilterConditions {
 				}
 			} // forall nodes of fragment1
 			if (allConditionsMatch) {
-				LOG.info("Conditions equivalent fragments: " + f1 + " / " + f2);
+				LOG.info("Fragment are conditional equivalent: "  
+						+ FragmentUtil.toString(pair.getA()) + " / "
+						+ FragmentUtil.toString(pair.getB()));
 			} else {
-				LOG.debug(f1 + " and " + f2 + " are not conditions equivalent.");
+				LOG.info("Fragments are not conditional equivalent: "  
+						+ FragmentUtil.toString(pair.getA()) + " / "
+						+ FragmentUtil.toString(pair.getB()));
 				removePairs.add(pair);
 			}
 		}

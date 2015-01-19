@@ -4,6 +4,7 @@ import org.javatuples.Pair;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import edu.udo.cs.ls14.jf.bpmn.utils.FragmentUtil;
 import edu.udo.cs.ls14.jf.bpmnmatching.BpmnMatchingFactory;
 import edu.udo.cs.ls14.jf.bpmnmatching.FragmentMatching;
 import edu.udo.cs.ls14.jf.bpmnmatching.FragmentPair;
@@ -20,7 +21,11 @@ public class FragmentPairJointerSequential {
 		Pair<FragmentPair, FragmentPair> s;
 		s = findSequence(matchingOut);
 		while (s != null) {
-			LOG.info("Found sequence: " + s);
+			LOG.info("Found sequence: "
+					+ FragmentUtil.toString(s.getValue0().getA()) + " / "
+					+ FragmentUtil.toString(s.getValue0().getB()) + " and "
+					+ FragmentUtil.toString(s.getValue1().getA()) + " / "
+					+ FragmentUtil.toString(s.getValue1().getB()));
 			joinSequence(matchingOut, s);
 			s = findSequence(matchingOut);
 		}

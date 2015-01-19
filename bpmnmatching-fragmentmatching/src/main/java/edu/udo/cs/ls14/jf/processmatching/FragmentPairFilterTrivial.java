@@ -25,7 +25,8 @@ public class FragmentPairFilterTrivial {
 						"1:n and n:m correspondences not yet implemented.");
 			}
 			if (size0 < 2) {
-				LOG.info(pair + " is filtered out, because of size=" + size0);
+				LOG.info(FragmentUtil.toString(pair.getA()) + " / "
+						+ FragmentUtil.toString(pair.getB()) + " is filtered out, because of size=" + size0);
 				removePairs.add(pair);
 			}
 		}

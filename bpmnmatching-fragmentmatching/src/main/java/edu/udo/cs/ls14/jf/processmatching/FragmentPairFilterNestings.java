@@ -22,17 +22,21 @@ public class FragmentPairFilterNestings {
 			for (FragmentPair c2 : matching.getPairs()) {
 				if (!c1.getA().equals(c2.getA())
 						&& !c1.getB().equals(c2.getB())
-						&& (FragmentUtil.contains(c2.getA(), c1.getA())
-						|| FragmentUtil.contains(c2.getB(), c1.getB()))) {
-					LOG.info(c1
+						&& (FragmentUtil.contains(c2.getA(), c1.getA()) || FragmentUtil
+								.contains(c2.getB(), c1.getB()))) {
+					LOG.info(FragmentUtil.toString(c1.getA()) + " / "
+							+ FragmentUtil.toString(c1.getB())
 							+ " is filtered out, because it is contained in "
-							+ c2);
+							+ FragmentUtil.toString(c2.getA()) + " / "
+							+ FragmentUtil.toString(c2.getB()));
 					isContainedInOther = true;
 					removePairs.add(c1);
 				}
 			}
 			if (!isContainedInOther) {
-				LOG.info(c1 + " is not contained in any other fragment");
+				LOG.info(FragmentUtil.toString(c1.getA()) + "/"
+						+ FragmentUtil.toString(c1.getB())
+						+ " is not contained in any other fragment");
 			}
 		}
 		matching.getPairs().removeAll(removePairs);

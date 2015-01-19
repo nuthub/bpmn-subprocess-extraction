@@ -44,11 +44,13 @@ public class FragmentPairFilterBehavior {
 							.getResults().get("behavioralProfile"),
 					nodeMatching.getPairs());
 			if (match) {
-				LOG.info("Behaviour equivalent fragments: " + pair.getA()
-						+ " / " + pair.getB());
+				LOG.info("Fragments are behaviour equivalent: "
+						+ FragmentUtil.toString(pair.getA()) + " / "
+						+ FragmentUtil.toString(pair.getB()));
 			} else {
-				LOG.debug(pair.getA() + " and " + pair.getB()
-						+ " are not behaviour equivalent.");
+				LOG.info("Fragments are not behaviour equivalent: "
+						+ FragmentUtil.toString(pair.getA()) + " / "
+						+ FragmentUtil.toString(pair.getB()));
 				removePairs.add(pair);
 			}
 
