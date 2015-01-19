@@ -35,9 +35,9 @@ public class NodeMatcherTest {
 		Bpmn2ResourceSet resSet = Bpmn2ResourceSet.getInstance();
 		String pathname = "/bpmn/parallelGateway/";
 		Definitions def1 = resSet.loadDefinitions(getClass().getResource(
-				pathname + "PM1-mit-Fragment1.bpmn").getPath());
+				pathname + "parallelism1.bpmn").getPath());
 		Definitions def2 = resSet.loadDefinitions(getClass().getResource(
-				pathname + "PM2-mit-Fragment1.bpmn").getPath());
+				pathname + "parallelism2.bpmn").getPath());
 		NodeMatching nodeMatching = ProcessMatchingFactory.getFullNodeMatching(
 				def1, def2);
 		nodeMatching = NodePairFilter.filter(nodeMatching);

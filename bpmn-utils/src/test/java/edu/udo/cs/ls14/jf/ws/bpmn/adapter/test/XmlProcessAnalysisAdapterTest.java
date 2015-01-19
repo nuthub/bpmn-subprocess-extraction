@@ -38,7 +38,7 @@ public class XmlProcessAnalysisAdapterTest {
 
 	@Test
 	public void testPM1() throws Exception {
-		String filename = "/bpmn/parallelGateway/PM1-mit-Fragment1.bpmn";
+		String filename = "/bpmn/parallelGateway/parallelism1.bpmn";
 		XmlProcessAnalysisAdapter adapter = new XmlProcessAnalysisAdapter();
 
 		// Create example ProcessAnalysis

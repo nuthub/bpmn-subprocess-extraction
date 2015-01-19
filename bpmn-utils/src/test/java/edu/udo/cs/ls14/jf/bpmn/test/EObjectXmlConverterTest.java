@@ -33,8 +33,8 @@ public class EObjectXmlConverterTest {
 	}
 
 	@Test
-	public void testPM1() throws Exception {
-		String filename = "/bpmn/parallelGateway/PM1-mit-Fragment1.bpmn";
+	public void testParallelism1() throws Exception {
+		String filename = "/bpmn/parallelGateway/parallelism1.bpmn";
 		runTest(filename);
 	}
 

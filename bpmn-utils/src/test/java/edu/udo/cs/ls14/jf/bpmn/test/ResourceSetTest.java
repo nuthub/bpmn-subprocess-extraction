@@ -23,11 +23,11 @@ public class ResourceSetTest {
 		int resourcesBefore = resSet.getResources().size();
 
 		String pathname = "/bpmn/parallelGateway/";
-		String filename1 = "PM1-mit-Fragment1.bpmn";
+		String filename1 = "parallelism1.bpmn";
 		Definitions def1 = resSet.loadDefinitions(getClass().getResource(
 				pathname + filename1).getPath());
 
-		String filename2 = "PM2-mit-Fragment1.bpmn";
+		String filename2 = "parallelism2.bpmn";
 		Definitions def2 = resSet.loadDefinitions(getClass().getResource(
 				pathname + filename2).getPath());
 

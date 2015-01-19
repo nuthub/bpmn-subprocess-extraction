@@ -83,7 +83,7 @@ public class PSTTest {
 	@Test
 	public void testPM1() throws Exception {
 		String pathname = "/bpmn/parallelGateway/";
-		String basename = "PM1-mit-Fragment1";
+		String basename = "parallelism1";
 		ProcessStructureTree pst = runTest(pathname, basename, 32, 32, 60);
 		List<Fragment> frags = pst.getFragments();
 		assertEquals(6, frags.size());
@@ -98,7 +98,7 @@ public class PSTTest {
 	@Test
 	public void testPM2() throws Exception {
 		String pathname = "/bpmn/parallelGateway/";
-		String basename = "PM2-mit-Fragment1";
+		String basename = "parallelism2";
 		ProcessStructureTree pst = runTest(pathname, basename, 32, 32, 60);
 		List<Fragment> frags = pst.getFragments();
 		assertEquals(7, frags.size());

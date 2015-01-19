@@ -37,7 +37,7 @@ public class BehavioralProfileTest {
 	@Test
 	public void testPM1() throws Exception {
 		String pathname = "/bpmn/parallelGateway/";
-		String basename = "PM1-mit-Fragment1";
+		String basename = "parallelism1";
 		BehavioralProfile bp = createBpFromBpmnOld(pathname, basename);
 		// print profile
 		System.out.println(bp);
@@ -46,7 +46,7 @@ public class BehavioralProfileTest {
 	@Test
 	public void testPM2() throws Exception {
 		String pathname = "/bpmn/parallelGateway/";
-		String basename = "PM2-mit-Fragment1";
+		String basename = "parallelism2";
 		BehavioralProfile bp = createBpFromBpmnOld(pathname, basename);
 		// print profile
 		System.out.println(bp);
@@ -64,30 +64,6 @@ public class BehavioralProfileTest {
 	public void testBpmn2bpLoopingEvents() throws Exception {
 		String pathname = "/bpmn/loops/";
 		String basename = "looping-events-example";
-		BehavioralProfile bp = createBpFromBpmnOld(pathname, basename);
-		assertNotNull(bp);
-	}
-
-	@Test
-	public void testParallelism1() throws Exception {
-		String pathname = "/bpmn/parallelGateway/";
-		String basename = "parallelism1";
-		BehavioralProfile bp = createBpFromBpmnOld(pathname, basename);
-		assertNotNull(bp);
-	}
-
-	@Test
-	public void testParallelism2() throws Exception {
-		String pathname = "/bpmn/parallelGateway/";
-		String basename = "parallelism2";
-		BehavioralProfile bp = createBpFromBpmnOld(pathname, basename);
-		assertNotNull(bp);
-	}
-
-	@Test
-	public void testParallelism3() throws Exception {
-		String pathname = "/bpmn/parallelGateway/";
-		String basename = "parallelism3";
 		BehavioralProfile bp = createBpFromBpmnOld(pathname, basename);
 		assertNotNull(bp);
 	}

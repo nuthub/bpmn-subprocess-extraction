@@ -12,6 +12,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import edu.udo.cs.ls14.jf.bpmntransformation.ProcessExtraction;
+import edu.udo.cs.ls14.jf.bpmntransformation.util.BpmnTransformationResourceFactoryImpl;
 
 public class ProcessExtractionUtil {
 
@@ -94,8 +95,9 @@ public class ProcessExtractionUtil {
 	 */
 	public static void writeToFile(String filename, ProcessExtraction extraction)
 			throws IOException {
-		Resource res = Bpmn2ResourceSet.getInstance().createResource(
-				URI.createFileURI(filename));
+		Resource res = new BpmnTransformationResourceFactoryImpl()
+				.createResource(URI.createFileURI(filename));
+		System.out.println(res);
 		res.getContents().add(extraction);
 		res.save(null);
 		LOG.info("Written extraction result to " + filename);

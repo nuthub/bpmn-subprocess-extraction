@@ -2,6 +2,8 @@ package edu.udo.cs.ls14.jf.analysis.bpmn2ptnet.test;
 
 import static org.junit.Assert.assertEquals;
 
+import java.io.File;
+
 import org.eclipse.bpmn2.Definitions;
 import org.eclipse.bpmn2.Process;
 import org.junit.Before;
@@ -46,16 +48,16 @@ public class Bpmn2PtnetConverterTest {
 	}
 
 	@Test
-	public void testPM1() throws Exception {
+	public void testParallelism1() throws Exception {
 		String pathname = "/bpmn/parallelGateway/";
-		String basename = "PM1-mit-Fragment1";
+		String basename = "parallelism1";
 		runTest(pathname, basename, 12, 9, 22);
 	}
 
 	@Test
-	public void testPM2() throws Exception {
+	public void testParallelism2() throws Exception {
 		String pathname = "/bpmn/parallelGateway/";
-		String basename = "PM2-mit-Fragment1";
+		String basename = "parallelism2";
 		runTest(pathname, basename, 14, 11, 26);
 	}
 
@@ -86,6 +88,7 @@ public class Bpmn2PtnetConverterTest {
 		assertEquals(expectedTransitionCount, page.getObjects_TransitionHLAPI()
 				.size());
 		assertEquals(expectedArcCount, page.getObjects_ArcHLAPI().size());
+		new File("/tmp/" + pathname).mkdirs();
 		converter.saveToPnmlFile("/tmp/" + pathname + basename + ".pnml");
 
 	}

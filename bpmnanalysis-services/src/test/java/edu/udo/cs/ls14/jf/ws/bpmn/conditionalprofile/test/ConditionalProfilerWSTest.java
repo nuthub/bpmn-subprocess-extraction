@@ -62,7 +62,7 @@ public class ConditionalProfilerWSTest {
 	public void testAnalyze() throws Exception {
 		// create some test data
 		Definitions definitions = resSet.loadDefinitions(getClass().getResource(
-				"/bpmn/parallelGateway/PM1-mit-Fragment1.bpmn").getFile());
+				"/bpmn/parallelGateway/parallelism1.bpmn").getFile());
 		ProcessAnalysis analysis = ProcessAnalysisFactory
 				.createAnalysis(definitions);
 		analysis = port.profile(analysis);

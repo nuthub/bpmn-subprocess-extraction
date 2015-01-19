@@ -61,7 +61,7 @@ public class ProcessStructureTreeWSTest {
 	public void testAnalyze() throws Exception {
 		// create some test data
 		Definitions definitions = resSet.loadDefinitions(getClass()
-				.getResource("/bpmn/parallelGateway/PM1-mit-Fragment1.bpmn")
+				.getResource("/bpmn/parallelGateway/parallelism1.bpmn")
 				.getFile());
 		ProcessAnalysis analysis = ProcessAnalysisFactory
 				.createAnalysis(definitions);

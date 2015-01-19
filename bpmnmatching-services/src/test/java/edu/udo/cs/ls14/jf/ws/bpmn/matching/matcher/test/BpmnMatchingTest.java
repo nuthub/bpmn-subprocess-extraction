@@ -164,9 +164,9 @@ public class BpmnMatchingTest {
 		// create some test data
 		String pathname = "/bpmn/parallelGateway/";
 		Definitions definitions1 = resSet.loadDefinitions(getClass()
-				.getResource(pathname + "PM1-mit-Fragment1.bpmn").getFile());
+				.getResource(pathname + "parallelism1.bpmn").getFile());
 		Definitions definitions2 = resSet.loadDefinitions(getClass()
-				.getResource(pathname + "PM2-mit-Fragment1.bpmn").getFile());
+				.getResource(pathname + "parallelism2.bpmn").getFile());
 		ProcessAnalysis analysis1 = ProcessAnalyzer.analyze(definitions1);
 		ProcessAnalysis analysis2 = ProcessAnalyzer.analyze(definitions2);
 		// ProcessMatchingFactory

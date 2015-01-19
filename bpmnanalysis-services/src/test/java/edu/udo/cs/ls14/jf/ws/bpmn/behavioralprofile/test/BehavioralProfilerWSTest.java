@@ -65,7 +65,7 @@ public class BehavioralProfilerWSTest {
 		// create some test data
 		Definitions definitions = resSet.loadDefinitions(getClass()
 				.getResource(
-						"/bpmn/parallelGateway/PM1-mit-Fragment1.bpmn")
+						"/bpmn/parallelGateway/parallelism1.bpmn")
 				.getFile());
 		ProcessAnalysis analysis = ProcessAnalysisFactory
 				.createAnalysis(definitions);

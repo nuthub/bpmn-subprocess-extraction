@@ -1,197 +1,192 @@
-<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<bpmn2:definitions xmlns:bpmn2="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xmlns:tns="http://org.eclipse.bpmn2/default/process/parallelism1" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:yaoqiang="http://bpmn.sourceforge.net" exporter="org.eclipse.bpmn2.modeler.core" exporterVersion="1.1.0.201409091530" expressionLanguage="http://www.w3.org/1999/XPath" id="Definitions_Parallelism_1" name="" targetNamespace="http://org.eclipse.bpmn2/default/process/parallelism1" typeLanguage="http://www.w3.org/2001/XMLSchema" xsi:schemaLocation="http://www.omg.org/spec/BPMN/20100524/MODEL http://bpmn.sourceforge.net/schemas/BPMN20.xsd">
-  <bpmn2:process id="parallelism1" isClosed="false" name="Parallelism1" processType="None">
-    <bpmn2:extensionElements>
-      <yaoqiang:pageFormat height="842.4" imageableHeight="832.4" imageableWidth="587.6" imageableX="5.0" imageableY="5.0" orientation="0" width="597.6"/>
-      <yaoqiang:page background="#FFFFFF" horizontalCount="1" verticalCount="1"/>
-    </bpmn2:extensionElements>
-    <bpmn2:startEvent id="StartEvent_1" isInterrupting="true" name="n_start" parallelMultiple="false">
-      <bpmn2:outgoing>SequenceFlow_1</bpmn2:outgoing>
-    </bpmn2:startEvent>
-    <bpmn2:sequenceFlow id="SequenceFlow_1" name="1" sourceRef="StartEvent_1" targetRef="Task_1"/>
-    <bpmn2:endEvent id="EndEvent_1" name="n_end">
-      <bpmn2:incoming>SequenceFlow_10</bpmn2:incoming>
-    </bpmn2:endEvent>
-    <bpmn2:task completionQuantity="1" id="Task_1" isForCompensation="false" name="Task 1" startQuantity="1">
-      <bpmn2:incoming>SequenceFlow_1</bpmn2:incoming>
-      <bpmn2:outgoing>SequenceFlow_2</bpmn2:outgoing>
-    </bpmn2:task>
-    <bpmn2:parallelGateway gatewayDirection="Diverging" id="ParallelGateway_1">
-      <bpmn2:incoming>SequenceFlow_2</bpmn2:incoming>
-      <bpmn2:outgoing>SequenceFlow_3</bpmn2:outgoing>
-      <bpmn2:outgoing>SequenceFlow_4</bpmn2:outgoing>
-      <bpmn2:outgoing>SequenceFlow_5</bpmn2:outgoing>
-    </bpmn2:parallelGateway>
-    <bpmn2:task completionQuantity="1" id="lieferschein-erstellen" isForCompensation="false" name="Lieferschein erstellen" startQuantity="1">
-      <bpmn2:incoming>SequenceFlow_3</bpmn2:incoming>
-      <bpmn2:outgoing>SequenceFlow_6</bpmn2:outgoing>
-    </bpmn2:task>
-    <bpmn2:sequenceFlow id="SequenceFlow_3" name="3" sourceRef="ParallelGateway_1" targetRef="lieferschein-erstellen">
-      <bpmn2:extensionElements>
-        <yaoqiang:label offset-x="11.0" offset-y="6.0" x="0.0" y="-11.0"/>
-      </bpmn2:extensionElements>
-    </bpmn2:sequenceFlow>
-    <bpmn2:task completionQuantity="1" id="rechnung-erstellen" isForCompensation="false" name="Rechnung erstellen" startQuantity="1">
-      <bpmn2:incoming>SequenceFlow_4</bpmn2:incoming>
-      <bpmn2:outgoing>SequenceFlow_7</bpmn2:outgoing>
-    </bpmn2:task>
-    <bpmn2:sequenceFlow id="SequenceFlow_4" name="4" sourceRef="ParallelGateway_1" targetRef="rechnung-erstellen"/>
-    <bpmn2:task completionQuantity="1" id="waren-verpacken" isForCompensation="false" name="Waren verpacken" startQuantity="1">
-      <bpmn2:incoming>SequenceFlow_5</bpmn2:incoming>
-      <bpmn2:outgoing>SequenceFlow_8</bpmn2:outgoing>
-    </bpmn2:task>
-    <bpmn2:sequenceFlow id="SequenceFlow_5" name="5" sourceRef="ParallelGateway_1" targetRef="waren-verpacken">
-      <bpmn2:extensionElements>
-        <yaoqiang:label offset-x="12.0" offset-y="0.0" x="0.0" y="13.0"/>
-      </bpmn2:extensionElements>
-    </bpmn2:sequenceFlow>
-    <bpmn2:parallelGateway gatewayDirection="Converging" id="ParallelGateway_2">
-      <bpmn2:incoming>SequenceFlow_6</bpmn2:incoming>
-      <bpmn2:incoming>SequenceFlow_7</bpmn2:incoming>
-      <bpmn2:incoming>SequenceFlow_8</bpmn2:incoming>
-      <bpmn2:outgoing>SequenceFlow_9</bpmn2:outgoing>
-    </bpmn2:parallelGateway>
-    <bpmn2:sequenceFlow id="SequenceFlow_6" name="6" sourceRef="lieferschein-erstellen" targetRef="ParallelGateway_2"/>
-    <bpmn2:sequenceFlow id="SequenceFlow_7" name="7" sourceRef="rechnung-erstellen" targetRef="ParallelGateway_2"/>
-    <bpmn2:sequenceFlow id="SequenceFlow_8" name="8" sourceRef="waren-verpacken" targetRef="ParallelGateway_2"/>
-    <bpmn2:task completionQuantity="1" id="Task_2" isForCompensation="false" name="Task 2" startQuantity="1">
-      <bpmn2:incoming>SequenceFlow_9</bpmn2:incoming>
-      <bpmn2:outgoing>SequenceFlow_10</bpmn2:outgoing>
-    </bpmn2:task>
-    <bpmn2:sequenceFlow id="SequenceFlow_9" name="9" sourceRef="ParallelGateway_2" targetRef="Task_2"/>
-    <bpmn2:sequenceFlow id="SequenceFlow_10" name="10" sourceRef="Task_2" targetRef="EndEvent_1"/>
-    <bpmn2:sequenceFlow id="SequenceFlow_2" name="2" sourceRef="Task_1" targetRef="ParallelGateway_1"/>
-  </bpmn2:process>
-  <bpmndi:BPMNDiagram id="Yaoqiang_Diagram-_1" name="Default Process Diagram" resolution="96.0">
-    <bpmndi:BPMNPlane bpmnElement="parallelism1">
-      <bpmndi:BPMNShape bpmnElement="StartEvent_1" id="Yaoqiang-StartEvent_1">
-        <dc:Bounds height="32.0" width="32.0" x="34.0" y="104.5"/>
-        <bpmndi:BPMNLabel>
-          <dc:Bounds height="26.6982421875" width="61.0" x="19.5" y="141.15087890625"/>
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- origin at X=0.0 Y=0.0 -->
+<definitions xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:omgdc="http://www.omg.org/spec/DD/20100524/DC" xmlns:omgdi="http://www.omg.org/spec/DD/20100524/DI" xmlns:xs="http://www.w3.org/2001/XMLSchema" xsi:schemaLocation="http://www.omg.org/spec/BPMN/20100524/MODEL http://www.omg.org/spec/BPMN/2.0/20100501/BPMN20.xsd http://www.omg.org/spec/DD/20100524/DI http://www.omg.org/spec/DD/20100524/DI-XMI http://www.omg.org/spec/DD/20100524/DC http://www.omg.org/spec/DD/20100524/DC-XMI http://www.omg.org/spec/BPMN/20100524/DI http://www.omg.org/spec/BPMN/20100524/DI-XMI" id="sid-d5960d41-e38f-42cd-a26c-0ae350fe4124" exporter="org.eclipse.bpmn2.modeler.core" exporterVersion="1.1.0.201408072130" targetNamespace="http://www.omg.org/spec/BPMN/20100524/MODEL">
+  <process id="sid-5c5f4f4f-5428-4665-89a4-ddf4c1608484" name="PM1-mit-Fragment1">
+    <startEvent id="sid-94CA3CAB-AA15-484C-A00C-7372185C0A79" name="Start">
+      <outgoing>SequenceFlow_3</outgoing>
+    </startEvent>
+    <task id="sid-24BB1352-5C62-4E83-A253-378A2D086D85" name="Task A">
+      <incoming>SequenceFlow_3</incoming>
+      <outgoing>sid-16C4A25C-59E5-4B8E-851F-F05BBEE8CE71</outgoing>
+    </task>
+    <task id="sid-E886E7E9-C4EA-42F6-ABCB-882EF9EB8B38" name="Lieferschein erstellen">
+      <incoming>sid-F6EDEAA1-882C-491F-8852-A994BE20ACCB</incoming>
+      <outgoing>sid-03B5B5AF-A1F0-4E20-AFB9-38B826AB8D3E</outgoing>
+    </task>
+    <task id="sid-29EB2FC1-7050-4603-BF12-D0CD6B6116F1" name="Rechnung erstellen">
+      <incoming>sid-93B31B1C-6F42-4974-B551-705587AA85D2</incoming>
+      <outgoing>sid-C6506147-1F35-4235-88C2-9EDFD483F4C6</outgoing>
+    </task>
+    <task id="sid-0EC98739-28B8-4098-9212-D6FCCD59E1DB" name="Waren verpacken">
+      <incoming>sid-EFED9E2B-3B01-44F9-82E6-3727E2B1CA76</incoming>
+      <outgoing>sid-C465B7EB-B45B-435F-B4F8-A68E96E38708</outgoing>
+    </task>
+    <task id="sid-0E079D7D-0098-428D-97A2-ABF51024CB72" name="Task B">
+      <incoming>sid-0AD5228D-887A-4D19-87E7-1219EAE576C9</incoming>
+      <outgoing>SequenceFlow_4</outgoing>
+    </task>
+    <endEvent id="sid-88383928-E961-4E4A-9725-55B02E86FD0E" name="End">
+      <incoming>SequenceFlow_4</incoming>
+    </endEvent>
+    <parallelGateway id="sid-D98FE8D4-32DF-476A-9C41-F9E569B0DA71" name="Gateway 2" gatewayDirection="Converging">
+      <incoming>sid-C465B7EB-B45B-435F-B4F8-A68E96E38708</incoming>
+      <incoming>sid-03B5B5AF-A1F0-4E20-AFB9-38B826AB8D3E</incoming>
+      <incoming>sid-C6506147-1F35-4235-88C2-9EDFD483F4C6</incoming>
+      <outgoing>sid-0AD5228D-887A-4D19-87E7-1219EAE576C9</outgoing>
+    </parallelGateway>
+    <parallelGateway id="sid-F4D68AC5-D815-48C5-B160-CEBA4C1421DC" name="Gateway 1" gatewayDirection="Diverging">
+      <incoming>sid-16C4A25C-59E5-4B8E-851F-F05BBEE8CE71</incoming>
+      <outgoing>sid-93B31B1C-6F42-4974-B551-705587AA85D2</outgoing>
+      <outgoing>sid-F6EDEAA1-882C-491F-8852-A994BE20ACCB</outgoing>
+      <outgoing>sid-EFED9E2B-3B01-44F9-82E6-3727E2B1CA76</outgoing>
+    </parallelGateway>
+    <sequenceFlow id="sid-93B31B1C-6F42-4974-B551-705587AA85D2" name="4" sourceRef="sid-F4D68AC5-D815-48C5-B160-CEBA4C1421DC" targetRef="sid-29EB2FC1-7050-4603-BF12-D0CD6B6116F1"/>
+    <sequenceFlow id="sid-F6EDEAA1-882C-491F-8852-A994BE20ACCB" name="3" sourceRef="sid-F4D68AC5-D815-48C5-B160-CEBA4C1421DC" targetRef="sid-E886E7E9-C4EA-42F6-ABCB-882EF9EB8B38"/>
+    <sequenceFlow id="sid-C465B7EB-B45B-435F-B4F8-A68E96E38708" name="8" sourceRef="sid-0EC98739-28B8-4098-9212-D6FCCD59E1DB" targetRef="sid-D98FE8D4-32DF-476A-9C41-F9E569B0DA71"/>
+    <sequenceFlow id="sid-03B5B5AF-A1F0-4E20-AFB9-38B826AB8D3E" name="6" sourceRef="sid-E886E7E9-C4EA-42F6-ABCB-882EF9EB8B38" targetRef="sid-D98FE8D4-32DF-476A-9C41-F9E569B0DA71"/>
+    <sequenceFlow id="sid-16C4A25C-59E5-4B8E-851F-F05BBEE8CE71" name="2" sourceRef="sid-24BB1352-5C62-4E83-A253-378A2D086D85" targetRef="sid-F4D68AC5-D815-48C5-B160-CEBA4C1421DC"/>
+    <sequenceFlow id="sid-0AD5228D-887A-4D19-87E7-1219EAE576C9" name="9" sourceRef="sid-D98FE8D4-32DF-476A-9C41-F9E569B0DA71" targetRef="sid-0E079D7D-0098-428D-97A2-ABF51024CB72"/>
+    <sequenceFlow id="sid-EFED9E2B-3B01-44F9-82E6-3727E2B1CA76" name="5" sourceRef="sid-F4D68AC5-D815-48C5-B160-CEBA4C1421DC" targetRef="sid-0EC98739-28B8-4098-9212-D6FCCD59E1DB"/>
+    <sequenceFlow id="sid-C6506147-1F35-4235-88C2-9EDFD483F4C6" name="7" sourceRef="sid-29EB2FC1-7050-4603-BF12-D0CD6B6116F1" targetRef="sid-D98FE8D4-32DF-476A-9C41-F9E569B0DA71"/>
+    <sequenceFlow id="SequenceFlow_3" name="1" sourceRef="sid-94CA3CAB-AA15-484C-A00C-7372185C0A79" targetRef="sid-24BB1352-5C62-4E83-A253-378A2D086D85"/>
+    <sequenceFlow id="SequenceFlow_4" name="10" sourceRef="sid-0E079D7D-0098-428D-97A2-ABF51024CB72" targetRef="sid-88383928-E961-4E4A-9725-55B02E86FD0E"/>
+  </process>
+  <bpmndi:BPMNDiagram id="sid-23644ad0-d209-4f84-aeb6-491207b29d7c">
+    <bpmndi:BPMNPlane id="sid-e6f8b098-e00c-425d-a2ef-f10af8155cec" bpmnElement="sid-5c5f4f4f-5428-4665-89a4-ddf4c1608484">
+      <bpmndi:BPMNShape id="sid-94CA3CAB-AA15-484C-A00C-7372185C0A79_gui" bpmnElement="sid-94CA3CAB-AA15-484C-A00C-7372185C0A79">
+        <omgdc:Bounds height="30.0" width="30.0" x="70.0" y="160.0"/>
+        <bpmndi:BPMNLabel id="BPMNLabel_6" labelStyle="BPMNLabelStyle_1">
+          <omgdc:Bounds height="14.0" width="25.0" x="72.0" y="190.0"/>
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape bpmnElement="EndEvent_1" id="Yaoqiang-EndEvent_1">
-        <dc:Bounds height="32.0" width="32.0" x="724.0" y="104.5"/>
-        <bpmndi:BPMNLabel>
-          <dc:Bounds height="26.6982421875" width="56.0" x="712.0" y="141.15087890625"/>
+      <bpmndi:BPMNShape id="sid-24BB1352-5C62-4E83-A253-378A2D086D85_gui" bpmnElement="sid-24BB1352-5C62-4E83-A253-378A2D086D85">
+        <omgdc:Bounds height="80.0" width="100.0" x="150.0" y="135.0"/>
+        <bpmndi:BPMNLabel id="BPMNLabel_1" labelStyle="sid-171397ba-5287-449e-a352-fbd6621eeecb">
+          <omgdc:Bounds height="19.0" width="50.0" x="175.0" y="165.0"/>
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape bpmnElement="Task_1" id="Yaoqiang-Task_1">
-        <dc:Bounds height="55.0" width="110.0" x="104.0" y="93.0"/>
-        <bpmndi:BPMNLabel>
-          <dc:Bounds height="26.6982421875" width="61.0" x="128.5" y="109.15087890625"/>
+      <bpmndi:BPMNShape id="sid-E886E7E9-C4EA-42F6-ABCB-882EF9EB8B38_gui" bpmnElement="sid-E886E7E9-C4EA-42F6-ABCB-882EF9EB8B38">
+        <omgdc:Bounds height="80.0" width="100.0" x="380.0" y="30.0"/>
+        <bpmndi:BPMNLabel id="BPMNLabel_2" labelStyle="sid-171397ba-5287-449e-a352-fbd6621eeecb">
+          <omgdc:Bounds height="38.0" width="91.0" x="384.0" y="51.0"/>
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape bpmnElement="ParallelGateway_1" id="Yaoqiang-ParallelGateway_1">
-        <dc:Bounds height="42.0" width="42.0" x="252.0" y="99.5"/>
-        <bpmndi:BPMNLabel>
-          <dc:Bounds height="26.6982421875" width="6.0" x="270.0" y="143.5"/>
+      <bpmndi:BPMNShape id="sid-29EB2FC1-7050-4603-BF12-D0CD6B6116F1_gui" bpmnElement="sid-29EB2FC1-7050-4603-BF12-D0CD6B6116F1">
+        <omgdc:Bounds height="80.0" width="100.0" x="380.0" y="135.0"/>
+        <bpmndi:BPMNLabel id="BPMNLabel_3" labelStyle="sid-171397ba-5287-449e-a352-fbd6621eeecb">
+          <omgdc:Bounds height="38.0" width="78.0" x="391.0" y="156.0"/>
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape bpmnElement="lieferschein-erstellen" id="Yaoqiang-lieferschein-erstellen">
-        <dc:Bounds height="55.0" width="110.0" x="347.0" y="10.0"/>
-        <bpmndi:BPMNLabel>
-          <dc:Bounds height="48.6982421875" width="93.0" x="355.5" y="15.15087890625"/>
+      <bpmndi:BPMNShape id="sid-0EC98739-28B8-4098-9212-D6FCCD59E1DB_gui" bpmnElement="sid-0EC98739-28B8-4098-9212-D6FCCD59E1DB">
+        <omgdc:Bounds height="80.0" width="100.0" x="380.0" y="240.0"/>
+        <bpmndi:BPMNLabel id="BPMNLabel_4" labelStyle="sid-171397ba-5287-449e-a352-fbd6621eeecb">
+          <omgdc:Bounds height="38.0" width="74.0" x="393.0" y="261.0"/>
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape bpmnElement="rechnung-erstellen" id="Yaoqiang-rechnung-erstellen">
-        <dc:Bounds height="55.0" width="110.0" x="347.0" y="93.0"/>
-        <bpmndi:BPMNLabel>
-          <dc:Bounds height="48.6982421875" width="88.0" x="358.0" y="98.15087890625"/>
+      <bpmndi:BPMNShape id="sid-0E079D7D-0098-428D-97A2-ABF51024CB72_gui" bpmnElement="sid-0E079D7D-0098-428D-97A2-ABF51024CB72">
+        <omgdc:Bounds height="80.0" width="100.0" x="606.0" y="135.0"/>
+        <bpmndi:BPMNLabel id="BPMNLabel_5" labelStyle="sid-171397ba-5287-449e-a352-fbd6621eeecb">
+          <omgdc:Bounds height="19.0" width="50.0" x="631.0" y="165.0"/>
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape bpmnElement="waren-verpacken" id="Yaoqiang-waren-verpacken">
-        <dc:Bounds height="55.0" width="110.0" x="347.0" y="180.0"/>
-        <bpmndi:BPMNLabel>
-          <dc:Bounds height="48.6982421875" width="89.0" x="357.5" y="185.15087890625"/>
+      <bpmndi:BPMNShape id="sid-88383928-E961-4E4A-9725-55B02E86FD0E_gui" bpmnElement="sid-88383928-E961-4E4A-9725-55B02E86FD0E">
+        <omgdc:Bounds height="28.0" width="28.0" x="780.0" y="161.0"/>
+        <bpmndi:BPMNLabel id="BPMNLabel_7" labelStyle="BPMNLabelStyle_1">
+          <omgdc:Bounds height="14.0" width="22.0" x="783.0" y="189.0"/>
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape bpmnElement="ParallelGateway_2" id="Yaoqiang-ParallelGateway_2">
-        <dc:Bounds height="42.0" width="42.0" x="492.0" y="99.5"/>
-        <bpmndi:BPMNLabel>
-          <dc:Bounds height="26.6982421875" width="6.0" x="510.0" y="143.5"/>
+      <bpmndi:BPMNShape id="sid-D98FE8D4-32DF-476A-9C41-F9E569B0DA71_gui" bpmnElement="sid-D98FE8D4-32DF-476A-9C41-F9E569B0DA71">
+        <omgdc:Bounds height="40.0" width="40.0" x="521.0" y="155.0"/>
+        <bpmndi:BPMNLabel id="BPMNLabel_8" labelStyle="BPMNLabelStyle_1">
+          <omgdc:Bounds height="14.0" width="58.0" x="512.0" y="195.0"/>
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape bpmnElement="Task_2" id="Yaoqiang-Task_2">
-        <dc:Bounds height="55.0" width="110.0" x="574.0" y="93.0"/>
-        <bpmndi:BPMNLabel>
-          <dc:Bounds height="26.6982421875" width="61.0" x="598.5" y="109.15087890625"/>
+      <bpmndi:BPMNShape id="sid-F4D68AC5-D815-48C5-B160-CEBA4C1421DC_gui" bpmnElement="sid-F4D68AC5-D815-48C5-B160-CEBA4C1421DC">
+        <omgdc:Bounds height="40.0" width="40.0" x="295.0" y="155.0"/>
+        <bpmndi:BPMNLabel id="BPMNLabel_9" labelStyle="BPMNLabelStyle_1">
+          <omgdc:Bounds height="14.0" width="58.0" x="286.0" y="195.0"/>
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNShape>
-      <bpmndi:BPMNEdge bpmnElement="SequenceFlow_9" id="Yaoqiang-SequenceFlow_9">
-        <di:waypoint x="533.5" y="120.5"/>
-        <di:waypoint x="574.0" y="120.5"/>
-        <bpmndi:BPMNLabel>
-          <dc:Bounds height="26.6982421875" width="16.0" x="545.75" y="107.15087890625"/>
+      <bpmndi:BPMNEdge id="sid-16C4A25C-59E5-4B8E-851F-F05BBEE8CE71_gui" bpmnElement="sid-16C4A25C-59E5-4B8E-851F-F05BBEE8CE71" sourceElement="sid-24BB1352-5C62-4E83-A253-378A2D086D85_gui" targetElement="sid-F4D68AC5-D815-48C5-B160-CEBA4C1421DC_gui">
+        <omgdi:waypoint xsi:type="omgdc:Point" x="250.0" y="175.0"/>
+        <omgdi:waypoint xsi:type="omgdc:Point" x="295.0" y="175.0"/>
+        <bpmndi:BPMNLabel id="BPMNLabel_10" labelStyle="BPMNLabelStyle_1">
+          <omgdc:Bounds height="14.0" width="7.0" x="270.0" y="176.0"/>
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNEdge>
-      <bpmndi:BPMNEdge bpmnElement="SequenceFlow_8" id="Yaoqiang-SequenceFlow_8">
-        <di:waypoint x="457.0" y="205.0"/>
-        <di:waypoint x="517.0" y="205.0"/>
-        <di:waypoint x="517.0" y="138.0"/>
-        <bpmndi:BPMNLabel>
-          <dc:Bounds height="26.6982421875" width="16.0" x="509.0" y="188.15087890625"/>
+      <bpmndi:BPMNEdge id="sid-93B31B1C-6F42-4974-B551-705587AA85D2_gui" bpmnElement="sid-93B31B1C-6F42-4974-B551-705587AA85D2" sourceElement="sid-F4D68AC5-D815-48C5-B160-CEBA4C1421DC_gui" targetElement="sid-29EB2FC1-7050-4603-BF12-D0CD6B6116F1_gui">
+        <omgdi:waypoint xsi:type="omgdc:Point" x="335.0" y="175.41484"/>
+        <omgdi:waypoint xsi:type="omgdc:Point" x="380.0" y="175.21834"/>
+        <bpmndi:BPMNLabel id="BPMNLabel_11" labelStyle="BPMNLabelStyle_1">
+          <omgdc:Bounds height="14.0" width="7.0" x="355.0" y="176.0"/>
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNEdge>
-      <bpmndi:BPMNEdge bpmnElement="SequenceFlow_7" id="Yaoqiang-SequenceFlow_7">
-        <di:waypoint x="457.0" y="120.5"/>
-        <di:waypoint x="492.5" y="120.5"/>
-        <bpmndi:BPMNLabel>
-          <dc:Bounds height="26.6982421875" width="16.0" x="466.75" y="107.15087890625"/>
+      <bpmndi:BPMNEdge id="sid-C465B7EB-B45B-435F-B4F8-A68E96E38708_gui" bpmnElement="sid-C465B7EB-B45B-435F-B4F8-A68E96E38708" sourceElement="sid-0EC98739-28B8-4098-9212-D6FCCD59E1DB_gui" targetElement="sid-D98FE8D4-32DF-476A-9C41-F9E569B0DA71_gui">
+        <omgdi:waypoint xsi:type="omgdc:Point" x="480.0" y="280.0"/>
+        <omgdi:waypoint xsi:type="omgdc:Point" x="541.5" y="280.0"/>
+        <omgdi:waypoint xsi:type="omgdc:Point" x="541.5" y="195.0"/>
+        <bpmndi:BPMNLabel id="BPMNLabel_12" labelStyle="BPMNLabelStyle_1">
+          <omgdc:Bounds height="14.0" width="7.0" x="538.0" y="269.0"/>
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNEdge>
-      <bpmndi:BPMNEdge bpmnElement="SequenceFlow_6" id="Yaoqiang-SequenceFlow_6">
-        <di:waypoint x="457.0" y="35.0"/>
-        <di:waypoint x="517.0" y="35.0"/>
-        <di:waypoint x="517.0" y="104.0"/>
-        <bpmndi:BPMNLabel>
-          <dc:Bounds height="26.6982421875" width="16.0" x="509.0" y="26.15087890625"/>
+      <bpmndi:BPMNEdge id="sid-03B5B5AF-A1F0-4E20-AFB9-38B826AB8D3E_gui" bpmnElement="sid-03B5B5AF-A1F0-4E20-AFB9-38B826AB8D3E" sourceElement="sid-E886E7E9-C4EA-42F6-ABCB-882EF9EB8B38_gui" targetElement="sid-D98FE8D4-32DF-476A-9C41-F9E569B0DA71_gui">
+        <omgdi:waypoint xsi:type="omgdc:Point" x="480.0" y="70.0"/>
+        <omgdi:waypoint xsi:type="omgdc:Point" x="541.5" y="70.0"/>
+        <omgdi:waypoint xsi:type="omgdc:Point" x="541.5" y="155.0"/>
+        <bpmndi:BPMNLabel id="BPMNLabel_13" labelStyle="BPMNLabelStyle_1">
+          <omgdc:Bounds height="14.0" width="7.0" x="538.0" y="83.0"/>
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNEdge>
-      <bpmndi:BPMNEdge bpmnElement="SequenceFlow_5" id="Yaoqiang-SequenceFlow_5">
-        <di:waypoint x="277.0" y="138.0"/>
-        <di:waypoint x="277.0" y="205.0"/>
-        <di:waypoint x="347.0" y="205.0"/>
-        <bpmndi:BPMNLabel>
-          <dc:Bounds height="26.6982421875" width="16.0" x="282.5" y="178.65087890625"/>
+      <bpmndi:BPMNEdge id="sid-EFED9E2B-3B01-44F9-82E6-3727E2B1CA76_gui" bpmnElement="sid-EFED9E2B-3B01-44F9-82E6-3727E2B1CA76" sourceElement="sid-F4D68AC5-D815-48C5-B160-CEBA4C1421DC_gui" targetElement="sid-0EC98739-28B8-4098-9212-D6FCCD59E1DB_gui">
+        <omgdi:waypoint xsi:type="omgdc:Point" x="315.0" y="195.0"/>
+        <omgdi:waypoint xsi:type="omgdc:Point" x="315.0" y="280.0"/>
+        <omgdi:waypoint xsi:type="omgdc:Point" x="380.0" y="280.0"/>
+        <bpmndi:BPMNLabel id="BPMNLabel_15" labelStyle="BPMNLabelStyle_1">
+          <omgdc:Bounds height="14.0" width="7.0" x="312.0" y="271.0"/>
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNEdge>
-      <bpmndi:BPMNEdge bpmnElement="SequenceFlow_4" id="Yaoqiang-SequenceFlow_4">
-        <di:waypoint x="293.5" y="120.5"/>
-        <di:waypoint x="347.0" y="120.5"/>
-        <bpmndi:BPMNLabel>
-          <dc:Bounds height="26.6982421875" width="16.0" x="312.25" y="107.15087890625"/>
+      <bpmndi:BPMNEdge id="sid-0AD5228D-887A-4D19-87E7-1219EAE576C9_gui" bpmnElement="sid-0AD5228D-887A-4D19-87E7-1219EAE576C9" sourceElement="sid-D98FE8D4-32DF-476A-9C41-F9E569B0DA71_gui" targetElement="sid-0E079D7D-0098-428D-97A2-ABF51024CB72_gui">
+        <omgdi:waypoint xsi:type="omgdc:Point" x="561.0" y="175.0"/>
+        <omgdi:waypoint xsi:type="omgdc:Point" x="606.0" y="175.0"/>
+        <bpmndi:BPMNLabel id="BPMNLabel_16" labelStyle="BPMNLabelStyle_1">
+          <omgdc:Bounds height="14.0" width="7.0" x="581.0" y="176.0"/>
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNEdge>
-      <bpmndi:BPMNEdge bpmnElement="SequenceFlow_3" id="Yaoqiang-SequenceFlow_3">
-        <di:waypoint x="277.0" y="104.0"/>
-        <di:waypoint x="277.0" y="35.0"/>
-        <di:waypoint x="347.0" y="35.0"/>
-        <bpmndi:BPMNLabel>
-          <dc:Bounds height="26.6982421875" width="16.0" x="280.5" y="38.65087890625"/>
+      <bpmndi:BPMNEdge id="sid-F6EDEAA1-882C-491F-8852-A994BE20ACCB_gui" bpmnElement="sid-F6EDEAA1-882C-491F-8852-A994BE20ACCB" sourceElement="sid-F4D68AC5-D815-48C5-B160-CEBA4C1421DC_gui" targetElement="sid-E886E7E9-C4EA-42F6-ABCB-882EF9EB8B38_gui">
+        <omgdi:waypoint xsi:type="omgdc:Point" x="315.5" y="155.0"/>
+        <omgdi:waypoint xsi:type="omgdc:Point" x="315.5" y="70.0"/>
+        <omgdi:waypoint xsi:type="omgdc:Point" x="380.0" y="70.0"/>
+        <bpmndi:BPMNLabel id="BPMNLabel_18" labelStyle="BPMNLabelStyle_1">
+          <omgdc:Bounds height="14.0" width="7.0" x="312.0" y="81.0"/>
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNEdge>
-      <bpmndi:BPMNEdge bpmnElement="SequenceFlow_2" id="Yaoqiang-SequenceFlow_2">
-        <di:waypoint x="214.0" y="120.5"/>
-        <di:waypoint x="252.5" y="120.5"/>
-        <bpmndi:BPMNLabel>
-          <dc:Bounds height="26.6982421875" width="16.0" x="225.25" y="107.15087890625"/>
+      <bpmndi:BPMNEdge id="sid-C6506147-1F35-4235-88C2-9EDFD483F4C6_gui" bpmnElement="sid-C6506147-1F35-4235-88C2-9EDFD483F4C6" sourceElement="sid-29EB2FC1-7050-4603-BF12-D0CD6B6116F1_gui" targetElement="sid-D98FE8D4-32DF-476A-9C41-F9E569B0DA71_gui">
+        <omgdi:waypoint xsi:type="omgdc:Point" x="480.0" y="175.22421"/>
+        <omgdi:waypoint xsi:type="omgdc:Point" x="521.0" y="175.40807"/>
+        <bpmndi:BPMNLabel id="BPMNLabel_19" labelStyle="BPMNLabelStyle_1">
+          <omgdc:Bounds height="14.0" width="7.0" x="498.0" y="176.0"/>
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNEdge>
-      <bpmndi:BPMNEdge bpmnElement="SequenceFlow_1" id="Yaoqiang-SequenceFlow_1">
-        <di:waypoint x="65.99218559171948" y="120.5"/>
-        <di:waypoint x="104.0" y="120.5"/>
-        <bpmndi:BPMNLabel>
-          <dc:Bounds height="26.6982421875" width="16.0" x="76.99609279585974" y="107.15087890625"/>
+      <bpmndi:BPMNEdge id="BPMNEdge_SequenceFlow_3" bpmnElement="SequenceFlow_3" sourceElement="sid-94CA3CAB-AA15-484C-A00C-7372185C0A79_gui" targetElement="sid-24BB1352-5C62-4E83-A253-378A2D086D85_gui">
+        <omgdi:waypoint xsi:type="omgdc:Point" x="100.0" y="175.0"/>
+        <omgdi:waypoint xsi:type="omgdc:Point" x="150.0" y="175.0"/>
+        <bpmndi:BPMNLabel id="BPMNLabel_24" labelStyle="BPMNLabelStyle_1">
+          <omgdc:Bounds height="14.0" width="7.0" x="122.0" y="176.0"/>
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNEdge>
-      <bpmndi:BPMNEdge bpmnElement="SequenceFlow_10" id="Yaoqiang-SequenceFlow_10">
-        <di:waypoint x="684.0" y="120.5"/>
-        <di:waypoint x="724.0078144082805" y="120.5"/>
-        <bpmndi:BPMNLabel>
-          <dc:Bounds height="26.6982421875" width="26.0" x="691.0039072041402" y="107.15087890625"/>
+      <bpmndi:BPMNEdge id="BPMNEdge_SequenceFlow_4" bpmnElement="SequenceFlow_4" sourceElement="sid-0E079D7D-0098-428D-97A2-ABF51024CB72_gui" targetElement="sid-88383928-E961-4E4A-9725-55B02E86FD0E_gui">
+        <omgdi:waypoint xsi:type="omgdc:Point" x="706.0" y="175.0"/>
+        <omgdi:waypoint xsi:type="omgdc:Point" x="780.0" y="175.0"/>
+        <bpmndi:BPMNLabel id="BPMNLabel_25" labelStyle="BPMNLabelStyle_1">
+          <omgdc:Bounds height="14.0" width="14.0" x="737.0" y="176.0"/>
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNEdge>
     </bpmndi:BPMNPlane>
+    <bpmndi:BPMNLabelStyle id="sid-171397ba-5287-449e-a352-fbd6621eeecb">
+      <omgdc:Font name="Arial" size="12.0"/>
+    </bpmndi:BPMNLabelStyle>
+    <bpmndi:BPMNLabelStyle id="BPMNLabelStyle_1">
+      <omgdc:Font name="arial" size="9.0"/>
+    </bpmndi:BPMNLabelStyle>
   </bpmndi:BPMNDiagram>
-</bpmn2:definitions>
+</definitions>

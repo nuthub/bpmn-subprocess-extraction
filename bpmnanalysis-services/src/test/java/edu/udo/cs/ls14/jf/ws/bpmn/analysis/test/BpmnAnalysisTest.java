@@ -64,7 +64,7 @@ public class BpmnAnalysisTest {
 		// create some test data
 		Definitions definitions = resSet
 				.loadDefinitions(getClass().getResource(
-						"/bpmn/parallelGateway/PM1-mit-Fragment1.bpmn").getPath());
+						"/bpmn/parallelGateway/parallelism1.bpmn").getPath());
 		System.out.println("Request: " + definitions);
 		ProcessAnalysis analysisOut = port.analyze(definitions);
 		System.out.println("Response: " + analysisOut.getResults());

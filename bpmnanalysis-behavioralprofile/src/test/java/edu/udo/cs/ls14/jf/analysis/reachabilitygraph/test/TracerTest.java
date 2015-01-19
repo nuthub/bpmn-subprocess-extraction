@@ -24,14 +24,14 @@ public class TracerTest {
 	}
 
 	@Test
-	public void testPM1() throws Exception {
-		String basename = "PM1-mit-Fragment1";
+	public void testParallelism1() throws Exception {
+		String basename = "parallelism1";
 		runTest("/bpmn/parallelGateway/", basename, 6);
 	}
 
 	@Test
-	public void testPM2() throws Exception {
-		String basename = "PM2-mit-Fragment1";
+	public void testParallelism2() throws Exception {
+		String basename = "parallelism2";
 		// TODO: check if 10 is expected
 		runTest("/bpmn/parallelGateway/", basename, 10);
 	}
