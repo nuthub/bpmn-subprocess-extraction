@@ -9,7 +9,7 @@ import edu.udo.cs.ls14.jf.bpmn.utils.Bpmn2ResourceSet;
 import edu.udo.cs.ls14.jf.registry.Registries;
 
 public class ResourceCopyTest {
-	
+
 	@Before
 	public void setUp() {
 		Registries.registerBpmn();
@@ -17,15 +17,17 @@ public class ResourceCopyTest {
 
 	@Test
 	public void testResSetCopy() throws Exception {
-		Bpmn2ResourceSet resSetIn = new Bpmn2ResourceSet(getClass()
-				.getResource("/bpmn/").getPath());
-		String basename1 = "PM1-mit-Fragment1.bpmn";
-		Definitions definitions = resSetIn.loadDefinitions(basename1);
+		String basename = "parallelism1";
+		Definitions definitions = Bpmn2ResourceSet.getInstance()
+				.loadDefinitions(
+						getClass().getResource(
+								"/bpmn/parallelGateway/" + basename + ".bpmn")
+								.getPath());
 		System.out.println(definitions);
-		Bpmn2ResourceSet resSetOut = new Bpmn2ResourceSet("/tmp/resSet");
-		Resource resOut = resSetOut.createResource("resOut.bpmn", definitions);
+		Resource resOut = Bpmn2ResourceSet.getInstance().createResource(
+				"/tmp/bpmn/parallelGateway/copied-" + basename + ".bpmn",
+				definitions);
 		resOut.save(null);
 
 	}
-
 }
