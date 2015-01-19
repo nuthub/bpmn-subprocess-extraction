@@ -13,8 +13,8 @@ import org.junit.Before;
 import org.junit.Test;
 
 import edu.udo.cs.ls14.jf.analysis.pst.PSTBuilder;
+import edu.udo.cs.ls14.jf.analysis.pst.PSTDebugUtil;
 import edu.udo.cs.ls14.jf.bpmn.utils.Bpmn2ResourceSet;
-import edu.udo.cs.ls14.jf.bpmn.utils.IOUtil;
 import edu.udo.cs.ls14.jf.bpmnanalysis.Fragment;
 import edu.udo.cs.ls14.jf.bpmnanalysis.ProcessStructureTree;
 import edu.udo.cs.ls14.jf.registry.Registries;
@@ -32,6 +32,14 @@ public class PSTTest {
 		String pathname = "/bpmn/complete/";
 		ProcessStructureTree pst = runTest(pathname, basename, 32, 32, 60);
 		assertEquals(14, pst.getFragments().size());
+	}
+
+	@Test
+	public void testComplete2() throws Exception {
+		String basename = "complete2";
+		String pathname = "/bpmn/complete/";
+		ProcessStructureTree pst = runTest(pathname, basename, 32, 32, 60);
+		assertEquals(15, pst.getFragments().size());
 	}
 
 	@Test
@@ -74,7 +82,7 @@ public class PSTTest {
 
 	@Test
 	public void testPM1() throws Exception {
-		String pathname = "/bpmn/";
+		String pathname = "/bpmn/parallelGateway/";
 		String basename = "PM1-mit-Fragment1";
 		ProcessStructureTree pst = runTest(pathname, basename, 32, 32, 60);
 		List<Fragment> frags = pst.getFragments();
@@ -89,7 +97,7 @@ public class PSTTest {
 
 	@Test
 	public void testPM2() throws Exception {
-		String pathname = "/bpmn/";
+		String pathname = "/bpmn/parallelGateway/";
 		String basename = "PM2-mit-Fragment1";
 		ProcessStructureTree pst = runTest(pathname, basename, 32, 32, 60);
 		List<Fragment> frags = pst.getFragments();
@@ -167,7 +175,7 @@ public class PSTTest {
 								.getPath());
 		PSTBuilder pstBuilder = new PSTBuilder();
 		ProcessStructureTree pst = pstBuilder.getTree(definitions);
-		writeDebugFiles("/tmp/" + pathname, basename, pstBuilder,
+		PSTDebugUtil.writeDebugFiles("/tmp/" + pathname, basename, pstBuilder,
 				fontsizeGraph, fontsizeSpTree, fontsizePst);
 		return pst;
 	}
@@ -184,22 +192,5 @@ public class PSTTest {
 		assertTrue(contains);
 	}
 
-	public void writeDebugFiles(String path, String basename,
-			PSTBuilder builder, int fontsizeGraph, int fontsizeSpTree,
-			int fontsizePst) throws Exception {
-		// dot output
-		IOUtil.writeDot(path, basename + "-undirectedgraph",
-				builder.undirectedGraphToDot(fontsizeGraph));
-		IOUtil.writeDot(path, basename + "-spanningtree",
-				builder.spanningTreeToDot(fontsizeSpTree));
-		IOUtil.writeTxtFile(builder.cycleEqClsToTex(), path + basename
-				+ "-ceClasses.tex");
-		IOUtil.writeTxtFile(builder.sortedCycleEqClsToTex(), path + basename
-				+ "-sortedCeClasses.tex");
-		IOUtil.writeTxtFile(builder.canonicalFragmentsToTex(), path + basename
-				+ "-canonicalFragments.tex");
-		IOUtil.writeDot(path, basename + "-pst",
-				builder.structureTreeToDot(fontsizePst));
-	}
 
 }
