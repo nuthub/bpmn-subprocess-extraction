@@ -49,7 +49,7 @@ public class EObjectXmlConverter {
 
 	private static Map<String, Object> getOptions() {
 		Map<String, Object> options = new HashMap<String, Object>();
-		options.put(XMLResource.OPTION_SUPPRESS_DOCUMENT_ROOT, Boolean.FALSE);
+		options.put(XMLResource.OPTION_SUPPRESS_DOCUMENT_ROOT, Boolean.TRUE);
 		return options;
 	}
 }

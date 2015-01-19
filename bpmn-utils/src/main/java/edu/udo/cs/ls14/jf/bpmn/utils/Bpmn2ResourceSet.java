@@ -8,7 +8,6 @@ import org.eclipse.bpmn2.Definitions;
 import org.eclipse.bpmn2.DocumentRoot;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 
@@ -16,7 +15,6 @@ import edu.udo.cs.ls14.jf.registry.Registries;
 
 public class Bpmn2ResourceSet extends ResourceSetImpl {
 	private static Bpmn2ResourceSet instance;
-	private String directory = "";
 
 	private Bpmn2ResourceSet() {
 		super();
@@ -29,21 +27,21 @@ public class Bpmn2ResourceSet extends ResourceSetImpl {
 		return instance;
 	}
 
-	@Deprecated
-	public Bpmn2ResourceSet(String baseDir) {
-		super();
-		packageRegistry = EPackage.Registry.INSTANCE;
-		directory = baseDir;
-	}
+	//
+	// @Deprecated
+	// public Bpmn2ResourceSet(String baseDir) {
+	// super();
+	// packageRegistry = EPackage.Registry.INSTANCE;
+	// directory = baseDir;
+	// }
+	//
+	// @Deprecated
+	// public String getDirectory() {
+	// return directory;
+	// }
 
-	@Deprecated
-	public String getDirectory() {
-		return directory;
-	}
-
-	protected URI getCompletePathURI(String filename, String directory,
-			boolean absolute) {
-		StringBuilder builder = new StringBuilder(directory).append("/");
+	protected URI getCompletePathURI(String filename, boolean absolute) {
+		StringBuilder builder = new StringBuilder("/");
 		builder.append(filename);
 		return URI.createFileURI(absolute ? new File(builder.toString())
 				.getAbsolutePath() : builder.toString());
@@ -51,7 +49,7 @@ public class Bpmn2ResourceSet extends ResourceSetImpl {
 
 	public Resource createResource(String filename, Definitions definitions)
 			throws Exception {
-		URI fileURI = getCompletePathURI(filename, directory, true);
+		URI fileURI = getCompletePathURI(filename, true);
 		Resource resource = Registries.getResourceFactory("bpmn")
 				.createResource(fileURI);
 		resource.getContents().add(definitions);
@@ -60,7 +58,7 @@ public class Bpmn2ResourceSet extends ResourceSetImpl {
 	}
 
 	public Definitions loadDefinitions(String filename) throws Exception {
-		URI fileURI = getCompletePathURI(filename, directory, true);
+		URI fileURI = getCompletePathURI(filename, true);
 		Resource resource = Registries.getResourceFactory("bpmn")
 				.createResource(fileURI);
 		resource.load(new BufferedInputStream(new FileInputStream(resource
@@ -70,7 +68,7 @@ public class Bpmn2ResourceSet extends ResourceSetImpl {
 	}
 
 	public Resource getResource(String filename) {
-		return getResource(getCompletePathURI(filename, directory, true), false);
+		return getResource(getCompletePathURI(filename, true), false);
 
 	}
 

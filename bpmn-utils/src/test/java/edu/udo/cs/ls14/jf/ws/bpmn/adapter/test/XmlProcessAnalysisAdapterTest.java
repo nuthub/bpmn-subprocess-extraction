@@ -26,7 +26,7 @@ public class XmlProcessAnalysisAdapterTest {
 	
 	@Test
 	public void testXml() throws Exception {
-		String xml = readFile("/edu/udo/cs/ls14/jf/bpmn/utils/test/bpmnAnalysis.xml");
+		String xml = readFile("/xml/bpmnAnalysis.xml");
 		XmlProcessAnalysisAdapter adapter = new XmlProcessAnalysisAdapter();
 		ProcessAnalysis analysis2 = adapter.unmarshal(xml);
 		assertEquals("Definitions_1", analysis2.getDefinitions().getId());
@@ -38,7 +38,7 @@ public class XmlProcessAnalysisAdapterTest {
 
 	@Test
 	public void testPM1() throws Exception {
-		String filename = "/edu/udo/cs/ls14/jf/bpmn/utils/test/empty.bpmn";
+		String filename = "/bpmn/parallelGateway/PM1-mit-Fragment1.bpmn";
 		XmlProcessAnalysisAdapter adapter = new XmlProcessAnalysisAdapter();
 
 		// Create example ProcessAnalysis

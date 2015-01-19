@@ -21,19 +21,20 @@ public class EObjectXmlConverterTest {
 
 	@Before
 	public void setUp() {
-		Registries.registerBpmn();
-		Registries.registerBpmnAnalysis();
+		Registries.registerAll();
+//		Registries.registerBpmn();
+//		Registries.registerBpmnAnalysis();
 	}
 
 	@Test
 	public void testConditionSequence() throws Exception {
-		String filename = "/edu/udo/cs/ls14/jf/bpmn/utils/test/conditionSequence.bpmn";
+		String filename = "/bpmn/conditionalFlow/conditionSequence1.bpmn";
 		runTest(filename);
 	}
 
 	@Test
 	public void testPM1() throws Exception {
-		String filename = "/edu/udo/cs/ls14/jf/bpmn/utils/test/PM1-mit-Fragment1.bpmn";
+		String filename = "/bpmn/parallelGateway/PM1-mit-Fragment1.bpmn";
 		runTest(filename);
 	}
 
