@@ -88,9 +88,7 @@ public class BehavioralProfileTest {
 	public void testParallelism3() throws Exception {
 		String pathname = "/bpmn/parallelGateway/";
 		String basename = "parallelism3";
-		BehavioralProfile bp = createBpFromBpmn(pathname, basename,
-				Arrays.asList("n_start", "T1", "T2", "T3", "T4", "T5", "T6",
-						"E1", "E2", "E3", "E4", "n_end"));
+		BehavioralProfile bp = createBpFromBpmnOld(pathname, basename);
 		assertNotNull(bp);
 	}
 
