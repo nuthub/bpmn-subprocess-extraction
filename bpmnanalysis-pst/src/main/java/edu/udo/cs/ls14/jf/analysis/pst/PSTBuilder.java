@@ -646,8 +646,8 @@ public class PSTBuilder {
 			for (SequenceFlow flow : cls) {
 				clsSets.add(getLabel(flow));
 			}
-			classes.add("\\langle" + StringUtils.join(clsSets, ",")
-					+ "\\rangle");
+			classes.add("\\langle " + StringUtils.join(clsSets, ",")
+					+ "\\rangle ");
 		}
 		return "$" + StringUtils.join(classes, ", \\allowbreak" + newline)
 				+ "$";

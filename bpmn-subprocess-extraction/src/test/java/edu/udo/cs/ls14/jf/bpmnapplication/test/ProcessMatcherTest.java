@@ -2,17 +2,12 @@ package edu.udo.cs.ls14.jf.bpmnapplication.test;
 
 import static org.junit.Assert.assertEquals;
 
-import java.util.function.Predicate;
+import java.util.Arrays;
+import java.util.List;
 
-import org.eclipse.bpmn2.Activity;
-import org.eclipse.bpmn2.Definitions;
-import org.eclipse.bpmn2.Event;
-import org.eclipse.bpmn2.FlowElement;
 import org.junit.Before;
 import org.junit.Test;
 
-import edu.udo.cs.ls14.jf.bpmn.utils.Bpmn2ResourceSet;
-import edu.udo.cs.ls14.jf.bpmn.utils.FragmentUtil;
 import edu.udo.cs.ls14.jf.bpmnanalysis.ProcessAnalysis;
 import edu.udo.cs.ls14.jf.bpmnapplication.ProcessAnalyzer;
 import edu.udo.cs.ls14.jf.bpmnapplication.ProcessMatcher;
@@ -27,62 +22,89 @@ public class ProcessMatcherTest {
 	}
 
 	@Test
-	public void testConditionSequence1ConditionSequence2() throws Exception {
-		String basename1 = "conditionSequence";
+	public void testConditionalFlow() throws Exception {
+		String pathname = "/bpmn/conditionalFlow/";
+		String basename1 = "conditionSequence1";
 		String basename2 = "conditionSequence2";
 		System.out.println("Testing " + basename1 + " with " + basename2);
-		Bpmn2ResourceSet resSet = new Bpmn2ResourceSet(getClass().getResource(
-				"/edu/udo/cs/ls14/jf/bpmn/test/conditionalFlow/").getPath());
-		Definitions def1 = resSet.loadDefinitions(basename1 + ".bpmn");
-		Definitions def2 = resSet.loadDefinitions(basename2 + ".bpmn");
-		runTest(def1, def2, 1);
+		List<String> nodes = Arrays.asList("Start", "Task 1",
+				"Task 2", "Task 3",
+				"Task 4", "End");
+		ProcessMatching matching = runTest(pathname, basename1, nodes,
+				basename2, nodes);
+		assertEquals(4, matching.getNodeMatching().getPairs().size());
+		assertEquals(1, matching.getFragmentMatching().getPairs().size());
 	}
 
 	@Test
-	public void testPm1WithPm2() throws Exception {
-		String basename1 = "PM1-mit-Fragment1";
-		String basename2 = "PM2-mit-Fragment1";
+	public void testParallelGateway() throws Exception {
+		String pathname = "/bpmn/parallelGateway/";
+		String basename1 = "parallelism1";
+		String basename2 = "parallelism2";
 		System.out.println("Testing " + basename1 + " with " + basename2);
-		Bpmn2ResourceSet resSet = new Bpmn2ResourceSet(getClass().getResource(
-				"/edu/udo/cs/ls14/jf/bpmn/test/").getPath());
-		Definitions def1 = resSet.loadDefinitions(basename1 + ".bpmn");
-		Definitions def2 = resSet.loadDefinitions(basename2 + ".bpmn");
-		runTest(def1, def2, 1);
+		List<String> nodes1 = Arrays.asList("Start", "Task A",
+				"Lieferschein erstellen", "Rechnung erstellen",
+				"Waren verpacken", "Task B", "End");
+		List<String> nodes2 = Arrays.asList("Start", "Task C",
+				"Lieferschein erstellen", "Rechnung erstellen",
+				"Ware verpacken", "Task D", "End");
+		ProcessMatching matching = runTest(pathname, basename1, nodes1,
+				basename2, nodes2);
+		assertEquals(3, matching.getNodeMatching().getPairs().size());
+		assertEquals(1, matching.getFragmentMatching().getPairs().size());
 	}
 
-	private ProcessMatching runTest(Definitions definitions1,
-			Definitions definitions2, int expectedFCs) throws Exception {
+	/**
+	 * Evaluation model 1 + evaluation model 2
+	 * 
+	 * @throws Exception
+	 */
+	@Test
+	public void testComplete() throws Exception {
+		String pathname = "/bpmn/complete/";
+		String basename1 = "complete1";
+		String basename2 = "complete2";
+		List<String> nodes = Arrays.asList("n_start", "T1", "T2", "T3", "T4",
+				"T5", "T6", "E1", "E2", "E3", "E4", "n_end");
+		ProcessMatching matching = runTest(pathname, basename1, nodes,
+				basename2, nodes);
+		assertEquals(10, matching.getNodeMatching().getPairs().size());
+		assertEquals(2, matching.getFragmentMatching().getPairs().size());
+	}
+
+	private ProcessMatching runTest(String pathname, String basename1,
+			List<String> nodes1, String basename2, List<String> nodes2)
+			throws Exception {
 
 		// analyze process1
-		ProcessAnalysis analysis1 = ProcessAnalyzer.analyze(definitions1);
+		ProcessAnalysis analysis1 = ProcessAnalyzer.analyzeAndDebug(pathname,
+				basename1, "/tmp/", nodes1);
 		// analyze process2
-		ProcessAnalysis analysis2 = ProcessAnalyzer.analyze(definitions2);
+		ProcessAnalysis analysis2 = ProcessAnalyzer.analyzeAndDebug(pathname,
+				basename2, "/tmp/", nodes2);
 
 		ProcessMatching matching = ProcessMatcher.match(analysis1, analysis2);
-		printMatching(matching);
-		assertEquals(expectedFCs, matching.getFragmentMatching().getPairs()
-				.size());
 		return matching;
 	}
-
-	private void printMatching(ProcessMatching matching) {
-		Predicate<FlowElement> filter = n -> n instanceof Event
-				|| n instanceof Activity;
-		matching.getFragmentMatching()
-				.getPairs()
-				.stream()
-				.forEach(
-						p -> System.out.println(p.getA()
-								+ " with "
-								+ FragmentUtil
-										.getFlowElements(p.getA(), filter)
-										.size()
-								+ " As/Es corresponds to "
-								+ p.getB()
-								+ " with "
-								+ FragmentUtil
-										.getFlowElements(p.getB(), filter)
-										.size() + " As/Es."));
-
-	}
+//
+//	private void printMatching(ProcessMatching matching) {
+//		Predicate<FlowElement> filter = n -> n instanceof Event
+//				|| n instanceof Activity;
+//		matching.getFragmentMatching()
+//				.getPairs()
+//				.stream()
+//				.forEach(
+//						p -> System.out.println(p.getA()
+//								+ " with "
+//								+ FragmentUtil
+//										.getFlowElements(p.getA(), filter)
+//										.size()
+//								+ " As/Es corresponds to "
+//								+ p.getB()
+//								+ " with "
+//								+ FragmentUtil
+//										.getFlowElements(p.getB(), filter)
+//										.size() + " As/Es."));
+//
+//	}
 }

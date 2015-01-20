@@ -1,16 +1,23 @@
 package edu.udo.cs.ls14.jf.bpmnapplication;
 
+import java.util.List;
+import java.util.UUID;
+
 import org.eclipse.bpmn2.Definitions;
 import org.eclipse.bpmn2.Process;
+import org.eclipse.emf.ecore.util.EcoreUtil;
 
+import edu.udo.cs.ls14.jf.analysis.behavioralprofile.debug.BPDebugUtil;
 import edu.udo.cs.ls14.jf.analysis.behaviorprofile.BehavioralProfiler;
 import edu.udo.cs.ls14.jf.analysis.bpmn2ptnet.Bpmn2PtnetConverter;
 import edu.udo.cs.ls14.jf.analysis.conditionalprofile.ConditionalProfiler;
 import edu.udo.cs.ls14.jf.analysis.pst.PSTBuilder;
+import edu.udo.cs.ls14.jf.analysis.pst.PSTDebugUtil;
 import edu.udo.cs.ls14.jf.analysis.reachabilitygraph.ReachabilityGraph;
 import edu.udo.cs.ls14.jf.analysis.reachabilitygraph.Tracer;
-import edu.udo.cs.ls14.jf.bpmn.utils.ProcessAnalysisFactory;
+import edu.udo.cs.ls14.jf.bpmn.utils.Bpmn2ResourceSet;
 import edu.udo.cs.ls14.jf.bpmn.utils.DefinitionsUtil;
+import edu.udo.cs.ls14.jf.bpmn.utils.ProcessAnalysisFactory;
 import edu.udo.cs.ls14.jf.bpmnanalysis.BehavioralProfile;
 import edu.udo.cs.ls14.jf.bpmnanalysis.ProcessAnalysis;
 import edu.udo.cs.ls14.jf.bpmnanalysis.TraceProfile;
@@ -18,13 +25,25 @@ import fr.lip6.move.pnml.ptnet.hlapi.PetriNetHLAPI;
 
 public class ProcessAnalyzer {
 
-	public static ProcessAnalysis analyze(Definitions definitions)
+	public static ProcessAnalysis analyzeAndDebug(String pathname,
+			String basename, String outputBaseDir, List<String> nodes)
 			throws Exception {
+
+		Definitions definitions = EcoreUtil
+				.copy(Bpmn2ResourceSet.getInstance().loadDefinitions(
+						ProcessAnalyzer.class.getResource(
+								pathname + "/" + basename + ".bpmn").getFile()));
+		definitions.setTargetNamespace("http://" + UUID.randomUUID().toString());
 		Process process = DefinitionsUtil.getProcess(definitions);
 
 		// Create Analysis object
 		ProcessAnalysis analysis = ProcessAnalysisFactory
 				.createAnalysis(definitions);
+
+		// create PST
+		PSTBuilder pstBuilder = new PSTBuilder();
+		analysis.getResults().put(ProcessAnalysis.PROCESSTRUCTURETREE,
+				pstBuilder.getTree(definitions));
 
 		// create petri net
 		Bpmn2PtnetConverter bpmn2ptnet = new Bpmn2PtnetConverter();
@@ -49,10 +68,51 @@ public class ProcessAnalyzer {
 		analysis.getResults().put(ProcessAnalysis.CONDITIONALPROFILE,
 				ConditionalProfiler.generateProfile(process));
 
+		// TODO fontsizes as parameters
+		PSTDebugUtil.writeDebugFiles(outputBaseDir + pathname, basename,
+				pstBuilder, 32, 32, 60);
+		BPDebugUtil.writeDebugFiles(outputBaseDir + pathname, basename,
+				process, bpmn2ptnet, ptnet, reachabilityGraph, nodes,
+				traceProfile, behavioralProfile);
+		// done
+		return analysis;
+	}
+
+	public static ProcessAnalysis analyze(Definitions definitions)
+			throws Exception {
+		Process process = DefinitionsUtil.getProcess(definitions);
+
+		// Create Analysis object
+		ProcessAnalysis analysis = ProcessAnalysisFactory
+				.createAnalysis(definitions);
+
 		// create PST
 		PSTBuilder pstBuilder = new PSTBuilder();
 		analysis.getResults().put(ProcessAnalysis.PROCESSTRUCTURETREE,
 				pstBuilder.getTree(definitions));
+
+		// create petri net
+		Bpmn2PtnetConverter bpmn2ptnet = new Bpmn2PtnetConverter();
+		PetriNetHLAPI ptnet = bpmn2ptnet.convertToPetriNet(process);
+
+		// create reachabilitygraph
+		ReachabilityGraph reachabilityGraph = new ReachabilityGraph();
+		reachabilityGraph.createFromPTNet(ptnet.getContainedItem());
+
+		// create traces
+		TraceProfile traceProfile = Tracer.getTraceProfile(process,
+				reachabilityGraph);
+		analysis.getResults().put(ProcessAnalysis.TRACEPROFILE, traceProfile);
+
+		// create behavioral profile
+		BehavioralProfile behavioralProfile = BehavioralProfiler
+				.generateProfile(process, traceProfile);
+		analysis.getResults().put(ProcessAnalysis.BEHAVIORALPROFILE,
+				behavioralProfile);
+
+		// create conditional profile
+		analysis.getResults().put(ProcessAnalysis.CONDITIONALPROFILE,
+				ConditionalProfiler.generateProfile(process));
 
 		// done
 		return analysis;

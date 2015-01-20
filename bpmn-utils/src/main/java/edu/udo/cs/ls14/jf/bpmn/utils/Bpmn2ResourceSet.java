@@ -6,6 +6,7 @@ import java.io.FileInputStream;
 
 import org.eclipse.bpmn2.Definitions;
 import org.eclipse.bpmn2.DocumentRoot;
+import org.eclipse.bpmn2.util.Bpmn2Resource;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
@@ -27,19 +28,6 @@ public class Bpmn2ResourceSet extends ResourceSetImpl {
 		return instance;
 	}
 
-	//
-	// @Deprecated
-	// public Bpmn2ResourceSet(String baseDir) {
-	// super();
-	// packageRegistry = EPackage.Registry.INSTANCE;
-	// directory = baseDir;
-	// }
-	//
-	// @Deprecated
-	// public String getDirectory() {
-	// return directory;
-	// }
-
 	protected URI getCompletePathURI(String filename, boolean absolute) {
 		StringBuilder builder = new StringBuilder("/");
 		builder.append(filename);
@@ -47,28 +35,34 @@ public class Bpmn2ResourceSet extends ResourceSetImpl {
 				.getAbsolutePath() : builder.toString());
 	}
 
-	public Resource createResource(String filename, Definitions definitions)
+	public Bpmn2Resource createResource(URI fileURI, Definitions definitions)
 			throws Exception {
-		URI fileURI = getCompletePathURI(filename, true);
-		Resource resource = Registries.getResourceFactory("bpmn")
-				.createResource(fileURI);
+		Bpmn2Resource resource = (Bpmn2Resource) Registries.getResourceFactory(
+				"bpmn").createResource(fileURI);
 		resource.getContents().add(definitions);
 		getResources().add(resource);
 		return resource;
 	}
 
+	public Bpmn2Resource createResource(String filename, Definitions definitions)
+			throws Exception {
+		URI fileURI = getCompletePathURI(filename, true);
+		return createResource(fileURI, definitions);
+	}
+
 	public Definitions loadDefinitions(String filename) throws Exception {
 		URI fileURI = getCompletePathURI(filename, true);
-		Resource resource = Registries.getResourceFactory("bpmn")
-				.createResource(fileURI);
+		Bpmn2Resource resource = (Bpmn2Resource) Registries.getResourceFactory(
+				"bpmn").createResource(fileURI);
 		resource.load(new BufferedInputStream(new FileInputStream(resource
 				.getURI().toFileString())), null);
 		getResources().add(resource);
 		return ((DocumentRoot) resource.getContents().get(0)).getDefinitions();
 	}
 
-	public Resource getResource(String filename) {
-		return getResource(getCompletePathURI(filename, true), false);
+	public Bpmn2Resource getResource(String filename) {
+		return (Bpmn2Resource) getResource(getCompletePathURI(filename, true),
+				false);
 
 	}
 

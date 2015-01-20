@@ -1,6 +1,10 @@
 package edu.udo.cs.ls14.jf.bpmnapplication.test;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
+
+import java.util.Arrays;
+import java.util.List;
 
 import org.eclipse.bpmn2.Definitions;
 import org.junit.Before;
@@ -29,33 +33,79 @@ public class ProcessAnalyzerTest {
 				"conditionalProfile")).getRelations().size();
 	}
 
+	/**
+	 * Evaluation test model 1
+	 * TODO: assertions
+	 * 
+	 * @throws Exception
+	 */
 	@Test
-	public void testAnalysisPM1() throws Exception {
-		Definitions def = new Bpmn2ResourceSet(getClass().getResource(
-				"/edu/udo/cs/ls14/jf/bpmn/test/").getPath())
-				.loadDefinitions("PM1-mit-Fragment1.bpmn");
+	public void testComplete1() throws Exception {
+		List<String> nodes = Arrays.asList("n_start", "T1", "T2", "T3", "T4",
+				"T5", "T6", "E1", "E2", "E3", "E4", "n_end");
+		ProcessAnalysis analysis = ProcessAnalyzer.analyzeAndDebug(
+				"/bpmn/complete/", "complete1", "/tmp/", nodes);
+		assertNotNull(analysis);
+	}
+
+	/**
+	 * Evaluation test model 2
+	 * TODO: assertions
+	 * 
+	 * @throws Exception
+	 */
+	@Test
+	public void testComplete2() throws Exception {
+		List<String> nodes = Arrays.asList("n_start", "T1", "T2", "T3", "T4",
+				"T5", "T6", "E1", "E2", "E3", "E4", "n_end");
+		ProcessAnalysis analysis = ProcessAnalyzer.analyzeAndDebug(
+				"/bpmn/complete/", "complete2", "/tmp/", nodes);
+		assertNotNull(analysis);
+	}
+
+	@Test
+	public void testAnalysisParallelism1() throws Exception {
+		String basename = "parallelism1";
+		Definitions def = Bpmn2ResourceSet.getInstance().loadDefinitions(
+				getClass().getResource(
+						"/bpmn/parallelGateway/" + basename + ".bpmn")
+						.getPath());
 		ProcessAnalysis analysis = ProcessAnalyzer.analyze(def);
 		assertEquals(6, getPstSize(analysis));
 		assertEquals(7, getCpSize(analysis));
 	}
 
 	@Test
-	public void testAnalysisConditionSequence() throws Exception {
-		Definitions def = new Bpmn2ResourceSet(getClass().getResource(
-				"/edu/udo/cs/ls14/jf/bpmn/test/").getPath())
-				.loadDefinitions("conditionalFlow/conditionSequence.bpmn");
+	public void testAnalysisParallelism2() throws Exception {
+		String basename = "parallelism1";
+		Definitions def = Bpmn2ResourceSet.getInstance().loadDefinitions(
+				getClass().getResource(
+						"/bpmn/parallelGateway/" + basename + ".bpmn")
+						.getPath());
 		ProcessAnalysis analysis = ProcessAnalyzer.analyze(def);
-		assertEquals(5, getPstSize(analysis));
-		assertEquals(5, getCpSize(analysis));
+		assertEquals(6, getPstSize(analysis));
+		assertEquals(7, getCpSize(analysis));
+	}
+
+	@Test
+	public void testAnalysisConditionSequence1() throws Exception {
+		Definitions def = Bpmn2ResourceSet.getInstance().loadDefinitions(
+				getClass().getResource(
+						"/bpmn/conditionalFlow/conditionSequence1.bpmn")
+						.getPath());
+		ProcessAnalysis analysis = ProcessAnalyzer.analyze(def);
+		assertEquals(6, getPstSize(analysis));
+		assertEquals(6, getCpSize(analysis));
 	}
 
 	@Test
 	public void testAnalysisConditionSequence2() throws Exception {
-		Definitions def = new Bpmn2ResourceSet(getClass().getResource(
-				"/edu/udo/cs/ls14/jf/bpmn/test/").getPath())
-				.loadDefinitions("conditionalFlow/conditionSequence2.bpmn");
+		Definitions def = Bpmn2ResourceSet.getInstance().loadDefinitions(
+				getClass().getResource(
+						"/bpmn/conditionalFlow/conditionSequence2.bpmn")
+						.getPath());
 		ProcessAnalysis analysis = ProcessAnalyzer.analyze(def);
-		assertEquals(5, getPstSize(analysis));
-		assertEquals(5, getCpSize(analysis));
+		assertEquals(6, getPstSize(analysis));
+		assertEquals(6, getCpSize(analysis));
 	}
 }

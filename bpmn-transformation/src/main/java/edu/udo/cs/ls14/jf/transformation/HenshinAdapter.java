@@ -17,11 +17,9 @@ import org.eclipse.bpmn2.Process;
 import org.eclipse.bpmn2.SequenceFlow;
 import org.eclipse.dd.dc.Point;
 import org.eclipse.emf.common.util.URI;
-import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.henshin.interpreter.EGraph;
 import org.eclipse.emf.henshin.interpreter.Engine;
 import org.eclipse.emf.henshin.interpreter.UnitApplication;
-import org.eclipse.emf.henshin.interpreter.impl.EGraphImpl;
 import org.eclipse.emf.henshin.interpreter.impl.EngineImpl;
 import org.eclipse.emf.henshin.interpreter.impl.UnitApplicationImpl;
 import org.eclipse.emf.henshin.model.Module;
@@ -44,36 +42,30 @@ public class HenshinAdapter {
 	private static final String RULEFILE = "bpmnModifier";
 
 	private Engine engine = null;
-	private HenshinResourceSet resourceSet = null;
+	private Module module = null;
 
 	private void init() throws Exception {
 		engine = new EngineImpl();
-		resourceSet = new HenshinResourceSet();
+		HenshinResourceSet resourceSet = new HenshinResourceSet();
 		resourceSet.registerXMIResourceFactories("bpmn");
 		resourceSet.getPackageRegistry().put(Bpmn2Package.eNS_URI,
 				Bpmn2Package.eINSTANCE);
 		resourceSet.getResourceFactoryRegistry().getExtensionToFactoryMap()
 				.put("bpmn", Registries.getResourceFactory("bpmn"));
+		// Load rule, build rule URI to avoid henshin's createFileURI
+		URL ruleUrl = Thread.currentThread().getContextClassLoader()
+				.getResource(RESOURCEPATH + "/" + RULEFILE + ".henshin");
+		URI uri = URI.createURI(ruleUrl.toExternalForm());
+		module = resourceSet.getModule(uri, true);
 	}
 
-	// TODO: Check if really required
-	public void replaceId(Resource res, String oldId, String newId)
+	public void cropFragment(EGraph graph, Fragment fragment, Definitions template)
 			throws Exception {
-		EGraph graph = new EGraphImpl(res);
-		Map<String, Object> parameters = new HashMap<String, Object>();
-		parameters.put("oldId", oldId);
-		parameters.put("newId", newId);
-		applyRule(graph, RULEFILE, "setId", parameters);
-	}
-
-	public void cropFragment(Resource res, Fragment fragment)
-			throws Exception {
-		Definitions definitions = (Definitions) res.getContents().get(0);
-		Process process = DefinitionsUtil.getProcess(definitions);
+		Process process = DefinitionsUtil.getProcess(template);
 		Point startEventCoords = CoordinateCalculator.getCenter(fragment
-				.getEntry().getSourceRef(), definitions);
+				.getEntry().getSourceRef(), template);
 		Point endEventCoords = CoordinateCalculator.getCenter(fragment
-				.getExit().getTargetRef(), definitions);
+				.getExit().getTargetRef(), template);
 
 		Set<String> preserveElementIds = FragmentUtil
 				.getFlowElements(fragment, e -> true).stream()
@@ -89,8 +81,6 @@ public class HenshinAdapter {
 		Set<String> deleteEdgeIds = deleteElements.stream()
 				.filter(e -> e instanceof SequenceFlow).map(e -> e.getId())
 				.collect(Collectors.toSet());
-
-		EGraph graph = new EGraphImpl(res);
 
 		Map<String, Object> parameters = new HashMap<String, Object>();
 		// create startevent
@@ -155,10 +145,8 @@ public class HenshinAdapter {
 		}
 	}
 
-	public void replaceFragmentByCallActivity(Resource res, Definitions definitions,
-			Fragment fragment, String name, CallableElement calledElement)
-			throws Exception {
-		EGraph graph = new EGraphImpl(res);
+	public void replaceFragmentByCallActivity(EGraph graph, Fragment fragment,
+			CallableElement calledElement, String name) throws Exception {
 
 		Set<String> deleteNodeIds = new HashSet<String>();
 		Set<String> deleteEdgeIds = new HashSet<String>();
@@ -174,7 +162,6 @@ public class HenshinAdapter {
 
 		// create call activity
 		parameters.clear();
-		// TODO: use object instead of ID
 		String callActivityUuid = UUID.randomUUID().toString();
 		parameters.put("id", callActivityUuid);
 		parameters.put("name", name);
@@ -210,26 +197,11 @@ public class HenshinAdapter {
 
 	}
 
-	@Deprecated
-	private Resource getTmpResource(Definitions definitions) throws Exception {
-		Resource res = Registries.getResourceFactory("bpmn").createResource(
-				URI.createURI(UUID.randomUUID().toString()));
-		res.getContents().add(definitions);
-		return res;
-	}
-
 	private void applyRule(EGraph graph, String rulefileBaseName,
 			String ruleName, Map<String, Object> parameters) throws Exception {
-		if (engine == null || resourceSet == null) {
+		if (module == null || engine == null) {
 			init();
 		}
-		// Load rule, build rule URI to avoid henshin's createFileURI
-		URL ruleUrl = Thread
-				.currentThread()
-				.getContextClassLoader()
-				.getResource(RESOURCEPATH + "/" + rulefileBaseName + ".henshin");
-		URI uri = URI.createURI(ruleUrl.toExternalForm());
-		Module module = resourceSet.getModule(uri, true);
 		Unit unit = module.getUnit(ruleName);
 		if (unit == null) {
 			throw new Exception("Could not get Unit: " + rulefileBaseName

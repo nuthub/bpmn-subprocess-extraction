@@ -5,15 +5,15 @@ import java.util.UUID;
 import org.eclipse.bpmn2.Definitions;
 import org.eclipse.bpmn2.Process;
 import org.eclipse.emf.common.util.URI;
-import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.util.EcoreUtil;
+import org.eclipse.emf.henshin.interpreter.EGraph;
+import org.eclipse.emf.henshin.interpreter.impl.EGraphImpl;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import edu.udo.cs.ls14.jf.bpmn.utils.Bpmn2ResourceSet;
 import edu.udo.cs.ls14.jf.bpmn.utils.DefinitionsUtil;
 import edu.udo.cs.ls14.jf.bpmn.utils.FragmentUtil;
-import edu.udo.cs.ls14.jf.bpmn.utils.ProcessExtractionFactory;
 import edu.udo.cs.ls14.jf.bpmnmatching.FragmentPair;
 import edu.udo.cs.ls14.jf.bpmnmatching.ProcessMatching;
 import edu.udo.cs.ls14.jf.bpmntransformation.BpmnTransformationFactory;
@@ -23,28 +23,11 @@ public class FragmentExtractor {
 
 	private static final Logger LOG = LoggerFactory
 			.getLogger(FragmentExtractor.class);
+	private static Bpmn2ResourceSet resSet = Bpmn2ResourceSet.getInstance();
 
-	public static ProcessExtraction extract(ProcessMatching pMatching)
+	public static ProcessExtraction transform(ProcessMatching pMatching)
 			throws Exception {
 
-		// Do the extraction
-		// 1. determine order in fragments
-		pMatching.setFragmentMatching(FragmentPairRankerSize
-				.rankFragments(pMatching.getFragmentMatching()));
-		// 2. compute coords
-		for (FragmentPair pair : pMatching.getFragmentMatching().getPairs()) {
-			pair.getA().setCenter(CoordinateCalculator.getCenter(pair.getA()));
-			pair.getB().setCenter(CoordinateCalculator.getCenter(pair.getB()));
-		}
-		// 3. generate lables
-		for (FragmentPair pair : pMatching.getFragmentMatching().getPairs()) {
-			pair.getA().setLabel(LabelGenerator.getLabel(pair.getA()));
-			pair.getB().setLabel(LabelGenerator.getLabel(pair.getB()));
-		}
-
-		// Create extraction object (-> process?)
-		// ProcessExtraction extraction = ProcessExtractionFactory
-		// .createProcessTransformation(EcoreUtil.copy(pMatching));
 		ProcessExtraction extraction = BpmnTransformationFactory.eINSTANCE
 				.createProcessExtraction();
 
@@ -56,13 +39,16 @@ public class FragmentExtractor {
 		definitions1.setTargetNamespace("http://" + UUID.randomUUID());
 		definitions2.setTargetNamespace("http://" + UUID.randomUUID());
 
-		Bpmn2ResourceSet resSet = Bpmn2ResourceSet.getInstance();
-		Resource res1 = resSet.createResource(URI.createFileURI(UUID
-				.randomUUID().toString() + ".bpmn"));
-		res1.getContents().add(definitions1);
-		Resource res2 = resSet.createResource(URI.createFileURI(UUID
-				.randomUUID().toString() + ".bpmn"));
-		res2.getContents().add(definitions2);
+		// Need to create resources for copied definitions
+		resSet.createResource(
+				URI.createFileURI(UUID.randomUUID().toString() + ".bpmn"),
+				definitions1);
+		resSet.createResource(
+				URI.createFileURI(UUID.randomUUID().toString() + ".bpmn"),
+				definitions2);
+
+		EGraph graph1 = new EGraphImpl(definitions1);
+		EGraph graph2 = new EGraphImpl(definitions2);
 
 		HenshinAdapter extractor = new HenshinAdapter();
 		// Loop over all fragment matchings
@@ -70,25 +56,23 @@ public class FragmentExtractor {
 		for (FragmentPair fPair : pMatching.getFragmentMatching().getPairs()) {
 			// create new (sub)process
 			LOG.info("Extracting SubProcess.");
-			Resource resExtracted = resSet.createResource(URI.createURI(UUID
-					.randomUUID().toString() + ".bpmn"));
-			resExtracted.getContents().add(
-					EcoreUtil.copy(FragmentUtil.getDefinitions(fPair
-							.getBetter())));
-			Definitions defsExtracted = (Definitions) resExtracted
-					.getContents().get(0);
+			// Copy better definitions
+			Definitions defsExtracted = EcoreUtil.copy(FragmentUtil
+					.getDefinitions(fPair.getBetter()));
+			// Need to create resource for copied definitions
+			resSet.createResource(
+					URI.createURI(UUID.randomUUID().toString() + ".bpmn"),
+					defsExtracted);
+
 			String idExtracted = getExtractedProcessIdPrefix(fPair)
 					+ fragmentCounter++;
 			defsExtracted.setTargetNamespace("http://"
 					+ idExtracted.toLowerCase());
-//			defsExtracted.setId(UUID.randomUUID().toString());
-			extractor.replaceId(resExtracted,
-					DefinitionsUtil.getProcess(defsExtracted).getId(), UUID
-							.randomUUID().toString());
-//			System.out.println("resource: " + resExtracted);
-			extractor.cropFragment(resExtracted, fPair.getBetter());
+			defsExtracted.setId(UUID.randomUUID().toString());
+			EGraph graph = new EGraphImpl(defsExtracted);
+			extractor.cropFragment(graph, fPair.getBetter(), defsExtracted);
 			extraction.getResults().put(idExtracted + ".bpmn", defsExtracted);
-			LOG.info("SubProcess extracted.");
+			LOG.info("SubProcess " + idExtracted + " extracted.");
 
 			// callActivity parameters
 			Process calledElement = DefinitionsUtil.getProcess(defsExtracted);
@@ -97,24 +81,24 @@ public class FragmentExtractor {
 
 			// replace fragment in Process1
 			LOG.info("Replacing " + fPair.getA());
-			extractor.replaceFragmentByCallActivity(res1, definitions1,
-					fPair.getA(), fPair.getBetter().getLabel(), calledElement);
+			extractor.replaceFragmentByCallActivity(graph1, fPair.getA(),
+					calledElement, fPair.getBetter().getLabel());
 			LOG.info("Replaced " + fPair.getA());
 
 			// /replace fragment in Process2
 			LOG.info("Replacing " + fPair.getB());
-			extractor.replaceFragmentByCallActivity(res2, definitions2,
-					fPair.getB(), fPair.getBetter().getLabel(), calledElement);
+			extractor.replaceFragmentByCallActivity(graph2, fPair.getB(),
+					calledElement, fPair.getBetter().getLabel());
 			LOG.info("Replaced " + fPair.getB());
-
 		}
+
 		// Add definitions to result
 		extraction.getResults().put(
 				DefinitionsUtil.getProcess(definitions1).getName()
-						+ "_transformed.bpmn", definitions1);
+						+ "-modified.bpmn", definitions1);
 		extraction.getResults().put(
 				DefinitionsUtil.getProcess(definitions2).getName()
-						+ "_transformed.bpmn", definitions2);
+						+ "-modified.bpmn", definitions2);
 		return extraction;
 	}
 
@@ -125,6 +109,6 @@ public class FragmentExtractor {
 				+ "_"
 				+ DefinitionsUtil.getProcess(
 						FragmentUtil.getDefinitions(fPair.getB())).getName()
-				+ "_extracted_process-";
+				+ "-extraction-";
 	}
 }

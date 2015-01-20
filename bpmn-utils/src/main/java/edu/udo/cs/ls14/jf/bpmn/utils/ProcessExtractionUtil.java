@@ -6,6 +6,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import org.eclipse.bpmn2.Definitions;
+import org.eclipse.bpmn2.util.Bpmn2Resource;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.slf4j.Logger;
@@ -33,20 +34,19 @@ public class ProcessExtractionUtil {
 
 	public static void writeResults(String targetDir,
 			Map<String, Definitions> results) throws Exception {
-		// TODO Auto-generated method stub
 
 		new File(targetDir).mkdirs();
 		Bpmn2ResourceSet resSetOut = Bpmn2ResourceSet.getInstance();
 
 		// Create resources for all definitions
-		Map<String, Resource> resMap = new HashMap<String, Resource>();
+		Map<String, Bpmn2Resource> resMap = new HashMap<String, Bpmn2Resource>();
 		for (Map.Entry<String, Definitions> entry : results.entrySet()) {
-			Resource res = resSetOut.createResource(
-					targetDir + "/" + entry.getKey(), entry.getValue());
+			Bpmn2Resource res = resSetOut.createResource(targetDir + "/"
+					+ entry.getKey(), entry.getValue());
 			resMap.put(entry.getKey(), res);
 		}
 		// Write all resources
-		for (Map.Entry<String, Resource> entry : resMap.entrySet()) {
+		for (Map.Entry<String, Bpmn2Resource> entry : resMap.entrySet()) {
 			entry.getValue().save(null);
 			LOG.info("Written " + entry.getKey());
 		}
@@ -55,11 +55,11 @@ public class ProcessExtractionUtil {
 		LOG.info("Imports fixed.");
 	}
 
-	private static void fixImports(Map<String, Resource> resMap,
+	private static void fixImports(Map<String, Bpmn2Resource> resMap,
 			String targetDir) throws IOException {
 		// Write files, fix locations of imports, write files
-		for (Map.Entry<String, Resource> entry : resMap.entrySet()) {
-			Resource res = entry.getValue();
+		for (Map.Entry<String, Bpmn2Resource> entry : resMap.entrySet()) {
+			Bpmn2Resource res = entry.getValue();
 			res.save(null);
 			((Definitions) res.getContents().get(0))
 					.getImports()

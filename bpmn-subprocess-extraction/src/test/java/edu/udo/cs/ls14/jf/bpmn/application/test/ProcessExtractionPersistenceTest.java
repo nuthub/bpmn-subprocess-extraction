@@ -27,10 +27,10 @@ public class ProcessExtractionPersistenceTest {
 	@Test
 	public void testProcessExtractionPersistence() throws Exception {
 
-		Bpmn2ResourceSet resSetIn = new Bpmn2ResourceSet(getClass()
-				.getResource("/bpmn/").getPath());
-		String basename1 = "PM1-mit-Fragment1.bpmn";
-		Definitions definitions = resSetIn.loadDefinitions(basename1);
+		Bpmn2ResourceSet resSetIn = Bpmn2ResourceSet.getInstance();
+		String pathname = "/bpmn/parallelGateway/";
+		String basename1 = "parallelism1.bpmn";
+		Definitions definitions = resSetIn.loadDefinitions(getClass().getResource(pathname + basename1).getPath());
 		definitions.setTargetNamespace("http://" + UUID.randomUUID());
 		System.out.println(definitions);
 		

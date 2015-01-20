@@ -15,7 +15,7 @@ public class SubProcessExtractionTest {
 
 	private SubProcessExtraction app;
 
-	private static final String TARGETDIR = "/tmp/results/";
+	private static final String TARGETDIR = "/tmp/";
 
 	@Before
 	public void setUp() {
@@ -26,20 +26,19 @@ public class SubProcessExtractionTest {
 
 	@Test
 	public void runPM1PM2() throws Exception {
-		String resname1 = "PM1-mit-Fragment1.bpmn";
-		String resname2 = "PM2-mit-Fragment1.bpmn";
-		runTest(TARGETDIR + "PM1PM2", "/edu/udo/cs/ls14/jf/bpmn/test/",
-				resname1, resname2);
+		String resname1 = "parallelism1.bpmn";
+		String resname2 = "parallelism2.bpmn";
+		runTest("/bpmn/parallelGateway/", resname1, resname2);
 	}
 
-	private void runTest(String targetDir, String path, String resourceName1,
-			String resourceName2) throws Exception {
-		Bpmn2ResourceSet resSet = new Bpmn2ResourceSet(getClass().getResource(
-				path).getPath());
-		Definitions defs1 = EcoreUtil.copy(resSet
-				.loadDefinitions(resourceName1));
-		Definitions defs2 = EcoreUtil.copy(resSet
-				.loadDefinitions(resourceName2));
+	private void runTest(String path, String resourceName1, String resourceName2)
+			throws Exception {
+		Definitions defs1 = EcoreUtil
+				.copy(Bpmn2ResourceSet.getInstance().loadDefinitions(
+						getClass().getResource(path).getPath() + resourceName1));
+		Definitions defs2 = EcoreUtil
+				.copy(Bpmn2ResourceSet.getInstance().loadDefinitions(
+						getClass().getResource(path).getPath() + resourceName2));
 		long start = System.currentTimeMillis();
 		ProcessExtraction extraction = app
 				.runSubProcessExtraction(defs1, defs2);
@@ -55,7 +54,7 @@ public class SubProcessExtractionTest {
 		// + ProcessExtractionUtil.toXml(extraction));
 		// ProcessExtractionUtil.writeToFile("/tmp/results/" + key
 		// + "/extraction.xml", extraction);
-		ProcessExtractionUtil.writeResults(targetDir + "/", extraction);
+		ProcessExtractionUtil.writeResults(TARGETDIR + "/" + path, extraction);
 		System.out.println("Took " + (end - start)
 				+ "ms for the extraction process");
 

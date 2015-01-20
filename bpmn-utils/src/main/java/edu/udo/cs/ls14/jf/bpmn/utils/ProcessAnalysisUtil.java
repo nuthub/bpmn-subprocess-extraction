@@ -17,7 +17,6 @@ public class ProcessAnalysisUtil {
 
 	public static void writeToFile(String filename, ProcessAnalysis analysis)
 			throws IOException {
-		System.out.println(filename);
 		Resource res = new BpmnAnalysisResourceFactoryImpl().createResource(URI
 				.createFileURI(filename));
 		res.getContents().add(analysis);

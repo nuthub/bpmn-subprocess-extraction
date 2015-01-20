@@ -14,7 +14,6 @@ public class ProcessExtractor {
 
 	public static ProcessExtraction extract(ProcessMatching pMatching)
 			throws Exception {
-
 		// Do the extraction
 		// 1. determine order in fragments
 		pMatching.setFragmentMatching(FragmentPairRankerSize
@@ -30,7 +29,7 @@ public class ProcessExtractor {
 			pair.getB().setLabel(LabelGenerator.getLabel(pair.getB()));
 		}
 		// 4. crop better fragment and replace matched fragments
-		return FragmentExtractor.extract(pMatching);
+		return FragmentExtractor.transform(pMatching);
 	}
 
 }

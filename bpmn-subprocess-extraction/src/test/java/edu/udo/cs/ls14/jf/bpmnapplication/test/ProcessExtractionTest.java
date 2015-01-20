@@ -1,11 +1,12 @@
 package edu.udo.cs.ls14.jf.bpmnapplication.test;
 
-import org.eclipse.bpmn2.Definitions;
-import org.eclipse.emf.ecore.util.EcoreUtil;
+import java.io.File;
+import java.util.Arrays;
+import java.util.List;
+
 import org.junit.Before;
 import org.junit.Test;
 
-import edu.udo.cs.ls14.jf.bpmn.utils.Bpmn2ResourceSet;
 import edu.udo.cs.ls14.jf.bpmn.utils.ProcessAnalysisUtil;
 import edu.udo.cs.ls14.jf.bpmn.utils.ProcessExtractionUtil;
 import edu.udo.cs.ls14.jf.bpmn.utils.ProcessMatchingUtil;
@@ -32,57 +33,52 @@ public class ProcessExtractionTest {
 	}
 
 	@Test
-	public void testSequenceSequence2() throws Exception {
-		String basename1 = "sequence";
+	public void testSequence1Sequence2() throws Exception {
+		String pathname = "/bpmn/sequences/";
+		String basename1 = "sequence1";
 		String basename2 = "sequence2";
-		runTest(basename1, basename2, "");
+		List<String> nodes = Arrays.asList();
+		runTest(pathname, basename1, basename2, nodes, nodes);
 	}
 
 	@Test
-	public void testPM1PM2() throws Exception {
-		String basename1 = "PM1-mit-Fragment1";
-		String basename2 = "PM2-mit-Fragment1";
-		runTest(basename1, basename2, "");
+	public void testParallelism1Parallelism2() throws Exception {
+		String pathname = "/bpmn/parallelGateway/";
+		String basename1 = "parallelism1";
+		String basename2 = "parallelism2";
+		List<String> nodes = Arrays.asList();
+		runTest(pathname, basename1, basename2, nodes, nodes);
 	}
 
 	@Test
-	public void testXorExampleLoopingXor() throws Exception {
-		String basename1 = "xor-example";
-		String basename2 = "looping-xor";
-		runTest(basename1, basename2, "");
+	public void testComplete1Complete2() throws Exception {
+		String pathname = "/bpmn/complete/";
+		String basename1 = "complete1";
+		String basename2 = "complete2";
+		List<String> nodes = Arrays.asList("n_start", "T1", "T2", "T3", "T4",
+				"T5", "T6", "E1", "E2", "E3", "E4", "n_end");
+		runTest(pathname, basename1, basename2, nodes, nodes);
 	}
 
-	@Test
-	public void testConditionSequenceConditionSequence2() throws Exception {
-		String basename1 = "conditionSequence";
-		String basename2 = "conditionSequence2";
-		runTest(basename1, basename2, "conditionalFlow");
-	}
-
-	private void runTest(String name1, String name2, String path)
-			throws Exception {
-		runTest(name1, name2, path, path);
-	}
-
-	private void runTest(String name1, String name2, String path, String key)
-			throws Exception {
-		String targetDir = "/tmp/applicationtest/" + key + "/";
+	private void runTest(String pathname, String basename1, String basename2,
+			List<String> nodes1, List<String> nodes2) throws Exception {
 
 		// Pre
-		Bpmn2ResourceSet resSet = new Bpmn2ResourceSet(getClass().getResource(
-				"/edu/udo/cs/ls14/jf/bpmn/test/" + path + "/").getPath());
-		Definitions def1 = EcoreUtil.copy(resSet.loadDefinitions(name1
-				+ ".bpmn"));
-		Definitions def2 = EcoreUtil.copy(resSet.loadDefinitions(name2
-				+ ".bpmn"));
-
+		String outputBaseDir = "/tmp/";
+		String targetDir = (outputBaseDir + pathname + "/").replaceAll("//",
+				"/");
+		new File(targetDir).mkdirs();
 		// START
 		// 1a. analyze process1
-		ProcessAnalysis analysis1 = ProcessAnalyzer.analyze(def1);
-		ProcessAnalysisUtil.writeToFile(targetDir + "analysis1.xml", analysis1);
+		ProcessAnalysis analysis1 = ProcessAnalyzer.analyzeAndDebug(pathname,
+				basename1, outputBaseDir, nodes1);
+		ProcessAnalysisUtil.writeToFile(
+				targetDir + basename1 + "-analysis.xml", analysis1);
 		// 1b. analyze process2
-		ProcessAnalysis analysis2 = ProcessAnalyzer.analyze(def2);
-		ProcessAnalysisUtil.writeToFile(targetDir + "analysis2.xml", analysis2);
+		ProcessAnalysis analysis2 = ProcessAnalyzer.analyzeAndDebug(pathname,
+				basename2, outputBaseDir, nodes2);
+		ProcessAnalysisUtil.writeToFile(
+				targetDir + basename2 + "-analysis.xml", analysis2);
 		// 2. match process1 and process2
 		ProcessMatching matching = ProcessMatcher.match(analysis1, analysis2);
 		ProcessMatchingUtil.writeToFile(targetDir + "matching.xml", matching);
@@ -91,9 +87,9 @@ public class ProcessExtractionTest {
 		// END
 
 		// Post
-		ProcessExtractionUtil.writeToFile(targetDir + path + "extraction.xml",
+		ProcessExtractionUtil.writeToFile(targetDir + "extraction.xml",
 				extraction);
-		ProcessExtractionUtil.writeResults(targetDir + path, extraction);
+		ProcessExtractionUtil.writeResults(targetDir, extraction);
 
 		// TODO: assertions
 	}

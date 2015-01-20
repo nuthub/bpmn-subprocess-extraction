@@ -13,7 +13,7 @@ public class FragmentExtractorDelegate implements JavaDelegate {
 	public void execute(DelegateExecution execution) throws Exception {
 		ProcessMatching matching = (ProcessMatching) execution
 				.getVariable("matching");
-		ProcessExtraction extraction = FragmentExtractor.extract(matching);
+		ProcessExtraction extraction = FragmentExtractor.transform(matching);
 		execution.setVariable("extraction", extraction);
 	}
 

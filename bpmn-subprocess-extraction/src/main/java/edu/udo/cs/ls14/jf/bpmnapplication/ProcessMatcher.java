@@ -108,10 +108,11 @@ public class ProcessMatcher {
 		LOG.info(m.getFragmentMatching().getPairs().size()
 				+ " fragment correspondences left.");
 
-		// determine ranking in fragment pairs
-		LOG.info("Determining order in fragment pairs");
-		m.setFragmentMatching(FragmentPairRankerSize.rankFragments(m
-				.getFragmentMatching()));
+		// moved to transformation phase
+//		// determine ranking in fragment pairs
+//		LOG.info("Determining order in fragment pairs");
+//		m.setFragmentMatching(FragmentPairRankerSize.rankFragments(m
+//				.getFragmentMatching()));
 
 		return m;
 	}
