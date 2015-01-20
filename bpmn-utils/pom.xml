@@ -33,5 +33,9 @@
 			<groupId>edu.udo.cs.ls14.jf</groupId>
 			<artifactId>bpmnanalysis-model</artifactId>
 		</dependency>
+		<dependency>
+			<groupId>org.apache.commons</groupId>
+			<artifactId>commons-lang3</artifactId>
+		</dependency>
 	</dependencies>
 </project>
