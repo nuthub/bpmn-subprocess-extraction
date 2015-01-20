@@ -103,11 +103,11 @@ public class PSTTest {
 		List<Fragment> frags = pst.getFragments();
 		assertEquals(7, frags.size());
 		assertFragsContainByName(frags, "1", "2");
-		assertFragsContainByName(frags, "2", "11");
-		assertFragsContainByName(frags, "3", "9");
-		assertFragsContainByName(frags, "4", "10");
-		assertFragsContainByName(frags, "5", "7");
-		assertFragsContainByName(frags, "6", "8");
+		assertFragsContainByName(frags, "2", "9");
+		assertFragsContainByName(frags, "3", "6");
+		assertFragsContainByName(frags, "4", "7");
+		assertFragsContainByName(frags, "5", "8");
+		assertFragsContainByName(frags, "9", "10");
 		assertFragsContainByName(frags, "11", "12");
 	}
 

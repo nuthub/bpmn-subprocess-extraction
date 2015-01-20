@@ -20,7 +20,7 @@ public class Bpmn2ResourceSet extends ResourceSetImpl {
 	private Bpmn2ResourceSet() {
 		super();
 	}
-
+	
 	public static Bpmn2ResourceSet getInstance() {
 		if (instance == null) {
 			instance = new Bpmn2ResourceSet();

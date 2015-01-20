@@ -177,46 +177,46 @@ public class BpmnMatchingTest {
 				.size());
 		// NodePairFilter
 		processMatching = portNodePairFilter.filter(processMatching);
-		assertEquals(3, processMatching.getNodeMatching().getPairs().size());
+		assertEquals(5, processMatching.getNodeMatching().getPairs().size());
 		assertEquals(42, processMatching.getFragmentMatching().getPairs()
 				.size());
 		// FragmentPairFilterNodes
 		processMatching = portFragmentPairFilterNodes.filter(processMatching);
-		assertEquals(3, processMatching.getNodeMatching().getPairs().size());
+		assertEquals(5, processMatching.getNodeMatching().getPairs().size());
 		assertEquals(4, processMatching.getFragmentMatching().getPairs().size());
 		// FragmentPairFilterBehavior
 		processMatching = portFragmentPairFilterBehavior
 				.filter(processMatching);
-		assertEquals(3, processMatching.getNodeMatching().getPairs().size());
+		assertEquals(5, processMatching.getNodeMatching().getPairs().size());
 		assertEquals(4, processMatching.getFragmentMatching().getPairs().size());
 
 		// FragmentPairFilterConditions
 		processMatching = portFragmentPairFilterConditions
 				.filter(processMatching);
-		assertEquals(3, processMatching.getNodeMatching().getPairs().size());
+		assertEquals(5, processMatching.getNodeMatching().getPairs().size());
 		assertEquals(4, processMatching.getFragmentMatching().getPairs().size());
 
 		// FragmentPairFilterNestings
 		processMatching = portFragmentPairFilterNestings
 				.filter(processMatching);
-		assertEquals(3, processMatching.getNodeMatching().getPairs().size());
+		assertEquals(5, processMatching.getNodeMatching().getPairs().size());
 		assertEquals(1, processMatching.getFragmentMatching().getPairs().size());
 
 		// FragmentPairJointerSequential
 		processMatching = portFragmentPairJointerSequential
 				.join(processMatching);
-		assertEquals(3, processMatching.getNodeMatching().getPairs().size());
+		assertEquals(5, processMatching.getNodeMatching().getPairs().size());
 		assertEquals(1, processMatching.getFragmentMatching().getPairs().size());
 
 		// FragmentPairFilterTrivial
 		processMatching = portFragmentPairFilterTrivial.filter(processMatching);
-		assertEquals(3, processMatching.getNodeMatching().getPairs().size());
+		assertEquals(5, processMatching.getNodeMatching().getPairs().size());
 		assertEquals(1, processMatching.getFragmentMatching().getPairs().size());
 
 		// FragmentPairRankerSize
 		processMatching = portFragmentPairRankerSize
 				.setFragmentPairRankings(processMatching);
-		assertEquals(3, processMatching.getNodeMatching().getPairs().size());
+		assertEquals(5, processMatching.getNodeMatching().getPairs().size());
 		assertEquals(1, processMatching.getFragmentMatching().getPairs().size());
 
 	}

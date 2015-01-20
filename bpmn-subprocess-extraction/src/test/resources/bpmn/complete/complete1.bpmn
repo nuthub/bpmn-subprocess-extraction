@@ -121,7 +121,7 @@
     <bpmn2:sequenceFlow id="SequenceFlow_21" name="21" sourceRef="g4" targetRef="g2"/>
     <bpmn2:sequenceFlow id="SequenceFlow_22" name="22" sourceRef="g2" targetRef="E4"/>
     <bpmn2:sequenceFlow id="SequenceFlow_23" name="23" sourceRef="E4" targetRef="g1"/>
-    <bpmn2:sequenceFlow id="SequenceFlow_24" sourceRef="g2" targetRef="EndEvent_1"/>
+    <bpmn2:sequenceFlow id="SequenceFlow_24" name="24" sourceRef="g2" targetRef="EndEvent_1"/>
   </bpmn2:process>
   <bpmndi:BPMNDiagram id="BPMNDiagram_1" name="Default Process Diagram">
     <bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="complete1">
@@ -411,7 +411,9 @@
       <bpmndi:BPMNEdge id="BPMNEdge_SequenceFlow_25" bpmnElement="SequenceFlow_24" sourceElement="BPMNShape_ExclusiveGateway_6" targetElement="BPMNShape_2">
         <di:waypoint xsi:type="dc:Point" x="1155.0" y="265.0"/>
         <di:waypoint xsi:type="dc:Point" x="1205.0" y="270.0"/>
-        <bpmndi:BPMNLabel id="BPMNLabel_44" labelStyle="BPMNLabelStyle_1"/>
+        <bpmndi:BPMNLabel id="BPMNLabel_44" labelStyle="BPMNLabelStyle_1">
+          <dc:Bounds height="14.0" width="14.0" x="1174.0" y="269.0"/>
+        </bpmndi:BPMNLabel>
       </bpmndi:BPMNEdge>
     </bpmndi:BPMNPlane>
     <bpmndi:BPMNLabelStyle id="BPMNLabelStyle_1">

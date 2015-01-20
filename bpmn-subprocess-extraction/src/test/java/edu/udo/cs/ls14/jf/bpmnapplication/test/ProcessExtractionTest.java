@@ -4,9 +4,11 @@ import java.io.File;
 import java.util.Arrays;
 import java.util.List;
 
+import org.eclipse.bpmn2.Definitions;
 import org.junit.Before;
 import org.junit.Test;
 
+import edu.udo.cs.ls14.jf.bpmn.utils.Bpmn2ResourceSet;
 import edu.udo.cs.ls14.jf.bpmn.utils.ProcessAnalysisUtil;
 import edu.udo.cs.ls14.jf.bpmn.utils.ProcessExtractionUtil;
 import edu.udo.cs.ls14.jf.bpmn.utils.ProcessMatchingUtil;
@@ -26,6 +28,8 @@ import edu.udo.cs.ls14.jf.transformation.ProcessExtractor;
  */
 @Deprecated
 public class ProcessExtractionTest {
+
+	private static final String TARGET_DIR = "/tmp/";
 
 	@Before
 	public void setUp() {
@@ -64,19 +68,23 @@ public class ProcessExtractionTest {
 			List<String> nodes1, List<String> nodes2) throws Exception {
 
 		// Pre
-		String outputBaseDir = "/tmp/";
-		String targetDir = (outputBaseDir + pathname + "/").replaceAll("//",
-				"/");
+		String targetDir = (TARGET_DIR + pathname + "/").replaceAll("//", "/");
 		new File(targetDir).mkdirs();
 		// START
 		// 1a. analyze process1
-		ProcessAnalysis analysis1 = ProcessAnalyzer.analyzeAndDebug(pathname,
-				basename1, outputBaseDir, nodes1);
+		Definitions def1 = Bpmn2ResourceSet.getInstance().loadDefinitions(
+				getClass().getResource(pathname + basename1 + ".bpmn")
+						.getPath());
+		ProcessAnalysis analysis1 = ProcessAnalyzer.analyzeAndDebug(def1,
+				pathname, basename1, targetDir, nodes1);
 		ProcessAnalysisUtil.writeToFile(
 				targetDir + basename1 + "-analysis.xml", analysis1);
 		// 1b. analyze process2
-		ProcessAnalysis analysis2 = ProcessAnalyzer.analyzeAndDebug(pathname,
-				basename2, outputBaseDir, nodes2);
+		Definitions def2 = Bpmn2ResourceSet.getInstance().loadDefinitions(
+				getClass().getResource(pathname + basename2 + ".bpmn")
+						.getPath());
+		ProcessAnalysis analysis2 = ProcessAnalyzer.analyzeAndDebug(def2,
+				pathname, basename2, targetDir, nodes2);
 		ProcessAnalysisUtil.writeToFile(
 				targetDir + basename2 + "-analysis.xml", analysis2);
 		// 2. match process1 and process2

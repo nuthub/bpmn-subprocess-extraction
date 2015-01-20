@@ -22,9 +22,9 @@ public class FragmentPairJointerSequential {
 		s = findSequence(matchingOut);
 		while (s != null) {
 			LOG.info("Found sequence: "
-					+ FragmentUtil.toString(s.getValue0().getA()) + " / "
-					+ FragmentUtil.toString(s.getValue0().getB()) + " and "
-					+ FragmentUtil.toString(s.getValue1().getA()) + " / "
+					+ FragmentUtil.toString(s.getValue0().getA()) + "+"
+					+ FragmentUtil.toString(s.getValue0().getB()) + " / "
+					+ FragmentUtil.toString(s.getValue1().getA()) + "+"
 					+ FragmentUtil.toString(s.getValue1().getB()));
 			joinSequence(matchingOut, s);
 			s = findSequence(matchingOut);

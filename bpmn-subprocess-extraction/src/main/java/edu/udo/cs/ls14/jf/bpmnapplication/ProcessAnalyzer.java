@@ -15,7 +15,6 @@ import edu.udo.cs.ls14.jf.analysis.pst.PSTBuilder;
 import edu.udo.cs.ls14.jf.analysis.pst.PSTDebugUtil;
 import edu.udo.cs.ls14.jf.analysis.reachabilitygraph.ReachabilityGraph;
 import edu.udo.cs.ls14.jf.analysis.reachabilitygraph.Tracer;
-import edu.udo.cs.ls14.jf.bpmn.utils.Bpmn2ResourceSet;
 import edu.udo.cs.ls14.jf.bpmn.utils.DefinitionsUtil;
 import edu.udo.cs.ls14.jf.bpmn.utils.ProcessAnalysisFactory;
 import edu.udo.cs.ls14.jf.bpmnanalysis.BehavioralProfile;
@@ -25,25 +24,21 @@ import fr.lip6.move.pnml.ptnet.hlapi.PetriNetHLAPI;
 
 public class ProcessAnalyzer {
 
-	public static ProcessAnalysis analyzeAndDebug(String pathname,
-			String basename, String outputBaseDir, List<String> nodes)
-			throws Exception {
+	public static ProcessAnalysis analyzeAndDebug(Definitions definitions,
+			String pathname, String basename, String debugFilesDir,
+			List<String> nodes) throws Exception {
 
-		Definitions definitions = EcoreUtil
-				.copy(Bpmn2ResourceSet.getInstance().loadDefinitions(
-						ProcessAnalyzer.class.getResource(
-								pathname + "/" + basename + ".bpmn").getFile()));
-		definitions.setTargetNamespace("http://" + UUID.randomUUID().toString());
-		Process process = DefinitionsUtil.getProcess(definitions);
+		Definitions defs = EcoreUtil.copy(definitions);
+		defs.setTargetNamespace("http://" + UUID.randomUUID().toString());
+		Process process = DefinitionsUtil.getProcess(defs);
 
 		// Create Analysis object
-		ProcessAnalysis analysis = ProcessAnalysisFactory
-				.createAnalysis(definitions);
+		ProcessAnalysis analysis = ProcessAnalysisFactory.createAnalysis(defs);
 
 		// create PST
 		PSTBuilder pstBuilder = new PSTBuilder();
 		analysis.getResults().put(ProcessAnalysis.PROCESSTRUCTURETREE,
-				pstBuilder.getTree(definitions));
+				pstBuilder.getTree(defs));
 
 		// create petri net
 		Bpmn2PtnetConverter bpmn2ptnet = new Bpmn2PtnetConverter();
@@ -69,11 +64,11 @@ public class ProcessAnalyzer {
 				ConditionalProfiler.generateProfile(process));
 
 		// TODO fontsizes as parameters
-		PSTDebugUtil.writeDebugFiles(outputBaseDir + pathname, basename,
-				pstBuilder, 32, 32, 60);
-		BPDebugUtil.writeDebugFiles(outputBaseDir + pathname, basename,
-				process, bpmn2ptnet, ptnet, reachabilityGraph, nodes,
-				traceProfile, behavioralProfile);
+		PSTDebugUtil.writeDebugFiles(debugFilesDir, basename, pstBuilder, 32,
+				32, 60);
+		BPDebugUtil.writeDebugFiles(debugFilesDir, basename, process,
+				bpmn2ptnet, ptnet, reachabilityGraph, nodes, traceProfile,
+				behavioralProfile);
 		// done
 		return analysis;
 	}
