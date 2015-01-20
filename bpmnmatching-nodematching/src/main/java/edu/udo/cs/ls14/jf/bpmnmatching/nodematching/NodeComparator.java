@@ -7,10 +7,9 @@ import java.util.List;
 import java.util.Map;
 
 import org.apache.commons.lang3.StringUtils;
+import org.eclipse.bpmn2.Activity;
+import org.eclipse.bpmn2.Event;
 import org.eclipse.bpmn2.FlowNode;
-import org.eclipse.bpmn2.IntermediateCatchEvent;
-import org.eclipse.bpmn2.IntermediateThrowEvent;
-import org.eclipse.bpmn2.impl.ActivityImpl;
 
 import edu.udo.cs.ls14.jf.nlp.Lemmatizer;
 import edu.udo.cs.ls14.jf.nlp.OpenThesaurusSQLite;
@@ -25,9 +24,8 @@ public class NodeComparator {
 	public NodeComparator() {
 		super();
 		classes = new ArrayList<Class<? extends FlowNode>>();
-		classes.add(ActivityImpl.class);
-		classes.add(IntermediateCatchEvent.class);
-		classes.add(IntermediateThrowEvent.class);
+		classes.add(Activity.class);
+		classes.add(Event.class);
 	}
 
 	public boolean isEquivalent(FlowNode e1, FlowNode e2) {
@@ -67,6 +65,12 @@ public class NodeComparator {
 	
 	private boolean isLabelEquivalent(String str1, String str2) {
 		// remove special chars and split strings
+		if(str1 == null) {
+			str1 = "";
+		}
+		if(str2 == null) {
+			str2 = "";
+		}
 		List<String> list1 = Arrays.asList(StringUtils.split(str1.replaceAll(
 				SPECIAL_CHARACTERS_PATTERN, " ")));
 		List<String> list2 = Arrays.asList(StringUtils.split(str2.replaceAll(
