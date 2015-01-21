@@ -7,6 +7,7 @@ import org.eclipse.emf.ecore.resource.Resource;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import edu.udo.cs.ls14.jf.bpmnanalysis.ConditionalProfile;
 import edu.udo.cs.ls14.jf.bpmnanalysis.ProcessAnalysis;
 import edu.udo.cs.ls14.jf.bpmnanalysis.util.BpmnAnalysisResourceFactoryImpl;
 
@@ -23,6 +24,12 @@ public class ProcessAnalysisUtil {
 		res.save(null);
 		LOG.info("Written analysis result to " + filename);
 
+	}
+
+	public static ConditionalProfile getConditionalProfile(
+			ProcessAnalysis analysis) {
+		return (ConditionalProfile) analysis.getResults().get(
+				ProcessAnalysis.CONDITIONALPROFILE);
 	}
 
 	public static ProcessAnalysis loadFromFile(String filename)

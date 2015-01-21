@@ -50,6 +50,7 @@ public class ProcessAnalyzerTest {
 		assertNotNull(analysis);
 	}
 
+
 	/**
 	 * Evaluation test model 2 TODO: assertions
 	 * 
@@ -112,7 +113,7 @@ public class ProcessAnalyzerTest {
 						getClass().getResource(pathname + basename + ".bpmn")
 								.getPath());
 		ProcessAnalysis analysis = ProcessAnalyzer.analyzeAndDebug(def,
-				pathname, basename, TARGET_DIR, nodes);
+				pathname, basename, TARGET_DIR + pathname, nodes);
 		return analysis;
 	}
 

@@ -335,11 +335,13 @@ public class Bpmn2PtnetConverter {
 					+ p.getName().getText()
 					+ "\", fixedsize=true, fontsize=28];" + nl);
 		}
+		sb.append(nl);
 		for (TransitionHLAPI t : page.getObjects_TransitionHLAPI()) {
 			sb.append("  \"" + t.getId()
 					+ "\" [shape=box, height=.75, width=.20,label=\""
 					+ t.getName().getText() + "\"];" + nl);
 		}
+		sb.append(nl);
 		for (ArcHLAPI a : page.getObjects_ArcHLAPI()) {
 			sb.append("  \"" + a.getSourceHLAPI().getId() + "\"");
 			sb.append(" ->");

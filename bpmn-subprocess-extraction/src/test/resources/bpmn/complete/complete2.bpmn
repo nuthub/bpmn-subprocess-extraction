@@ -5,11 +5,11 @@
     <bpmn2:startEvent id="StartEvent_1" name="n_start">
       <bpmn2:outgoing>SequenceFlow_1</bpmn2:outgoing>
     </bpmn2:startEvent>
-    <bpmn2:sequenceFlow id="SequenceFlow_1" name="1" sourceRef="StartEvent_1" targetRef="Task_1"/>
+    <bpmn2:sequenceFlow id="SequenceFlow_1" name="1" sourceRef="StartEvent_1" targetRef="Task_pruefen"/>
     <bpmn2:endEvent id="EndEvent_1" name="n_end">
       <bpmn2:incoming>SequenceFlow_24</bpmn2:incoming>
     </bpmn2:endEvent>
-    <bpmn2:task id="Task_1" name="T1">
+    <bpmn2:task id="Task_pruefen" name="T1">
       <bpmn2:incoming>SequenceFlow_1</bpmn2:incoming>
       <bpmn2:outgoing>SequenceFlow_2</bpmn2:outgoing>
     </bpmn2:task>
@@ -53,7 +53,7 @@
       <bpmn2:outgoing>SequenceFlow_22</bpmn2:outgoing>
       <bpmn2:outgoing>SequenceFlow_24</bpmn2:outgoing>
     </bpmn2:exclusiveGateway>
-    <bpmn2:sequenceFlow id="SequenceFlow_2" name="2" sourceRef="Task_1" targetRef="g1"/>
+    <bpmn2:sequenceFlow id="SequenceFlow_2" name="2" sourceRef="Task_pruefen" targetRef="g1"/>
     <bpmn2:sequenceFlow id="SequenceFlow_3" name="3" sourceRef="g1" targetRef="g3"/>
     <bpmn2:sequenceFlow id="SequenceFlow_4" name="4" sourceRef="g3" targetRef="g7">
       <bpmn2:conditionExpression xsi:type="bpmn2:tFormalExpression" id="FormalExpression_1">B</bpmn2:conditionExpression>
@@ -61,24 +61,24 @@
     <bpmn2:sequenceFlow id="SequenceFlow_13" name="13" sourceRef="g3" targetRef="g5">
       <bpmn2:conditionExpression xsi:type="bpmn2:tFormalExpression" id="FormalExpression_2">A</bpmn2:conditionExpression>
     </bpmn2:sequenceFlow>
-    <bpmn2:task id="Task_2" name="T2">
+    <bpmn2:task id="Task_lieferschein" name="T2">
       <bpmn2:incoming>SequenceFlow_5</bpmn2:incoming>
       <bpmn2:outgoing>SequenceFlow_8</bpmn2:outgoing>
     </bpmn2:task>
-    <bpmn2:task id="Task_3" name="T3">
+    <bpmn2:task id="Task_rechnung" name="T3">
       <bpmn2:incoming>SequenceFlow_6</bpmn2:incoming>
       <bpmn2:outgoing>SequenceFlow_9</bpmn2:outgoing>
     </bpmn2:task>
-    <bpmn2:task id="Task_4" name="T4">
+    <bpmn2:task id="Task_verpacken" name="T4">
       <bpmn2:incoming>SequenceFlow_7</bpmn2:incoming>
       <bpmn2:outgoing>SequenceFlow_10</bpmn2:outgoing>
     </bpmn2:task>
-    <bpmn2:sequenceFlow id="SequenceFlow_5" name="5" sourceRef="g9" targetRef="Task_2"/>
-    <bpmn2:sequenceFlow id="SequenceFlow_6" name="6" sourceRef="g9" targetRef="Task_3"/>
-    <bpmn2:sequenceFlow id="SequenceFlow_7" name="7" sourceRef="g7" targetRef="Task_4"/>
-    <bpmn2:sequenceFlow id="SequenceFlow_10" name="10" sourceRef="Task_4" targetRef="g8"/>
-    <bpmn2:sequenceFlow id="SequenceFlow_9" name="9" sourceRef="Task_3" targetRef="g10"/>
-    <bpmn2:sequenceFlow id="SequenceFlow_8" name="8" sourceRef="Task_2" targetRef="g10"/>
+    <bpmn2:sequenceFlow id="SequenceFlow_5" name="5" sourceRef="g9" targetRef="Task_lieferschein"/>
+    <bpmn2:sequenceFlow id="SequenceFlow_6" name="6" sourceRef="g9" targetRef="Task_rechnung"/>
+    <bpmn2:sequenceFlow id="SequenceFlow_7" name="7" sourceRef="g7" targetRef="Task_verpacken"/>
+    <bpmn2:sequenceFlow id="SequenceFlow_10" name="10" sourceRef="Task_verpacken" targetRef="g8"/>
+    <bpmn2:sequenceFlow id="SequenceFlow_9" name="9" sourceRef="Task_rechnung" targetRef="g10"/>
+    <bpmn2:sequenceFlow id="SequenceFlow_8" name="8" sourceRef="Task_lieferschein" targetRef="g10"/>
     <bpmn2:intermediateThrowEvent id="E1" name="E1">
       <bpmn2:incoming>SequenceFlow_11</bpmn2:incoming>
       <bpmn2:outgoing>SequenceFlow_12</bpmn2:outgoing>
@@ -93,11 +93,11 @@
       <bpmn2:incoming>SequenceFlow_17</bpmn2:incoming>
       <bpmn2:outgoing>SequenceFlow_18</bpmn2:outgoing>
     </bpmn2:intermediateThrowEvent>
-    <bpmn2:task id="Task_5" name="T5">
+    <bpmn2:task id="Task_erstattung" name="T5">
       <bpmn2:incoming>SequenceFlow_15</bpmn2:incoming>
       <bpmn2:outgoing>SequenceFlow_16</bpmn2:outgoing>
     </bpmn2:task>
-    <bpmn2:task id="Task_6" name="T6">
+    <bpmn2:task id="Task_gutschein" name="T6">
       <bpmn2:incoming>SequenceFlow_18</bpmn2:incoming>
       <bpmn2:outgoing>SequenceFlow_19</bpmn2:outgoing>
     </bpmn2:task>
@@ -107,10 +107,10 @@
     <bpmn2:sequenceFlow id="SequenceFlow_17" name="17" sourceRef="g5" targetRef="E3">
       <bpmn2:conditionExpression xsi:type="bpmn2:tFormalExpression" id="FormalExpression_4">D</bpmn2:conditionExpression>
     </bpmn2:sequenceFlow>
-    <bpmn2:sequenceFlow id="SequenceFlow_18" name="18" sourceRef="E3" targetRef="Task_6"/>
-    <bpmn2:sequenceFlow id="SequenceFlow_15" name="15" sourceRef="E2" targetRef="Task_5"/>
-    <bpmn2:sequenceFlow id="SequenceFlow_16" name="16" sourceRef="Task_5" targetRef="g6"/>
-    <bpmn2:sequenceFlow id="SequenceFlow_19" name="19" sourceRef="Task_6" targetRef="g6"/>
+    <bpmn2:sequenceFlow id="SequenceFlow_18" name="18" sourceRef="E3" targetRef="Task_gutschein"/>
+    <bpmn2:sequenceFlow id="SequenceFlow_15" name="15" sourceRef="E2" targetRef="Task_erstattung"/>
+    <bpmn2:sequenceFlow id="SequenceFlow_16" name="16" sourceRef="Task_erstattung" targetRef="g6"/>
+    <bpmn2:sequenceFlow id="SequenceFlow_19" name="19" sourceRef="Task_gutschein" targetRef="g6"/>
     <bpmn2:sequenceFlow id="SequenceFlow_20" name="20" sourceRef="g6" targetRef="g4"/>
     <bpmn2:intermediateThrowEvent id="E4" name="E4">
       <bpmn2:incoming>SequenceFlow_22</bpmn2:incoming>
@@ -147,10 +147,10 @@
           <dc:Bounds height="25.0" width="60.0" x="1185.0" y="315.0"/>
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="BPMNShape_Task_1" bpmnElement="Task_1">
+      <bpmndi:BPMNShape id="BPMNShape_Task_1" bpmnElement="Task_pruefen">
         <dc:Bounds height="50.0" width="110.0" x="200.0" y="275.0"/>
         <bpmndi:BPMNLabel id="BPMNLabel_3" labelStyle="BPMNLabelStyle_1">
-          <dc:Bounds height="25.0" width="25.0" x="242.0" y="287.0"/>
+          <dc:Bounds height="50.0" width="97.0" x="206.0" y="275.0"/>
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="BPMNShape_ExclusiveGateway_1" bpmnElement="g1" isMarkerVisible="true">
@@ -201,28 +201,28 @@
           <dc:Bounds height="25.0" width="24.0" x="1123.0" y="325.0"/>
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="BPMNShape_Task_2" bpmnElement="Task_2">
+      <bpmndi:BPMNShape id="BPMNShape_Task_2" bpmnElement="Task_lieferschein">
         <dc:Bounds height="50.0" width="110.0" x="680.0" y="70.0"/>
         <bpmndi:BPMNLabel id="BPMNLabel_12" labelStyle="BPMNLabelStyle_1">
-          <dc:Bounds height="25.0" width="25.0" x="722.0" y="82.0"/>
+          <dc:Bounds height="50.0" width="123.0" x="674.0" y="70.0"/>
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="BPMNShape_Task_3" bpmnElement="Task_3">
+      <bpmndi:BPMNShape id="BPMNShape_Task_3" bpmnElement="Task_rechnung">
         <dc:Bounds height="50.0" width="110.0" x="680.0" y="170.0"/>
         <bpmndi:BPMNLabel id="BPMNLabel_13" labelStyle="BPMNLabelStyle_1">
-          <dc:Bounds height="25.0" width="25.0" x="722.0" y="182.0"/>
+          <dc:Bounds height="50.0" width="104.0" x="683.0" y="170.0"/>
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="BPMNShape_Task_4" bpmnElement="Task_4">
+      <bpmndi:BPMNShape id="BPMNShape_Task_4" bpmnElement="Task_verpacken">
         <dc:Bounds height="50.0" width="110.0" x="680.0" y="270.0"/>
         <bpmndi:BPMNLabel id="BPMNLabel_14" labelStyle="BPMNLabelStyle_1">
-          <dc:Bounds height="25.0" width="25.0" x="722.0" y="282.0"/>
+          <dc:Bounds height="50.0" width="100.0" x="685.0" y="270.0"/>
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="BPMNShape_IntermediateThrowEvent_1" bpmnElement="E1">
         <dc:Bounds height="30.0" width="30.0" x="978.0" y="180.0"/>
         <bpmndi:BPMNLabel id="BPMNLabel_15" labelStyle="BPMNLabelStyle_1">
-          <dc:Bounds height="25.0" width="26.0" x="980.0" y="210.0"/>
+          <dc:Bounds height="25.0" width="26.0" x="942.0" y="209.0"/>
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="BPMNShape_IntermediateThrowEvent_2" bpmnElement="E2">
@@ -237,16 +237,16 @@
           <dc:Bounds height="25.0" width="26.0" x="612.0" y="511.0"/>
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="BPMNShape_Task_5" bpmnElement="Task_5">
+      <bpmndi:BPMNShape id="BPMNShape_Task_5" bpmnElement="Task_erstattung">
         <dc:Bounds height="50.0" width="110.0" x="680.0" y="370.0"/>
         <bpmndi:BPMNLabel id="BPMNLabel_18" labelStyle="BPMNLabelStyle_1">
-          <dc:Bounds height="25.0" width="25.0" x="722.0" y="382.0"/>
+          <dc:Bounds height="50.0" width="84.0" x="693.0" y="370.0"/>
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="BPMNShape_Task_6" bpmnElement="Task_6">
+      <bpmndi:BPMNShape id="BPMNShape_Task_6" bpmnElement="Task_gutschein">
         <dc:Bounds height="50.0" width="110.0" x="680.0" y="471.0"/>
         <bpmndi:BPMNLabel id="BPMNLabel_19" labelStyle="BPMNLabelStyle_1">
-          <dc:Bounds height="25.0" width="25.0" x="722.0" y="483.0"/>
+          <dc:Bounds height="50.0" width="104.0" x="683.0" y="471.0"/>
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="BPMNShape_IntermediateThrowEvent_4" bpmnElement="E4">

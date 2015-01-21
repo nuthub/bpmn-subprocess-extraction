@@ -33,7 +33,7 @@ public class ConditionalProfileUtil {
 		List<String> tuples = new ArrayList<String>();
 		for (String name : nodes) {
 			String c = " (";
-			c += "\\texttt{" + name + "}";
+			c += "\\texttt{" + name.replaceAll("\\_", "\\\\_") + "}";
 			c += ", ";
 			if (!conditions.containsKey(name) || conditions.get(name).equals("")) {
 				c += "\\emptyset ";
@@ -49,15 +49,14 @@ public class ConditionalProfileUtil {
 		sb.append(StringUtils.join(tuples, ", " + NL));
 		sb.append(NL + "\\}$");
 
-		System.out.println(sb.toString());
 		return sb.toString();
 
 	}
 
 	public static void writeDebugFiles(String debugFilesDir, String basename,
-			List<String> nodes, ConditionalProfile cp) throws IOException {
+			List<String> nodes, ConditionalProfile cp, String suffix) throws IOException {
 		IOUtil.writeTxtFile(toTex(cp, nodes), debugFilesDir + basename
-				+ "-conditionalprofile.tex");
+				+ "-"+ suffix + ".tex");
 
 	}
 }

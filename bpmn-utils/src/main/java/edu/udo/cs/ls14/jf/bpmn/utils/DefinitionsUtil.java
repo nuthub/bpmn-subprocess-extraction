@@ -9,6 +9,7 @@ import org.eclipse.bpmn2.Event;
 import org.eclipse.bpmn2.FlowElement;
 import org.eclipse.bpmn2.FlowNode;
 import org.eclipse.bpmn2.Process;
+import org.eclipse.bpmn2.SequenceFlow;
 import org.eclipse.bpmn2.di.BPMNDiagram;
 
 public class DefinitionsUtil {
@@ -49,5 +50,16 @@ public class DefinitionsUtil {
 
 	public static boolean isAE(FlowNode node) {
 		return (node instanceof Activity || node instanceof Event);
+	}
+
+	public static SequenceFlow getSequenceFlow(Definitions definitions,
+			String id) throws Exception {
+		Process process = getProcess(definitions);
+		for (FlowElement e : process.getFlowElements()) {
+			if (e instanceof SequenceFlow && e.getId().equals(id)) {
+				return (SequenceFlow) e;
+			}
+		}
+		return null;
 	}
 }
