@@ -21,7 +21,7 @@ sed \
 echo "complete2.bpmn created";
 
 sed \
-    -e 's/complete1labelled/complete1/g' \
+    -e 's/complete1labelled/Process/g' \
     -e 's/Anspruch pruefen/T1/g' \
     -e 's/Lieferschein erstellen/T2/g' \
     -e 's/Rechnung erstellen/T3/g' \
