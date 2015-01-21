@@ -45,9 +45,9 @@ public class ConditionalProfileUtil {
 		}
 
 		StringBuffer sb = new StringBuffer();
-		sb.append("$CP_M = \\{" + NL);
+		sb.append("\\{" + NL);
 		sb.append(StringUtils.join(tuples, ", " + NL));
-		sb.append(NL + "\\}$");
+		sb.append(NL + "\\}");
 
 		return sb.toString();
 
