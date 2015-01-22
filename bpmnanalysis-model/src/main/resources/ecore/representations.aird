@@ -10041,6 +10041,163 @@
       <activatedLayers xmi:type="description_1:AdditionalLayer" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Entities']/@additionalLayers[name='Validation']"/>
       <target xmi:type="ecore:EPackage" href="BpmnAnalysis.ecore#/"/>
     </ownedRepresentations>
+    <ownedRepresentations xmi:type="diagram:DSemanticDiagram" xmi:id="_TDjyMKI-EeSxutFs0Jpy-w" name="processanalyzer_class_diagram">
+      <ownedAnnotationEntries xmi:type="description:AnnotationEntry" xmi:id="_THUQ0KI-EeSxutFs0Jpy-w" source="GMF_DIAGRAMS">
+        <data xmi:type="notation:Diagram" xmi:id="_THUQ0aI-EeSxutFs0Jpy-w" type="Sirius" element="_TDjyMKI-EeSxutFs0Jpy-w" measurementUnit="Pixel">
+          <children xmi:type="notation:Node" xmi:id="_xaWxgKI-EeSxutFs0Jpy-w" type="2003" element="_xYoTMKI-EeSxutFs0Jpy-w">
+            <children xmi:type="notation:Node" xmi:id="_xaX_oKI-EeSxutFs0Jpy-w" type="5007"/>
+            <children xmi:type="notation:Node" xmi:id="_xaZNwKI-EeSxutFs0Jpy-w" type="7004">
+              <children xmi:type="notation:Node" xmi:id="_09lnsKI-EeSxutFs0Jpy-w" type="3010" element="_08_x0KI-EeSxutFs0Jpy-w">
+                <layoutConstraint xmi:type="notation:Location" xmi:id="_09lnsaI-EeSxutFs0Jpy-w"/>
+              </children>
+              <styles xmi:type="notation:SortingStyle" xmi:id="_xaZNwaI-EeSxutFs0Jpy-w"/>
+              <styles xmi:type="notation:FilteringStyle" xmi:id="_xaZNwqI-EeSxutFs0Jpy-w"/>
+            </children>
+            <styles xmi:type="notation:ShapeStyle" xmi:id="_xaWxgaI-EeSxutFs0Jpy-w" fontName="Arial" fontHeight="8" italic="true"/>
+            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_xaWxgqI-EeSxutFs0Jpy-w" x="25" y="30" width="328" height="68"/>
+          </children>
+          <styles xmi:type="notation:DiagramStyle" xmi:id="_THUQ0qI-EeSxutFs0Jpy-w"/>
+        </data>
+      </ownedAnnotationEntries>
+      <ownedDiagramElements xmi:type="diagram:DNodeList" xmi:id="_xYoTMKI-EeSxutFs0Jpy-w" name="ProcessAnalyzer" tooltipText="" width="12" height="10">
+        <target xmi:type="ecore:EClass" href="BpmnAnalysis.ecore#//ProcessAnalyzer"/>
+        <semanticElements xmi:type="ecore:EClass" href="BpmnAnalysis.ecore#//ProcessAnalyzer"/>
+        <arrangeConstraints>KEEP_LOCATION</arrangeConstraints>
+        <arrangeConstraints>KEEP_SIZE</arrangeConstraints>
+        <arrangeConstraints>KEEP_RATIO</arrangeConstraints>
+        <ownedStyle xmi:type="diagram:FlatContainerStyle" xmi:id="_xY28sKI-EeSxutFs0Jpy-w" labelFormat="italic" iconPath="/org.eclipse.emf.ecoretools.design/icons/full/obj16/EClass_interface.gif" backgroundStyle="Liquid">
+          <labelColor xmi:type="viewpoint:RGBValues" xmi:id="_xY28saI-EeSxutFs0Jpy-w"/>
+          <description xmi:type="style:FlatContainerStyleDescription" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Entities']/@defaultLayer/@containerMappings[name='EC%20EClass']/@conditionnalStyles.0/@style"/>
+          <borderColor xmi:type="viewpoint:RGBValues" xmi:id="_xY28sqI-EeSxutFs0Jpy-w" red="125" green="125" blue="125"/>
+          <backgroundColor xmi:type="viewpoint:RGBValues" xmi:id="_xY28s6I-EeSxutFs0Jpy-w" red="255" green="255" blue="255"/>
+          <foregroundColor xmi:type="viewpoint:RGBValues" xmi:id="_xY28tKI-EeSxutFs0Jpy-w" red="228" green="228" blue="228"/>
+        </ownedStyle>
+        <actualMapping xmi:type="description_1:ContainerMapping" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Entities']/@defaultLayer/@containerMappings[name='EC%20EClass']"/>
+        <ownedElements xmi:type="diagram:DNodeListElement" xmi:id="_08_x0KI-EeSxutFs0Jpy-w" name="analyze(definitions Definitions) : ProcessAnalysis" tooltipText="analyze(definitions) : ProcessAnalysis">
+          <target xmi:type="ecore:EOperation" href="BpmnAnalysis.ecore#//ProcessAnalyzer/analyze"/>
+          <semanticElements xmi:type="ecore:EOperation" href="BpmnAnalysis.ecore#//ProcessAnalyzer/analyze"/>
+          <semanticElements xmi:type="ecore:EParameter" href="BpmnAnalysis.ecore#//ProcessAnalyzer/analyze/definitions"/>
+          <ownedStyle xmi:type="diagram:BundledImage" xmi:id="_09AY4KI-EeSxutFs0Jpy-w" labelAlignment="LEFT">
+            <labelColor xmi:type="viewpoint:RGBValues" xmi:id="_09AY4aI-EeSxutFs0Jpy-w"/>
+            <description xmi:type="style:BundledImageDescription" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Entities']/@defaultLayer/@containerMappings[name='EC%20EClass']/@subNodeMappings[name='Operation']/@style"/>
+            <borderColor xmi:type="viewpoint:RGBValues" xmi:id="_09AY4qI-EeSxutFs0Jpy-w"/>
+            <color xmi:type="viewpoint:RGBValues" xmi:id="_09AY46I-EeSxutFs0Jpy-w"/>
+          </ownedStyle>
+          <actualMapping xmi:type="description_1:NodeMapping" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Entities']/@defaultLayer/@containerMappings[name='EC%20EClass']/@subNodeMappings[name='Operation']"/>
+        </ownedElements>
+      </ownedDiagramElements>
+      <description xmi:type="description_1:DiagramDescription" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Entities']"/>
+      <filterVariableHistory xmi:type="diagram:FilterVariableHistory" xmi:id="_TDjyNaI-EeSxutFs0Jpy-w"/>
+      <activatedLayers xmi:type="description_1:Layer" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Entities']/@defaultLayer"/>
+      <activatedLayers xmi:type="description_1:AdditionalLayer" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Entities']/@additionalLayers[name='Package']"/>
+      <activatedLayers xmi:type="description_1:AdditionalLayer" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Entities']/@additionalLayers[name='Validation']"/>
+      <target xmi:type="ecore:EPackage" href="BpmnAnalysis.ecore#/"/>
+    </ownedRepresentations>
+    <ownedRepresentations xmi:type="diagram:DSemanticDiagram" xmi:id="_HrXDgKJBEeSxutFs0Jpy-w" name="processmatcher_class_diagram">
+      <ownedAnnotationEntries xmi:type="description:AnnotationEntry" xmi:id="_HraG0KJBEeSxutFs0Jpy-w" source="GMF_DIAGRAMS">
+        <data xmi:type="notation:Diagram" xmi:id="_HraG0aJBEeSxutFs0Jpy-w" type="Sirius" element="_HrXDgKJBEeSxutFs0Jpy-w" measurementUnit="Pixel">
+          <children xmi:type="notation:Node" xmi:id="_JSwfIKJBEeSxutFs0Jpy-w" type="2003" element="_JSQv4KJBEeSxutFs0Jpy-w">
+            <children xmi:type="notation:Node" xmi:id="_JSxGMKJBEeSxutFs0Jpy-w" type="5007"/>
+            <children xmi:type="notation:Node" xmi:id="_JSxGMaJBEeSxutFs0Jpy-w" type="7004">
+              <children xmi:type="notation:Node" xmi:id="_JSxtQKJBEeSxutFs0Jpy-w" type="3010" element="_JSq_kKJBEeSxutFs0Jpy-w">
+                <layoutConstraint xmi:type="notation:Location" xmi:id="_JSxtQaJBEeSxutFs0Jpy-w"/>
+              </children>
+              <styles xmi:type="notation:SortingStyle" xmi:id="_JSxGMqJBEeSxutFs0Jpy-w"/>
+              <styles xmi:type="notation:FilteringStyle" xmi:id="_JSxGM6JBEeSxutFs0Jpy-w"/>
+            </children>
+            <styles xmi:type="notation:ShapeStyle" xmi:id="_JSwfIaJBEeSxutFs0Jpy-w" fontName="FreeSans" fontHeight="8" italic="true"/>
+            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_JSwfIqJBEeSxutFs0Jpy-w" x="20" y="35" width="433" height="100"/>
+          </children>
+          <styles xmi:type="notation:DiagramStyle" xmi:id="_HraG0qJBEeSxutFs0Jpy-w"/>
+        </data>
+      </ownedAnnotationEntries>
+      <ownedDiagramElements xmi:type="diagram:DNodeList" xmi:id="_JSQv4KJBEeSxutFs0Jpy-w" name="ProcessMatcher" tooltipText="" width="12" height="10">
+        <target xmi:type="ecore:EClass" href="BpmnMatching.ecore#//ProcessMatcher"/>
+        <semanticElements xmi:type="ecore:EClass" href="BpmnMatching.ecore#//ProcessMatcher"/>
+        <arrangeConstraints>KEEP_LOCATION</arrangeConstraints>
+        <arrangeConstraints>KEEP_SIZE</arrangeConstraints>
+        <arrangeConstraints>KEEP_RATIO</arrangeConstraints>
+        <ownedStyle xmi:type="diagram:FlatContainerStyle" xmi:id="_JSR-AKJBEeSxutFs0Jpy-w" labelFormat="italic" iconPath="/org.eclipse.emf.ecoretools.design/icons/full/obj16/EClass_interface.gif" backgroundStyle="Liquid">
+          <labelColor xmi:type="viewpoint:RGBValues" xmi:id="_JSR-AaJBEeSxutFs0Jpy-w"/>
+          <description xmi:type="style:FlatContainerStyleDescription" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Entities']/@defaultLayer/@containerMappings[name='EC%20EClass']/@conditionnalStyles.0/@style"/>
+          <borderColor xmi:type="viewpoint:RGBValues" xmi:id="_JSR-AqJBEeSxutFs0Jpy-w" red="125" green="125" blue="125"/>
+          <backgroundColor xmi:type="viewpoint:RGBValues" xmi:id="_JSR-A6JBEeSxutFs0Jpy-w" red="255" green="255" blue="255"/>
+          <foregroundColor xmi:type="viewpoint:RGBValues" xmi:id="_JSR-BKJBEeSxutFs0Jpy-w" red="228" green="228" blue="228"/>
+        </ownedStyle>
+        <actualMapping xmi:type="description_1:ContainerMapping" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Entities']/@defaultLayer/@containerMappings[name='EC%20EClass']"/>
+        <ownedElements xmi:type="diagram:DNodeListElement" xmi:id="_JSq_kKJBEeSxutFs0Jpy-w" name="match(analysis1 ProcessAnalysis, analysis2 ProcessAnalysis) : ProcessMatching" tooltipText="match(analysis1, analysis2) : ProcessMatching">
+          <target xmi:type="ecore:EOperation" href="BpmnMatching.ecore#//ProcessMatcher/match"/>
+          <semanticElements xmi:type="ecore:EOperation" href="BpmnMatching.ecore#//ProcessMatcher/match"/>
+          <semanticElements xmi:type="ecore:EParameter" href="BpmnMatching.ecore#//ProcessMatcher/match/analysis1"/>
+          <semanticElements xmi:type="ecore:EParameter" href="BpmnMatching.ecore#//ProcessMatcher/match/analysis2"/>
+          <ownedStyle xmi:type="diagram:BundledImage" xmi:id="_JSq_kaJBEeSxutFs0Jpy-w" labelAlignment="LEFT">
+            <labelColor xmi:type="viewpoint:RGBValues" xmi:id="_JSq_kqJBEeSxutFs0Jpy-w"/>
+            <description xmi:type="style:BundledImageDescription" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Entities']/@defaultLayer/@containerMappings[name='EC%20EClass']/@subNodeMappings[name='Operation']/@style"/>
+            <borderColor xmi:type="viewpoint:RGBValues" xmi:id="_JSq_k6JBEeSxutFs0Jpy-w"/>
+            <color xmi:type="viewpoint:RGBValues" xmi:id="_JSq_lKJBEeSxutFs0Jpy-w"/>
+          </ownedStyle>
+          <actualMapping xmi:type="description_1:NodeMapping" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Entities']/@defaultLayer/@containerMappings[name='EC%20EClass']/@subNodeMappings[name='Operation']"/>
+        </ownedElements>
+      </ownedDiagramElements>
+      <description xmi:type="description_1:DiagramDescription" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Entities']"/>
+      <filterVariableHistory xmi:type="diagram:FilterVariableHistory" xmi:id="_HrXDhaJBEeSxutFs0Jpy-w"/>
+      <activatedLayers xmi:type="description_1:Layer" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Entities']/@defaultLayer"/>
+      <activatedLayers xmi:type="description_1:AdditionalLayer" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Entities']/@additionalLayers[name='Package']"/>
+      <activatedLayers xmi:type="description_1:AdditionalLayer" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Entities']/@additionalLayers[name='Validation']"/>
+      <target xmi:type="ecore:EPackage" href="BpmnMatching.ecore#/"/>
+    </ownedRepresentations>
+    <ownedRepresentations xmi:type="diagram:DSemanticDiagram" xmi:id="_QcmPoKJBEeSxutFs0Jpy-w" name="processtransformer_class_diagram">
+      <ownedAnnotationEntries xmi:type="description:AnnotationEntry" xmi:id="_Qcm2sKJBEeSxutFs0Jpy-w" source="GMF_DIAGRAMS">
+        <data xmi:type="notation:Diagram" xmi:id="_Qcm2saJBEeSxutFs0Jpy-w" type="Sirius" element="_QcmPoKJBEeSxutFs0Jpy-w" measurementUnit="Pixel">
+          <children xmi:type="notation:Node" xmi:id="_R-VIIKJBEeSxutFs0Jpy-w" type="2003" element="_R99UsKJBEeSxutFs0Jpy-w">
+            <children xmi:type="notation:Node" xmi:id="_R-VvMKJBEeSxutFs0Jpy-w" type="5007"/>
+            <children xmi:type="notation:Node" xmi:id="_R-WWQKJBEeSxutFs0Jpy-w" type="7004">
+              <children xmi:type="notation:Node" xmi:id="_R-XkYKJBEeSxutFs0Jpy-w" type="3010" element="_R-Q2sKJBEeSxutFs0Jpy-w">
+                <layoutConstraint xmi:type="notation:Location" xmi:id="_R-XkYaJBEeSxutFs0Jpy-w"/>
+              </children>
+              <styles xmi:type="notation:SortingStyle" xmi:id="_R-WWQaJBEeSxutFs0Jpy-w"/>
+              <styles xmi:type="notation:FilteringStyle" xmi:id="_R-WWQqJBEeSxutFs0Jpy-w"/>
+            </children>
+            <styles xmi:type="notation:ShapeStyle" xmi:id="_R-VIIaJBEeSxutFs0Jpy-w" fontName="FreeSans" fontHeight="8" italic="true"/>
+            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_R-VIIqJBEeSxutFs0Jpy-w" x="35" y="20" width="324" height="100"/>
+          </children>
+          <styles xmi:type="notation:DiagramStyle" xmi:id="_Qcm2sqJBEeSxutFs0Jpy-w"/>
+        </data>
+      </ownedAnnotationEntries>
+      <ownedDiagramElements xmi:type="diagram:DNodeList" xmi:id="_R99UsKJBEeSxutFs0Jpy-w" name="ProcessTransformer" tooltipText="" width="12" height="10">
+        <target xmi:type="ecore:EClass" href="BpmnTransformation.ecore#//ProcessTransformer"/>
+        <semanticElements xmi:type="ecore:EClass" href="BpmnTransformation.ecore#//ProcessTransformer"/>
+        <arrangeConstraints>KEEP_LOCATION</arrangeConstraints>
+        <arrangeConstraints>KEEP_SIZE</arrangeConstraints>
+        <arrangeConstraints>KEEP_RATIO</arrangeConstraints>
+        <ownedStyle xmi:type="diagram:FlatContainerStyle" xmi:id="_R9_J4KJBEeSxutFs0Jpy-w" labelFormat="italic" iconPath="/org.eclipse.emf.ecoretools.design/icons/full/obj16/EClass_interface.gif" backgroundStyle="Liquid">
+          <labelColor xmi:type="viewpoint:RGBValues" xmi:id="_R9_J4aJBEeSxutFs0Jpy-w"/>
+          <description xmi:type="style:FlatContainerStyleDescription" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Entities']/@defaultLayer/@containerMappings[name='EC%20EClass']/@conditionnalStyles.0/@style"/>
+          <borderColor xmi:type="viewpoint:RGBValues" xmi:id="_R9_J4qJBEeSxutFs0Jpy-w" red="125" green="125" blue="125"/>
+          <backgroundColor xmi:type="viewpoint:RGBValues" xmi:id="_R9_J46JBEeSxutFs0Jpy-w" red="255" green="255" blue="255"/>
+          <foregroundColor xmi:type="viewpoint:RGBValues" xmi:id="_R9_J5KJBEeSxutFs0Jpy-w" red="228" green="228" blue="228"/>
+        </ownedStyle>
+        <actualMapping xmi:type="description_1:ContainerMapping" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Entities']/@defaultLayer/@containerMappings[name='EC%20EClass']"/>
+        <ownedElements xmi:type="diagram:DNodeListElement" xmi:id="_R-Q2sKJBEeSxutFs0Jpy-w" name="transform(matching ProcessMatching) : ProcessExtraction" tooltipText="transform(matching) : ProcessExtraction">
+          <target xmi:type="ecore:EOperation" href="BpmnTransformation.ecore#//ProcessTransformer/transform"/>
+          <semanticElements xmi:type="ecore:EOperation" href="BpmnTransformation.ecore#//ProcessTransformer/transform"/>
+          <semanticElements xmi:type="ecore:EParameter" href="BpmnTransformation.ecore#//ProcessTransformer/transform/matching"/>
+          <ownedStyle xmi:type="diagram:BundledImage" xmi:id="_R-RdwKJBEeSxutFs0Jpy-w" labelAlignment="LEFT">
+            <labelColor xmi:type="viewpoint:RGBValues" xmi:id="_R-RdwaJBEeSxutFs0Jpy-w"/>
+            <description xmi:type="style:BundledImageDescription" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Entities']/@defaultLayer/@containerMappings[name='EC%20EClass']/@subNodeMappings[name='Operation']/@style"/>
+            <borderColor xmi:type="viewpoint:RGBValues" xmi:id="_R-RdwqJBEeSxutFs0Jpy-w"/>
+            <color xmi:type="viewpoint:RGBValues" xmi:id="_R-Rdw6JBEeSxutFs0Jpy-w"/>
+          </ownedStyle>
+          <actualMapping xmi:type="description_1:NodeMapping" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Entities']/@defaultLayer/@containerMappings[name='EC%20EClass']/@subNodeMappings[name='Operation']"/>
+        </ownedElements>
+      </ownedDiagramElements>
+      <description xmi:type="description_1:DiagramDescription" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Entities']"/>
+      <filterVariableHistory xmi:type="diagram:FilterVariableHistory" xmi:id="_QcmPpaJBEeSxutFs0Jpy-w"/>
+      <activatedLayers xmi:type="description_1:Layer" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Entities']/@defaultLayer"/>
+      <activatedLayers xmi:type="description_1:AdditionalLayer" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Entities']/@additionalLayers[name='Package']"/>
+      <activatedLayers xmi:type="description_1:AdditionalLayer" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Entities']/@additionalLayers[name='Validation']"/>
+      <target xmi:type="ecore:EPackage" href="BpmnTransformation.ecore#/"/>
+    </ownedRepresentations>
     <viewpoint xmi:type="description:Viewpoint" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']"/>
   </ownedViews>
 </viewpoint:DAnalysis>

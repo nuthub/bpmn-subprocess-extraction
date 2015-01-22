@@ -18,6 +18,7 @@ import org.junit.Test;
 import edu.udo.cs.ls14.jf.bpmn.utils.Bpmn2ResourceSet;
 import edu.udo.cs.ls14.jf.bpmnanalysis.ProcessAnalysis;
 import edu.udo.cs.ls14.jf.bpmnapplication.ProcessAnalyzer;
+import edu.udo.cs.ls14.jf.bpmnapplication.ProcessAnalyzerImpl;
 import edu.udo.cs.ls14.jf.bpmnmatching.ProcessMatching;
 import edu.udo.cs.ls14.jf.registry.Registries;
 import edu.udo.cs.ls14.jf.ws.bpmn.matching.fragmentpairfilterbehavior.FragmentPairFilterBehaviorImpl;
@@ -167,8 +168,9 @@ public class BpmnMatchingTest {
 				.getResource(pathname + "parallelism1.bpmn").getFile());
 		Definitions definitions2 = resSet.loadDefinitions(getClass()
 				.getResource(pathname + "parallelism2.bpmn").getFile());
-		ProcessAnalysis analysis1 = ProcessAnalyzer.analyze(definitions1);
-		ProcessAnalysis analysis2 = ProcessAnalyzer.analyze(definitions2);
+		ProcessAnalyzer analyzer = new ProcessAnalyzerImpl();
+		ProcessAnalysis analysis1 = analyzer.analyze(definitions1);
+		ProcessAnalysis analysis2 = analyzer.analyze(definitions2);
 		// ProcessMatchingFactory
 		ProcessMatching processMatching = portProcessMatchingFactory.create(
 				analysis1, analysis2);

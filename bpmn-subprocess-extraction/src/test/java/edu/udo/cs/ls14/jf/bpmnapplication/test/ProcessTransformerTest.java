@@ -14,11 +14,14 @@ import edu.udo.cs.ls14.jf.bpmn.utils.ProcessExtractionUtil;
 import edu.udo.cs.ls14.jf.bpmn.utils.ProcessMatchingUtil;
 import edu.udo.cs.ls14.jf.bpmnanalysis.ProcessAnalysis;
 import edu.udo.cs.ls14.jf.bpmnapplication.ProcessAnalyzer;
+import edu.udo.cs.ls14.jf.bpmnapplication.ProcessAnalyzerImpl;
+import edu.udo.cs.ls14.jf.bpmnapplication.ProcessTransformer;
+import edu.udo.cs.ls14.jf.bpmnapplication.ProcessTransformerImpl;
 import edu.udo.cs.ls14.jf.bpmnapplication.ProcessMatcher;
+import edu.udo.cs.ls14.jf.bpmnapplication.ProcessMatcherImpl;
 import edu.udo.cs.ls14.jf.bpmnmatching.ProcessMatching;
 import edu.udo.cs.ls14.jf.bpmntransformation.ProcessExtraction;
 import edu.udo.cs.ls14.jf.registry.Registries;
-import edu.udo.cs.ls14.jf.transformation.ProcessExtractor;
 
 /**
  * @deprecated See ProcessExtractionHybridTest
@@ -27,7 +30,7 @@ import edu.udo.cs.ls14.jf.transformation.ProcessExtractor;
  *
  */
 @Deprecated
-public class ProcessExtractionTest {
+public class ProcessTransformerTest {
 
 	private static final String TARGET_DIR = "/tmp/";
 
@@ -75,7 +78,8 @@ public class ProcessExtractionTest {
 		Definitions def1 = Bpmn2ResourceSet.getInstance().loadDefinitions(
 				getClass().getResource(pathname + basename1 + ".bpmn")
 						.getPath());
-		ProcessAnalysis analysis1 = ProcessAnalyzer.analyzeAndDebug(def1,
+		ProcessAnalyzer analyzer = new ProcessAnalyzerImpl();
+		ProcessAnalysis analysis1 = analyzer.analyzeAndDebug(def1,
 				pathname, basename1, targetDir, nodes1);
 		ProcessAnalysisUtil.writeToFile(
 				targetDir + basename1 + "-analysis.xml", analysis1);
@@ -83,15 +87,18 @@ public class ProcessExtractionTest {
 		Definitions def2 = Bpmn2ResourceSet.getInstance().loadDefinitions(
 				getClass().getResource(pathname + basename2 + ".bpmn")
 						.getPath());
-		ProcessAnalysis analysis2 = ProcessAnalyzer.analyzeAndDebug(def2,
+		analyzer = new ProcessAnalyzerImpl();
+		ProcessAnalysis analysis2 = analyzer.analyzeAndDebug(def2,
 				pathname, basename2, targetDir, nodes2);
 		ProcessAnalysisUtil.writeToFile(
 				targetDir + basename2 + "-analysis.xml", analysis2);
 		// 2. match process1 and process2
-		ProcessMatching matching = ProcessMatcher.match(analysis1, analysis2);
+		ProcessMatcher matcher = new ProcessMatcherImpl();
+		ProcessMatching matching = matcher.match(analysis1, analysis2);
 		ProcessMatchingUtil.writeToFile(targetDir + "matching.xml", matching);
 		// 3. extract processes
-		ProcessExtraction extraction = ProcessExtractor.extract(matching);
+		ProcessTransformer transformer = new ProcessTransformerImpl();
+		ProcessExtraction extraction = transformer.transform(matching);
 		// END
 
 		// Post

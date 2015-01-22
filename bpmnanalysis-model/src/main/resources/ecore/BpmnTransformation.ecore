@@ -13,4 +13,10 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="value" lowerBound="1" eType="ecore:EClass BPMN20.ecore#//Definitions"
         containment="true"/>
   </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ProcessTransformer" abstract="true"
+      interface="true">
+    <eOperations name="transform" eType="#//ProcessExtraction">
+      <eParameters name="matching" eType="ecore:EClass BpmnMatching.ecore#//ProcessMatching"/>
+    </eOperations>
+  </eClassifiers>
 </ecore:EPackage>

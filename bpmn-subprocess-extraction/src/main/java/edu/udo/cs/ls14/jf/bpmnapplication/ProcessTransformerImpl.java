@@ -1,8 +1,12 @@
-package edu.udo.cs.ls14.jf.transformation;
+package edu.udo.cs.ls14.jf.bpmnapplication;
 
 import edu.udo.cs.ls14.jf.bpmnmatching.FragmentPair;
 import edu.udo.cs.ls14.jf.bpmnmatching.ProcessMatching;
 import edu.udo.cs.ls14.jf.bpmntransformation.ProcessExtraction;
+import edu.udo.cs.ls14.jf.transformation.CoordinateCalculator;
+import edu.udo.cs.ls14.jf.transformation.FragmentExtractor;
+import edu.udo.cs.ls14.jf.transformation.FragmentPairRankerSize;
+import edu.udo.cs.ls14.jf.transformation.LabelGenerator;
 
 /**
  * This is also available as modeled process
@@ -10,9 +14,10 @@ import edu.udo.cs.ls14.jf.bpmntransformation.ProcessExtraction;
  * @author flake
  *
  */
-public class ProcessExtractor {
+public class ProcessTransformerImpl implements ProcessTransformer {
 
-	public static ProcessExtraction extract(ProcessMatching pMatching)
+	@Override
+	public ProcessExtraction transform(ProcessMatching pMatching)
 			throws Exception {
 		// Do the extraction
 		// 1. determine order in fragments

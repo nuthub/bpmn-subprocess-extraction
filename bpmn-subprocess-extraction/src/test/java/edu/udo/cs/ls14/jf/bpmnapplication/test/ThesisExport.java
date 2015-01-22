@@ -24,13 +24,16 @@ import edu.udo.cs.ls14.jf.bpmnanalysis.ConditionalProfile;
 import edu.udo.cs.ls14.jf.bpmnanalysis.Fragment;
 import edu.udo.cs.ls14.jf.bpmnanalysis.ProcessAnalysis;
 import edu.udo.cs.ls14.jf.bpmnapplication.ProcessAnalyzer;
+import edu.udo.cs.ls14.jf.bpmnapplication.ProcessAnalyzerImpl;
+import edu.udo.cs.ls14.jf.bpmnapplication.ProcessTransformer;
+import edu.udo.cs.ls14.jf.bpmnapplication.ProcessTransformerImpl;
 import edu.udo.cs.ls14.jf.bpmnapplication.ProcessMatcher;
+import edu.udo.cs.ls14.jf.bpmnapplication.ProcessMatcherImpl;
 import edu.udo.cs.ls14.jf.bpmnmatching.BpmnMatchingPackage;
 import edu.udo.cs.ls14.jf.bpmnmatching.ProcessMatching;
 import edu.udo.cs.ls14.jf.bpmntransformation.BpmnTransformationPackage;
 import edu.udo.cs.ls14.jf.bpmntransformation.ProcessExtraction;
 import edu.udo.cs.ls14.jf.registry.Registries;
-import edu.udo.cs.ls14.jf.transformation.ProcessExtractor;
 
 public class ThesisExport {
 
@@ -52,7 +55,8 @@ public class ThesisExport {
 				.loadDefinitions(
 						getClass().getResource(pathname + basename + ".bpmn")
 								.getPath());
-		ProcessAnalysis analysis = ProcessAnalyzer.analyzeAndDebug(def,
+		ProcessAnalyzer analyzer = new ProcessAnalyzerImpl();
+		ProcessAnalysis analysis = analyzer.analyzeAndDebug(def,
 				pathname, basename, targetDir, nodes);
 		assertNotNull(analysis);
 	}
@@ -69,7 +73,8 @@ public class ThesisExport {
 						getClass().getResource(pathname + basename + ".bpmn")
 								.getPath());
 		// analyze and debug
-		ProcessAnalysis analysis = ProcessAnalyzer.analyzeAndDebug(def,
+		ProcessAnalyzer analyzer = new ProcessAnalyzerImpl();
+		ProcessAnalysis analysis = analyzer.analyzeAndDebug(def,
 				pathname, basename, targetDir, nodes);
 
 		// create conditional profile of fragment
@@ -108,7 +113,8 @@ public class ThesisExport {
 		Definitions def1 = Bpmn2ResourceSet.getInstance().loadDefinitions(
 				getClass().getResource(pathname + basename1 + ".bpmn")
 						.getPath());
-		ProcessAnalysis analysis1 = ProcessAnalyzer.analyzeAndDebug(def1,
+		ProcessAnalyzer analyzer = new ProcessAnalyzerImpl();
+		ProcessAnalysis analysis1 = analyzer.analyzeAndDebug(def1,
 				pathname, basename1, targetDir, nodes1);
 		ProcessAnalysisUtil.writeToFile(targetDir + basename1 + "-analysis."
 				+ BpmnAnalysisPackage.eNAME, analysis1);
@@ -117,18 +123,21 @@ public class ThesisExport {
 		Definitions def2 = Bpmn2ResourceSet.getInstance().loadDefinitions(
 				getClass().getResource(pathname + basename2 + ".bpmn")
 						.getPath());
-		ProcessAnalysis analysis2 = ProcessAnalyzer.analyzeAndDebug(def2,
+		analyzer = new ProcessAnalyzerImpl();
+		ProcessAnalysis analysis2 = analyzer.analyzeAndDebug(def2,
 				pathname, basename2, targetDir, nodes2);
 		ProcessAnalysisUtil.writeToFile(targetDir + basename2 + "-analysis."
 				+ BpmnAnalysisPackage.eNAME, analysis2);
 
 		// 2. match models
-		ProcessMatching matching = ProcessMatcher.match(analysis1, analysis2);
+		ProcessMatcher matcher = new ProcessMatcherImpl();
+		ProcessMatching matching = matcher.match(analysis1, analysis2);
 		ProcessMatchingUtil.writeToFile(targetDir + basename1 + "_" + basename2
 				+ "_matching." + BpmnMatchingPackage.eNAME, matching);
 
 		// 3. extract models
-		ProcessExtraction extraction = ProcessExtractor.extract(matching);
+		ProcessTransformer transformer = new ProcessTransformerImpl();
+		ProcessExtraction extraction = transformer.transform(matching);
 		ProcessExtractionUtil.writeToFile(targetDir + basename1 + "_"
 				+ basename2 + "_extraction." + BpmnTransformationPackage.eNAME,
 				extraction);

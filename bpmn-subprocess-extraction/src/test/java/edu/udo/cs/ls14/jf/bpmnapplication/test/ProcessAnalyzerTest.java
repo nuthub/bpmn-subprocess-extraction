@@ -15,6 +15,7 @@ import edu.udo.cs.ls14.jf.bpmnanalysis.ConditionalProfile;
 import edu.udo.cs.ls14.jf.bpmnanalysis.ProcessAnalysis;
 import edu.udo.cs.ls14.jf.bpmnanalysis.ProcessStructureTree;
 import edu.udo.cs.ls14.jf.bpmnapplication.ProcessAnalyzer;
+import edu.udo.cs.ls14.jf.bpmnapplication.ProcessAnalyzerImpl;
 import edu.udo.cs.ls14.jf.registry.Registries;
 
 public class ProcessAnalyzerTest {
@@ -112,7 +113,8 @@ public class ProcessAnalyzerTest {
 				.loadDefinitions(
 						getClass().getResource(pathname + basename + ".bpmn")
 								.getPath());
-		ProcessAnalysis analysis = ProcessAnalyzer.analyzeAndDebug(def,
+		ProcessAnalyzer analyzer = new ProcessAnalyzerImpl();
+		ProcessAnalysis analysis = analyzer.analyzeAndDebug(def,
 				pathname, basename, TARGET_DIR + pathname, nodes);
 		return analysis;
 	}

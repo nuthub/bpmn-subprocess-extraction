@@ -1,0 +1,219 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" height="509" version="1.1" viewBox="0 0 1158 509" width="1158">
+  <g id="Task_pruefen">
+    <rect fill="#ffffff" height="55" rx="8.25" ry="8.25" stroke="#000000" stroke-width="1.0" width="110" x="102" y="234"/>
+  </g>
+  <text fill="#000000" font-decoration="none" font-family="Arial,Helvetica" font-size="24" font-weight="normal" text-anchor="middle" x="157" y="271">T1</text>
+  <g id="g1">
+    <path d="M 273 241 L 294 262 L 273 283 L 252 262 Z" fill="#ffffff" stroke="#000000" stroke-width="1.0"/>
+    <path d=" M 279 252 L 267 273 M 267 252 L 279 273" fill="none" stroke="#000000" stroke-width="3.0"/>
+  </g>
+  <text fill="#000000" font-decoration="none" font-family="Arial,Helvetica" font-size="24" font-weight="normal" text-anchor="middle" x="277" y="315">g1</text>
+  <g id="g3">
+    <path d="M 373 241 L 394 262 L 373 283 L 352 262 Z" fill="#ffffff" stroke="#000000" stroke-width="1.0"/>
+    <path d=" M 379 252 L 367 273 M 367 252 L 379 273" fill="none" stroke="#000000" stroke-width="3.0"/>
+  </g>
+  <text fill="#000000" font-decoration="none" font-family="Arial,Helvetica" font-size="24" font-weight="normal" text-anchor="middle" x="377" y="315">g3</text>
+  <g id="g7">
+    <path d="M 448 141 L 469 162 L 448 183 L 427 162 Z" fill="#ffffff" stroke="#000000" stroke-width="1.0"/>
+    <path d=" M 440 162 L 456 162 M 448 154 L 448 170" fill="none" stroke="#000000" stroke-width="5.0"/>
+  </g>
+  <text fill="#000000" font-decoration="none" font-family="Arial,Helvetica" font-size="24" font-weight="normal" text-anchor="middle" x="452" y="215">g7</text>
+  <g id="g8">
+    <path d="M 814 141 L 835 162 L 814 183 L 793 162 Z" fill="#ffffff" stroke="#000000" stroke-width="1.0"/>
+    <path d=" M 806 162 L 822 162 M 814 154 L 814 170" fill="none" stroke="#000000" stroke-width="5.0"/>
+  </g>
+  <text fill="#000000" font-decoration="none" font-family="Arial,Helvetica" font-size="24" font-weight="normal" text-anchor="middle" x="818" y="215">g8</text>
+  <g id="g5">
+    <path d="M 448 386 L 469 407 L 448 428 L 427 407 Z" fill="#ffffff" stroke="#000000" stroke-width="1.0"/>
+    <path d=" M 454 397 L 442 418 M 442 397 L 454 418" fill="none" stroke="#000000" stroke-width="3.0"/>
+  </g>
+  <text fill="#000000" font-decoration="none" font-family="Arial,Helvetica" font-size="24" font-weight="normal" text-anchor="middle" x="452" y="460">g5</text>
+  <g id="g6">
+    <path d="M 758 386 L 779 407 L 758 428 L 737 407 Z" fill="#ffffff" stroke="#000000" stroke-width="1.0"/>
+    <path d=" M 764 397 L 752 418 M 752 397 L 764 418" fill="none" stroke="#000000" stroke-width="3.0"/>
+  </g>
+  <text fill="#000000" font-decoration="none" font-family="Arial,Helvetica" font-size="24" font-weight="normal" text-anchor="middle" x="762" y="460">g6</text>
+  <g id="g4">
+    <path d="M 944 241 L 965 262 L 944 283 L 923 262 Z" fill="#ffffff" stroke="#000000" stroke-width="1.0"/>
+    <path d=" M 950 252 L 938 273 M 938 252 L 950 273" fill="none" stroke="#000000" stroke-width="3.0"/>
+  </g>
+  <text fill="#000000" font-decoration="none" font-family="Arial,Helvetica" font-size="24" font-weight="normal" text-anchor="middle" x="948" y="315">g4</text>
+  <g id="g2">
+    <path d="M 1033 241 L 1054 262 L 1033 283 L 1012 262 Z" fill="#ffffff" stroke="#000000" stroke-width="1.0"/>
+    <path d=" M 1039 252 L 1027 273 M 1027 252 L 1039 273" fill="none" stroke="#000000" stroke-width="3.0"/>
+  </g>
+  <text fill="#000000" font-decoration="none" font-family="Arial,Helvetica" font-size="24" font-weight="normal" text-anchor="middle" x="1037" y="315">g2</text>
+  <g id="Task_lieferschein">
+    <rect fill="#ffffff" height="55" rx="8.25" ry="8.25" stroke="#000000" stroke-width="1.0" width="110" x="582" y="36"/>
+  </g>
+  <text fill="#000000" font-decoration="none" font-family="Arial,Helvetica" font-size="24" font-weight="normal" text-anchor="middle" x="637" y="72">T2</text>
+  <g id="Task_rechnung">
+    <rect fill="#ffffff" height="55" rx="8.25" ry="8.25" stroke="#000000" stroke-width="1.0" width="110" x="582" y="134"/>
+  </g>
+  <text fill="#000000" font-decoration="none" font-family="Arial,Helvetica" font-size="24" font-weight="normal" text-anchor="middle" x="637" y="171">T3</text>
+  <g id="Task_verpacken">
+    <rect fill="#ffffff" height="55" rx="8.25" ry="8.25" stroke="#000000" stroke-width="1.0" width="110" x="582" y="236"/>
+  </g>
+  <text fill="#000000" font-decoration="none" font-family="Arial,Helvetica" font-size="24" font-weight="normal" text-anchor="middle" x="637" y="272">T4</text>
+  <g id="E1">
+    <ellipse cx="896" cy="162" fill="#ffffff" rx="16" ry="16" stroke="#000000" stroke-width="1.0"/>
+    <ellipse cx="896" cy="162" fill="none" rx="12" ry="12" stroke="#000000" stroke-width="1.0"/>
+  </g>
+  <text fill="#000000" font-decoration="none" font-family="Arial,Helvetica" font-size="24" font-weight="normal" text-anchor="middle" x="857" y="194">E1</text>
+  <g id="E2">
+    <ellipse cx="528" cy="362" fill="#ffffff" rx="16" ry="16" stroke="#000000" stroke-width="1.0"/>
+    <ellipse cx="528" cy="362" fill="none" rx="12" ry="12" stroke="#000000" stroke-width="1.0"/>
+  </g>
+  <text fill="#000000" font-decoration="none" font-family="Arial,Helvetica" font-size="24" font-weight="normal" text-anchor="middle" x="527" y="395">E2</text>
+  <g id="E3">
+    <ellipse cx="528" cy="463" fill="#ffffff" rx="16" ry="16" stroke="#000000" stroke-width="1.0"/>
+    <ellipse cx="528" cy="463" fill="none" rx="12" ry="12" stroke="#000000" stroke-width="1.0"/>
+  </g>
+  <text fill="#000000" font-decoration="none" font-family="Arial,Helvetica" font-size="24" font-weight="normal" text-anchor="middle" x="527" y="496">E3</text>
+  <g id="Task_erstattung">
+    <rect fill="#ffffff" height="55" rx="8.25" ry="8.25" stroke="#000000" stroke-width="1.0" width="110" x="582" y="336"/>
+  </g>
+  <text fill="#000000" font-decoration="none" font-family="Arial,Helvetica" font-size="24" font-weight="normal" text-anchor="middle" x="637" y="372">T5</text>
+  <g id="Task_gutschein">
+    <rect fill="#ffffff" height="55" rx="8.25" ry="8.25" stroke="#000000" stroke-width="1.0" width="110" x="582" y="437"/>
+  </g>
+  <text fill="#000000" font-decoration="none" font-family="Arial,Helvetica" font-size="24" font-weight="normal" text-anchor="middle" x="637" y="473">T6</text>
+  <g id="E4">
+    <ellipse cx="918" cy="17" fill="#ffffff" rx="16" ry="16" stroke="#000000" stroke-width="1.0"/>
+    <ellipse cx="918" cy="17" fill="none" rx="12" ry="12" stroke="#000000" stroke-width="1.0"/>
+  </g>
+  <text fill="#000000" font-decoration="none" font-family="Arial,Helvetica" font-size="24" font-weight="normal" text-anchor="middle" x="917" y="50">E4</text>
+  <g id="StartEvent_1">
+    <ellipse cx="45" cy="262" fill="#ffffff" rx="16" ry="16" stroke="#000000" stroke-width="1.0"/>
+  </g>
+  <text fill="#000000" font-decoration="none" font-family="Arial,Helvetica" font-size="24" font-weight="normal" text-anchor="middle" x="43" y="295">n_start</text>
+  <g id="SequenceFlow_24">
+    <path d="M 1101.50398646601 262.3571428571429 L 1091.50398646601 267.3571428571429 L 1094.00398646601 262.3571428571429 L 1091.50398646601 257.3571428571429 z" fill="#000000" stroke="#000000" stroke-width="1.0"/>
+    <path d="M 1054.142857142857 262.3571428571429 L 1068.0714285714284 262.3571428571429 Q 1078.0714285714284 262.3571428571429 1078.0714285714284 262.3571428571429 L 1078.0714285714284 262.3571428571429 L 1102.00398646601 262.3571428571429" fill="none" stroke="#000000" stroke-width="1.0"/>
+  </g>
+  <text fill="#000000" font-decoration="none" font-family="Cantarell" font-size="18" font-weight="normal" text-anchor="middle" x="1077" y="266">24</text>
+  <g id="SequenceFlow_23">
+    <path d="M 276.07142857142856 243.57142857142856 L 271.07142857142856 233.57142857142856 L 276.07142857142856 236.07142857142856 L 281.07142857142856 233.57142857142856 z" fill="#000000" stroke="#000000" stroke-width="1.0"/>
+    <path d="M 901.5129197570701 16.35714285714289 L 286.07142857142856 16.35714285714289 Q 276.07142857142856 16.35714285714289 276.07142857142856 26.35714285714289 L 276.07142857142856 244.07142857142856" fill="none" stroke="#000000" stroke-width="1.0"/>
+  </g>
+  <text fill="#000000" font-decoration="none" font-family="Cantarell" font-size="18" font-weight="normal" text-anchor="middle" x="475" y="20">23</text>
+  <g id="SequenceFlow_22">
+    <path d="M 934.4154334030891 15.35714285714289 L 944.4154334030891 10.35714285714289 L 941.9154334030891 15.35714285714289 L 944.4154334030891 20.35714285714289 z" fill="#000000" stroke="#000000" stroke-width="1.0"/>
+    <path d="M 1036.0714285714284 243.57142857142844 L 1036.0714285714284 25.35714285714289 Q 1036.0714285714284 15.35714285714289 1026.0714285714284 15.35714285714289 L 933.9154334030891 15.35714285714289" fill="none" stroke="#000000" stroke-width="1.0"/>
+  </g>
+  <text fill="#000000" font-decoration="none" font-family="Cantarell" font-size="18" font-weight="normal" text-anchor="middle" x="1036" y="82">22</text>
+  <g id="SequenceFlow_21">
+    <path d="M 1011.8571428571429 262.3571428571429 L 1001.8571428571429 267.3571428571429 L 1004.3571428571429 262.3571428571429 L 1001.8571428571429 257.3571428571429 z" fill="#000000" stroke="#000000" stroke-width="1.0"/>
+    <path d="M 965.1428571428571 262.3571428571429 L 978.5714285714284 262.3571428571429 Q 988.5714285714284 262.3571428571429 988.5714285714284 262.3571428571429 L 988.5714285714284 262.3571428571429 L 1012.3571428571429 262.3571428571429" fill="none" stroke="#000000" stroke-width="1.0"/>
+  </g>
+  <text fill="#000000" font-decoration="none" font-family="Cantarell" font-size="18" font-weight="normal" text-anchor="middle" x="988" y="266">21</text>
+  <g id="SequenceFlow_20">
+    <path d="M 947.0714285714286 280.42857142857144 L 952.0714285714286 290.42857142857144 L 947.0714285714286 287.92857142857144 L 942.0714285714286 290.42857142857144 z" fill="#000000" stroke="#000000" stroke-width="1.0"/>
+    <path d="M 775.1428571428571 411.3571428571429 L 937.0714285714286 411.3571428571429 Q 947.0714285714286 411.3571428571429 947.0714285714286 401.3571428571429 L 947.0714285714286 279.92857142857144" fill="none" stroke="#000000" stroke-width="1.0"/>
+  </g>
+  <text fill="#000000" font-decoration="none" font-family="Cantarell" font-size="18" font-weight="normal" text-anchor="middle" x="926" y="415">20</text>
+  <g id="SequenceFlow_19">
+    <path d="M 761.0714285714286 425.42857142857144 L 766.0714285714286 435.42857142857144 L 761.0714285714286 432.92857142857144 L 756.0714285714286 435.42857142857144 z" fill="#000000" stroke="#000000" stroke-width="1.0"/>
+    <path d="M 692.5 461.3571428571429 L 751.0714285714286 461.3571428571429 Q 761.0714285714286 461.3571428571429 761.0714285714286 451.3571428571429 L 761.0714285714286 424.92857142857144" fill="none" stroke="#000000" stroke-width="1.0"/>
+  </g>
+  <text fill="#000000" font-decoration="none" font-family="Cantarell" font-size="18" font-weight="normal" text-anchor="middle" x="744" y="465">19</text>
+  <g id="SequenceFlow_18">
+    <path d="M 581.5 464.8571428571429 L 571.5 469.8571428571429 L 574.0 464.8571428571429 L 571.5 459.8571428571429 z" fill="#000000" stroke="#000000" stroke-width="1.0"/>
+    <path d="M 544.49601353399 463.3571428571429 L 553.7837210527093 463.3571428571429 Q 563.0714285714286 463.3571428571429 563.0714285714286 464.1071428571429 L 563.0714285714286 464.4821428571429 Q 563.0714285714286 464.8571428571429 572.5357142857142 464.8571428571429 L 582.0 464.8571428571429" fill="none" stroke="#000000" stroke-width="1.0"/>
+  </g>
+  <text fill="#000000" font-decoration="none" font-family="Cantarell" font-size="18" font-weight="normal" text-anchor="middle" x="562" y="468">18</text>
+  <g id="SequenceFlow_17">
+    <path d="M 511.5845665969109 461.3571428571429 L 501.5845665969109 466.3571428571429 L 504.0845665969109 461.3571428571429 L 501.5845665969109 456.3571428571429 z" fill="#000000" stroke="#000000" stroke-width="1.0"/>
+    <path d="M 451.07142857142856 425.42857142857144 L 451.07142857142856 451.3571428571429 Q 451.07142857142856 461.3571428571429 461.07142857142856 461.3571428571429 L 512.0845665969109 461.3571428571429" fill="none" stroke="#000000" stroke-width="1.0"/>
+  </g>
+  <text fill="#000000" font-decoration="none" font-family="Cantarell" font-size="18" font-weight="normal" text-anchor="middle" x="462" y="456">17</text>
+  <text fill="#000000" font-decoration="none" font-family="Cantarell" font-size="18" font-weight="normal" text-anchor="middle" x="462" y="474">D</text>
+  <g id="SequenceFlow_16">
+    <path d="M 761.0714285714286 388.57142857142856 L 756.0714285714286 378.57142857142856 L 761.0714285714286 381.07142857142856 L 766.0714285714286 378.57142857142856 z" fill="#000000" stroke="#000000" stroke-width="1.0"/>
+    <path d="M 692.5 360.3571428571429 L 751.0714285714286 360.3571428571429 Q 761.0714285714286 360.3571428571429 761.0714285714286 370.3571428571429 L 761.0714285714286 389.07142857142856" fill="none" stroke="#000000" stroke-width="1.0"/>
+  </g>
+  <text fill="#000000" font-decoration="none" font-family="Cantarell" font-size="18" font-weight="normal" text-anchor="middle" x="740" y="364">16</text>
+  <g id="SequenceFlow_15">
+    <path d="M 581.5 363.8571428571429 L 571.5 368.8571428571429 L 574.0 363.8571428571429 L 571.5 358.8571428571429 z" fill="#000000" stroke="#000000" stroke-width="1.0"/>
+    <path d="M 544.49601353399 362.3571428571429 L 553.7837210527093 362.3571428571429 Q 563.0714285714286 362.3571428571429 563.0714285714286 363.1071428571429 L 563.0714285714286 363.4821428571429 Q 563.0714285714286 363.8571428571429 572.5357142857142 363.8571428571429 L 582.0 363.8571428571429" fill="none" stroke="#000000" stroke-width="1.0"/>
+  </g>
+  <text fill="#000000" font-decoration="none" font-family="Cantarell" font-size="18" font-weight="normal" text-anchor="middle" x="562" y="367">15</text>
+  <g id="SequenceFlow_14">
+    <path d="M 511.5845665969109 360.3571428571429 L 501.5845665969109 365.3571428571429 L 504.0845665969109 360.3571428571429 L 501.5845665969109 355.3571428571429 z" fill="#000000" stroke="#000000" stroke-width="1.0"/>
+    <path d="M 451.07142857142856 388.57142857142856 L 451.07142857142856 370.3571428571429 Q 451.07142857142856 360.3571428571429 461.07142857142856 360.3571428571429 L 512.0845665969109 360.3571428571429" fill="none" stroke="#000000" stroke-width="1.0"/>
+  </g>
+  <text fill="#000000" font-decoration="none" font-family="Cantarell" font-size="18" font-weight="normal" text-anchor="middle" x="466" y="355">14</text>
+  <text fill="#000000" font-decoration="none" font-family="Cantarell" font-size="18" font-weight="normal" text-anchor="middle" x="466" y="373">C</text>
+  <g id="SequenceFlow_13">
+    <path d="M 429.8571428571429 410.3571428571429 L 419.8571428571429 415.3571428571429 L 422.3571428571429 410.3571428571429 L 419.8571428571429 405.3571428571429 z" fill="#000000" stroke="#000000" stroke-width="1.0"/>
+    <path d="M 376.07142857142856 280.42857142857144 L 376.07142857142856 400.3571428571429 Q 376.07142857142856 410.3571428571429 386.07142857142856 410.3571428571429 L 430.3571428571429 410.3571428571429" fill="none" stroke="#000000" stroke-width="1.0"/>
+  </g>
+  <text fill="#000000" font-decoration="none" font-family="Cantarell" font-size="18" font-weight="normal" text-anchor="middle" x="375" y="367">13</text>
+  <text fill="#000000" font-decoration="none" font-family="Cantarell" font-size="18" font-weight="normal" text-anchor="middle" x="375" y="385">B</text>
+  <g id="SequenceFlow_12">
+    <path d="M 947.0714285714286 243.57142857142856 L 942.0714285714286 233.57142857142856 L 947.0714285714286 236.07142857142856 L 952.0714285714286 233.57142857142856 z" fill="#000000" stroke="#000000" stroke-width="1.0"/>
+    <path d="M 912.4154334030891 160.3571428571429 L 937.0714285714286 160.3571428571429 Q 947.0714285714286 160.3571428571429 947.0714285714286 170.3571428571429 L 947.0714285714286 244.07142857142856" fill="none" stroke="#000000" stroke-width="1.0"/>
+  </g>
+  <text fill="#000000" font-decoration="none" font-family="Cantarell" font-size="18" font-weight="normal" text-anchor="middle" x="946" y="188">12</text>
+  <g id="SequenceFlow_11">
+    <path d="M 879.50398646601 162.3571428571429 L 869.50398646601 167.3571428571429 L 872.00398646601 162.3571428571429 L 869.50398646601 157.3571428571429 z" fill="#000000" stroke="#000000" stroke-width="1.0"/>
+    <path d="M 835.1428571428571 162.3571428571429 L 847.5714285714286 162.3571428571429 Q 857.5714285714286 162.3571428571429 857.5714285714286 162.3571428571429 L 857.5714285714286 162.3571428571429 L 880.00398646601 162.3571428571429" fill="none" stroke="#000000" stroke-width="1.0"/>
+  </g>
+  <text fill="#000000" font-decoration="none" font-family="Cantarell" font-size="18" font-weight="normal" text-anchor="middle" x="857" y="166">11</text>
+  <g id="SequenceFlow_10">
+    <path d="M 817.0714285714286 180.42857142857144 L 822.0714285714286 190.42857142857144 L 817.0714285714286 187.92857142857144 L 812.0714285714286 190.42857142857144 z" fill="#000000" stroke="#000000" stroke-width="1.0"/>
+    <path d="M 692.5 260.3571428571429 L 807.0714285714286 260.3571428571429 Q 817.0714285714286 260.3571428571429 817.0714285714286 250.3571428571429 L 817.0714285714286 179.92857142857144" fill="none" stroke="#000000" stroke-width="1.0"/>
+  </g>
+  <text fill="#000000" font-decoration="none" font-family="Cantarell" font-size="18" font-weight="normal" text-anchor="middle" x="794" y="264">10</text>
+  <g id="SequenceFlow_9">
+    <path d="M 792.8571428571429 162.3571428571429 L 782.8571428571429 167.3571428571429 L 785.3571428571429 162.3571428571429 L 782.8571428571429 157.3571428571429 z" fill="#000000" stroke="#000000" stroke-width="1.0"/>
+    <path d="M 692.5 162.3571428571429 L 732.5714285714286 162.3571428571429 Q 742.5714285714286 162.3571428571429 742.5714285714286 162.3571428571429 L 742.5714285714286 162.3571428571429 L 793.3571428571429 162.3571428571429" fill="none" stroke="#000000" stroke-width="1.0"/>
+  </g>
+  <text fill="#000000" font-decoration="none" font-family="Cantarell" font-size="18" font-weight="normal" text-anchor="middle" x="742" y="166">9</text>
+  <g id="SequenceFlow_8">
+    <path d="M 817.0714285714286 143.57142857142856 L 812.0714285714286 133.57142857142856 L 817.0714285714286 136.07142857142856 L 822.0714285714286 133.57142857142856 z" fill="#000000" stroke="#000000" stroke-width="1.0"/>
+    <path d="M 692.5 61.35714285714289 L 807.0714285714286 61.35714285714289 Q 817.0714285714286 61.35714285714289 817.0714285714286 71.35714285714289 L 817.0714285714286 144.07142857142856" fill="none" stroke="#000000" stroke-width="1.0"/>
+  </g>
+  <text fill="#000000" font-decoration="none" font-family="Cantarell" font-size="18" font-weight="normal" text-anchor="middle" x="795" y="65">8</text>
+  <g id="SequenceFlow_7">
+    <path d="M 581.5 260.3571428571429 L 571.5 265.3571428571429 L 574.0 260.3571428571429 L 571.5 255.3571428571429 z" fill="#000000" stroke="#000000" stroke-width="1.0"/>
+    <path d="M 452.07142857142856 179.42857142857144 L 452.07142857142856 250.3571428571429 Q 452.07142857142856 260.3571428571429 462.07142857142856 260.3571428571429 L 582.0 260.3571428571429" fill="none" stroke="#000000" stroke-width="1.0"/>
+  </g>
+  <text fill="#000000" font-decoration="none" font-family="Cantarell" font-size="18" font-weight="normal" text-anchor="middle" x="475" y="264">7</text>
+  <g id="SequenceFlow_6">
+    <path d="M 581.5 162.3571428571429 L 571.5 167.3571428571429 L 574.0 162.3571428571429 L 571.5 157.3571428571429 z" fill="#000000" stroke="#000000" stroke-width="1.0"/>
+    <path d="M 469.1428571428571 162.3571428571429 L 515.5714285714286 162.3571428571429 Q 525.5714285714286 162.3571428571429 525.5714285714286 162.3571428571429 L 525.5714285714286 162.3571428571429 L 582.0 162.3571428571429" fill="none" stroke="#000000" stroke-width="1.0"/>
+  </g>
+  <text fill="#000000" font-decoration="none" font-family="Cantarell" font-size="18" font-weight="normal" text-anchor="middle" x="525" y="166">6</text>
+  <g id="SequenceFlow_5">
+    <path d="M 581.5 61.35714285714289 L 571.5 66.35714285714289 L 574.0 61.35714285714289 L 571.5 56.35714285714289 z" fill="#000000" stroke="#000000" stroke-width="1.0"/>
+    <path d="M 452.07142857142856 144.57142857142856 L 452.07142857142856 71.35714285714289 Q 452.07142857142856 61.35714285714289 462.07142857142856 61.35714285714289 L 582.0 61.35714285714289" fill="none" stroke="#000000" stroke-width="1.0"/>
+  </g>
+  <text fill="#000000" font-decoration="none" font-family="Cantarell" font-size="18" font-weight="normal" text-anchor="middle" x="474" y="65">5</text>
+  <g id="SequenceFlow_4">
+    <path d="M 427.1428571428571 161.3571428571429 L 417.1428571428571 166.3571428571429 L 419.6428571428571 161.3571428571429 L 417.1428571428571 156.3571428571429 z" fill="#000000" stroke="#000000" stroke-width="1.0"/>
+    <path d="M 377.07142857142856 244.57142857142856 L 377.07142857142856 171.3571428571429 Q 377.07142857142856 161.3571428571429 387.07142857142856 161.3571428571429 L 427.6428571428571 161.3571428571429" fill="none" stroke="#000000" stroke-width="1.0"/>
+  </g>
+  <text fill="#000000" font-decoration="none" font-family="Cantarell" font-size="18" font-weight="normal" text-anchor="middle" x="376" y="173">4</text>
+  <text fill="#000000" font-decoration="none" font-family="Cantarell" font-size="18" font-weight="normal" text-anchor="middle" x="376" y="191">A</text>
+  <g id="SequenceFlow_3">
+    <path d="M 351.8571428571429 262.3571428571429 L 341.8571428571429 267.3571428571429 L 344.3571428571429 262.3571428571429 L 341.8571428571429 257.3571428571429 z" fill="#000000" stroke="#000000" stroke-width="1.0"/>
+    <path d="M 294.1428571428571 262.3571428571429 L 313.07142857142856 262.3571428571429 Q 323.07142857142856 262.3571428571429 323.07142857142856 262.3571428571429 L 323.07142857142856 262.3571428571429 L 352.3571428571429 262.3571428571429" fill="none" stroke="#000000" stroke-width="1.0"/>
+  </g>
+  <text fill="#000000" font-decoration="none" font-family="Cantarell" font-size="18" font-weight="normal" text-anchor="middle" x="322" y="266">3</text>
+  <g id="SequenceFlow_2">
+    <path d="M 251.8571428571429 262.3571428571429 L 241.8571428571429 267.3571428571429 L 244.3571428571429 262.3571428571429 L 241.8571428571429 257.3571428571429 z" fill="#000000" stroke="#000000" stroke-width="1.0"/>
+    <path d="M 212.5 262.3571428571429 L 222.28571428571428 262.3571428571429 Q 232.07142857142856 262.3571428571429 232.07142857142856 262.3571428571429 L 232.07142857142856 262.3571428571429 L 252.3571428571429 262.3571428571429" fill="none" stroke="#000000" stroke-width="1.0"/>
+  </g>
+  <text fill="#000000" font-decoration="none" font-family="Cantarell" font-size="18" font-weight="normal" text-anchor="middle" x="231" y="266">2</text>
+  <g id="SequenceFlow_1">
+    <path d="M 101.5 262.3571428571429 L 91.5 267.3571428571429 L 94.0 262.3571428571429 L 91.5 257.3571428571429 z" fill="#000000" stroke="#000000" stroke-width="1.0"/>
+    <path d="M 61.49601353399002 262.3571428571429 L 71.57142857142856 262.3571428571429 Q 81.57142857142856 262.3571428571429 81.57142857142856 262.3571428571429 L 81.57142857142856 262.3571428571429 L 102.0 262.3571428571429" fill="none" stroke="#000000" stroke-width="1.0"/>
+  </g>
+  <text fill="#000000" font-decoration="none" font-family="Cantarell" font-size="18" font-weight="normal" text-anchor="middle" x="81" y="266">1</text>
+  <g id="EndEvent_1">
+    <ellipse cx="1118" cy="262" fill="#ffffff" rx="16" ry="16" stroke="#000000" stroke-width="4.0"/>
+  </g>
+  <text fill="#000000" font-decoration="none" font-family="Arial,Helvetica" font-size="24" font-weight="normal" text-anchor="middle" x="1116" y="295">n_end</text>
+</svg>
