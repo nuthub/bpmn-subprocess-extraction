@@ -6,7 +6,7 @@
 		<artifactId>bpmn-subprocess-extraction-parent</artifactId>
 		<version>0.0.1-SNAPSHOT</version>
 	</parent>
-	<artifactId>bpmn-subprocess-extraction</artifactId>
+	<artifactId>bpmn-subprocess-extraction-application</artifactId>
 	<dependencies>
 		<dependency>
 			<groupId>org.camunda.bpm</groupId>
@@ -25,11 +25,7 @@
 		</dependency>
 		<dependency>
 			<groupId>edu.udo.cs.ls14.jf</groupId>
-			<artifactId>bpmn-utils</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>edu.udo.cs.ls14.jf</groupId>
-			<artifactId>bpmnanalysis-model</artifactId>
+			<artifactId>bpmn-subprocess-extraction-utils</artifactId>
 		</dependency>
 		<dependency>
 			<groupId>edu.udo.cs.ls14.jf</groupId>
@@ -53,13 +49,7 @@
 		</dependency>
 		<dependency>
 			<groupId>edu.udo.cs.ls14.jf</groupId>
-			<artifactId>bpmn-transformation</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>edu.udo.cs.ls14.jf</groupId>
-			<artifactId>bpmn2pnml</artifactId>
-			<version>0.0.1-SNAPSHOT</version>
-			<scope>test</scope>
+			<artifactId>bpmntransformation</artifactId>
 		</dependency>
 	</dependencies>
 	<build>

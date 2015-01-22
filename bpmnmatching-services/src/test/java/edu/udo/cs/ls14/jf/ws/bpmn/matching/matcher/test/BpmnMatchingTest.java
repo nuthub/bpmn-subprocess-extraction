@@ -33,8 +33,8 @@ import edu.udo.cs.ls14.jf.ws.bpmn.matching.fragmentpairfiltertrivial.FragmentPai
 import edu.udo.cs.ls14.jf.ws.bpmn.matching.fragmentpairfiltertrivial.FragmentPairFilterTrivialSEI;
 import edu.udo.cs.ls14.jf.ws.bpmn.matching.fragmentpairjointersequential.FragmentPairJointerSequentialImpl;
 import edu.udo.cs.ls14.jf.ws.bpmn.matching.fragmentpairjointersequential.FragmentPairJointerSequentialSEI;
-import edu.udo.cs.ls14.jf.ws.bpmn.matching.fragmentpairrankersize.FragmentPairRankerSizeImpl;
-import edu.udo.cs.ls14.jf.ws.bpmn.matching.fragmentpairrankersize.FragmentPairRankerSizeSEI;
+//import edu.udo.cs.ls14.jf.ws.bpmn.matching.fragmentpairrankersize.FragmentPairRankerSizeImpl;
+//import edu.udo.cs.ls14.jf.ws.bpmn.matching.fragmentpairrankersize.FragmentPairRankerSizeSEI;
 import edu.udo.cs.ls14.jf.ws.bpmn.matching.nodepairfilter.NodePairFilterImpl;
 import edu.udo.cs.ls14.jf.ws.bpmn.matching.nodepairfilter.NodePairFilterSEI;
 import edu.udo.cs.ls14.jf.ws.bpmn.matching.processmatchingfactory.ProcessMatchingFactoryImpl;
@@ -51,7 +51,7 @@ public class BpmnMatchingTest {
 	private FragmentPairFilterNestingsSEI portFragmentPairFilterNestings;
 	private FragmentPairJointerSequentialSEI portFragmentPairJointerSequential;
 	private FragmentPairFilterTrivialSEI portFragmentPairFilterTrivial;
-	private FragmentPairRankerSizeSEI portFragmentPairRankerSize;
+//	private FragmentPairRankerSizeSEI portFragmentPairRankerSize;
 
 	private Bpmn2ResourceSet resSet;
 
@@ -138,14 +138,14 @@ public class BpmnMatchingTest {
 				new QName(namespace, localPart)).getPort(
 				FragmentPairFilterTrivialSEI.class);
 
-		// FragmentPairRankerSize
-		url = "http://localhost:8880/bpmnmatching-services/FragmentPairRankerSizeService";
-		namespace = "http://fragmentpairrankersize.matching.bpmn.ws.jf.ls14.cs.udo.edu/";
-		localPart = "FragmentPairRankerSizeImplService";
-		endpoints.add(Endpoint.publish(url, new FragmentPairRankerSizeImpl()));
-		portFragmentPairRankerSize = Service.create(new URL(url + "?wsdl"),
-				new QName(namespace, localPart)).getPort(
-				FragmentPairRankerSizeSEI.class);
+//		// FragmentPairRankerSize
+//		url = "http://localhost:8880/bpmnmatching-services/FragmentPairRankerSizeService";
+//		namespace = "http://fragmentpairrankersize.matching.bpmn.ws.jf.ls14.cs.udo.edu/";
+//		localPart = "FragmentPairRankerSizeImplService";
+//		endpoints.add(Endpoint.publish(url, new FragmentPairRankerSizeImpl()));
+//		portFragmentPairRankerSize = Service.create(new URL(url + "?wsdl"),
+//				new QName(namespace, localPart)).getPort(
+//				FragmentPairRankerSizeSEI.class);
 
 		// Register resource factories
 		Registries.registerAll();
@@ -216,10 +216,10 @@ public class BpmnMatchingTest {
 		assertEquals(1, processMatching.getFragmentMatching().getPairs().size());
 
 		// FragmentPairRankerSize
-		processMatching = portFragmentPairRankerSize
-				.setFragmentPairRankings(processMatching);
-		assertEquals(5, processMatching.getNodeMatching().getPairs().size());
-		assertEquals(1, processMatching.getFragmentMatching().getPairs().size());
+//		processMatching = portFragmentPairRankerSize
+//				.setFragmentPairRankings(processMatching);
+//		assertEquals(5, processMatching.getNodeMatching().getPairs().size());
+//		assertEquals(1, processMatching.getFragmentMatching().getPairs().size());
 
 	}
 }

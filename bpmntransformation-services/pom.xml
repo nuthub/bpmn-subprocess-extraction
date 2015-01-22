@@ -10,7 +10,7 @@
   <dependencies>
   	<dependency>
   		<groupId>edu.udo.cs.ls14.jf</groupId>
-  		<artifactId>bpmn-transformation</artifactId>
+  		<artifactId>bpmntransformation</artifactId>
   	</dependency>
   </dependencies>
 </project>

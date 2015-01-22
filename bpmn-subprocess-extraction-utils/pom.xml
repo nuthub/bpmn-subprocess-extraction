@@ -6,25 +6,33 @@
 		<artifactId>bpmn-subprocess-extraction-parent</artifactId>
 		<version>0.0.1-SNAPSHOT</version>
 	</parent>
-	<artifactId>bpmn-transformation</artifactId>
+	<artifactId>bpmn-subprocess-extraction-utils</artifactId>
 	<dependencies>
 		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.eclipse</groupId>
+			<artifactId>org.eclipse.bpmn2</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.eclipse.emf</groupId>
+			<artifactId>org.eclipse.emf.ecore.xmi</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.eclipse.emf</groupId>
+			<artifactId>org.eclipse.emf.ecore</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.eclipse.emf</groupId>
+			<artifactId>org.eclipse.emf.common</artifactId>
+		</dependency>
+		<dependency>
 			<groupId>edu.udo.cs.ls14.jf</groupId>
-			<artifactId>bpmn-utils</artifactId>
+			<artifactId>bpmn-subprocess-extraction-model</artifactId>
 		</dependency>
-		<dependency>
-			<groupId>org.eclipse.emf.henshin</groupId>
-			<artifactId>org.eclipse.emf.henshin.interpreter</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>org.eclipse.emf.henshin</groupId>
-			<artifactId>org.eclipse.emf.henshin.model</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>org.javatuples</groupId>
-			<artifactId>javatuples</artifactId>
-		</dependency>
-		<!-- Just needed for a StringUtils.join -->
 		<dependency>
 			<groupId>org.apache.commons</groupId>
 			<artifactId>commons-lang3</artifactId>

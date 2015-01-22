@@ -10,11 +10,11 @@
 	<dependencies>
 		<dependency>
 			<groupId>edu.udo.cs.ls14.jf</groupId>
-			<artifactId>bpmn-utils</artifactId>
+			<artifactId>bpmn-subprocess-extraction-utils</artifactId>
 		</dependency>
 		<dependency>
 			<groupId>edu.udo.cs.ls14.jf</groupId>
-			<artifactId>bpmnanalysis-model</artifactId>
+			<artifactId>bpmn-subprocess-extraction-model</artifactId>
 		</dependency>
 	</dependencies>
 </project>

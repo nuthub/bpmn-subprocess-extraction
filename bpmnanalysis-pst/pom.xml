@@ -10,7 +10,7 @@
 	<dependencies>
 		<dependency>
 			<groupId>edu.udo.cs.ls14.jf</groupId>
-			<artifactId>bpmn-utils</artifactId>
+			<artifactId>bpmn-subprocess-extraction-utils</artifactId>
 		</dependency>
 		<dependency>
 			<groupId>net.sf.jung</groupId>

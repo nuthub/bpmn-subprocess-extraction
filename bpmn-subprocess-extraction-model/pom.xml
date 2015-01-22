@@ -6,7 +6,7 @@
 		<artifactId>bpmn-subprocess-extraction-parent</artifactId>
 		<version>0.0.1-SNAPSHOT</version>
 	</parent>
-	<artifactId>bpmn-utils</artifactId>
+	<artifactId>bpmn-subprocess-extraction-model</artifactId>
 	<dependencies>
 		<dependency>
 			<groupId>junit</groupId>
@@ -19,7 +19,7 @@
 		</dependency>
 		<dependency>
 			<groupId>org.eclipse.emf</groupId>
-			<artifactId>org.eclipse.emf.ecore.xmi</artifactId>
+			<artifactId>org.eclipse.emf.common</artifactId>
 		</dependency>
 		<dependency>
 			<groupId>org.eclipse.emf</groupId>
@@ -27,15 +27,7 @@
 		</dependency>
 		<dependency>
 			<groupId>org.eclipse.emf</groupId>
-			<artifactId>org.eclipse.emf.common</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>edu.udo.cs.ls14.jf</groupId>
-			<artifactId>bpmnanalysis-model</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>org.apache.commons</groupId>
-			<artifactId>commons-lang3</artifactId>
+			<artifactId>org.eclipse.emf.ecore.xmi</artifactId>
 		</dependency>
 	</dependencies>
 </project>

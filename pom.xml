@@ -6,10 +6,9 @@
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>pom</packaging>
 	<modules>
-		<module>word-utils</module>
-		<module>bpmn-utils</module>
-		<module>bpmn-subprocess-extraction</module>
-		<module>bpmnanalysis-model</module>
+		<module>bpmn-subprocess-extraction-application</module>
+		<module>bpmn-subprocess-extraction-model</module>
+		<module>bpmn-subprocess-extraction-utils</module>
 		<module>bpmnanalysis-behavioralprofile</module>
 		<module>bpmnanalysis-conditionalprofile</module>
 		<module>bpmnanalysis-pst</module>
@@ -17,12 +16,9 @@
 		<module>bpmnmatching-fragmentmatching</module>
 		<module>bpmnmatching-nodematching</module>
 		<module>bpmnmatching-services</module>
-		<module>bpmn-transformation</module>
+		<module>bpmntransformation</module>
 		<module>bpmntransformation-services</module>
-		<!-- subject to removal -->
-		<module>bpmn2bp</module>
-		<!-- examples / tests -->
-		<module>activiti-webservice-example</module>
+		<module>word-utils</module>
 	</modules>
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -95,7 +91,7 @@
 			</dependency>
 			<dependency>
 				<groupId>edu.udo.cs.ls14.jf</groupId>
-				<artifactId>bpmn-utils</artifactId>
+				<artifactId>bpmn-subprocess-extraction-utils</artifactId>
 				<version>0.0.1-SNAPSHOT</version>
 			</dependency>
 			<dependency>
@@ -195,7 +191,7 @@
 			</dependency>
 			<dependency>
 				<groupId>edu.udo.cs.ls14.jf</groupId>
-				<artifactId>bpmnanalysis-model</artifactId>
+				<artifactId>bpmn-subprocess-extraction-model</artifactId>
 				<version>0.0.1-SNAPSHOT</version>
 			</dependency>
 			<dependency>
@@ -225,7 +221,7 @@
 			</dependency>
 			<dependency>
 				<groupId>edu.udo.cs.ls14.jf</groupId>
-				<artifactId>bpmn-transformation</artifactId>
+				<artifactId>bpmntransformation</artifactId>
 				<version>0.0.1-SNAPSHOT</version>
 			</dependency>
 			<dependency>
@@ -236,16 +232,6 @@
 			<dependency>
 				<groupId>edu.udo.cs.ls14.jf</groupId>
 				<artifactId>bpmnanalysis-services</artifactId>
-				<version>0.0.1-SNAPSHOT</version>
-			</dependency>
-			<dependency>
-				<groupId>edu.udo.cs.ls14.jf</groupId>
-				<artifactId>bpmn-subprocess-extraction</artifactId>
-				<version>0.0.1-SNAPSHOT</version>
-			</dependency>
-			<dependency>
-				<groupId>edu.udo.cs.ls14.jf</groupId>
-				<artifactId>bpmn-examples</artifactId>
 				<version>0.0.1-SNAPSHOT</version>
 			</dependency>
 		</dependencies>
