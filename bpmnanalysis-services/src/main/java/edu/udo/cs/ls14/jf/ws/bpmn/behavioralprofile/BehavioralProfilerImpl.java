@@ -9,6 +9,7 @@ import edu.udo.cs.ls14.jf.analysis.bpmn2ptnet.Bpmn2PtnetConverter;
 import edu.udo.cs.ls14.jf.analysis.reachabilitygraph.ReachabilityGraph;
 import edu.udo.cs.ls14.jf.analysis.reachabilitygraph.Tracer;
 import edu.udo.cs.ls14.jf.bpmn.utils.DefinitionsUtil;
+import edu.udo.cs.ls14.jf.bpmn.utils.ProcessAnalysisUtil;
 import edu.udo.cs.ls14.jf.bpmnanalysis.BehavioralProfile;
 import edu.udo.cs.ls14.jf.bpmnanalysis.ProcessAnalysis;
 import edu.udo.cs.ls14.jf.bpmnanalysis.TraceProfile;
@@ -55,7 +56,7 @@ public class BehavioralProfilerImpl implements BehavioralProfilerSEI {
 		TraceProfile traceProfile;
 		try {
 			traceProfile = Tracer.getTraceProfile(process, reachabilityGraph);
-			processAnalysis.getResults().put(ProcessAnalysis.TRACEPROFILE,
+			processAnalysis.getResults().put(ProcessAnalysisUtil.TRACEPROFILE,
 					traceProfile);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
@@ -66,7 +67,7 @@ public class BehavioralProfilerImpl implements BehavioralProfilerSEI {
 		// create behavioral profile
 		BehavioralProfile profile = BehavioralProfiler.generateProfile(process,
 				traceProfile);
-		processAnalysis.getResults().put(ProcessAnalysis.BEHAVIORALPROFILE,
+		processAnalysis.getResults().put(ProcessAnalysisUtil.BEHAVIORALPROFILE,
 				profile);
 		return processAnalysis;
 	}

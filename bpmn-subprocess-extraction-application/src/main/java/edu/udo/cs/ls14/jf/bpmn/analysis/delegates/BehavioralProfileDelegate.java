@@ -9,6 +9,7 @@ import edu.udo.cs.ls14.jf.analysis.bpmn2ptnet.Bpmn2PtnetConverter;
 import edu.udo.cs.ls14.jf.analysis.reachabilitygraph.ReachabilityGraph;
 import edu.udo.cs.ls14.jf.analysis.reachabilitygraph.Tracer;
 import edu.udo.cs.ls14.jf.bpmn.utils.DefinitionsUtil;
+import edu.udo.cs.ls14.jf.bpmn.utils.ProcessAnalysisUtil;
 import edu.udo.cs.ls14.jf.bpmnanalysis.BehavioralProfile;
 import edu.udo.cs.ls14.jf.bpmnanalysis.ProcessAnalysis;
 import edu.udo.cs.ls14.jf.bpmnanalysis.TraceProfile;
@@ -33,12 +34,12 @@ public class BehavioralProfileDelegate implements JavaDelegate {
 
 		// Create trace profile
 		TraceProfile traceProfile = Tracer.getTraceProfile(process, rg);
-		analysis.getResults().put(ProcessAnalysis.TRACEPROFILE, traceProfile);
+		analysis.getResults().put(ProcessAnalysisUtil.TRACEPROFILE, traceProfile);
 
 		// create profile
 		BehavioralProfile behavioralProfile = BehavioralProfiler
 				.generateProfile(process, traceProfile);
-		analysis.getResults().put(ProcessAnalysis.BEHAVIORALPROFILE,
+		analysis.getResults().put(ProcessAnalysisUtil.BEHAVIORALPROFILE,
 				behavioralProfile);
 
 		execution.setVariable("analysis", analysis);

@@ -9,6 +9,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import edu.udo.cs.ls14.jf.bpmn.utils.FragmentUtil;
+import edu.udo.cs.ls14.jf.bpmn.utils.ProcessAnalysisUtil;
 import edu.udo.cs.ls14.jf.bpmnanalysis.BehavioralProfile;
 import edu.udo.cs.ls14.jf.bpmnanalysis.BehavioralRelation;
 import edu.udo.cs.ls14.jf.bpmnanalysis.BehavioralRelationType;
@@ -36,12 +37,9 @@ public class FragmentPairFilterBehavior {
 			// LOG.debug("Comparing behaviour of " + pair.getValue0() + "("
 			// + nodes1.size() + ") and " + pair.getValue1() + "("
 			// + nodes2.size() + ") ");
-			boolean match = behaviourProfilesMatch(
-					nodes1,
-					nodes2,
-					(BehavioralProfile) analysis1.getResults().get(
-							"behavioralProfile"), (BehavioralProfile) analysis2
-							.getResults().get("behavioralProfile"),
+			boolean match = behaviourProfilesMatch(nodes1, nodes2,
+					ProcessAnalysisUtil.getBehavioralProfile(analysis1),
+					ProcessAnalysisUtil.getBehavioralProfile(analysis2),
 					nodeMatching.getPairs());
 			if (match) {
 				LOG.info("Fragments are behaviour equivalent: "

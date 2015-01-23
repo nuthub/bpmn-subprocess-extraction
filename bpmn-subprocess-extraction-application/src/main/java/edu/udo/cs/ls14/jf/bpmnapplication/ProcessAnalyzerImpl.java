@@ -18,6 +18,7 @@ import edu.udo.cs.ls14.jf.analysis.reachabilitygraph.Tracer;
 import edu.udo.cs.ls14.jf.bpmn.utils.ConditionalProfileUtil;
 import edu.udo.cs.ls14.jf.bpmn.utils.DefinitionsUtil;
 import edu.udo.cs.ls14.jf.bpmn.utils.ProcessAnalysisFactory;
+import edu.udo.cs.ls14.jf.bpmn.utils.ProcessAnalysisUtil;
 import edu.udo.cs.ls14.jf.bpmnanalysis.BehavioralProfile;
 import edu.udo.cs.ls14.jf.bpmnanalysis.ConditionalProfile;
 import edu.udo.cs.ls14.jf.bpmnanalysis.ProcessAnalysis;
@@ -46,7 +47,7 @@ public class ProcessAnalyzerImpl implements ProcessAnalyzer {
 		ProcessAnalysis analysis = ProcessAnalysisFactory.createAnalysis(defs);
 
 		// create PST
-		analysis.getResults().put(ProcessAnalysis.PROCESSTRUCTURETREE,
+		analysis.getResults().put(ProcessAnalysisUtil.PROCESSTRUCTURETREE,
 				pstBuilder.getTree(defs));
 
 		// create petri net		
@@ -58,16 +59,16 @@ public class ProcessAnalyzerImpl implements ProcessAnalyzer {
 		// create traces
 		TraceProfile traceProfile = Tracer.getTraceProfile(process,
 				reachabilityGraph);
-		analysis.getResults().put(ProcessAnalysis.TRACEPROFILE, traceProfile);
+		analysis.getResults().put(ProcessAnalysisUtil.TRACEPROFILE, traceProfile);
 
 		// create behavioral profile
 		BehavioralProfile behavioralProfile = BehavioralProfiler
 				.generateProfile(process, traceProfile);
-		analysis.getResults().put(ProcessAnalysis.BEHAVIORALPROFILE,
+		analysis.getResults().put(ProcessAnalysisUtil.BEHAVIORALPROFILE,
 				behavioralProfile);
 
 		// create conditional profile
-		analysis.getResults().put(ProcessAnalysis.CONDITIONALPROFILE,
+		analysis.getResults().put(ProcessAnalysisUtil.CONDITIONALPROFILE,
 				ConditionalProfiler.generateProfile(process));
 
 		// TODO fontsizes as parameters
@@ -81,7 +82,7 @@ public class ProcessAnalyzerImpl implements ProcessAnalyzer {
 				basename,
 				nodes,
 				(ConditionalProfile) analysis.getResults().get(
-						ProcessAnalysis.CONDITIONALPROFILE),
+						ProcessAnalysisUtil.CONDITIONALPROFILE),
 				"conditionalprofile-model");
 		// done
 		return analysis;
@@ -101,7 +102,7 @@ public class ProcessAnalyzerImpl implements ProcessAnalyzer {
 				.createAnalysis(definitions);
 
 		// create PST
-		analysis.getResults().put(ProcessAnalysis.PROCESSTRUCTURETREE,
+		analysis.getResults().put(ProcessAnalysisUtil.PROCESSTRUCTURETREE,
 				pstBuilder.getTree(definitions));
 
 		// create petri net
@@ -115,12 +116,12 @@ public class ProcessAnalyzerImpl implements ProcessAnalyzer {
 		BehavioralProfile behavioralProfile = BehavioralProfiler
 				.generateProfile(process, traceProfile);
 		// Put results
-		analysis.getResults().put(ProcessAnalysis.TRACEPROFILE, traceProfile);
-		analysis.getResults().put(ProcessAnalysis.BEHAVIORALPROFILE,
+		analysis.getResults().put(ProcessAnalysisUtil.TRACEPROFILE, traceProfile);
+		analysis.getResults().put(ProcessAnalysisUtil.BEHAVIORALPROFILE,
 				behavioralProfile);
 
 		// create conditional profile
-		analysis.getResults().put(ProcessAnalysis.CONDITIONALPROFILE,
+		analysis.getResults().put(ProcessAnalysisUtil.CONDITIONALPROFILE,
 				ConditionalProfiler.generateProfile(process));
 
 		// done

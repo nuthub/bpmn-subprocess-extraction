@@ -14,6 +14,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import edu.udo.cs.ls14.jf.bpmn.utils.FragmentUtil;
+import edu.udo.cs.ls14.jf.bpmn.utils.ProcessAnalysisUtil;
 import edu.udo.cs.ls14.jf.bpmnanalysis.ConditionalProfile;
 import edu.udo.cs.ls14.jf.bpmnanalysis.Fragment;
 import edu.udo.cs.ls14.jf.bpmnanalysis.ProcessAnalysis;
@@ -46,10 +47,8 @@ public class FragmentPairFilterConditions {
 			Set<FlowNode> nodes2 = FragmentUtil.getEventsAndActivites(f2);
 			Set<SequenceFlow> edges1 = FragmentUtil.getEdges(f1);
 			Set<SequenceFlow> edges2 = FragmentUtil.getEdges(f2);
-			ConditionalProfile cp1 = (ConditionalProfile) analysis1
-					.getResults().get("conditionalProfile");
-			ConditionalProfile cp2 = (ConditionalProfile) analysis2
-					.getResults().get("conditionalProfile");
+			ConditionalProfile cp1 = ProcessAnalysisUtil.getConditionalProfile(analysis1);
+			ConditionalProfile cp2 = ProcessAnalysisUtil.getConditionalProfile(analysis2);
 			// Hole relevante FNCs
 			Map<FlowNode, Set<FormalExpression>> fnc1 = getFragmentFnc(cp1,
 					nodes1, edges1);

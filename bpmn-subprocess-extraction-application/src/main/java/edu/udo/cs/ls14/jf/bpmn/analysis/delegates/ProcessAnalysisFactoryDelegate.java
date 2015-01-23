@@ -1,7 +1,5 @@
 package edu.udo.cs.ls14.jf.bpmn.analysis.delegates;
 
-import java.util.UUID;
-
 import org.camunda.bpm.engine.delegate.DelegateExecution;
 import org.camunda.bpm.engine.delegate.JavaDelegate;
 import org.eclipse.bpmn2.Definitions;
