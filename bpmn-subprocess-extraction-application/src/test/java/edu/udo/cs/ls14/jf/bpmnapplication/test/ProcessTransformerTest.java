@@ -10,17 +10,17 @@ import org.junit.Test;
 
 import edu.udo.cs.ls14.jf.bpmn.utils.Bpmn2ResourceSet;
 import edu.udo.cs.ls14.jf.bpmn.utils.ProcessAnalysisUtil;
-import edu.udo.cs.ls14.jf.bpmn.utils.ProcessExtractionUtil;
+import edu.udo.cs.ls14.jf.bpmn.utils.ProcessTransformationUtil;
 import edu.udo.cs.ls14.jf.bpmn.utils.ProcessMatchingUtil;
 import edu.udo.cs.ls14.jf.bpmnanalysis.ProcessAnalysis;
 import edu.udo.cs.ls14.jf.bpmnapplication.ProcessAnalyzer;
 import edu.udo.cs.ls14.jf.bpmnapplication.ProcessAnalyzerImpl;
-import edu.udo.cs.ls14.jf.bpmnapplication.ProcessTransformer;
-import edu.udo.cs.ls14.jf.bpmnapplication.ProcessTransformerImpl;
 import edu.udo.cs.ls14.jf.bpmnapplication.ProcessMatcher;
 import edu.udo.cs.ls14.jf.bpmnapplication.ProcessMatcherImpl;
+import edu.udo.cs.ls14.jf.bpmnapplication.ProcessTransformer;
+import edu.udo.cs.ls14.jf.bpmnapplication.ProcessTransformerImpl;
 import edu.udo.cs.ls14.jf.bpmnmatching.ProcessMatching;
-import edu.udo.cs.ls14.jf.bpmntransformation.ProcessExtraction;
+import edu.udo.cs.ls14.jf.bpmntransformation.ProcessTransformation;
 import edu.udo.cs.ls14.jf.registry.Registries;
 
 /**
@@ -98,13 +98,13 @@ public class ProcessTransformerTest {
 		ProcessMatchingUtil.writeToFile(targetDir + "matching.xml", matching);
 		// 3. extract processes
 		ProcessTransformer transformer = new ProcessTransformerImpl();
-		ProcessExtraction extraction = transformer.transform(matching);
+		ProcessTransformation extraction = transformer.transform(matching);
 		// END
 
 		// Post
-		ProcessExtractionUtil.writeToFile(targetDir + "extraction.xml",
+		ProcessTransformationUtil.writeToFile(targetDir + "extraction.xml",
 				extraction);
-		ProcessExtractionUtil.writeResults(targetDir, extraction);
+		ProcessTransformationUtil.writeResults(targetDir, extraction);
 
 		// TODO: assertions
 	}

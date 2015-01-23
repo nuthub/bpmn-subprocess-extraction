@@ -6,14 +6,14 @@ import org.eclipse.emf.common.util.URI;
 
 import edu.udo.cs.ls14.jf.bpmnmatching.ProcessMatching;
 import edu.udo.cs.ls14.jf.bpmntransformation.BpmnTransformationFactory;
-import edu.udo.cs.ls14.jf.bpmntransformation.ProcessExtraction;
+import edu.udo.cs.ls14.jf.bpmntransformation.ProcessTransformation;
 
-public class ProcessExtractionFactory {
+public class ProcessTransformationFactory {
 
-	public static ProcessExtraction createProcessTransformation(
+	public static ProcessTransformation createProcessTransformation(
 			ProcessMatching processMatching) {
-		ProcessExtraction transformation = BpmnTransformationFactory.eINSTANCE
-				.createProcessExtraction();
+		ProcessTransformation transformation = BpmnTransformationFactory.eINSTANCE
+				.createProcessTransformation();
 		Bpmn2ResourceSet
 				.getInstance()
 				.createResource(

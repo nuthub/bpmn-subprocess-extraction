@@ -4,9 +4,9 @@ import org.camunda.bpm.engine.impl.variable.ValueFields;
 import org.camunda.bpm.engine.impl.variable.VariableType;
 
 import edu.udo.cs.ls14.jf.bpmn.utils.EObjectXmlConverter;
-import edu.udo.cs.ls14.jf.bpmntransformation.ProcessExtraction;
+import edu.udo.cs.ls14.jf.bpmntransformation.ProcessTransformation;
 
-public class ProcessExtractionType implements VariableType {
+public class ProcessTransformationType implements VariableType {
 
 	private static final String EXTENSION = "bpmntransformation";
 
@@ -17,7 +17,7 @@ public class ProcessExtractionType implements VariableType {
 
 	@Override
 	public String getTypeNameForValue(Object value) {
-		return ProcessExtraction.class.getName();
+		return ProcessTransformation.class.getName();
 	}
 
 	@Override
@@ -25,7 +25,7 @@ public class ProcessExtractionType implements VariableType {
 		if (value == null) {
 			return true;
 		}
-		return ProcessExtraction.class.isAssignableFrom(value.getClass());
+		return ProcessTransformation.class.isAssignableFrom(value.getClass());
 	}
 
 	@Override
@@ -48,7 +48,7 @@ public class ProcessExtractionType implements VariableType {
 	public void setValue(Object value, ValueFields valueFields) {
 		try {
 			valueFields.setByteArrayValue(EObjectXmlConverter.eObject2Xml(
-					EXTENSION, (ProcessExtraction) value).getBytes());
+					EXTENSION, (ProcessTransformation) value).getBytes());
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

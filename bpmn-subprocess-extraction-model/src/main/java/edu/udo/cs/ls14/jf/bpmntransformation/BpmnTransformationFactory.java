@@ -22,13 +22,13 @@ public interface BpmnTransformationFactory extends EFactory {
 	BpmnTransformationFactory eINSTANCE = edu.udo.cs.ls14.jf.bpmntransformation.impl.BpmnTransformationFactoryImpl.init();
 
 	/**
-	 * Returns a new object of class '<em>Process Extraction</em>'.
+	 * Returns a new object of class '<em>Process Transformation</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Process Extraction</em>'.
+	 * @return a new object of class '<em>Process Transformation</em>'.
 	 * @generated
 	 */
-	ProcessExtraction createProcessExtraction();
+	ProcessTransformation createProcessTransformation();
 
 	/**
 	 * Returns the package supported by this factory.

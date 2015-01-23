@@ -72,12 +72,16 @@ public class BpmnTransformationAdapterFactory extends AdapterFactoryImpl {
 	protected BpmnTransformationSwitch<Adapter> modelSwitch =
 		new BpmnTransformationSwitch<Adapter>() {
 			@Override
-			public Adapter caseProcessExtraction(ProcessExtraction object) {
-				return createProcessExtractionAdapter();
+			public Adapter caseProcessTransformation(ProcessTransformation object) {
+				return createProcessTransformationAdapter();
 			}
 			@Override
-			public Adapter caseExtractionResultEntry(Map.Entry<String, Definitions> object) {
-				return createExtractionResultEntryAdapter();
+			public Adapter caseTransformationResultEntry(Map.Entry<String, Definitions> object) {
+				return createTransformationResultEntryAdapter();
+			}
+			@Override
+			public Adapter caseProcessTransformer(ProcessTransformer object) {
+				return createProcessTransformerAdapter();
 			}
 			@Override
 			public Adapter defaultCase(EObject object) {
@@ -100,21 +104,21 @@ public class BpmnTransformationAdapterFactory extends AdapterFactoryImpl {
 
 
 	/**
-	 * Creates a new adapter for an object of class '{@link edu.udo.cs.ls14.jf.bpmntransformation.ProcessExtraction <em>Process Extraction</em>}'.
+	 * Creates a new adapter for an object of class '{@link edu.udo.cs.ls14.jf.bpmntransformation.ProcessTransformation <em>Process Transformation</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see edu.udo.cs.ls14.jf.bpmntransformation.ProcessExtraction
+	 * @see edu.udo.cs.ls14.jf.bpmntransformation.ProcessTransformation
 	 * @generated
 	 */
-	public Adapter createProcessExtractionAdapter() {
+	public Adapter createProcessTransformationAdapter() {
 		return null;
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link java.util.Map.Entry <em>Extraction Result Entry</em>}'.
+	 * Creates a new adapter for an object of class '{@link java.util.Map.Entry <em>Transformation Result Entry</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
@@ -123,7 +127,21 @@ public class BpmnTransformationAdapterFactory extends AdapterFactoryImpl {
 	 * @see java.util.Map.Entry
 	 * @generated
 	 */
-	public Adapter createExtractionResultEntryAdapter() {
+	public Adapter createTransformationResultEntryAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link edu.udo.cs.ls14.jf.bpmntransformation.ProcessTransformer <em>Process Transformer</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see edu.udo.cs.ls14.jf.bpmntransformation.ProcessTransformer
+	 * @generated
+	 */
+	public Adapter createProcessTransformerAdapter() {
 		return null;
 	}
 

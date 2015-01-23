@@ -60,8 +60,8 @@ public class BpmnTransformationFactoryImpl extends EFactoryImpl implements BpmnT
 	@Override
 	public EObject create(EClass eClass) {
 		switch (eClass.getClassifierID()) {
-			case BpmnTransformationPackage.PROCESS_EXTRACTION: return createProcessExtraction();
-			case BpmnTransformationPackage.EXTRACTION_RESULT_ENTRY: return (EObject)createExtractionResultEntry();
+			case BpmnTransformationPackage.PROCESS_TRANSFORMATION: return createProcessTransformation();
+			case BpmnTransformationPackage.TRANSFORMATION_RESULT_ENTRY: return (EObject)createTransformationResultEntry();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
@@ -72,9 +72,9 @@ public class BpmnTransformationFactoryImpl extends EFactoryImpl implements BpmnT
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ProcessExtraction createProcessExtraction() {
-		ProcessExtractionImpl processExtraction = new ProcessExtractionImpl();
-		return processExtraction;
+	public ProcessTransformation createProcessTransformation() {
+		ProcessTransformationImpl processTransformation = new ProcessTransformationImpl();
+		return processTransformation;
 	}
 
 	/**
@@ -82,9 +82,9 @@ public class BpmnTransformationFactoryImpl extends EFactoryImpl implements BpmnT
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Map.Entry<String, Definitions> createExtractionResultEntry() {
-		ExtractionResultEntryImpl extractionResultEntry = new ExtractionResultEntryImpl();
-		return extractionResultEntry;
+	public Map.Entry<String, Definitions> createTransformationResultEntry() {
+		TransformationResultEntryImpl transformationResultEntry = new TransformationResultEntryImpl();
+		return transformationResultEntry;
 	}
 
 	/**

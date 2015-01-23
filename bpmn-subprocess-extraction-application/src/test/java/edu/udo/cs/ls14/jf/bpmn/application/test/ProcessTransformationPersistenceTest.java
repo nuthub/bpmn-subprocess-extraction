@@ -12,12 +12,12 @@ import org.junit.Test;
 
 import edu.udo.cs.ls14.jf.bpmn.utils.Bpmn2ResourceSet;
 import edu.udo.cs.ls14.jf.bpmn.utils.EObjectXmlConverter;
-import edu.udo.cs.ls14.jf.bpmn.utils.ProcessExtractionUtil;
+import edu.udo.cs.ls14.jf.bpmn.utils.ProcessTransformationUtil;
 import edu.udo.cs.ls14.jf.bpmntransformation.BpmnTransformationFactory;
-import edu.udo.cs.ls14.jf.bpmntransformation.ProcessExtraction;
+import edu.udo.cs.ls14.jf.bpmntransformation.ProcessTransformation;
 import edu.udo.cs.ls14.jf.registry.Registries;
 
-public class ProcessExtractionPersistenceTest {
+public class ProcessTransformationPersistenceTest {
 
 	@Before
 	public void setUp() {
@@ -34,17 +34,17 @@ public class ProcessExtractionPersistenceTest {
 		definitions.setTargetNamespace("http://" + UUID.randomUUID());
 		System.out.println(definitions);
 		
-		ProcessExtraction extraction = BpmnTransformationFactory.eINSTANCE
-				.createProcessExtraction();
+		ProcessTransformation extraction = BpmnTransformationFactory.eINSTANCE
+				.createProcessTransformation();
 		extraction.getResults().put("first", EcoreUtil.copy(definitions));
-		ProcessExtractionUtil.writeToFile("/tmp/test.xml", extraction);
+		ProcessTransformationUtil.writeToFile("/tmp/test.xml", extraction);
 
 		// Forget everything, try to reproduce from disk
 		String xml = readFile("/tmp/test.xml");
-		ProcessExtraction next = (ProcessExtraction) EObjectXmlConverter
+		ProcessTransformation next = (ProcessTransformation) EObjectXmlConverter
 				.xml2EObject("bpmntransformation", xml);
 		// write results
-		ProcessExtractionUtil.writeToFile("/tmp/test2.xml",
+		ProcessTransformationUtil.writeToFile("/tmp/test2.xml",
 				EcoreUtil.copy(next));
 
 	}

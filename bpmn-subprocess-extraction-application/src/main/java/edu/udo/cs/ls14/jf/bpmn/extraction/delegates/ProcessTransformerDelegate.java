@@ -3,18 +3,20 @@ package edu.udo.cs.ls14.jf.bpmn.extraction.delegates;
 import org.camunda.bpm.engine.delegate.DelegateExecution;
 import org.camunda.bpm.engine.delegate.JavaDelegate;
 
-import edu.udo.cs.ls14.jf.bpmn.utils.ProcessExtractionFactory;
+import edu.udo.cs.ls14.jf.bpmnapplication.ProcessTransformer;
+import edu.udo.cs.ls14.jf.bpmnapplication.ProcessTransformerImpl;
 import edu.udo.cs.ls14.jf.bpmnmatching.ProcessMatching;
-import edu.udo.cs.ls14.jf.bpmntransformation.ProcessExtraction;
+import edu.udo.cs.ls14.jf.bpmntransformation.ProcessTransformation;
 
-public class ProcessExtractionFactoryDelegate implements JavaDelegate {
+@Deprecated
+public class ProcessTransformerDelegate implements JavaDelegate {
 
 	@Override
 	public void execute(DelegateExecution execution) throws Exception {
 		ProcessMatching matching = (ProcessMatching) execution
 				.getVariable("matching");
-		ProcessExtraction extraction = ProcessExtractionFactory
-				.createProcessTransformation(matching);
+		ProcessTransformer transformer = new ProcessTransformerImpl();
+		ProcessTransformation extraction = transformer.transform(matching);
 		execution.setVariable("extraction", extraction);
 	}
 

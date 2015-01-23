@@ -16,7 +16,7 @@ import edu.udo.cs.ls14.jf.bpmn.utils.Bpmn2ResourceSet;
 import edu.udo.cs.ls14.jf.bpmn.utils.ConditionalProfileUtil;
 import edu.udo.cs.ls14.jf.bpmn.utils.DefinitionsUtil;
 import edu.udo.cs.ls14.jf.bpmn.utils.ProcessAnalysisUtil;
-import edu.udo.cs.ls14.jf.bpmn.utils.ProcessExtractionUtil;
+import edu.udo.cs.ls14.jf.bpmn.utils.ProcessTransformationUtil;
 import edu.udo.cs.ls14.jf.bpmn.utils.ProcessMatchingUtil;
 import edu.udo.cs.ls14.jf.bpmnanalysis.BpmnAnalysisFactory;
 import edu.udo.cs.ls14.jf.bpmnanalysis.BpmnAnalysisPackage;
@@ -25,14 +25,14 @@ import edu.udo.cs.ls14.jf.bpmnanalysis.Fragment;
 import edu.udo.cs.ls14.jf.bpmnanalysis.ProcessAnalysis;
 import edu.udo.cs.ls14.jf.bpmnapplication.ProcessAnalyzer;
 import edu.udo.cs.ls14.jf.bpmnapplication.ProcessAnalyzerImpl;
-import edu.udo.cs.ls14.jf.bpmnapplication.ProcessTransformer;
-import edu.udo.cs.ls14.jf.bpmnapplication.ProcessTransformerImpl;
 import edu.udo.cs.ls14.jf.bpmnapplication.ProcessMatcher;
 import edu.udo.cs.ls14.jf.bpmnapplication.ProcessMatcherImpl;
+import edu.udo.cs.ls14.jf.bpmnapplication.ProcessTransformer;
+import edu.udo.cs.ls14.jf.bpmnapplication.ProcessTransformerImpl;
 import edu.udo.cs.ls14.jf.bpmnmatching.BpmnMatchingPackage;
 import edu.udo.cs.ls14.jf.bpmnmatching.ProcessMatching;
 import edu.udo.cs.ls14.jf.bpmntransformation.BpmnTransformationPackage;
-import edu.udo.cs.ls14.jf.bpmntransformation.ProcessExtraction;
+import edu.udo.cs.ls14.jf.bpmntransformation.ProcessTransformation;
 import edu.udo.cs.ls14.jf.registry.Registries;
 
 public class ThesisExport {
@@ -56,8 +56,8 @@ public class ThesisExport {
 						getClass().getResource(pathname + basename + ".bpmn")
 								.getPath());
 		ProcessAnalyzer analyzer = new ProcessAnalyzerImpl();
-		ProcessAnalysis analysis = analyzer.analyzeAndDebug(def,
-				pathname, basename, targetDir, nodes);
+		ProcessAnalysis analysis = analyzer.analyzeAndDebug(def, pathname,
+				basename, targetDir, nodes);
 		assertNotNull(analysis);
 	}
 
@@ -74,8 +74,8 @@ public class ThesisExport {
 								.getPath());
 		// analyze and debug
 		ProcessAnalyzer analyzer = new ProcessAnalyzerImpl();
-		ProcessAnalysis analysis = analyzer.analyzeAndDebug(def,
-				pathname, basename, targetDir, nodes);
+		ProcessAnalysis analysis = analyzer.analyzeAndDebug(def, pathname,
+				basename, targetDir, nodes);
 
 		// create conditional profile of fragment
 		Fragment fragment = BpmnAnalysisFactory.eINSTANCE.createFragment();
@@ -114,9 +114,9 @@ public class ThesisExport {
 				getClass().getResource(pathname + basename1 + ".bpmn")
 						.getPath());
 		ProcessAnalyzer analyzer = new ProcessAnalyzerImpl();
-		ProcessAnalysis analysis1 = analyzer.analyzeAndDebug(def1,
-				pathname, basename1, targetDir, nodes1);
-		ProcessAnalysisUtil.writeToFile(targetDir + basename1 + "-analysis."
+		ProcessAnalysis analysis1 = analyzer.analyzeAndDebug(def1, pathname,
+				basename1, targetDir, nodes1);
+		ProcessAnalysisUtil.writeToFile(targetDir + basename1 + "."
 				+ BpmnAnalysisPackage.eNAME, analysis1);
 
 		// 1b. analyze model2
@@ -124,9 +124,9 @@ public class ThesisExport {
 				getClass().getResource(pathname + basename2 + ".bpmn")
 						.getPath());
 		analyzer = new ProcessAnalyzerImpl();
-		ProcessAnalysis analysis2 = analyzer.analyzeAndDebug(def2,
-				pathname, basename2, targetDir, nodes2);
-		ProcessAnalysisUtil.writeToFile(targetDir + basename2 + "-analysis."
+		ProcessAnalysis analysis2 = analyzer.analyzeAndDebug(def2, pathname,
+				basename2, targetDir, nodes2);
+		ProcessAnalysisUtil.writeToFile(targetDir + basename2 + "."
 				+ BpmnAnalysisPackage.eNAME, analysis2);
 
 		// 2. match models
@@ -135,14 +135,14 @@ public class ThesisExport {
 		ProcessMatchingUtil.writeToFile(targetDir + basename1 + "_" + basename2
 				+ "_matching." + BpmnMatchingPackage.eNAME, matching);
 
-		// 3. extract models
+		// 3. transform models
 		ProcessTransformer transformer = new ProcessTransformerImpl();
-		ProcessExtraction extraction = transformer.transform(matching);
-		ProcessExtractionUtil.writeToFile(targetDir + basename1 + "_"
-				+ basename2 + "_extraction." + BpmnTransformationPackage.eNAME,
-				extraction);
-		ProcessExtractionUtil.writeResults(targetDir, extraction);
+		ProcessTransformation transformation = transformer.transform(matching);
+		ProcessTransformationUtil.writeToFile(targetDir + basename1 + "_"
+				+ basename2 + "." + BpmnTransformationPackage.eNAME,
+				transformation);
+		ProcessTransformationUtil.writeResults(targetDir, transformation);
 
-		assertEquals(4, extraction.getResults().size());
+		assertEquals(4, transformation.getResults().size());
 	}
 }

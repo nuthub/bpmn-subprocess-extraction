@@ -11,7 +11,7 @@ import org.eclipse.bpmn2.Definitions;
 import edu.udo.cs.ls14.jf.bpmn.cfg.MyProcessEngineConfiguration;
 import edu.udo.cs.ls14.jf.bpmnanalysis.ProcessAnalysis;
 import edu.udo.cs.ls14.jf.bpmnmatching.ProcessMatching;
-import edu.udo.cs.ls14.jf.bpmntransformation.ProcessExtraction;
+import edu.udo.cs.ls14.jf.bpmntransformation.ProcessTransformation;
 
 public class SubProcessExtraction {
 
@@ -24,7 +24,7 @@ public class SubProcessExtraction {
 		processEngine = config.buildProcessEngine();
 		// deploy processes
 		String[] processes = { "subprocessextraction", "processanalysis",
-				"processmatching", "processextraction" };
+				"processmatching", "processtransformation" };
 		for (Deployment d : processEngine.getRepositoryService()
 				.createDeploymentQuery().list()) {
 			processEngine.getRepositoryService().deleteDeployment(d.getId());
@@ -45,7 +45,7 @@ public class SubProcessExtraction {
 	 * @return
 	 * @throws Exception
 	 */
-	public ProcessExtraction runSubProcessExtraction(Definitions definitions1,
+	public ProcessTransformation runSubProcessExtraction(Definitions definitions1,
 			Definitions definitions2) throws Exception {
 		// Start process instance
 		Map<String, Object> variables = new HashMap<String, Object>();
@@ -54,7 +54,7 @@ public class SubProcessExtraction {
 		ProcessInstance instance = processEngine.getRuntimeService()
 				.startProcessInstanceByKey("subprocessextraction", variables);
 		// Return Result
-		ProcessExtraction extraction = (ProcessExtraction) processEngine
+		ProcessTransformation extraction = (ProcessTransformation) processEngine
 				.getHistoryService().createHistoricVariableInstanceQuery()
 				.processInstanceId(instance.getId()).variableName("extraction")
 				.singleResult().getValue();
@@ -105,14 +105,14 @@ public class SubProcessExtraction {
 	 * @param matching
 	 * @return
 	 */
-	public ProcessExtraction runProcessExtraction(ProcessMatching matching) {
+	public ProcessTransformation runProcessExtraction(ProcessMatching matching) {
 		// Start process instance
 		Map<String, Object> variables = new HashMap<String, Object>();
 		variables.put("matching", matching);
 		ProcessInstance instance = processEngine.getRuntimeService()
-				.startProcessInstanceByKey("processextraction", variables);
+				.startProcessInstanceByKey("processtransformation", variables);
 		// Return Result
-		ProcessExtraction extraction = (ProcessExtraction) processEngine
+		ProcessTransformation extraction = (ProcessTransformation) processEngine
 				.getHistoryService().createHistoricVariableInstanceQuery()
 				.processInstanceId(instance.getId()).variableName("extraction")
 				.singleResult().getValue();

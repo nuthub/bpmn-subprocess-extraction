@@ -38,7 +38,7 @@ public class HenshinAdapter {
 	private static final Logger LOG = LoggerFactory
 			.getLogger(HenshinAdapter.class);
 
-	private static final String RESOURCEPATH = "edu/udo/cs/ls14/jf/henshin";
+	private static final String RESOURCEPATH = "henshin";
 	private static final String RULEFILE = "bpmnModifier";
 
 	private Engine engine = null;

@@ -4,6 +4,7 @@ package edu.udo.cs.ls14.jf.bpmntransformation;
 
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EOperation;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
 
@@ -57,14 +58,14 @@ public interface BpmnTransformationPackage extends EPackage {
 	BpmnTransformationPackage eINSTANCE = edu.udo.cs.ls14.jf.bpmntransformation.impl.BpmnTransformationPackageImpl.init();
 
 	/**
-	 * The meta object id for the '{@link edu.udo.cs.ls14.jf.bpmntransformation.impl.ProcessExtractionImpl <em>Process Extraction</em>}' class.
+	 * The meta object id for the '{@link edu.udo.cs.ls14.jf.bpmntransformation.impl.ProcessTransformationImpl <em>Process Transformation</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see edu.udo.cs.ls14.jf.bpmntransformation.impl.ProcessExtractionImpl
-	 * @see edu.udo.cs.ls14.jf.bpmntransformation.impl.BpmnTransformationPackageImpl#getProcessExtraction()
+	 * @see edu.udo.cs.ls14.jf.bpmntransformation.impl.ProcessTransformationImpl
+	 * @see edu.udo.cs.ls14.jf.bpmntransformation.impl.BpmnTransformationPackageImpl#getProcessTransformation()
 	 * @generated
 	 */
-	int PROCESS_EXTRACTION = 0;
+	int PROCESS_TRANSFORMATION = 0;
 
 	/**
 	 * The feature id for the '<em><b>Process Matching</b></em>' containment reference.
@@ -73,7 +74,7 @@ public interface BpmnTransformationPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int PROCESS_EXTRACTION__PROCESS_MATCHING = 0;
+	int PROCESS_TRANSFORMATION__PROCESS_MATCHING = 0;
 
 	/**
 	 * The feature id for the '<em><b>Results</b></em>' map.
@@ -82,35 +83,35 @@ public interface BpmnTransformationPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int PROCESS_EXTRACTION__RESULTS = 1;
+	int PROCESS_TRANSFORMATION__RESULTS = 1;
 
 	/**
-	 * The number of structural features of the '<em>Process Extraction</em>' class.
+	 * The number of structural features of the '<em>Process Transformation</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int PROCESS_EXTRACTION_FEATURE_COUNT = 2;
+	int PROCESS_TRANSFORMATION_FEATURE_COUNT = 2;
 
 	/**
-	 * The number of operations of the '<em>Process Extraction</em>' class.
+	 * The number of operations of the '<em>Process Transformation</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int PROCESS_EXTRACTION_OPERATION_COUNT = 0;
+	int PROCESS_TRANSFORMATION_OPERATION_COUNT = 0;
 
 	/**
-	 * The meta object id for the '{@link edu.udo.cs.ls14.jf.bpmntransformation.impl.ExtractionResultEntryImpl <em>Extraction Result Entry</em>}' class.
+	 * The meta object id for the '{@link edu.udo.cs.ls14.jf.bpmntransformation.impl.TransformationResultEntryImpl <em>Transformation Result Entry</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see edu.udo.cs.ls14.jf.bpmntransformation.impl.ExtractionResultEntryImpl
-	 * @see edu.udo.cs.ls14.jf.bpmntransformation.impl.BpmnTransformationPackageImpl#getExtractionResultEntry()
+	 * @see edu.udo.cs.ls14.jf.bpmntransformation.impl.TransformationResultEntryImpl
+	 * @see edu.udo.cs.ls14.jf.bpmntransformation.impl.BpmnTransformationPackageImpl#getTransformationResultEntry()
 	 * @generated
 	 */
-	int EXTRACTION_RESULT_ENTRY = 1;
+	int TRANSFORMATION_RESULT_ENTRY = 1;
 
 	/**
 	 * The feature id for the '<em><b>Key</b></em>' attribute.
@@ -119,7 +120,7 @@ public interface BpmnTransformationPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int EXTRACTION_RESULT_ENTRY__KEY = 0;
+	int TRANSFORMATION_RESULT_ENTRY__KEY = 0;
 
 	/**
 	 * The feature id for the '<em><b>Value</b></em>' containment reference.
@@ -128,70 +129,107 @@ public interface BpmnTransformationPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int EXTRACTION_RESULT_ENTRY__VALUE = 1;
+	int TRANSFORMATION_RESULT_ENTRY__VALUE = 1;
 
 	/**
-	 * The number of structural features of the '<em>Extraction Result Entry</em>' class.
+	 * The number of structural features of the '<em>Transformation Result Entry</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int EXTRACTION_RESULT_ENTRY_FEATURE_COUNT = 2;
+	int TRANSFORMATION_RESULT_ENTRY_FEATURE_COUNT = 2;
 
 	/**
-	 * The number of operations of the '<em>Extraction Result Entry</em>' class.
+	 * The number of operations of the '<em>Transformation Result Entry</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int EXTRACTION_RESULT_ENTRY_OPERATION_COUNT = 0;
-
+	int TRANSFORMATION_RESULT_ENTRY_OPERATION_COUNT = 0;
 
 	/**
-	 * Returns the meta object for class '{@link edu.udo.cs.ls14.jf.bpmntransformation.ProcessExtraction <em>Process Extraction</em>}'.
+	 * The meta object id for the '{@link edu.udo.cs.ls14.jf.bpmntransformation.ProcessTransformer <em>Process Transformer</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Process Extraction</em>'.
-	 * @see edu.udo.cs.ls14.jf.bpmntransformation.ProcessExtraction
+	 * @see edu.udo.cs.ls14.jf.bpmntransformation.ProcessTransformer
+	 * @see edu.udo.cs.ls14.jf.bpmntransformation.impl.BpmnTransformationPackageImpl#getProcessTransformer()
 	 * @generated
 	 */
-	EClass getProcessExtraction();
+	int PROCESS_TRANSFORMER = 2;
 
 	/**
-	 * Returns the meta object for the containment reference '{@link edu.udo.cs.ls14.jf.bpmntransformation.ProcessExtraction#getProcessMatching <em>Process Matching</em>}'.
+	 * The number of structural features of the '<em>Process Transformer</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PROCESS_TRANSFORMER_FEATURE_COUNT = 0;
+
+	/**
+	 * The operation id for the '<em>Transform</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PROCESS_TRANSFORMER___TRANSFORM__PROCESSMATCHING = 0;
+
+	/**
+	 * The number of operations of the '<em>Process Transformer</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PROCESS_TRANSFORMER_OPERATION_COUNT = 1;
+
+
+	/**
+	 * Returns the meta object for class '{@link edu.udo.cs.ls14.jf.bpmntransformation.ProcessTransformation <em>Process Transformation</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Process Transformation</em>'.
+	 * @see edu.udo.cs.ls14.jf.bpmntransformation.ProcessTransformation
+	 * @generated
+	 */
+	EClass getProcessTransformation();
+
+	/**
+	 * Returns the meta object for the containment reference '{@link edu.udo.cs.ls14.jf.bpmntransformation.ProcessTransformation#getProcessMatching <em>Process Matching</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the containment reference '<em>Process Matching</em>'.
-	 * @see edu.udo.cs.ls14.jf.bpmntransformation.ProcessExtraction#getProcessMatching()
-	 * @see #getProcessExtraction()
+	 * @see edu.udo.cs.ls14.jf.bpmntransformation.ProcessTransformation#getProcessMatching()
+	 * @see #getProcessTransformation()
 	 * @generated
 	 */
-	EReference getProcessExtraction_ProcessMatching();
+	EReference getProcessTransformation_ProcessMatching();
 
 	/**
-	 * Returns the meta object for the map '{@link edu.udo.cs.ls14.jf.bpmntransformation.ProcessExtraction#getResults <em>Results</em>}'.
+	 * Returns the meta object for the map '{@link edu.udo.cs.ls14.jf.bpmntransformation.ProcessTransformation#getResults <em>Results</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the map '<em>Results</em>'.
-	 * @see edu.udo.cs.ls14.jf.bpmntransformation.ProcessExtraction#getResults()
-	 * @see #getProcessExtraction()
+	 * @see edu.udo.cs.ls14.jf.bpmntransformation.ProcessTransformation#getResults()
+	 * @see #getProcessTransformation()
 	 * @generated
 	 */
-	EReference getProcessExtraction_Results();
+	EReference getProcessTransformation_Results();
 
 	/**
-	 * Returns the meta object for class '{@link java.util.Map.Entry <em>Extraction Result Entry</em>}'.
+	 * Returns the meta object for class '{@link java.util.Map.Entry <em>Transformation Result Entry</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Extraction Result Entry</em>'.
+	 * @return the meta object for class '<em>Transformation Result Entry</em>'.
 	 * @see java.util.Map.Entry
 	 * @model keyDataType="org.eclipse.emf.ecore.EString" keyRequired="true"
 	 *        valueType="org.eclipse.bpmn2.Definitions" valueContainment="true" valueRequired="true"
 	 * @generated
 	 */
-	EClass getExtractionResultEntry();
+	EClass getTransformationResultEntry();
 
 	/**
 	 * Returns the meta object for the attribute '{@link java.util.Map.Entry <em>Key</em>}'.
@@ -199,10 +237,10 @@ public interface BpmnTransformationPackage extends EPackage {
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the attribute '<em>Key</em>'.
 	 * @see java.util.Map.Entry
-	 * @see #getExtractionResultEntry()
+	 * @see #getTransformationResultEntry()
 	 * @generated
 	 */
-	EAttribute getExtractionResultEntry_Key();
+	EAttribute getTransformationResultEntry_Key();
 
 	/**
 	 * Returns the meta object for the containment reference '{@link java.util.Map.Entry <em>Value</em>}'.
@@ -210,10 +248,30 @@ public interface BpmnTransformationPackage extends EPackage {
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the containment reference '<em>Value</em>'.
 	 * @see java.util.Map.Entry
-	 * @see #getExtractionResultEntry()
+	 * @see #getTransformationResultEntry()
 	 * @generated
 	 */
-	EReference getExtractionResultEntry_Value();
+	EReference getTransformationResultEntry_Value();
+
+	/**
+	 * Returns the meta object for class '{@link edu.udo.cs.ls14.jf.bpmntransformation.ProcessTransformer <em>Process Transformer</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Process Transformer</em>'.
+	 * @see edu.udo.cs.ls14.jf.bpmntransformation.ProcessTransformer
+	 * @generated
+	 */
+	EClass getProcessTransformer();
+
+	/**
+	 * Returns the meta object for the '{@link edu.udo.cs.ls14.jf.bpmntransformation.ProcessTransformer#transform(edu.udo.cs.ls14.jf.bpmnmatching.ProcessMatching) <em>Transform</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the '<em>Transform</em>' operation.
+	 * @see edu.udo.cs.ls14.jf.bpmntransformation.ProcessTransformer#transform(edu.udo.cs.ls14.jf.bpmnmatching.ProcessMatching)
+	 * @generated
+	 */
+	EOperation getProcessTransformer__Transform__ProcessMatching();
 
 	/**
 	 * Returns the factory that creates the instances of the model.
@@ -239,14 +297,14 @@ public interface BpmnTransformationPackage extends EPackage {
 	 */
 	interface Literals {
 		/**
-		 * The meta object literal for the '{@link edu.udo.cs.ls14.jf.bpmntransformation.impl.ProcessExtractionImpl <em>Process Extraction</em>}' class.
+		 * The meta object literal for the '{@link edu.udo.cs.ls14.jf.bpmntransformation.impl.ProcessTransformationImpl <em>Process Transformation</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see edu.udo.cs.ls14.jf.bpmntransformation.impl.ProcessExtractionImpl
-		 * @see edu.udo.cs.ls14.jf.bpmntransformation.impl.BpmnTransformationPackageImpl#getProcessExtraction()
+		 * @see edu.udo.cs.ls14.jf.bpmntransformation.impl.ProcessTransformationImpl
+		 * @see edu.udo.cs.ls14.jf.bpmntransformation.impl.BpmnTransformationPackageImpl#getProcessTransformation()
 		 * @generated
 		 */
-		EClass PROCESS_EXTRACTION = eINSTANCE.getProcessExtraction();
+		EClass PROCESS_TRANSFORMATION = eINSTANCE.getProcessTransformation();
 
 		/**
 		 * The meta object literal for the '<em><b>Process Matching</b></em>' containment reference feature.
@@ -254,7 +312,7 @@ public interface BpmnTransformationPackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference PROCESS_EXTRACTION__PROCESS_MATCHING = eINSTANCE.getProcessExtraction_ProcessMatching();
+		EReference PROCESS_TRANSFORMATION__PROCESS_MATCHING = eINSTANCE.getProcessTransformation_ProcessMatching();
 
 		/**
 		 * The meta object literal for the '<em><b>Results</b></em>' map feature.
@@ -262,17 +320,17 @@ public interface BpmnTransformationPackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference PROCESS_EXTRACTION__RESULTS = eINSTANCE.getProcessExtraction_Results();
+		EReference PROCESS_TRANSFORMATION__RESULTS = eINSTANCE.getProcessTransformation_Results();
 
 		/**
-		 * The meta object literal for the '{@link edu.udo.cs.ls14.jf.bpmntransformation.impl.ExtractionResultEntryImpl <em>Extraction Result Entry</em>}' class.
+		 * The meta object literal for the '{@link edu.udo.cs.ls14.jf.bpmntransformation.impl.TransformationResultEntryImpl <em>Transformation Result Entry</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see edu.udo.cs.ls14.jf.bpmntransformation.impl.ExtractionResultEntryImpl
-		 * @see edu.udo.cs.ls14.jf.bpmntransformation.impl.BpmnTransformationPackageImpl#getExtractionResultEntry()
+		 * @see edu.udo.cs.ls14.jf.bpmntransformation.impl.TransformationResultEntryImpl
+		 * @see edu.udo.cs.ls14.jf.bpmntransformation.impl.BpmnTransformationPackageImpl#getTransformationResultEntry()
 		 * @generated
 		 */
-		EClass EXTRACTION_RESULT_ENTRY = eINSTANCE.getExtractionResultEntry();
+		EClass TRANSFORMATION_RESULT_ENTRY = eINSTANCE.getTransformationResultEntry();
 
 		/**
 		 * The meta object literal for the '<em><b>Key</b></em>' attribute feature.
@@ -280,7 +338,7 @@ public interface BpmnTransformationPackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute EXTRACTION_RESULT_ENTRY__KEY = eINSTANCE.getExtractionResultEntry_Key();
+		EAttribute TRANSFORMATION_RESULT_ENTRY__KEY = eINSTANCE.getTransformationResultEntry_Key();
 
 		/**
 		 * The meta object literal for the '<em><b>Value</b></em>' containment reference feature.
@@ -288,7 +346,25 @@ public interface BpmnTransformationPackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference EXTRACTION_RESULT_ENTRY__VALUE = eINSTANCE.getExtractionResultEntry_Value();
+		EReference TRANSFORMATION_RESULT_ENTRY__VALUE = eINSTANCE.getTransformationResultEntry_Value();
+
+		/**
+		 * The meta object literal for the '{@link edu.udo.cs.ls14.jf.bpmntransformation.ProcessTransformer <em>Process Transformer</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see edu.udo.cs.ls14.jf.bpmntransformation.ProcessTransformer
+		 * @see edu.udo.cs.ls14.jf.bpmntransformation.impl.BpmnTransformationPackageImpl#getProcessTransformer()
+		 * @generated
+		 */
+		EClass PROCESS_TRANSFORMER = eINSTANCE.getProcessTransformer();
+
+		/**
+		 * The meta object literal for the '<em><b>Transform</b></em>' operation.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EOperation PROCESS_TRANSFORMER___TRANSFORM__PROCESSMATCHING = eINSTANCE.getProcessTransformer__Transform__ProcessMatching();
 
 	}
 

@@ -2,21 +2,19 @@
  */
 package edu.udo.cs.ls14.jf.bpmntransformation.impl;
 
+import edu.udo.cs.ls14.jf.bpmnanalysis.BpmnAnalysisPackage;
 import edu.udo.cs.ls14.jf.bpmnmatching.BpmnMatchingPackage;
-
 import edu.udo.cs.ls14.jf.bpmntransformation.BpmnTransformationFactory;
 import edu.udo.cs.ls14.jf.bpmntransformation.BpmnTransformationPackage;
-import edu.udo.cs.ls14.jf.bpmntransformation.ProcessExtraction;
-
+import edu.udo.cs.ls14.jf.bpmntransformation.ProcessTransformation;
+import edu.udo.cs.ls14.jf.bpmntransformation.ProcessTransformer;
 import java.util.Map;
-
 import org.eclipse.bpmn2.Bpmn2Package;
-
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EOperation;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
-
 import org.eclipse.emf.ecore.impl.EPackageImpl;
 
 /**
@@ -31,14 +29,21 @@ public class BpmnTransformationPackageImpl extends EPackageImpl implements BpmnT
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private EClass processExtractionEClass = null;
+	private EClass processTransformationEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private EClass extractionResultEntryEClass = null;
+	private EClass transformationResultEntryEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass processTransformerEClass = null;
 
 	/**
 	 * Creates an instance of the model <b>Package</b>, registered with
@@ -109,8 +114,8 @@ public class BpmnTransformationPackageImpl extends EPackageImpl implements BpmnT
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getProcessExtraction() {
-		return processExtractionEClass;
+	public EClass getProcessTransformation() {
+		return processTransformationEClass;
 	}
 
 	/**
@@ -118,8 +123,8 @@ public class BpmnTransformationPackageImpl extends EPackageImpl implements BpmnT
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getProcessExtraction_ProcessMatching() {
-		return (EReference)processExtractionEClass.getEStructuralFeatures().get(0);
+	public EReference getProcessTransformation_ProcessMatching() {
+		return (EReference)processTransformationEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -127,8 +132,8 @@ public class BpmnTransformationPackageImpl extends EPackageImpl implements BpmnT
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getProcessExtraction_Results() {
-		return (EReference)processExtractionEClass.getEStructuralFeatures().get(1);
+	public EReference getProcessTransformation_Results() {
+		return (EReference)processTransformationEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
@@ -136,8 +141,8 @@ public class BpmnTransformationPackageImpl extends EPackageImpl implements BpmnT
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getExtractionResultEntry() {
-		return extractionResultEntryEClass;
+	public EClass getTransformationResultEntry() {
+		return transformationResultEntryEClass;
 	}
 
 	/**
@@ -145,8 +150,8 @@ public class BpmnTransformationPackageImpl extends EPackageImpl implements BpmnT
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getExtractionResultEntry_Key() {
-		return (EAttribute)extractionResultEntryEClass.getEStructuralFeatures().get(0);
+	public EAttribute getTransformationResultEntry_Key() {
+		return (EAttribute)transformationResultEntryEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -154,8 +159,26 @@ public class BpmnTransformationPackageImpl extends EPackageImpl implements BpmnT
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getExtractionResultEntry_Value() {
-		return (EReference)extractionResultEntryEClass.getEStructuralFeatures().get(1);
+	public EReference getTransformationResultEntry_Value() {
+		return (EReference)transformationResultEntryEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getProcessTransformer() {
+		return processTransformerEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EOperation getProcessTransformer__Transform__ProcessMatching() {
+		return processTransformerEClass.getEOperations().get(0);
 	}
 
 	/**
@@ -186,13 +209,16 @@ public class BpmnTransformationPackageImpl extends EPackageImpl implements BpmnT
 		isCreated = true;
 
 		// Create classes and their features
-		processExtractionEClass = createEClass(PROCESS_EXTRACTION);
-		createEReference(processExtractionEClass, PROCESS_EXTRACTION__PROCESS_MATCHING);
-		createEReference(processExtractionEClass, PROCESS_EXTRACTION__RESULTS);
+		processTransformationEClass = createEClass(PROCESS_TRANSFORMATION);
+		createEReference(processTransformationEClass, PROCESS_TRANSFORMATION__PROCESS_MATCHING);
+		createEReference(processTransformationEClass, PROCESS_TRANSFORMATION__RESULTS);
 
-		extractionResultEntryEClass = createEClass(EXTRACTION_RESULT_ENTRY);
-		createEAttribute(extractionResultEntryEClass, EXTRACTION_RESULT_ENTRY__KEY);
-		createEReference(extractionResultEntryEClass, EXTRACTION_RESULT_ENTRY__VALUE);
+		transformationResultEntryEClass = createEClass(TRANSFORMATION_RESULT_ENTRY);
+		createEAttribute(transformationResultEntryEClass, TRANSFORMATION_RESULT_ENTRY__KEY);
+		createEReference(transformationResultEntryEClass, TRANSFORMATION_RESULT_ENTRY__VALUE);
+
+		processTransformerEClass = createEClass(PROCESS_TRANSFORMER);
+		createEOperation(processTransformerEClass, PROCESS_TRANSFORMER___TRANSFORM__PROCESSMATCHING);
 	}
 
 	/**
@@ -221,6 +247,7 @@ public class BpmnTransformationPackageImpl extends EPackageImpl implements BpmnT
 		// Obtain other dependent packages
 		BpmnMatchingPackage theBpmnMatchingPackage = (BpmnMatchingPackage)EPackage.Registry.INSTANCE.getEPackage(BpmnMatchingPackage.eNS_URI);
 		Bpmn2Package theBpmn2Package = (Bpmn2Package)EPackage.Registry.INSTANCE.getEPackage(Bpmn2Package.eNS_URI);
+		BpmnAnalysisPackage theBpmnAnalysisPackage = (BpmnAnalysisPackage)EPackage.Registry.INSTANCE.getEPackage(BpmnAnalysisPackage.eNS_URI);
 
 		// Create type parameters
 
@@ -229,13 +256,19 @@ public class BpmnTransformationPackageImpl extends EPackageImpl implements BpmnT
 		// Add supertypes to classes
 
 		// Initialize classes, features, and operations; add parameters
-		initEClass(processExtractionEClass, ProcessExtraction.class, "ProcessExtraction", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getProcessExtraction_ProcessMatching(), theBpmnMatchingPackage.getProcessMatching(), null, "processMatching", null, 1, 1, ProcessExtraction.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getProcessExtraction_Results(), this.getExtractionResultEntry(), null, "results", null, 0, -1, ProcessExtraction.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEClass(processTransformationEClass, ProcessTransformation.class, "ProcessTransformation", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getProcessTransformation_ProcessMatching(), theBpmnMatchingPackage.getProcessMatching(), null, "processMatching", null, 1, 1, ProcessTransformation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getProcessTransformation_Results(), this.getTransformationResultEntry(), null, "results", null, 0, -1, ProcessTransformation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-		initEClass(extractionResultEntryEClass, Map.Entry.class, "ExtractionResultEntry", !IS_ABSTRACT, !IS_INTERFACE, !IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getExtractionResultEntry_Key(), ecorePackage.getEString(), "key", null, 1, 1, Map.Entry.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getExtractionResultEntry_Value(), theBpmn2Package.getDefinitions(), null, "value", null, 1, 1, Map.Entry.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEClass(transformationResultEntryEClass, Map.Entry.class, "TransformationResultEntry", !IS_ABSTRACT, !IS_INTERFACE, !IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getTransformationResultEntry_Key(), ecorePackage.getEString(), "key", null, 1, 1, Map.Entry.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getTransformationResultEntry_Value(), theBpmn2Package.getDefinitions(), null, "value", null, 1, 1, Map.Entry.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(processTransformerEClass, ProcessTransformer.class, "ProcessTransformer", IS_ABSTRACT, IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
+		EOperation op = initEOperation(getProcessTransformer__Transform__ProcessMatching(), this.getProcessTransformation(), "transform", 0, 1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, theBpmnMatchingPackage.getProcessMatching(), "matching", 0, 1, IS_UNIQUE, IS_ORDERED);
+		addEException(op, theBpmnAnalysisPackage.getException());
 
 		// Create resource
 		createResource(eNS_URI);

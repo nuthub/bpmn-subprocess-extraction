@@ -70,15 +70,21 @@ public class BpmnTransformationSwitch<T> extends Switch<T> {
 	@Override
 	protected T doSwitch(int classifierID, EObject theEObject) {
 		switch (classifierID) {
-			case BpmnTransformationPackage.PROCESS_EXTRACTION: {
-				ProcessExtraction processExtraction = (ProcessExtraction)theEObject;
-				T result = caseProcessExtraction(processExtraction);
+			case BpmnTransformationPackage.PROCESS_TRANSFORMATION: {
+				ProcessTransformation processTransformation = (ProcessTransformation)theEObject;
+				T result = caseProcessTransformation(processTransformation);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case BpmnTransformationPackage.EXTRACTION_RESULT_ENTRY: {
-				@SuppressWarnings("unchecked") Map.Entry<String, Definitions> extractionResultEntry = (Map.Entry<String, Definitions>)theEObject;
-				T result = caseExtractionResultEntry(extractionResultEntry);
+			case BpmnTransformationPackage.TRANSFORMATION_RESULT_ENTRY: {
+				@SuppressWarnings("unchecked") Map.Entry<String, Definitions> transformationResultEntry = (Map.Entry<String, Definitions>)theEObject;
+				T result = caseTransformationResultEntry(transformationResultEntry);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case BpmnTransformationPackage.PROCESS_TRANSFORMER: {
+				ProcessTransformer processTransformer = (ProcessTransformer)theEObject;
+				T result = caseProcessTransformer(processTransformer);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -87,32 +93,47 @@ public class BpmnTransformationSwitch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Process Extraction</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>Process Transformation</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Process Extraction</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>Process Transformation</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseProcessExtraction(ProcessExtraction object) {
+	public T caseProcessTransformation(ProcessTransformation object) {
 		return null;
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Extraction Result Entry</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>Transformation Result Entry</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Extraction Result Entry</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>Transformation Result Entry</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseExtractionResultEntry(Map.Entry<String, Definitions> object) {
+	public T caseTransformationResultEntry(Map.Entry<String, Definitions> object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Process Transformer</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Process Transformer</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseProcessTransformer(ProcessTransformer object) {
 		return null;
 	}
 

@@ -5,7 +5,7 @@ package edu.udo.cs.ls14.jf.bpmntransformation.impl;
 import edu.udo.cs.ls14.jf.bpmnmatching.ProcessMatching;
 
 import edu.udo.cs.ls14.jf.bpmntransformation.BpmnTransformationPackage;
-import edu.udo.cs.ls14.jf.bpmntransformation.ProcessExtraction;
+import edu.udo.cs.ls14.jf.bpmntransformation.ProcessTransformation;
 
 import java.util.Map;
 
@@ -28,19 +28,19 @@ import org.eclipse.emf.ecore.util.InternalEList;
 
 /**
  * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Process Extraction</b></em>'.
+ * An implementation of the model object '<em><b>Process Transformation</b></em>'.
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link edu.udo.cs.ls14.jf.bpmntransformation.impl.ProcessExtractionImpl#getProcessMatching <em>Process Matching</em>}</li>
- *   <li>{@link edu.udo.cs.ls14.jf.bpmntransformation.impl.ProcessExtractionImpl#getResults <em>Results</em>}</li>
+ *   <li>{@link edu.udo.cs.ls14.jf.bpmntransformation.impl.ProcessTransformationImpl#getProcessMatching <em>Process Matching</em>}</li>
+ *   <li>{@link edu.udo.cs.ls14.jf.bpmntransformation.impl.ProcessTransformationImpl#getResults <em>Results</em>}</li>
  * </ul>
  * </p>
  *
  * @generated
  */
-public class ProcessExtractionImpl extends MinimalEObjectImpl.Container implements ProcessExtraction {
+public class ProcessTransformationImpl extends MinimalEObjectImpl.Container implements ProcessTransformation {
 	/**
 	 * The cached value of the '{@link #getProcessMatching() <em>Process Matching</em>}' containment reference.
 	 * <!-- begin-user-doc -->
@@ -66,7 +66,7 @@ public class ProcessExtractionImpl extends MinimalEObjectImpl.Container implemen
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected ProcessExtractionImpl() {
+	protected ProcessTransformationImpl() {
 		super();
 	}
 
@@ -77,7 +77,7 @@ public class ProcessExtractionImpl extends MinimalEObjectImpl.Container implemen
 	 */
 	@Override
 	protected EClass eStaticClass() {
-		return BpmnTransformationPackage.Literals.PROCESS_EXTRACTION;
+		return BpmnTransformationPackage.Literals.PROCESS_TRANSFORMATION;
 	}
 
 	/**
@@ -98,7 +98,7 @@ public class ProcessExtractionImpl extends MinimalEObjectImpl.Container implemen
 		ProcessMatching oldProcessMatching = processMatching;
 		processMatching = newProcessMatching;
 		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, BpmnTransformationPackage.PROCESS_EXTRACTION__PROCESS_MATCHING, oldProcessMatching, newProcessMatching);
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, BpmnTransformationPackage.PROCESS_TRANSFORMATION__PROCESS_MATCHING, oldProcessMatching, newProcessMatching);
 			if (msgs == null) msgs = notification; else msgs.add(notification);
 		}
 		return msgs;
@@ -113,14 +113,14 @@ public class ProcessExtractionImpl extends MinimalEObjectImpl.Container implemen
 		if (newProcessMatching != processMatching) {
 			NotificationChain msgs = null;
 			if (processMatching != null)
-				msgs = ((InternalEObject)processMatching).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - BpmnTransformationPackage.PROCESS_EXTRACTION__PROCESS_MATCHING, null, msgs);
+				msgs = ((InternalEObject)processMatching).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - BpmnTransformationPackage.PROCESS_TRANSFORMATION__PROCESS_MATCHING, null, msgs);
 			if (newProcessMatching != null)
-				msgs = ((InternalEObject)newProcessMatching).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - BpmnTransformationPackage.PROCESS_EXTRACTION__PROCESS_MATCHING, null, msgs);
+				msgs = ((InternalEObject)newProcessMatching).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - BpmnTransformationPackage.PROCESS_TRANSFORMATION__PROCESS_MATCHING, null, msgs);
 			msgs = basicSetProcessMatching(newProcessMatching, msgs);
 			if (msgs != null) msgs.dispatch();
 		}
 		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, BpmnTransformationPackage.PROCESS_EXTRACTION__PROCESS_MATCHING, newProcessMatching, newProcessMatching));
+			eNotify(new ENotificationImpl(this, Notification.SET, BpmnTransformationPackage.PROCESS_TRANSFORMATION__PROCESS_MATCHING, newProcessMatching, newProcessMatching));
 	}
 
 	/**
@@ -130,7 +130,7 @@ public class ProcessExtractionImpl extends MinimalEObjectImpl.Container implemen
 	 */
 	public Map<String, Definitions> getResults() {
 		if (results == null) {
-			results = new EcoreEMap<String,Definitions>(BpmnTransformationPackage.Literals.EXTRACTION_RESULT_ENTRY, ExtractionResultEntryImpl.class, this, BpmnTransformationPackage.PROCESS_EXTRACTION__RESULTS);
+			results = new EcoreEMap<String,Definitions>(BpmnTransformationPackage.Literals.TRANSFORMATION_RESULT_ENTRY, TransformationResultEntryImpl.class, this, BpmnTransformationPackage.PROCESS_TRANSFORMATION__RESULTS);
 		}
 		return results.map();
 	}
@@ -143,9 +143,9 @@ public class ProcessExtractionImpl extends MinimalEObjectImpl.Container implemen
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-			case BpmnTransformationPackage.PROCESS_EXTRACTION__PROCESS_MATCHING:
+			case BpmnTransformationPackage.PROCESS_TRANSFORMATION__PROCESS_MATCHING:
 				return basicSetProcessMatching(null, msgs);
-			case BpmnTransformationPackage.PROCESS_EXTRACTION__RESULTS:
+			case BpmnTransformationPackage.PROCESS_TRANSFORMATION__RESULTS:
 				return ((InternalEList<?>)((EMap.InternalMapView<String, Definitions>)getResults()).eMap()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
@@ -159,9 +159,9 @@ public class ProcessExtractionImpl extends MinimalEObjectImpl.Container implemen
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case BpmnTransformationPackage.PROCESS_EXTRACTION__PROCESS_MATCHING:
+			case BpmnTransformationPackage.PROCESS_TRANSFORMATION__PROCESS_MATCHING:
 				return getProcessMatching();
-			case BpmnTransformationPackage.PROCESS_EXTRACTION__RESULTS:
+			case BpmnTransformationPackage.PROCESS_TRANSFORMATION__RESULTS:
 				if (coreType) return ((EMap.InternalMapView<String, Definitions>)getResults()).eMap();
 				else return getResults();
 		}
@@ -176,10 +176,10 @@ public class ProcessExtractionImpl extends MinimalEObjectImpl.Container implemen
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case BpmnTransformationPackage.PROCESS_EXTRACTION__PROCESS_MATCHING:
+			case BpmnTransformationPackage.PROCESS_TRANSFORMATION__PROCESS_MATCHING:
 				setProcessMatching((ProcessMatching)newValue);
 				return;
-			case BpmnTransformationPackage.PROCESS_EXTRACTION__RESULTS:
+			case BpmnTransformationPackage.PROCESS_TRANSFORMATION__RESULTS:
 				((EStructuralFeature.Setting)((EMap.InternalMapView<String, Definitions>)getResults()).eMap()).set(newValue);
 				return;
 		}
@@ -194,10 +194,10 @@ public class ProcessExtractionImpl extends MinimalEObjectImpl.Container implemen
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case BpmnTransformationPackage.PROCESS_EXTRACTION__PROCESS_MATCHING:
+			case BpmnTransformationPackage.PROCESS_TRANSFORMATION__PROCESS_MATCHING:
 				setProcessMatching((ProcessMatching)null);
 				return;
-			case BpmnTransformationPackage.PROCESS_EXTRACTION__RESULTS:
+			case BpmnTransformationPackage.PROCESS_TRANSFORMATION__RESULTS:
 				getResults().clear();
 				return;
 		}
@@ -212,12 +212,12 @@ public class ProcessExtractionImpl extends MinimalEObjectImpl.Container implemen
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case BpmnTransformationPackage.PROCESS_EXTRACTION__PROCESS_MATCHING:
+			case BpmnTransformationPackage.PROCESS_TRANSFORMATION__PROCESS_MATCHING:
 				return processMatching != null;
-			case BpmnTransformationPackage.PROCESS_EXTRACTION__RESULTS:
+			case BpmnTransformationPackage.PROCESS_TRANSFORMATION__RESULTS:
 				return results != null && !results.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}
 
-} //ProcessExtractionImpl
+} //ProcessTransformationImpl

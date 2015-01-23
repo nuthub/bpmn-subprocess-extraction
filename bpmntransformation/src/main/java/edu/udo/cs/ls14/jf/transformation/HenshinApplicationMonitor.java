@@ -35,6 +35,7 @@ import org.slf4j.LoggerFactory;
  * {@link ApplicationMonitor} implementation with logging capabilities.
  * 
  * @author Christian Krause
+ * @author flake
  *
  */
 public class HenshinApplicationMonitor extends BasicApplicationMonitor {

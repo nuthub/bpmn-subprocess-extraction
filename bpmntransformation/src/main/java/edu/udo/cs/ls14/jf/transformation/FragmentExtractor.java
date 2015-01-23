@@ -17,7 +17,7 @@ import edu.udo.cs.ls14.jf.bpmn.utils.FragmentUtil;
 import edu.udo.cs.ls14.jf.bpmnmatching.FragmentPair;
 import edu.udo.cs.ls14.jf.bpmnmatching.ProcessMatching;
 import edu.udo.cs.ls14.jf.bpmntransformation.BpmnTransformationFactory;
-import edu.udo.cs.ls14.jf.bpmntransformation.ProcessExtraction;
+import edu.udo.cs.ls14.jf.bpmntransformation.ProcessTransformation;
 
 public class FragmentExtractor {
 
@@ -25,11 +25,11 @@ public class FragmentExtractor {
 			.getLogger(FragmentExtractor.class);
 	private static Bpmn2ResourceSet resSet = Bpmn2ResourceSet.getInstance();
 
-	public static ProcessExtraction transform(ProcessMatching pMatching)
+	public static ProcessTransformation transform(ProcessMatching pMatching)
 			throws Exception {
 
-		ProcessExtraction extraction = BpmnTransformationFactory.eINSTANCE
-				.createProcessExtraction();
+		ProcessTransformation extraction = BpmnTransformationFactory.eINSTANCE
+				.createProcessTransformation();
 
 		// Copy definitions of matched processes
 		Definitions definitions1 = EcoreUtil.copy(pMatching.getAnalysis1()

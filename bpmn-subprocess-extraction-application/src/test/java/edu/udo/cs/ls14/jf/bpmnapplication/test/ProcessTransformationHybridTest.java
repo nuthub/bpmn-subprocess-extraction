@@ -12,23 +12,23 @@ import org.junit.Test;
 
 import edu.udo.cs.ls14.jf.bpmn.utils.Bpmn2ResourceSet;
 import edu.udo.cs.ls14.jf.bpmn.utils.ProcessAnalysisUtil;
-import edu.udo.cs.ls14.jf.bpmn.utils.ProcessExtractionUtil;
+import edu.udo.cs.ls14.jf.bpmn.utils.ProcessTransformationUtil;
 import edu.udo.cs.ls14.jf.bpmn.utils.ProcessMatchingUtil;
 import edu.udo.cs.ls14.jf.bpmnanalysis.BpmnAnalysisPackage;
 import edu.udo.cs.ls14.jf.bpmnanalysis.ProcessAnalysis;
 import edu.udo.cs.ls14.jf.bpmnapplication.ProcessAnalyzer;
 import edu.udo.cs.ls14.jf.bpmnapplication.ProcessAnalyzerImpl;
-import edu.udo.cs.ls14.jf.bpmnapplication.ProcessTransformer;
-import edu.udo.cs.ls14.jf.bpmnapplication.ProcessTransformerImpl;
 import edu.udo.cs.ls14.jf.bpmnapplication.ProcessMatcher;
 import edu.udo.cs.ls14.jf.bpmnapplication.ProcessMatcherImpl;
+import edu.udo.cs.ls14.jf.bpmnapplication.ProcessTransformer;
+import edu.udo.cs.ls14.jf.bpmnapplication.ProcessTransformerImpl;
 import edu.udo.cs.ls14.jf.bpmnmatching.BpmnMatchingPackage;
 import edu.udo.cs.ls14.jf.bpmnmatching.ProcessMatching;
 import edu.udo.cs.ls14.jf.bpmntransformation.BpmnTransformationPackage;
-import edu.udo.cs.ls14.jf.bpmntransformation.ProcessExtraction;
+import edu.udo.cs.ls14.jf.bpmntransformation.ProcessTransformation;
 import edu.udo.cs.ls14.jf.registry.Registries;
 
-public class ProcessExtractionHybridTest {
+public class ProcessTransformationHybridTest {
 
 	private static final String TARGET_DIR = "/tmp/";
 
@@ -44,7 +44,7 @@ public class ProcessExtractionHybridTest {
 		String basename2 = "complete2";
 		List<String> nodes = Arrays.asList("n_start", "T1", "T2", "T3", "T4",
 				"T5", "T6", "E1", "E2", "E3", "E4", "n_end");
-		ProcessExtraction extraction = runTest(pathname, basename1, nodes, basename2, nodes);
+		ProcessTransformation extraction = runTest(pathname, basename1, nodes, basename2, nodes);
 		assertEquals(4, extraction.getResults().size());
 	}
 
@@ -57,7 +57,7 @@ public class ProcessExtractionHybridTest {
 				"Betrag erstatten", "Gutschein ausstellen", "E1", "E2", "E3", "E4", "n_end");
 		List<String> nodes2 = Arrays.asList("n_start", "Anspruch pruefen", "Lieferschein anfertigen", "Rechnung anfertigen", "Artikel verpacken",
 				"Betrag erstatten", "Gutschein ausstellen", "E1", "E2", "E3", "E4", "n_end");
-		ProcessExtraction extraction = runTest(pathname, basename1, nodes1, basename2, nodes2);
+		ProcessTransformation extraction = runTest(pathname, basename1, nodes1, basename2, nodes2);
 		assertEquals(4, extraction.getResults().size());
 	}
 
@@ -102,7 +102,7 @@ public class ProcessExtractionHybridTest {
 		runTest("/bpmn/sequences/", basename1, nodes, basename2, nodes);
 	}
 
-	private ProcessExtraction runTest(String pathname, String basename1,
+	private ProcessTransformation runTest(String pathname, String basename1,
 			List<String> nodes1, String basename2, List<String> nodes2)
 			throws Exception {
 		String targetDir = (TARGET_DIR + pathname + "/").replaceAll("//", "/");
@@ -120,7 +120,7 @@ public class ProcessExtractionHybridTest {
 		ProcessAnalyzer analyzer = new ProcessAnalyzerImpl();
 		ProcessAnalysis analysis1 = analyzer.analyzeAndDebug(def1,
 				pathname, basename1, targetDir, nodes1);
-		ProcessAnalysisUtil.writeToFile(targetDir + basename1 + "-analysis."
+		ProcessAnalysisUtil.writeToFile(targetDir + basename1 + "."
 				+ BpmnAnalysisPackage.eNAME, analysis1);
 		// ProcessAnalysis analysis1 = processEngine.runProcessAnalysis(def1);
 
@@ -131,7 +131,7 @@ public class ProcessExtractionHybridTest {
 		analyzer = new ProcessAnalyzerImpl();
 		ProcessAnalysis analysis2 = analyzer.analyzeAndDebug(def2,
 				pathname, basename2, targetDir, nodes2);
-		ProcessAnalysisUtil.writeToFile(targetDir + basename2 + "-analysis."
+		ProcessAnalysisUtil.writeToFile(targetDir + basename2 + "."
 				+ BpmnAnalysisPackage.eNAME, analysis2);
 		// ProcessAnalysis analysis2 = processEngine.runProcessAnalysis(def2);
 
@@ -145,7 +145,7 @@ public class ProcessExtractionHybridTest {
 		ProcessMatcher matcher = new ProcessMatcherImpl();
 		ProcessMatching matching = matcher.match(analysis1, analysis2);
 		ProcessMatchingUtil.writeToFile(targetDir + basename1 + "_" + basename2
-				+ "_matching." + BpmnMatchingPackage.eNAME, matching);
+				+ "." + BpmnMatchingPackage.eNAME, matching);
 
 		// 3. extract models
 		// BPMN variant (funktioniert nicht)
@@ -156,11 +156,11 @@ public class ProcessExtractionHybridTest {
 		// ProcessExtractionUtil.writeResults(targetDir + "bpmn/", extraction1);
 		// pure Java variant (funktioniert)
 		ProcessTransformer transformer = new ProcessTransformerImpl();
-		ProcessExtraction extraction = transformer.transform(matching);
-		ProcessExtractionUtil.writeToFile(targetDir + basename1 + "_"
-				+ basename2 + "_extraction." + BpmnTransformationPackage.eNAME,
+		ProcessTransformation extraction = transformer.transform(matching);
+		ProcessTransformationUtil.writeToFile(targetDir + basename1 + "_"
+				+ basename2 + "." + BpmnTransformationPackage.eNAME,
 				extraction);
-		ProcessExtractionUtil.writeResults(targetDir, extraction);
+		ProcessTransformationUtil.writeResults(targetDir, extraction);
 
 		// END
 

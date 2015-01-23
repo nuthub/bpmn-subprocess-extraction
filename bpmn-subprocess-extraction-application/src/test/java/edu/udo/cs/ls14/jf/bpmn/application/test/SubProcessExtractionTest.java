@@ -7,8 +7,8 @@ import org.junit.Test;
 
 import edu.udo.cs.ls14.jf.bpmn.application.SubProcessExtraction;
 import edu.udo.cs.ls14.jf.bpmn.utils.Bpmn2ResourceSet;
-import edu.udo.cs.ls14.jf.bpmn.utils.ProcessExtractionUtil;
-import edu.udo.cs.ls14.jf.bpmntransformation.ProcessExtraction;
+import edu.udo.cs.ls14.jf.bpmn.utils.ProcessTransformationUtil;
+import edu.udo.cs.ls14.jf.bpmntransformation.ProcessTransformation;
 import edu.udo.cs.ls14.jf.registry.Registries;
 
 public class SubProcessExtractionTest {
@@ -40,7 +40,7 @@ public class SubProcessExtractionTest {
 				.copy(Bpmn2ResourceSet.getInstance().loadDefinitions(
 						getClass().getResource(path).getPath() + resourceName2));
 		long start = System.currentTimeMillis();
-		ProcessExtraction extraction = app
+		ProcessTransformation extraction = app
 				.runSubProcessExtraction(defs1, defs2);
 		long end = System.currentTimeMillis();
 		// Write out
@@ -54,7 +54,7 @@ public class SubProcessExtractionTest {
 		// + ProcessExtractionUtil.toXml(extraction));
 		// ProcessExtractionUtil.writeToFile("/tmp/results/" + key
 		// + "/extraction.xml", extraction);
-		ProcessExtractionUtil.writeResults(TARGETDIR + "/" + path, extraction);
+		ProcessTransformationUtil.writeResults(TARGETDIR + "/" + path, extraction);
 		System.out.println("Took " + (end - start)
 				+ "ms for the extraction process");
 

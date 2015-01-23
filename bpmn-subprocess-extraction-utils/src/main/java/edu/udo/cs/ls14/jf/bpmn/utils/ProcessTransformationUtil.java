@@ -12,13 +12,13 @@ import org.eclipse.emf.ecore.resource.Resource;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import edu.udo.cs.ls14.jf.bpmntransformation.ProcessExtraction;
+import edu.udo.cs.ls14.jf.bpmntransformation.ProcessTransformation;
 import edu.udo.cs.ls14.jf.bpmntransformation.util.BpmnTransformationResourceFactoryImpl;
 
-public class ProcessExtractionUtil {
+public class ProcessTransformationUtil {
 
 	private static final Logger LOG = LoggerFactory
-			.getLogger(ProcessExtractionUtil.class);
+			.getLogger(ProcessTransformationUtil.class);
 
 	/**
 	 * Also fixes the import locations
@@ -28,7 +28,7 @@ public class ProcessExtractionUtil {
 	 * @throws IOException
 	 */
 	public static void writeResults(String targetDir,
-			ProcessExtraction extraction) throws Exception {
+			ProcessTransformation extraction) throws Exception {
 		writeResults(targetDir, extraction.getResults());
 	}
 
@@ -81,7 +81,7 @@ public class ProcessExtractionUtil {
 	 * @return
 	 * @throws Exception
 	 */
-	public static String toXml(ProcessExtraction extraction) throws Exception {
+	public static String toXml(ProcessTransformation extraction) throws Exception {
 		return EObjectXmlConverter
 				.eObject2Xml("bpmntransformation", extraction);
 	}
@@ -93,7 +93,7 @@ public class ProcessExtractionUtil {
 	 * @return
 	 * @throws Exception
 	 */
-	public static void writeToFile(String filename, ProcessExtraction extraction)
+	public static void writeToFile(String filename, ProcessTransformation extraction)
 			throws IOException {
 		Resource res = new BpmnTransformationResourceFactoryImpl()
 				.createResource(URI.createFileURI(filename));

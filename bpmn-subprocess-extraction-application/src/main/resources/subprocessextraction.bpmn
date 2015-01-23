@@ -26,7 +26,7 @@
     </bpmn2:parallelGateway>
     <bpmn2:sequenceFlow id="SequenceFlow_2" name="" sourceRef="ParallelGateway_1" targetRef="CallActivity_1"/>
     <bpmn2:sequenceFlow id="SequenceFlow_3" name="" sourceRef="ParallelGateway_1" targetRef="CallActivity_2"/>
-    <bpmn2:callActivity id="Task_2" name="Transform Models" calledElement="processextraction">
+    <bpmn2:callActivity id="Task_2" name="Transform Models" calledElement="processtransformation">
       <bpmn2:extensionElements>
         <camunda:in source="matching" target="matching"/>
         <camunda:out source="extraction" target="extraction"/>
