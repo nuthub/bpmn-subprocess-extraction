@@ -4,6 +4,7 @@ package edu.udo.cs.ls14.jf.bpmnanalysis;
 
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EDataType;
 import org.eclipse.emf.ecore.EEnum;
 import org.eclipse.emf.ecore.EOperation;
 import org.eclipse.emf.ecore.EPackage;
@@ -595,6 +596,17 @@ public interface BpmnAnalysisPackage extends EPackage {
 
 
 	/**
+	 * The meta object id for the '<em>Exception</em>' data type.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see java.lang.Exception
+	 * @see edu.udo.cs.ls14.jf.bpmnanalysis.impl.BpmnAnalysisPackageImpl#getException()
+	 * @generated
+	 */
+	int EXCEPTION = 13;
+
+
+	/**
 	 * Returns the meta object for class '{@link edu.udo.cs.ls14.jf.bpmnanalysis.ProcessAnalysis <em>Process Analysis</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -959,6 +971,17 @@ public interface BpmnAnalysisPackage extends EPackage {
 	EEnum getBehavioralRelationType();
 
 	/**
+	 * Returns the meta object for data type '{@link java.lang.Exception <em>Exception</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for data type '<em>Exception</em>'.
+	 * @see java.lang.Exception
+	 * @model instanceClass="java.lang.Exception"
+	 * @generated
+	 */
+	EDataType getException();
+
+	/**
 	 * Returns the factory that creates the instances of the model.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1278,6 +1301,16 @@ public interface BpmnAnalysisPackage extends EPackage {
 		 * @generated
 		 */
 		EEnum BEHAVIORAL_RELATION_TYPE = eINSTANCE.getBehavioralRelationType();
+
+		/**
+		 * The meta object literal for the '<em>Exception</em>' data type.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see java.lang.Exception
+		 * @see edu.udo.cs.ls14.jf.bpmnanalysis.impl.BpmnAnalysisPackageImpl#getException()
+		 * @generated
+		 */
+		EDataType EXCEPTION = eINSTANCE.getException();
 
 	}
 

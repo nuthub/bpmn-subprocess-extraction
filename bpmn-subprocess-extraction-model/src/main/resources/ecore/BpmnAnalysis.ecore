@@ -61,8 +61,9 @@
         eType="#//Trace" containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="ProcessAnalyzer" abstract="true" interface="true">
-    <eOperations name="analyze" eType="#//ProcessAnalysis">
+    <eOperations name="analyze" eType="#//ProcessAnalysis" eExceptions="#//Exception">
       <eParameters name="definitions" eType="ecore:EClass BPMN20.ecore#//Definitions"/>
     </eOperations>
   </eClassifiers>
+  <eClassifiers xsi:type="ecore:EDataType" name="Exception" instanceClassName="java.lang.Exception"/>
 </ecore:EPackage>

@@ -88,6 +88,8 @@ public class BpmnAnalysisFactoryImpl extends EFactoryImpl implements BpmnAnalysi
 		switch (eDataType.getClassifierID()) {
 			case BpmnAnalysisPackage.BEHAVIORAL_RELATION_TYPE:
 				return createBehavioralRelationTypeFromString(eDataType, initialValue);
+			case BpmnAnalysisPackage.EXCEPTION:
+				return createExceptionFromString(eDataType, initialValue);
 			default:
 				throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
 		}
@@ -103,6 +105,8 @@ public class BpmnAnalysisFactoryImpl extends EFactoryImpl implements BpmnAnalysi
 		switch (eDataType.getClassifierID()) {
 			case BpmnAnalysisPackage.BEHAVIORAL_RELATION_TYPE:
 				return convertBehavioralRelationTypeToString(eDataType, instanceValue);
+			case BpmnAnalysisPackage.EXCEPTION:
+				return convertExceptionToString(eDataType, instanceValue);
 			default:
 				throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
 		}
@@ -226,6 +230,24 @@ public class BpmnAnalysisFactoryImpl extends EFactoryImpl implements BpmnAnalysi
 	 */
 	public String convertBehavioralRelationTypeToString(EDataType eDataType, Object instanceValue) {
 		return instanceValue == null ? null : instanceValue.toString();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public Exception createExceptionFromString(EDataType eDataType, String initialValue) {
+		return (Exception)super.createFromString(eDataType, initialValue);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public String convertExceptionToString(EDataType eDataType, Object instanceValue) {
+		return super.convertToString(eDataType, instanceValue);
 	}
 
 	/**

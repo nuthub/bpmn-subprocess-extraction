@@ -30,7 +30,7 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="better" eType="ecore:EClass BpmnAnalysis.ecore#//Fragment"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="ProcessMatcher" abstract="true" interface="true">
-    <eOperations name="match" eType="#//ProcessMatching">
+    <eOperations name="match" eType="#//ProcessMatching" eExceptions="ecore:EDataType BpmnAnalysis.ecore#//Exception">
       <eParameters name="analysis1" eType="ecore:EClass BpmnAnalysis.ecore#//ProcessAnalysis"/>
       <eParameters name="analysis2" eType="ecore:EClass BpmnAnalysis.ecore#//ProcessAnalysis"/>
     </eOperations>

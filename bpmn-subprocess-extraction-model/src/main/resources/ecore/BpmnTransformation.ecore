@@ -15,7 +15,7 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="ProcessTransformer" abstract="true"
       interface="true">
-    <eOperations name="transform" eType="#//ProcessExtraction">
+    <eOperations name="transform" eType="#//ProcessExtraction" eExceptions="ecore:EDataType BpmnAnalysis.ecore#//Exception">
       <eParameters name="matching" eType="ecore:EClass BpmnMatching.ecore#//ProcessMatching"/>
     </eOperations>
   </eClassifiers>

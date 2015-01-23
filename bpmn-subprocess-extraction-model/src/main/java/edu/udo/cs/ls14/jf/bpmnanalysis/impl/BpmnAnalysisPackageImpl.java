@@ -22,6 +22,7 @@ import org.eclipse.dd.dc.DcPackage;
 import org.eclipse.dd.di.DiPackage;
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EDataType;
 import org.eclipse.emf.ecore.EEnum;
 import org.eclipse.emf.ecore.EOperation;
 import org.eclipse.emf.ecore.EPackage;
@@ -126,6 +127,13 @@ public class BpmnAnalysisPackageImpl extends EPackageImpl implements BpmnAnalysi
 	 * @generated
 	 */
 	private EEnum behavioralRelationTypeEEnum = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EDataType exceptionEDataType = null;
 
 	/**
 	 * Creates an instance of the model <b>Package</b>, registered with
@@ -506,6 +514,15 @@ public class BpmnAnalysisPackageImpl extends EPackageImpl implements BpmnAnalysi
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EDataType getException() {
+		return exceptionEDataType;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public BpmnAnalysisFactory getBpmnAnalysisFactory() {
 		return (BpmnAnalysisFactory)getEFactoryInstance();
 	}
@@ -576,6 +593,9 @@ public class BpmnAnalysisPackageImpl extends EPackageImpl implements BpmnAnalysi
 
 		// Create enums
 		behavioralRelationTypeEEnum = createEEnum(BEHAVIORAL_RELATION_TYPE);
+
+		// Create data types
+		exceptionEDataType = createEDataType(EXCEPTION);
 	}
 
 	/**
@@ -663,6 +683,7 @@ public class BpmnAnalysisPackageImpl extends EPackageImpl implements BpmnAnalysi
 
 		EOperation op = initEOperation(getProcessAnalyzer__Analyze__Definitions(), this.getProcessAnalysis(), "analyze", 0, 1, IS_UNIQUE, IS_ORDERED);
 		addEParameter(op, theBpmn2Package.getDefinitions(), "definitions", 0, 1, IS_UNIQUE, IS_ORDERED);
+		addEException(op, this.getException());
 
 		// Initialize enums and add enum literals
 		initEEnum(behavioralRelationTypeEEnum, BehavioralRelationType.class, "BehavioralRelationType");
@@ -670,6 +691,9 @@ public class BpmnAnalysisPackageImpl extends EPackageImpl implements BpmnAnalysi
 		addEEnumLiteral(behavioralRelationTypeEEnum, BehavioralRelationType.DIRECT_SUCCESSOR);
 		addEEnumLiteral(behavioralRelationTypeEEnum, BehavioralRelationType.DIRECT_PREDECESSOR);
 		addEEnumLiteral(behavioralRelationTypeEEnum, BehavioralRelationType.PARALLEL);
+
+		// Initialize data types
+		initEDataType(exceptionEDataType, Exception.class, "Exception", IS_SERIALIZABLE, !IS_GENERATED_INSTANCE_CLASS);
 
 		// Create resource
 		createResource(eNS_URI);

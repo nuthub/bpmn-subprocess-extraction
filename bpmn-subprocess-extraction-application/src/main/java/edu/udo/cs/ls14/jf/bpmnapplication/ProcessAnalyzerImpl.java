@@ -38,7 +38,7 @@ public class ProcessAnalyzerImpl implements ProcessAnalyzer {
 		bpmn2ptnet = new Bpmn2PtnetConverter();
 		reachabilityGraph = new ReachabilityGraph();
 		pstBuilder = new PSTBuilder();
-		
+
 		Definitions defs = EcoreUtil.copy(definitions);
 		defs.setTargetNamespace("http://" + UUID.randomUUID().toString());
 		Process process = DefinitionsUtil.getProcess(defs);
@@ -50,7 +50,7 @@ public class ProcessAnalyzerImpl implements ProcessAnalyzer {
 		analysis.getResults().put(ProcessAnalysisUtil.PROCESSTRUCTURETREE,
 				pstBuilder.getTree(defs));
 
-		// create petri net		
+		// create petri net
 		PetriNetHLAPI ptnet = bpmn2ptnet.convertToPetriNet(process);
 
 		// create reachabilitygraph
@@ -59,7 +59,8 @@ public class ProcessAnalyzerImpl implements ProcessAnalyzer {
 		// create traces
 		TraceProfile traceProfile = Tracer.getTraceProfile(process,
 				reachabilityGraph);
-		analysis.getResults().put(ProcessAnalysisUtil.TRACEPROFILE, traceProfile);
+		analysis.getResults().put(ProcessAnalysisUtil.TRACEPROFILE,
+				traceProfile);
 
 		// create behavioral profile
 		BehavioralProfile behavioralProfile = BehavioralProfiler
@@ -89,8 +90,7 @@ public class ProcessAnalyzerImpl implements ProcessAnalyzer {
 	}
 
 	@Override
-	public ProcessAnalysis analyze(Definitions definitions)
-			throws Exception {
+	public ProcessAnalysis analyze(Definitions definitions) throws Exception {
 		bpmn2ptnet = new Bpmn2PtnetConverter();
 		reachabilityGraph = new ReachabilityGraph();
 		pstBuilder = new PSTBuilder();
@@ -116,7 +116,8 @@ public class ProcessAnalyzerImpl implements ProcessAnalyzer {
 		BehavioralProfile behavioralProfile = BehavioralProfiler
 				.generateProfile(process, traceProfile);
 		// Put results
-		analysis.getResults().put(ProcessAnalysisUtil.TRACEPROFILE, traceProfile);
+		analysis.getResults().put(ProcessAnalysisUtil.TRACEPROFILE,
+				traceProfile);
 		analysis.getResults().put(ProcessAnalysisUtil.BEHAVIORALPROFILE,
 				behavioralProfile);
 
@@ -127,4 +128,5 @@ public class ProcessAnalyzerImpl implements ProcessAnalyzer {
 		// done
 		return analysis;
 	}
+
 }

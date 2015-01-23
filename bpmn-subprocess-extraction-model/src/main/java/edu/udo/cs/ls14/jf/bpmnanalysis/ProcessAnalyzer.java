@@ -20,9 +20,9 @@ public interface ProcessAnalyzer extends EObject {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @model
+	 * @model exceptions="edu.udo.cs.ls14.jf.bpmnanalysis.Exception"
 	 * @generated
 	 */
-	ProcessAnalysis analyze(Definitions definitions);
+	ProcessAnalysis analyze(Definitions definitions) throws Exception;
 
 } // ProcessAnalyzer
