@@ -118,6 +118,10 @@ public class BpmnAnalysisAdapterFactory extends AdapterFactoryImpl {
 				return createTraceProfileAdapter();
 			}
 			@Override
+			public Adapter caseProcessAnalyzer(ProcessAnalyzer object) {
+				return createProcessAnalyzerAdapter();
+			}
+			@Override
 			public Adapter defaultCase(EObject object) {
 				return createEObjectAdapter();
 			}
@@ -288,6 +292,20 @@ public class BpmnAnalysisAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createTraceProfileAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link edu.udo.cs.ls14.jf.bpmnanalysis.ProcessAnalyzer <em>Process Analyzer</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see edu.udo.cs.ls14.jf.bpmnanalysis.ProcessAnalyzer
+	 * @generated
+	 */
+	public Adapter createProcessAnalyzerAdapter() {
 		return null;
 	}
 

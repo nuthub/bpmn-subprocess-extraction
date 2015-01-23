@@ -11,6 +11,7 @@ import edu.udo.cs.ls14.jf.bpmnanalysis.ConditionalProfile;
 import edu.udo.cs.ls14.jf.bpmnanalysis.Fragment;
 import edu.udo.cs.ls14.jf.bpmnanalysis.ProcessAnalysis;
 import edu.udo.cs.ls14.jf.bpmnanalysis.ProcessAnalysisResult;
+import edu.udo.cs.ls14.jf.bpmnanalysis.ProcessAnalyzer;
 import edu.udo.cs.ls14.jf.bpmnanalysis.ProcessStructureTree;
 import edu.udo.cs.ls14.jf.bpmnanalysis.Trace;
 import edu.udo.cs.ls14.jf.bpmnanalysis.TraceProfile;
@@ -22,6 +23,7 @@ import org.eclipse.dd.di.DiPackage;
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EEnum;
+import org.eclipse.emf.ecore.EOperation;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.impl.EPackageImpl;
@@ -110,6 +112,13 @@ public class BpmnAnalysisPackageImpl extends EPackageImpl implements BpmnAnalysi
 	 * @generated
 	 */
 	private EClass traceProfileEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass processAnalyzerEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -470,6 +479,24 @@ public class BpmnAnalysisPackageImpl extends EPackageImpl implements BpmnAnalysi
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EClass getProcessAnalyzer() {
+		return processAnalyzerEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EOperation getProcessAnalyzer__Analyze__Definitions() {
+		return processAnalyzerEClass.getEOperations().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EEnum getBehavioralRelationType() {
 		return behavioralRelationTypeEEnum;
 	}
@@ -543,6 +570,9 @@ public class BpmnAnalysisPackageImpl extends EPackageImpl implements BpmnAnalysi
 
 		traceProfileEClass = createEClass(TRACE_PROFILE);
 		createEReference(traceProfileEClass, TRACE_PROFILE__TRACES);
+
+		processAnalyzerEClass = createEClass(PROCESS_ANALYZER);
+		createEOperation(processAnalyzerEClass, PROCESS_ANALYZER___ANALYZE__DEFINITIONS);
 
 		// Create enums
 		behavioralRelationTypeEEnum = createEEnum(BEHAVIORAL_RELATION_TYPE);
@@ -628,6 +658,11 @@ public class BpmnAnalysisPackageImpl extends EPackageImpl implements BpmnAnalysi
 
 		initEClass(traceProfileEClass, TraceProfile.class, "TraceProfile", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getTraceProfile_Traces(), this.getTrace(), null, "traces", null, 0, -1, TraceProfile.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(processAnalyzerEClass, ProcessAnalyzer.class, "ProcessAnalyzer", IS_ABSTRACT, IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
+		EOperation op = initEOperation(getProcessAnalyzer__Analyze__Definitions(), this.getProcessAnalysis(), "analyze", 0, 1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, theBpmn2Package.getDefinitions(), "definitions", 0, 1, IS_UNIQUE, IS_ORDERED);
 
 		// Initialize enums and add enum literals
 		initEEnum(behavioralRelationTypeEEnum, BehavioralRelationType.class, "BehavioralRelationType");

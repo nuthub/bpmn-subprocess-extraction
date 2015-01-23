@@ -5,6 +5,7 @@ package edu.udo.cs.ls14.jf.bpmnanalysis;
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EEnum;
+import org.eclipse.emf.ecore.EOperation;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
 
@@ -546,6 +547,43 @@ public interface BpmnAnalysisPackage extends EPackage {
 	int TRACE_PROFILE_OPERATION_COUNT = PROCESS_ANALYSIS_RESULT_OPERATION_COUNT + 0;
 
 	/**
+	 * The meta object id for the '{@link edu.udo.cs.ls14.jf.bpmnanalysis.ProcessAnalyzer <em>Process Analyzer</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see edu.udo.cs.ls14.jf.bpmnanalysis.ProcessAnalyzer
+	 * @see edu.udo.cs.ls14.jf.bpmnanalysis.impl.BpmnAnalysisPackageImpl#getProcessAnalyzer()
+	 * @generated
+	 */
+	int PROCESS_ANALYZER = 11;
+
+	/**
+	 * The number of structural features of the '<em>Process Analyzer</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PROCESS_ANALYZER_FEATURE_COUNT = 0;
+
+	/**
+	 * The operation id for the '<em>Analyze</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PROCESS_ANALYZER___ANALYZE__DEFINITIONS = 0;
+
+	/**
+	 * The number of operations of the '<em>Process Analyzer</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PROCESS_ANALYZER_OPERATION_COUNT = 1;
+
+	/**
 	 * The meta object id for the '{@link edu.udo.cs.ls14.jf.bpmnanalysis.BehavioralRelationType <em>Behavioral Relation Type</em>}' enum.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -553,7 +591,7 @@ public interface BpmnAnalysisPackage extends EPackage {
 	 * @see edu.udo.cs.ls14.jf.bpmnanalysis.impl.BpmnAnalysisPackageImpl#getBehavioralRelationType()
 	 * @generated
 	 */
-	int BEHAVIORAL_RELATION_TYPE = 11;
+	int BEHAVIORAL_RELATION_TYPE = 12;
 
 
 	/**
@@ -891,6 +929,26 @@ public interface BpmnAnalysisPackage extends EPackage {
 	EReference getTraceProfile_Traces();
 
 	/**
+	 * Returns the meta object for class '{@link edu.udo.cs.ls14.jf.bpmnanalysis.ProcessAnalyzer <em>Process Analyzer</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Process Analyzer</em>'.
+	 * @see edu.udo.cs.ls14.jf.bpmnanalysis.ProcessAnalyzer
+	 * @generated
+	 */
+	EClass getProcessAnalyzer();
+
+	/**
+	 * Returns the meta object for the '{@link edu.udo.cs.ls14.jf.bpmnanalysis.ProcessAnalyzer#analyze(org.eclipse.bpmn2.Definitions) <em>Analyze</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the '<em>Analyze</em>' operation.
+	 * @see edu.udo.cs.ls14.jf.bpmnanalysis.ProcessAnalyzer#analyze(org.eclipse.bpmn2.Definitions)
+	 * @generated
+	 */
+	EOperation getProcessAnalyzer__Analyze__Definitions();
+
+	/**
 	 * Returns the meta object for enum '{@link edu.udo.cs.ls14.jf.bpmnanalysis.BehavioralRelationType <em>Behavioral Relation Type</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1192,6 +1250,24 @@ public interface BpmnAnalysisPackage extends EPackage {
 		 * @generated
 		 */
 		EReference TRACE_PROFILE__TRACES = eINSTANCE.getTraceProfile_Traces();
+
+		/**
+		 * The meta object literal for the '{@link edu.udo.cs.ls14.jf.bpmnanalysis.ProcessAnalyzer <em>Process Analyzer</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see edu.udo.cs.ls14.jf.bpmnanalysis.ProcessAnalyzer
+		 * @see edu.udo.cs.ls14.jf.bpmnanalysis.impl.BpmnAnalysisPackageImpl#getProcessAnalyzer()
+		 * @generated
+		 */
+		EClass PROCESS_ANALYZER = eINSTANCE.getProcessAnalyzer();
+
+		/**
+		 * The meta object literal for the '<em><b>Analyze</b></em>' operation.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EOperation PROCESS_ANALYZER___ANALYZE__DEFINITIONS = eINSTANCE.getProcessAnalyzer__Analyze__Definitions();
 
 		/**
 		 * The meta object literal for the '{@link edu.udo.cs.ls14.jf.bpmnanalysis.BehavioralRelationType <em>Behavioral Relation Type</em>}' enum.

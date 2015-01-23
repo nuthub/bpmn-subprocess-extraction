@@ -142,6 +142,12 @@ public class BpmnAnalysisSwitch<T> extends Switch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
+			case BpmnAnalysisPackage.PROCESS_ANALYZER: {
+				ProcessAnalyzer processAnalyzer = (ProcessAnalyzer)theEObject;
+				T result = caseProcessAnalyzer(processAnalyzer);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
 			default: return defaultCase(theEObject);
 		}
 	}
@@ -308,6 +314,21 @@ public class BpmnAnalysisSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseTraceProfile(TraceProfile object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Process Analyzer</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Process Analyzer</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseProcessAnalyzer(ProcessAnalyzer object) {
 		return null;
 	}
 
