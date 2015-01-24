@@ -12,5 +12,17 @@
   		<groupId>edu.udo.cs.ls14.jf</groupId>
   		<artifactId>bpmntransformation</artifactId>
   	</dependency>
+  	<dependency>
+  		<groupId>edu.udo.cs.ls14.jf</groupId>
+  		<artifactId>bpmnmatching-services</artifactId>
+  		<scope>test</scope>
+  		<classifier>classes</classifier>
+  	</dependency>
+  	<dependency>
+  		<groupId>edu.udo.cs.ls14.jf</groupId>
+  		<artifactId>bpmnanalysis-services</artifactId>
+  		<scope>test</scope>
+  		<classifier>classes</classifier>
+  	</dependency>
   </dependencies>
 </project>

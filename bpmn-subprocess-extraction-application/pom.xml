@@ -23,11 +23,7 @@
 			<artifactId>groovy-all</artifactId>
 			<version>2.3.7</version>
 		</dependency>
-		<dependency>
-			<groupId>edu.udo.cs.ls14.jf</groupId>
-			<artifactId>bpmn-subprocess-extraction-utils</artifactId>
-		</dependency>
-		<dependency>
+<!--	<dependency>
 			<groupId>edu.udo.cs.ls14.jf</groupId>
 			<artifactId>bpmnanalysis-behavioralprofile</artifactId>
 		</dependency>
@@ -39,7 +35,7 @@
 			<groupId>edu.udo.cs.ls14.jf</groupId>
 			<artifactId>bpmnanalysis-pst</artifactId>
 		</dependency>
-		<dependency>
+ 		<dependency>
 			<groupId>edu.udo.cs.ls14.jf</groupId>
 			<artifactId>bpmnmatching-nodematching</artifactId>
 		</dependency>
@@ -51,6 +47,22 @@
 			<groupId>edu.udo.cs.ls14.jf</groupId>
 			<artifactId>bpmntransformation</artifactId>
 		</dependency>
+-->
+ 	<dependency>
+ 		<groupId>edu.udo.cs.ls14.jf</groupId>
+ 		<artifactId>bpmnanalysis-services</artifactId>
+ 		<classifier>classes</classifier>
+ 	</dependency>
+ 	<dependency>
+ 		<groupId>edu.udo.cs.ls14.jf</groupId>
+ 		<artifactId>bpmnmatching-services</artifactId>
+ 		<classifier>classes</classifier>
+ 	</dependency>
+ 	<dependency>
+ 		<groupId>edu.udo.cs.ls14.jf</groupId>
+ 		<artifactId>bpmntransformation-services</artifactId>
+ 		<classifier>classes</classifier>
+ 	</dependency>
 	</dependencies>
 	<build>
 		<plugins>

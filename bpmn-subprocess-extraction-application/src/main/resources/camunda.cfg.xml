@@ -3,7 +3,7 @@
 	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
 
 	<bean id="processEngineConfiguration"
-		class="edu.udo.cs.ls14.jf.bpmn.cfg.MyProcessEngineConfiguration">
+		class="edu.udo.cs.ls14.jf.bpmn.app.MyProcessEngineConfiguration">
 
  		<property name="jdbcUrl" value="jdbc:h2:mem:camunda;DB_CLOSE_DELAY=1000" />
 		<property name="jdbcDriver" value="org.h2.Driver" />

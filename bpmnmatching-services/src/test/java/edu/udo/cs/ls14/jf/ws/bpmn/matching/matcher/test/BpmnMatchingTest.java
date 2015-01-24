@@ -17,8 +17,8 @@ import org.junit.Test;
 
 import edu.udo.cs.ls14.jf.bpmn.utils.Bpmn2ResourceSet;
 import edu.udo.cs.ls14.jf.bpmnanalysis.ProcessAnalysis;
-import edu.udo.cs.ls14.jf.bpmnapplication.ProcessAnalyzer;
-import edu.udo.cs.ls14.jf.bpmnapplication.ProcessAnalyzerImpl;
+import edu.udo.cs.ls14.jf.bpmn.analysis.ProcessAnalyzer;
+import edu.udo.cs.ls14.jf.bpmn.analysis.ProcessAnalyzerImpl;
 import edu.udo.cs.ls14.jf.bpmnmatching.ProcessMatching;
 import edu.udo.cs.ls14.jf.registry.Registries;
 import edu.udo.cs.ls14.jf.ws.bpmn.matching.fragmentpairfilterbehavior.FragmentPairFilterBehaviorImpl;
