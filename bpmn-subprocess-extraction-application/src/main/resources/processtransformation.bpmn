@@ -5,17 +5,17 @@
       <bpmn2:outgoing>SequenceFlow_1</bpmn2:outgoing>
     </bpmn2:startEvent>
     <bpmn2:sequenceFlow id="SequenceFlow_1" name="" sourceRef="StartEvent_1" targetRef="ServiceTask_2"/>
-    <bpmn2:serviceTask id="ServiceTask_2" camunda:class="edu.udo.cs.ls14.jf.bpmn.extraction.delegates.FragmentPairRankerSizeDelegate" name="Determine order in fragment pairs">
+    <bpmn2:serviceTask id="ServiceTask_2" camunda:class="edu.udo.cs.ls14.jf.bpmn.app.delegates.transformation.FragmentPairRankerSizeDelegate" name="Determine order in fragment pairs">
       <bpmn2:incoming>SequenceFlow_1</bpmn2:incoming>
       <bpmn2:outgoing>SequenceFlow_3</bpmn2:outgoing>
     </bpmn2:serviceTask>
     <bpmn2:sequenceFlow id="SequenceFlow_3" name="" sourceRef="ServiceTask_2" targetRef="ServiceTask_3"/>
-    <bpmn2:serviceTask id="ServiceTask_3" camunda:class="edu.udo.cs.ls14.jf.bpmn.extraction.delegates.CoordinateCalculatorDelegate" name="Compute Coords of fragments">
+    <bpmn2:serviceTask id="ServiceTask_3" camunda:class="edu.udo.cs.ls14.jf.bpmn.app.delegates.transformation.CoordinateCalculatorDelegate" name="Compute Coords of fragments">
       <bpmn2:incoming>SequenceFlow_3</bpmn2:incoming>
       <bpmn2:outgoing>SequenceFlow_4</bpmn2:outgoing>
     </bpmn2:serviceTask>
     <bpmn2:sequenceFlow id="SequenceFlow_4" name="" sourceRef="ServiceTask_3" targetRef="ServiceTask_4"/>
-    <bpmn2:serviceTask id="Task_1" camunda:class="edu.udo.cs.ls14.jf.bpmn.extraction.delegates.ProcessTransformerDelegate" name="Extact SubProcesses">
+    <bpmn2:serviceTask id="Task_1" camunda:class="edu.udo.cs.ls14.jf.bpmn.app.delegates.transformation.ProcessTransformerDelegate" name="Extact SubProcesses">
       <bpmn2:incoming>SequenceFlow_7</bpmn2:incoming>
       <bpmn2:outgoing>SequenceFlow_6</bpmn2:outgoing>
     </bpmn2:serviceTask>
@@ -23,7 +23,7 @@
     <bpmn2:endEvent id="EndEvent_1">
       <bpmn2:incoming>SequenceFlow_6</bpmn2:incoming>
     </bpmn2:endEvent>
-    <bpmn2:serviceTask id="ServiceTask_4" camunda:class="edu.udo.cs.ls14.jf.bpmn.extraction.delegates.LabelGeneratorDelegate" name="Generate Labels of fragments">
+    <bpmn2:serviceTask id="ServiceTask_4" camunda:class="edu.udo.cs.ls14.jf.bpmn.app.delegates.transformation.LabelGeneratorDelegate" name="Generate Labels of fragments">
       <bpmn2:incoming>SequenceFlow_4</bpmn2:incoming>
       <bpmn2:outgoing>SequenceFlow_7</bpmn2:outgoing>
     </bpmn2:serviceTask>

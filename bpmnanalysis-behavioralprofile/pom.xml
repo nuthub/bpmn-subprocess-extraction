@@ -20,7 +20,6 @@
 			<groupId>fr.lip6.move.pnml</groupId>
 			<artifactId>fr.lip6.move.pnml.framework.utils</artifactId>
 		</dependency>
-		<!-- declare the PNML Framework Petri Net libraries. See below -->
 		<dependency>
 			<groupId>fr.lip6.move.pnml</groupId>
 			<artifactId>fr.lip6.move.pnml.framework.coremodel</artifactId>
@@ -29,24 +28,9 @@
 			<groupId>fr.lip6.move.pnml</groupId>
 			<artifactId>fr.lip6.move.pnml.framework.ptnet</artifactId>
 		</dependency>
-		<!-- <dependency> <groupId>fr.lip6.move.pnml</groupId> <artifactId>fr.lip6.move.pnml.framework.symmetricnet</artifactId> 
-			<version>${pnml.version}</version> </dependency> <dependency> <groupId>fr.lip6.move.pnml</groupId> 
-			<artifactId>fr.lip6.move.pnml.framework.hlpn</artifactId> <version>${pnml.version}</version> 
-			</dependency> <dependency> <groupId>fr.lip6.move.pnml</groupId> <artifactId>fr.lip6.move.pnml.framework.pthlpng</artifactId> 
-			<version>${pnml.version}</version> </dependency> -->
-		<dependency>
-			<groupId>org.javatuples</groupId>
-			<artifactId>javatuples</artifactId>
-			<scope>compile</scope>
-		</dependency>
-		<dependency>
-			<groupId>org.apache.commons</groupId>
-			<artifactId>commons-lang3</artifactId>
-		</dependency>
 		<dependency>
 			<groupId>net.sf.jung</groupId>
 			<artifactId>jung-graph-impl</artifactId>
 		</dependency>
-		<!-- TODO: just needed for IOUtils.invokeDot(...) -->
 	</dependencies>
 </project>

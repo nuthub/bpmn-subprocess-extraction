@@ -11,18 +11,12 @@
 	<dependencies>
 		<dependency>
 			<groupId>edu.udo.cs.ls14.jf</groupId>
-			<artifactId>bpmnmatching-fragmentmatching</artifactId>
+			<artifactId>bpmnmatching-matcher</artifactId>
 		</dependency>
 		<dependency>
 			<groupId>edu.udo.cs.ls14.jf</groupId>
-			<artifactId>bpmnmatching-nodematching</artifactId>
-		</dependency>
-
-		<dependency>
-			<groupId>edu.udo.cs.ls14.jf</groupId>
-			<artifactId>bpmnanalysis-services</artifactId>
+			<artifactId>bpmnanalysis-analyzer</artifactId>
 			<scope>test</scope>
-			<classifier>classes</classifier>
 		</dependency>
 	</dependencies>
 </project>

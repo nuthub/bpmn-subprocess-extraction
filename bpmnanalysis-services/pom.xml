@@ -11,15 +11,7 @@
 	<dependencies>
 		<dependency>
 			<groupId>edu.udo.cs.ls14.jf</groupId>
-			<artifactId>bpmnanalysis-pst</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>edu.udo.cs.ls14.jf</groupId>
-			<artifactId>bpmnanalysis-behavioralprofile</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>edu.udo.cs.ls14.jf</groupId>
-			<artifactId>bpmnanalysis-conditionalprofile</artifactId>
+			<artifactId>bpmnanalysis-analyzer</artifactId>
 		</dependency>
 	</dependencies>
 </project>

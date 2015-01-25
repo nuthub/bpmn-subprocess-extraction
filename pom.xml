@@ -16,9 +16,12 @@
 		<module>bpmnmatching-fragmentmatching</module>
 		<module>bpmnmatching-nodematching</module>
 		<module>bpmnmatching-services</module>
-		<module>bpmntransformation</module>
+		<module>bpmntransformation-operations</module>
 		<module>bpmntransformation-services</module>
 		<module>word-utils</module>
+		<module>bpmnanalysis-analyzer</module>
+		<module>bpmnmatching-matcher</module>
+		<module>bpmntransformation-transformer</module>
 	</modules>
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -87,7 +90,7 @@
 			</dependency>
 			<dependency>
 				<groupId>edu.udo.cs.ls14.jf</groupId>
-				<artifactId>bpmntransformation</artifactId>
+				<artifactId>bpmntransformation-operations</artifactId>
 				<version>0.0.1-SNAPSHOT</version>
 			</dependency>
 			<dependency>
@@ -105,7 +108,7 @@
 				<groupId>edu.udo.cs.ls14.jf</groupId>
 				<artifactId>bpmnanalysis-services</artifactId>
 				<version>0.0.1-SNAPSHOT</version>
-				<classifier>classes</classifier>
+				<!-- <classifier>classes</classifier> -->
 			</dependency>
 			<dependency>
 				<groupId>edu.udo.cs.ls14.jf</groupId>
@@ -117,7 +120,7 @@
 				<groupId>edu.udo.cs.ls14.jf</groupId>
 				<artifactId>bpmnmatching-services</artifactId>
 				<version>0.0.1-SNAPSHOT</version>
-				<classifier>classes</classifier>
+				<!-- <classifier>classes</classifier> -->
 			</dependency>
 			<dependency>
 				<groupId>edu.udo.cs.ls14.jf</groupId>
@@ -129,7 +132,7 @@
 				<groupId>edu.udo.cs.ls14.jf</groupId>
 				<artifactId>bpmntransformation-services</artifactId>
 				<version>0.0.1-SNAPSHOT</version>
-				<classifier>classes</classifier>
+				<!-- <classifier>classes</classifier> -->
 			</dependency>
 			<dependency>
 				<groupId>org.eclipse</groupId>
@@ -224,6 +227,21 @@
 				<artifactId>org.eclipse.emf.henshin.model</artifactId>
 				<version>${henshin.version}</version>
 			</dependency>
+			<dependency>
+				<groupId>edu.udo.cs.ls14.jf</groupId>
+				<artifactId>bpmnanalysis-analyzer</artifactId>
+				<version>0.0.1-SNAPSHOT</version>
+			</dependency>
+			<dependency>
+				<groupId>edu.udo.cs.ls14.jf</groupId>
+				<artifactId>bpmnmatching-matcher</artifactId>
+				<version>0.0.1-SNAPSHOT</version>
+			</dependency>
+			<dependency>
+				<groupId>edu.udo.cs.ls14.jf</groupId>
+				<artifactId>bpmntransformation-transformer</artifactId>
+				<version>0.0.1-SNAPSHOT</version>
+			</dependency>
 		</dependencies>
 	</dependencyManagement>
 	<build>
@@ -234,47 +252,11 @@
 				<version>2.3</version>
 				<configuration>
 					<failOnMissingWebXml>false</failOnMissingWebXml>
-					<archiveClasses>true</archiveClasses>
+					<!-- <archiveClasses>true</archiveClasses> -->
 					<attachClasses>true</attachClasses>
 				</configuration>
 			</plugin>
 		</plugins>
-		<pluginManagement>
-			<plugins>
-				<!--This plugin's configuration is used to store Eclipse m2e settings 
-					only. It has no influence on the Maven build itself. -->
-				<plugin>
-					<groupId>org.eclipse.m2e</groupId>
-					<artifactId>lifecycle-mapping</artifactId>
-					<version>1.0.0</version>
-					<configuration>
-						<lifecycleMappingMetadata>
-							<pluginExecutions>
-								<pluginExecution>
-									<pluginExecutionFilter>
-										<groupId>
-											org.apache.maven.plugins
-										</groupId>
-										<artifactId>
-											maven-jar-plugin
-										</artifactId>
-										<versionRange>
-											[2.4,)
-										</versionRange>
-										<goals>
-											<goal>jar</goal>
-										</goals>
-									</pluginExecutionFilter>
-									<action>
-										<ignore></ignore>
-									</action>
-								</pluginExecution>
-							</pluginExecutions>
-						</lifecycleMappingMetadata>
-					</configuration>
-				</plugin>
-			</plugins>
-		</pluginManagement>
 	</build>
 	<repositories>
 		<repository>

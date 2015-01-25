@@ -8,6 +8,7 @@ import java.util.UUID;
 import org.eclipse.bpmn2.Definitions;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 
 import edu.udo.cs.ls14.jf.bpmn.utils.Bpmn2ResourceSet;
@@ -16,7 +17,7 @@ import edu.udo.cs.ls14.jf.bpmn.utils.ProcessTransformationUtil;
 import edu.udo.cs.ls14.jf.bpmntransformation.BpmnTransformationFactory;
 import edu.udo.cs.ls14.jf.bpmntransformation.ProcessTransformation;
 import edu.udo.cs.ls14.jf.registry.Registries;
-
+@Ignore
 public class ProcessTransformationPersistenceTest {
 
 	@Before

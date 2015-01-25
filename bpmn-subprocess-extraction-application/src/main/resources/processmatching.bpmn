@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <bpmn2:definitions xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:bpmn2="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:camunda="http://activiti.org/bpmn" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xsi:schemaLocation="http://www.omg.org/spec/BPMN/20100524/MODEL BPMN20.xsd" id="_-xkOMHNiEeSISMjb0Bf4ig" exporter="camunda modeler" exporterVersion="2.6.0" targetNamespace="http://activiti.org/bpmn">
   <bpmn2:process id="processmatching" isExecutable="true">
-    <bpmn2:serviceTask id="ServiceTask_3" camunda:class="edu.udo.cs.ls14.jf.bpmn.matching.delegates.FullNodeMatchingDelegate" name="create full node matching">
+    <bpmn2:serviceTask id="ServiceTask_3" camunda:class="edu.udo.cs.ls14.jf.bpmn.app.delegates.matching.FullNodeMatchingDelegate" name="create full node matching">
       <bpmn2:incoming>SequenceFlow_5</bpmn2:incoming>
       <bpmn2:outgoing>SequenceFlow_8</bpmn2:outgoing>
     </bpmn2:serviceTask>
@@ -16,7 +16,7 @@
       <bpmn2:outgoing>SequenceFlow_9</bpmn2:outgoing>
     </bpmn2:parallelGateway>
     <bpmn2:sequenceFlow id="SequenceFlow_9" name="" sourceRef="ParallelGateway_2" targetRef="IntermediateThrowEvent_1"/>
-    <bpmn2:serviceTask id="Task_1" camunda:class="edu.udo.cs.ls14.jf.bpmn.matching.delegates.NodePairFilterDelegate" name="filter inequivalent node pairs">
+    <bpmn2:serviceTask id="Task_1" camunda:class="edu.udo.cs.ls14.jf.bpmn.app.delegates.matching.NodePairFilterDelegate" name="filter inequivalent node pairs">
       <bpmn2:incoming>SequenceFlow_8</bpmn2:incoming>
       <bpmn2:outgoing>SequenceFlow_2</bpmn2:outgoing>
     </bpmn2:serviceTask>
@@ -28,7 +28,7 @@
     </bpmn2:parallelGateway>
     <bpmn2:sequenceFlow id="SequenceFlow_5" name="" sourceRef="ParallelGateway_1" targetRef="ServiceTask_3"/>
     <bpmn2:sequenceFlow id="SequenceFlow_6" name="" sourceRef="ParallelGateway_1" targetRef="ServiceTask_4"/>
-    <bpmn2:serviceTask id="ServiceTask_2" camunda:class="edu.udo.cs.ls14.jf.bpmn.matching.delegates.ProcessMatchingFactoryDelegate" name="Create Matching Object">
+    <bpmn2:serviceTask id="ServiceTask_2" camunda:class="edu.udo.cs.ls14.jf.bpmn.app.delegates.matching.ProcessMatchingFactoryDelegate" name="Create Matching Object">
       <bpmn2:incoming>SequenceFlow_1</bpmn2:incoming>
       <bpmn2:outgoing>SequenceFlow_4</bpmn2:outgoing>
     </bpmn2:serviceTask>
@@ -40,22 +40,22 @@
     <bpmn2:endEvent id="EndEvent_1">
       <bpmn2:incoming>SequenceFlow_14</bpmn2:incoming>
     </bpmn2:endEvent>
-    <bpmn2:serviceTask id="Task_7" camunda:class="edu.udo.cs.ls14.jf.bpmn.matching.delegates.FragmentPairJointerSequentialDelegate" name="Join sequential fragments">
+    <bpmn2:serviceTask id="Task_7" camunda:class="edu.udo.cs.ls14.jf.bpmn.app.delegates.matching.FragmentPairJointerSequentialDelegate" name="Join sequential fragments">
       <bpmn2:incoming>SequenceFlow_12</bpmn2:incoming>
       <bpmn2:outgoing>SequenceFlow_13</bpmn2:outgoing>
     </bpmn2:serviceTask>
     <bpmn2:sequenceFlow id="SequenceFlow_13" name="" sourceRef="Task_7" targetRef="Task_8"/>
-    <bpmn2:serviceTask id="Task_5" camunda:class="edu.udo.cs.ls14.jf.bpmn.matching.delegates.FragmentPairFilterConditionsDelegate" name="Filter condition-inequivalent fragment pairs">
+    <bpmn2:serviceTask id="Task_5" camunda:class="edu.udo.cs.ls14.jf.bpmn.app.delegates.matching.FragmentPairFilterConditionsDelegate" name="Filter condition-inequivalent fragment pairs">
       <bpmn2:incoming>SequenceFlow_10</bpmn2:incoming>
       <bpmn2:outgoing>SequenceFlow_11</bpmn2:outgoing>
     </bpmn2:serviceTask>
     <bpmn2:sequenceFlow id="SequenceFlow_11" name="" sourceRef="Task_5" targetRef="Task_6"/>
-    <bpmn2:serviceTask id="Task_8" camunda:class="edu.udo.cs.ls14.jf.bpmn.matching.delegates.FragmentPairFilterTrivialDelegate" name="Filter trivial fragment pairs">
+    <bpmn2:serviceTask id="Task_8" camunda:class="edu.udo.cs.ls14.jf.bpmn.app.delegates.matching.FragmentPairFilterTrivialDelegate" name="Filter trivial fragment pairs">
       <bpmn2:incoming>SequenceFlow_13</bpmn2:incoming>
       <bpmn2:outgoing>SequenceFlow_14</bpmn2:outgoing>
     </bpmn2:serviceTask>
     <bpmn2:sequenceFlow id="SequenceFlow_14" name="" sourceRef="Task_8" targetRef="EndEvent_1"/>
-    <bpmn2:serviceTask id="Task_2" camunda:class="edu.udo.cs.ls14.jf.bpmn.matching.delegates.FragmentPairFilterNodesDelegate" name="Filter node-inequivalent fragment pairs">
+    <bpmn2:serviceTask id="Task_2" camunda:class="edu.udo.cs.ls14.jf.bpmn.app.delegates.matching.FragmentPairFilterNodesDelegate" name="Filter node-inequivalent fragment pairs">
       <bpmn2:incoming>SequenceFlow_15</bpmn2:incoming>
       <bpmn2:outgoing>SequenceFlow_3</bpmn2:outgoing>
     </bpmn2:serviceTask>
@@ -65,17 +65,17 @@
       <bpmn2:linkEventDefinition id="LinkEventDefinition_2" name="fullmatchingcompleted"/>
     </bpmn2:intermediateCatchEvent>
     <bpmn2:sequenceFlow id="SequenceFlow_15" name="" sourceRef="IntermediateCatchEvent_1" targetRef="Task_2"/>
-    <bpmn2:serviceTask id="Task_4" camunda:class="edu.udo.cs.ls14.jf.bpmn.matching.delegates.FragmentPairFilterBehaviorDelegate" name="Filter behavior-inequivalent fragment pairs">
+    <bpmn2:serviceTask id="Task_4" camunda:class="edu.udo.cs.ls14.jf.bpmn.app.delegates.matching.FragmentPairFilterBehaviorDelegate" name="Filter behavior-inequivalent fragment pairs">
       <bpmn2:incoming>SequenceFlow_3</bpmn2:incoming>
       <bpmn2:outgoing>SequenceFlow_10</bpmn2:outgoing>
     </bpmn2:serviceTask>
     <bpmn2:sequenceFlow id="SequenceFlow_10" name="" sourceRef="Task_4" targetRef="Task_5"/>
-    <bpmn2:serviceTask id="Task_6" camunda:class="edu.udo.cs.ls14.jf.bpmn.matching.delegates.FragmentPairFilterNestingsDelegate" name="Filter nested fragment pairs">
+    <bpmn2:serviceTask id="Task_6" camunda:class="edu.udo.cs.ls14.jf.bpmn.app.delegates.matching.FragmentPairFilterNestingsDelegate" name="Filter nested fragment pairs">
       <bpmn2:incoming>SequenceFlow_11</bpmn2:incoming>
       <bpmn2:outgoing>SequenceFlow_12</bpmn2:outgoing>
     </bpmn2:serviceTask>
     <bpmn2:sequenceFlow id="SequenceFlow_12" name="" sourceRef="Task_6" targetRef="Task_7"/>
-    <bpmn2:serviceTask id="ServiceTask_4" camunda:class="edu.udo.cs.ls14.jf.bpmn.matching.delegates.FullFragmentMatchingDelegate" name="create full fragment matching">
+    <bpmn2:serviceTask id="ServiceTask_4" camunda:class="edu.udo.cs.ls14.jf.bpmn.app.delegates.matching.FullFragmentMatchingDelegate" name="create full fragment matching">
       <bpmn2:incoming>SequenceFlow_6</bpmn2:incoming>
       <bpmn2:outgoing>SequenceFlow_7</bpmn2:outgoing>
     </bpmn2:serviceTask>

@@ -9,20 +9,11 @@
   <dependencies>
   	<dependency>
   		<groupId>edu.udo.cs.ls14.jf</groupId>
-  		<artifactId>word-utils</artifactId>
-  	</dependency>
-  	<dependency>
-  		<groupId>org.apache.commons</groupId>
-  		<artifactId>commons-lang3</artifactId>
-  	</dependency>
-  	<dependency>
-  		<groupId>edu.udo.cs.ls14.jf</groupId>
-  		<artifactId>bpmn-subprocess-extraction-model</artifactId>
-  	</dependency>
-  	<dependency>
-  		<groupId>edu.udo.cs.ls14.jf</groupId>
   		<artifactId>bpmn-subprocess-extraction-utils</artifactId>
-  		<scope>test</scope>
+  	</dependency>
+  	<dependency>
+  		<groupId>edu.udo.cs.ls14.jf</groupId>
+  		<artifactId>word-utils</artifactId>
   	</dependency>
   </dependencies>
 </project>
