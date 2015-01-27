@@ -18,12 +18,12 @@ import edu.udo.cs.ls14.jf.bpmntransformation.ProcessTransformation;
 import edu.udo.cs.ls14.jf.registry.Registries;
 
 @Deprecated
-public class SubProcessExtractionMixed implements SubProcessExtraction {
+public class SubProcessExtractionCamundaDebug implements SubProcessExtraction {
 
 	private ProcessEngine processEngine;
 
 	private static final Logger LOGGER = LoggerFactory
-			.getLogger(SubProcessExtractionMixed.class.getName());
+			.getLogger(SubProcessExtractionCamundaDebug.class.getName());
 
 	@Override
 	public void init() {
