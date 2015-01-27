@@ -11,16 +11,16 @@
 	<dependencies>
 		<dependency>
 			<groupId>edu.udo.cs.ls14.jf</groupId>
-			<artifactId>bpmntransformation-transformer</artifactId>
+			<artifactId>bpmntransformation-delegates</artifactId>
 		</dependency>
 		<dependency>
 			<groupId>edu.udo.cs.ls14.jf</groupId>
-			<artifactId>bpmnanalysis-analyzer</artifactId>
+			<artifactId>bpmnanalysis-delegates</artifactId>
 			<scope>test</scope>
 		</dependency>
 		<dependency>
 			<groupId>edu.udo.cs.ls14.jf</groupId>
-			<artifactId>bpmnmatching-matcher</artifactId>
+			<artifactId>bpmnmatching-delegates</artifactId>
 			<scope>test</scope>
 		</dependency>
 	</dependencies>

@@ -9,55 +9,28 @@
 	<artifactId>bpmn-subprocess-extraction-application</artifactId>
 	<dependencies>
 		<dependency>
-			<groupId>edu.udo.cs.ls14.jf</groupId>
-			<artifactId>bpmnanalysis-services</artifactId>
-			<type>war</type>
-		</dependency>
-		<dependency>
-			<groupId>edu.udo.cs.ls14.jf</groupId>
-			<artifactId>bpmnmatching-services</artifactId>
-			<type>war</type>
-		</dependency>
-		<dependency>
-			<groupId>edu.udo.cs.ls14.jf</groupId>
-			<artifactId>bpmntransformation-services</artifactId>
-			<type>war</type>
-		</dependency>
-		<dependency>
-			<groupId>edu.udo.cs.ls14.jf</groupId>
-			<artifactId>bpmnanalysis-services</artifactId>
-			<version>0.0.1-SNAPSHOT</version>
-			<type>jar</type>
-			<classifier>classes</classifier>
-		</dependency>
-		<dependency>
-			<groupId>edu.udo.cs.ls14.jf</groupId>
-			<artifactId>bpmnmatching-services</artifactId>
-			<type>jar</type>
-			<classifier>classes</classifier>
-			<version>0.0.1-SNAPSHOT</version>
-		</dependency>
-		<dependency>
-			<groupId>edu.udo.cs.ls14.jf</groupId>
-			<artifactId>bpmntransformation-services</artifactId>
-			<type>jar</type>
-			<classifier>classes</classifier>
-			<version>0.0.1-SNAPSHOT</version>
-		</dependency>
-		<dependency>
 			<groupId>org.camunda.bpm</groupId>
 			<artifactId>camunda-engine</artifactId>
-			<version>7.1.0-Final</version>
 		</dependency>
 		<dependency>
 			<groupId>com.h2database</groupId>
 			<artifactId>h2</artifactId>
-			<version>1.4.182</version>
 		</dependency>
 		<dependency>
 			<groupId>org.codehaus.groovy</groupId>
 			<artifactId>groovy-all</artifactId>
-			<version>2.3.7</version>
+		</dependency>
+		<dependency>
+			<groupId>edu.udo.cs.ls14.jf</groupId>
+			<artifactId>bpmnanalysis-delegates</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>edu.udo.cs.ls14.jf</groupId>
+			<artifactId>bpmnmatching-delegates</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>edu.udo.cs.ls14.jf</groupId>
+			<artifactId>bpmntransformation-delegates</artifactId>
 		</dependency>
 	</dependencies>
 	<build>

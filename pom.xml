@@ -6,22 +6,22 @@
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>pom</packaging>
 	<modules>
-		<module>bpmn-subprocess-extraction-application</module>
 		<module>bpmn-subprocess-extraction-model</module>
 		<module>bpmn-subprocess-extraction-utils</module>
+		<module>word-utils</module>
 		<module>bpmnanalysis-behavioralprofile</module>
 		<module>bpmnanalysis-conditionalprofile</module>
 		<module>bpmnanalysis-pst</module>
-		<module>bpmnanalysis-services</module>
 		<module>bpmnmatching-fragmentmatching</module>
 		<module>bpmnmatching-nodematching</module>
-		<module>bpmnmatching-services</module>
 		<module>bpmntransformation-operations</module>
+		<module>bpmnanalysis-delegates</module>
+		<module>bpmnmatching-delegates</module>
+		<module>bpmntransformation-delegates</module>
+		<module>bpmn-subprocess-extraction-application</module>
+		<module>bpmnanalysis-services</module>
+		<module>bpmnmatching-services</module>
 		<module>bpmntransformation-services</module>
-		<module>word-utils</module>
-		<module>bpmnanalysis-analyzer</module>
-		<module>bpmnmatching-matcher</module>
-		<module>bpmntransformation-transformer</module>
 	</modules>
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -31,6 +31,9 @@
 		<bpmn2.version>1.0.0.201406050616</bpmn2.version>
 		<emf.version>2.10.0-v20140514-1158</emf.version>
 		<henshin.version>1.0.0-SNAPSHOT</henshin.version>
+		<camunda.version>7.1.0-Final</camunda.version>
+		<groovy.version>2.3.7</groovy.version>
+		<h2.version>1.4.182</h2.version>
 	</properties>
 	<dependencies>
 		<dependency>
@@ -106,21 +109,9 @@
 			</dependency>
 			<dependency>
 				<groupId>edu.udo.cs.ls14.jf</groupId>
-				<artifactId>bpmnanalysis-services</artifactId>
-				<version>0.0.1-SNAPSHOT</version>
-				<!-- <classifier>classes</classifier> -->
-			</dependency>
-			<dependency>
-				<groupId>edu.udo.cs.ls14.jf</groupId>
 				<artifactId>bpmnmatching-services</artifactId>
 				<version>0.0.1-SNAPSHOT</version>
 				<type>war</type>
-			</dependency>
-			<dependency>
-				<groupId>edu.udo.cs.ls14.jf</groupId>
-				<artifactId>bpmnmatching-services</artifactId>
-				<version>0.0.1-SNAPSHOT</version>
-				<!-- <classifier>classes</classifier> -->
 			</dependency>
 			<dependency>
 				<groupId>edu.udo.cs.ls14.jf</groupId>
@@ -130,9 +121,18 @@
 			</dependency>
 			<dependency>
 				<groupId>edu.udo.cs.ls14.jf</groupId>
-				<artifactId>bpmntransformation-services</artifactId>
+				<artifactId>bpmnanalysis-delegates</artifactId>
 				<version>0.0.1-SNAPSHOT</version>
-				<!-- <classifier>classes</classifier> -->
+			</dependency>
+			<dependency>
+				<groupId>edu.udo.cs.ls14.jf</groupId>
+				<artifactId>bpmnmatching-delegates</artifactId>
+				<version>0.0.1-SNAPSHOT</version>
+			</dependency>
+			<dependency>
+				<groupId>edu.udo.cs.ls14.jf</groupId>
+				<artifactId>bpmntransformation-delegates</artifactId>
+				<version>0.0.1-SNAPSHOT</version>
 			</dependency>
 			<dependency>
 				<groupId>org.eclipse</groupId>
@@ -228,19 +228,19 @@
 				<version>${henshin.version}</version>
 			</dependency>
 			<dependency>
-				<groupId>edu.udo.cs.ls14.jf</groupId>
-				<artifactId>bpmnanalysis-analyzer</artifactId>
-				<version>0.0.1-SNAPSHOT</version>
+				<groupId>org.camunda.bpm</groupId>
+				<artifactId>camunda-engine</artifactId>
+				<version>${camunda.version}</version>
 			</dependency>
 			<dependency>
-				<groupId>edu.udo.cs.ls14.jf</groupId>
-				<artifactId>bpmnmatching-matcher</artifactId>
-				<version>0.0.1-SNAPSHOT</version>
+				<groupId>com.h2database</groupId>
+				<artifactId>h2</artifactId>
+				<version>${h2.version}</version>
 			</dependency>
 			<dependency>
-				<groupId>edu.udo.cs.ls14.jf</groupId>
-				<artifactId>bpmntransformation-transformer</artifactId>
-				<version>0.0.1-SNAPSHOT</version>
+				<groupId>org.codehaus.groovy</groupId>
+				<artifactId>groovy-all</artifactId>
+				<version>${groovy.version}</version>
 			</dependency>
 		</dependencies>
 	</dependencyManagement>
@@ -260,8 +260,8 @@
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-surefire-plugin</artifactId>
 				<configuration>
-<!-- 					<reuseForks>false</reuseForks>
- -->					<forkCount>0</forkCount>
+					<!-- <reuseForks>false</reuseForks> -->
+					<forkCount>0</forkCount>
 				</configuration>
 			</plugin>
 		</plugins>

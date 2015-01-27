@@ -15,10 +15,10 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
+import edu.udo.cs.ls14.jf.bpmn.analysis.ProcessAnalyzerImpl;
 import edu.udo.cs.ls14.jf.bpmn.utils.Bpmn2ResourceSet;
 import edu.udo.cs.ls14.jf.bpmnanalysis.ProcessAnalysis;
 import edu.udo.cs.ls14.jf.bpmn.analysis.ProcessAnalyzer;
-import edu.udo.cs.ls14.jf.bpmn.analysis.ProcessAnalyzerImpl;
 import edu.udo.cs.ls14.jf.bpmnmatching.ProcessMatching;
 import edu.udo.cs.ls14.jf.registry.Registries;
 import edu.udo.cs.ls14.jf.ws.bpmn.matching.fragmentpairfilterbehavior.FragmentPairFilterBehaviorImpl;
@@ -29,8 +29,6 @@ import edu.udo.cs.ls14.jf.ws.bpmn.matching.fragmentpairfilternestings.FragmentPa
 import edu.udo.cs.ls14.jf.ws.bpmn.matching.fragmentpairfilternestings.FragmentPairFilterNestingsSEI;
 import edu.udo.cs.ls14.jf.ws.bpmn.matching.fragmentpairfilternodes.FragmentPairFilterNodesImpl;
 import edu.udo.cs.ls14.jf.ws.bpmn.matching.fragmentpairfilternodes.FragmentPairFilterNodesSEI;
-import edu.udo.cs.ls14.jf.ws.bpmn.matching.fragmentpairfiltertrivial.FragmentPairFilterTrivialImpl;
-import edu.udo.cs.ls14.jf.ws.bpmn.matching.fragmentpairfiltertrivial.FragmentPairFilterTrivialSEI;
 import edu.udo.cs.ls14.jf.ws.bpmn.matching.fragmentpairjointersequential.FragmentPairJointerSequentialImpl;
 import edu.udo.cs.ls14.jf.ws.bpmn.matching.fragmentpairjointersequential.FragmentPairJointerSequentialSEI;
 //import edu.udo.cs.ls14.jf.ws.bpmn.matching.fragmentpairrankersize.FragmentPairRankerSizeImpl;
@@ -50,7 +48,8 @@ public class BpmnMatchingTest {
 	private FragmentPairFilterConditionsSEI portFragmentPairFilterConditions;
 	private FragmentPairFilterNestingsSEI portFragmentPairFilterNestings;
 	private FragmentPairJointerSequentialSEI portFragmentPairJointerSequential;
-	private FragmentPairFilterTrivialSEI portFragmentPairFilterTrivial;
+	// TODO: Move to transformation-services
+//	private FragmentPairFilterTrivialSEI portFragmentPairFilterTrivial;
 //	private FragmentPairRankerSizeSEI portFragmentPairRankerSize;
 
 	private Bpmn2ResourceSet resSet;
@@ -128,15 +127,17 @@ public class BpmnMatchingTest {
 				new URL(url + "?wsdl"), new QName(namespace, localPart))
 				.getPort(FragmentPairJointerSequentialSEI.class);
 
+
+		// TODO: Move to transformation services
 		// FragmentPairFilterTrivial
-		url = "http://localhost:8880/bpmnmatching-services/FragmentPairFilterTrivialService";
-		namespace = "http://fragmentpairfiltertrivial.matching.bpmn.ws.jf.ls14.cs.udo.edu/";
-		localPart = "FragmentPairFilterTrivialImplService";
-		endpoints.add(Endpoint
-				.publish(url, new FragmentPairFilterTrivialImpl()));
-		portFragmentPairFilterTrivial = Service.create(new URL(url + "?wsdl"),
-				new QName(namespace, localPart)).getPort(
-				FragmentPairFilterTrivialSEI.class);
+//		url = "http://localhost:8880/bpmnmatching-services/FragmentPairFilterTrivialService";
+//		namespace = "http://fragmentpairfiltertrivial.matching.bpmn.ws.jf.ls14.cs.udo.edu/";
+//		localPart = "FragmentPairFilterTrivialImplService";
+//		endpoints.add(Endpoint
+//				.publish(url, new FragmentPairFilterTrivialImpl()));
+//		portFragmentPairFilterTrivial = Service.create(new URL(url + "?wsdl"),
+//				new QName(namespace, localPart)).getPort(
+//				FragmentPairFilterTrivialSEI.class);
 
 //		// FragmentPairRankerSize
 //		url = "http://localhost:8880/bpmnmatching-services/FragmentPairRankerSizeService";
@@ -211,9 +212,10 @@ public class BpmnMatchingTest {
 		assertEquals(1, processMatching.getFragmentMatching().getPairs().size());
 
 		// FragmentPairFilterTrivial
-		processMatching = portFragmentPairFilterTrivial.filter(processMatching);
-		assertEquals(5, processMatching.getNodeMatching().getPairs().size());
-		assertEquals(1, processMatching.getFragmentMatching().getPairs().size());
+		// TODO: Move to transformation-services
+//		processMatching = portFragmentPairFilterTrivial.filter(processMatching);
+//		assertEquals(5, processMatching.getNodeMatching().getPairs().size());
+//		assertEquals(1, processMatching.getFragmentMatching().getPairs().size());
 
 		// FragmentPairRankerSize
 //		processMatching = portFragmentPairRankerSize
