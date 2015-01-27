@@ -10,8 +10,6 @@ import org.eclipse.bpmn2.Definitions;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import edu.udo.cs.ls14.jf.bpmn.transformation.ProcessTransformerImpl;
-import edu.udo.cs.ls14.jf.bpmnmatching.ProcessMatching;
 import edu.udo.cs.ls14.jf.bpmntransformation.ProcessTransformation;
 import edu.udo.cs.ls14.jf.registry.Registries;
 
@@ -43,7 +41,7 @@ public class SubProcessExtractionCamunda implements SubProcessExtraction {
 	}
 
 	/**
-	 * (definitions1, definitions2) -> extraction
+	 * (definitions1, definitions2) -> transformation
 	 * 
 	 * @param definitions1
 	 * @param definitions2
@@ -66,13 +64,6 @@ public class SubProcessExtractionCamunda implements SubProcessExtraction {
 				.getHistoryService().createHistoricVariableInstanceQuery()
 				.processInstanceId(instance.getId())
 				.variableName("transformation").singleResult().getValue();
-		// TODO: remove this fix
-//		transformation = new ProcessTransformerImpl()
-//				.transform((ProcessMatching) processEngine.getHistoryService()
-//						.createHistoricVariableInstanceQuery()
-//						.processInstanceId(instance.getId())
-//						.variableName("matching").singleResult().getValue());
-//		transformation.eResource().save(System.out, null);
 		return transformation;
 	}
 

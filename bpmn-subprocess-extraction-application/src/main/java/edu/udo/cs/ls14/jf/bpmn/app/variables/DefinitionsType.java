@@ -8,9 +8,10 @@ import java.util.UUID;
 import org.camunda.bpm.engine.impl.variable.ValueFields;
 import org.camunda.bpm.engine.impl.variable.VariableType;
 import org.eclipse.bpmn2.Definitions;
-import org.eclipse.bpmn2.util.Bpmn2ResourceFactoryImpl;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.resource.Resource;
+
+import edu.udo.cs.ls14.jf.bpmn.utils.Bpmn2ResourceSet;
 
 public class DefinitionsType implements VariableType {
 
@@ -44,7 +45,9 @@ public class DefinitionsType implements VariableType {
 		try {
 			URI uri = URI.createURI(UUID.randomUUID().toString() + "."
 					+ EXTENSION);
-			Resource res = new Bpmn2ResourceFactoryImpl().createResource(uri);
+			// Resource res = new
+			// Bpmn2ResourceFactoryImpl().createResource(uri);
+			Resource res = Bpmn2ResourceSet.getInstance().createResource(uri);
 			ByteArrayInputStream bis = new ByteArrayInputStream(valueFields
 					.getByteArrayValue().getBytes());
 			res.load(bis, null);

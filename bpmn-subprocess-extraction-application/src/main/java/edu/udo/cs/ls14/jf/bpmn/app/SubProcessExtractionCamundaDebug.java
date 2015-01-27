@@ -17,7 +17,11 @@ import edu.udo.cs.ls14.jf.bpmnmatching.ProcessMatching;
 import edu.udo.cs.ls14.jf.bpmntransformation.ProcessTransformation;
 import edu.udo.cs.ls14.jf.registry.Registries;
 
-@Deprecated
+/**
+ * For performance measuring of subprocesses
+ * @author flake
+ *
+ */
 public class SubProcessExtractionCamundaDebug implements SubProcessExtraction {
 
 	private ProcessEngine processEngine;
@@ -86,7 +90,6 @@ public class SubProcessExtractionCamundaDebug implements SubProcessExtraction {
 		instance = processEngine.getRuntimeService().startProcessInstanceByKey(
 				"processmatching", variables);
 		long timeMatchingEnd = System.currentTimeMillis();
-		ProcessInstance matchingInstance = instance;
 		ProcessMatching matching = (ProcessMatching) processEngine
 				.getHistoryService().createHistoricVariableInstanceQuery()
 				.processInstanceId(instance.getId()).variableName("matching")
@@ -110,14 +113,6 @@ public class SubProcessExtractionCamundaDebug implements SubProcessExtraction {
 		LOGGER.info("Time for Matching Models         : " + (timeMatchingEnd-timeMatchingStart) + "ms");
 		LOGGER.info("Time for Transformation of Models: " + (timeTransformationEnd-timeTransformationStart) + "ms");
 
-		// TODO: remove this fix
-//		transformation = new ProcessTransformerImpl()
-//				.transform((ProcessMatching) processEngine.getHistoryService()
-//						.createHistoricVariableInstanceQuery()
-//						.processInstanceId(matchingInstance.getId())
-//						.variableName("matching").singleResult().getValue());
-//		transformation.eResource().save(new FileOutputStream(new File("/tmp/transformation-2.bpmntransformation")), null);
-//		transformation.eResource().save(System.out, null);
 		return transformation;
 	}
 

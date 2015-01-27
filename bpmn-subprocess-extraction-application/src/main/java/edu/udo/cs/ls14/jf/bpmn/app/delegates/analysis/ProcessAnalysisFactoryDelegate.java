@@ -1,12 +1,9 @@
 package edu.udo.cs.ls14.jf.bpmn.app.delegates.analysis;
 
-import java.util.UUID;
-
 import org.camunda.bpm.engine.delegate.DelegateExecution;
 import org.camunda.bpm.engine.delegate.JavaDelegate;
 import org.eclipse.bpmn2.Definitions;
 
-import edu.udo.cs.ls14.jf.bpmn.utils.DefinitionsUtil;
 import edu.udo.cs.ls14.jf.bpmn.utils.ProcessAnalysisFactory;
 import edu.udo.cs.ls14.jf.bpmnanalysis.ProcessAnalysis;
 

@@ -1,6 +1,5 @@
 package edu.udo.cs.ls14.jf.bpmn.transformation;
 
-import edu.udo.cs.ls14.jf.bpmn.utils.ProcessTransformationUtil;
 import edu.udo.cs.ls14.jf.bpmnmatching.FragmentPair;
 import edu.udo.cs.ls14.jf.bpmnmatching.ProcessMatching;
 import edu.udo.cs.ls14.jf.bpmntransformation.ProcessTransformation;
@@ -36,7 +35,7 @@ public class ProcessTransformerImpl implements ProcessTransformer {
 		}
 		// 4. crop better fragment and replace matched fragments
 		ProcessTransformation transformation = FragmentExtractor.transform(pMatching);
-		return ProcessTransformationUtil.setAllIds(transformation);
+		return transformation;
 
 	}
 

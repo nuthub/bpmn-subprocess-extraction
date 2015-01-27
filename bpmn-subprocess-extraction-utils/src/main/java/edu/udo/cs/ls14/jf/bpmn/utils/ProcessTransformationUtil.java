@@ -6,7 +6,6 @@ import java.util.HashMap;
 import java.util.Map;
 
 import org.eclipse.bpmn2.Definitions;
-import org.eclipse.bpmn2.util.Bpmn2Resource;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.slf4j.Logger;
@@ -39,16 +38,16 @@ public class ProcessTransformationUtil {
 		Bpmn2ResourceSet resSetOut = Bpmn2ResourceSet.getInstance();
 
 		// Create resources for all definitions
-		Map<String, Bpmn2Resource> resMap = new HashMap<String, Bpmn2Resource>();
+		Map<String, Resource> resMap = new HashMap<String, Resource>();
 		for (Map.Entry<String, Definitions> entry : results.entrySet()) {
-			String uriStr = (targetDir + "/" + entry.getKey()).replaceAll("//",
-					"/");
-			Bpmn2Resource res = resSetOut.createResource(uriStr,
-					entry.getValue());
+			URI uri = URI.createFileURI((targetDir + "/" + entry.getKey())
+					.replaceAll("//", "/"));
+			Resource res = resSetOut.createResource(uri);
+			res.getContents().add(entry.getValue());
 			resMap.put(entry.getKey(), res);
 		}
 		// Write all resources
-		for (Map.Entry<String, Bpmn2Resource> entry : resMap.entrySet()) {
+		for (Map.Entry<String, Resource> entry : resMap.entrySet()) {
 			entry.getValue().save(null);
 			LOG.info("Written " + entry.getKey());
 		}
@@ -57,11 +56,11 @@ public class ProcessTransformationUtil {
 		LOG.info("Imports fixed.");
 	}
 
-	private static void fixImports(Map<String, Bpmn2Resource> resMap,
+	private static void fixImports(Map<String, Resource> resMap,
 			String targetDir) throws IOException {
 		// Write files, fix locations of imports, write files
-		for (Map.Entry<String, Bpmn2Resource> entry : resMap.entrySet()) {
-			Bpmn2Resource res = entry.getValue();
+		for (Map.Entry<String, Resource> entry : resMap.entrySet()) {
+			Resource res = entry.getValue();
 			res.save(null);
 			((Definitions) res.getContents().get(0))
 					.getImports()
@@ -87,17 +86,9 @@ public class ProcessTransformationUtil {
 			ProcessTransformation extraction) throws IOException {
 		Resource res = new BpmnTransformationResourceFactoryImpl()
 				.createResource(URI.createFileURI(filename));
-		System.out.println(res);
 		res.getContents().add(extraction);
 		res.save(null);
 		LOG.info("Written extraction result to " + filename);
-	}
-
-	public static ProcessTransformation setAllIds(
-			ProcessTransformation transformation) {
-
-		// TODO Auto-generated method stub
-		return transformation;
 	}
 
 }

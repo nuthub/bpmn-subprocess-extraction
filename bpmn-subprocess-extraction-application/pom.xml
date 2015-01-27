@@ -8,42 +8,42 @@
 	</parent>
 	<artifactId>bpmn-subprocess-extraction-application</artifactId>
 	<dependencies>
- 	<dependency>
- 		<groupId>edu.udo.cs.ls14.jf</groupId>
- 		<artifactId>bpmnanalysis-services</artifactId>
- 		<type>war</type>
- 	</dependency>
- 	<dependency>
- 		<groupId>edu.udo.cs.ls14.jf</groupId>
- 		<artifactId>bpmnmatching-services</artifactId>
- 		<type>war</type>
- 	</dependency>
- 	<dependency>
- 		<groupId>edu.udo.cs.ls14.jf</groupId>
- 		<artifactId>bpmntransformation-services</artifactId>
- 		<type>war</type>
- 	</dependency>
- 	<dependency>
- 		<groupId>edu.udo.cs.ls14.jf</groupId>
- 		<artifactId>bpmnanalysis-services</artifactId>
- 		<version>0.0.1-SNAPSHOT</version>
- 		<type>jar</type>
- 		<classifier>classes</classifier>
- 	</dependency>
- 	<dependency>
- 		<groupId>edu.udo.cs.ls14.jf</groupId>
- 		<artifactId>bpmnmatching-services</artifactId>
- 		<type>jar</type>
- 		<classifier>classes</classifier>
- 		<version>0.0.1-SNAPSHOT</version>
- 	</dependency>
- 	<dependency>
- 		<groupId>edu.udo.cs.ls14.jf</groupId>
- 		<artifactId>bpmntransformation-services</artifactId>
- 		<type>jar</type>
- 		<classifier>classes</classifier>
- 		<version>0.0.1-SNAPSHOT</version>
- 	</dependency>
+		<dependency>
+			<groupId>edu.udo.cs.ls14.jf</groupId>
+			<artifactId>bpmnanalysis-services</artifactId>
+			<type>war</type>
+		</dependency>
+		<dependency>
+			<groupId>edu.udo.cs.ls14.jf</groupId>
+			<artifactId>bpmnmatching-services</artifactId>
+			<type>war</type>
+		</dependency>
+		<dependency>
+			<groupId>edu.udo.cs.ls14.jf</groupId>
+			<artifactId>bpmntransformation-services</artifactId>
+			<type>war</type>
+		</dependency>
+		<dependency>
+			<groupId>edu.udo.cs.ls14.jf</groupId>
+			<artifactId>bpmnanalysis-services</artifactId>
+			<version>0.0.1-SNAPSHOT</version>
+			<type>jar</type>
+			<classifier>classes</classifier>
+		</dependency>
+		<dependency>
+			<groupId>edu.udo.cs.ls14.jf</groupId>
+			<artifactId>bpmnmatching-services</artifactId>
+			<type>jar</type>
+			<classifier>classes</classifier>
+			<version>0.0.1-SNAPSHOT</version>
+		</dependency>
+		<dependency>
+			<groupId>edu.udo.cs.ls14.jf</groupId>
+			<artifactId>bpmntransformation-services</artifactId>
+			<type>jar</type>
+			<classifier>classes</classifier>
+			<version>0.0.1-SNAPSHOT</version>
+		</dependency>
 		<dependency>
 			<groupId>org.camunda.bpm</groupId>
 			<artifactId>camunda-engine</artifactId>
@@ -60,4 +60,16 @@
 			<version>2.3.7</version>
 		</dependency>
 	</dependencies>
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-surefire-plugin</artifactId>
+				<configuration>
+					<reuseForks>false</reuseForks>
+					<forkCount>1</forkCount>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
 </project>

@@ -1,17 +1,25 @@
-package edu.udo.cs.ls14.jf.bpmn.application.test;
+package edu.udo.cs.ls14.jf.bpmn.application.test.thesis;
 
 import org.eclipse.bpmn2.Definitions;
 import org.junit.Before;
 import org.junit.Test;
 
 import edu.udo.cs.ls14.jf.bpmn.app.SubProcessExtraction;
-import edu.udo.cs.ls14.jf.bpmn.app.SubProcessExtractionCamunda;
+import edu.udo.cs.ls14.jf.bpmn.app.SubProcessExtractionCamundaDebug;
 import edu.udo.cs.ls14.jf.bpmn.utils.Bpmn2ResourceSet;
 import edu.udo.cs.ls14.jf.bpmn.utils.ProcessTransformationUtil;
 import edu.udo.cs.ls14.jf.bpmntransformation.ProcessTransformation;
 import edu.udo.cs.ls14.jf.registry.Registries;
 
-public class SubProcessExtractionCamundaTest {
+/**
+ * Have to be run manually (not included in mvn test)
+ *
+ * Problems with mvn test along other tests
+ * 
+ * @author flake
+ *
+ */
+public class SubProcessExtractionCamundaDebugTimeMeasurement {
 
 	private static final String TARGETDIR = "/tmp/";
 	private SubProcessExtraction app = null;
@@ -19,7 +27,7 @@ public class SubProcessExtractionCamundaTest {
 	@Before
 	public void setUp() {
 		Registries.registerAll();
-		app = new SubProcessExtractionCamunda();
+		app = new SubProcessExtractionCamundaDebug();
 		app.init();
 	}
 
@@ -81,7 +89,7 @@ public class SubProcessExtractionCamundaTest {
 
 	private ProcessTransformation runTest(String path, String resName1,
 			String resName2) throws Exception {
-		// Load models
+		// Load Models
 		Definitions defs1 = Bpmn2ResourceSet.getInstance().loadDefinitions(
 				getClass().getResource(path).getPath() + resName1);
 		Definitions defs2 = Bpmn2ResourceSet.getInstance().loadDefinitions(
@@ -92,7 +100,7 @@ public class SubProcessExtractionCamundaTest {
 		ProcessTransformation transformation = app.run(defs1, defs2);
 		long end = System.currentTimeMillis();
 
-		// Write results
+		// Write Results
 		ProcessTransformationUtil.writeResults(TARGETDIR + "/" + path,
 				transformation);
 		System.out.println("Took " + (end - start) + "ms for complete process");

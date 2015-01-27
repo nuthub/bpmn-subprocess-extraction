@@ -1,4 +1,4 @@
-package edu.udo.cs.ls14.jf.bpmn.application.test;
+package edu.udo.cs.ls14.jf.bpmn.application.test.thesis;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
@@ -11,9 +11,9 @@ import org.eclipse.bpmn2.Definitions;
 import org.junit.Before;
 import org.junit.Test;
 
+import edu.udo.cs.ls14.jf.analysis.conditionalprofile.ConditionalProfiler;
 import edu.udo.cs.ls14.jf.bpmn.analysis.ProcessAnalyzer;
 import edu.udo.cs.ls14.jf.bpmn.analysis.ProcessAnalyzerImpl;
-import edu.udo.cs.ls14.jf.analysis.conditionalprofile.ConditionalProfiler;
 import edu.udo.cs.ls14.jf.bpmn.matching.ProcessMatcher;
 import edu.udo.cs.ls14.jf.bpmn.matching.ProcessMatcherImpl;
 import edu.udo.cs.ls14.jf.bpmn.transformation.ProcessTransformer;
@@ -22,8 +22,8 @@ import edu.udo.cs.ls14.jf.bpmn.utils.Bpmn2ResourceSet;
 import edu.udo.cs.ls14.jf.bpmn.utils.ConditionalProfileUtil;
 import edu.udo.cs.ls14.jf.bpmn.utils.DefinitionsUtil;
 import edu.udo.cs.ls14.jf.bpmn.utils.ProcessAnalysisUtil;
-import edu.udo.cs.ls14.jf.bpmn.utils.ProcessTransformationUtil;
 import edu.udo.cs.ls14.jf.bpmn.utils.ProcessMatchingUtil;
+import edu.udo.cs.ls14.jf.bpmn.utils.ProcessTransformationUtil;
 import edu.udo.cs.ls14.jf.bpmnanalysis.BpmnAnalysisFactory;
 import edu.udo.cs.ls14.jf.bpmnanalysis.BpmnAnalysisPackage;
 import edu.udo.cs.ls14.jf.bpmnanalysis.ConditionalProfile;
@@ -35,8 +35,15 @@ import edu.udo.cs.ls14.jf.bpmntransformation.BpmnTransformationPackage;
 import edu.udo.cs.ls14.jf.bpmntransformation.ProcessTransformation;
 import edu.udo.cs.ls14.jf.registry.Registries;
 
+/**
+ * Have to be run manually (not included in mvn test)
+ * 
+ * Problems with mvn test along other tests
+ * 
+ * @author flake
+ *
+ */
 public class ThesisExport {
-
 	private static final String TARGET_DIR = "/home/flake/Arbeitsfläche/Diplomarbeit/bilder/example/";
 
 	@Before

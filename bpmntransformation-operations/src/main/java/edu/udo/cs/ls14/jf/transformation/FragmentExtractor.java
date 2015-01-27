@@ -97,7 +97,7 @@ public class FragmentExtractor {
 			LOG.info("Replaced Fragment " + FragmentUtil.toString(fPair.getB()));
 		}
 
-		// Add copies of definitions to result
+		// Add copies of definitions with modified IDs to result
 		extraction.getResults().put(
 				DefinitionsUtil.getProcess(definitions1).getName()
 						+ "-modified.bpmn", DefinitionsUtil.copy(definitions1));

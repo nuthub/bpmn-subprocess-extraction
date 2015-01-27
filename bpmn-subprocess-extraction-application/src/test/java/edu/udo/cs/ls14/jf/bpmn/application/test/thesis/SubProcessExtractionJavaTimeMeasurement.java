@@ -1,30 +1,35 @@
-package edu.udo.cs.ls14.jf.bpmn.application.test;
+package edu.udo.cs.ls14.jf.bpmn.application.test.thesis;
 
 import org.eclipse.bpmn2.Definitions;
 import org.junit.Before;
 import org.junit.Test;
 
-import edu.udo.cs.ls14.jf.bpmn.app.SubProcessExtractionCamundaDebug;
+import edu.udo.cs.ls14.jf.bpmn.app.SubProcessExtraction;
+import edu.udo.cs.ls14.jf.bpmn.app.SubProcessExtractionJava;
 import edu.udo.cs.ls14.jf.bpmn.utils.Bpmn2ResourceSet;
 import edu.udo.cs.ls14.jf.bpmn.utils.ProcessTransformationUtil;
 import edu.udo.cs.ls14.jf.bpmntransformation.ProcessTransformation;
 import edu.udo.cs.ls14.jf.registry.Registries;
 
 /**
- * @deprecated use camunda or java version. Mixed was for testing purposes only
+ * Have to be run manually (not included in mvn test).
+ * 
+ * Problems with mvn test along other tests
+ * 
  * @author flake
  *
  */
-@Deprecated
-public class SubProcessExtractionCamundaDebugTest {
-	protected static final String TARGETDIR = "/tmp/";
+public class SubProcessExtractionJavaTimeMeasurement {
 
-	Bpmn2ResourceSet resSet;
+	protected static final String TARGETDIR = "/tmp/";
+	private SubProcessExtraction app = null;
 
 	@Before
 	public void setUp() {
 		Registries.registerAll();
-		resSet = Bpmn2ResourceSet.getInstance();
+		app = new SubProcessExtractionJava();
+		app.init();
+
 	}
 
 	@Test
@@ -83,23 +88,23 @@ public class SubProcessExtractionCamundaDebugTest {
 		// TODO: Assertions
 	}
 
-	protected void runTest(String path, String resName1, String resName2)
-			throws Exception {
-		Definitions defs1 = resSet.loadDefinitions(getClass().getResource(path)
-				.getPath() + resName1);
-		Definitions defs2 = resSet.loadDefinitions(getClass().getResource(path)
-				.getPath() + resName2);
+	private ProcessTransformation runTest(String path, String resName1,
+			String resName2) throws Exception {
+		// Load models
+		Definitions defs1 = Bpmn2ResourceSet.getInstance().loadDefinitions(
+				getClass().getResource(path).getPath() + resName1);
+		Definitions defs2 = Bpmn2ResourceSet.getInstance().loadDefinitions(
+				getClass().getResource(path).getPath() + resName2);
 
-		SubProcessExtractionCamundaDebug app = new SubProcessExtractionCamundaDebug();
-		app.init();
-
+		// run process
 		long start = System.currentTimeMillis();
-		ProcessTransformation extraction = app.run(defs1, defs2);
+		ProcessTransformation transformation = app.run(defs1, defs2);
 		long end = System.currentTimeMillis();
 
+		// write results
 		ProcessTransformationUtil.writeResults(TARGETDIR + "/" + path,
-				extraction);
+				transformation);
 		System.out.println("Took " + (end - start) + "ms for complete process");
-
+		return transformation;
 	}
 }
