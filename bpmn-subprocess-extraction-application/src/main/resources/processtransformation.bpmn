@@ -38,7 +38,7 @@
       <bpmn2:outgoing>SequenceFlow_8</bpmn2:outgoing>
     </bpmn2:parallelGateway>
     <bpmn2:sequenceFlow id="SequenceFlow_8" name="" sourceRef="ParallelGateway_2" targetRef="Task_1"/>
-    <bpmn2:serviceTask id="Task_1" camunda:class="edu.udo.cs.ls14.jf.bpmn.app.delegates.transformation.FragmentExtractorDelegate" name="Extact SubProcesses">
+    <bpmn2:serviceTask id="Task_1" camunda:class="edu.udo.cs.ls14.jf.bpmn.app.delegates.transformation.FragmentExtractorDelegate" name="Extract SubProcesses">
       <bpmn2:incoming>SequenceFlow_8</bpmn2:incoming>
       <bpmn2:outgoing>SequenceFlow_6</bpmn2:outgoing>
     </bpmn2:serviceTask>
