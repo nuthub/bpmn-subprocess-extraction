@@ -19,7 +19,7 @@ public class SubProcessExtractionCamunda implements SubProcessExtraction {
 
 	private ProcessEngine processEngine;
 	private static final Logger LOGGER = LoggerFactory
-			.getLogger(SubProcessExtractionMixed.class.getName());
+			.getLogger(SubProcessExtractionCamunda.class.getName());
 
 	public void init() {
 		Registries.registerAll();
@@ -67,12 +67,12 @@ public class SubProcessExtractionCamunda implements SubProcessExtraction {
 				.processInstanceId(instance.getId())
 				.variableName("transformation").singleResult().getValue();
 		// TODO: remove this fix
-		transformation = new ProcessTransformerImpl()
-				.transform((ProcessMatching) processEngine.getHistoryService()
-						.createHistoricVariableInstanceQuery()
-						.processInstanceId(instance.getId())
-						.variableName("matching").singleResult().getValue());
-		transformation.eResource().save(System.out, null);
+//		transformation = new ProcessTransformerImpl()
+//				.transform((ProcessMatching) processEngine.getHistoryService()
+//						.createHistoricVariableInstanceQuery()
+//						.processInstanceId(instance.getId())
+//						.variableName("matching").singleResult().getValue());
+//		transformation.eResource().save(System.out, null);
 		return transformation;
 	}
 

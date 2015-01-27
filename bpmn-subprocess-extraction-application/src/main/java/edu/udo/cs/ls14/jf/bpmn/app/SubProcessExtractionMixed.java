@@ -12,12 +12,12 @@ import org.eclipse.bpmn2.Definitions;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import edu.udo.cs.ls14.jf.bpmn.transformation.ProcessTransformerImpl;
 import edu.udo.cs.ls14.jf.bpmnanalysis.ProcessAnalysis;
 import edu.udo.cs.ls14.jf.bpmnmatching.ProcessMatching;
 import edu.udo.cs.ls14.jf.bpmntransformation.ProcessTransformation;
 import edu.udo.cs.ls14.jf.registry.Registries;
 
+@Deprecated
 public class SubProcessExtractionMixed implements SubProcessExtraction {
 
 	private ProcessEngine processEngine;
@@ -111,13 +111,13 @@ public class SubProcessExtractionMixed implements SubProcessExtraction {
 		LOGGER.info("Time for Transformation of Models: " + (timeTransformationEnd-timeTransformationStart) + "ms");
 
 		// TODO: remove this fix
-		transformation = new ProcessTransformerImpl()
-				.transform((ProcessMatching) processEngine.getHistoryService()
-						.createHistoricVariableInstanceQuery()
-						.processInstanceId(matchingInstance.getId())
-						.variableName("matching").singleResult().getValue());
-		transformation.eResource().save(new FileOutputStream(new File("/tmp/transformation-2.bpmntransformation")), null);
-		transformation.eResource().save(System.out, null);
+//		transformation = new ProcessTransformerImpl()
+//				.transform((ProcessMatching) processEngine.getHistoryService()
+//						.createHistoricVariableInstanceQuery()
+//						.processInstanceId(matchingInstance.getId())
+//						.variableName("matching").singleResult().getValue());
+//		transformation.eResource().save(new FileOutputStream(new File("/tmp/transformation-2.bpmntransformation")), null);
+//		transformation.eResource().save(System.out, null);
 		return transformation;
 	}
 

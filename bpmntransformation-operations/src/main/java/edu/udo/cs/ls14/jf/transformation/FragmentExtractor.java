@@ -17,7 +17,6 @@ import edu.udo.cs.ls14.jf.bpmn.utils.FragmentUtil;
 import edu.udo.cs.ls14.jf.bpmn.utils.ProcessTransformationFactory;
 import edu.udo.cs.ls14.jf.bpmnmatching.FragmentPair;
 import edu.udo.cs.ls14.jf.bpmnmatching.ProcessMatching;
-import edu.udo.cs.ls14.jf.bpmntransformation.BpmnTransformationFactory;
 import edu.udo.cs.ls14.jf.bpmntransformation.ProcessTransformation;
 
 public class FragmentExtractor {
@@ -29,9 +28,6 @@ public class FragmentExtractor {
 	public static ProcessTransformation transform(ProcessMatching pMatching)
 			throws Exception {
 
-		// ProcessTransformation extraction =
-		// BpmnTransformationFactory.eINSTANCE
-		// .createProcessTransformation();
 		ProcessTransformation extraction = ProcessTransformationFactory
 				.createProcessTransformation(pMatching);
 
@@ -59,7 +55,9 @@ public class FragmentExtractor {
 		int fragmentCounter = 1;
 		for (FragmentPair fPair : pMatching.getFragmentMatching().getPairs()) {
 			// create new (sub)process
-			LOG.info("Extracting SubProcess.");
+			LOG.info("Extracting SubProcess for Fragment "
+					+ FragmentUtil.toString(fPair.getA()) + " / "
+					+ FragmentUtil.toString(fPair.getB()));
 			// Copy better definitions
 			Definitions defsExtracted = EcoreUtil.copy(FragmentUtil
 					.getDefinitions(fPair.getBetter()));
@@ -75,40 +73,37 @@ public class FragmentExtractor {
 			defsExtracted.setId(UUID.randomUUID().toString());
 			EGraph graph = new EGraphImpl(defsExtracted);
 			extractor.cropFragment(graph, fPair.getBetter(), defsExtracted);
-//			extraction.getResults().put(idExtracted + ".bpmn", defsExtracted);
-			LOG.info("SubProcess " + idExtracted + " extracted.");
-
-			System.out.println("before:" + defsExtracted.eResource());
+			LOG.info("Extracted SubProcess " + idExtracted + ".");
 			Definitions defsCopy = DefinitionsUtil.copy(defsExtracted);
-			System.out.println("after :" + defsCopy.eResource());
 			extraction.getResults().put(idExtracted + ".bpmn", defsCopy);
-			System.out.println("after2 :" + defsCopy.eResource());
-			
+
 			// callActivity parameters
 			Process calledElement = DefinitionsUtil.getProcess(defsCopy);
 			calledElement.setName(idExtracted);
 			calledElement.setId(idExtracted.toLowerCase());
 
 			// // replace fragment in Process1
-			LOG.info("Replacing " + fPair.getA());
+			LOG.info("Replacing Fragment "
+					+ FragmentUtil.toString(fPair.getA()));
 			extractor.replaceFragmentByCallActivity(graph1, fPair.getA(),
 					calledElement, fPair.getBetter().getLabel());
-			LOG.info("Replaced " + fPair.getA());
+			LOG.info("Replaced Fragment " + FragmentUtil.toString(fPair.getA()));
 
 			// replace fragment in Process2
-			LOG.info("Replacing " + fPair.getB());
+			LOG.info("Replacing Fragment "
+					+ FragmentUtil.toString(fPair.getB()));
 			extractor.replaceFragmentByCallActivity(graph2, fPair.getB(),
 					calledElement, fPair.getBetter().getLabel());
-			LOG.info("Replaced " + fPair.getB());
+			LOG.info("Replaced Fragment " + FragmentUtil.toString(fPair.getB()));
 		}
 
-		// Add definitions to result
+		// Add copies of definitions to result
 		extraction.getResults().put(
 				DefinitionsUtil.getProcess(definitions1).getName()
-						+ "-modified.bpmn", definitions1);
+						+ "-modified.bpmn", DefinitionsUtil.copy(definitions1));
 		extraction.getResults().put(
 				DefinitionsUtil.getProcess(definitions2).getName()
-						+ "-modified.bpmn", definitions2);
+						+ "-modified.bpmn", DefinitionsUtil.copy(definitions2));
 		return extraction;
 	}
 

@@ -2,6 +2,7 @@ package edu.udo.cs.ls14.jf.bpmn.application.test;
 
 import org.eclipse.bpmn2.Definitions;
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 
 import edu.udo.cs.ls14.jf.bpmn.app.SubProcessExtractionMixed;
@@ -10,6 +11,13 @@ import edu.udo.cs.ls14.jf.bpmn.utils.ProcessTransformationUtil;
 import edu.udo.cs.ls14.jf.bpmntransformation.ProcessTransformation;
 import edu.udo.cs.ls14.jf.registry.Registries;
 
+/**
+ * @deprecated use camunda or java version. Mixed was for testing purposes only
+ * @author flake
+ *
+ */
+@Deprecated
+@Ignore
 public class SubProcessExtractionMixedTest {
 	protected static final String TARGETDIR = "/tmp/";
 
@@ -58,8 +66,7 @@ public class SubProcessExtractionMixedTest {
 
 		ProcessTransformationUtil.writeResults(TARGETDIR + "/" + path,
 				extraction);
-		System.out.println("Took " + (end - start)
-				+ "ms for the extraction process");
+		System.out.println("Took " + (end - start) + "ms for complete process");
 
 	}
 }

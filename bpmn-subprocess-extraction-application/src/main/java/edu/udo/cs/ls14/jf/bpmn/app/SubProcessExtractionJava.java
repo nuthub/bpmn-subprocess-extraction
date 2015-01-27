@@ -1,7 +1,5 @@
 package edu.udo.cs.ls14.jf.bpmn.app;
 
-import java.io.ByteArrayOutputStream;
-
 import org.eclipse.bpmn2.Definitions;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
