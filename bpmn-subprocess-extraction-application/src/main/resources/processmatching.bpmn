@@ -47,18 +47,18 @@
     <bpmn2:sequenceFlow id="SequenceFlow_20" name="" sourceRef="ServiceTask_3" targetRef="Task_1"/>
     <bpmn2:sequenceFlow id="SequenceFlow_21" name="" sourceRef="Task_1" targetRef="ExclusiveGateway_2"/>
     <bpmn2:sequenceFlow id="SequenceFlow_6" name="" sourceRef="ServiceTask_4" targetRef="ExclusiveGateway_2"/>
-    <bpmn2:exclusiveGateway id="ExclusiveGateway_1">
+    <bpmn2:parallelGateway id="ExclusiveGateway_1">
       <bpmn2:incoming>SequenceFlow_19</bpmn2:incoming>
       <bpmn2:outgoing>SequenceFlow_2</bpmn2:outgoing>
       <bpmn2:outgoing>SequenceFlow_4</bpmn2:outgoing>
-    </bpmn2:exclusiveGateway>
+    </bpmn2:parallelGateway>
     <bpmn2:sequenceFlow id="SequenceFlow_2" name="" sourceRef="ExclusiveGateway_1" targetRef="ServiceTask_3"/>
     <bpmn2:sequenceFlow id="SequenceFlow_4" name="" sourceRef="ExclusiveGateway_1" targetRef="ServiceTask_4"/>
-    <bpmn2:exclusiveGateway id="ExclusiveGateway_2">
+    <bpmn2:parallelGateway id="ExclusiveGateway_2">
       <bpmn2:incoming>SequenceFlow_21</bpmn2:incoming>
       <bpmn2:incoming>SequenceFlow_6</bpmn2:incoming>
       <bpmn2:outgoing>SequenceFlow_5</bpmn2:outgoing>
-    </bpmn2:exclusiveGateway>
+    </bpmn2:parallelGateway>
     <bpmn2:sequenceFlow id="SequenceFlow_5" name="" sourceRef="ExclusiveGateway_2" targetRef="IntermediateThrowEvent_1"/>
     <bpmn2:intermediateCatchEvent id="IntermediateCatchEvent_1" name="full fragment matching done">
       <bpmn2:outgoing>SequenceFlow_15</bpmn2:outgoing>
@@ -232,7 +232,7 @@
           <dc:Bounds height="6.0" width="6.0" x="635.0" y="64.0"/>
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNEdge>
-      <bpmndi:BPMNShape id="_BPMNShape_ExclusiveGateway_2" bpmnElement="ExclusiveGateway_1" isMarkerVisible="true">
+      <bpmndi:BPMNShape id="_BPMNShape_ExclusiveGateway_2" bpmnElement="ExclusiveGateway_1">
         <dc:Bounds height="50.0" width="50.0" x="275.0" y="102.0"/>
         <bpmndi:BPMNLabel>
           <dc:Bounds height="0.0" width="0.0" x="300.0" y="157.0"/>
@@ -255,7 +255,7 @@
           <dc:Bounds height="6.0" width="6.0" x="347.0" y="198.0"/>
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNEdge>
-      <bpmndi:BPMNShape id="_BPMNShape_ExclusiveGateway_3" bpmnElement="ExclusiveGateway_2" isMarkerVisible="true">
+      <bpmndi:BPMNShape id="_BPMNShape_ExclusiveGateway_3" bpmnElement="ExclusiveGateway_2">
         <dc:Bounds height="50.0" width="50.0" x="639.0" y="102.0"/>
         <bpmndi:BPMNLabel>
           <dc:Bounds height="0.0" width="0.0" x="664.0" y="157.0"/>
