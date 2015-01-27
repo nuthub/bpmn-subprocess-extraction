@@ -113,8 +113,7 @@ public class ProcessTransformerTest {
 				getClass().getResource(pathname + basename1 + ".bpmn")
 						.getPath());
 		ProcessAnalyzer analyzer = new ProcessAnalyzerImpl();
-		ProcessAnalysis analysis1 = analyzer.analyzeAndDebug(def1,
-				pathname, basename1, targetDir, nodes1);
+		ProcessAnalysis analysis1 = analyzer.analyze(def1);
 		ProcessAnalysisUtil.writeToFile(targetDir + basename1 + "."
 				+ BpmnAnalysisPackage.eNAME, analysis1);
 
@@ -123,8 +122,7 @@ public class ProcessTransformerTest {
 				getClass().getResource(pathname + basename2 + ".bpmn")
 						.getPath());
 		analyzer = new ProcessAnalyzerImpl();
-		ProcessAnalysis analysis2 = analyzer.analyzeAndDebug(def2,
-				pathname, basename2, targetDir, nodes2);
+		ProcessAnalysis analysis2 = analyzer.analyze(def2);
 		ProcessAnalysisUtil.writeToFile(targetDir + basename2 + "."
 				+ BpmnAnalysisPackage.eNAME, analysis2);
 		// 2. match models

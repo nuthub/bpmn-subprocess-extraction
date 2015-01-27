@@ -84,39 +84,17 @@ public class ProcessMatcherTest {
 				getClass().getResource(pathname + basename1 + ".bpmn")
 						.getPath());
 		ProcessAnalyzer analyzer = new ProcessAnalyzerImpl();
-		ProcessAnalysis analysis1 = analyzer.analyzeAndDebug(def1,
-				pathname, basename1, "/tmp/" + pathname, nodes1);
+		ProcessAnalysis analysis1 = analyzer.analyze(def1);
 		// analyze process2
 		Definitions def2 = Bpmn2ResourceSet.getInstance().loadDefinitions(
 				getClass().getResource(pathname + basename2 + ".bpmn")
 						.getPath());
 		analyzer = new ProcessAnalyzerImpl();
-		ProcessAnalysis analysis2 = analyzer.analyzeAndDebug(def2,
-				pathname, basename2, "/tmp/" + pathname, nodes2);
+		ProcessAnalysis analysis2 = analyzer.analyze(def2);
 
 		ProcessMatcher matcher = new ProcessMatcherImpl();
 		ProcessMatching matching = matcher.match(analysis1, analysis2);
 		return matching;
 	}
-	//
-	// private void printMatching(ProcessMatching matching) {
-	// Predicate<FlowElement> filter = n -> n instanceof Event
-	// || n instanceof Activity;
-	// matching.getFragmentMatching()
-	// .getPairs()
-	// .stream()
-	// .forEach(
-	// p -> System.out.println(p.getA()
-	// + " with "
-	// + FragmentUtil
-	// .getFlowElements(p.getA(), filter)
-	// .size()
-	// + " As/Es corresponds to "
-	// + p.getB()
-	// + " with "
-	// + FragmentUtil
-	// .getFlowElements(p.getB(), filter)
-	// .size() + " As/Es."));
-	//
-	// }
+
 }
