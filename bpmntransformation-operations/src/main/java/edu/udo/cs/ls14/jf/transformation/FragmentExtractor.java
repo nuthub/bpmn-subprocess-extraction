@@ -63,7 +63,7 @@ public class FragmentExtractor {
 					.getDefinitions(fPair.getBetter()));
 			// Need to create resource for copied definitions
 			resSet.createResource(
-					URI.createURI(UUID.randomUUID().toString() + ".bpmn"),
+					URI.createFileURI(UUID.randomUUID().toString() + ".bpmn"),
 					defsExtracted);
 
 			String idExtracted = getExtractedProcessIdPrefix(fPair)
@@ -84,17 +84,19 @@ public class FragmentExtractor {
 
 			// // replace fragment in Process1
 			LOG.info("Replacing Fragment "
-					+ FragmentUtil.toString(fPair.getA()));
+					+ FragmentUtil.toString(fPair.getA()) + " in Model 1");
 			extractor.replaceFragmentByCallActivity(graph1, fPair.getA(),
 					calledElement, fPair.getBetter().getLabel());
-			LOG.info("Replaced Fragment " + FragmentUtil.toString(fPair.getA()));
+			LOG.info("Replaced Fragment " + FragmentUtil.toString(fPair.getA())
+					+ " in Model 1");
 
 			// replace fragment in Process2
 			LOG.info("Replacing Fragment "
-					+ FragmentUtil.toString(fPair.getB()));
+					+ FragmentUtil.toString(fPair.getB()) + " in Model 2");
 			extractor.replaceFragmentByCallActivity(graph2, fPair.getB(),
 					calledElement, fPair.getBetter().getLabel());
-			LOG.info("Replaced Fragment " + FragmentUtil.toString(fPair.getB()));
+			LOG.info("Replaced Fragment " + FragmentUtil.toString(fPair.getB())
+					+ " in Model 2");
 		}
 
 		// Add copies of definitions with modified IDs to result
