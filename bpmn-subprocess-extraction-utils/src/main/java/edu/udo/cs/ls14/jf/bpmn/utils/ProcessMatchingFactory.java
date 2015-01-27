@@ -3,9 +3,7 @@ package edu.udo.cs.ls14.jf.bpmn.utils;
 import java.util.UUID;
 
 import org.eclipse.bpmn2.Activity;
-import org.eclipse.bpmn2.Bpmn2Factory;
 import org.eclipse.bpmn2.Definitions;
-import org.eclipse.bpmn2.DocumentRoot;
 import org.eclipse.bpmn2.Event;
 import org.eclipse.bpmn2.FlowElement;
 import org.eclipse.bpmn2.FlowNode;
@@ -23,6 +21,7 @@ import edu.udo.cs.ls14.jf.bpmnmatching.FragmentPair;
 import edu.udo.cs.ls14.jf.bpmnmatching.NodeMatching;
 import edu.udo.cs.ls14.jf.bpmnmatching.NodePair;
 import edu.udo.cs.ls14.jf.bpmnmatching.ProcessMatching;
+import edu.udo.cs.ls14.jf.bpmnmatching.util.BpmnMatchingResourceFactoryImpl;
 
 public class ProcessMatchingFactory {
 
@@ -33,8 +32,7 @@ public class ProcessMatchingFactory {
 			ProcessAnalysis analysis1, ProcessAnalysis analysis2) {
 		ProcessMatching matching = BpmnMatchingFactory.eINSTANCE
 				.createProcessMatching();
-		Bpmn2ResourceSet
-				.getInstance()
+		new BpmnMatchingResourceFactoryImpl()
 				.createResource(
 						URI.createFileURI(UUID.randomUUID().toString()
 								+ ".bpmnmatching")).getContents().add(matching);

@@ -11,6 +11,8 @@ import org.eclipse.bpmn2.FlowNode;
 import org.eclipse.bpmn2.Process;
 import org.eclipse.bpmn2.SequenceFlow;
 import org.eclipse.bpmn2.di.BPMNDiagram;
+import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.util.EcoreUtil.Copier;
 
 public class DefinitionsUtil {
 
@@ -61,5 +63,24 @@ public class DefinitionsUtil {
 			}
 		}
 		return null;
+	}
+
+	/**
+	 * Returns a self-contained copy of the eObject.
+	 * 
+	 * @param eObject
+	 *            the object to copy.
+	 * @return the copy.
+	 * @see Copier
+	 */
+	public static <T extends EObject> T copy(T eObject) {
+//		System.out.println("!!! DefinitionsUtil.copy() called!!!!");
+		Copier copier = new DefinitionsCopier();
+		EObject result = copier.copy(eObject);
+		copier.copyReferences();
+
+		@SuppressWarnings("unchecked")
+		T t = (T) result;
+		return t;
 	}
 }

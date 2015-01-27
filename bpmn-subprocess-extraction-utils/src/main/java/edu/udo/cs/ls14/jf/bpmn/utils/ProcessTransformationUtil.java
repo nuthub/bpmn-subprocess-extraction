@@ -41,8 +41,10 @@ public class ProcessTransformationUtil {
 		// Create resources for all definitions
 		Map<String, Bpmn2Resource> resMap = new HashMap<String, Bpmn2Resource>();
 		for (Map.Entry<String, Definitions> entry : results.entrySet()) {
-			Bpmn2Resource res = resSetOut.createResource(targetDir + "/"
-					+ entry.getKey(), entry.getValue());
+			String uriStr = (targetDir + "/" + entry.getKey()).replaceAll("//",
+					"/");
+			Bpmn2Resource res = resSetOut.createResource(uriStr,
+					entry.getValue());
 			resMap.put(entry.getKey(), res);
 		}
 		// Write all resources
@@ -81,26 +83,21 @@ public class ProcessTransformationUtil {
 	 * @return
 	 * @throws Exception
 	 */
-	public static String toXml(ProcessTransformation extraction) throws Exception {
-		return EObjectXmlConverter
-				.eObject2Xml("bpmntransformation", extraction);
-	}
-
-	/**
-	 * Ensure, that factories and packages are registered
-	 * 
-	 * @param extraction
-	 * @return
-	 * @throws Exception
-	 */
-	public static void writeToFile(String filename, ProcessTransformation extraction)
-			throws IOException {
+	public static void writeToFile(String filename,
+			ProcessTransformation extraction) throws IOException {
 		Resource res = new BpmnTransformationResourceFactoryImpl()
 				.createResource(URI.createFileURI(filename));
 		System.out.println(res);
 		res.getContents().add(extraction);
 		res.save(null);
 		LOG.info("Written extraction result to " + filename);
+	}
+
+	public static ProcessTransformation setAllIds(
+			ProcessTransformation transformation) {
+
+		// TODO Auto-generated method stub
+		return transformation;
 	}
 
 }

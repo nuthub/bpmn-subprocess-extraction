@@ -5,7 +5,6 @@ import java.util.UUID;
 
 import org.eclipse.bpmn2.Definitions;
 import org.eclipse.bpmn2.Process;
-import org.eclipse.emf.ecore.util.EcoreUtil;
 
 import edu.udo.cs.ls14.jf.analysis.behavioralprofile.debug.BPDebugUtil;
 import edu.udo.cs.ls14.jf.analysis.behaviorprofile.BehavioralProfiler;
@@ -39,16 +38,16 @@ public class ProcessAnalyzerImpl implements ProcessAnalyzer {
 		reachabilityGraph = new ReachabilityGraph();
 		pstBuilder = new PSTBuilder();
 
-		Definitions defs = EcoreUtil.copy(definitions);
-		defs.setTargetNamespace("http://" + UUID.randomUUID().toString());
-		Process process = DefinitionsUtil.getProcess(defs);
-
 		// Create Analysis object
-		ProcessAnalysis analysis = ProcessAnalysisFactory.createAnalysis(defs);
+		ProcessAnalysis analysis = ProcessAnalysisFactory
+				.createAnalysis(definitions);
+		// analysis.getDefinitions().setTargetNamespace(
+		// "http://" + UUID.randomUUID().toString());
+		Process process = DefinitionsUtil.getProcess(analysis.getDefinitions());
 
 		// create PST
 		analysis.getResults().put(ProcessAnalysisUtil.PROCESSTRUCTURETREE,
-				pstBuilder.getTree(defs));
+				pstBuilder.getTree(analysis.getDefinitions()));
 
 		// create petri net
 		PetriNetHLAPI ptnet = bpmn2ptnet.convertToPetriNet(process);
@@ -95,15 +94,14 @@ public class ProcessAnalyzerImpl implements ProcessAnalyzer {
 		reachabilityGraph = new ReachabilityGraph();
 		pstBuilder = new PSTBuilder();
 
-		Process process = DefinitionsUtil.getProcess(definitions);
-
 		// Create Analysis object
 		ProcessAnalysis analysis = ProcessAnalysisFactory
 				.createAnalysis(definitions);
+		Process process = DefinitionsUtil.getProcess(analysis.getDefinitions());
 
 		// create PST
 		analysis.getResults().put(ProcessAnalysisUtil.PROCESSTRUCTURETREE,
-				pstBuilder.getTree(definitions));
+				pstBuilder.getTree(analysis.getDefinitions()));
 
 		// create petri net
 		PetriNetHLAPI ptnet = bpmn2ptnet.convertToPetriNet(process);

@@ -107,11 +107,6 @@ public class ProcessTransformerTest {
 			throws Exception {
 		String targetDir = (TARGET_DIR + pathname + "/").replaceAll("//", "/");
 		new File(targetDir).mkdirs();
-		// Pre
-		//
-		// SubProcessExtraction processEngine = new SubProcessExtraction();
-		// processEngine.init();
-
 		// START
 		// 1a. analyze model1
 		Definitions def1 = Bpmn2ResourceSet.getInstance().loadDefinitions(
@@ -122,7 +117,6 @@ public class ProcessTransformerTest {
 				pathname, basename1, targetDir, nodes1);
 		ProcessAnalysisUtil.writeToFile(targetDir + basename1 + "."
 				+ BpmnAnalysisPackage.eNAME, analysis1);
-		// ProcessAnalysis analysis1 = processEngine.runProcessAnalysis(def1);
 
 		// 1b. analyze model2
 		Definitions def2 = Bpmn2ResourceSet.getInstance().loadDefinitions(
@@ -133,35 +127,18 @@ public class ProcessTransformerTest {
 				pathname, basename2, targetDir, nodes2);
 		ProcessAnalysisUtil.writeToFile(targetDir + basename2 + "."
 				+ BpmnAnalysisPackage.eNAME, analysis2);
-		// ProcessAnalysis analysis2 = processEngine.runProcessAnalysis(def2);
-
 		// 2. match models
-		// ProcessMatching matching_ =
-		// processEngine.runProcessMatching(analysis1,
-		// analysis2);
-		// ProcessMatchingUtil.writeToFile(targetDir +
-		// "bpmn/matching.bpmnmatching",
-		// matching_);
 		ProcessMatcher matcher = new ProcessMatcherImpl();
 		ProcessMatching matching = matcher.match(analysis1, analysis2);
 		ProcessMatchingUtil.writeToFile(targetDir + basename1 + "_" + basename2
 				+ "." + BpmnMatchingPackage.eNAME, matching);
-
 		// 3. extract models
-		// BPMN variant (funktioniert nicht)
-		// ProcessExtraction extraction1 = processEngine
-		// .runProcessExtraction(matching);
-		// ProcessExtractionUtil.writeToFile(targetDir + "bpmn/"
-		// + "extraction.bpmntransformation", extraction1);
-		// ProcessExtractionUtil.writeResults(targetDir + "bpmn/", extraction1);
-		// pure Java variant (funktioniert)
 		ProcessTransformer transformer = new ProcessTransformerImpl();
 		ProcessTransformation extraction = transformer.transform(matching);
 		ProcessTransformationUtil.writeToFile(targetDir + basename1 + "_"
 				+ basename2 + "." + BpmnTransformationPackage.eNAME,
 				extraction);
 		ProcessTransformationUtil.writeResults(targetDir, extraction);
-
 		// END
 
 		// TODO: assertions

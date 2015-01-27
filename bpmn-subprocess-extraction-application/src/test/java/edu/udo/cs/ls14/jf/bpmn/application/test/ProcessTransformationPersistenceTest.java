@@ -12,6 +12,7 @@ import org.junit.Ignore;
 import org.junit.Test;
 
 import edu.udo.cs.ls14.jf.bpmn.utils.Bpmn2ResourceSet;
+import edu.udo.cs.ls14.jf.bpmn.utils.DefinitionsUtil;
 import edu.udo.cs.ls14.jf.bpmn.utils.EObjectXmlConverter;
 import edu.udo.cs.ls14.jf.bpmn.utils.ProcessTransformationUtil;
 import edu.udo.cs.ls14.jf.bpmntransformation.BpmnTransformationFactory;
@@ -37,7 +38,7 @@ public class ProcessTransformationPersistenceTest {
 		
 		ProcessTransformation extraction = BpmnTransformationFactory.eINSTANCE
 				.createProcessTransformation();
-		extraction.getResults().put("first", EcoreUtil.copy(definitions));
+		extraction.getResults().put("first", DefinitionsUtil.copy(definitions));
 		ProcessTransformationUtil.writeToFile("/tmp/test.xml", extraction);
 
 		// Forget everything, try to reproduce from disk
@@ -46,7 +47,7 @@ public class ProcessTransformationPersistenceTest {
 				.xml2EObject("bpmntransformation", xml);
 		// write results
 		ProcessTransformationUtil.writeToFile("/tmp/test2.xml",
-				EcoreUtil.copy(next));
+				DefinitionsUtil.copy(next));
 
 	}
 

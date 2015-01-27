@@ -7,18 +7,18 @@ import org.eclipse.emf.common.util.URI;
 
 import edu.udo.cs.ls14.jf.bpmnanalysis.BpmnAnalysisFactory;
 import edu.udo.cs.ls14.jf.bpmnanalysis.ProcessAnalysis;
+import edu.udo.cs.ls14.jf.bpmnanalysis.util.BpmnAnalysisResourceFactoryImpl;
 
 public class ProcessAnalysisFactory {
 
 	public static ProcessAnalysis createAnalysis(Definitions definitions) {
 		ProcessAnalysis analysis = BpmnAnalysisFactory.eINSTANCE
 				.createProcessAnalysis();
-		Bpmn2ResourceSet
-				.getInstance()
+		new BpmnAnalysisResourceFactoryImpl()
 				.createResource(
 						URI.createFileURI(UUID.randomUUID().toString()
 								+ ".bpmnanalysis")).getContents().add(analysis);
-		analysis.setDefinitions(definitions);
+		analysis.setDefinitions(DefinitionsUtil.copy(definitions));
 		return analysis;
 	}
 }

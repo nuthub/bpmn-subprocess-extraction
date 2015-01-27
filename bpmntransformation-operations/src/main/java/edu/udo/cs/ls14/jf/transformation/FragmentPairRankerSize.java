@@ -19,6 +19,7 @@ public class FragmentPairRankerSize {
 			.getLogger(FragmentPairRankerSize.class);
 
 	public static FragmentMatching rankFragments(FragmentMatching matching) {
+		LOGGER.info("I have to rank " + matching.getPairs().size() + " fragment pairs.");
 		for (FragmentPair pair : matching.getPairs()) {
 			Predicate<FlowElement> filter = e -> e instanceof Activity
 					|| e instanceof Event || e instanceof Gateway;

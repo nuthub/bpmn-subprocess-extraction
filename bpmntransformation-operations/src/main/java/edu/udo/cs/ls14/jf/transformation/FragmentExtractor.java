@@ -14,6 +14,7 @@ import org.slf4j.LoggerFactory;
 import edu.udo.cs.ls14.jf.bpmn.utils.Bpmn2ResourceSet;
 import edu.udo.cs.ls14.jf.bpmn.utils.DefinitionsUtil;
 import edu.udo.cs.ls14.jf.bpmn.utils.FragmentUtil;
+import edu.udo.cs.ls14.jf.bpmn.utils.ProcessTransformationFactory;
 import edu.udo.cs.ls14.jf.bpmnmatching.FragmentPair;
 import edu.udo.cs.ls14.jf.bpmnmatching.ProcessMatching;
 import edu.udo.cs.ls14.jf.bpmntransformation.BpmnTransformationFactory;
@@ -28,8 +29,11 @@ public class FragmentExtractor {
 	public static ProcessTransformation transform(ProcessMatching pMatching)
 			throws Exception {
 
-		ProcessTransformation extraction = BpmnTransformationFactory.eINSTANCE
-				.createProcessTransformation();
+		// ProcessTransformation extraction =
+		// BpmnTransformationFactory.eINSTANCE
+		// .createProcessTransformation();
+		ProcessTransformation extraction = ProcessTransformationFactory
+				.createProcessTransformation(pMatching);
 
 		// Copy definitions of matched processes
 		Definitions definitions1 = EcoreUtil.copy(pMatching.getAnalysis1()
@@ -71,21 +75,27 @@ public class FragmentExtractor {
 			defsExtracted.setId(UUID.randomUUID().toString());
 			EGraph graph = new EGraphImpl(defsExtracted);
 			extractor.cropFragment(graph, fPair.getBetter(), defsExtracted);
-			extraction.getResults().put(idExtracted + ".bpmn", defsExtracted);
+//			extraction.getResults().put(idExtracted + ".bpmn", defsExtracted);
 			LOG.info("SubProcess " + idExtracted + " extracted.");
 
+			System.out.println("before:" + defsExtracted.eResource());
+			Definitions defsCopy = DefinitionsUtil.copy(defsExtracted);
+			System.out.println("after :" + defsCopy.eResource());
+			extraction.getResults().put(idExtracted + ".bpmn", defsCopy);
+			System.out.println("after2 :" + defsCopy.eResource());
+			
 			// callActivity parameters
-			Process calledElement = DefinitionsUtil.getProcess(defsExtracted);
+			Process calledElement = DefinitionsUtil.getProcess(defsCopy);
 			calledElement.setName(idExtracted);
 			calledElement.setId(idExtracted.toLowerCase());
 
-			// replace fragment in Process1
+			// // replace fragment in Process1
 			LOG.info("Replacing " + fPair.getA());
 			extractor.replaceFragmentByCallActivity(graph1, fPair.getA(),
 					calledElement, fPair.getBetter().getLabel());
 			LOG.info("Replaced " + fPair.getA());
 
-			// /replace fragment in Process2
+			// replace fragment in Process2
 			LOG.info("Replacing " + fPair.getB());
 			extractor.replaceFragmentByCallActivity(graph2, fPair.getB(),
 					calledElement, fPair.getBetter().getLabel());

@@ -7,15 +7,20 @@ import edu.udo.cs.ls14.jf.bpmnmatching.ProcessMatching;
 import edu.udo.cs.ls14.jf.bpmntransformation.ProcessTransformation;
 import edu.udo.cs.ls14.jf.transformation.FragmentExtractor;
 
+/**
+ * 
+ * @author flake
+ *
+ */
 public class FragmentExtractorDelegate implements JavaDelegate {
 
 	@Override
 	public void execute(DelegateExecution execution) throws Exception {
 		ProcessMatching matching = (ProcessMatching) execution
 				.getVariable("matching");
-		// TODO: use ProcessTransformer instead
-		ProcessTransformation extraction = FragmentExtractor.transform(matching);
-		execution.setVariable("extraction", extraction);
+		ProcessTransformation transformation = FragmentExtractor
+				.transform(matching);
+		execution.setVariable("transformation", transformation);
 	}
 
 }

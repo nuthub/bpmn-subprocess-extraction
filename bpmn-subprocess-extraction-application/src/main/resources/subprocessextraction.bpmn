@@ -29,7 +29,7 @@
     <bpmn2:callActivity id="Task_2" name="Transform Models" calledElement="processtransformation">
       <bpmn2:extensionElements>
         <camunda:in source="matching" target="matching"/>
-        <camunda:out source="extraction" target="extraction"/>
+        <camunda:out source="transformation" target="transformation"/>
       </bpmn2:extensionElements>
       <bpmn2:incoming>SequenceFlow_4</bpmn2:incoming>
       <bpmn2:outgoing>SequenceFlow_8</bpmn2:outgoing>

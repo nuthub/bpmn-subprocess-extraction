@@ -3376,7 +3376,7 @@
               <styles xmi:type="notation:FilteringStyle" xmi:id="_HGz_I3VWEeSUM994yxjHvw"/>
             </children>
             <styles xmi:type="notation:ShapeStyle" xmi:id="_HGzYEXVWEeSUM994yxjHvw" fontName="FreeSans" fontHeight="8"/>
-            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_HGzYEnVWEeSUM994yxjHvw" x="205" y="175" height="78"/>
+            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_HGzYEnVWEeSUM994yxjHvw" x="199" y="175" width="168" height="78"/>
           </children>
           <children xmi:type="notation:Node" xmi:id="_HGz_JHVWEeSUM994yxjHvw" type="2003" element="_HGkukHVWEeSUM994yxjHvw">
             <children xmi:type="notation:Node" xmi:id="_HG0mMHVWEeSUM994yxjHvw" type="5007"/>
@@ -3403,7 +3403,7 @@
               <styles xmi:type="notation:FilteringStyle" xmi:id="_M3_Tk3VWEeSUM994yxjHvw"/>
             </children>
             <styles xmi:type="notation:ShapeStyle" xmi:id="_M3-sgXVWEeSUM994yxjHvw" fontName="FreeSans" fontHeight="8" italic="true"/>
-            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_M3-sgnVWEeSUM994yxjHvw" x="425" y="175" height="78"/>
+            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_M3-sgnVWEeSUM994yxjHvw" x="440" y="175" height="78"/>
           </children>
           <styles xmi:type="notation:DiagramStyle" xmi:id="_BgB80nVWEeSUM994yxjHvw"/>
           <edges xmi:type="notation:Edge" xmi:id="_HG1NQHVWEeSUM994yxjHvw" type="4001" element="_HGvGoHVWEeSUM994yxjHvw" source="_HGz_JHVWEeSUM994yxjHvw" target="_HGzYEHVWEeSUM994yxjHvw">

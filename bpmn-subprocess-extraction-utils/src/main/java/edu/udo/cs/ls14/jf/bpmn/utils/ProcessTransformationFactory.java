@@ -7,6 +7,7 @@ import org.eclipse.emf.common.util.URI;
 import edu.udo.cs.ls14.jf.bpmnmatching.ProcessMatching;
 import edu.udo.cs.ls14.jf.bpmntransformation.BpmnTransformationFactory;
 import edu.udo.cs.ls14.jf.bpmntransformation.ProcessTransformation;
+import edu.udo.cs.ls14.jf.bpmntransformation.util.BpmnTransformationResourceFactoryImpl;
 
 public class ProcessTransformationFactory {
 
@@ -14,8 +15,7 @@ public class ProcessTransformationFactory {
 			ProcessMatching processMatching) {
 		ProcessTransformation transformation = BpmnTransformationFactory.eINSTANCE
 				.createProcessTransformation();
-		Bpmn2ResourceSet
-				.getInstance()
+		new BpmnTransformationResourceFactoryImpl()
 				.createResource(
 						URI.createFileURI(UUID.randomUUID().toString()
 								+ ".bpmntransformation")).getContents()

@@ -164,7 +164,7 @@ public class HenshinAdapter {
 
 		// create call activity
 		parameters.clear();
-		String callActivityUuid = UUID.randomUUID().toString();
+		String callActivityUuid = "_" + UUID.randomUUID().toString();
 		parameters.put("id", callActivityUuid);
 		parameters.put("name", name);
 		parameters.put("x", fragment.getCenter().getX());

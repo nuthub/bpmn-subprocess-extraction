@@ -1,4 +1,4 @@
-package edu.udo.cs.ls14.jf.bpmn.transformation.test;
+package edu.udo.cs.ls14.jf.bpmn.application.test;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;

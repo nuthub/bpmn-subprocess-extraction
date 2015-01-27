@@ -13,9 +13,9 @@ public class ProcessTransformationFactoryDelegate implements JavaDelegate {
 	public void execute(DelegateExecution execution) throws Exception {
 		ProcessMatching matching = (ProcessMatching) execution
 				.getVariable("matching");
-		ProcessTransformation extraction = ProcessTransformationFactory
+		ProcessTransformation transformation = ProcessTransformationFactory
 				.createProcessTransformation(matching);
-		execution.setVariable("extraction", extraction);
+		execution.setVariable("transformation", transformation);
 	}
 
 }
