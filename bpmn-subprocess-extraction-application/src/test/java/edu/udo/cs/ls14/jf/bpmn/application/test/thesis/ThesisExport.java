@@ -102,11 +102,11 @@ public class ThesisExport {
 	}
 
 	@Test
-	public void createEvaluationArtifacts() throws Exception {
+	public void createEvaluationArtifacts2() throws Exception {
 		String pathname = "/bpmn/completeLabelled/";
 		String basename1 = "complete1labelled";
 		String basename2 = "complete2labelled";
-		String targetDir = (TARGET_DIR + "evaluation/").replaceAll("//", "/");
+		String targetDir = (TARGET_DIR + "evaluation/bsp2/").replaceAll("//", "/");
 		List<String> nodes1 = Arrays.asList("n_start", "Anspruch pruefen",
 				"Lieferschein erstellen", "Rechnung erstellen",
 				"Ware verpacken", "Betrag erstatten", "Gutschein ausstellen",
@@ -151,5 +151,22 @@ public class ThesisExport {
 		ProcessTransformationUtil.writeResults(targetDir, transformation);
 
 		assertEquals(4, transformation.getResults().size());
+	}
+
+	@Test
+	public void createEvaluationArtifacts1() throws Exception {
+		String pathname = "/bpmn/sequences/";
+		String basename = "sequence1";
+		String targetDir = (TARGET_DIR + "evaluation/bsp1/").replaceAll("//", "/");
+		List<String> nodes = Arrays.asList("n_start", "A", "B", "C", "D", "F",
+				"n_end");
+		Definitions def = Bpmn2ResourceSet.getInstance()
+				.loadDefinitions(
+						getClass().getResource(pathname + basename + ".bpmn")
+								.getPath());
+		ProcessAnalyzer analyzer = new ProcessAnalyzerImpl();
+		ProcessAnalysis analysis = analyzer.analyzeAndDebug(def, pathname,
+				basename, targetDir, nodes);
+		assertNotNull(analysis);
 	}
 }

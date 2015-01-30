@@ -9,20 +9,25 @@ import org.eclipse.emf.ecore.util.EcoreUtil.Copier;
 
 public class DefinitionsCopier extends Copier {
 
-	private static final long serialVersionUID = 7184121980550717203L;
-
-	@Override
-	public void copyReferences() {
-		for (Map.Entry<EObject, EObject> entry : entrySet()) {
-			try {
-				Method methodToFind = entry.getValue().getClass()
-						.getMethod("setId", new Class[] { String.class });
-				methodToFind.invoke(entry.getValue(), "_"
-						+ UUID.randomUUID().toString());
-			} catch (Exception e) {
-			}
-		}
-		super.copyReferences();
-	};
-
+    private static final long serialVersionUID = 7184121980550717203L;
+    
+    @Override
+    public void copyReferences() {
+	// for every copied object
+	for (EObject obj : values()) {
+	    try {
+		// check, if it has a method setId(String)
+		Method method = obj.getClass()
+		    .getMethod("setId", new Class[] { String.class });
+		// and invoke that method
+		method.invoke(obj, "_"
+			      + UUID.randomUUID().toString());
+	    } catch (Exception e) {
+		// do nothing, if method could not be called
+	    }
+	}
+	// proceed with super method
+	super.copyReferences();
+    }
+    
 }

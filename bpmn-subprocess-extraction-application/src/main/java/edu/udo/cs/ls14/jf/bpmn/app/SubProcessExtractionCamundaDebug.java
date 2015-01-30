@@ -61,6 +61,9 @@ public class SubProcessExtractionCamundaDebug implements SubProcessExtraction {
 		// Analyze Model 1
 		variables.clear();
 		variables.put("definitions", definitions1);
+		// Run analysis 1 twice to compensate start up latencies
+		instance = processEngine.getRuntimeService().startProcessInstanceByKey(
+				"processanalysis", variables);
 		long timeAnalysis1Start = System.currentTimeMillis();
 		instance = processEngine.getRuntimeService().startProcessInstanceByKey(
 				"processanalysis", variables);
@@ -106,7 +109,6 @@ public class SubProcessExtractionCamundaDebug implements SubProcessExtraction {
 				.getHistoryService().createHistoricVariableInstanceQuery()
 				.processInstanceId(instance.getId())
 				.variableName("transformation").singleResult().getValue();
-		transformation.eResource().save(new FileOutputStream(new File("/tmp/transformation-1.bpmntransformation")), null);
 
 		LOGGER.info("Time for Analyzing Model 1       : " + (timeAnalysis1End-timeAnalysis1Start) + "ms");
 		LOGGER.info("Time for Analyzing Model 2       : " + (timeAnalysis2End-timeAnalysis2Start) + "ms");
