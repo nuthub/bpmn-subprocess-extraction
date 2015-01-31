@@ -6,6 +6,7 @@ import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
 import org.eclipse.bpmn2.Activity;
+import org.eclipse.bpmn2.BaseElement;
 import org.eclipse.bpmn2.Bpmn2Package;
 import org.eclipse.bpmn2.Definitions;
 import org.eclipse.bpmn2.Event;
@@ -108,6 +109,10 @@ public class FragmentUtil {
 				: "[" + f.getExit().getId() + "]");
 		sb.append(")");
 		return sb.toString();
+	}
+
+	public static boolean contains(Fragment fragment, FlowElement flowElement) {
+		return getFlowElements(fragment, n -> true).contains(flowElement);
 	}
 
 }

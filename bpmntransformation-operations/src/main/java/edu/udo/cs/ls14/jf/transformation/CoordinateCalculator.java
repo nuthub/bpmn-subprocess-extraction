@@ -22,8 +22,7 @@ public class CoordinateCalculator {
 
 	public static Point getCenter(FlowNode node, Definitions definitions)
 			throws Exception {
-		BPMNDiagram diagram = DefinitionsUtil
-				.getDiagram(definitions);
+		BPMNDiagram diagram = DefinitionsUtil.getDiagram(definitions);
 		float x = 0;
 		float y = 0;
 		for (DiagramElement element : diagram.getPlane().getPlaneElement()) {
@@ -43,10 +42,6 @@ public class CoordinateCalculator {
 	}
 
 	public static Point getCenter(Fragment fragment) throws Exception {
-		Predicate<FlowElement> filter = e -> e instanceof FlowNode;
-		Set<FlowElement> nodes = FragmentUtil.getFlowElements(fragment, filter);
-		Set<String> nodeIds = nodes.stream().map(n -> n.getId())
-				.collect(Collectors.toSet());
 		BPMNDiagram diagram = DefinitionsUtil.getDiagram(FragmentUtil
 				.getDefinitions(fragment));
 		float minX = -1;
@@ -58,7 +53,8 @@ public class CoordinateCalculator {
 				continue;
 			}
 			BPMNShape shape = (BPMNShape) element;
-			if (!nodeIds.contains(shape.getBpmnElement().getId())) {
+			if (!FragmentUtil.contains(fragment,
+					(FlowElement) shape.getBpmnElement())) {
 				continue;
 			}
 			Bounds bounds = shape.getBounds();
