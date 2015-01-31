@@ -1,9 +1,5 @@
 package edu.udo.cs.ls14.jf.transformation;
 
-import java.util.Set;
-import java.util.function.Predicate;
-import java.util.stream.Collectors;
-
 import org.eclipse.bpmn2.Definitions;
 import org.eclipse.bpmn2.FlowElement;
 import org.eclipse.bpmn2.FlowNode;
@@ -14,8 +10,8 @@ import org.eclipse.dd.dc.DcFactory;
 import org.eclipse.dd.dc.Point;
 import org.eclipse.dd.di.DiagramElement;
 
-import edu.udo.cs.ls14.jf.bpmn.utils.FragmentUtil;
 import edu.udo.cs.ls14.jf.bpmn.utils.DefinitionsUtil;
+import edu.udo.cs.ls14.jf.bpmn.utils.FragmentUtil;
 import edu.udo.cs.ls14.jf.bpmnanalysis.Fragment;
 
 public class CoordinateCalculator {
