@@ -40,6 +40,14 @@ public class SubProcessExtractionCamundaTest {
 	}
 
 	@Test
+	public void testEvaluation() throws Exception {
+		String resname1 = "evaluation1.bpmn";
+		String resname2 = "evaluation2.bpmn";
+		runTest("/bpmn/evaluation/", resname1, resname2);
+		// TODO: Assertions
+	}
+
+	@Test
 	public void testConditionalFlow() throws Exception {
 		String resname1 = "conditionSequence1.bpmn";
 		String resname2 = "conditionSequence2.bpmn";
