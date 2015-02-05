@@ -80,6 +80,14 @@ public class SubProcessExtractionCamundaDebugTimeMeasurement {
 	}
 
 	@Test
+	public void testShortLoop() throws Exception {
+		String resname1 = "shortloop.bpmn";
+		String resname2 = "parallel.bpmn";
+		runTest("/bpmn/shortLoop/", resname1, resname2);
+		// TODO: Assertions
+	}
+
+	@Test
 	public void testParallelism() throws Exception {
 		String resname1 = "parallelism1.bpmn";
 		String resname2 = "parallelism2.bpmn";
@@ -96,8 +104,13 @@ public class SubProcessExtractionCamundaDebugTimeMeasurement {
 				getClass().getResource(path).getPath() + resName2);
 
 		// Run process
-		long start = System.currentTimeMillis();
+		// first run
 		ProcessTransformation transformation = app.run(defs1, defs2);
+		// second run
+		transformation = app.run(defs1, defs2);
+		// third run
+		long start = System.currentTimeMillis();
+		transformation = app.run(defs1, defs2);
 		long end = System.currentTimeMillis();
 
 		// Write Results

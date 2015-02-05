@@ -87,6 +87,13 @@ public class SubProcessExtractionJavaTimeMeasurement {
 		runTest("/bpmn/parallelGateway/", resname1, resname2);
 		// TODO: Assertions
 	}
+	@Test
+	public void testShortLoop() throws Exception {
+		String resname1 = "shortloop.bpmn";
+		String resname2 = "parallel.bpmn";
+		runTest("/bpmn/shortLoop/", resname1, resname2);
+		// TODO: Assertions
+	}
 
 	private ProcessTransformation runTest(String path, String resName1,
 			String resName2) throws Exception {

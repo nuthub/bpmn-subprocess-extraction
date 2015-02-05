@@ -80,6 +80,14 @@ public class SubProcessExtractionCamundaTest {
 	}
 
 	@Test
+	public void testShortLoop() throws Exception {
+		String resname1 = "shortloop.bpmn";
+		String resname2 = "parallel.bpmn";
+		runTest("/bpmn/shortLoop/", resname1, resname2);
+		// TODO: Assertions
+	}
+
+	@Test
 	public void testParallelism() throws Exception {
 		String resname1 = "parallelism1.bpmn";
 		String resname2 = "parallelism2.bpmn";
