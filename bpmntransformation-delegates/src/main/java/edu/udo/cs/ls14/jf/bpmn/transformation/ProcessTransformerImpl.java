@@ -6,7 +6,7 @@ import edu.udo.cs.ls14.jf.bpmntransformation.ProcessTransformation;
 import edu.udo.cs.ls14.jf.transformation.CoordinateCalculator;
 import edu.udo.cs.ls14.jf.transformation.FragmentExtractor;
 import edu.udo.cs.ls14.jf.transformation.FragmentPairFilterTrivial;
-import edu.udo.cs.ls14.jf.transformation.FragmentPairRankerSize;
+import edu.udo.cs.ls14.jf.transformation.FragmentPairRanker;
 import edu.udo.cs.ls14.jf.transformation.LabelGenerator;
 
 /**
@@ -29,8 +29,8 @@ public class ProcessTransformerImpl implements ProcessTransformer {
 //				+ " fragment correspondences left.");
 		// Do the extraction
 		// 1. determine order in fragments
-		pMatching.setFragmentMatching(FragmentPairRankerSize
-				.rankFragments(pMatching.getFragmentMatching()));
+		pMatching.setFragmentMatching(FragmentPairRanker
+				.rankByCFC(pMatching.getFragmentMatching()));
 		// 2. compute coords
 		for (FragmentPair pair : pMatching.getFragmentMatching().getPairs()) {
 			pair.getA().setCenter(CoordinateCalculator.getCenter(pair.getA()));

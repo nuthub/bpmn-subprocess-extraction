@@ -20,5 +20,9 @@
 			<groupId>org.eclipse.emf.henshin</groupId>
 			<artifactId>org.eclipse.emf.henshin.model</artifactId>
 		</dependency>
+		<dependency>
+			<groupId>edu.udo.cs.ls14.jf</groupId>
+			<artifactId>bpmn-metrics</artifactId>
+		</dependency>
 	</dependencies>
 </project>

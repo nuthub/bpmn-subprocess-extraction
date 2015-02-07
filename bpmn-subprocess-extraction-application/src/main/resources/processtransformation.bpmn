@@ -20,7 +20,7 @@
       <bpmn2:outgoing>SequenceFlow_2</bpmn2:outgoing>
     </bpmn2:serviceTask>
     <bpmn2:sequenceFlow id="SequenceFlow_2" name="" sourceRef="ServiceTask_1" targetRef="ServiceTask_2"/>
-    <bpmn2:serviceTask id="ServiceTask_2" camunda:class="edu.udo.cs.ls14.jf.bpmn.app.delegates.transformation.FragmentPairRankerSizeDelegate" name="Determine better fragments">
+    <bpmn2:serviceTask id="ServiceTask_2" camunda:class="edu.udo.cs.ls14.jf.bpmn.app.delegates.transformation.FragmentPairRankerCfcDelegate" name="Determine better fragments">
       <bpmn2:incoming>SequenceFlow_2</bpmn2:incoming>
       <bpmn2:outgoing>SequenceFlow_3</bpmn2:outgoing>
     </bpmn2:serviceTask>

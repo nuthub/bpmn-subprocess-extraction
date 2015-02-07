@@ -1,0 +1,217 @@
+import ecore : 'http://www.omg.org/spec/BPMN/20100524/MODEL-XMI'
+
+package bpmn2
+
+	context Process
+
+	-- Number of Pools
+	-- def: NP :
+
+   	-- Number of Lanes
+	def:
+	NL : Integer = self.laneSets.lanes
+	->size()
+
+	-- Number of Tasks
+	def:
+	NT : Integer = self.flowElements
+	->select(f | f.oclIsTypeOf(Task))
+	->collect(t : Task | t.oclAsType(Task))
+	->select(t | t.loopCharacteristics
+		->isEmpty())
+	->select(t | t.isForCompensation = false)
+	->asSet()
+	->size()
+
+	-- Number of Standard Loops
+	def:
+	NTL : Integer =  self.flowElements
+	->select(f | f.oclIsTypeOf(Task))
+	->collect(t : Task | t.oclAsType(Task))
+	->select(f | f.loopCharacteristics
+		->notEmpty())
+	->select(f | f.loopCharacteristics.oclIsTypeOf(StandardLoopCharacteristics))
+	->asSet()
+	->size()
+
+	-- Number of multi instance loops
+	def:
+	NTMI : Integer =  self.flowElements
+	->select(f | f.oclIsTypeOf(Task))
+	->collect(t : Task | t.oclAsType(Task))
+	->select(f | f.loopCharacteristics
+		->notEmpty())
+	->select(f | f.loopCharacteristics.oclIsTypeOf(MultiInstanceLoopCharacteristics))
+	->asSet()
+	->size()
+
+	-- NTC: Number of Compensation tasks
+	def:
+	NTC : Integer =  self.flowElements
+	->select(f | f.oclIsTypeOf(Task))
+	->collect(t : Task | t.oclAsType(Task))
+	->select(f | f.isForCompensation = true)
+	->asSet()
+	->size()
+
+	-- TNA: Total number of Activities
+	-- def: TNA
+
+	-- TNT: Total Number of tasks
+	def:
+	TNT : Integer = self.NT + self.NTL + self.NTMI + self.NTC
+
+	-- Number of sub processes
+	def:
+	NCS : Integer = self.flowElements
+	->select(f | f.oclIsTypeOf(SubProcess))
+	->collect(s : SubProcess | s.oclAsType(SubProcess))
+	->asSet()
+	->size()
+
+	-- Number of loop sup processes
+	def:
+	NCSL : Integer = self.flowElements
+	->select(f | f.oclIsTypeOf(SubProcess))
+	->collect(s | s.oclAsType(SubProcess))
+	->select(s | s.loopCharacteristics
+		->isEmpty())
+	->asSet()
+	->size()
+
+	-- Number of multi instance loop sub processes
+	def:
+	NCSMI : Integer = self.flowElements
+	->select(f | f.oclIsTypeOf(SubProcess))
+	->collect(s | s.oclAsType(SubProcess))
+	->select(s | s.loopCharacteristics
+		->notEmpty())
+	->select(s | s.loopCharacteristics.oclIsTypeOf(MultiInstanceLoopCharacteristics))
+	->asSet()
+	->size()
+
+	-- Number of compensation sub processes
+	def:
+	NCSC : Integer = self.flowElements
+	->select(f | f.oclIsTypeOf(SubProcess))
+	->collect(s | s.oclAsType(SubProcess))
+	->select(s | s.isForCompensation = true)
+	->asSet()
+	->size()
+
+	-- Number of ad hoc sub processes
+	def:
+	NCSA : Integer = self.flowElements
+	->select(f | f.oclIsTypeOf(AdHocSubProcess))
+	->asSet()
+	->size()
+
+	-- Number of Exclusive Data Based Decisions
+	def:
+	NEDDB : Integer = self.flowElements
+	->select(f | f.oclIsTypeOf(ExclusiveGateway)) 
+--	->collect(g | g.oclAsType(ExclusiveGateway))
+	->asSet()
+	->size()
+
+	-- Number of Exclusive Event Based Decisions
+	def:
+	NEDEB : Integer = self.flowElements
+	->select(f | f.oclIsTypeOf(EventBasedGateway))
+--	->collect( g | g.oclAsType(EventBasedGateway))
+	->asSet()
+	->size()
+	
+	-- Number of Inclusive Decisions
+	def:
+	NID : Integer = self.flowElements
+	->select(f | f.oclIsTypeOf(InclusiveGateway))
+	->asSet()->size()
+	
+	-- NCD: Number of Complex Decisions
+	def:
+	NCD : Integer = self.flowElements
+	->select(f | f.oclIsTypeOf(ComplexGateway))
+	->asSet()
+	->size()
+
+	-- Number of Parallel Forking
+	def:
+	NPF : Integer = self.flowElements
+	->select(f | f.oclIsTypeOf(ParallelGateway))
+	->asSet()
+	->size()
+	
+-- def: NSNE
+-- def: NSTE
+-- def: NSMsE
+-- def: NSRE
+-- def: NSLE
+-- def: NSMuE
+
+-- def: NINE
+-- def: NITE
+-- def: NIMsE
+-- def: NIEE
+-- def: NICaE
+-- def: NICoE
+-- def: NIRE
+-- def: NILE
+-- def: NIMuE
+
+-- def: NENE
+-- def: NEMsE
+-- def: NEEE
+-- def: NECaE
+-- def: NECoE
+-- def: NELE
+-- def: NEMue
+-- def: NETE
+	
+	-- NSFA: Number of Sequence Flows between Activities
+	-- def: NSFA : 
+  
+	-- NSFE: Number of Sequence Flows from Events
+	-- def: NSFE
+
+	-- NSFG: Number of Sequence Flows from Gateways
+	-- def: NSFG
+
+	
+-- def: NSFL
+   	
+	-- NMF: Number of Message Flows
+   	-- def: NMF
+
+	-- NDOIn: Number of Data Objects which are Input of activities
+	def: 
+	NDOIn : Integer = self.ioSpecification.dataInputs->size()
+	
+	-- NDOOut: Number of Data Objects which are Output of activities
+	def:
+	NDOOut : Integer = self.ioSpecification.dataOutputs->size()
+
+	-- PDOPin: Proportion of data objects as incoming products and total data objects
+	-- def: PDOPin
+
+	-- PDOPout: Proportion of data objects as outgoing products and total data objects
+	-- def: PDOPout
+
+	-- PDOTout: Proportion of data objects as outgoing product of activities of the model (??)
+	-- def: PDOTout 
+
+	-- PLT: Proportion of pools / lanes and activities
+
+	def:
+	newline : String = '\r\n'
+
+	def:
+	Measures():
+	String = 'NL=' + NL.toString() + newline + 'NT=' + NT.toString() + newline + 'NTL=' + NTL.toString() + newline +
+	'NTMI=' + NTMI.toString() + newline + 'NTC=' + NTC.toString() + newline + 'TNT=' + TNT.toString() + newline + 'NCS=' +
+	NCS.toString() + newline + 'NCSL=' + NCSL.toString() + newline + 'NCSMI=' + NCSMI.toString() + newline + 'NCSC=' +
+	NCSC.toString() + newline + 'NCSA=' + NCSA.toString() + newline + 'NEDDB=' + NEDDB.toString() + newline + 'NEDEB=' +
+	NEDEB.toString() + newline + 'NID=' + NID.toString() + newline + 'NCD=' + NCD.toString() + newline + 'NPF=' +
+	NPF.toString() + newline + 'NDOIn=' + NDOIn.toString() + newline + 'NDOOut=' + NDOOut.toString() + newline 
+
+endpackage

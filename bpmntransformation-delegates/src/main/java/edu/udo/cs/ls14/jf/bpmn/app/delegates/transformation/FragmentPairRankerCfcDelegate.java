@@ -6,14 +6,14 @@ import org.camunda.bpm.engine.delegate.JavaDelegate;
 import edu.udo.cs.ls14.jf.bpmnmatching.ProcessMatching;
 import edu.udo.cs.ls14.jf.transformation.FragmentPairRanker;
 
-public class FragmentPairRankerSizeDelegate implements JavaDelegate {
+public class FragmentPairRankerCfcDelegate implements JavaDelegate {
 
 	@Override
 	public void execute(DelegateExecution execution) throws Exception {
 		ProcessMatching matching = (ProcessMatching) execution
 				.getVariable("matching");
 		matching.setFragmentMatching(FragmentPairRanker
-				.rankBySize(matching.getFragmentMatching()));
+				.rankByCFC(matching.getFragmentMatching()));
 		execution.setVariable("matching", matching);
 	}
 

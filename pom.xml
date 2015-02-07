@@ -8,6 +8,7 @@
 	<modules>
 		<module>bpmn-subprocess-extraction-model</module>
 		<module>bpmn-subprocess-extraction-utils</module>
+		<module>bpmn-metrics</module>
 		<module>word-utils</module>
 		<module>bpmnanalysis-behavioralprofile</module>
 		<module>bpmnanalysis-conditionalprofile</module>
@@ -257,6 +258,11 @@
 				<groupId>org.slf4j</groupId>
 				<artifactId>slf4j-api</artifactId>
 				<version>1.7.7</version>
+			</dependency>
+			<dependency>
+				<groupId>edu.udo.cs.ls14.jf</groupId>
+				<artifactId>bpmn-metrics</artifactId>
+				<version>0.0.1-SNAPSHOT</version>
 			</dependency>
 		</dependencies>
 	</dependencyManagement>
