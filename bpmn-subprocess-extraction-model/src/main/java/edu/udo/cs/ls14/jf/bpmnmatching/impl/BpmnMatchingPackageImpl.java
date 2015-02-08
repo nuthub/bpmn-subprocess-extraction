@@ -10,11 +10,13 @@ import edu.udo.cs.ls14.jf.bpmnmatching.FragmentMatching;
 import edu.udo.cs.ls14.jf.bpmnmatching.FragmentPair;
 import edu.udo.cs.ls14.jf.bpmnmatching.NodeMatching;
 import edu.udo.cs.ls14.jf.bpmnmatching.NodePair;
+import edu.udo.cs.ls14.jf.bpmnmatching.ProcessMatcher;
 import edu.udo.cs.ls14.jf.bpmnmatching.ProcessMatching;
 
 import org.eclipse.bpmn2.Bpmn2Package;
 
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EOperation;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
 
@@ -61,6 +63,13 @@ public class BpmnMatchingPackageImpl extends EPackageImpl implements BpmnMatchin
 	 * @generated
 	 */
 	private EClass fragmentPairEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass processMatcherEClass = null;
 
 	/**
 	 * Creates an instance of the model <b>Package</b>, registered with
@@ -275,6 +284,33 @@ public class BpmnMatchingPackageImpl extends EPackageImpl implements BpmnMatchin
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EReference getFragmentPair_ExtractedProcess() {
+		return (EReference)fragmentPairEClass.getEStructuralFeatures().get(3);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getProcessMatcher() {
+		return processMatcherEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EOperation getProcessMatcher__Match__ProcessAnalysis_ProcessAnalysis() {
+		return processMatcherEClass.getEOperations().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public BpmnMatchingFactory getBpmnMatchingFactory() {
 		return (BpmnMatchingFactory)getEFactoryInstance();
 	}
@@ -318,6 +354,10 @@ public class BpmnMatchingPackageImpl extends EPackageImpl implements BpmnMatchin
 		createEReference(fragmentPairEClass, FRAGMENT_PAIR__A);
 		createEReference(fragmentPairEClass, FRAGMENT_PAIR__B);
 		createEReference(fragmentPairEClass, FRAGMENT_PAIR__BETTER);
+		createEReference(fragmentPairEClass, FRAGMENT_PAIR__EXTRACTED_PROCESS);
+
+		processMatcherEClass = createEClass(PROCESS_MATCHER);
+		createEOperation(processMatcherEClass, PROCESS_MATCHER___MATCH__PROCESSANALYSIS_PROCESSANALYSIS);
 	}
 
 	/**
@@ -374,6 +414,14 @@ public class BpmnMatchingPackageImpl extends EPackageImpl implements BpmnMatchin
 		initEReference(getFragmentPair_A(), theBpmnAnalysisPackage.getFragment(), null, "a", null, 1, 1, FragmentPair.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getFragmentPair_B(), theBpmnAnalysisPackage.getFragment(), null, "b", null, 1, 1, FragmentPair.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getFragmentPair_Better(), theBpmnAnalysisPackage.getFragment(), null, "better", null, 0, 1, FragmentPair.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getFragmentPair_ExtractedProcess(), theBpmn2Package.getCallableElement(), null, "extractedProcess", null, 0, 1, FragmentPair.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(processMatcherEClass, ProcessMatcher.class, "ProcessMatcher", IS_ABSTRACT, IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
+		EOperation op = initEOperation(getProcessMatcher__Match__ProcessAnalysis_ProcessAnalysis(), this.getProcessMatching(), "match", 0, 1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, theBpmnAnalysisPackage.getProcessAnalysis(), "analysis1", 0, 1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, theBpmnAnalysisPackage.getProcessAnalysis(), "analysis2", 0, 1, IS_UNIQUE, IS_ORDERED);
+		addEException(op, theBpmnAnalysisPackage.getException());
 
 		// Create resource
 		createResource(eNS_URI);

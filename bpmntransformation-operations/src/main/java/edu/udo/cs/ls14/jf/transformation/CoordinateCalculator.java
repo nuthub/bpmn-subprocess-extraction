@@ -49,8 +49,9 @@ public class CoordinateCalculator {
 				continue;
 			}
 			BPMNShape shape = (BPMNShape) element;
-			if (!FragmentUtil.contains(fragment,
-					(FlowElement) shape.getBpmnElement())) {
+			if (!(shape.getBpmnElement() instanceof FlowElement)
+					|| !FragmentUtil.contains(fragment,
+							(FlowElement) shape.getBpmnElement())) {
 				continue;
 			}
 			Bounds bounds = shape.getBounds();
@@ -68,5 +69,4 @@ public class CoordinateCalculator {
 		point.setY(minY + ((maxY - minY) / 2));
 		return point;
 	}
-
 }

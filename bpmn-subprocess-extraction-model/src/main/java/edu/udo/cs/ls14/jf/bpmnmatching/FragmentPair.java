@@ -4,6 +4,7 @@ package edu.udo.cs.ls14.jf.bpmnmatching;
 
 import edu.udo.cs.ls14.jf.bpmnanalysis.Fragment;
 
+import org.eclipse.bpmn2.CallableElement;
 import org.eclipse.emf.ecore.EObject;
 
 /**
@@ -17,6 +18,7 @@ import org.eclipse.emf.ecore.EObject;
  *   <li>{@link edu.udo.cs.ls14.jf.bpmnmatching.FragmentPair#getA <em>A</em>}</li>
  *   <li>{@link edu.udo.cs.ls14.jf.bpmnmatching.FragmentPair#getB <em>B</em>}</li>
  *   <li>{@link edu.udo.cs.ls14.jf.bpmnmatching.FragmentPair#getBetter <em>Better</em>}</li>
+ *   <li>{@link edu.udo.cs.ls14.jf.bpmnmatching.FragmentPair#getExtractedProcess <em>Extracted Process</em>}</li>
  * </ul>
  * </p>
  *
@@ -102,5 +104,31 @@ public interface FragmentPair extends EObject {
 	 * @generated
 	 */
 	void setBetter(Fragment value);
+
+	/**
+	 * Returns the value of the '<em><b>Extracted Process</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Extracted Process</em>' reference isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Extracted Process</em>' reference.
+	 * @see #setExtractedProcess(CallableElement)
+	 * @see edu.udo.cs.ls14.jf.bpmnmatching.BpmnMatchingPackage#getFragmentPair_ExtractedProcess()
+	 * @model
+	 * @generated
+	 */
+	CallableElement getExtractedProcess();
+
+	/**
+	 * Sets the value of the '{@link edu.udo.cs.ls14.jf.bpmnmatching.FragmentPair#getExtractedProcess <em>Extracted Process</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Extracted Process</em>' reference.
+	 * @see #getExtractedProcess()
+	 * @generated
+	 */
+	void setExtractedProcess(CallableElement value);
 
 } // FragmentPair

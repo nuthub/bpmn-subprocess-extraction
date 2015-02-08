@@ -116,6 +116,7 @@ public class SubProcessExtractionCamundaDebugTimeMeasurement {
 		// Write Results
 		ProcessTransformationUtil.writeResults(TARGETDIR + "/" + path,
 				transformation);
+		System.out.println(transformation.getResults().size() + " results.");
 		System.out.println("Took " + (end - start) + "ms for complete process");
 		return transformation;
 	}

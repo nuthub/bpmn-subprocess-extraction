@@ -7,6 +7,7 @@ import edu.udo.cs.ls14.jf.bpmnanalysis.Fragment;
 import edu.udo.cs.ls14.jf.bpmnmatching.BpmnMatchingPackage;
 import edu.udo.cs.ls14.jf.bpmnmatching.FragmentPair;
 
+import org.eclipse.bpmn2.CallableElement;
 import org.eclipse.emf.common.notify.Notification;
 
 import org.eclipse.emf.ecore.EClass;
@@ -25,6 +26,7 @@ import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
  *   <li>{@link edu.udo.cs.ls14.jf.bpmnmatching.impl.FragmentPairImpl#getA <em>A</em>}</li>
  *   <li>{@link edu.udo.cs.ls14.jf.bpmnmatching.impl.FragmentPairImpl#getB <em>B</em>}</li>
  *   <li>{@link edu.udo.cs.ls14.jf.bpmnmatching.impl.FragmentPairImpl#getBetter <em>Better</em>}</li>
+ *   <li>{@link edu.udo.cs.ls14.jf.bpmnmatching.impl.FragmentPairImpl#getExtractedProcess <em>Extracted Process</em>}</li>
  * </ul>
  * </p>
  *
@@ -60,6 +62,16 @@ public class FragmentPairImpl extends MinimalEObjectImpl.Container implements Fr
 	 * @ordered
 	 */
 	protected Fragment better;
+
+	/**
+	 * The cached value of the '{@link #getExtractedProcess() <em>Extracted Process</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getExtractedProcess()
+	 * @generated
+	 * @ordered
+	 */
+	protected CallableElement extractedProcess;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -199,6 +211,44 @@ public class FragmentPairImpl extends MinimalEObjectImpl.Container implements Fr
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public CallableElement getExtractedProcess() {
+		if (extractedProcess != null && extractedProcess.eIsProxy()) {
+			InternalEObject oldExtractedProcess = (InternalEObject)extractedProcess;
+			extractedProcess = (CallableElement)eResolveProxy(oldExtractedProcess);
+			if (extractedProcess != oldExtractedProcess) {
+				if (eNotificationRequired())
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, BpmnMatchingPackage.FRAGMENT_PAIR__EXTRACTED_PROCESS, oldExtractedProcess, extractedProcess));
+			}
+		}
+		return extractedProcess;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public CallableElement basicGetExtractedProcess() {
+		return extractedProcess;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setExtractedProcess(CallableElement newExtractedProcess) {
+		CallableElement oldExtractedProcess = extractedProcess;
+		extractedProcess = newExtractedProcess;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, BpmnMatchingPackage.FRAGMENT_PAIR__EXTRACTED_PROCESS, oldExtractedProcess, extractedProcess));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
@@ -211,6 +261,9 @@ public class FragmentPairImpl extends MinimalEObjectImpl.Container implements Fr
 			case BpmnMatchingPackage.FRAGMENT_PAIR__BETTER:
 				if (resolve) return getBetter();
 				return basicGetBetter();
+			case BpmnMatchingPackage.FRAGMENT_PAIR__EXTRACTED_PROCESS:
+				if (resolve) return getExtractedProcess();
+				return basicGetExtractedProcess();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -231,6 +284,9 @@ public class FragmentPairImpl extends MinimalEObjectImpl.Container implements Fr
 				return;
 			case BpmnMatchingPackage.FRAGMENT_PAIR__BETTER:
 				setBetter((Fragment)newValue);
+				return;
+			case BpmnMatchingPackage.FRAGMENT_PAIR__EXTRACTED_PROCESS:
+				setExtractedProcess((CallableElement)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -253,6 +309,9 @@ public class FragmentPairImpl extends MinimalEObjectImpl.Container implements Fr
 			case BpmnMatchingPackage.FRAGMENT_PAIR__BETTER:
 				setBetter((Fragment)null);
 				return;
+			case BpmnMatchingPackage.FRAGMENT_PAIR__EXTRACTED_PROCESS:
+				setExtractedProcess((CallableElement)null);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -271,6 +330,8 @@ public class FragmentPairImpl extends MinimalEObjectImpl.Container implements Fr
 				return b != null;
 			case BpmnMatchingPackage.FRAGMENT_PAIR__BETTER:
 				return better != null;
+			case BpmnMatchingPackage.FRAGMENT_PAIR__EXTRACTED_PROCESS:
+				return extractedProcess != null;
 		}
 		return super.eIsSet(featureID);
 	}

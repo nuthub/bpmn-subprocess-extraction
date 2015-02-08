@@ -3,6 +3,7 @@
 package edu.udo.cs.ls14.jf.bpmnmatching;
 
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EOperation;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
 
@@ -277,13 +278,22 @@ public interface BpmnMatchingPackage extends EPackage {
 	int FRAGMENT_PAIR__BETTER = 2;
 
 	/**
+	 * The feature id for the '<em><b>Extracted Process</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FRAGMENT_PAIR__EXTRACTED_PROCESS = 3;
+
+	/**
 	 * The number of structural features of the '<em>Fragment Pair</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int FRAGMENT_PAIR_FEATURE_COUNT = 3;
+	int FRAGMENT_PAIR_FEATURE_COUNT = 4;
 
 	/**
 	 * The number of operations of the '<em>Fragment Pair</em>' class.
@@ -293,6 +303,44 @@ public interface BpmnMatchingPackage extends EPackage {
 	 * @ordered
 	 */
 	int FRAGMENT_PAIR_OPERATION_COUNT = 0;
+
+
+	/**
+	 * The meta object id for the '{@link edu.udo.cs.ls14.jf.bpmnmatching.ProcessMatcher <em>Process Matcher</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see edu.udo.cs.ls14.jf.bpmnmatching.ProcessMatcher
+	 * @see edu.udo.cs.ls14.jf.bpmnmatching.impl.BpmnMatchingPackageImpl#getProcessMatcher()
+	 * @generated
+	 */
+	int PROCESS_MATCHER = 5;
+
+	/**
+	 * The number of structural features of the '<em>Process Matcher</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PROCESS_MATCHER_FEATURE_COUNT = 0;
+
+	/**
+	 * The operation id for the '<em>Match</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PROCESS_MATCHER___MATCH__PROCESSANALYSIS_PROCESSANALYSIS = 0;
+
+	/**
+	 * The number of operations of the '<em>Process Matcher</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PROCESS_MATCHER_OPERATION_COUNT = 1;
 
 
 	/**
@@ -467,6 +515,37 @@ public interface BpmnMatchingPackage extends EPackage {
 	EReference getFragmentPair_Better();
 
 	/**
+	 * Returns the meta object for the reference '{@link edu.udo.cs.ls14.jf.bpmnmatching.FragmentPair#getExtractedProcess <em>Extracted Process</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Extracted Process</em>'.
+	 * @see edu.udo.cs.ls14.jf.bpmnmatching.FragmentPair#getExtractedProcess()
+	 * @see #getFragmentPair()
+	 * @generated
+	 */
+	EReference getFragmentPair_ExtractedProcess();
+
+	/**
+	 * Returns the meta object for class '{@link edu.udo.cs.ls14.jf.bpmnmatching.ProcessMatcher <em>Process Matcher</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Process Matcher</em>'.
+	 * @see edu.udo.cs.ls14.jf.bpmnmatching.ProcessMatcher
+	 * @generated
+	 */
+	EClass getProcessMatcher();
+
+	/**
+	 * Returns the meta object for the '{@link edu.udo.cs.ls14.jf.bpmnmatching.ProcessMatcher#match(edu.udo.cs.ls14.jf.bpmnanalysis.ProcessAnalysis, edu.udo.cs.ls14.jf.bpmnanalysis.ProcessAnalysis) <em>Match</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the '<em>Match</em>' operation.
+	 * @see edu.udo.cs.ls14.jf.bpmnmatching.ProcessMatcher#match(edu.udo.cs.ls14.jf.bpmnanalysis.ProcessAnalysis, edu.udo.cs.ls14.jf.bpmnanalysis.ProcessAnalysis)
+	 * @generated
+	 */
+	EOperation getProcessMatcher__Match__ProcessAnalysis_ProcessAnalysis();
+
+	/**
 	 * Returns the factory that creates the instances of the model.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -626,6 +705,32 @@ public interface BpmnMatchingPackage extends EPackage {
 		 * @generated
 		 */
 		EReference FRAGMENT_PAIR__BETTER = eINSTANCE.getFragmentPair_Better();
+
+		/**
+		 * The meta object literal for the '<em><b>Extracted Process</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference FRAGMENT_PAIR__EXTRACTED_PROCESS = eINSTANCE.getFragmentPair_ExtractedProcess();
+
+		/**
+		 * The meta object literal for the '{@link edu.udo.cs.ls14.jf.bpmnmatching.ProcessMatcher <em>Process Matcher</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see edu.udo.cs.ls14.jf.bpmnmatching.ProcessMatcher
+		 * @see edu.udo.cs.ls14.jf.bpmnmatching.impl.BpmnMatchingPackageImpl#getProcessMatcher()
+		 * @generated
+		 */
+		EClass PROCESS_MATCHER = eINSTANCE.getProcessMatcher();
+
+		/**
+		 * The meta object literal for the '<em><b>Match</b></em>' operation.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EOperation PROCESS_MATCHER___MATCH__PROCESSANALYSIS_PROCESSANALYSIS = eINSTANCE.getProcessMatcher__Match__ProcessAnalysis_ProcessAnalysis();
 
 	}
 

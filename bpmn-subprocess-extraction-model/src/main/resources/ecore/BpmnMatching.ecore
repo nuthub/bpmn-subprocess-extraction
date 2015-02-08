@@ -28,6 +28,7 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="a" lowerBound="1" eType="ecore:EClass BpmnAnalysis.ecore#//Fragment"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="b" lowerBound="1" eType="ecore:EClass BpmnAnalysis.ecore#//Fragment"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="better" eType="ecore:EClass BpmnAnalysis.ecore#//Fragment"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="extractedProcess" eType="ecore:EClass BPMN20.ecore#//CallableElement"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="ProcessMatcher" abstract="true" interface="true">
     <eOperations name="match" eType="#//ProcessMatching" eExceptions="ecore:EDataType BpmnAnalysis.ecore#//Exception">
