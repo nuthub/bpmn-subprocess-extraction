@@ -324,21 +324,23 @@ public class Bpmn2PtnetConverter {
 		sb.append("strict digraph \"net0\" {" + nl);
 		sb.append("overlap=scale;" + nl);
 		sb.append("splines=true;" + nl);
+		sb.append("pad=0;" + nl);
+		sb.append("margin=0;" + nl);
 		sb.append("rankdir=LR;" + nl);
-		sb.append("node[fixedsize=false;fontsize=32];" + nl);
 		sb.append("edge[];" + nl);
 		sb.append("ordering=out;" + nl);
 		sb.append("color=black;" + nl);
+		sb.append("node[shape=circle, fixedsize=true, fontsize=40, height=1];"
+				+ nl);
 		for (PlaceHLAPI p : page.getObjects_PlaceHLAPI()) {
-			sb.append("  \"" + p.getId()
-					+ "\" [shape=circle, height=.75,label=\""
-					+ p.getName().getText()
-					+ "\", fixedsize=true, fontsize=28];" + nl);
+			sb.append("  \"" + p.getId() + "\" [label=\""
+					+ p.getName().getText() + "\"];" + nl);
 		}
 		sb.append(nl);
+		sb.append("node[shape=box, fixedsize=false, fontsize=44, height=1, width=.20];"
+				+ nl);
 		for (TransitionHLAPI t : page.getObjects_TransitionHLAPI()) {
-			sb.append("  \"" + t.getId()
-					+ "\" [shape=box, height=.75, width=.20,label=\""
+			sb.append("  \"" + t.getId() + "\" [label=\""
 					+ t.getName().getText() + "\"];" + nl);
 		}
 		sb.append(nl);
