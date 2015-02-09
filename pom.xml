@@ -26,13 +26,13 @@
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<maven.compiler.source>1.8</maven.compiler.source>
 		<maven.compiler.target>1.8</maven.compiler.target>
-		<pnml.version>2.2.4.SNAPSHOT</pnml.version>
+		<camunda.version>7.1.0-Final</camunda.version>
+		<h2.version>1.4.182</h2.version>
+		<groovy.version>2.3.7</groovy.version>
 		<bpmn2.version>1.0.0.201406050616</bpmn2.version>
 		<emf.version>2.10.0-v20140514-1158</emf.version>
-		<henshin.version>1.0.0-SNAPSHOT</henshin.version>
-		<camunda.version>7.1.0-Final</camunda.version>
-		<groovy.version>2.3.7</groovy.version>
-		<h2.version>1.4.182</h2.version>
+		<pnml.version>2.2.4.SNAPSHOT</pnml.version>
+		<henshin.version>1.2.0-SNAPSHOT</henshin.version>
 	</properties>
 	<dependencies>
 		<dependency>
