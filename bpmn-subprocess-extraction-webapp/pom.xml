@@ -5,23 +5,20 @@
     <artifactId>bpmn-subprocess-extraction-parent</artifactId>
     <version>0.0.1-SNAPSHOT</version>
   </parent>
-  <artifactId>bpmnanalysis-delegates</artifactId>
+  <artifactId>bpmn-subprocess-extraction-webapp</artifactId>
   <dependencies>
   	<dependency>
-  		<groupId>org.camunda.bpm</groupId>
-  		<artifactId>camunda-engine</artifactId>
+  		<groupId>edu.udo.cs.ls14.jf</groupId>
+  		<artifactId>bpmnanalysis-services</artifactId>
   	</dependency>
   	<dependency>
   		<groupId>edu.udo.cs.ls14.jf</groupId>
-  		<artifactId>bpmnanalysis-pst</artifactId>
+  		<artifactId>bpmnmatching-services</artifactId>
   	</dependency>
   	<dependency>
   		<groupId>edu.udo.cs.ls14.jf</groupId>
-  		<artifactId>bpmnanalysis-behavioralprofile</artifactId>
-  	</dependency>
-  	<dependency>
-  		<groupId>edu.udo.cs.ls14.jf</groupId>
-  		<artifactId>bpmnanalysis-conditionalprofile</artifactId>
+  		<artifactId>bpmntransformation-services</artifactId>
   	</dependency>
   </dependencies>
+  <packaging>war</packaging>
 </project>

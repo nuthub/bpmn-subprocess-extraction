@@ -7,11 +7,22 @@
 		<version>0.0.1-SNAPSHOT</version>
 	</parent>
 	<artifactId>bpmnanalysis-services</artifactId>
-	<packaging>war</packaging>
 	<dependencies>
 		<dependency>
+			<groupId>org.camunda.bpm</groupId>
+			<artifactId>camunda-engine</artifactId>
+		</dependency>
+		<dependency>
 			<groupId>edu.udo.cs.ls14.jf</groupId>
-			<artifactId>bpmnanalysis-delegates</artifactId>
+			<artifactId>bpmnanalysis-pst</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>edu.udo.cs.ls14.jf</groupId>
+			<artifactId>bpmnanalysis-behavioralprofile</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>edu.udo.cs.ls14.jf</groupId>
+			<artifactId>bpmnanalysis-conditionalprofile</artifactId>
 		</dependency>
 	</dependencies>
 </project>

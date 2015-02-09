@@ -22,15 +22,15 @@
 		</dependency>
 		<dependency>
 			<groupId>edu.udo.cs.ls14.jf</groupId>
-			<artifactId>bpmnanalysis-delegates</artifactId>
+			<artifactId>bpmnanalysis-services</artifactId>
 		</dependency>
 		<dependency>
 			<groupId>edu.udo.cs.ls14.jf</groupId>
-			<artifactId>bpmnmatching-delegates</artifactId>
+			<artifactId>bpmnmatching-services</artifactId>
 		</dependency>
 		<dependency>
 			<groupId>edu.udo.cs.ls14.jf</groupId>
-			<artifactId>bpmntransformation-delegates</artifactId>
+			<artifactId>bpmntransformation-services</artifactId>
 		</dependency>
 	</dependencies>
 	<build>

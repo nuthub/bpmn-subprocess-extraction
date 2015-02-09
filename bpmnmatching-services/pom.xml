@@ -7,15 +7,27 @@
 		<version>0.0.1-SNAPSHOT</version>
 	</parent>
 	<artifactId>bpmnmatching-services</artifactId>
-	<packaging>war</packaging>
 	<dependencies>
 		<dependency>
-			<groupId>edu.udo.cs.ls14.jf</groupId>
-			<artifactId>bpmnmatching-delegates</artifactId>
+			<groupId>org.camunda.bpm</groupId>
+			<artifactId>camunda-engine</artifactId>
 		</dependency>
 		<dependency>
 			<groupId>edu.udo.cs.ls14.jf</groupId>
-			<artifactId>bpmnanalysis-delegates</artifactId>
+			<artifactId>bpmnmatching-nodematching</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>edu.udo.cs.ls14.jf</groupId>
+			<artifactId>bpmnmatching-fragmentmatching</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>edu.udo.cs.ls14.jf</groupId>
+			<artifactId>bpmnanalysis-services</artifactId>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>edu.udo.cs.ls14.jf</groupId>
+			<artifactId>bpmnanalysis-services</artifactId>
 			<scope>test</scope>
 		</dependency>
 	</dependencies>

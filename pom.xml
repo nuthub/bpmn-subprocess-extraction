@@ -16,13 +16,11 @@
 		<module>bpmnmatching-fragmentmatching</module>
 		<module>bpmnmatching-nodematching</module>
 		<module>bpmntransformation-operations</module>
-		<module>bpmnanalysis-delegates</module>
-		<module>bpmnmatching-delegates</module>
-		<module>bpmntransformation-delegates</module>
 		<module>bpmn-subprocess-extraction-application</module>
 		<module>bpmnanalysis-services</module>
 		<module>bpmnmatching-services</module>
 		<module>bpmntransformation-services</module>
+		<module>bpmn-subprocess-extraction-webapp</module>
 	</modules>
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -112,33 +110,15 @@
 				<groupId>edu.udo.cs.ls14.jf</groupId>
 				<artifactId>bpmnanalysis-services</artifactId>
 				<version>0.0.1-SNAPSHOT</version>
-				<type>war</type>
 			</dependency>
 			<dependency>
 				<groupId>edu.udo.cs.ls14.jf</groupId>
 				<artifactId>bpmnmatching-services</artifactId>
 				<version>0.0.1-SNAPSHOT</version>
-				<type>war</type>
 			</dependency>
 			<dependency>
 				<groupId>edu.udo.cs.ls14.jf</groupId>
 				<artifactId>bpmntransformation-services</artifactId>
-				<version>0.0.1-SNAPSHOT</version>
-				<type>war</type>
-			</dependency>
-			<dependency>
-				<groupId>edu.udo.cs.ls14.jf</groupId>
-				<artifactId>bpmnanalysis-delegates</artifactId>
-				<version>0.0.1-SNAPSHOT</version>
-			</dependency>
-			<dependency>
-				<groupId>edu.udo.cs.ls14.jf</groupId>
-				<artifactId>bpmnmatching-delegates</artifactId>
-				<version>0.0.1-SNAPSHOT</version>
-			</dependency>
-			<dependency>
-				<groupId>edu.udo.cs.ls14.jf</groupId>
-				<artifactId>bpmntransformation-delegates</artifactId>
 				<version>0.0.1-SNAPSHOT</version>
 			</dependency>
 			<dependency>
@@ -268,16 +248,16 @@
 	</dependencyManagement>
 	<build>
 		<plugins>
-			<plugin>
+		 	<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-war-plugin</artifactId>
 				<version>2.3</version>
 				<configuration>
 					<failOnMissingWebXml>false</failOnMissingWebXml>
-					<!-- <archiveClasses>true</archiveClasses> -->
+		<!-- 			<archiveClasses>true</archiveClasses>
 					<attachClasses>true</attachClasses>
-				</configuration>
-			</plugin>
+		 -->		</configuration>
+			</plugin> 
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-surefire-plugin</artifactId>
