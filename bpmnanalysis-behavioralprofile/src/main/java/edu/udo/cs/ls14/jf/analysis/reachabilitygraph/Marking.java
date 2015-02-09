@@ -1,14 +1,18 @@
 package edu.udo.cs.ls14.jf.analysis.reachabilitygraph;
 
 import java.util.ArrayList;
-import java.util.Collections;
+import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Map;
+import java.util.SortedSet;
+import java.util.TreeSet;
 
 import org.apache.commons.lang3.StringUtils;
 
 import fr.lip6.move.pnml.ptnet.Place;
 
-public class Marking extends ArrayList<Place> {
+public class Marking extends HashSet<Place> {
 
 	/**
 	 * 
@@ -34,11 +38,16 @@ public class Marking extends ArrayList<Place> {
 	}
 
 	public String getDotLabel() {
-		List<String> places = new ArrayList<String>();
+		Map<Integer, String> places2 = new HashMap<Integer, String>();
 		for (Place p : this) {
-			places.add(p.getName().getText());
+			places2.put(Integer.parseInt(p.getName().getText().substring(1)), p
+					.getName().getText());
 		}
-		Collections.sort(places);
+		SortedSet<Integer> keys = new TreeSet<Integer>(places2.keySet());
+		List<String> places = new ArrayList<String>();
+		for (int i : keys) {
+			places.add(places2.get(i));
+		}
 		return StringUtils.join(places.toArray(), " ");
 	}
 

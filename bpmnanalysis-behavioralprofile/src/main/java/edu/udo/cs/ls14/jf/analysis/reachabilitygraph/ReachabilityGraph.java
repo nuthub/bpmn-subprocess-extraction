@@ -103,16 +103,18 @@ public class ReachabilityGraph extends DirectedSparseMultigraph<Marking, Edge> {
 			Marking m = pending.iterator().next();
 			// pending := pending \ {m}
 			pending.remove(m);
-			visited.add(m);
-			// foreach transition t activated in m do
-			for (Transition t : getActiveTransitions(m, transitions)) {
-				// calculate m' such that m \xrightarrow{t} m'
-				Marking mPrime = getMPrime(m, t);
-				// V := V \cup {m, m'}
-				// E := E \cup {(m, t, m')}
-				addEdge(new Edge(t.getId()), m, mPrime);
-				// pending := pending \cup {m'}
-				if (!visited.contains(mPrime)) {
+			// if m not in V
+			if (!visited.contains(m)) {
+				visited.add(m);
+				// V = V u m
+				addVertex(m);
+				// foreach transition t activated in m do
+				for (Transition t : getActiveTransitions(m, transitions)) {
+					// calculate m' such that m -t-> m'
+					Marking mPrime = getMPrime(m, t);
+					// E := E \cup {(m, t, m')}
+					addEdge(new Edge(t.getId()), m, mPrime);
+					// pending := pending \cup {m'}
 					pending.add(mPrime);
 				}
 			}
@@ -175,18 +177,20 @@ public class ReachabilityGraph extends DirectedSparseMultigraph<Marking, Edge> {
 		String nl = System.getProperty("line.separator");
 		StringBuffer sb = new StringBuffer();
 		sb.append("digraph {" + nl);
-		sb.append("node[fixedsize=false; fontsize=48];" + nl);
-		sb.append("edge[fontsize=48];" + nl);
+		sb.append("margin=0;");
+		sb.append("pad=0;");
+		sb.append("node[shape=oval, fixedsize=false; fontsize=24];" + nl);
+		sb.append("edge[fontsize=24];" + nl);
 		for (Marking marking : getVertices()) {
-			if (marking.get(0).getInitialMarking() != null) {
-				sb.append("\"" + marking.getId() + "\" [shape=oval, label=\""
+			if (marking.iterator().next().getInitialMarking() != null) {
+				sb.append("\"" + marking.getId() + "\" [label=\""
 						+ (marking.getDotLabel()) + "\"];");
 				sb.append(nl);
 			}
 		}
 		for (Marking marking : getVertices()) {
-			if (marking.get(0).getInitialMarking() == null) {
-				sb.append("\"" + marking.getId() + "\" [shape=oval, label=\""
+			if (marking.iterator().next().getInitialMarking() == null) {
+				sb.append("\"" + marking.getId() + "\" [label=\""
 						+ (marking.getDotLabel()) + "\"];");
 				sb.append(nl);
 			}

@@ -330,14 +330,14 @@ public class Bpmn2PtnetConverter {
 		sb.append("edge[];" + nl);
 		sb.append("ordering=out;" + nl);
 		sb.append("color=black;" + nl);
-		sb.append("node[shape=circle, fixedsize=true, fontsize=40, height=1];"
+		sb.append("node[shape=circle, fixedsize=true, fontsize=36, height=1];"
 				+ nl);
 		for (PlaceHLAPI p : page.getObjects_PlaceHLAPI()) {
 			sb.append("  \"" + p.getId() + "\" [label=\""
 					+ p.getName().getText() + "\"];" + nl);
 		}
 		sb.append(nl);
-		sb.append("node[shape=box, fixedsize=false, fontsize=44, height=1, width=.20];"
+		sb.append("node[shape=box, fixedsize=false, fontsize=36, height=1, width=.20];"
 				+ nl);
 		for (TransitionHLAPI t : page.getObjects_TransitionHLAPI()) {
 			sb.append("  \"" + t.getId() + "\" [label=\""

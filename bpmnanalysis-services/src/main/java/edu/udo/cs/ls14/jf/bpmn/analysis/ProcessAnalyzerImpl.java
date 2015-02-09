@@ -1,7 +1,6 @@
 package edu.udo.cs.ls14.jf.bpmn.analysis;
 
 import java.util.List;
-import java.util.UUID;
 
 import org.eclipse.bpmn2.Definitions;
 import org.eclipse.bpmn2.Process;
