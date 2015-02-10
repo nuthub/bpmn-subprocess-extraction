@@ -34,7 +34,6 @@ public class FragmentPairFilterNodes {
 	 */
 	public static FragmentMatching filter(FragmentMatching matching,
 			NodeMatching nodeMatching) {
-
 		List<FragmentPair> removePairs = new ArrayList<FragmentPair>();
 		for (FragmentPair pair : matching.getPairs()) {
 			LOG.debug("Checking pair " + pair);

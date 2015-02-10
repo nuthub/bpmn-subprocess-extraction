@@ -27,6 +27,10 @@ public class ProcessTransformationFactory {
 	 */
 	public static ProcessTransformation createProcessTransformation(
 			ProcessMatching processMatching) {
+		if (processMatching == null) {
+			throw new RuntimeException(
+					"ProcessMatching is null. Couldn't create ProcessTransformation.");
+		}
 		ProcessTransformation transformation = BpmnTransformationFactory.eINSTANCE
 				.createProcessTransformation();
 		new BpmnTransformationResourceFactoryImpl()
