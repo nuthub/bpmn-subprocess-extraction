@@ -9,8 +9,22 @@ import edu.udo.cs.ls14.jf.bpmntransformation.BpmnTransformationFactory;
 import edu.udo.cs.ls14.jf.bpmntransformation.ProcessTransformation;
 import edu.udo.cs.ls14.jf.bpmntransformation.util.BpmnTransformationResourceFactoryImpl;
 
+/**
+ * Factory method for ProcessTransformation objects.
+ * 
+ * @author Julian Flake
+ *
+ */
 public class ProcessTransformationFactory {
 
+	/**
+	 * Creates a new ProcessTransformation object with ProcessMatching object
+	 * added.
+	 * 
+	 * @param processMatching
+	 *            ProcessMatching object to add
+	 * @return non empty ProcessTransformation object
+	 */
 	public static ProcessTransformation createProcessTransformation(
 			ProcessMatching processMatching) {
 		ProcessTransformation transformation = BpmnTransformationFactory.eINSTANCE

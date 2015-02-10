@@ -12,6 +12,12 @@ import edu.udo.cs.ls14.jf.bpmnmatching.util.BpmnMatchingResourceFactoryImpl;
 import edu.udo.cs.ls14.jf.bpmntransformation.BpmnTransformationPackage;
 import edu.udo.cs.ls14.jf.bpmntransformation.util.BpmnTransformationResourceFactoryImpl;
 
+/**
+ * Commonly used methods for registering EMF Packages and ResourceFactories.
+ * 
+ * @author Julian Flake
+ *
+ */
 public class Registries {
 
 	public static void registerAll() {

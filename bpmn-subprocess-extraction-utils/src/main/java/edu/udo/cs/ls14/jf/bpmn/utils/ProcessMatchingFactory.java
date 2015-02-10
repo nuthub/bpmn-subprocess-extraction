@@ -23,11 +23,27 @@ import edu.udo.cs.ls14.jf.bpmnmatching.NodePair;
 import edu.udo.cs.ls14.jf.bpmnmatching.ProcessMatching;
 import edu.udo.cs.ls14.jf.bpmnmatching.util.BpmnMatchingResourceFactoryImpl;
 
+/**
+ * Factory method for ProcessMatching objects.
+ * 
+ * @author Julian Flake
+ *
+ */
 public class ProcessMatchingFactory {
 
 	private static final Logger LOG = LoggerFactory
 			.getLogger(ProcessMatchingFactory.class);
 
+	/**
+	 * Create a new ProcessMatching object with two ProcessAnalysis objects
+	 * added.
+	 * 
+	 * @param analysis1
+	 *            first ProcessAnalysis object
+	 * @param analysis2
+	 *            second ProcessAnalysis object
+	 * @return created ProcessMatching object
+	 */
 	public static ProcessMatching createEmptyMatching(
 			ProcessAnalysis analysis1, ProcessAnalysis analysis2) {
 		ProcessMatching matching = BpmnMatchingFactory.eINSTANCE

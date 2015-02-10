@@ -7,6 +7,14 @@ import org.eclipse.emf.ecore.EObject;
 import edu.udo.cs.ls14.jf.bpmn.utils.EObjectXmlConverter;
 import edu.udo.cs.ls14.jf.registry.Registries;
 
+/**
+ * Abstract XMLAdapter implementation for objects of the BpmnAnalysis package.
+ * 
+ * @author JulianFlake
+ *
+ * @param <T>
+ *            concrete Type
+ */
 public abstract class BpmnAnalysisAdapterBase<T extends EObject> extends
 		XmlAdapter<String, T> {
 

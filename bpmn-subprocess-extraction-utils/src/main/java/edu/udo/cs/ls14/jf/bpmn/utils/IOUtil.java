@@ -7,6 +7,12 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 
+/**
+ * IO related helper methods. Including DOT invoker.
+ * 
+ * @author Julian Flake
+ *
+ */
 public class IOUtil {
 
 	private static final String DOT_PATH = "/usr/bin/dot";
@@ -20,13 +26,14 @@ public class IOUtil {
 			throw new Exception("Only png and ps types are supported");
 		}
 		String filePrefix = path + (path.endsWith("/") ? "" : "/") + basename;
-		String[] args = { DOT_PATH, "-T" + type, filePrefix + ".dot",
-				"-o", filePrefix + "." + type };
+		String[] args = { DOT_PATH, "-T" + type, filePrefix + ".dot", "-o",
+				filePrefix + "." + type };
 		java.lang.Process p = rt.exec(args);
 		p.waitFor();
 	}
 
-	public static void writeDot(String path, String basename, String dot) throws Exception {
+	public static void writeDot(String path, String basename, String dot)
+			throws Exception {
 		new File(path).mkdirs();
 		String filePrefix = path + (path.endsWith("/") ? "" : "/") + basename;
 		Files.write(Paths.get(filePrefix + ".dot"), dot.getBytes());

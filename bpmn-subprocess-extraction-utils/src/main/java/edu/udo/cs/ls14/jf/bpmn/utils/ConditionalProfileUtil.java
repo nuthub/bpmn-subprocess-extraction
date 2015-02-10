@@ -13,6 +13,13 @@ import org.eclipse.bpmn2.FormalExpression;
 
 import edu.udo.cs.ls14.jf.bpmnanalysis.ConditionalProfile;
 
+/**
+ * Utility methods for ConditionalProfile objects. At the moment methods for
+ * debug output are the only content of this class.
+ * 
+ * @author Julian Flake
+ *
+ */
 public class ConditionalProfileUtil {
 
 	private static final String NL = System.getProperty("line.separator");
@@ -35,7 +42,8 @@ public class ConditionalProfileUtil {
 			String c = " (";
 			c += "\\texttt{" + name.replaceAll("\\_", "\\\\_") + "}";
 			c += ", ";
-			if (!conditions.containsKey(name) || conditions.get(name).equals("")) {
+			if (!conditions.containsKey(name)
+					|| conditions.get(name).equals("")) {
 				c += "\\emptyset ";
 			} else {
 				c += "\\{" + conditions.get(name) + "\\}";
@@ -54,9 +62,10 @@ public class ConditionalProfileUtil {
 	}
 
 	public static void writeDebugFiles(String debugFilesDir, String basename,
-			List<String> nodes, ConditionalProfile cp, String suffix) throws IOException {
-		IOUtil.writeTxtFile(toTex(cp, nodes), debugFilesDir + basename
-				+ "-"+ suffix + ".tex");
+			List<String> nodes, ConditionalProfile cp, String suffix)
+			throws IOException {
+		IOUtil.writeTxtFile(toTex(cp, nodes), debugFilesDir + basename + "-"
+				+ suffix + ".tex");
 
 	}
 }

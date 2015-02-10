@@ -10,6 +10,12 @@ import org.slf4j.LoggerFactory;
 import edu.udo.cs.ls14.jf.bpmnmatching.ProcessMatching;
 import edu.udo.cs.ls14.jf.bpmnmatching.util.BpmnMatchingResourceFactoryImpl;
 
+/**
+ * Helper methods for ProcessMatching objects.
+ * 
+ * @author Julian Flake
+ *
+ */
 public class ProcessMatchingUtil {
 
 	private static final Logger LOG = LoggerFactory

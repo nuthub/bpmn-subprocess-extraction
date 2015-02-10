@@ -18,18 +18,37 @@ import org.eclipse.emf.ecore.EObject;
 import edu.udo.cs.ls14.jf.bpmnanalysis.Fragment;
 
 /**
- * TODO move to Fragment / FragmentImpl
+ * Helper methods for Fragments.
  * 
- * @author flake
+ * TODO: Move to generated model implementations.
+ * 
+ * @author Julian Flake
  *
  */
 public class FragmentUtil {
 
+	/**
+	 * Get containing Definitions object.
+	 * 
+	 * @param fragment
+	 *            the containing definitions should be searched for
+	 * @return containing Definitions object
+	 */
 	public static Definitions getDefinitions(Fragment fragment) {
 		return (Definitions) getContainer(fragment,
 				Bpmn2Package.eINSTANCE.getDefinitions());
 	}
 
+	/**
+	 * Get a fragments closest container of given type.
+	 * 
+	 * @param fragment
+	 *            the contained fragment
+	 * @param eClass
+	 *            given type
+	 * @return closest container of given type, null if no container of given
+	 *         type found
+	 */
 	public static EObject getContainer(Fragment fragment, EClass eClass) {
 		EObject eObject = fragment.getEntry();
 		for (EObject parent = eObject; parent != null; parent = parent
@@ -41,6 +60,15 @@ public class FragmentUtil {
 		return null;
 	}
 
+	/**
+	 * Checks if a fragment is contained in another fragment.
+	 * 
+	 * @param fragment1
+	 *            possibly containing fragment
+	 * @param fragment2
+	 *            possibly contained fragment
+	 * @return true, if fragment1 contains fragment2
+	 */
 	public static boolean contains(Fragment fragment1, Fragment fragment2) {
 		return getFlowElements(fragment1,
 				e -> e instanceof Event || e instanceof Activity).containsAll(
@@ -48,7 +76,27 @@ public class FragmentUtil {
 						|| n instanceof Activity));
 	}
 
-	// Just a convenience method
+	/**
+	 * Checks if a given FlowElement is contained in given Fragment.
+	 * 
+	 * @param fragment
+	 *            given Fragment
+	 * @param flowElement
+	 *            FlowElement to check for containment
+	 * 
+	 * @return true if given FlowElement is contained in given Fragment
+	 */
+	public static boolean contains(Fragment fragment, FlowElement flowElement) {
+		return getFlowElements(fragment, n -> true).contains(flowElement);
+	}
+
+	/**
+	 * Returns all SequenceFlows inside a fragment.
+	 * 
+	 * @param fragment
+	 *            given Fragment
+	 * @return Set of SequenceFlows contained in Fragment
+	 */
 	public static Set<SequenceFlow> getEdges(Fragment fragment) {
 		return FragmentUtil
 				.getFlowElements(
@@ -59,7 +107,13 @@ public class FragmentUtil {
 				.map(flow -> (SequenceFlow) flow).collect(Collectors.toSet());
 	}
 
-	// Just a convenience method
+	/**
+	 * Returns all Events and Activities contained in a fragment.
+	 * 
+	 * @param fragment
+	 *            given Fragment
+	 * @return Set of FlowNodes (Event / Activity) contained in the fragment
+	 */
 	public static Set<FlowNode> getEventsAndActivites(Fragment fragment) {
 		return getFlowElements(fragment,
 				e -> e instanceof Event || e instanceof Activity).stream()
@@ -67,6 +121,16 @@ public class FragmentUtil {
 
 	}
 
+	/**
+	 * Returns all FlowElements contained in a fragment.
+	 * 
+	 * @param fragment
+	 *            given Fragment
+	 * @param filter
+	 *            filter, provide n -> true, if no filter required
+	 * @return Set of in given fragment contained FlowElements matching given
+	 *         filter
+	 */
 	public static Set<FlowElement> getFlowElements(Fragment fragment,
 			Predicate<FlowElement> filter) {
 		return getContainedFlowElementsAcc(fragment, fragment.getEntry(),
@@ -96,6 +160,13 @@ public class FragmentUtil {
 		return elements;
 	}
 
+	/**
+	 * Return String representation of given fragment.
+	 * 
+	 * @param f
+	 *            given Fragment
+	 * @return String representation
+	 */
 	public static String toString(Fragment f) {
 		StringBuilder sb = new StringBuilder();
 		sb.append("(");
@@ -108,10 +179,6 @@ public class FragmentUtil {
 				: "[" + f.getExit().getId() + "]");
 		sb.append(")");
 		return sb.toString();
-	}
-
-	public static boolean contains(Fragment fragment, FlowElement flowElement) {
-		return getFlowElements(fragment, n -> true).contains(flowElement);
 	}
 
 }

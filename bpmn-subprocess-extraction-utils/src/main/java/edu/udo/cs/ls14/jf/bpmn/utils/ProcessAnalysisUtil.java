@@ -14,6 +14,12 @@ import edu.udo.cs.ls14.jf.bpmnanalysis.ProcessStructureTree;
 import edu.udo.cs.ls14.jf.bpmnanalysis.TraceProfile;
 import edu.udo.cs.ls14.jf.bpmnanalysis.util.BpmnAnalysisResourceFactoryImpl;
 
+/**
+ * Helper methods for ProcessAnalysis objects.
+ * 
+ * @author Julian Flake
+ *
+ */
 public class ProcessAnalysisUtil {
 
 	private static final Logger LOG = LoggerFactory

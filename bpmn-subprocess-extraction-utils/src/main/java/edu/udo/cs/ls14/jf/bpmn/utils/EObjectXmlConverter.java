@@ -2,7 +2,6 @@ package edu.udo.cs.ls14.jf.bpmn.utils;
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
-import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
@@ -12,15 +11,14 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.xmi.XMLResource;
 
+/**
+ * Serializes EObjects to XML and deserializes XML to EObjects.
+ * 
+ * @author Julian Flake
+ *
+ */
 public class EObjectXmlConverter {
 
-	/**
-	 * 
-	 * @param extension
-	 * @param eObject
-	 * @return
-	 * @throws IOException
-	 */
 	public static String eObject2Xml(String extension, EObject eObject)
 			throws Exception {
 		Resource res = Bpmn2ResourceSet.getInstance().createResource(
@@ -31,12 +29,6 @@ public class EObjectXmlConverter {
 		return os.toString();
 	}
 
-	/**
-	 * 
-	 * @param xmlString
-	 * @return
-	 * @throws IOException
-	 */
 	public static EObject xml2EObject(String extension, String xmlString)
 			throws Exception {
 		Resource res = Bpmn2ResourceSet.getInstance().createResource(

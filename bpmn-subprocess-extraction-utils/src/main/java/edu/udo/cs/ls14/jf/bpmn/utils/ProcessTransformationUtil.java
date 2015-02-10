@@ -14,25 +14,30 @@ import org.slf4j.LoggerFactory;
 import edu.udo.cs.ls14.jf.bpmntransformation.ProcessTransformation;
 import edu.udo.cs.ls14.jf.bpmntransformation.util.BpmnTransformationResourceFactoryImpl;
 
+/**
+ * Helper methods for ProcessTransformation objects.
+ * 
+ * @author Julian Flake
+ *
+ */
 public class ProcessTransformationUtil {
 
 	private static final Logger LOG = LoggerFactory
 			.getLogger(ProcessTransformationUtil.class);
 
 	/**
-	 * Also fixes the import locations
+	 * Writes results to files and fixes import locations.
 	 * 
 	 * @param targetDir
-	 * @param extraction
+	 *            directory to where the results shall be written
+	 * @param transformation
+	 *            ProcessTransformation object
 	 * @throws IOException
+	 *             is thrown if an IO error occurs
 	 */
 	public static void writeResults(String targetDir,
-			ProcessTransformation extraction) throws Exception {
-		writeResults(targetDir, extraction.getResults());
-	}
-
-	public static void writeResults(String targetDir,
-			Map<String, Definitions> results) throws Exception {
+			ProcessTransformation transformation) throws Exception {
+		Map<String, Definitions> results = transformation.getResults();
 
 		new File(targetDir).mkdirs();
 		Bpmn2ResourceSet resSetOut = Bpmn2ResourceSet.getInstance();
@@ -76,17 +81,19 @@ public class ProcessTransformationUtil {
 	}
 
 	/**
-	 * Ensure, that factories and packages are registered
+	 * Writes a bpmntransformation object to an XML file. Ensure, that factory
+	 * and package are registered before.
 	 * 
-	 * @param extraction
-	 * @return
-	 * @throws Exception
+	 * @param transformation
+	 *            ProcessTransformation object to write
+	 * @throws IOException
+	 *             is thrown if an IO error occurs
 	 */
 	public static void writeToFile(String filename,
-			ProcessTransformation extraction) throws IOException {
+			ProcessTransformation transformation) throws IOException {
 		Resource res = new BpmnTransformationResourceFactoryImpl()
 				.createResource(URI.createFileURI(filename));
-		res.getContents().add(extraction);
+		res.getContents().add(transformation);
 		res.save(null);
 		LOG.info("Written extraction result to " + filename);
 	}

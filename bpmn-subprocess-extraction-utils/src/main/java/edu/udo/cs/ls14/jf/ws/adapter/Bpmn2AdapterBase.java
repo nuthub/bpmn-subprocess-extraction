@@ -7,6 +7,14 @@ import org.eclipse.emf.ecore.EObject;
 import edu.udo.cs.ls14.jf.bpmn.utils.EObjectXmlConverter;
 import edu.udo.cs.ls14.jf.registry.Registries;
 
+/**
+ * Abstract XMLAdapter implementation for classes of the BPMN2 meta model.
+ * 
+ * @author Julian Flake
+ *
+ * @param <T>
+ *            concrete Type
+ */
 public abstract class Bpmn2AdapterBase<T extends EObject> extends
 		XmlAdapter<String, T> {
 

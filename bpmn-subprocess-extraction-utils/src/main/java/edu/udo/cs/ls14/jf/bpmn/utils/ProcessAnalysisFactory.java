@@ -9,8 +9,21 @@ import edu.udo.cs.ls14.jf.bpmnanalysis.BpmnAnalysisFactory;
 import edu.udo.cs.ls14.jf.bpmnanalysis.ProcessAnalysis;
 import edu.udo.cs.ls14.jf.bpmnanalysis.util.BpmnAnalysisResourceFactoryImpl;
 
+/**
+ * Factory method for ProcessAnalysis objects.
+ * 
+ * @author Julian Flake
+ *
+ */
 public class ProcessAnalysisFactory {
 
+	/**
+	 * Create a new ProcessAnalysis object with Definitions added.
+	 * 
+	 * @param definitions
+	 *            Definitions to add
+	 * @return non-empty ProcessAnalysis object
+	 */
 	public static ProcessAnalysis createAnalysis(Definitions definitions) {
 		ProcessAnalysis analysis = BpmnAnalysisFactory.eINSTANCE
 				.createProcessAnalysis();
