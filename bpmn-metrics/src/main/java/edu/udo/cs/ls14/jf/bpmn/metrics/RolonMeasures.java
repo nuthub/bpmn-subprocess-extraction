@@ -22,6 +22,13 @@ import org.eclipse.ocl.ecore.EcoreEnvironmentFactory;
 import org.eclipse.ocl.expressions.OCLExpression;
 import org.eclipse.ocl.helper.OCLHelper;
 
+/**
+ * Implementation of Rolon's BPMN Measures. Transferred OCL expressions to BPMN
+ * 2.0.F
+ * 
+ * @author Julian Flake
+ *
+ */
 public class RolonMeasures {
 
 	protected OCL<EPackage, EClassifier, EOperation, EStructuralFeature, ?, ?, EObject, ?, ?, Constraint, EClass, EObject> ocl;
@@ -56,9 +63,9 @@ public class RolonMeasures {
 		System.out.println("Constraints: " + constraints);
 		System.out.println("OCL Constraints: " + ocl.getConstraints());
 
-//		for (Constraint constraint : constraints) {
-//			// System.out.println(constraint.getName() + ": " + constraint);
-//		}
+		// for (Constraint constraint : constraints) {
+		// // System.out.println(constraint.getName() + ": " + constraint);
+		// }
 		OCLExpression<EClassifier> query = helper.createQuery("Measures()");
 		return (String) ocl.evaluate(process, query);
 

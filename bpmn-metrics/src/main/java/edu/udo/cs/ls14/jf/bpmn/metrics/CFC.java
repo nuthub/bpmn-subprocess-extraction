@@ -8,7 +8,22 @@ import org.eclipse.bpmn2.GatewayDirection;
 import org.eclipse.bpmn2.InclusiveGateway;
 import org.eclipse.bpmn2.ParallelGateway;
 
+/**
+ * Class that calculates Cardoso's CFC of a set of given and connected
+ * BPMN-FlowElements.
+ * 
+ * @author Julian Flake
+ *
+ */
 public class CFC {
+
+	/**
+	 * Return Cardoso's CFC for connected flow elements.
+	 * 
+	 * @param elements
+	 *            Connected FlowElements
+	 * @return the CFC
+	 */
 
 	public static int getComplexity(Collection<FlowElement> elements) {
 		return cfcXorSplits(elements) + cfcOrSplits(elements)
