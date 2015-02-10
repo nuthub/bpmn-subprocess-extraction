@@ -20,11 +20,26 @@ import edu.udo.cs.ls14.jf.bpmnanalysis.BpmnAnalysisFactory;
 import edu.udo.cs.ls14.jf.bpmnanalysis.Trace;
 import edu.udo.cs.ls14.jf.bpmnanalysis.TraceProfile;
 
+/**
+ * Creates a BehavioralProfile object from traces.
+ * 
+ * @author Julian Flake
+ */
 public class BehavioralProfiler {
 
 	private static final Logger LOG = LoggerFactory
 			.getLogger(BehavioralProfiler.class);
 
+	/**
+	 * Generate succession relation and behavioral profile of given process
+	 * using the given Traces.
+	 * 
+	 * @param process
+	 *            given process
+	 * @param traceProfile
+	 *            given Traces
+	 * @return behavioral profile
+	 */
 	public static BehavioralProfile generateProfile(Process process,
 			TraceProfile traceProfile) {
 
@@ -63,11 +78,23 @@ public class BehavioralProfiler {
 				relations.add(rel);
 			}
 		}
-		BehavioralProfile profile = BpmnAnalysisFactory.eINSTANCE.createBehavioralProfile();
+		BehavioralProfile profile = BpmnAnalysisFactory.eINSTANCE
+				.createBehavioralProfile();
 		profile.getRelations().addAll(relations);
 		return profile;
 	}
 
+	/**
+	 * Return the relation type (1 out of 4)
+	 * 
+	 * @param successors
+	 *            succession relation
+	 * @param a
+	 *            left hand side of relation
+	 * @param b
+	 *            right hand side of relation
+	 * @return relation type
+	 */
 	public static BehavioralRelationType get(
 			Matrix<FlowNode, Boolean> successors, FlowNode a, FlowNode b) {
 		if (successors.get(a, b) && successors.get(b, a)) {

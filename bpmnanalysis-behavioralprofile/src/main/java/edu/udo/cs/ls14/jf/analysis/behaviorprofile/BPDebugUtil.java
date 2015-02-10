@@ -1,4 +1,4 @@
-package edu.udo.cs.ls14.jf.analysis.behavioralprofile.debug;
+package edu.udo.cs.ls14.jf.analysis.behaviorprofile;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -18,21 +18,37 @@ import edu.udo.cs.ls14.jf.bpmnanalysis.Trace;
 import edu.udo.cs.ls14.jf.bpmnanalysis.TraceProfile;
 import fr.lip6.move.pnml.ptnet.hlapi.PetriNetHLAPI;
 
+/**
+ * Helper method to write analysis artifacts of behavioral profiling.
+ * 
+ * @author Julian Flake
+ *
+ */
 public class BPDebugUtil {
 
 	/**
-	 * TODO: write ProcessAnalysis.xml
+	 * Get and write debug artifacts of all steps for behavioral profiling.
 	 * 
 	 * @param pathname
+	 *            target directory
 	 * @param basename
+	 *            prefix for all artifacts
 	 * @param process
+	 *            process model
 	 * @param converter
+	 *            BPMN / PTNet converter
 	 * @param ptnet
+	 *            converted PTNet
 	 * @param rg
+	 *            reachability Graph of PTNet
 	 * @param nodes
+	 *            List of node names (relevant ordering)
 	 * @param traceProfile
+	 *            resulting TraceProfile
 	 * @param bp
+	 *            resulting Behavioral Profile
 	 * @throws Exception
+	 *             if an error occurs
 	 */
 	public static void writeDebugFiles(String pathname, String basename,
 			Process process, Bpmn2PtnetConverter converter,
@@ -45,7 +61,7 @@ public class BPDebugUtil {
 		converter.saveToPnmlFile(pathname + basename + "-ptnet.pnml");
 		IOUtil.writeDot(pathname, basename + "-ptnet", converter.toDot());
 		// output reachability graph
-		String dot = rg.toDot(process, ptnet.getContainedItem());
+		String dot = rg.toDot(process);
 		IOUtil.writeDot(pathname, basename + "-reachabilityGraph", dot);
 		// output traces
 		IOUtil.writeTxtFile(BPDebugUtil.tracesToString(traceProfile), pathname
@@ -62,23 +78,6 @@ public class BPDebugUtil {
 				+ basename + "-verhaltensprofil.tex");
 		System.out.println("Wrote Behavioral Profile to " + pathname + basename
 				+ "-verhaltensprofil.tex");
-	}
-
-	/**
-	 * TODO: move elsewhere
-	 * 
-	 * @param bp
-	 * @return
-	 */
-	public static String bpToString(BehavioralProfile bp) {
-		StringBuffer sb = new StringBuffer();
-		for (BehavioralRelation rel : bp.getRelations()) {
-			sb.append(rel.getLeft().getName() + " / "
-					+ rel.getRight().getName() + " : "
-					+ rel.getRelation().toString());
-			sb.append(System.getProperty("line.separator"));
-		}
-		return sb.toString();
 	}
 
 	private static String bpToSuccRelTabular(List<String> nodes,
@@ -167,11 +166,8 @@ public class BPDebugUtil {
 		return sb.toString();
 	}
 
-	/**
+	/*
 	 * TODO: move elsewhere
-	 * 
-	 * @param traceProfile
-	 * @return
 	 */
 	private static String tracesToString(TraceProfile traceProfile) {
 		String nl = System.getProperty("line.separator");

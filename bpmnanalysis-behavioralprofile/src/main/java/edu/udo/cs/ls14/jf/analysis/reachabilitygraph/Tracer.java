@@ -8,18 +8,32 @@ import org.eclipse.bpmn2.FlowNode;
 import org.eclipse.bpmn2.Process;
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import edu.udo.cs.ls14.jf.bpmn.utils.DefinitionsUtil;
 import edu.udo.cs.ls14.jf.bpmnanalysis.BpmnAnalysisFactory;
 import edu.udo.cs.ls14.jf.bpmnanalysis.Trace;
 import edu.udo.cs.ls14.jf.bpmnanalysis.TraceProfile;
 
+/**
+ * Traverses a reachability graph and returns a TraceProfile (Set of Traces and
+ * Trace prefixes).
+ * 
+ * @author Julian Flake
+ *
+ */
 public class Tracer {
 
-	private static final Logger LOG = LoggerFactory.getLogger(Tracer.class);
-
+	/**
+	 * Traverse reachability graph and return all traces and trace prefixes.
+	 * 
+	 * @param process
+	 *            for mapping reachibility graph edges back to FlowNodes.
+	 * @param rg
+	 *            the reachability graph to traverse
+	 * @return TraceProfile object
+	 * @throws Exception
+	 *             of an error occurs
+	 */
 	public static TraceProfile getTraceProfile(Process process,
 			ReachabilityGraph rg) throws Exception {
 		Set<Marking> startNodes = new HashSet<Marking>();
@@ -33,14 +47,10 @@ public class Tracer {
 			}
 		}
 		if (startNodes.size() != 1) {
-			LOG.error(startNodes.size()
-					+ " start nodes found, only processes with exactly one start node supported!");
 			throw new Exception("expected exactly 1 start node, found "
 					+ startNodes.size());
 		}
 		if (endNodes.size() != 1) {
-			LOG.error(endNodes.size()
-					+ " end nodes found, only processes with exactly one end node supported!");
 			throw new Exception("expected exactly 1 end node, found "
 					+ endNodes.size());
 		}
@@ -68,15 +78,17 @@ public class Tracer {
 		for (Edge edge : graph.getOutEdges(start)) {
 			// Kante repräsentiert eine Transition
 			// Transition repräsentiert evtl FlowNode
-			FlowNode currentNode = DefinitionsUtil.getFlowNode(process, edge.getT());
+			FlowNode currentNode = DefinitionsUtil.getFlowNode(process,
+					edge.getT());
 			// erstelle neuen Präfix aus altem Prefix
 			Trace newPrefix = BpmnAnalysisFactory.eINSTANCE.createTrace();
 			newPrefix.getNodes().addAll(prefix.getNodes());
 			// Wenn node FlowNode ist (!=null) und eine Aktivität oder ein
 			// Ereignis ist (also keine stille Transition)
 			if (DefinitionsUtil.isAE(currentNode)) {
-				// Füge FlowNode dem neuen Präfix hinzu, auch wenn schon enthalten
-				newPrefix.getNodes().add(currentNode);				
+				// Füge FlowNode dem neuen Präfix hinzu, auch wenn schon
+				// enthalten
+				newPrefix.getNodes().add(currentNode);
 			}
 			// Wenn node bereits in altem präfix enthalten, keine Rekursion
 			if (prefix.getNodes().contains(currentNode)) {

@@ -13,7 +13,7 @@ import org.eclipse.bpmn2.Process;
 import org.junit.Before;
 import org.junit.Test;
 
-import edu.udo.cs.ls14.jf.analysis.behavioralprofile.debug.BPDebugUtil;
+import edu.udo.cs.ls14.jf.analysis.behaviorprofile.BPDebugUtil;
 import edu.udo.cs.ls14.jf.analysis.behaviorprofile.BehavioralProfiler;
 import edu.udo.cs.ls14.jf.analysis.bpmn2ptnet.Bpmn2PtnetConverter;
 import edu.udo.cs.ls14.jf.analysis.reachabilitygraph.ReachabilityGraph;

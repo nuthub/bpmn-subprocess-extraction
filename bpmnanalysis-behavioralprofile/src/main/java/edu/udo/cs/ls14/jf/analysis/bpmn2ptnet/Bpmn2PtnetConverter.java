@@ -52,6 +52,16 @@ import fr.lip6.move.pnml.ptnet.hlapi.PetriNetHLAPI;
 import fr.lip6.move.pnml.ptnet.hlapi.PlaceHLAPI;
 import fr.lip6.move.pnml.ptnet.hlapi.TransitionHLAPI;
 
+/**
+ * Converts a BPMN model to Petri Net according to
+ * 
+ * Remco M. Dijkman, Marlon Dumas und Chun Ouyang. "Semantics and analysis of
+ * business process models in BPMN" In: Information &amp; Software Technology 50.12
+ * (2008), S. 1281–1294.
+ * 
+ * @author Julian Flake
+ *
+ */
 public class Bpmn2PtnetConverter {
 
 	private static final Logger LOG = LoggerFactory
@@ -64,11 +74,28 @@ public class Bpmn2PtnetConverter {
 	private Set<Pair<Set<TransitionHLAPI>, String>> postPlaces;
 	private int pCount = 0;
 
+	/**
+	 * Returns a petri net for a given process.
+	 * 
+	 * @param process
+	 *            given process
+	 * @return Petri net
+	 * @throws Exception
+	 *             if an error occurs
+	 */
 	public PetriNetHLAPI convertToPetriNet(Process process) throws Exception {
 		createPetrinetFromProcess(process);
 		return net;
 	}
 
+	/**
+	 * Save Petri Net to PNML file
+	 * 
+	 * @param pnmlFileName
+	 *            complete path of pnml file
+	 * @throws Exception
+	 *             if an error occurs
+	 */
 	public void saveToPnmlFile(String pnmlFileName) throws Exception {
 		if (doc == null) {
 			throw new Exception(
@@ -291,6 +318,9 @@ public class Bpmn2PtnetConverter {
 		return StringUtils.join(tIds, ".");
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
 	public String toString() {
 		StringBuffer sb = new StringBuffer();
@@ -318,6 +348,11 @@ public class Bpmn2PtnetConverter {
 		return sb.toString();
 	}
 
+	/**
+	 * Create DOT representation of petri net
+	 * 
+	 * @return DOT representation
+	 */
 	public String toDot() {
 		String nl = System.getProperty("line.separator");
 		StringBuffer sb = new StringBuffer();

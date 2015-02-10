@@ -16,6 +16,7 @@ public class MatrixTest {
 		assertNull(m.get("a","b"));
 		assertEquals(m.get("a","a"), true);
 		assertEquals(m.get("a", "b"), null);
+		assertNotNull(m.toString());
 	}
 
 }

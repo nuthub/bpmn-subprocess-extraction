@@ -1,6 +1,7 @@
 package edu.udo.cs.ls14.jf.analysis.bpmn2ptnet.test;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
 
 import java.io.File;
 
@@ -90,6 +91,7 @@ public class Bpmn2PtnetConverterTest {
 		assertEquals(expectedArcCount, page.getObjects_ArcHLAPI().size());
 		new File("/tmp/" + pathname).mkdirs();
 		converter.saveToPnmlFile("/tmp/" + pathname + basename + ".pnml");
+		assertNotNull(converter.toString());
 
 	}
 
