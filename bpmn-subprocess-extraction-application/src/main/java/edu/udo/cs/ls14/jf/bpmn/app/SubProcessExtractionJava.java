@@ -15,8 +15,15 @@ import edu.udo.cs.ls14.jf.bpmnmatching.ProcessMatching;
 import edu.udo.cs.ls14.jf.bpmntransformation.ProcessTransformation;
 import edu.udo.cs.ls14.jf.registry.Registries;
 
+/**
+ * Pure java implementation of interfaces ProcessAnalyzer, ProcessMatcher and
+ * ProcessTransformer.
+ * 
+ * @author Julian Flake
+ *
+ */
 public class SubProcessExtractionJava implements SubProcessExtraction {
-	
+
 	private static final Logger LOGGER = LoggerFactory
 			.getLogger(SubProcessExtractionJava.class.getName());
 

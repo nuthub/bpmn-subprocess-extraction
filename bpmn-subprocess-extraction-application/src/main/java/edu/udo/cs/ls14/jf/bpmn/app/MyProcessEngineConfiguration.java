@@ -12,9 +12,23 @@ import edu.udo.cs.ls14.jf.bpmn.app.variables.ProcessAnalysisType;
 import edu.udo.cs.ls14.jf.bpmn.app.variables.ProcessMatchingType;
 import edu.udo.cs.ls14.jf.bpmn.app.variables.ProcessTransformationType;
 
+/**
+ * {@inheritDoc}
+ * 
+ * This process engine configuration adds custom variable types to the post
+ * variable type list.
+ * 
+ * @author Julian Flake
+ * 
+ */
 public class MyProcessEngineConfiguration extends
 		StandaloneProcessEngineConfiguration {
 
+	/**
+	 * {@inheritDoc}
+	 * 
+	 * Creates a new process engine with this configuration.
+	 */
 	@Override
 	public ProcessEngine buildProcessEngine() {
 		List<VariableType> customPostVariableTypes = getCustomPostVariableTypes();

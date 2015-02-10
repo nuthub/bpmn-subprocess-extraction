@@ -13,12 +13,24 @@ import org.slf4j.LoggerFactory;
 import edu.udo.cs.ls14.jf.bpmntransformation.ProcessTransformation;
 import edu.udo.cs.ls14.jf.registry.Registries;
 
+/**
+ * {@inheritDoc}
+ * 
+ * This is an application implementation based on camunda bpm process engine.
+ * 
+ * @author Julian Flake
+ *
+ */
 public class SubProcessExtractionCamunda implements SubProcessExtraction {
 
 	private ProcessEngine processEngine;
 	private static final Logger LOGGER = LoggerFactory
 			.getLogger(SubProcessExtractionCamunda.class.getName());
 
+	/**
+	 * Set up process engine and deploy exuecutable bpmn models.
+	 * 
+	 */
 	public void init() {
 		Registries.registerAll();
 		// Start the engine
@@ -41,12 +53,7 @@ public class SubProcessExtractionCamunda implements SubProcessExtraction {
 	}
 
 	/**
-	 * (definitions1, definitions2) -> transformation
-	 * 
-	 * @param definitions1
-	 * @param definitions2
-	 * @return
-	 * @throws Exception
+	 * {@inheritDoc}
 	 */
 	public ProcessTransformation run(Definitions definitions1,
 			Definitions definitions2) throws Exception {

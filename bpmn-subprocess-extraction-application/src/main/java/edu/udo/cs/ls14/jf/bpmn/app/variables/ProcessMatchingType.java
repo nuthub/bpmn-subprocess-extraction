@@ -13,6 +13,13 @@ import org.eclipse.emf.ecore.resource.Resource;
 import edu.udo.cs.ls14.jf.bpmnmatching.ProcessMatching;
 import edu.udo.cs.ls14.jf.bpmnmatching.util.BpmnMatchingResourceFactoryImpl;
 
+/**
+ * Variable type for EMF based ProcessMatching objects. This enables Camunda and
+ * Activiti to use ProcessMatching objects as process variables.
+ * 
+ * @author Julian Flake
+ *
+ */
 public class ProcessMatchingType implements VariableType {
 
 	private static final String EXTENSION = "bpmnmatching";

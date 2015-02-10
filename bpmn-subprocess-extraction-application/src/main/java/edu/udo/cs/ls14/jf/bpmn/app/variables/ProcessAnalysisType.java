@@ -13,6 +13,13 @@ import org.eclipse.emf.ecore.resource.Resource;
 import edu.udo.cs.ls14.jf.bpmnanalysis.ProcessAnalysis;
 import edu.udo.cs.ls14.jf.bpmnanalysis.util.BpmnAnalysisResourceFactoryImpl;
 
+/**
+ * Variable type for EMF based ProcessAnalysis objects. This enables Camunda and
+ * Activiti to use ProcessAnalysis objects as process variables.
+ * 
+ * @author Julian Flake
+ *
+ */
 public class ProcessAnalysisType implements VariableType {
 
 	private static final String EXTENSION = "bpmnanalysis";

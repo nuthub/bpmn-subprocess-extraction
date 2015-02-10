@@ -16,8 +16,11 @@ import edu.udo.cs.ls14.jf.bpmntransformation.ProcessTransformation;
 import edu.udo.cs.ls14.jf.registry.Registries;
 
 /**
- * For performance measuring of subprocesses
- * @author flake
+ * This is an alternative camunda bpm process engine based implementation, which
+ * doesn't make use of super process and call activities. This has been
+ * implemented primarily for testing and performance measuring purposes.
+ * 
+ * @author Julian Flake
  *
  */
 public class SubProcessExtractionCamundaDebug implements SubProcessExtraction {
@@ -108,10 +111,14 @@ public class SubProcessExtractionCamundaDebug implements SubProcessExtraction {
 				.processInstanceId(instance.getId())
 				.variableName("transformation").singleResult().getValue();
 
-		LOGGER.info("Time for Analyzing Model 1       : " + (timeAnalysis1End-timeAnalysis1Start) + "ms");
-		LOGGER.info("Time for Analyzing Model 2       : " + (timeAnalysis2End-timeAnalysis2Start) + "ms");
-		LOGGER.info("Time for Matching Models         : " + (timeMatchingEnd-timeMatchingStart) + "ms");
-		LOGGER.info("Time for Transformation of Models: " + (timeTransformationEnd-timeTransformationStart) + "ms");
+		LOGGER.info("Time for Analyzing Model 1       : "
+				+ (timeAnalysis1End - timeAnalysis1Start) + "ms");
+		LOGGER.info("Time for Analyzing Model 2       : "
+				+ (timeAnalysis2End - timeAnalysis2Start) + "ms");
+		LOGGER.info("Time for Matching Models         : "
+				+ (timeMatchingEnd - timeMatchingStart) + "ms");
+		LOGGER.info("Time for Transformation of Models: "
+				+ (timeTransformationEnd - timeTransformationStart) + "ms");
 
 		return transformation;
 	}

@@ -13,6 +13,14 @@ import org.eclipse.emf.ecore.resource.Resource;
 import edu.udo.cs.ls14.jf.bpmntransformation.ProcessTransformation;
 import edu.udo.cs.ls14.jf.bpmntransformation.util.BpmnTransformationResourceFactoryImpl;
 
+/**
+ * Variable type for EMF based ProcessTransformation objects. This enables
+ * Camunda and Activiti to use ProcessTransformation objects as process
+ * variables.
+ * 
+ * @author Julian Flake
+ *
+ */
 public class ProcessTransformationType implements VariableType {
 
 	private static final String EXTENSION = "bpmntransformation";
