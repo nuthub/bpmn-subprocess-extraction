@@ -33,7 +33,7 @@ public class IOUtil {
 	}
 
 	public static void writeDot(String path, String basename, String dot)
-			throws Exception {
+			throws IOException {
 		new File(path).mkdirs();
 		String filePrefix = path + (path.endsWith("/") ? "" : "/") + basename;
 		Files.write(Paths.get(filePrefix + ".dot"), dot.getBytes());

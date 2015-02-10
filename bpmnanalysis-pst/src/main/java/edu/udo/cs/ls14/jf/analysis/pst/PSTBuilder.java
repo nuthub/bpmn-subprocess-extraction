@@ -33,6 +33,13 @@ import edu.udo.cs.ls14.jf.bpmnanalysis.BpmnAnalysisFactory;
 import edu.udo.cs.ls14.jf.bpmnanalysis.Fragment;
 import edu.udo.cs.ls14.jf.bpmnanalysis.ProcessStructureTree;
 
+/**
+ * Creates a ProcessStructureTree object for a given process model and
+ * optionally returns intermediate artifacts.
+ * 
+ * @author Julian Flake
+ *
+ */
 public class PSTBuilder {
 
 	private static final Logger LOG = LoggerFactory.getLogger(PSTBuilder.class);
@@ -53,6 +60,15 @@ public class PSTBuilder {
 
 	String newline = System.getProperty("line.separator");
 
+	/**
+	 * Definitions with process model a PST should be generated for.
+	 * 
+	 * @param definitions
+	 *            Definitions with process model
+	 * @return resulting ProcessStructureTree
+	 * @throws Exception
+	 *             if an error occurs
+	 */
 	public ProcessStructureTree getTree(Definitions definitions)
 			throws Exception {
 		this.process = DefinitionsUtil.getProcess(definitions);
@@ -230,58 +246,6 @@ public class PSTBuilder {
 		return classes;
 	}
 
-	// - private Set<Fragment> yieldFragments(FlowNode start, FlowNode end,
-	// - Definitions definitions) {
-	// - Set<Fragment> fragments = new HashSet<Fragment>();
-	// - for (SequenceFlow e : spanningTree.getEdges()) {
-	// - for (SequenceFlow f : spanningTree.getEdges()) {
-	// -
-	// - if (!e.equals(f) && !f.equals(insertEdge)) {
-	// - boolean isFragment = false;
-	// - if (edgeStates.get(e) == EdgeState.BACK
-	// - && edgeStates.get(f) == EdgeState.BACK) {
-	// - // can't be a fragment
-	// - } else if (edgeStates.get(e) == EdgeState.BACK
-	// - && edgeStates.get(f) == EdgeState.TREE) {
-	// - // is fragment, if e is only bracket of f
-	// - if (bracketSets.get(f).size() == 1
-	// - && bracketSets.get(f).contains(e)) {
-	// - isFragment = true;
-	// - }
-	// - } else if (edgeStates.get(e) == EdgeState.TREE
-	// - && edgeStates.get(f) == EdgeState.BACK) {
-	// - // is fragment, if f is only bracket of e
-	// - if (bracketSets.get(e).size() == 1
-	// - && bracketSets.get(e).contains(f)) {
-	// - isFragment = true;
-	// - }
-	// - } else if (edgeStates.get(e) == EdgeState.TREE
-	// - && edgeStates.get(f) == EdgeState.TREE) {
-	// - // is fragment, if bracket sets of e and f are the
-	// - // same
-	// - if (bracketSets.get(e).equals(bracketSets.get(f))) {
-	// - isFragment = true;
-	// - }
-	// - } else {
-	// - // no chance to get here
-	// - }
-	// - // Wenn es ein Fragment ist
-	// - if (isFragment) {
-	// - if (dominates(start, e, f)
-	// - && !yieldedFragments.contains(Pair.with(e, f))) {
-	// - Fragment newFragment = BpmnAnalysisFactory.eINSTANCE
-	// - .createFragment();
-	// - newFragment.setEntry(e);
-	// - newFragment.setExit(f);
-	// - fragments.add(newFragment);
-	// - }
-	// - }
-	// - }
-	// - }
-	// - }
-	// - return fragments;
-	// - }
-	// -
 	/**
 	 * DFS through process, when entering a fragment, put on stack
 	 * 
@@ -519,7 +483,7 @@ public class PSTBuilder {
 		return graph;
 	}
 
-	/**
+	/*
 	 * TODO: check for multiple end nodes
 	 */
 	private StartEvent getStartNode(Process process) {
@@ -531,7 +495,7 @@ public class PSTBuilder {
 		return null;
 	}
 
-	/**
+	/*
 	 * TODO: check for multiple end nodes
 	 */
 	private EndEvent getEndNode(Process process) {
