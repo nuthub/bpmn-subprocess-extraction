@@ -22,8 +22,23 @@ import edu.udo.cs.ls14.jf.bpmnanalysis.BpmnAnalysisFactory;
 import edu.udo.cs.ls14.jf.bpmnanalysis.ConditionalProfile;
 import edu.udo.cs.ls14.jf.bpmnanalysis.Fragment;
 
+/**
+ * Creates a conditional profile for a process or a fragment.
+ * 
+ * @author Julian Flake
+ *
+ */
 public class ConditionalProfiler {
 
+	/**
+	 * Create Conditional Profile for given fragment from given model profile.
+	 * 
+	 * @param modelProfile
+	 *            given conditional profile of complete model
+	 * @param fragment
+	 *            fragment the conditional profile should be created for
+	 * @return conditional profile of fragment
+	 */
 	public static ConditionalProfile getFragmentProfile(
 			ConditionalProfile modelProfile, Fragment fragment) {
 		Set<FlowNode> fragmentNodes = FragmentUtil
@@ -59,6 +74,15 @@ public class ConditionalProfiler {
 		return fragmentProfile;
 	}
 
+	/**
+	 * Compute conditional profile for a given process model.
+	 * 
+	 * @param process
+	 *            given process model
+	 * @return Conditional Profile of process model
+	 * @throws Exception
+	 *             if a (syntactical) error of process model occurs
+	 */
 	public static ConditionalProfile generateProfile(Process process)
 			throws Exception {
 		ConditionalProfile cp = BpmnAnalysisFactory.eINSTANCE
