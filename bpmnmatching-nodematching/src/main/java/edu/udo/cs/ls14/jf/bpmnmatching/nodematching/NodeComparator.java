@@ -1,5 +1,6 @@
 package edu.udo.cs.ls14.jf.bpmnmatching.nodematching;
 
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
@@ -44,8 +45,12 @@ public class NodeComparator {
 			return false;
 		}
 		// are e1 and e2 label equivalent?
-		if (!isLabelEquivalent(e1.getName(), e2.getName())) {
-			return false;
+		try {
+			if (!isLabelEquivalent(e1.getName(), e2.getName())) {
+				return false;
+			}
+		} catch (Exception e) {
+			throw new RuntimeException(e);
 		}
 		return true;
 	}
@@ -62,13 +67,14 @@ public class NodeComparator {
 	private boolean isTypeEquivalent(FlowNode e1, FlowNode e2) {
 		return e1.getClass().equals(e2.getClass());
 	}
-	
-	private boolean isLabelEquivalent(String str1, String str2) {
+
+	private boolean isLabelEquivalent(String str1, String str2)
+			throws ClassNotFoundException, SQLException, Exception {
 		// remove special chars and split strings
-		if(str1 == null) {
+		if (str1 == null) {
 			str1 = "";
 		}
-		if(str2 == null) {
+		if (str2 == null) {
 			str2 = "";
 		}
 		List<String> list1 = Arrays.asList(StringUtils.split(str1.replaceAll(
@@ -89,38 +95,30 @@ public class NodeComparator {
 
 		// build base form
 		// check every word for synonymity
-		try {
-			for (String w1 : list1) {
-				if (!StopWordList.contains(LANGUAGE, w1)) {
-					String w1base = Lemmatizer.lemmatize(LANGUAGE, w1);
-					for (String w2 : list2) {
-						if (!StopWordList.contains(LANGUAGE, w2)) {
-							String w2base = Lemmatizer.lemmatize(LANGUAGE, w2);
-							if (OpenThesaurusSQLite.areSynonyms(w1base, w2base)) {
-								map.put(w1, w2);
-							}
-						}
-					}
+		for (String w1 : list1) {
+			// if (!StopWordList.contains(LANGUAGE, w1)) {
+			String w1base = Lemmatizer.lemmatize(LANGUAGE, w1);
+			for (String w2 : list2) {
+				// if (!StopWordList.contains(LANGUAGE, w2)) {
+				String w2base = Lemmatizer.lemmatize(LANGUAGE, w2);
+				if (OpenThesaurusSQLite.areSynonyms(w1base, w2base)) {
+					map.put(w1, w2);
 				}
 			}
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			// }
+			// }
 		}
-		return (map.keySet().containsAll(list1) && map.values().containsAll(
-				list2));
+		return (map.keySet().containsAll(list1)
+				&& map.values().containsAll(list2) && list1.size() == list2
+				.size());
 	}
 
-	private List<String> removeStopWordsAndBuildBaseForms(List<String> list) {
+	private List<String> removeStopWordsAndBuildBaseForms(List<String> list)
+			throws Exception {
 		List<String> l = new ArrayList<String>();
 		for (String word : list) {
-			try {
-				if (!StopWordList.contains(LANGUAGE, word)) {
-					l.add(Lemmatizer.lemmatize(LANGUAGE, word));
-				}
-			} catch (Exception e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
+			if (!StopWordList.contains(LANGUAGE, word)) {
+				l.add(Lemmatizer.lemmatize(LANGUAGE, word));
 			}
 		}
 
