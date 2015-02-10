@@ -23,12 +23,12 @@ public class Lemmatizer {
 		LOG.info("Connected to " + CONNECTION);
 	}
 
-	public static String lemmatize(String language, String word)
-			throws Exception {
+	public static String lemmatize(String language, String word) {
 		if (language != "de") {
-			throw new Exception("No baseform information for language "
+			throw new RuntimeException("No baseform information for language "
 					+ language + " available.");
 		}
+		try {
 		if (c == null) {
 			connect();
 		}
@@ -44,6 +44,9 @@ public class Lemmatizer {
 			String result = resultSet.getString("grundform");
 			LOG.debug("Returning result: " + result);
 			return result;
+		}
+		} catch (Exception e) {
+			throw new RuntimeException(e);
 		}
 		LOG.debug("Returning query word: " + word);
 		return word;

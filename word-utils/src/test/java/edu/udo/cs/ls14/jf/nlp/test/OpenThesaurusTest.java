@@ -12,6 +12,12 @@ import edu.udo.cs.ls14.jf.nlp.OpenThesaurusSQLite;
 public class OpenThesaurusTest {
 
 	@Test
+	public void testConstructor() {
+		new OpenThesaurusSQLite();
+	}
+	
+	
+	@Test
 	public void testSynonyms() throws ClassNotFoundException, SQLException {
 		assertSynonyms("Güter", "Waren");
 		assertSynonyms("Waren", "Artikel");

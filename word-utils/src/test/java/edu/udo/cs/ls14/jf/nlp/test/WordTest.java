@@ -8,6 +8,7 @@ import java.sql.SQLException;
 
 import org.junit.Test;
 
+import edu.udo.cs.ls14.jf.nlp.StopWordList;
 import edu.udo.cs.ls14.jf.nlp.Word;
 import edu.udo.cs.ls14.jf.nlp.WordType;
 
@@ -40,5 +41,14 @@ public class WordTest {
 		assertFalse(w2.getType()==WordType.STOPWORD);
 		assertTrue(w1.isSynonymWith(w2));
 		assertTrue(w2.isSynonymWith(w1));
+	}
+	
+	@Test
+	public void testStopWords() {
+		Word w1 = new Word("de", "die");
+		assertEquals(w1.getType(), WordType.STOPWORD);
+		Word w2 = new Word("de", "Artikel");
+		assertEquals(w2.getType(), WordType.NORMAL);
+		assertEquals(w2.getType(), WordType.NORMAL);
 	}
 }

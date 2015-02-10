@@ -19,9 +19,24 @@ public class LemmatizerTest {
 		runTest("verschickten");
 	}
 
+	@Test
+	public void testConstructor() {
+		new Lemmatizer();
+	}
+
+	@Test(expected = Exception.class)
+	public void testLanguage() {
+		Lemmatizer.lemmatize("en", "dog");
+	}
+
+	@Test(expected = Exception.class)
+	public void testInjection() {
+		Lemmatizer.lemmatize("de", "inject'");
+	}
+
 	private void runTest(String word) throws Exception {
 		Lemmatizer.lemmatize("de", word);
-//		System.out.println(word + ": " + );
+		// System.out.println(word + ": " + );
 	}
 
 }

@@ -1,25 +1,14 @@
 package edu.udo.cs.ls14.jf.nlp;
 
-import java.net.URL;
-import java.util.List;
-import java.util.stream.Collectors;
 
-import javax.xml.ws.BindingProvider;
-
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
-import similarity.Similarity;
-import similarity.SimilarityService;
-import synonyms.Synonyms;
-import thesaurus.Thesaurus;
-import thesaurus.ThesaurusService;
-import baseform.Baseform;
-import baseform.BaseformService;
-import de.uni_leipzig.wortschatz.webservice.datatypes.DataVector;
-
+/**
+ * Ignoring, because of temporarily unavailability
+ * 
+ * @author JulianFlake
+ *
+ */
 public class Wortschatz {
-
+/*
 	private static final Logger LOG = LoggerFactory.getLogger(Wortschatz.class);
 
 	private static final String USERNAME = "anonymous";
@@ -165,5 +154,5 @@ public class Wortschatz {
 		v.getDataRow().add(value);
 		return v;
 	}
-
+*/
 }

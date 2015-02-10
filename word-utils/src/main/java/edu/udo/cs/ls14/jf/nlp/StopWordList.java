@@ -25,24 +25,23 @@ public class StopWordList {
 		LOG.info("Connected to " + CONNECTION);
 	}
 
-	public static boolean contains(String language, String word)
-			throws Exception {
-		if (language != "de") {
-			throw new Exception("No baseform information for language "
-					+ language + " available.");
-		}
-		if (c == null) {
-			connect();
-		}
-		Statement statement;
-		statement = c.createStatement();
-		ResultSet resultSet = statement
-				.executeQuery("SELECT word FROM stopwords "
-						+ "WHERE language = '" + language + "' AND word LIKE '"
-						+ word + "';");
+	public static boolean contains(String language, String word) {
+		try {
+			if (c == null) {
+				connect();
+			}
+			Statement statement;
+			statement = c.createStatement();
+			ResultSet resultSet = statement
+					.executeQuery("SELECT word FROM stopwords "
+							+ "WHERE language = '" + language
+							+ "' AND word LIKE '" + word + "';");
 
-		if (resultSet.next()) {
-			return true;
+			if (resultSet.next()) {
+				return true;
+			}
+		} catch (Exception e) {
+			throw new RuntimeException(e);
 		}
 		return false;
 	}
