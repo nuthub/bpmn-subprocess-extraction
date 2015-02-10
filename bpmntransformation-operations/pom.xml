@@ -24,5 +24,15 @@
 			<groupId>edu.udo.cs.ls14.jf</groupId>
 			<artifactId>bpmn-metrics</artifactId>
 		</dependency>
+		<dependency>
+			<groupId>edu.udo.cs.ls14.jf</groupId>
+			<artifactId>bpmnanalysis-services</artifactId>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>edu.udo.cs.ls14.jf</groupId>
+			<artifactId>bpmnmatching-services</artifactId>
+			<scope>test</scope>
+		</dependency>
 	</dependencies>
 </project>
