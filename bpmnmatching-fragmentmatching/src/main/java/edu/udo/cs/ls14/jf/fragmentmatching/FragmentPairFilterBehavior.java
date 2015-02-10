@@ -1,4 +1,4 @@
-package edu.udo.cs.ls14.jf.processmatching;
+package edu.udo.cs.ls14.jf.fragmentmatching;
 
 import java.util.ArrayList;
 import java.util.List;

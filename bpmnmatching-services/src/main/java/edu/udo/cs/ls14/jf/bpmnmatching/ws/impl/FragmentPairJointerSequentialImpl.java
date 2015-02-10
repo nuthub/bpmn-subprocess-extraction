@@ -8,7 +8,7 @@ import org.slf4j.LoggerFactory;
 import edu.udo.cs.ls14.jf.bpmnmatching.FragmentMatching;
 import edu.udo.cs.ls14.jf.bpmnmatching.ProcessMatching;
 import edu.udo.cs.ls14.jf.bpmnmatching.ws.FragmentPairJointerSequentialSEI;
-import edu.udo.cs.ls14.jf.processmatching.FragmentPairJointerSequential;
+import edu.udo.cs.ls14.jf.fragmentmatching.FragmentPairJointerSequential;
 
 @WebService(endpointInterface = "edu.udo.cs.ls14.jf.bpmnmatching.ws.FragmentPairJointerSequentialSEI")
 public class FragmentPairJointerSequentialImpl implements

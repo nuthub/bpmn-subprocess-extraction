@@ -11,5 +11,15 @@
   		<groupId>edu.udo.cs.ls14.jf</groupId>
   		<artifactId>bpmn-subprocess-extraction-utils</artifactId>
   	</dependency>
+  	<dependency>
+  		<groupId>edu.udo.cs.ls14.jf</groupId>
+  		<artifactId>bpmnmatching-nodematching</artifactId>
+  		<scope>test</scope>
+  	</dependency>
+  	<dependency>
+  		<groupId>edu.udo.cs.ls14.jf</groupId>
+  		<artifactId>bpmnanalysis-services</artifactId>
+  		<scope>test</scope>
+  	</dependency>
   </dependencies>
 </project>

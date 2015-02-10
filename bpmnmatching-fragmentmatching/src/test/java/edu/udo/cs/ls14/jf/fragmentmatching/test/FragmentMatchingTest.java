@@ -1,10 +1,16 @@
-package edu.udo.cs.ls14.jf.bpmnmatching;
+package edu.udo.cs.ls14.jf.fragmentmatching.test;
 
+import org.eclipse.bpmn2.Definitions;
+import org.junit.Before;
+import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import edu.udo.cs.ls14.jf.bpmn.utils.Bpmn2ResourceSet;
 import edu.udo.cs.ls14.jf.bpmn.utils.ProcessMatchingFactory;
 import edu.udo.cs.ls14.jf.bpmnanalysis.ProcessAnalysis;
+import edu.udo.cs.ls14.jf.bpmnanalysis.ProcessAnalyzer;
+import edu.udo.cs.ls14.jf.bpmnanalysis.ProcessAnalyzerImpl;
 import edu.udo.cs.ls14.jf.bpmnmatching.ProcessMatching;
 import edu.udo.cs.ls14.jf.bpmnmatching.nodematching.NodePairFilter;
 import edu.udo.cs.ls14.jf.fragmentmatching.FragmentPairFilterBehavior;
@@ -12,6 +18,7 @@ import edu.udo.cs.ls14.jf.fragmentmatching.FragmentPairFilterConditions;
 import edu.udo.cs.ls14.jf.fragmentmatching.FragmentPairFilterNestings;
 import edu.udo.cs.ls14.jf.fragmentmatching.FragmentPairFilterNodes;
 import edu.udo.cs.ls14.jf.fragmentmatching.FragmentPairJointerSequential;
+import edu.udo.cs.ls14.jf.registry.Registries;
 
 /**
  * <ol>
@@ -31,13 +38,65 @@ import edu.udo.cs.ls14.jf.fragmentmatching.FragmentPairJointerSequential;
  * @author flake
  *
  */
-public class ProcessMatcherImpl implements ProcessMatcher {
+public class FragmentMatchingTest {
 
 	private static final Logger LOG = LoggerFactory
-			.getLogger(ProcessMatcherImpl.class);
+			.getLogger(FragmentMatchingTest.class);
 
-	public ProcessMatching match(ProcessAnalysis analysis1,
-			ProcessAnalysis analysis2) throws Exception {
+	@Before
+	public void setUp() {
+		Registries.registerAll();
+	}
+
+	@Test
+	public void testComplete() throws Exception {
+		runTest("/bpmn/complete/", "complete1", "complete2");
+	}
+
+	@Test
+	public void testCompleteLabelles() throws Exception {
+		runTest("/bpmn/completeLabelled/", "complete1labelled", "complete2labelled");
+	}
+
+	@Test
+	public void testParallel() throws Exception {
+		runTest("/bpmn/parallelGateway/", "parallelism1", "parallelism2");
+	}
+
+	@Test
+	public void testExclusive() throws Exception {
+		runTest("/bpmn/exclusiveGateway/", "xor-example", "looping-xor");
+	}
+
+	@Test
+	public void testShortLoops() throws Exception {
+		runTest("/bpmn/shortLoop/", "parallel", "shortloop");
+	}
+
+	@Test
+	public void testConstructors() {
+		new FragmentPairFilterBehavior();
+		new FragmentPairFilterConditions();
+		new FragmentPairFilterNestings();
+		new FragmentPairFilterNodes();
+		new FragmentPairJointerSequential();
+	}
+	
+	private void runTest(String pathname, String basename1, String basename2)
+			throws Exception {
+
+		// analyze process1
+		Definitions def1 = Bpmn2ResourceSet.getInstance().loadDefinitions(
+				getClass().getResource(pathname + basename1 + ".bpmn")
+						.getPath());
+		ProcessAnalyzer analyzer = new ProcessAnalyzerImpl();
+		ProcessAnalysis analysis1 = analyzer.analyze(def1);
+		// analyze process2
+		Definitions def2 = Bpmn2ResourceSet.getInstance().loadDefinitions(
+				getClass().getResource(pathname + basename2 + ".bpmn")
+						.getPath());
+		analyzer = new ProcessAnalyzerImpl();
+		ProcessAnalysis analysis2 = analyzer.analyze(def2);
 
 		// create ProcessMatching object
 		LOG.info("create ProcessMatching with all possible fragment and node correspondences.");
@@ -99,13 +158,5 @@ public class ProcessMatcherImpl implements ProcessMatcher {
 		LOG.info(m.getFragmentMatching().getPairs().size()
 				+ " fragment correspondences left.");
 
-		// filter out trivial fragments (|nodes| < 2)
-//		LOG.info("Filter out trivial matches.");
-//		m.setFragmentMatching(FragmentPairFilterTrivial.filter(m
-//				.getFragmentMatching()));
-//		LOG.info(m.getFragmentMatching().getPairs().size()
-//				+ " fragment correspondences left.");
-
-		return m;
 	}
 }

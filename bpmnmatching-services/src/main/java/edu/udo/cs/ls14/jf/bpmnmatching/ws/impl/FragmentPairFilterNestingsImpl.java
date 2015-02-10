@@ -8,7 +8,7 @@ import org.slf4j.LoggerFactory;
 import edu.udo.cs.ls14.jf.bpmnmatching.FragmentMatching;
 import edu.udo.cs.ls14.jf.bpmnmatching.ProcessMatching;
 import edu.udo.cs.ls14.jf.bpmnmatching.ws.FragmentPairFilterNestingsSEI;
-import edu.udo.cs.ls14.jf.processmatching.FragmentPairFilterNestings;
+import edu.udo.cs.ls14.jf.fragmentmatching.FragmentPairFilterNestings;
 
 @WebService(endpointInterface = "edu.udo.cs.ls14.jf.bpmnmatching.ws.FragmentPairFilterNestingsSEI")
 public class FragmentPairFilterNestingsImpl implements

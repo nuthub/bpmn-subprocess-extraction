@@ -10,7 +10,7 @@ import edu.udo.cs.ls14.jf.bpmnmatching.FragmentMatching;
 import edu.udo.cs.ls14.jf.bpmnmatching.NodeMatching;
 import edu.udo.cs.ls14.jf.bpmnmatching.ProcessMatching;
 import edu.udo.cs.ls14.jf.bpmnmatching.ws.FragmentPairFilterConditionsSEI;
-import edu.udo.cs.ls14.jf.processmatching.FragmentPairFilterConditions;
+import edu.udo.cs.ls14.jf.fragmentmatching.FragmentPairFilterConditions;
 
 @WebService(endpointInterface = "edu.udo.cs.ls14.jf.bpmnmatching.ws.FragmentPairFilterConditionsSEI")
 public class FragmentPairFilterConditionsImpl implements
