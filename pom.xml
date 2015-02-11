@@ -32,7 +32,7 @@
 		<bpmn2.version>1.0.0.201406050616</bpmn2.version>
 		<emf.version>2.10.0-v20140514-1158</emf.version>
 		<pnml.version>2.2.4.SNAPSHOT</pnml.version>
-		<henshin.version>1.0.0-SNAPSHOT</henshin.version>
+		<henshin.version>1.2.0-SNAPSHOT</henshin.version>
 	</properties>
 	<dependencies>
 		<dependency>
