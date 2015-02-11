@@ -6,7 +6,7 @@
 		<artifactId>bpmn-subprocess-extraction-parent</artifactId>
 		<version>0.0.1-SNAPSHOT</version>
 	</parent>
-	<artifactId>bpmn-subprocess-extraction-utils</artifactId>
+	<artifactId>bpmn-examples</artifactId>
 	<dependencies>
 		<dependency>
 			<groupId>junit</groupId>

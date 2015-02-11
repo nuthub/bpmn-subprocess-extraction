@@ -7,7 +7,7 @@
 	<packaging>pom</packaging>
 	<modules>
 		<module>bpmn-subprocess-extraction-model</module>
-		<module>bpmn-subprocess-extraction-utils</module>
+		<module>bpmn-examples</module>
 		<module>bpmn-metrics</module>
 		<module>word-utils</module>
 		<module>bpmnanalysis-behavioralprofile</module>
@@ -59,11 +59,6 @@
 	</dependencies>
 	<dependencyManagement>
 		<dependencies>
-			<dependency>
-				<groupId>edu.udo.cs.ls14.jf</groupId>
-				<artifactId>bpmn-subprocess-extraction-utils</artifactId>
-				<version>0.0.1-SNAPSHOT</version>
-			</dependency>
 			<dependency>
 				<groupId>edu.udo.cs.ls14.jf</groupId>
 				<artifactId>

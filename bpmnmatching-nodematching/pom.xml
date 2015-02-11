@@ -9,7 +9,7 @@
   <dependencies>
   	<dependency>
   		<groupId>edu.udo.cs.ls14.jf</groupId>
-  		<artifactId>bpmn-subprocess-extraction-utils</artifactId>
+  		<artifactId>bpmn-subprocess-extraction-model</artifactId>
   	</dependency>
   	<dependency>
   		<groupId>edu.udo.cs.ls14.jf</groupId>
