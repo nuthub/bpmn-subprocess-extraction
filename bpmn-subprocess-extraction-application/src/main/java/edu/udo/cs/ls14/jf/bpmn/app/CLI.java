@@ -12,6 +12,7 @@ import org.slf4j.ILoggerFactory;
 import org.slf4j.LoggerFactory;
 
 import ch.qos.logback.classic.LoggerContext;
+import edu.udo.cs.ls14.jf.bpmn.registry.Registries;
 import edu.udo.cs.ls14.jf.bpmn.resourceset.Bpmn2ResourceSet;
 import edu.udo.cs.ls14.jf.bpmntransformation.ProcessTransformation;
 import edu.udo.cs.ls14.jf.bpmntransformation.util.ProcessTransformationUtil;
@@ -33,6 +34,8 @@ public class CLI {
 	private static final String MODEL2_DESC = "second model (required)";
 	private static final String TARGET_DIR = "t";
 	private static final String TARGET_DIR_DESC = "target directory (required)";
+	private static final String DEBUG = "d";
+	private static final String DEBUG_DESC = "write debug files";
 
 	/**
 	 * Does the definition and parsing of arguments, creates and calls the
@@ -52,6 +55,8 @@ public class CLI {
 				.withDescription(MODEL1_DESC).create(MODEL1));
 		options.addOption(OptionBuilder.hasArg(true).isRequired()
 				.withDescription(TARGET_DIR_DESC).create(TARGET_DIR));
+		options.addOption(OptionBuilder.hasArg(false)
+				.withDescription(DEBUG_DESC).create(DEBUG));
 
 		try {
 			// parse options
@@ -60,14 +65,24 @@ public class CLI {
 			String model1 = line.getOptionValue(MODEL1);
 			String model2 = line.getOptionValue(MODEL2);
 			String target = line.getOptionValue(TARGET_DIR);
+			boolean debug = line.hasOption(DEBUG);
+			if (!target.endsWith(System.getProperty("file.separator"))) {
+				target += System.getProperty("file.separator");
+			}
 			// run application
-			SubProcessExtraction app = new SubProcessExtractionCamunda();
-			Definitions m1 = Bpmn2ResourceSet.getInstance().loadDefinitions(
-					model1);
-			Definitions m2 = Bpmn2ResourceSet.getInstance().loadDefinitions(
-					model2);
-			ProcessTransformation transformation = app.run(m1, m2);
-			ProcessTransformationUtil.writeResults(target, transformation);
+			Registries.registerAll();
+			if (debug) {
+				SubProcessExtractionJavaDebugOutput app = new SubProcessExtractionJavaDebugOutput();
+				app.runDebug(model1, model2, target);
+			} else {
+				Definitions m1 = Bpmn2ResourceSet.getInstance()
+						.loadDefinitions(model1);
+				Definitions m2 = Bpmn2ResourceSet.getInstance()
+						.loadDefinitions(model2);
+				SubProcessExtraction app = new SubProcessExtractionCamunda();
+				ProcessTransformation transformation = app.run(m1, m2);
+				ProcessTransformationUtil.writeResults(target, transformation);
+			}
 			// shut down logger
 			ILoggerFactory loggerFactory = LoggerFactory.getILoggerFactory();
 			if (loggerFactory instanceof LoggerContext) {
