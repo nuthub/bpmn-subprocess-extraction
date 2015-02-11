@@ -45,6 +45,10 @@ public class Bpmn2ResourceSet extends ResourceSetImpl {
 	 */
 	public Resource createResource(URI fileURI, Definitions definitions)
 			throws Exception {
+		if (!Resource.Factory.Registry.INSTANCE.getExtensionToFactoryMap()
+				.containsKey("bpmn")) {
+			Registries.registerBpmn();
+		}
 		Resource resource = Registries.getResourceFactory("bpmn")
 				.createResource(fileURI);
 		resource.getContents().add(definitions);
@@ -53,6 +57,10 @@ public class Bpmn2ResourceSet extends ResourceSetImpl {
 	}
 
 	public Definitions loadDefinitions(String filename) throws Exception {
+		if (!Resource.Factory.Registry.INSTANCE.getExtensionToFactoryMap()
+				.containsKey("bpmn")) {
+			Registries.registerBpmn();
+		}
 		URI fileURI = URI.createFileURI(filename);
 		Resource resource = Registries.getResourceFactory("bpmn")
 				.createResource(fileURI);

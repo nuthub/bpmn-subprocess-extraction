@@ -26,7 +26,7 @@ import edu.udo.cs.ls14.jf.bpmntransformation.ProcessTransformation;
 public class SubProcessExtractionCamundaDebug implements SubProcessExtraction {
 
 	private ProcessEngine processEngine;
-
+	private boolean initialized = false;
 	private static final Logger LOGGER = LoggerFactory
 			.getLogger(SubProcessExtractionCamundaDebug.class.getName());
 
@@ -50,11 +50,15 @@ public class SubProcessExtractionCamundaDebug implements SubProcessExtraction {
 					.addClasspathResource(process + ".bpmn").name(process)
 					.deploy();
 		}
+		initialized = true;
 	}
 
 	@Override
 	public ProcessTransformation run(Definitions definitions1,
 			Definitions definitions2) throws Exception {
+		if (!initialized) {
+			init();
+		}
 		ProcessInstance instance = null;
 		// Start process instance
 		Map<String, Object> variables = new HashMap<String, Object>();

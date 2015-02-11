@@ -24,6 +24,7 @@ import edu.udo.cs.ls14.jf.bpmntransformation.ProcessTransformation;
  */
 public class SubProcessExtractionJava implements SubProcessExtraction {
 
+	private boolean initialized = false;
 	private static final Logger LOGGER = LoggerFactory
 			.getLogger(SubProcessExtractionJava.class.getName());
 
@@ -35,6 +36,7 @@ public class SubProcessExtractionJava implements SubProcessExtraction {
 	@Override
 	public void init() {
 		Registries.registerAll();
+		initialized = true;
 	}
 
 	/*
@@ -47,6 +49,9 @@ public class SubProcessExtractionJava implements SubProcessExtraction {
 	@Override
 	public ProcessTransformation run(Definitions defs1, Definitions defs2)
 			throws Exception {
+		if (!initialized) {
+			init();
+		}
 		ProcessAnalyzer analyzer = new ProcessAnalyzerImpl();
 		long timeAnalysis1Start = System.currentTimeMillis();
 		ProcessAnalysis analysis1 = analyzer.analyze(defs1);
@@ -76,4 +81,5 @@ public class SubProcessExtractionJava implements SubProcessExtraction {
 
 		return transformation;
 	}
+
 }
