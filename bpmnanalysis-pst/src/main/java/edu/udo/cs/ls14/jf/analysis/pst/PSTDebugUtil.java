@@ -1,8 +1,11 @@
 package edu.udo.cs.ls14.jf.analysis.pst;
 
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileWriter;
 import java.io.IOException;
-
-import edu.udo.cs.ls14.jf.bpmn.utils.IOUtil;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 
 /**
  * Helper method to write debug files.
@@ -34,17 +37,32 @@ public class PSTDebugUtil {
 			PSTBuilder builder, int fontsizeGraph, int fontsizeSpTree,
 			int fontsizePst) throws IOException {
 		// dot output
-		IOUtil.writeDot(path, basename + "-undirectedgraph",
+		writeDot(path, basename + "-undirectedgraph",
 				builder.undirectedGraphToDot(fontsizeGraph));
-		IOUtil.writeDot(path, basename + "-spanningtree",
+		writeDot(path, basename + "-spanningtree",
 				builder.spanningTreeToDot(fontsizeSpTree));
-		IOUtil.writeTxtFile(builder.cycleEqClsToTex(), path + basename
+		writeTxtFile(builder.cycleEqClsToTex(), path + basename
 				+ "-ceClasses.tex");
-		IOUtil.writeTxtFile(builder.sortedCycleEqClsToTex(), path + basename
+		writeTxtFile(builder.sortedCycleEqClsToTex(), path + basename
 				+ "-sortedCeClasses.tex");
-		IOUtil.writeTxtFile(builder.canonicalFragmentsToTex(), path + basename
+		writeTxtFile(builder.canonicalFragmentsToTex(), path + basename
 				+ "-canonicalFragments.tex");
-		IOUtil.writeDot(path, basename + "-pst",
+		writeDot(path, basename + "-pst",
 				builder.structureTreeToDot(fontsizePst));
+	}
+
+	private static void writeDot(String path, String basename, String dot)
+			throws IOException {
+		new File(path).mkdirs();
+		String filePrefix = path + (path.endsWith("/") ? "" : "/") + basename;
+		Files.write(Paths.get(filePrefix + ".dot"), dot.getBytes());
+	}
+
+	private static void writeTxtFile(String string, String filename)
+			throws IOException {
+		BufferedWriter out = new BufferedWriter(new FileWriter(filename));
+		out.write(string);
+		out.flush();
+		out.close();
 	}
 }

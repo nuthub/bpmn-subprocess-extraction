@@ -18,7 +18,8 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
-import edu.udo.cs.ls14.jf.bpmn.utils.Bpmn2ResourceSet;
+import edu.udo.cs.ls14.jf.bpmn.registry.Registries;
+import edu.udo.cs.ls14.jf.bpmn.resourceset.Bpmn2ResourceSet;
 import edu.udo.cs.ls14.jf.bpmnanalysis.ProcessAnalysis;
 import edu.udo.cs.ls14.jf.bpmnanalysis.ProcessAnalyzer;
 import edu.udo.cs.ls14.jf.bpmnanalysis.ProcessAnalyzerImpl;
@@ -34,7 +35,6 @@ import edu.udo.cs.ls14.jf.bpmntransformation.ws.impl.FragmentPairRankerCFCImpl;
 import edu.udo.cs.ls14.jf.bpmntransformation.ws.impl.FragmentPairRankerSizeImpl;
 import edu.udo.cs.ls14.jf.bpmntransformation.ws.impl.ModifierImpl;
 import edu.udo.cs.ls14.jf.bpmntransformation.ws.impl.ProcessTransformationFactoryImpl;
-import edu.udo.cs.ls14.jf.registry.Registries;
 
 public class BpmnTransformationTest {
 
@@ -235,16 +235,11 @@ public class BpmnTransformationTest {
 
 	@Test(expected = RuntimeException.class)
 	public void runNullTest6() {
-		portProcessTransformationFactory.create(null);
-	}
-
-	@Test(expected = RuntimeException.class)
-	public void runNullTest7() {
 		portExtractor.extract(null);
 	}
 
 	@Test(expected = RuntimeException.class)
-	public void runNullTest8() {
+	public void runNullTest7() {
 		portModifier.modify(null);
 	}
 

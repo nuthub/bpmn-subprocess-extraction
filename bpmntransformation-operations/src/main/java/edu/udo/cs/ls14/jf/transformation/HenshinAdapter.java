@@ -28,10 +28,10 @@ import org.eclipse.emf.henshin.model.resource.HenshinResourceSet;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import edu.udo.cs.ls14.jf.bpmn.utils.DefinitionsUtil;
-import edu.udo.cs.ls14.jf.bpmn.utils.FragmentUtil;
+import edu.udo.cs.ls14.jf.bpmn.registry.Registries;
+import edu.udo.cs.ls14.jf.bpmn.util.DefinitionsUtil;
 import edu.udo.cs.ls14.jf.bpmnanalysis.Fragment;
-import edu.udo.cs.ls14.jf.registry.Registries;
+import edu.udo.cs.ls14.jf.bpmnanalysis.util.FragmentUtil;
 
 public class HenshinAdapter {
 
@@ -45,6 +45,7 @@ public class HenshinAdapter {
 	private Module module = null;
 
 	private void init() throws Exception {
+		Registries.registerAll();
 		engine = new EngineImpl();
 		HenshinResourceSet resourceSet = new HenshinResourceSet();
 		resourceSet.registerXMIResourceFactories("bpmn");
@@ -52,11 +53,11 @@ public class HenshinAdapter {
 				Bpmn2Package.eINSTANCE);
 		resourceSet.getResourceFactoryRegistry().getExtensionToFactoryMap()
 				.put("bpmn", Registries.getResourceFactory("bpmn"));
-//		 Load rule, build rule URI to avoid henshin's createFileURI
+		// Load rule, build rule URI to avoid henshin's createFileURI
 		 URL ruleUrl = Thread.currentThread().getContextClassLoader()
 		 .getResource(RESOURCEPATH + "/" + RULEFILE + ".henshin");
 //		URL ruleUrl = getClass().getResource(
-//				RESOURCEPATH + "/" + RULEFILE + ".henshin");
+//				"/" + RESOURCEPATH + "/" + RULEFILE + ".henshin");
 		URI uri = URI.createURI(ruleUrl.toExternalForm());
 		module = resourceSet.getModule(uri, true);
 	}
@@ -149,7 +150,6 @@ public class HenshinAdapter {
 
 	public void replaceFragmentByCallActivity(EGraph graph, Fragment fragment,
 			CallableElement calledElement, String name) throws Exception {
-
 		Set<String> deleteNodeIds = new HashSet<String>();
 		Set<String> deleteEdgeIds = new HashSet<String>();
 		for (FlowElement e : FragmentUtil.getFlowElements(fragment, f -> true)) {

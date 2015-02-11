@@ -3,10 +3,10 @@ package edu.udo.cs.ls14.jf.bpmnmatching;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import edu.udo.cs.ls14.jf.bpmn.utils.ProcessMatchingFactory;
 import edu.udo.cs.ls14.jf.bpmnanalysis.ProcessAnalysis;
 import edu.udo.cs.ls14.jf.bpmnmatching.ProcessMatching;
 import edu.udo.cs.ls14.jf.bpmnmatching.nodematching.NodePairFilter;
+import edu.udo.cs.ls14.jf.bpmnmatching.util.ProcessMatchingFactory;
 import edu.udo.cs.ls14.jf.fragmentmatching.FragmentPairFilterBehavior;
 import edu.udo.cs.ls14.jf.fragmentmatching.FragmentPairFilterConditions;
 import edu.udo.cs.ls14.jf.fragmentmatching.FragmentPairFilterNestings;

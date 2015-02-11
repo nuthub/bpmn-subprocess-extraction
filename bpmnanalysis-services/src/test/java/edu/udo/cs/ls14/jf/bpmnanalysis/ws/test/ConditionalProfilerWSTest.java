@@ -14,13 +14,13 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
-import edu.udo.cs.ls14.jf.bpmn.utils.Bpmn2ResourceSet;
-import edu.udo.cs.ls14.jf.bpmn.utils.ProcessAnalysisFactory;
+import edu.udo.cs.ls14.jf.bpmn.registry.Registries;
+import edu.udo.cs.ls14.jf.bpmn.resourceset.Bpmn2ResourceSet;
 import edu.udo.cs.ls14.jf.bpmnanalysis.ConditionalProfile;
 import edu.udo.cs.ls14.jf.bpmnanalysis.ProcessAnalysis;
+import edu.udo.cs.ls14.jf.bpmnanalysis.util.ProcessAnalysisFactory;
 import edu.udo.cs.ls14.jf.bpmnanalysis.ws.ConditionalProfilerSEI;
 import edu.udo.cs.ls14.jf.bpmnanalysis.ws.impl.ConditionalProfilerImpl;
-import edu.udo.cs.ls14.jf.registry.Registries;
 
 public class ConditionalProfilerWSTest {
 

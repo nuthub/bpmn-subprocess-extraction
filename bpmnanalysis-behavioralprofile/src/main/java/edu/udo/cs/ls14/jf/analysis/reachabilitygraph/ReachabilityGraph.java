@@ -14,7 +14,7 @@ import org.eclipse.bpmn2.FlowNode;
 import org.eclipse.bpmn2.Process;
 
 import edu.uci.ics.jung.graph.DirectedSparseMultigraph;
-import edu.udo.cs.ls14.jf.bpmn.utils.DefinitionsUtil;
+import edu.udo.cs.ls14.jf.bpmn.util.DefinitionsUtil;
 import fr.lip6.move.pnml.framework.hlapi.HLAPIRootClass;
 import fr.lip6.move.pnml.framework.utils.PNMLUtils;
 import fr.lip6.move.pnml.ptnet.Arc;

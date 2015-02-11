@@ -15,13 +15,13 @@ import org.eclipse.bpmn2.Process;
 import org.junit.Before;
 import org.junit.Test;
 
-import edu.udo.cs.ls14.jf.bpmn.utils.Bpmn2ResourceSet;
-import edu.udo.cs.ls14.jf.bpmn.utils.ProcessMatchingFactory;
-import edu.udo.cs.ls14.jf.bpmn.utils.DefinitionsUtil;
+import edu.udo.cs.ls14.jf.bpmn.registry.Registries;
+import edu.udo.cs.ls14.jf.bpmn.resourceset.Bpmn2ResourceSet;
+import edu.udo.cs.ls14.jf.bpmn.util.DefinitionsUtil;
 import edu.udo.cs.ls14.jf.bpmnmatching.NodeMatching;
 import edu.udo.cs.ls14.jf.bpmnmatching.NodePair;
 import edu.udo.cs.ls14.jf.bpmnmatching.nodematching.NodePairFilter;
-import edu.udo.cs.ls14.jf.registry.Registries;
+import edu.udo.cs.ls14.jf.bpmnmatching.util.ProcessMatchingFactory;
 
 public class NodeMatcherTest {
 

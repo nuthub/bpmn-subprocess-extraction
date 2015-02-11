@@ -10,13 +10,13 @@ import org.eclipse.bpmn2.Definitions;
 import org.junit.Before;
 import org.junit.Test;
 
-import edu.udo.cs.ls14.jf.bpmn.utils.Bpmn2ResourceSet;
+import edu.udo.cs.ls14.jf.bpmn.registry.Registries;
+import edu.udo.cs.ls14.jf.bpmn.resourceset.Bpmn2ResourceSet;
 import edu.udo.cs.ls14.jf.bpmnanalysis.ConditionalProfile;
 import edu.udo.cs.ls14.jf.bpmnanalysis.ProcessAnalysis;
 import edu.udo.cs.ls14.jf.bpmnanalysis.ProcessAnalyzer;
 import edu.udo.cs.ls14.jf.bpmnanalysis.ProcessAnalyzerImpl;
 import edu.udo.cs.ls14.jf.bpmnanalysis.ProcessStructureTree;
-import edu.udo.cs.ls14.jf.registry.Registries;
 
 public class ProcessAnalyzerTest {
 	private static final String TARGET_DIR = "/tmp/";

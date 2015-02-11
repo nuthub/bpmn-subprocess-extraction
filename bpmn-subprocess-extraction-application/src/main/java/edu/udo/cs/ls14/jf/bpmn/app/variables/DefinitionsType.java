@@ -11,7 +11,7 @@ import org.eclipse.bpmn2.Definitions;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.resource.Resource;
 
-import edu.udo.cs.ls14.jf.bpmn.utils.Bpmn2ResourceSet;
+import edu.udo.cs.ls14.jf.bpmn.resourceset.Bpmn2ResourceSet;
 
 /**
  * Variable type for EMF based BPMN Definitions. This enables Camunda and

@@ -4,6 +4,7 @@ import org.eclipse.bpmn2.Definitions;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import edu.udo.cs.ls14.jf.bpmn.registry.Registries;
 import edu.udo.cs.ls14.jf.bpmn.transformation.ProcessTransformer;
 import edu.udo.cs.ls14.jf.bpmn.transformation.ProcessTransformerImpl;
 import edu.udo.cs.ls14.jf.bpmnanalysis.ProcessAnalysis;
@@ -13,7 +14,6 @@ import edu.udo.cs.ls14.jf.bpmnmatching.ProcessMatcher;
 import edu.udo.cs.ls14.jf.bpmnmatching.ProcessMatcherImpl;
 import edu.udo.cs.ls14.jf.bpmnmatching.ProcessMatching;
 import edu.udo.cs.ls14.jf.bpmntransformation.ProcessTransformation;
-import edu.udo.cs.ls14.jf.registry.Registries;
 
 /**
  * Pure java implementation of interfaces ProcessAnalyzer, ProcessMatcher and

@@ -13,14 +13,14 @@ import edu.udo.cs.ls14.jf.analysis.pst.PSTBuilder;
 import edu.udo.cs.ls14.jf.analysis.pst.PSTDebugUtil;
 import edu.udo.cs.ls14.jf.analysis.reachabilitygraph.ReachabilityGraph;
 import edu.udo.cs.ls14.jf.analysis.reachabilitygraph.Tracer;
-import edu.udo.cs.ls14.jf.bpmn.utils.ConditionalProfileUtil;
-import edu.udo.cs.ls14.jf.bpmn.utils.DefinitionsUtil;
-import edu.udo.cs.ls14.jf.bpmn.utils.ProcessAnalysisFactory;
-import edu.udo.cs.ls14.jf.bpmn.utils.ProcessAnalysisUtil;
+import edu.udo.cs.ls14.jf.bpmn.util.DefinitionsUtil;
+import edu.udo.cs.ls14.jf.analysis.conditionalprofile.CPDebugUtil;
 import edu.udo.cs.ls14.jf.bpmnanalysis.BehavioralProfile;
 import edu.udo.cs.ls14.jf.bpmnanalysis.ConditionalProfile;
 import edu.udo.cs.ls14.jf.bpmnanalysis.ProcessAnalysis;
 import edu.udo.cs.ls14.jf.bpmnanalysis.TraceProfile;
+import edu.udo.cs.ls14.jf.bpmnanalysis.util.ProcessAnalysisFactory;
+import edu.udo.cs.ls14.jf.bpmnanalysis.util.ProcessAnalysisUtil;
 import fr.lip6.move.pnml.ptnet.hlapi.PetriNetHLAPI;
 
 /**
@@ -82,7 +82,7 @@ public class ProcessAnalyzerImpl implements ProcessAnalyzer {
 		BPDebugUtil.writeDebugFiles(debugFilesDir, basename, process,
 				bpmn2ptnet, ptnet, reachabilityGraph, nodes, traceProfile,
 				behavioralProfile);
-		ConditionalProfileUtil.writeDebugFiles(
+		CPDebugUtil.writeDebugFiles(
 				debugFilesDir,
 				basename,
 				nodes,

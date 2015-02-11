@@ -6,10 +6,10 @@ import org.junit.Test;
 
 import edu.udo.cs.ls14.jf.bpmn.app.SubProcessExtraction;
 import edu.udo.cs.ls14.jf.bpmn.app.SubProcessExtractionJava;
-import edu.udo.cs.ls14.jf.bpmn.utils.Bpmn2ResourceSet;
-import edu.udo.cs.ls14.jf.bpmn.utils.ProcessTransformationUtil;
+import edu.udo.cs.ls14.jf.bpmn.registry.Registries;
+import edu.udo.cs.ls14.jf.bpmn.resourceset.Bpmn2ResourceSet;
 import edu.udo.cs.ls14.jf.bpmntransformation.ProcessTransformation;
-import edu.udo.cs.ls14.jf.registry.Registries;
+import edu.udo.cs.ls14.jf.bpmntransformation.util.ProcessTransformationUtil;
 
 /**
  * Have to be run manually (not included in mvn test).
@@ -104,6 +104,11 @@ public class SubProcessExtractionJavaTimeMeasurement {
 				getClass().getResource(path).getPath() + resName2);
 
 		// run process
+		// first run
+		app.run(defs1, defs2);
+		// second run
+		app.run(defs1, defs2);
+		// third run
 		long start = System.currentTimeMillis();
 		ProcessTransformation transformation = app.run(defs1, defs2);
 		long end = System.currentTimeMillis();

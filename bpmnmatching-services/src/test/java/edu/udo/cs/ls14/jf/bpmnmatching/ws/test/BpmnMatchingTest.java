@@ -15,7 +15,8 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
-import edu.udo.cs.ls14.jf.bpmn.utils.Bpmn2ResourceSet;
+import edu.udo.cs.ls14.jf.bpmn.registry.Registries;
+import edu.udo.cs.ls14.jf.bpmn.resourceset.Bpmn2ResourceSet;
 import edu.udo.cs.ls14.jf.bpmnanalysis.ProcessAnalysis;
 import edu.udo.cs.ls14.jf.bpmnanalysis.ProcessAnalyzer;
 import edu.udo.cs.ls14.jf.bpmnanalysis.ProcessAnalyzerImpl;
@@ -38,9 +39,6 @@ import edu.udo.cs.ls14.jf.bpmnmatching.ws.impl.FullFragmentMatchingImpl;
 import edu.udo.cs.ls14.jf.bpmnmatching.ws.impl.FullNodeMatchingImpl;
 import edu.udo.cs.ls14.jf.bpmnmatching.ws.impl.NodePairFilterImpl;
 import edu.udo.cs.ls14.jf.bpmnmatching.ws.impl.ProcessMatchingFactoryImpl;
-import edu.udo.cs.ls14.jf.registry.Registries;
-//import edu.udo.cs.ls14.jf.ws.bpmn.matching.fragmentpairrankersize.FragmentPairRankerSizeImpl;
-//import edu.udo.cs.ls14.jf.ws.bpmn.matching.fragmentpairrankersize.FragmentPairRankerSizeSEI;
 
 public class BpmnMatchingTest {
 

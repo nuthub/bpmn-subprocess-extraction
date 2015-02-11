@@ -17,10 +17,10 @@ import org.eclipse.bpmn2.Process;
 import org.eclipse.bpmn2.SequenceFlow;
 import org.eclipse.emf.common.util.BasicEList;
 
-import edu.udo.cs.ls14.jf.bpmn.utils.FragmentUtil;
 import edu.udo.cs.ls14.jf.bpmnanalysis.BpmnAnalysisFactory;
 import edu.udo.cs.ls14.jf.bpmnanalysis.ConditionalProfile;
 import edu.udo.cs.ls14.jf.bpmnanalysis.Fragment;
+import edu.udo.cs.ls14.jf.bpmnanalysis.util.FragmentUtil;
 
 /**
  * Creates a conditional profile for a process or a fragment.
@@ -129,10 +129,6 @@ public class ConditionalProfiler {
 			for (SequenceFlow seqFlow : ((Gateway) tgt).getOutgoing()) {
 				nodes.addAll(getAffectedNodes(seqFlow, nodes));
 			}
-		} else {
-			throw new Exception(
-					"targetRef is not of type Event, Activity or Gateway! "
-							+ tgt);
 		}
 		return nodes;
 	}

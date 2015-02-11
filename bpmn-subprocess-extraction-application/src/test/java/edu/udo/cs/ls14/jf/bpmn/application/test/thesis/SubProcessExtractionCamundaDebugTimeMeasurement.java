@@ -6,10 +6,10 @@ import org.junit.Test;
 
 import edu.udo.cs.ls14.jf.bpmn.app.SubProcessExtraction;
 import edu.udo.cs.ls14.jf.bpmn.app.SubProcessExtractionCamundaDebug;
-import edu.udo.cs.ls14.jf.bpmn.utils.Bpmn2ResourceSet;
-import edu.udo.cs.ls14.jf.bpmn.utils.ProcessTransformationUtil;
+import edu.udo.cs.ls14.jf.bpmn.registry.Registries;
+import edu.udo.cs.ls14.jf.bpmn.resourceset.Bpmn2ResourceSet;
 import edu.udo.cs.ls14.jf.bpmntransformation.ProcessTransformation;
-import edu.udo.cs.ls14.jf.registry.Registries;
+import edu.udo.cs.ls14.jf.bpmntransformation.util.ProcessTransformationUtil;
 
 /**
  * Have to be run manually (not included in mvn test)
@@ -98,6 +98,7 @@ public class SubProcessExtractionCamundaDebugTimeMeasurement {
 	private ProcessTransformation runTest(String path, String resName1,
 			String resName2) throws Exception {
 		// Load Models
+		Bpmn2ResourceSet.getInstance().clear();
 		Definitions defs1 = Bpmn2ResourceSet.getInstance().loadDefinitions(
 				getClass().getResource(path).getPath() + resName1);
 		Definitions defs2 = Bpmn2ResourceSet.getInstance().loadDefinitions(
@@ -105,12 +106,12 @@ public class SubProcessExtractionCamundaDebugTimeMeasurement {
 
 		// Run process
 		// first run
-		ProcessTransformation transformation = app.run(defs1, defs2);
+		app.run(defs1, defs2);
 		// second run
-		transformation = app.run(defs1, defs2);
+		app.run(defs1, defs2);
 		// third run
 		long start = System.currentTimeMillis();
-		transformation = app.run(defs1, defs2);
+		ProcessTransformation transformation = app.run(defs1, defs2);
 		long end = System.currentTimeMillis();
 
 		// Write Results

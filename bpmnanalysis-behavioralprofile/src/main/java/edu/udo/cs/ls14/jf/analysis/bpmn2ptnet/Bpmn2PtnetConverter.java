@@ -97,10 +97,6 @@ public class Bpmn2PtnetConverter {
 	 *             if an error occurs
 	 */
 	public void saveToPnmlFile(String pnmlFileName) throws Exception {
-		if (doc == null) {
-			throw new Exception(
-					"Document not created yet, call convertToPetriNet(...) first.");
-		}
 		PNMLUtils.exportPetriNetDocToPNML(doc, pnmlFileName);
 		LOG.info("Wrote PNML to " + pnmlFileName);
 	}
@@ -117,9 +113,6 @@ public class Bpmn2PtnetConverter {
 				flowNodes.put(((FlowNode) e).getId(), (FlowNode) e);
 			} else if (e instanceof SequenceFlow) {
 				sequenceFlows.put(((SequenceFlow) e).getId(), (SequenceFlow) e);
-			} else {
-				throw new UnsupportedOperationException(
-						"Unknown FlowElement type: " + e.getClass());
 			}
 		}
 
@@ -141,9 +134,6 @@ public class Bpmn2PtnetConverter {
 				handleActivity((Activity) n);
 			} else if (n instanceof Gateway) {
 				handleGateway((Gateway) n);
-			} else {
-				throw new UnsupportedOperationException(
-						"Unknown FlowNode type: " + n.getClass());
 			}
 		}
 

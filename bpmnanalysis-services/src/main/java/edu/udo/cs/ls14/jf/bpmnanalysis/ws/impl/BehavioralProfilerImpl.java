@@ -10,11 +10,11 @@ import edu.udo.cs.ls14.jf.analysis.behaviorprofile.BehavioralProfiler;
 import edu.udo.cs.ls14.jf.analysis.bpmn2ptnet.Bpmn2PtnetConverter;
 import edu.udo.cs.ls14.jf.analysis.reachabilitygraph.ReachabilityGraph;
 import edu.udo.cs.ls14.jf.analysis.reachabilitygraph.Tracer;
-import edu.udo.cs.ls14.jf.bpmn.utils.DefinitionsUtil;
-import edu.udo.cs.ls14.jf.bpmn.utils.ProcessAnalysisUtil;
+import edu.udo.cs.ls14.jf.bpmn.util.DefinitionsUtil;
 import edu.udo.cs.ls14.jf.bpmnanalysis.BehavioralProfile;
 import edu.udo.cs.ls14.jf.bpmnanalysis.ProcessAnalysis;
 import edu.udo.cs.ls14.jf.bpmnanalysis.TraceProfile;
+import edu.udo.cs.ls14.jf.bpmnanalysis.util.ProcessAnalysisUtil;
 import edu.udo.cs.ls14.jf.bpmnanalysis.ws.BehavioralProfilerSEI;
 import fr.lip6.move.pnml.ptnet.hlapi.PetriNetHLAPI;
 

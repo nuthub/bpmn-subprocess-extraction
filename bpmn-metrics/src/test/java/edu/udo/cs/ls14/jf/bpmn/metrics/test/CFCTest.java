@@ -7,15 +7,20 @@ import org.junit.Before;
 import org.junit.Test;
 
 import edu.udo.cs.ls14.jf.bpmn.metrics.CFC;
-import edu.udo.cs.ls14.jf.bpmn.utils.Bpmn2ResourceSet;
-import edu.udo.cs.ls14.jf.bpmn.utils.DefinitionsUtil;
-import edu.udo.cs.ls14.jf.registry.Registries;
+import edu.udo.cs.ls14.jf.bpmn.registry.Registries;
+import edu.udo.cs.ls14.jf.bpmn.resourceset.Bpmn2ResourceSet;
+import edu.udo.cs.ls14.jf.bpmn.util.DefinitionsUtil;
 
 public class CFCTest {
 
 	@Before
 	public void setUp() {
 		Registries.registerAll();
+	}
+
+	@Test
+	public void testConstructor() {
+		new CFC();
 	}
 
 	@Test
@@ -40,6 +45,11 @@ public class CFCTest {
 	public void testCompleteLabelled() throws Exception {
 		assertEquals(7, getCFC("/bpmn/completeLabelled/complete1labelled.bpmn"));
 		assertEquals(8, getCFC("/bpmn/completeLabelled/complete2labelled.bpmn"));
+	}
+
+	@Test
+	public void testInclusive() throws Exception {
+		assertEquals(3, getCFC("/bpmn/inclusiveGateway/inclusive1.bpmn"));
 	}
 
 	private int getCFC(String resourcename) throws Exception {

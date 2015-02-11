@@ -9,17 +9,16 @@ import java.util.List;
 
 import org.eclipse.bpmn2.Definitions;
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 
+import edu.udo.cs.ls14.jf.analysis.conditionalprofile.CPDebugUtil;
 import edu.udo.cs.ls14.jf.analysis.conditionalprofile.ConditionalProfiler;
+import edu.udo.cs.ls14.jf.bpmn.registry.Registries;
+import edu.udo.cs.ls14.jf.bpmn.resourceset.Bpmn2ResourceSet;
 import edu.udo.cs.ls14.jf.bpmn.transformation.ProcessTransformer;
 import edu.udo.cs.ls14.jf.bpmn.transformation.ProcessTransformerImpl;
-import edu.udo.cs.ls14.jf.bpmn.utils.Bpmn2ResourceSet;
-import edu.udo.cs.ls14.jf.bpmn.utils.ConditionalProfileUtil;
-import edu.udo.cs.ls14.jf.bpmn.utils.DefinitionsUtil;
-import edu.udo.cs.ls14.jf.bpmn.utils.ProcessAnalysisUtil;
-import edu.udo.cs.ls14.jf.bpmn.utils.ProcessMatchingUtil;
-import edu.udo.cs.ls14.jf.bpmn.utils.ProcessTransformationUtil;
+import edu.udo.cs.ls14.jf.bpmn.util.DefinitionsUtil;
 import edu.udo.cs.ls14.jf.bpmnanalysis.BpmnAnalysisFactory;
 import edu.udo.cs.ls14.jf.bpmnanalysis.BpmnAnalysisPackage;
 import edu.udo.cs.ls14.jf.bpmnanalysis.ConditionalProfile;
@@ -27,22 +26,25 @@ import edu.udo.cs.ls14.jf.bpmnanalysis.Fragment;
 import edu.udo.cs.ls14.jf.bpmnanalysis.ProcessAnalysis;
 import edu.udo.cs.ls14.jf.bpmnanalysis.ProcessAnalyzer;
 import edu.udo.cs.ls14.jf.bpmnanalysis.ProcessAnalyzerImpl;
+import edu.udo.cs.ls14.jf.bpmnanalysis.util.ProcessAnalysisUtil;
 import edu.udo.cs.ls14.jf.bpmnmatching.BpmnMatchingPackage;
 import edu.udo.cs.ls14.jf.bpmnmatching.ProcessMatcher;
 import edu.udo.cs.ls14.jf.bpmnmatching.ProcessMatcherImpl;
 import edu.udo.cs.ls14.jf.bpmnmatching.ProcessMatching;
+import edu.udo.cs.ls14.jf.bpmnmatching.util.ProcessMatchingUtil;
 import edu.udo.cs.ls14.jf.bpmntransformation.BpmnTransformationPackage;
 import edu.udo.cs.ls14.jf.bpmntransformation.ProcessTransformation;
-import edu.udo.cs.ls14.jf.registry.Registries;
+import edu.udo.cs.ls14.jf.bpmntransformation.util.ProcessTransformationUtil;
 
 /**
- * Have to be run manually (not included in mvn test)
+ * Have to be run manually (not included in mvn test) and unignored
  * 
  * Problems with mvn test along other tests
  * 
  * @author flake
  *
  */
+@Ignore
 public class ThesisExport {
 	private static final String TARGET_DIR = "/home/flake/Arbeitsfläche/Diplomarbeit/bilder/example/";
 
@@ -79,24 +81,26 @@ public class ThesisExport {
 				.loadDefinitions(
 						getClass().getResource(pathname + basename + ".bpmn")
 								.getPath());
+
+		Fragment fragment = BpmnAnalysisFactory.eINSTANCE.createFragment();
+		fragment.setEntry(DefinitionsUtil.getSequenceFlow(
+				def, "entry"));
+		fragment.setExit(DefinitionsUtil.getSequenceFlow(
+				def, "exit"));
 		// analyze and debug
 		ProcessAnalyzer analyzer = new ProcessAnalyzerImpl();
 		ProcessAnalysis analysis = analyzer.analyzeAndDebug(def, pathname,
 				basename, targetDir, nodes);
 
 		// create conditional profile of fragment
-		Fragment fragment = BpmnAnalysisFactory.eINSTANCE.createFragment();
-		fragment.setEntry(DefinitionsUtil.getSequenceFlow(
-				analysis.getDefinitions(), "entry"));
-		fragment.setExit(DefinitionsUtil.getSequenceFlow(
-				analysis.getDefinitions(), "exit"));
 		ConditionalProfile fragmentProfile = ConditionalProfiler
 				.getFragmentProfile(
 						ProcessAnalysisUtil.getConditionalProfile(analysis),
 						fragment);
+
 		List<String> fragmentNodes = Arrays
 				.asList("Task 1", "Task 2", "Task 3");
-		ConditionalProfileUtil.writeDebugFiles(targetDir, basename,
+		CPDebugUtil.writeDebugFiles(targetDir, basename,
 				fragmentNodes, fragmentProfile, "conditionalprofile-fragment");
 		assertNotNull(analysis);
 	}

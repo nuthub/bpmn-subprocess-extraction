@@ -11,9 +11,9 @@ import org.eclipse.emf.henshin.interpreter.impl.EGraphImpl;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import edu.udo.cs.ls14.jf.bpmn.utils.Bpmn2ResourceSet;
-import edu.udo.cs.ls14.jf.bpmn.utils.DefinitionsUtil;
-import edu.udo.cs.ls14.jf.bpmn.utils.FragmentUtil;
+import edu.udo.cs.ls14.jf.bpmn.resourceset.Bpmn2ResourceSet;
+import edu.udo.cs.ls14.jf.bpmn.util.DefinitionsUtil;
+import edu.udo.cs.ls14.jf.bpmnanalysis.util.FragmentUtil;
 import edu.udo.cs.ls14.jf.bpmnmatching.FragmentPair;
 import edu.udo.cs.ls14.jf.bpmntransformation.ProcessTransformation;
 

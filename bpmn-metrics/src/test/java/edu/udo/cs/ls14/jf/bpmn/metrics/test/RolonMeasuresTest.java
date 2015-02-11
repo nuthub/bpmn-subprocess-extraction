@@ -5,9 +5,9 @@ import org.eclipse.bpmn2.Process;
 import org.junit.Test;
 
 import edu.udo.cs.ls14.jf.bpmn.metrics.RolonMeasures;
-import edu.udo.cs.ls14.jf.bpmn.utils.Bpmn2ResourceSet;
-import edu.udo.cs.ls14.jf.bpmn.utils.DefinitionsUtil;
-import edu.udo.cs.ls14.jf.registry.Registries;
+import edu.udo.cs.ls14.jf.bpmn.registry.Registries;
+import edu.udo.cs.ls14.jf.bpmn.resourceset.Bpmn2ResourceSet;
+import edu.udo.cs.ls14.jf.bpmn.util.DefinitionsUtil;
 
 public class RolonMeasuresTest {
 

@@ -29,15 +29,6 @@ public class Marking extends HashSet<Place> {
 	private boolean initialMarking = false;
 
 	/**
-	 * Return true, if this marking has been set as initial.
-	 * 
-	 * @return true, if this marking is initial
-	 */
-	public boolean isInitialMarking() {
-		return initialMarking;
-	}
-
-	/**
 	 * Set if this marking is an initial marking
 	 * 
 	 * @param initialMarking

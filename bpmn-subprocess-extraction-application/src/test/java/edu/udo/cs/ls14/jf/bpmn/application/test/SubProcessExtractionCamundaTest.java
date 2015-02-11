@@ -6,10 +6,10 @@ import org.junit.Test;
 
 import edu.udo.cs.ls14.jf.bpmn.app.SubProcessExtraction;
 import edu.udo.cs.ls14.jf.bpmn.app.SubProcessExtractionCamunda;
-import edu.udo.cs.ls14.jf.bpmn.utils.Bpmn2ResourceSet;
-import edu.udo.cs.ls14.jf.bpmn.utils.ProcessTransformationUtil;
+import edu.udo.cs.ls14.jf.bpmn.registry.Registries;
+import edu.udo.cs.ls14.jf.bpmn.resourceset.Bpmn2ResourceSet;
 import edu.udo.cs.ls14.jf.bpmntransformation.ProcessTransformation;
-import edu.udo.cs.ls14.jf.registry.Registries;
+import edu.udo.cs.ls14.jf.bpmntransformation.util.ProcessTransformationUtil;
 
 public class SubProcessExtractionCamundaTest {
 
@@ -98,6 +98,7 @@ public class SubProcessExtractionCamundaTest {
 	private ProcessTransformation runTest(String path, String resName1,
 			String resName2) throws Exception {
 		// Load models
+		Bpmn2ResourceSet.getInstance().clear();
 		Definitions defs1 = Bpmn2ResourceSet.getInstance().loadDefinitions(
 				getClass().getResource(path).getPath() + resName1);
 		Definitions defs2 = Bpmn2ResourceSet.getInstance().loadDefinitions(

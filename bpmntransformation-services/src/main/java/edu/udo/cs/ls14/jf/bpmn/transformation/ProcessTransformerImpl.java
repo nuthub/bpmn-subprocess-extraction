@@ -1,9 +1,9 @@
 package edu.udo.cs.ls14.jf.bpmn.transformation;
 
-import edu.udo.cs.ls14.jf.bpmn.utils.ProcessTransformationFactory;
 import edu.udo.cs.ls14.jf.bpmnmatching.FragmentPair;
 import edu.udo.cs.ls14.jf.bpmnmatching.ProcessMatching;
 import edu.udo.cs.ls14.jf.bpmntransformation.ProcessTransformation;
+import edu.udo.cs.ls14.jf.bpmntransformation.util.ProcessTransformationFactory;
 import edu.udo.cs.ls14.jf.transformation.CoordinateCalculator;
 import edu.udo.cs.ls14.jf.transformation.Extractor;
 import edu.udo.cs.ls14.jf.transformation.FragmentPairFilterTrivial;

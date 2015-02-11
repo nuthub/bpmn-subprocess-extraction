@@ -1,6 +1,11 @@
 package edu.udo.cs.ls14.jf.analysis.behaviorprofile;
 
+import java.io.BufferedWriter;
 import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -10,7 +15,6 @@ import org.eclipse.bpmn2.Process;
 
 import edu.udo.cs.ls14.jf.analysis.bpmn2ptnet.Bpmn2PtnetConverter;
 import edu.udo.cs.ls14.jf.analysis.reachabilitygraph.ReachabilityGraph;
-import edu.udo.cs.ls14.jf.bpmn.utils.IOUtil;
 import edu.udo.cs.ls14.jf.bpmnanalysis.BehavioralProfile;
 import edu.udo.cs.ls14.jf.bpmnanalysis.BehavioralRelation;
 import edu.udo.cs.ls14.jf.bpmnanalysis.BehavioralRelationType;
@@ -59,22 +63,22 @@ public class BPDebugUtil {
 
 		// output petrinet
 		converter.saveToPnmlFile(pathname + basename + "-ptnet.pnml");
-		IOUtil.writeDot(pathname, basename + "-ptnet", converter.toDot());
+		writeDot(pathname, basename + "-ptnet", converter.toDot());
 		// output reachability graph
 		String dot = rg.toDot(process);
-		IOUtil.writeDot(pathname, basename + "-reachabilityGraph", dot);
+		writeDot(pathname, basename + "-reachabilityGraph", dot);
 		// output traces
-		IOUtil.writeTxtFile(BPDebugUtil.tracesToString(traceProfile), pathname
+		writeTxtFile(BPDebugUtil.tracesToString(traceProfile), pathname
 				+ basename + "-traces.txt");
 		System.out.println("Wrote traces to " + pathname + basename
 				+ "-traces.txt");
 		// output direct succession relation
-		IOUtil.writeTxtFile(BPDebugUtil.bpToSuccRelTabular(nodes, bp), pathname
+		writeTxtFile(BPDebugUtil.bpToSuccRelTabular(nodes, bp), pathname
 				+ basename + "-nachfolgerelation.tex");
 		System.out.println("Wrote succession relation to " + pathname
 				+ basename + "-nachfolgerelation.tex");
 		// output behavioral profile
-		IOUtil.writeTxtFile(BPDebugUtil.bpToTabular(nodes, bp), pathname
+		writeTxtFile(BPDebugUtil.bpToTabular(nodes, bp), pathname
 				+ basename + "-verhaltensprofil.tex");
 		System.out.println("Wrote Behavioral Profile to " + pathname + basename
 				+ "-verhaltensprofil.tex");
@@ -189,5 +193,19 @@ public class BPDebugUtil {
 		}
 		return sb.toString();
 	}
+	private static void writeDot(String path, String basename, String dot)
+			throws IOException {
+		new File(path).mkdirs();
+		String filePrefix = path + (path.endsWith("/") ? "" : "/") + basename;
+		Files.write(Paths.get(filePrefix + ".dot"), dot.getBytes());
+	}
 
+	private static void writeTxtFile(String string, String filename)
+			throws IOException {
+		BufferedWriter out = new BufferedWriter(new FileWriter(filename));
+		out.write(string);
+		out.flush();
+		out.close();
+	}
+	
 }

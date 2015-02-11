@@ -9,12 +9,12 @@ import org.junit.Before;
 import org.junit.Test;
 
 import edu.udo.cs.ls14.jf.analysis.conditionalprofile.ConditionalProfiler;
-import edu.udo.cs.ls14.jf.bpmn.utils.Bpmn2ResourceSet;
-import edu.udo.cs.ls14.jf.bpmn.utils.DefinitionsUtil;
+import edu.udo.cs.ls14.jf.bpmn.registry.Registries;
+import edu.udo.cs.ls14.jf.bpmn.resourceset.Bpmn2ResourceSet;
+import edu.udo.cs.ls14.jf.bpmn.util.DefinitionsUtil;
 import edu.udo.cs.ls14.jf.bpmnanalysis.BpmnAnalysisFactory;
 import edu.udo.cs.ls14.jf.bpmnanalysis.ConditionalProfile;
 import edu.udo.cs.ls14.jf.bpmnanalysis.Fragment;
-import edu.udo.cs.ls14.jf.registry.Registries;
 
 public class ConditionalProfileTest {
 
@@ -22,6 +22,11 @@ public class ConditionalProfileTest {
 	public void setUp() {
 		Registries.registerAll();
 
+	}
+	
+	@Test
+	public void testConstructor() {
+		assertNotNull(new ConditionalProfiler());
 	}
 
 	@Test

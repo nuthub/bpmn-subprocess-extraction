@@ -1,6 +1,7 @@
 package edu.udo.cs.ls14.jf.analysis.pst.test;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 
 import java.util.List;
@@ -12,18 +13,32 @@ import org.eclipse.bpmn2.Definitions;
 import org.junit.Before;
 import org.junit.Test;
 
+import edu.udo.cs.ls14.jf.analysis.pst.EdgeState;
 import edu.udo.cs.ls14.jf.analysis.pst.PSTBuilder;
 import edu.udo.cs.ls14.jf.analysis.pst.PSTDebugUtil;
-import edu.udo.cs.ls14.jf.bpmn.utils.Bpmn2ResourceSet;
+import edu.udo.cs.ls14.jf.bpmn.registry.Registries;
+import edu.udo.cs.ls14.jf.bpmn.resourceset.Bpmn2ResourceSet;
 import edu.udo.cs.ls14.jf.bpmnanalysis.Fragment;
 import edu.udo.cs.ls14.jf.bpmnanalysis.ProcessStructureTree;
-import edu.udo.cs.ls14.jf.registry.Registries;
 
 public class PSTTest {
 
 	@Before
 	public void setUp() {
 		Registries.registerAll();
+	}
+
+	@Test
+	public void testDebugConstructor() {
+		assertNotNull(new PSTDebugUtil());
+	}
+
+	@Test
+	public void testEnum() {
+		assertEquals(EdgeState.TREE,
+				EdgeState.valueOf(EdgeState.TREE.toString()));
+		assertEquals(EdgeState.BACK,
+				EdgeState.valueOf(EdgeState.BACK.toString()));
 	}
 
 	@Test
@@ -191,6 +206,5 @@ public class PSTTest {
 		}
 		assertTrue(contains);
 	}
-
 
 }

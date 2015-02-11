@@ -47,9 +47,6 @@ public class RolonMeasures {
 
 		// Create OCL instance
 		ocl = OCL.newInstance(environmentFactory);
-		if (ocl == null) {
-			throw new RuntimeException("Could not create environment factory");
-		}
 		System.out.println("OCL initiated with package "
 				+ Bpmn2Package.eINSTANCE);
 
