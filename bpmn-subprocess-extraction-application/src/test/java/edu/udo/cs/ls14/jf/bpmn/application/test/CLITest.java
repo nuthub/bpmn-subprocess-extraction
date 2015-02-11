@@ -11,14 +11,15 @@ import org.junit.Test;
 import edu.udo.cs.ls14.jf.bpmn.app.CLI;
 
 public class CLITest {
-	
-	private static final String TEST_DIR = "/tmp/test-output";
+
+	private static final String TEST_DIR = System.getProperty("java.io.tmpdir")
+			+ "/test-cli";
 
 	@Test
 	public void testConstructor() {
 		assertNotNull(new CLI());
 	}
-	
+
 	@Test
 	public void testHelp() {
 		String[] args = { "help" };
@@ -42,14 +43,15 @@ public class CLITest {
 
 	@Test
 	public void testException() {
+		System.out.println(TEST_DIR);
 		String[] args = new String[6];
 		args[0] = "-m1";
 		args[1] = "not-existent";
 		args[2] = "-m2";
 		args[3] = "not-existent";
 		args[4] = "-t";
-		args[5] = "/dev/null";
+		args[5] = TEST_DIR;
 		CLI.main(args);
 	}
-	
+
 }

@@ -23,6 +23,9 @@ import edu.udo.cs.ls14.jf.bpmnanalysis.ProcessStructureTree;
 
 public class PSTTest {
 
+	private static final String TARGET_DIR = System
+			.getProperty("java.io.tmpdir") + "test-pst/";
+
 	@Before
 	public void setUp() {
 		Registries.registerAll();
@@ -190,8 +193,8 @@ public class PSTTest {
 								.getPath());
 		PSTBuilder pstBuilder = new PSTBuilder();
 		ProcessStructureTree pst = pstBuilder.getTree(definitions);
-		PSTDebugUtil.writeDebugFiles("/tmp/" + pathname, basename, pstBuilder,
-				fontsizeGraph, fontsizeSpTree, fontsizePst);
+		PSTDebugUtil.writeDebugFiles(TARGET_DIR + pathname, basename,
+				pstBuilder, fontsizeGraph, fontsizeSpTree, fontsizePst);
 		return pst;
 	}
 

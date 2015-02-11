@@ -30,7 +30,8 @@ import edu.udo.cs.ls14.jf.bpmntransformation.util.ProcessTransformationUtil;
 
 public class ProcessTransformerTest {
 
-	private static final String TARGET_DIR = "/tmp/";
+	private static final String TARGET_DIR = System
+			.getProperty("java.io.tmpdir") + "test-transformer/";
 
 	@Before
 	public void setUp() {

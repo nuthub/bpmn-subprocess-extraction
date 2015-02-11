@@ -19,6 +19,9 @@ import fr.lip6.move.pnml.ptnet.hlapi.PetriNetHLAPI;
 
 public class Bpmn2PtnetConverterTest {
 
+	private static final String TARGET_DIR = System
+			.getProperty("java.io.tmpdir") + "test-bp2ptnet/";
+
 	private Bpmn2PtnetConverter converter;
 
 	@Before
@@ -76,11 +79,13 @@ public class Bpmn2PtnetConverterTest {
 		runTest(pathname, basename, 8, 6, 14);
 	}
 
-	private void runTest(String pathname, String basename, int expectedPlaceCount,
-			int expectedTransitionCount, int expectedArcCount) throws Exception {
+	private void runTest(String pathname, String basename,
+			int expectedPlaceCount, int expectedTransitionCount,
+			int expectedArcCount) throws Exception {
 		Definitions definitions = Bpmn2ResourceSet.getInstance()
-				.loadDefinitions(getClass().getResource(
-						pathname + basename + ".bpmn").getPath());
+				.loadDefinitions(
+						getClass().getResource(pathname + basename + ".bpmn")
+								.getPath());
 		Process process = DefinitionsUtil.getProcess(definitions);
 		PetriNetHLAPI net = converter.convertToPetriNet(process);
 		assertEquals(1, net.getPagesHLAPI().size());
@@ -89,8 +94,8 @@ public class Bpmn2PtnetConverterTest {
 		assertEquals(expectedTransitionCount, page.getObjects_TransitionHLAPI()
 				.size());
 		assertEquals(expectedArcCount, page.getObjects_ArcHLAPI().size());
-		new File("/tmp/" + pathname).mkdirs();
-		converter.saveToPnmlFile("/tmp/" + pathname + basename + ".pnml");
+		new File(TARGET_DIR + pathname).mkdirs();
+		converter.saveToPnmlFile(TARGET_DIR + pathname + basename + ".pnml");
 		assertNotNull(converter.toString());
 
 	}

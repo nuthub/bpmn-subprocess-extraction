@@ -21,7 +21,8 @@ import edu.udo.cs.ls14.jf.bpmntransformation.util.ProcessTransformationUtil;
  */
 public class SubProcessExtractionJavaTimeMeasurement {
 
-	protected static final String TARGETDIR = "/tmp/";
+	protected static final String TARGETDIR = System
+			.getProperty("java.io.tmpdir") + "test-app/";
 	private SubProcessExtraction app = null;
 
 	@Before
@@ -87,6 +88,7 @@ public class SubProcessExtractionJavaTimeMeasurement {
 		runTest("/bpmn/parallelGateway/", resname1, resname2);
 		// TODO: Assertions
 	}
+
 	@Test
 	public void testShortLoop() throws Exception {
 		String resname1 = "shortloop.bpmn";

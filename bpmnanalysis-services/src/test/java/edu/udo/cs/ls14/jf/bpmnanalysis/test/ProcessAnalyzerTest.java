@@ -19,7 +19,8 @@ import edu.udo.cs.ls14.jf.bpmnanalysis.ProcessAnalyzerImpl;
 import edu.udo.cs.ls14.jf.bpmnanalysis.ProcessStructureTree;
 
 public class ProcessAnalyzerTest {
-	private static final String TARGET_DIR = "/tmp/";
+	private static final String TARGET_DIR = System
+			.getProperty("java.io.tmpdir") + "test-analyzer/";
 
 	@Before
 	public void setUp() {
@@ -67,7 +68,6 @@ public class ProcessAnalyzerTest {
 		assertNotNull(analysis);
 		assertNotNull(runTestWithoutDebug(pathname, basename));
 	}
-
 
 	@Test
 	public void testAnalysisParallelism1() throws Exception {

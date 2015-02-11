@@ -35,7 +35,7 @@ public class CLI {
 	private static final String TARGET_DIR = "t";
 	private static final String TARGET_DIR_DESC = "target directory (required)";
 	private static final String DEBUG = "d";
-	private static final String DEBUG_DESC = "write debug files";
+	private static final String DEBUG_DESC = "write debug files (optional)";
 
 	/**
 	 * Does the definition and parsing of arguments, creates and calls the

@@ -29,6 +29,9 @@ import fr.lip6.move.pnml.ptnet.hlapi.PetriNetHLAPI;
 
 public class BehavioralProfileTest {
 
+	private static final String TARGET_DIR = System
+			.getProperty("java.io.tmpdir") + "test-bp/";
+
 	@Before
 	public void setUp() {
 		Registries.registerAll();
@@ -38,7 +41,7 @@ public class BehavioralProfileTest {
 	public void testConstructor() {
 		assertNotNull(new BehavioralProfiler());
 	}
-	
+
 	@Test
 	public void testPM1() throws Exception {
 		String pathname = "/bpmn/parallelGateway/";
@@ -146,8 +149,8 @@ public class BehavioralProfileTest {
 				traceProfile);
 
 		// Write Debug files
-		BPDebugUtil.writeDebugFiles("/tmp/" + pathname, basename, process,
-				converter, ptnet, rg, nodes, traceProfile, bp);
+		BPDebugUtil.writeDebugFiles(TARGET_DIR + pathname, basename, process, converter, ptnet,
+				rg, nodes, traceProfile, bp);
 		return bp;
 	}
 

@@ -21,7 +21,8 @@ import edu.udo.cs.ls14.jf.bpmntransformation.util.ProcessTransformationUtil;
  */
 public class SubProcessExtractionCamundaDebugTimeMeasurement {
 
-	private static final String TARGETDIR = "/tmp/";
+	private static final String TARGETDIR = System
+			.getProperty("java.io.tmpdir") + "test-app/";
 	private SubProcessExtraction app = null;
 
 	@Before
