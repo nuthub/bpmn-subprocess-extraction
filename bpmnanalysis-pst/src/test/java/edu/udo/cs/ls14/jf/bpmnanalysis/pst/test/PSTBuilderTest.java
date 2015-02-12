@@ -49,7 +49,7 @@ public class PSTBuilderTest {
 		String basename = "ElementWithoutName";
 		String pathname = "/bpmn/bad/";
 		ProcessStructureTree pst = runTest(pathname, basename, 32, 32, 60);
-		assertEquals(1, pst.getFragments().size());
+		assertEquals(2, pst.getFragments().size());
 	}
 
 	@Test
