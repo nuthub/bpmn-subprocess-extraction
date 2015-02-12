@@ -11,7 +11,7 @@ import org.eclipse.bpmn2.Definitions;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.resource.Resource;
 
-import edu.udo.cs.ls14.jf.bpmn.resourceset.Bpmn2ResourceSet;
+import edu.udo.cs.ls14.jf.bpmn.util.Bpmn2ResourceSet;
 
 /**
  * Variable type for EMF based BPMN Definitions. This enables Camunda and
@@ -24,16 +24,25 @@ public class DefinitionsType implements VariableType {
 
 	private static final String EXTENSION = "bpmn";
 
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
 	public String getTypeName() {
 		return EXTENSION;
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
 	public String getTypeNameForValue(Object value) {
 		return Definitions.class.getName();
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
 	public boolean isAbleToStore(Object value) {
 		if (value == null) {
@@ -42,11 +51,17 @@ public class DefinitionsType implements VariableType {
 		return Definitions.class.isAssignableFrom(value.getClass());
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
 	public boolean isCachable() {
 		return true;
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
 	public Object getValue(ValueFields valueFields) {
 		try {
@@ -68,6 +83,9 @@ public class DefinitionsType implements VariableType {
 		}
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
 	public void setValue(Object value, ValueFields valueFields) {
 		try {

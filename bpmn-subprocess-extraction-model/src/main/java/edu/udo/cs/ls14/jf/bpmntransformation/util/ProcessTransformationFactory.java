@@ -20,6 +20,8 @@ public class ProcessTransformationFactory {
 	 * Creates a new ProcessTransformation object with ProcessMatching object
 	 * added.
 	 * 
+	 * TODO: move to package's factory class
+	 * 
 	 * @param processMatching
 	 *            ProcessMatching object to add
 	 * @return non empty ProcessTransformation object

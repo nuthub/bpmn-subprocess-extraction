@@ -6,24 +6,33 @@ import org.eclipse.bpmn2.Process;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import edu.udo.cs.ls14.jf.analysis.behaviorprofile.BehavioralProfiler;
-import edu.udo.cs.ls14.jf.analysis.bpmn2ptnet.Bpmn2PtnetConverter;
-import edu.udo.cs.ls14.jf.analysis.reachabilitygraph.ReachabilityGraph;
-import edu.udo.cs.ls14.jf.analysis.reachabilitygraph.Tracer;
 import edu.udo.cs.ls14.jf.bpmn.util.DefinitionsUtil;
 import edu.udo.cs.ls14.jf.bpmnanalysis.BehavioralProfile;
 import edu.udo.cs.ls14.jf.bpmnanalysis.ProcessAnalysis;
 import edu.udo.cs.ls14.jf.bpmnanalysis.TraceProfile;
+import edu.udo.cs.ls14.jf.bpmnanalysis.behaviorprofile.BehavioralProfiler;
+import edu.udo.cs.ls14.jf.bpmnanalysis.bpmn2ptnet.Bpmn2PtnetConverter;
+import edu.udo.cs.ls14.jf.bpmnanalysis.reachabilitygraph.ReachabilityGraph;
+import edu.udo.cs.ls14.jf.bpmnanalysis.reachabilitygraph.Tracer;
 import edu.udo.cs.ls14.jf.bpmnanalysis.util.ProcessAnalysisUtil;
 import edu.udo.cs.ls14.jf.bpmnanalysis.ws.BehavioralProfilerSEI;
 import fr.lip6.move.pnml.ptnet.hlapi.PetriNetHLAPI;
 
+/**
+ * Implementation of BehavioralProfilerSEI Service endpoint interface.
+ * 
+ * @author Julian Flake
+ *
+ */
 @WebService(endpointInterface = "edu.udo.cs.ls14.jf.bpmnanalysis.ws.BehavioralProfilerSEI")
 public class BehavioralProfilerImpl implements BehavioralProfilerSEI {
 
 	private static final Logger LOG = LoggerFactory
 			.getLogger(BehavioralProfilerImpl.class);
 
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
 	public ProcessAnalysis profile(ProcessAnalysis processAnalysis) {
 		Process process;
@@ -53,7 +62,9 @@ public class BehavioralProfilerImpl implements BehavioralProfilerSEI {
 					ProcessAnalysisUtil.BEHAVIORALPROFILE, profile);
 
 		} catch (Exception e) {
-			LOG.error("Error during analyisis, aborting, returning empty analysis results: ", e);
+			LOG.error(
+					"Error during analyisis, aborting, returning empty analysis results: ",
+					e);
 			return null;
 		}
 		return processAnalysis;

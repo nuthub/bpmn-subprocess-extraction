@@ -7,9 +7,9 @@ import org.junit.Before;
 import org.junit.Test;
 
 import edu.udo.cs.ls14.jf.bpmn.metrics.CFC;
-import edu.udo.cs.ls14.jf.bpmn.registry.Registries;
-import edu.udo.cs.ls14.jf.bpmn.resourceset.Bpmn2ResourceSet;
+import edu.udo.cs.ls14.jf.bpmn.util.Bpmn2ResourceSet;
 import edu.udo.cs.ls14.jf.bpmn.util.DefinitionsUtil;
+import edu.udo.cs.ls14.jf.bpmn.util.Registries;
 
 public class CFCTest {
 

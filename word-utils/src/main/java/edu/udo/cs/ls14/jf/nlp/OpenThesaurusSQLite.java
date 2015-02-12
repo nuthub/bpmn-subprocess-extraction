@@ -10,9 +10,9 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 /**
- * TODO static vs. singleton vs. object / decide after profiling
+ * OpenThesaurus interface.
  * 
- * @author flake
+ * @author Julian Flake
  *
  */
 public class OpenThesaurusSQLite {
@@ -31,6 +31,20 @@ public class OpenThesaurusSQLite {
 		LOG.info("Connected to " + CONNECTION);
 	}
 
+	/**
+	 * Returns true if two given words iff there is a synset, that contains both
+	 * words.
+	 * 
+	 * @param word1
+	 *            first given word
+	 * @param word2
+	 *            second given word
+	 * @return true, iff there is a synset containing both words
+	 * @throws ClassNotFoundException
+	 *             if classpath does not contain SQLite driver
+	 * @throws SQLException
+	 *             if a SQL related error occurs
+	 */
 	public static boolean areSynonyms(String word1, String word2)
 			throws ClassNotFoundException, SQLException {
 		// SELECT t1.synset_id,t1.word,t2.word FROM term AS t1 LEFT JOIN term AS

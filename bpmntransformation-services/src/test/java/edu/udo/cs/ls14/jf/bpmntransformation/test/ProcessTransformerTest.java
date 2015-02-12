@@ -10,28 +10,28 @@ import org.eclipse.bpmn2.Definitions;
 import org.junit.Before;
 import org.junit.Test;
 
-import edu.udo.cs.ls14.jf.bpmn.registry.Registries;
-import edu.udo.cs.ls14.jf.bpmn.resourceset.Bpmn2ResourceSet;
-import edu.udo.cs.ls14.jf.bpmn.transformation.ProcessTransformer;
-import edu.udo.cs.ls14.jf.bpmn.transformation.ProcessTransformerImpl;
+import edu.udo.cs.ls14.jf.bpmn.util.Bpmn2ResourceSet;
+import edu.udo.cs.ls14.jf.bpmn.util.Registries;
 import edu.udo.cs.ls14.jf.bpmnanalysis.BpmnAnalysisPackage;
 import edu.udo.cs.ls14.jf.bpmnanalysis.ProcessAnalysis;
-import edu.udo.cs.ls14.jf.bpmnanalysis.ProcessAnalyzer;
+import edu.udo.cs.ls14.jf.bpmnanalysis.IProcessAnalyzer;
 import edu.udo.cs.ls14.jf.bpmnanalysis.ProcessAnalyzerImpl;
 import edu.udo.cs.ls14.jf.bpmnanalysis.util.ProcessAnalysisUtil;
 import edu.udo.cs.ls14.jf.bpmnmatching.BpmnMatchingPackage;
-import edu.udo.cs.ls14.jf.bpmnmatching.ProcessMatcher;
+import edu.udo.cs.ls14.jf.bpmnmatching.IProcessMatcher;
 import edu.udo.cs.ls14.jf.bpmnmatching.ProcessMatcherImpl;
 import edu.udo.cs.ls14.jf.bpmnmatching.ProcessMatching;
 import edu.udo.cs.ls14.jf.bpmnmatching.util.ProcessMatchingUtil;
 import edu.udo.cs.ls14.jf.bpmntransformation.BpmnTransformationPackage;
 import edu.udo.cs.ls14.jf.bpmntransformation.ProcessTransformation;
+import edu.udo.cs.ls14.jf.bpmntransformation.IProcessTransformer;
+import edu.udo.cs.ls14.jf.bpmntransformation.ProcessTransformerImpl;
 import edu.udo.cs.ls14.jf.bpmntransformation.util.ProcessTransformationUtil;
 
 public class ProcessTransformerTest {
 
 	private static final String TARGET_DIR = System
-			.getProperty("java.io.tmpdir") + "test-transformer/";
+			.getProperty("java.io.tmpdir") + "/test-transformer/";
 
 	@Before
 	public void setUp() {
@@ -119,7 +119,7 @@ public class ProcessTransformerTest {
 		Definitions def1 = Bpmn2ResourceSet.getInstance().loadDefinitions(
 				getClass().getResource(pathname + basename1 + ".bpmn")
 						.getPath());
-		ProcessAnalyzer analyzer = new ProcessAnalyzerImpl();
+		IProcessAnalyzer analyzer = new ProcessAnalyzerImpl();
 		ProcessAnalysis analysis1 = analyzer.analyze(def1);
 		ProcessAnalysisUtil.writeToFile(targetDir + basename1 + "."
 				+ BpmnAnalysisPackage.eNAME, analysis1);
@@ -133,12 +133,12 @@ public class ProcessTransformerTest {
 		ProcessAnalysisUtil.writeToFile(targetDir + basename2 + "."
 				+ BpmnAnalysisPackage.eNAME, analysis2);
 		// 2. match models
-		ProcessMatcher matcher = new ProcessMatcherImpl();
+		IProcessMatcher matcher = new ProcessMatcherImpl();
 		ProcessMatching matching = matcher.match(analysis1, analysis2);
 		ProcessMatchingUtil.writeToFile(targetDir + basename1 + "_" + basename2
 				+ "." + BpmnMatchingPackage.eNAME, matching);
 		// 3. extract models
-		ProcessTransformer transformer = new ProcessTransformerImpl();
+		IProcessTransformer transformer = new ProcessTransformerImpl();
 		ProcessTransformation extraction = transformer.transform(matching);
 		ProcessTransformationUtil
 				.writeToFile(targetDir + basename1 + "_" + basename2 + "."

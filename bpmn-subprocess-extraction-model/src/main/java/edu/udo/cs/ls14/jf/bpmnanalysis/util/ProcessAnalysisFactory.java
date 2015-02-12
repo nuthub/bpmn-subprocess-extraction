@@ -4,7 +4,6 @@ import java.util.UUID;
 
 import org.eclipse.bpmn2.Definitions;
 import org.eclipse.emf.common.util.URI;
-import org.eclipse.emf.ecore.util.EcoreUtil;
 
 import edu.udo.cs.ls14.jf.bpmn.util.DefinitionsUtil;
 import edu.udo.cs.ls14.jf.bpmnanalysis.BpmnAnalysisFactory;
@@ -21,6 +20,8 @@ public class ProcessAnalysisFactory {
 	/**
 	 * Create a new ProcessAnalysis object with Definitions added.
 	 * 
+	 * TODO: move to package's factory class
+	 *
 	 * @param definitions
 	 *            Definitions to add
 	 * @return non-empty ProcessAnalysis object

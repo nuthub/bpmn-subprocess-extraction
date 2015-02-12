@@ -10,12 +10,21 @@ import edu.udo.cs.ls14.jf.bpmnmatching.ProcessMatching;
 import edu.udo.cs.ls14.jf.bpmnmatching.util.ProcessMatchingFactory;
 import edu.udo.cs.ls14.jf.bpmnmatching.ws.ProcessMatchingFactorySEI;
 
+/**
+ * Implementation of ProcessMatchingFactorySEI Service endpoint interface.
+ * 
+ * @author Julian Flake
+ *
+ */
 @WebService(endpointInterface = "edu.udo.cs.ls14.jf.bpmnmatching.ws.ProcessMatchingFactorySEI")
 public class ProcessMatchingFactoryImpl implements ProcessMatchingFactorySEI {
 
 	private static final Logger LOG = LoggerFactory
 			.getLogger(ProcessMatchingFactoryImpl.class);
 
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
 	public ProcessMatching create(ProcessAnalysis analysis1,
 			ProcessAnalysis analysis2) {

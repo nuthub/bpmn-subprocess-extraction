@@ -18,12 +18,12 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
-import edu.udo.cs.ls14.jf.bpmn.registry.Registries;
-import edu.udo.cs.ls14.jf.bpmn.resourceset.Bpmn2ResourceSet;
+import edu.udo.cs.ls14.jf.bpmn.util.Bpmn2ResourceSet;
+import edu.udo.cs.ls14.jf.bpmn.util.Registries;
 import edu.udo.cs.ls14.jf.bpmnanalysis.ProcessAnalysis;
-import edu.udo.cs.ls14.jf.bpmnanalysis.ProcessAnalyzer;
+import edu.udo.cs.ls14.jf.bpmnanalysis.IProcessAnalyzer;
 import edu.udo.cs.ls14.jf.bpmnanalysis.ProcessAnalyzerImpl;
-import edu.udo.cs.ls14.jf.bpmnmatching.ProcessMatcher;
+import edu.udo.cs.ls14.jf.bpmnmatching.IProcessMatcher;
 import edu.udo.cs.ls14.jf.bpmnmatching.ProcessMatcherImpl;
 import edu.udo.cs.ls14.jf.bpmnmatching.ProcessMatching;
 import edu.udo.cs.ls14.jf.bpmntransformation.ProcessTransformation;
@@ -149,11 +149,11 @@ public class BpmnTransformationTest {
 		Definitions definitions2 = resSet.loadDefinitions(getClass()
 				.getResource(pathname + "parallelism2.bpmn").getFile());
 		// ProcessAnalyzer
-		ProcessAnalyzer analyzer = new ProcessAnalyzerImpl();
+		IProcessAnalyzer analyzer = new ProcessAnalyzerImpl();
 		ProcessAnalysis analysis1 = analyzer.analyze(definitions1);
 		ProcessAnalysis analysis2 = analyzer.analyze(definitions2);
 		// ProcessMatcher
-		ProcessMatcher matcher = new ProcessMatcherImpl();
+		IProcessMatcher matcher = new ProcessMatcherImpl();
 		ProcessMatching processMatching = matcher.match(analysis1, analysis2);
 		// ProcessTransformationServices
 		assertEquals(1, processMatching.getFragmentMatching().getPairs().size());

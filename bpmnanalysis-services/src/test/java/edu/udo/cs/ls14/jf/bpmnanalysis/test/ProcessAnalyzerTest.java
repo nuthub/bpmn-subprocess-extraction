@@ -10,17 +10,17 @@ import org.eclipse.bpmn2.Definitions;
 import org.junit.Before;
 import org.junit.Test;
 
-import edu.udo.cs.ls14.jf.bpmn.registry.Registries;
-import edu.udo.cs.ls14.jf.bpmn.resourceset.Bpmn2ResourceSet;
+import edu.udo.cs.ls14.jf.bpmn.util.Bpmn2ResourceSet;
+import edu.udo.cs.ls14.jf.bpmn.util.Registries;
 import edu.udo.cs.ls14.jf.bpmnanalysis.ConditionalProfile;
 import edu.udo.cs.ls14.jf.bpmnanalysis.ProcessAnalysis;
-import edu.udo.cs.ls14.jf.bpmnanalysis.ProcessAnalyzer;
+import edu.udo.cs.ls14.jf.bpmnanalysis.IProcessAnalyzer;
 import edu.udo.cs.ls14.jf.bpmnanalysis.ProcessAnalyzerImpl;
 import edu.udo.cs.ls14.jf.bpmnanalysis.ProcessStructureTree;
 
 public class ProcessAnalyzerTest {
 	private static final String TARGET_DIR = System
-			.getProperty("java.io.tmpdir") + "test-analyzer/";
+			.getProperty("java.io.tmpdir") + "/test-analyzer/";
 
 	@Before
 	public void setUp() {
@@ -119,7 +119,7 @@ public class ProcessAnalyzerTest {
 				.loadDefinitions(
 						getClass().getResource(pathname + basename + ".bpmn")
 								.getPath());
-		ProcessAnalyzer analyzer = new ProcessAnalyzerImpl();
+		IProcessAnalyzer analyzer = new ProcessAnalyzerImpl();
 		ProcessAnalysis analysis = analyzer.analyzeAndDebug(def, pathname,
 				basename, TARGET_DIR + pathname, nodes);
 		return analysis;
@@ -131,7 +131,7 @@ public class ProcessAnalyzerTest {
 				.loadDefinitions(
 						getClass().getResource(pathname + basename + ".bpmn")
 								.getPath());
-		ProcessAnalyzer analyzer = new ProcessAnalyzerImpl();
+		IProcessAnalyzer analyzer = new ProcessAnalyzerImpl();
 		ProcessAnalysis analysis = analyzer.analyze(def);
 		return analysis;
 	}

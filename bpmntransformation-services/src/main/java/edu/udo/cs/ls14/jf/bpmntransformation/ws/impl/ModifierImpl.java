@@ -2,13 +2,22 @@ package edu.udo.cs.ls14.jf.bpmntransformation.ws.impl;
 
 import javax.jws.WebService;
 
+import edu.udo.cs.ls14.jf.bpmntransformation.Modifier;
 import edu.udo.cs.ls14.jf.bpmntransformation.ProcessTransformation;
 import edu.udo.cs.ls14.jf.bpmntransformation.ws.ModifierSEI;
-import edu.udo.cs.ls14.jf.transformation.Modifier;
 
+/**
+ * Implementation of FragmentPairFilterBehaviorSEI Service endpoint interface.
+ * 
+ * @author Julian Flake
+ *
+ */
 @WebService(endpointInterface = "edu.udo.cs.ls14.jf.bpmntransformation.ws.ModifierSEI")
 public class ModifierImpl implements ModifierSEI {
 
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
 	public ProcessTransformation modify(ProcessTransformation transformation) {
 		try {

@@ -17,6 +17,8 @@ import org.eclipse.emf.ecore.util.EcoreUtil.Copier;
 /**
  * Helper methods for Definitions objects.
  * 
+ * @see org.eclipse.bpmn2.Definitions
+ * 
  * @author Julian Flake
  *
  */
@@ -68,7 +70,7 @@ public class DefinitionsUtil {
 	}
 
 	/**
-	 * Returns a processes FlowNode with given ID
+	 * Returns a process's FlowNode with given ID.
 	 * 
 	 * @param process
 	 *            Process with FlowNodes
@@ -87,14 +89,16 @@ public class DefinitionsUtil {
 	}
 
 	/**
-	 * Returns a processes SequenceFlow with given ID
+	 * Returns a processes SequenceFlow with given ID.
 	 * 
-	 * @param process
+	 * @param definitions
 	 *            Process with SequenceFlows
 	 * @param id
 	 *            the id to search for
 	 * @return SequenceFlow with given id, null if no SequenceFlow with given id
 	 *         is found
+	 * @throws Exception
+	 *             if defintions does contain no or more than one process
 	 */
 	public static SequenceFlow getSequenceFlow(Definitions definitions,
 			String id) throws Exception {
@@ -108,7 +112,7 @@ public class DefinitionsUtil {
 	}
 
 	/**
-	 * checks if node is an Activity or Event.
+	 * Checks if node is an Activity or Event.
 	 * 
 	 * @param node
 	 *            node to check
@@ -123,6 +127,8 @@ public class DefinitionsUtil {
 	 * 
 	 * @param eObject
 	 *            the object to copy.
+	 * @param <T>
+	 *            should be Definitions.class
 	 * @return the copy.
 	 * @see Copier
 	 */

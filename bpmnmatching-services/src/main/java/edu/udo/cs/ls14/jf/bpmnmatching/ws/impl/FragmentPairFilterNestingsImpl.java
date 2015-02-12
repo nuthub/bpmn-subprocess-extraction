@@ -7,9 +7,15 @@ import org.slf4j.LoggerFactory;
 
 import edu.udo.cs.ls14.jf.bpmnmatching.FragmentMatching;
 import edu.udo.cs.ls14.jf.bpmnmatching.ProcessMatching;
+import edu.udo.cs.ls14.jf.bpmnmatching.fragmentmatching.FragmentPairFilterNestings;
 import edu.udo.cs.ls14.jf.bpmnmatching.ws.FragmentPairFilterNestingsSEI;
-import edu.udo.cs.ls14.jf.fragmentmatching.FragmentPairFilterNestings;
 
+/**
+ * Implementation of FragmentPairFilterNestingsSEI Service endpoint interface.
+ * 
+ * @author Julian Flake
+ *
+ */
 @WebService(endpointInterface = "edu.udo.cs.ls14.jf.bpmnmatching.ws.FragmentPairFilterNestingsSEI")
 public class FragmentPairFilterNestingsImpl implements
 		FragmentPairFilterNestingsSEI {
@@ -17,6 +23,9 @@ public class FragmentPairFilterNestingsImpl implements
 	private static final Logger LOG = LoggerFactory
 			.getLogger(FragmentPairFilterNestingsImpl.class);
 
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
 	public ProcessMatching filter(ProcessMatching processMatching) {
 		LOG.info("Service input: " + processMatching);

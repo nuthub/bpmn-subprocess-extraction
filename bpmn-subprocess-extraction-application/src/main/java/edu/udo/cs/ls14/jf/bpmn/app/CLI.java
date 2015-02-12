@@ -12,8 +12,8 @@ import org.slf4j.ILoggerFactory;
 import org.slf4j.LoggerFactory;
 
 import ch.qos.logback.classic.LoggerContext;
-import edu.udo.cs.ls14.jf.bpmn.registry.Registries;
-import edu.udo.cs.ls14.jf.bpmn.resourceset.Bpmn2ResourceSet;
+import edu.udo.cs.ls14.jf.bpmn.util.Bpmn2ResourceSet;
+import edu.udo.cs.ls14.jf.bpmn.util.Registries;
 import edu.udo.cs.ls14.jf.bpmntransformation.ProcessTransformation;
 import edu.udo.cs.ls14.jf.bpmntransformation.util.ProcessTransformationUtil;
 
@@ -41,7 +41,7 @@ public class CLI {
 	 * Does the definition and parsing of arguments, creates and calls the
 	 * application.
 	 * 
-	 * @param args
+	 * @param args command arguments
 	 */
 	@SuppressWarnings("static-access")
 	public static void main(String[] args) {
@@ -72,15 +72,16 @@ public class CLI {
 			// run application
 			Registries.registerAll();
 			if (debug) {
-				SubProcessExtractionJavaDebugOutput app = new SubProcessExtractionJavaDebugOutput();
+				SubProcessExtractionJava app = new SubProcessExtractionJava();
 				app.runDebug(model1, model2, target);
 			} else {
-				Definitions m1 = Bpmn2ResourceSet.getInstance()
+				ISubProcessExtraction app = new SubProcessExtractionCamunda();
+				app.init();
+				Definitions def1 = Bpmn2ResourceSet.getInstance()
 						.loadDefinitions(model1);
-				Definitions m2 = Bpmn2ResourceSet.getInstance()
+				Definitions def2 = Bpmn2ResourceSet.getInstance()
 						.loadDefinitions(model2);
-				SubProcessExtraction app = new SubProcessExtractionCamunda();
-				ProcessTransformation transformation = app.run(m1, m2);
+				ProcessTransformation transformation = app.run(def1, def2);
 				ProcessTransformationUtil.writeResults(target, transformation);
 			}
 			// shut down logger

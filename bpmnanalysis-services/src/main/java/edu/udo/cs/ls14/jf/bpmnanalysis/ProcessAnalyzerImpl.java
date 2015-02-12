@@ -5,20 +5,16 @@ import java.util.List;
 import org.eclipse.bpmn2.Definitions;
 import org.eclipse.bpmn2.Process;
 
-import edu.udo.cs.ls14.jf.analysis.behaviorprofile.BPDebugUtil;
-import edu.udo.cs.ls14.jf.analysis.behaviorprofile.BehavioralProfiler;
-import edu.udo.cs.ls14.jf.analysis.bpmn2ptnet.Bpmn2PtnetConverter;
-import edu.udo.cs.ls14.jf.analysis.conditionalprofile.ConditionalProfiler;
-import edu.udo.cs.ls14.jf.analysis.pst.PSTBuilder;
-import edu.udo.cs.ls14.jf.analysis.pst.PSTDebugUtil;
-import edu.udo.cs.ls14.jf.analysis.reachabilitygraph.ReachabilityGraph;
-import edu.udo.cs.ls14.jf.analysis.reachabilitygraph.Tracer;
 import edu.udo.cs.ls14.jf.bpmn.util.DefinitionsUtil;
-import edu.udo.cs.ls14.jf.analysis.conditionalprofile.CPDebugUtil;
-import edu.udo.cs.ls14.jf.bpmnanalysis.BehavioralProfile;
-import edu.udo.cs.ls14.jf.bpmnanalysis.ConditionalProfile;
-import edu.udo.cs.ls14.jf.bpmnanalysis.ProcessAnalysis;
-import edu.udo.cs.ls14.jf.bpmnanalysis.TraceProfile;
+import edu.udo.cs.ls14.jf.bpmnanalysis.behaviorprofile.BPDebugUtil;
+import edu.udo.cs.ls14.jf.bpmnanalysis.behaviorprofile.BehavioralProfiler;
+import edu.udo.cs.ls14.jf.bpmnanalysis.bpmn2ptnet.Bpmn2PtnetConverter;
+import edu.udo.cs.ls14.jf.bpmnanalysis.conditionalprofile.CPDebugUtil;
+import edu.udo.cs.ls14.jf.bpmnanalysis.conditionalprofile.ConditionalProfiler;
+import edu.udo.cs.ls14.jf.bpmnanalysis.pst.PSTBuilder;
+import edu.udo.cs.ls14.jf.bpmnanalysis.pst.PSTDebugUtil;
+import edu.udo.cs.ls14.jf.bpmnanalysis.reachabilitygraph.ReachabilityGraph;
+import edu.udo.cs.ls14.jf.bpmnanalysis.reachabilitygraph.Tracer;
 import edu.udo.cs.ls14.jf.bpmnanalysis.util.ProcessAnalysisFactory;
 import edu.udo.cs.ls14.jf.bpmnanalysis.util.ProcessAnalysisUtil;
 import fr.lip6.move.pnml.ptnet.hlapi.PetriNetHLAPI;
@@ -29,12 +25,15 @@ import fr.lip6.move.pnml.ptnet.hlapi.PetriNetHLAPI;
  * @author JulianFlake
  *
  */
-public class ProcessAnalyzerImpl implements ProcessAnalyzer {
+public class ProcessAnalyzerImpl implements IProcessAnalyzer {
 
 	private Bpmn2PtnetConverter bpmn2ptnet = new Bpmn2PtnetConverter();
 	private ReachabilityGraph reachabilityGraph = new ReachabilityGraph();
 	private PSTBuilder pstBuilder = new PSTBuilder();
 
+	/**
+	 * {@inheritDoc}
+	 */
 	public ProcessAnalysis analyzeAndDebug(Definitions definitions,
 			String pathname, String basename, String debugFilesDir,
 			List<String> nodes) throws Exception {
@@ -93,6 +92,9 @@ public class ProcessAnalyzerImpl implements ProcessAnalyzer {
 		return analysis;
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
 	public ProcessAnalysis analyze(Definitions definitions) throws Exception {
 		bpmn2ptnet = new Bpmn2PtnetConverter();

@@ -9,9 +9,25 @@ import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 import edu.udo.cs.ls14.jf.bpmn.ws.adapter.XmlProcessMatchingAdapter;
 import edu.udo.cs.ls14.jf.bpmnmatching.ProcessMatching;
 
+/**
+ * A Service that takes a ProcessMatching object with contained fragment
+ * matching and adds labels to all fragments in the fragment matchings.
+ * 
+ * @author Julian Flake
+ *
+ */
 @WebService
 public interface FragmentLabellerSEI {
 
+	/**
+	 * Generate label for all fragment pairs in fragment matching contained in
+	 * given ProcessMatching object.
+	 * 
+	 * @param processMatching
+	 *            given ProcessMatching object with contained fragment matching
+	 * @return ProcessMatching with fragment matching where each fragment has
+	 *         its label property set.
+	 */
 	@WebMethod
 	@WebResult(name = "processMatchingXml")
 	@XmlJavaTypeAdapter(XmlProcessMatchingAdapter.class)

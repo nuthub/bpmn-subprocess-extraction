@@ -1,7 +1,6 @@
 package edu.udo.cs.ls14.jf.bpmn.metrics;
 
 import java.io.InputStream;
-import java.net.MalformedURLException;
 import java.util.List;
 
 import org.eclipse.bpmn2.Bpmn2Package;
@@ -26,6 +25,8 @@ import org.eclipse.ocl.helper.OCLHelper;
  * Implementation of Rolon's BPMN Measures. Transferred OCL expressions to BPMN
  * 2.0.F
  * 
+ * TODO: Make more specific API
+ * 
  * @author Julian Flake
  *
  */
@@ -35,8 +36,17 @@ public class RolonMeasures {
 	protected OCLHelper<EClassifier, EOperation, EStructuralFeature, Constraint> helper;
 	private static final String OCL_RESOURCE = "/RolonMeasures.ocl";
 
-	public String evaluate(Process process) throws ParserException,
-			MalformedURLException {
+	/**
+	 * Evaluates the given process against all measures and returns the results
+	 * as String.
+	 * 
+	 * @param process
+	 *            given process
+	 * @return Result String
+	 * @throws ParserException
+	 *             if OCL file contains errors.
+	 */
+	public String evaluate(Process process) throws ParserException {
 		// Create environment
 		Resource.Factory.Registry.INSTANCE.getExtensionToFactoryMap()
 				.putIfAbsent("bpmn", new Bpmn2ResourceFactoryImpl());

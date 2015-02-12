@@ -12,9 +12,21 @@ import edu.udo.cs.ls14.jf.bpmn.ws.adapter.XmlDefinitionsAdapter;
 import edu.udo.cs.ls14.jf.bpmn.ws.adapter.XmlProcessAnalysisAdapter;
 import edu.udo.cs.ls14.jf.bpmnanalysis.ProcessAnalysis;
 
+/**
+ * A Service that creates an ProcessAnalysis object and adds Definitions to it.
+ * 
+ * @author Julian Flake
+ *
+ */
 @WebService
 public interface ProcessAnalysisFactorySEI {
 
+	/**
+	 * 
+	 * @param definitions
+	 *            Definitions object with contained process model
+	 * @return ProcessAnalysis object with contained Definitions object
+	 */
 	@WebMethod
 	@WebResult(name = "processAnalysisXml")
 	@XmlJavaTypeAdapter(XmlProcessAnalysisAdapter.class)

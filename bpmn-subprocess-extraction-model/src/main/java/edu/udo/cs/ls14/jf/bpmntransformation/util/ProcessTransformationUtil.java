@@ -11,7 +11,7 @@ import org.eclipse.emf.ecore.resource.Resource;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import edu.udo.cs.ls14.jf.bpmn.resourceset.Bpmn2ResourceSet;
+import edu.udo.cs.ls14.jf.bpmn.util.Bpmn2ResourceSet;
 import edu.udo.cs.ls14.jf.bpmntransformation.ProcessTransformation;
 
 /**
@@ -61,18 +61,29 @@ public class ProcessTransformationUtil {
 		LOG.info("Imports fixed.");
 	}
 
+	/**
+	 * Replaces relative locations of import elements in a process model by
+	 * absolute locations. This is used, that BPMN2 modeler can find referenced
+	 * process models.
+	 * 
+	 * @param resMap
+	 *            Map of BPMN resources (only values of the map are considered)
+	 * @param locationDir
+	 *            location of referenced process model files.
+	 * @throws IOException
+	 *             if resources could not be saved.
+	 */
 	private static void fixImports(Map<String, Resource> resMap,
-			String targetDir) throws IOException {
+			String locationDir) throws IOException {
 		// Write files, fix locations of imports, write files
-		for (Map.Entry<String, Resource> entry : resMap.entrySet()) {
-			Resource res = entry.getValue();
+		for (Resource res : resMap.values()) {
 			res.save(null);
 			((Definitions) res.getContents().get(0))
 					.getImports()
 					.stream()
 					.filter(i -> resMap.keySet().contains(i.getLocation()))
 					.forEach(
-							i -> i.setLocation("file://" + targetDir
+							i -> i.setLocation("file://" + locationDir
 									+ i.getLocation()));
 			res.save(null);
 			LOG.info("Fixed " + res.getURI());
@@ -84,10 +95,12 @@ public class ProcessTransformationUtil {
 	 * Writes a bpmntransformation object to an XML file. Ensure, that factory
 	 * and package are registered before.
 	 * 
+	 * @param filename
+	 *            name of saved object
 	 * @param transformation
-	 *            ProcessTransformation object to write
+	 *            ProcessTransformation object to save
 	 * @throws IOException
-	 *             is thrown if an IO error occurs
+	 *             is file could not be written
 	 */
 	public static void writeToFile(String filename,
 			ProcessTransformation transformation) throws IOException {

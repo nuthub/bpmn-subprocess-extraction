@@ -2,13 +2,22 @@ package edu.udo.cs.ls14.jf.bpmntransformation.ws.impl;
 
 import javax.jws.WebService;
 
+import edu.udo.cs.ls14.jf.bpmntransformation.Extractor;
 import edu.udo.cs.ls14.jf.bpmntransformation.ProcessTransformation;
 import edu.udo.cs.ls14.jf.bpmntransformation.ws.ExtractorSEI;
-import edu.udo.cs.ls14.jf.transformation.Extractor;
 
+/**
+ * Implementation of FragmentPairFilterBehaviorSEI Service endpoint interface.
+ * 
+ * @author Julian Flake
+ *
+ */
 @WebService(endpointInterface = "edu.udo.cs.ls14.jf.bpmntransformation.ws.ExtractorSEI")
 public class ExtractorImpl implements ExtractorSEI {
 
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
 	public ProcessTransformation extract(ProcessTransformation transformation) {
 		System.out.println("hier");

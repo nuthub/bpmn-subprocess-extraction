@@ -9,8 +9,7 @@ import org.eclipse.bpmn2.InclusiveGateway;
 import org.eclipse.bpmn2.ParallelGateway;
 
 /**
- * Class that calculates Cardoso's CFC of a set of given and connected
- * BPMN-FlowElements.
+ * Calculates Cardoso's CFC of a set of given and connected BPMN-FlowElements.
  * 
  * @author Julian Flake
  *

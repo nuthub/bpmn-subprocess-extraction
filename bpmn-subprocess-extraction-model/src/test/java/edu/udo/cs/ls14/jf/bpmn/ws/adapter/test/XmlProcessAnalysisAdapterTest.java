@@ -10,7 +10,7 @@ import org.eclipse.bpmn2.Definitions;
 import org.junit.Before;
 import org.junit.Test;
 
-import edu.udo.cs.ls14.jf.bpmn.registry.Registries;
+import edu.udo.cs.ls14.jf.bpmn.util.Registries;
 import edu.udo.cs.ls14.jf.bpmn.ws.adapter.XmlDefinitionsAdapter;
 import edu.udo.cs.ls14.jf.bpmn.ws.adapter.XmlProcessAnalysisAdapter;
 import edu.udo.cs.ls14.jf.bpmnanalysis.BpmnAnalysisFactory;

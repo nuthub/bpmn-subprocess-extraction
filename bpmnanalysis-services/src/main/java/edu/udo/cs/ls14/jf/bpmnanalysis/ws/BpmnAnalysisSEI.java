@@ -12,6 +12,9 @@ import edu.udo.cs.ls14.jf.bpmn.ws.adapter.XmlDefinitionsAdapter;
 import edu.udo.cs.ls14.jf.bpmn.ws.adapter.XmlProcessAnalysisAdapter;
 import edu.udo.cs.ls14.jf.bpmnanalysis.ProcessAnalysis;
 
+/**
+ * A service that calls all analyzers.
+ */
 @WebService
 public interface BpmnAnalysisSEI {
 
@@ -19,14 +22,16 @@ public interface BpmnAnalysisSEI {
 	 * Takes a Definitions object and runs all analyzes in ProcessAnalyzer
 	 * 
 	 * @param definitions
-	 * @return
+	 *            Definitions object with contained process model to analyze
+	 * @return ProcessAnalysis with Definitions and AnalysisResults
 	 * @throws Exception
+	 *             if an error occurs
 	 */
 	@WebMethod
 	@WebResult(name = "processAnalysisXml")
 	@XmlJavaTypeAdapter(XmlProcessAnalysisAdapter.class)
 	public ProcessAnalysis analyze(
-			@WebParam(name = "definitionsXml") @XmlJavaTypeAdapter(XmlDefinitionsAdapter.class) Definitions definition)
+			@WebParam(name = "definitionsXml") @XmlJavaTypeAdapter(XmlDefinitionsAdapter.class) Definitions definitions)
 			throws Exception;
 
 }

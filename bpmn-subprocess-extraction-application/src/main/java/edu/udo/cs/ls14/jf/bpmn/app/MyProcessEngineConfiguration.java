@@ -15,8 +15,8 @@ import edu.udo.cs.ls14.jf.bpmn.app.variables.ProcessTransformationType;
 /**
  * {@inheritDoc}
  * 
- * This process engine configuration adds custom variable types to the post
- * variable type list.
+ * This process engine configuration adds custom variable types to the list of post
+ * variable types.
  * 
  * @author Julian Flake
  * 

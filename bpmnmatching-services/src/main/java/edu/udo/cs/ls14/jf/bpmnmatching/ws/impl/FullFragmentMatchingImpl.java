@@ -6,9 +6,18 @@ import edu.udo.cs.ls14.jf.bpmnmatching.ProcessMatching;
 import edu.udo.cs.ls14.jf.bpmnmatching.util.ProcessMatchingFactory;
 import edu.udo.cs.ls14.jf.bpmnmatching.ws.FullFragmentMatchingSEI;
 
+/**
+ * Implementation of FullFragmentMatchingSEI Service endpoint interface.
+ * 
+ * @author Julian Flake
+ *
+ */
 @WebService(endpointInterface = "edu.udo.cs.ls14.jf.bpmnmatching.ws.FullFragmentMatchingSEI")
 public class FullFragmentMatchingImpl implements FullFragmentMatchingSEI {
 
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
 	public ProcessMatching createFullFragmentMatching(ProcessMatching matching) {
 		matching.setFragmentMatching(ProcessMatchingFactory

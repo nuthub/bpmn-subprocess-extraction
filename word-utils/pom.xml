@@ -15,7 +15,7 @@
 	</dependencies>
 	<build>
 		<plugins>
-			<plugin>
+	<!-- 		<plugin>
 				<groupId>org.jvnet.jax-ws-commons</groupId>
 				<artifactId>jaxws-maven-plugin</artifactId>
 				<version>2.2</version>
@@ -25,19 +25,19 @@
 							<goal>wsimport</goal>
 						</goals>
 						<configuration>
-							<!-- <packageName>edu.udo.cs.ls14.jf.wortschatz</packageName> -->
+							<packageName>edu.udo.cs.ls14.jf.wortschatz</packageName>
 							<wsdlUrls>
 								<wsdlUrl>http://wortschatz.uni-leipzig.de/axis/services/Baseform?wsdl</wsdlUrl>
 								<wsdlUrl>http://wortschatz.uni-leipzig.de/axis/services/Synonyms?wsdl</wsdlUrl>
 								<wsdlUrl>http://wortschatz.uni-leipzig.de/axis/services/Thesaurus?wsdl</wsdlUrl>
 								<wsdlUrl>http://wortschatz.uni-leipzig.de/axis/services/Similarity?wsdl</wsdlUrl>
 							</wsdlUrls>
-							<!-- <destDir>src/main/java/</destDir> -->
+							<destDir>src/main/java/</destDir>
 						</configuration>
 					</execution>
 				</executions>
 			</plugin>
-		</plugins>
+ -->		</plugins>
 		<pluginManagement>
 			<plugins>
 				<!--This plugin's configuration is used to store Eclipse m2e settings 

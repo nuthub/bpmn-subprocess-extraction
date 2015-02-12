@@ -17,6 +17,9 @@ public class DefinitionsCopier extends Copier {
 
 	private static final long serialVersionUID = 7184121980550717203L;
 
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
 	public void copyReferences() {
 		// for every copied object

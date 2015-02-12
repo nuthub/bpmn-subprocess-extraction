@@ -9,9 +9,25 @@ import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 import edu.udo.cs.ls14.jf.bpmn.ws.adapter.XmlProcessMatchingAdapter;
 import edu.udo.cs.ls14.jf.bpmnmatching.ProcessMatching;
 
+/**
+ * A Service that takes a ProcessMatching object with contained fragment
+ * matching and ranks all fragment pairs by their control flow complexity.
+ * 
+ * @author Julian Flake
+ *
+ */
 @WebService
 public interface FragmentPairRankerSizeSEI {
 
+	/**
+	 * Rank Fragments of each pair in fragment matching contained in given
+	 * process matching by size.
+	 * 
+	 * @param processMatching
+	 *            given process matching with contained fragment matching
+	 * @return process matching with fragment matching where each pair is ranked
+	 *         by size
+	 */
 	@WebMethod
 	@WebResult(name = "processMatchingXml")
 	@XmlJavaTypeAdapter(XmlProcessMatchingAdapter.class)

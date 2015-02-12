@@ -7,9 +7,15 @@ import org.slf4j.LoggerFactory;
 
 import edu.udo.cs.ls14.jf.bpmnmatching.FragmentMatching;
 import edu.udo.cs.ls14.jf.bpmnmatching.ProcessMatching;
+import edu.udo.cs.ls14.jf.bpmnmatching.fragmentmatching.FragmentPairJointerSequential;
 import edu.udo.cs.ls14.jf.bpmnmatching.ws.FragmentPairJointerSequentialSEI;
-import edu.udo.cs.ls14.jf.fragmentmatching.FragmentPairJointerSequential;
 
+/**
+ * Implementation of FragmentPairJointerSequentialSEI Service endpoint interface.
+ * 
+ * @author Julian Flake
+ *
+ */
 @WebService(endpointInterface = "edu.udo.cs.ls14.jf.bpmnmatching.ws.FragmentPairJointerSequentialSEI")
 public class FragmentPairJointerSequentialImpl implements
 		FragmentPairJointerSequentialSEI {
@@ -17,6 +23,9 @@ public class FragmentPairJointerSequentialImpl implements
 	private static final Logger LOG = LoggerFactory
 			.getLogger(FragmentPairJointerSequentialImpl.class);
 
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
 	public ProcessMatching join(ProcessMatching processMatching) {
 		LOG.info("Service input: " + processMatching);

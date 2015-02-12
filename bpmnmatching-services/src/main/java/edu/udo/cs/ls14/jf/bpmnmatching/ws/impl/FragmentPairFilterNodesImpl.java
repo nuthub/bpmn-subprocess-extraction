@@ -8,15 +8,24 @@ import org.slf4j.LoggerFactory;
 import edu.udo.cs.ls14.jf.bpmnmatching.FragmentMatching;
 import edu.udo.cs.ls14.jf.bpmnmatching.NodeMatching;
 import edu.udo.cs.ls14.jf.bpmnmatching.ProcessMatching;
+import edu.udo.cs.ls14.jf.bpmnmatching.fragmentmatching.FragmentPairFilterNodes;
 import edu.udo.cs.ls14.jf.bpmnmatching.ws.FragmentPairFilterNodesSEI;
-import edu.udo.cs.ls14.jf.fragmentmatching.FragmentPairFilterNodes;
 
+/**
+ * Implementation of FragmentPairFilterNodesSEI Service endpoint interface.
+ * 
+ * @author Julian Flake
+ *
+ */
 @WebService(endpointInterface = "edu.udo.cs.ls14.jf.bpmnmatching.ws.FragmentPairFilterNodesSEI")
 public class FragmentPairFilterNodesImpl implements FragmentPairFilterNodesSEI {
 
 	private static final Logger LOG = LoggerFactory
 			.getLogger(FragmentPairFilterNodesImpl.class);
 
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
 	public ProcessMatching filter(ProcessMatching processMatching) {
 		LOG.info("Service input: " + processMatching);

@@ -7,9 +7,15 @@ import org.slf4j.LoggerFactory;
 
 import edu.udo.cs.ls14.jf.bpmnmatching.FragmentPair;
 import edu.udo.cs.ls14.jf.bpmnmatching.ProcessMatching;
+import edu.udo.cs.ls14.jf.bpmntransformation.CoordinateCalculator;
 import edu.udo.cs.ls14.jf.bpmntransformation.ws.FragmentCoordinateCalculatorSEI;
-import edu.udo.cs.ls14.jf.transformation.CoordinateCalculator;
 
+/**
+ * Implementation of FragmentPairFilterBehaviorSEI Service endpoint interface.
+ * 
+ * @author Julian Flake
+ *
+ */
 @WebService(endpointInterface = "edu.udo.cs.ls14.jf.bpmntransformation.ws.FragmentCoordinateCalculatorSEI")
 public class FragmentCoordinateCalculatorImpl implements
 		FragmentCoordinateCalculatorSEI {
@@ -17,6 +23,9 @@ public class FragmentCoordinateCalculatorImpl implements
 	private static final Logger LOG = LoggerFactory
 			.getLogger(FragmentCoordinateCalculatorImpl.class);
 
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
 	public ProcessMatching calculateCoordinates(ProcessMatching processMatching) {
 		LOG.info("Service input: " + processMatching);

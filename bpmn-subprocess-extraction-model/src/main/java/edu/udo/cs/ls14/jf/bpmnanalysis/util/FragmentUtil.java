@@ -163,20 +163,20 @@ public class FragmentUtil {
 	/**
 	 * Return String representation of given fragment.
 	 * 
-	 * @param f
+	 * @param fragment
 	 *            given Fragment
 	 * @return String representation
 	 */
-	public static String toString(Fragment f) {
+	public static String toString(Fragment fragment) {
 		StringBuilder sb = new StringBuilder();
 		sb.append("(");
-		sb.append(f.getEntry().getName() != null
-				&& !f.getEntry().getName().equals("") ? f.getEntry().getName()
-				: "[" + f.getEntry().getId() + "]");
+		sb.append(fragment.getEntry().getName() != null
+				&& !fragment.getEntry().getName().equals("") ? fragment
+				.getEntry().getName() : "[" + fragment.getEntry().getId() + "]");
 		sb.append(",");
-		sb.append(f.getExit().getName() != null
-				&& !f.getExit().getName().equals("") ? f.getExit().getName()
-				: "[" + f.getExit().getId() + "]");
+		sb.append(fragment.getExit().getName() != null
+				&& !fragment.getExit().getName().equals("") ? fragment
+				.getExit().getName() : "[" + fragment.getExit().getId() + "]");
 		sb.append(")");
 		return sb.toString();
 	}

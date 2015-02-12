@@ -17,7 +17,7 @@ import org.eclipse.emf.ecore.util.EObjectEList;
 public class NonUniqueList<E> extends EObjectEList<E> {
 
 	/**
-	 * generaed UID
+	 * generated UID
 	 */
 	private static final long serialVersionUID = 5365083419747685568L;
 
@@ -31,6 +31,9 @@ public class NonUniqueList<E> extends EObjectEList<E> {
 
 	/**
 	 * {@inheritDoc}
+	 * 
+	 * Always returns false.
+	 * 
 	 */
 	@Override
 	protected boolean isUnique() {

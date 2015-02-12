@@ -30,4 +30,29 @@
 			<artifactId>org.eclipse.emf.ecore.xmi</artifactId>
 		</dependency>
 	</dependencies>
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-javadoc-plugin</artifactId>
+				<configuration>
+					<failOnError>false</failOnError>
+					<tags>
+						<tag>
+							<name>generated</name>
+							<placement>X</placement><!-- X=ignore --> 
+						</tag>
+						<tag>
+							<name>model</name>
+							<placement>X</placement>
+						</tag>
+						<tag>
+							<name>ordered</name>
+							<placement>X</placement>
+						</tag>
+					</tags>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
 </project>

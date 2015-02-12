@@ -38,6 +38,8 @@ public class ProcessMatchingFactory {
 	 * Create a new ProcessMatching object with two ProcessAnalysis objects
 	 * added.
 	 * 
+	 * TODO: move to package's factory class
+	 * 
 	 * @param analysis1
 	 *            first ProcessAnalysis object
 	 * @param analysis2
@@ -57,6 +59,17 @@ public class ProcessMatchingFactory {
 		return matching;
 	}
 
+	/**
+	 * Returns cartesian product of the nodes in two process models.
+	 * 
+	 * TODO: move elsewhere
+	 * 
+	 * @param definitions1
+	 *            Definitions with first process model
+	 * @param definitions2
+	 *            Definitions with second process model
+	 * @return NodeMatching with all possible NodePairs
+	 */
 	public static NodeMatching getFullNodeMatching(Definitions definitions1,
 			Definitions definitions2) {
 		NodeMatching matching = BpmnMatchingFactory.eINSTANCE
@@ -91,6 +104,17 @@ public class ProcessMatchingFactory {
 		return matching;
 	}
 
+	/**
+	 * Returns cartesian product of the fragments of two process models.
+	 * 
+	 * TODO: Move elsewhere
+	 * 
+	 * @param analysis1
+	 *            analysis and Definitions object of first process model
+	 * @param analysis2
+	 *            analysis and Definitions object of second process model
+	 * @return all possible FragmentPairs
+	 */
 	public static FragmentMatching getFullFragmentMatching(
 			ProcessAnalysis analysis1, ProcessAnalysis analysis2) {
 		FragmentMatching matching = BpmnMatchingFactory.eINSTANCE

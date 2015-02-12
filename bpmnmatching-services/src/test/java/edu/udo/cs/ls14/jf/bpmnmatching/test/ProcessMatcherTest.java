@@ -9,12 +9,12 @@ import org.eclipse.bpmn2.Definitions;
 import org.junit.Before;
 import org.junit.Test;
 
-import edu.udo.cs.ls14.jf.bpmn.registry.Registries;
-import edu.udo.cs.ls14.jf.bpmn.resourceset.Bpmn2ResourceSet;
+import edu.udo.cs.ls14.jf.bpmn.util.Bpmn2ResourceSet;
+import edu.udo.cs.ls14.jf.bpmn.util.Registries;
 import edu.udo.cs.ls14.jf.bpmnanalysis.ProcessAnalysis;
-import edu.udo.cs.ls14.jf.bpmnanalysis.ProcessAnalyzer;
+import edu.udo.cs.ls14.jf.bpmnanalysis.IProcessAnalyzer;
 import edu.udo.cs.ls14.jf.bpmnanalysis.ProcessAnalyzerImpl;
-import edu.udo.cs.ls14.jf.bpmnmatching.ProcessMatcher;
+import edu.udo.cs.ls14.jf.bpmnmatching.IProcessMatcher;
 import edu.udo.cs.ls14.jf.bpmnmatching.ProcessMatcherImpl;
 import edu.udo.cs.ls14.jf.bpmnmatching.ProcessMatching;
 
@@ -83,7 +83,7 @@ public class ProcessMatcherTest {
 		Definitions def1 = Bpmn2ResourceSet.getInstance().loadDefinitions(
 				getClass().getResource(pathname + basename1 + ".bpmn")
 						.getPath());
-		ProcessAnalyzer analyzer = new ProcessAnalyzerImpl();
+		IProcessAnalyzer analyzer = new ProcessAnalyzerImpl();
 		ProcessAnalysis analysis1 = analyzer.analyze(def1);
 		// analyze process2
 		Definitions def2 = Bpmn2ResourceSet.getInstance().loadDefinitions(
@@ -92,7 +92,7 @@ public class ProcessMatcherTest {
 		analyzer = new ProcessAnalyzerImpl();
 		ProcessAnalysis analysis2 = analyzer.analyze(def2);
 
-		ProcessMatcher matcher = new ProcessMatcherImpl();
+		IProcessMatcher matcher = new ProcessMatcherImpl();
 		ProcessMatching matching = matcher.match(analysis1, analysis2);
 		return matching;
 	}

@@ -9,9 +9,15 @@ import edu.udo.cs.ls14.jf.bpmnanalysis.ProcessAnalysis;
 import edu.udo.cs.ls14.jf.bpmnmatching.FragmentMatching;
 import edu.udo.cs.ls14.jf.bpmnmatching.NodeMatching;
 import edu.udo.cs.ls14.jf.bpmnmatching.ProcessMatching;
+import edu.udo.cs.ls14.jf.bpmnmatching.fragmentmatching.FragmentPairFilterConditions;
 import edu.udo.cs.ls14.jf.bpmnmatching.ws.FragmentPairFilterConditionsSEI;
-import edu.udo.cs.ls14.jf.fragmentmatching.FragmentPairFilterConditions;
 
+/**
+ * Implementation of FragmentPairFilterConditionsSEI Service endpoint interface.
+ * 
+ * @author Julian Flake
+ *
+ */
 @WebService(endpointInterface = "edu.udo.cs.ls14.jf.bpmnmatching.ws.FragmentPairFilterConditionsSEI")
 public class FragmentPairFilterConditionsImpl implements
 		FragmentPairFilterConditionsSEI {
@@ -19,6 +25,9 @@ public class FragmentPairFilterConditionsImpl implements
 	private static final Logger LOG = LoggerFactory
 			.getLogger(FragmentPairFilterConditionsImpl.class);
 
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
 	public ProcessMatching filter(ProcessMatching processMatching) {
 		LOG.info("Service input: " + processMatching);

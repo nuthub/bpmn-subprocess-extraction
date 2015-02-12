@@ -9,9 +9,23 @@ import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 import edu.udo.cs.ls14.jf.bpmn.ws.adapter.XmlProcessMatchingAdapter;
 import edu.udo.cs.ls14.jf.bpmnmatching.ProcessMatching;
 
+/**
+ * A Service that takes a ProcessMatching with contained fragment matching and
+ * removes all conditional inequivalent fragment pairs from the fragment
+ * matching.
+ * 
+ * @author Julian Flake
+ *
+ */
 @WebService
 public interface FragmentPairFilterConditionsSEI {
-
+	/**
+	 * Remove conditional inequivalent fragment pairs from fragment matching.
+	 * 
+	 * @param processMatching
+	 *            given ProcessMatching with contained fragment matching
+	 * @return ProcessMatching with contained filtered fragment matching
+	 */
 	@WebMethod
 	@WebResult(name = "matchingXml")
 	@XmlJavaTypeAdapter(XmlProcessMatchingAdapter.class)

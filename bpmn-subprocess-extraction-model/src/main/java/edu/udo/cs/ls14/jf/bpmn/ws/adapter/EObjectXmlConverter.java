@@ -11,7 +11,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.xmi.XMLResource;
 
-import edu.udo.cs.ls14.jf.bpmn.resourceset.Bpmn2ResourceSet;
+import edu.udo.cs.ls14.jf.bpmn.util.Bpmn2ResourceSet;
 
 /**
  * Serializes EObjects to XML and deserializes XML to EObjects.
@@ -21,6 +21,9 @@ import edu.udo.cs.ls14.jf.bpmn.resourceset.Bpmn2ResourceSet;
  */
 public class EObjectXmlConverter {
 
+	/**
+	 * {@inheritDoc}
+	 */
 	public static String eObject2Xml(String extension, EObject eObject)
 			throws Exception {
 		Resource res = Bpmn2ResourceSet.getInstance().createResource(
@@ -31,6 +34,9 @@ public class EObjectXmlConverter {
 		return os.toString();
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	public static EObject xml2EObject(String extension, String xmlString)
 			throws Exception {
 		Resource res = Bpmn2ResourceSet.getInstance().createResource(

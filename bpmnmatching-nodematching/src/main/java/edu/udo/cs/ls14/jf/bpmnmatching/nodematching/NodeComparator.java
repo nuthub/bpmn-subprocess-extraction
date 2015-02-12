@@ -16,12 +16,22 @@ import edu.udo.cs.ls14.jf.nlp.Lemmatizer;
 import edu.udo.cs.ls14.jf.nlp.OpenThesaurusSQLite;
 import edu.udo.cs.ls14.jf.nlp.StopWordList;
 
+/**
+ * Compares two nodes, if they are of the same type and if their labels are
+ * equivalent.
+ * 
+ * @author Julian Flake
+ *
+ */
 public class NodeComparator {
 
 	private static final String LANGUAGE = "de";
 	private List<Class<? extends FlowNode>> classes;
 	private static final String SPECIAL_CHARACTERS_PATTERN = "[^a-zA-Z 0-9äÄöÖüÜß]";
 
+	/**
+	 * public Constructor.
+	 */
 	public NodeComparator() {
 		super();
 		classes = new ArrayList<Class<? extends FlowNode>>();
@@ -29,24 +39,35 @@ public class NodeComparator {
 		classes.add(Event.class);
 	}
 
-	public boolean isEquivalent(FlowNode e1, FlowNode e2) {
+	/**
+	 * Returns true if type of e1 equals type of e2 and if label e1 is
+	 * equivalent with label of e2. Only Activites and Events are considered
+	 * equivalent in this implementation.
+	 * 
+	 * @param n1
+	 *            first flow node
+	 * @param n2
+	 *            second flow node
+	 * @return true if nodes are equivalent
+	 */
+	public boolean isEquivalent(FlowNode n1, FlowNode n2) {
 		// is e1 of relevant type?
 		// TODO: Not comparators job
-		if (!isClassOfInterest(e1.getClass())) {
+		if (!isClassOfInterest(n1.getClass())) {
 			return false;
 		}
 		// is e2 of relevant type?
 		// TODO: Not comparators job
-		if (!isClassOfInterest(e2.getClass())) {
+		if (!isClassOfInterest(n2.getClass())) {
 			return false;
 		}
 		// are e1 and e2 type equivalent?
-		if (!isTypeEquivalent(e1, e2)) {
+		if (!isTypeEquivalent(n1, n2)) {
 			return false;
 		}
 		// are e1 and e2 label equivalent?
 		try {
-			if (!isLabelEquivalent(e1.getName(), e2.getName())) {
+			if (!isLabelEquivalent(n1.getName(), n2.getName())) {
 				return false;
 			}
 		} catch (Exception e) {

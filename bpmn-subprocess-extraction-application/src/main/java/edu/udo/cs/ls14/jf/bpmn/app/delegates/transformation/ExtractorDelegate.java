@@ -3,16 +3,22 @@ package edu.udo.cs.ls14.jf.bpmn.app.delegates.transformation;
 import org.camunda.bpm.engine.delegate.DelegateExecution;
 import org.camunda.bpm.engine.delegate.JavaDelegate;
 
+import edu.udo.cs.ls14.jf.bpmntransformation.Extractor;
 import edu.udo.cs.ls14.jf.bpmntransformation.ProcessTransformation;
-import edu.udo.cs.ls14.jf.transformation.Extractor;
 
 /**
+ * Delegates work to Extractor service.
  * 
- * @author flake
+ * @see edu.udo.cs.ls14.jf.bpmntransformation.ws.ExtractorSEI
+ * 
+ * @author Julian Flake
  *
  */
 public class ExtractorDelegate implements JavaDelegate {
 
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
 	public void execute(DelegateExecution execution) throws Exception {
 		ProcessTransformation transformation = (ProcessTransformation) execution

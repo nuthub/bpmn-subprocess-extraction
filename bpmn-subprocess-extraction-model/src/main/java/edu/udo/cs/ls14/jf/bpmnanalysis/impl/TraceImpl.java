@@ -80,6 +80,7 @@ public class TraceImpl extends MinimalEObjectImpl.Container implements Trace {
 
 	/**
 	 * <!-- begin-user-doc -->
+	 * Returns a list, that allows for multiple occurrences of same object.
 	 * <!-- end-user-doc -->
 	 * @generated NOT
 	 */

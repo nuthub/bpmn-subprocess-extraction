@@ -24,16 +24,25 @@ public class ProcessMatchingType implements VariableType {
 
 	private static final String EXTENSION = "bpmnmatching";
 
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
 	public String getTypeName() {
 		return EXTENSION;
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
 	public String getTypeNameForValue(Object value) {
 		return ProcessMatching.class.getName();
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
 	public boolean isAbleToStore(Object value) {
 		if (value == null) {
@@ -42,11 +51,17 @@ public class ProcessMatchingType implements VariableType {
 		return ProcessMatching.class.isAssignableFrom(value.getClass());
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
 	public boolean isCachable() {
 		return true;
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
 	public Object getValue(ValueFields valueFields) {
 		try {
@@ -67,6 +82,9 @@ public class ProcessMatchingType implements VariableType {
 		}
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
 	public void setValue(Object value, ValueFields valueFields) {
 		try {

@@ -9,6 +9,12 @@ import org.slf4j.LoggerFactory;
 import edu.udo.cs.ls14.jf.bpmnanalysis.ProcessAnalysis;
 import edu.udo.cs.ls14.jf.bpmnanalysis.ws.BpmnAnalysisSEI;
 
+/**
+ * Implementation of BpmnAnalysisSEI Service endpoint interface.
+ * 
+ * @author Julian Flake
+ *
+ */
 @WebService(endpointInterface = "edu.udo.cs.ls14.jf.bpmnanalysis.ws.BpmnAnalysisSEI")
 public class BpmnAnalysisImpl implements BpmnAnalysisSEI {
 
@@ -16,7 +22,7 @@ public class BpmnAnalysisImpl implements BpmnAnalysisSEI {
 			.getLogger(BpmnAnalysisImpl.class);
 
 	/**
-	 * local version just calls other service implementations
+	 * {@inheritDoc}
 	 */
 	@Override
 	public ProcessAnalysis analyze(Definitions definitions) throws Exception {

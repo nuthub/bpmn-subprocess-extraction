@@ -9,6 +9,12 @@ import java.sql.Statement;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+/**
+ * Represents a list of stop words.
+ * 
+ * @author Julian Flake
+ *
+ */
 public class StopWordList {
 
 	private static final Logger LOG = LoggerFactory
@@ -25,6 +31,16 @@ public class StopWordList {
 		LOG.info("Connected to " + CONNECTION);
 	}
 
+	/**
+	 * Returns true if a given word is contained in the language's list of words
+	 * to ignore.
+	 * 
+	 * @param language
+	 *            language to consider
+	 * @param word
+	 *            given word
+	 * @return true, iff word is stop word for the language
+	 */
 	public static boolean contains(String language, String word) {
 		try {
 			if (c == null) {

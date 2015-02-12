@@ -4,7 +4,7 @@ import javax.xml.bind.annotation.adapters.XmlAdapter;
 
 import org.eclipse.emf.ecore.EObject;
 
-import edu.udo.cs.ls14.jf.bpmn.registry.Registries;
+import edu.udo.cs.ls14.jf.bpmn.util.Registries;
 
 /**
  * Abstract XMLAdapter implementation for objects of the BpmnAnalysis package.
@@ -17,6 +17,9 @@ import edu.udo.cs.ls14.jf.bpmn.registry.Registries;
 public abstract class BpmnAnalysisAdapterBase<T extends EObject> extends
 		XmlAdapter<String, T> {
 
+	/**
+	 * {@inheritDoc}
+	 */
 	@SuppressWarnings("unchecked")
 	@Override
 	public T unmarshal(String v) throws Exception {
@@ -24,6 +27,9 @@ public abstract class BpmnAnalysisAdapterBase<T extends EObject> extends
 		return (T) EObjectXmlConverter.xml2EObject("bpmnanalysis", v);
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
 	public String marshal(T v) throws Exception {
 		Registries.registerBpmn();

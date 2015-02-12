@@ -7,8 +7,19 @@ import edu.udo.cs.ls14.jf.bpmnanalysis.ProcessAnalysis;
 import edu.udo.cs.ls14.jf.bpmnmatching.ProcessMatching;
 import edu.udo.cs.ls14.jf.bpmnmatching.ws.impl.ProcessMatchingFactoryImpl;
 
+/**
+ * Delegates work to ProcessMatchingFactory service.
+ * 
+ * @see edu.udo.cs.ls14.jf.bpmnmatching.ws.ProcessMatchingFactorySEI
+ * 
+ * @author Julian Flake
+ *
+ */
 public class ProcessMatchingFactoryDelegate implements JavaDelegate {
 
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
 	public void execute(DelegateExecution execution) throws Exception {
 		ProcessAnalysis analysis1 = (ProcessAnalysis) execution

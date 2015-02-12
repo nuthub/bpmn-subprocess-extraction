@@ -2,7 +2,7 @@ package edu.udo.cs.ls14.jf.bpmn.ws.adapter;
 
 import javax.xml.bind.annotation.adapters.XmlAdapter;
 
-import edu.udo.cs.ls14.jf.bpmn.registry.Registries;
+import edu.udo.cs.ls14.jf.bpmn.util.Registries;
 import edu.udo.cs.ls14.jf.bpmntransformation.ProcessTransformation;
 
 /**
@@ -14,6 +14,9 @@ import edu.udo.cs.ls14.jf.bpmntransformation.ProcessTransformation;
 public class XmlProcessTransformationAdapter extends
 		XmlAdapter<String, ProcessTransformation> {
 
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
 	public ProcessTransformation unmarshal(String v) throws Exception {
 		Registries.registerAll();
@@ -21,6 +24,9 @@ public class XmlProcessTransformationAdapter extends
 				"bpmntransformation", v);
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
 	public String marshal(ProcessTransformation v) throws Exception {
 		Registries.registerAll();
