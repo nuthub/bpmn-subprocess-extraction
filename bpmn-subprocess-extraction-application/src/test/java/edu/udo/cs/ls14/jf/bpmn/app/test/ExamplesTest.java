@@ -1,24 +1,21 @@
-package edu.udo.cs.ls14.jf.bpmn.app.test.profiling;
+package edu.udo.cs.ls14.jf.bpmn.app.test;
 
 import org.eclipse.bpmn2.Definitions;
 import org.junit.Before;
 import org.junit.Test;
 
-import edu.udo.cs.ls14.jf.bpmn.app.ISubProcessExtractionProfiling;
+import edu.udo.cs.ls14.jf.bpmn.app.ISubProcessExtraction;
 import edu.udo.cs.ls14.jf.bpmn.app.SubProcessExtractionCamunda;
 import edu.udo.cs.ls14.jf.bpmn.util.Bpmn2ResourceSet;
 import edu.udo.cs.ls14.jf.bpmn.util.Registries;
 import edu.udo.cs.ls14.jf.bpmntransformation.ProcessTransformation;
+import edu.udo.cs.ls14.jf.bpmntransformation.util.ProcessTransformationUtil;
 
-/**
- * Just run test models and print times.
- * 
- * @author flake
- *
- */
-public class SubProcessExtractionCamundaProfiling {
+public class ExamplesTest {
 
-	private ISubProcessExtractionProfiling app = null;
+	private static final String TARGETDIR = System
+			.getProperty("java.io.tmpdir") + "/test-app/";
+	private ISubProcessExtraction app = null;
 
 	@Before
 	public void setUp() {
@@ -40,6 +37,14 @@ public class SubProcessExtractionCamundaProfiling {
 		String resname1 = "complete1labelled.bpmn";
 		String resname2 = "complete2labelled.bpmn";
 		runTest("/bpmn/completeLabelled/", resname1, resname2);
+		// TODO: Assertions
+	}
+
+	@Test
+	public void testEvaluation() throws Exception {
+		String resname1 = "evaluation1.bpmn";
+		String resname2 = "evaluation2.bpmn";
+		runTest("/bpmn/evaluation/", resname1, resname2);
 		// TODO: Assertions
 	}
 
@@ -93,7 +98,7 @@ public class SubProcessExtractionCamundaProfiling {
 
 	private ProcessTransformation runTest(String path, String resName1,
 			String resName2) throws Exception {
-		// Load Models
+		// Load models
 		Bpmn2ResourceSet.getInstance().clear();
 		Definitions defs1 = Bpmn2ResourceSet.getInstance().loadDefinitions(
 				getClass().getResource(path).getPath() + resName1);
@@ -101,18 +106,13 @@ public class SubProcessExtractionCamundaProfiling {
 				getClass().getResource(path).getPath() + resName2);
 
 		// Run process
-		// first run
-		app.runAndProfile(defs1, defs2);
-		// second run
-		app.runAndProfile(defs1, defs2);
-		// third run
 		long start = System.currentTimeMillis();
-		ProcessTransformation transformation = app.runAndProfile(defs1, defs2);
+		ProcessTransformation transformation = app.run(defs1, defs2);
 		long end = System.currentTimeMillis();
 
-		// Write profiling Results
-		System.out.println("Done running with " + resName1  + " and " + resName2);
-		System.out.println(transformation.getResults().size() + " results.");
+		// Write results
+		ProcessTransformationUtil.writeResults(TARGETDIR + "/" + path,
+				transformation);
 		System.out.println("Took " + (end - start) + "ms for complete process");
 		return transformation;
 	}

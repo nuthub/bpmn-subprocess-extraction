@@ -72,11 +72,8 @@ public class ProcessAnalysisType implements VariableType {
 			ByteArrayInputStream bis = new ByteArrayInputStream(valueFields
 					.getByteArrayValue().getBytes());
 			res.load(bis, null);
-			if (!(res.getContents().get(0) instanceof ProcessAnalysis)) {
-				throw new IOException("Couldn't get Definitions from value!");
-			}
 			return (ProcessAnalysis) res.getContents().get(0);
-		} catch (IOException e) {
+		} catch (IOException | ClassCastException e) {
 			e.printStackTrace();
 			return null;
 		}
@@ -88,14 +85,10 @@ public class ProcessAnalysisType implements VariableType {
 	@Override
 	public void setValue(Object value, ValueFields valueFields) {
 		try {
-			if (!(value instanceof ProcessAnalysis)) {
-				throw new IOException(
-						"ProcessAnalysisType:setValue() called with object of wrong type.");
-			}
 			ByteArrayOutputStream bos = new ByteArrayOutputStream();
 			((ProcessAnalysis) value).eResource().save(bos, null);
 			valueFields.setByteArrayValue(bos.toByteArray());
-		} catch (IOException e) {
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}

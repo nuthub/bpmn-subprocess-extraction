@@ -62,12 +62,5 @@ public class ProcessAnalysisUtil {
 				CONDITIONALPROFILE);
 	}
 
-	public static ProcessAnalysis loadFromFile(String filename)
-			throws IOException {
-		Resource res = Bpmn2ResourceSet.getInstance().createResource(
-				URI.createFileURI(filename));
-		res.load(null);
-		return (ProcessAnalysis) res.getContents().get(0);
-	}
 
 }

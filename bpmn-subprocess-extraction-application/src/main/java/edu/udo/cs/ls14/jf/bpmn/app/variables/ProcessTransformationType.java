@@ -73,11 +73,8 @@ public class ProcessTransformationType implements VariableType {
 			ByteArrayInputStream bis = new ByteArrayInputStream(valueFields
 					.getByteArrayValue().getBytes());
 			res.load(bis, null);
-			if (!(res.getContents().get(0) instanceof ProcessTransformation)) {
-				throw new IOException("Couldn't get Definitions from value!");
-			}
 			return (ProcessTransformation) res.getContents().get(0);
-		} catch (IOException e) {
+		} catch (Exception e) {
 			e.printStackTrace();
 			return null;
 		}
@@ -89,10 +86,6 @@ public class ProcessTransformationType implements VariableType {
 	@Override
 	public void setValue(Object value, ValueFields valueFields) {
 		try {
-			if (!(value instanceof ProcessTransformation)) {
-				throw new IOException(
-						"ProcessTransformationType:setValue() called with object of wrong type.");
-			}
 			ByteArrayOutputStream bos = new ByteArrayOutputStream();
 			((ProcessTransformation) value).eResource().save(bos, null);
 			valueFields.setByteArrayValue(bos.toByteArray());

@@ -1,4 +1,4 @@
-package edu.udo.cs.ls14.jf.bpmn.app.test.thesis;
+package edu.udo.cs.ls14.jf.bpmn.app.test;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
@@ -9,6 +9,7 @@ import java.util.List;
 
 import org.eclipse.bpmn2.Definitions;
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 
 import edu.udo.cs.ls14.jf.bpmn.util.Bpmn2ResourceSet;
@@ -71,6 +72,7 @@ public class ThesisExport {
 	}
 
 	@Test
+	@Ignore
 	public void createAnalysisArtifacts2() throws Exception {
 		String pathname = "/bpmn/conditionalFlow/";
 		String basename = "conditionSequence1";

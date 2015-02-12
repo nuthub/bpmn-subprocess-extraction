@@ -2,12 +2,12 @@ package edu.udo.cs.ls14.jf.bpmn.app.variables;
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
-import java.io.IOException;
 import java.util.UUID;
 
 import org.camunda.bpm.engine.impl.variable.ValueFields;
 import org.camunda.bpm.engine.impl.variable.VariableType;
 import org.eclipse.bpmn2.Definitions;
+import org.eclipse.bpmn2.DocumentRoot;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.resource.Resource;
 
@@ -67,17 +67,14 @@ public class DefinitionsType implements VariableType {
 		try {
 			URI uri = URI.createURI(UUID.randomUUID().toString() + "."
 					+ EXTENSION);
-			// Resource res = new
-			// Bpmn2ResourceFactoryImpl().createResource(uri);
 			Resource res = Bpmn2ResourceSet.getInstance().createResource(uri);
 			ByteArrayInputStream bis = new ByteArrayInputStream(valueFields
 					.getByteArrayValue().getBytes());
 			res.load(bis, null);
-			if (!(res.getContents().get(0) instanceof Definitions)) {
-				throw new IOException("Couldn't get Definitions from value!");
-			}
-			return (Definitions) res.getContents().get(0);
-		} catch (IOException e) {
+			Definitions defs = ((DocumentRoot) res.getContents().get(0))
+					.getDefinitions();
+			return defs;
+		} catch (Exception e) {
 			e.printStackTrace();
 			return null;
 		}
@@ -89,14 +86,10 @@ public class DefinitionsType implements VariableType {
 	@Override
 	public void setValue(Object value, ValueFields valueFields) {
 		try {
-			if (!(value instanceof Definitions)) {
-				throw new IOException(
-						"DefinitionsType:setValue() called with object of wrong type.");
-			}
 			ByteArrayOutputStream bos = new ByteArrayOutputStream();
 			((Definitions) value).eResource().save(bos, null);
 			valueFields.setByteArrayValue(bos.toByteArray());
-		} catch (IOException e) {
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}

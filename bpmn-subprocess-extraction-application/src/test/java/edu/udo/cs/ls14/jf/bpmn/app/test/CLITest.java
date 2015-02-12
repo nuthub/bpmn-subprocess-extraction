@@ -27,16 +27,32 @@ public class CLITest {
 	}
 
 	@Test
-	public void testAlslpp() throws IOException {
+	public void testApp() throws IOException {
 		String[] args = new String[6];
 		args[0] = "-m1";
-		args[1] = getClass().getResource("/bpmn/complete/complete1.bpmn")
+		args[1] = getClass().getResource("/bpmn/parallelGateway/parallelism1.bpmn")
 				.getFile();
 		args[2] = "-m2";
-		args[3] = getClass().getResource("/bpmn/complete/complete2.bpmn")
+		args[3] = getClass().getResource("/bpmn/parallelGateway/parallelism2.bpmn")
 				.getFile();
 		args[4] = "-t";
 		args[5] = TEST_DIR;
+		CLI.main(args);
+		FileUtils.deleteDirectory(new File(TEST_DIR));
+	}
+
+	@Test
+	public void testDebug() throws IOException {
+		String[] args = new String[7];
+		args[0] = "-m1";
+		args[1] = getClass().getResource("/bpmn/parallelGateway/parallelism1.bpmn")
+				.getFile();
+		args[2] = "-m2";
+		args[3] = getClass().getResource("/bpmn/parallelGateway/parallelism2.bpmn")
+				.getFile();
+		args[4] = "-t";
+		args[5] = TEST_DIR;
+		args[6] = "-d";
 		CLI.main(args);
 		FileUtils.deleteDirectory(new File(TEST_DIR));
 	}
