@@ -77,6 +77,7 @@ public class NodeComparatorTest {
 		assertFalse(c.isEquivalent(a1, a2));
 		assertFalse(c.isEquivalent(a2, a1));
 	}
+
 	@Test
 	public void testNullLabels() {
 		NodeComparator c = new NodeComparator();
@@ -85,6 +86,18 @@ public class NodeComparatorTest {
 		FlowNode a2 = Bpmn2Factory.eINSTANCE.createTask();
 		a2.setName(null);
 		assertNull(a2.getName());
+		assertTrue(c.isEquivalent(a1, a2));
+		assertTrue(c.isEquivalent(a2, a1));
+	}
+	
+
+	@Test
+	public void testBadInput() {
+		NodeComparator c = new NodeComparator();
+		FlowNode a1 = Bpmn2Factory.eINSTANCE.createTask();
+		a1.setName("SQL 'prob'lem?");
+		FlowNode a2 = Bpmn2Factory.eINSTANCE.createTask();
+		a2.setName("SQL 'prob'lem?");
 		assertTrue(c.isEquivalent(a1, a2));
 		assertTrue(c.isEquivalent(a2, a1));
 	}

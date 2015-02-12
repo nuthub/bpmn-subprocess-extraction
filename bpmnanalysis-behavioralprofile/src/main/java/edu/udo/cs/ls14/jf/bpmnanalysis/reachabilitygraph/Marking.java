@@ -14,7 +14,7 @@ import org.apache.commons.lang3.StringUtils;
 import fr.lip6.move.pnml.ptnet.Place;
 
 /**
- * A Marking of a petri net represented as a set of places.
+ * A Marking of a petri net represented by a set of places.
  * 
  * @author Julian Flake
  *

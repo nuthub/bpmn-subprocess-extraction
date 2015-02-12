@@ -1,0 +1,3 @@
+To avoid Eclipse from showing validation errors, you should really create a validation exclude rule for this directory:
+
+Window -> Preferences -> Validation -> BPMN 2.0 Project Validator -> Settings -> Exclude Group -> Add Rule -> Folder or file name -> File or folder: "src/test/resources/bpmn/bad/" -> uncheck both checkboxes -> Finish -> OK, Apply, OK, OK, Apply, OK, etc.

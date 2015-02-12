@@ -177,9 +177,6 @@ public class PSTBuilder {
 			Map<Set<SequenceFlow>, List<SequenceFlow>> classes) {
 		List<Fragment> canonicalFragments = new ArrayList<Fragment>();
 		for (List<SequenceFlow> ceClass : classes.values()) {
-			if (ceClass.size() < 2) {
-				continue;
-			}
 			for (int i = 0; i < ceClass.size() - 1; i++) {
 				Fragment f = BpmnAnalysisFactory.eINSTANCE.createFragment();
 				f.setEntry(ceClass.get(i));
@@ -499,29 +496,34 @@ public class PSTBuilder {
 	 * TODO: check for multiple end nodes
 	 */
 	private StartEvent getStartNode(Process process) {
+		StartEvent returnElement = null;
 		for (FlowElement elem : process.getFlowElements()) {
 			if (elem instanceof StartEvent) {
-				return (StartEvent) elem;
+				returnElement = (StartEvent) elem;
 			}
 		}
-		return null;
+		return returnElement;
 	}
 
 	/*
 	 * TODO: check for multiple end nodes
 	 */
 	private EndEvent getEndNode(Process process) {
+		EndEvent returnElement = null;
 		for (FlowElement elem : process.getFlowElements()) {
 			if (elem instanceof EndEvent) {
-				return (EndEvent) elem;
+				returnElement = (EndEvent) elem;
 			}
 		}
-		return null;
+		return returnElement;
 	}
 
 	private String getLabel(FlowElement element) {
-		return (element.getName() == null || element.getName().equals("") ? "["
-				+ element.getId() + "]" : element.getName());
+		if (element.getName() == null || element.getName().equals("")) {
+			return "[" + element.getId() + "]";
+		} else {
+			return element.getName();
+		}
 	}
 
 	/**

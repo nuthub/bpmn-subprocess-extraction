@@ -175,12 +175,13 @@ public class FragmentPairFilterConditions {
 
 	private static FlowNode getMatchingNode(FragmentMatching matchingIn,
 			NodeMatching nodeMatching, FlowNode node) {
+		FlowNode returnNode = null; 
 		for (NodePair pair : nodeMatching.getPairs()) {
 			if (pair.getA().getId().equals(node.getId())) {
-				return pair.getB();
+				returnNode = pair.getB();
 			}
 		}
-		return null;
+		return returnNode;
 	}
 
 }

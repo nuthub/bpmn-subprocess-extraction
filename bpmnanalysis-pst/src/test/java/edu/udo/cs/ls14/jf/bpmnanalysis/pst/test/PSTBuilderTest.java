@@ -21,7 +21,7 @@ import edu.udo.cs.ls14.jf.bpmnanalysis.pst.EdgeState;
 import edu.udo.cs.ls14.jf.bpmnanalysis.pst.PSTBuilder;
 import edu.udo.cs.ls14.jf.bpmnanalysis.pst.PSTDebugUtil;
 
-public class PSTTest {
+public class PSTBuilderTest {
 
 	private static final String TARGET_DIR = System
 			.getProperty("java.io.tmpdir") + "/test-pst/";
@@ -42,6 +42,14 @@ public class PSTTest {
 				EdgeState.valueOf(EdgeState.TREE.toString()));
 		assertEquals(EdgeState.BACK,
 				EdgeState.valueOf(EdgeState.BACK.toString()));
+	}
+
+	@Test
+	public void testElementWithoutName() throws Exception {
+		String basename = "ElementWithoutName";
+		String pathname = "/bpmn/bad/";
+		ProcessStructureTree pst = runTest(pathname, basename, 32, 32, 60);
+		assertEquals(1, pst.getFragments().size());
 	}
 
 	@Test

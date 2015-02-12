@@ -43,6 +43,20 @@ public class BehavioralProfileTest {
 	}
 
 	@Test
+	public void testMultiStart() throws Exception {
+		String pathname = "/bpmn/bad/";
+		String basename = "MultipleStartEvents";
+		createBpFromBpmn(pathname, basename, Arrays.asList());
+	}
+
+	@Test
+	public void testMultiEnd() throws Exception {
+		String pathname = "/bpmn/bad/";
+		String basename = "MultipleEndEvents";
+		createBpFromBpmn(pathname, basename, Arrays.asList());
+	}
+
+	@Test
 	public void testPM1() throws Exception {
 		String pathname = "/bpmn/parallelGateway/";
 		String basename = "parallelism1";
@@ -149,8 +163,8 @@ public class BehavioralProfileTest {
 				traceProfile);
 
 		// Write Debug files
-		BPDebugUtil.writeDebugFiles(TARGET_DIR + pathname, basename, process, converter, ptnet,
-				rg, nodes, traceProfile, bp);
+		BPDebugUtil.writeDebugFiles(TARGET_DIR + pathname, basename, process,
+				converter, ptnet, rg, nodes, traceProfile, bp);
 		return bp;
 	}
 

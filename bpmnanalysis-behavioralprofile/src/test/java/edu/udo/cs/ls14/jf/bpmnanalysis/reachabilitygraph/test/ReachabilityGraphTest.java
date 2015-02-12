@@ -17,8 +17,7 @@ public class ReachabilityGraphTest {
 		rg.createFromPnml(file);
 		System.out.println("|V| = " + rg.getVertices().size());
 		System.out.println("|E| = " + rg.getEdges().size());
-	
-
 	}
-	
+
+
 }

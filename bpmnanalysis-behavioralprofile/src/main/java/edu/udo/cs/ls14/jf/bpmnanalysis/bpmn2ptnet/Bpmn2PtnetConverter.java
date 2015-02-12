@@ -247,8 +247,6 @@ public class Bpmn2PtnetConverter {
 			throw new NotImplementedException("CallActivity");
 		} else if (n instanceof SubProcess) {
 			throw new NotImplementedException("SubProcess");
-		} else {
-			throw new NotImplementedException("Unknown Activity");
 		}
 	}
 
@@ -295,8 +293,6 @@ public class Bpmn2PtnetConverter {
 			throw new NotImplementedException("ImplicitThrowEvent");
 		} else if (n instanceof BoundaryEvent) {
 			throw new NotImplementedException("BoundaryEvent");
-		} else {
-			throw new NotImplementedException("Unknown Event");
 		}
 	}
 

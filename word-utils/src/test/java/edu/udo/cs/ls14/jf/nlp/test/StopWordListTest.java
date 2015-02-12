@@ -21,4 +21,9 @@ public class StopWordListTest {
 		assertTrue(StopWordList.contains("de", "ein"));
 		assertTrue(StopWordList.contains("de", "Den"));
 	}
+	
+	@Test(expected=RuntimeException.class)
+	public void testException() {
+		StopWordList.contains("de", "SQL'error' please");
+	}
 }

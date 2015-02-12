@@ -5,6 +5,7 @@ import static org.junit.Assert.assertNotNull;
 
 import java.io.File;
 
+import org.apache.commons.lang3.NotImplementedException;
 import org.eclipse.bpmn2.Definitions;
 import org.eclipse.bpmn2.Process;
 import org.junit.Before;
@@ -30,8 +31,71 @@ public class Bpmn2PtnetConverterTest {
 		converter = new Bpmn2PtnetConverter();
 	}
 
+	@Test(expected = NotImplementedException.class)
+	public void testUnspecifiedGateway() throws Exception {
+		String pathname = "/bpmn/bad/";
+		String basename = "UnspecifiedGateway";
+		runTest(pathname, basename, 0, 0, 0);
+	}
+
+	@Test(expected = NotImplementedException.class)
+	public void testCallActivity() throws Exception {
+		String pathname = "/bpmn/bad/";
+		String basename = "CallActivity";
+		runTest(pathname, basename, 0, 0, 0);
+	}
+
+	@Test(expected = NotImplementedException.class)
+	public void testSubProcess() throws Exception {
+		String pathname = "/bpmn/bad/";
+		String basename = "SubProcess";
+		runTest(pathname, basename, 0, 0, 0);
+	}
+
+	@Test(expected = NotImplementedException.class)
+	public void testAdHocSubProcess() throws Exception {
+		String pathname = "/bpmn/bad/";
+		String basename = "AdHocSubProcess";
+		runTest(pathname, basename, 0, 0, 0);
+	}
+
+	@Test(expected = NotImplementedException.class)
+	public void testBoundaryEvent() throws Exception {
+		String pathname = "/bpmn/bad/";
+		String basename = "BoundaryEvent";
+		runTest(pathname, basename, 0, 0, 0);
+	}
+
 	@Test
-	public void testLoopTransformation() throws Exception {
+	public void testDeadlock() throws Exception {
+		String pathname = "/bpmn/bad/";
+		String basename = "Deadlock";
+		runTest(pathname, basename, 7, 6, 13);
+	}
+
+	@Test
+	public void testLackOfSync() throws Exception {
+		String pathname = "/bpmn/bad/";
+		String basename = "LackOfSync";
+		runTest(pathname, basename, 7, 6, 13);
+	}
+
+	@Test
+	public void testMultiStart() throws Exception {
+		String pathname = "/bpmn/bad/";
+		String basename = "MultipleStartEvents";
+		runTest(pathname, basename, 6, 5, 10);
+	}
+
+	@Test
+	public void testMultiEnd() throws Exception {
+		String pathname = "/bpmn/bad/";
+		String basename = "MultipleEndEvents";
+		runTest(pathname, basename, 6, 4, 9);
+	}
+
+	@Test
+	public void testLoops() throws Exception {
 		String pathname = "/bpmn/loops/";
 		String basename = "looping-events-example";
 		runTest(pathname, basename, 9, 9, 18);

@@ -47,11 +47,11 @@ public class Tracer {
 			}
 		}
 		if (startNodes.size() != 1) {
-			throw new Exception("expected exactly 1 start node, found "
+			throw new Exception("expected exactly 1 initial state, found "
 					+ startNodes.size());
 		}
 		if (endNodes.size() != 1) {
-			throw new Exception("expected exactly 1 end node, found "
+			throw new Exception("expected exactly 1 final state, found "
 					+ endNodes.size());
 		}
 		Marking start = startNodes.iterator().next();

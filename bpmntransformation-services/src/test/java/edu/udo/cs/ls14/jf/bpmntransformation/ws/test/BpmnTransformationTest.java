@@ -1,4 +1,4 @@
-package edu.udo.cs.ls14.jf.bpmntransformation.ws;
+package edu.udo.cs.ls14.jf.bpmntransformation.ws.test;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotEquals;
@@ -27,6 +27,14 @@ import edu.udo.cs.ls14.jf.bpmnmatching.IProcessMatcher;
 import edu.udo.cs.ls14.jf.bpmnmatching.ProcessMatcherImpl;
 import edu.udo.cs.ls14.jf.bpmnmatching.ProcessMatching;
 import edu.udo.cs.ls14.jf.bpmntransformation.ProcessTransformation;
+import edu.udo.cs.ls14.jf.bpmntransformation.ws.ExtractorSEI;
+import edu.udo.cs.ls14.jf.bpmntransformation.ws.FragmentCoordinateCalculatorSEI;
+import edu.udo.cs.ls14.jf.bpmntransformation.ws.FragmentLabellerSEI;
+import edu.udo.cs.ls14.jf.bpmntransformation.ws.FragmentPairFilterTrivialSEI;
+import edu.udo.cs.ls14.jf.bpmntransformation.ws.FragmentPairRankerCFCSEI;
+import edu.udo.cs.ls14.jf.bpmntransformation.ws.FragmentPairRankerSizeSEI;
+import edu.udo.cs.ls14.jf.bpmntransformation.ws.ModifierSEI;
+import edu.udo.cs.ls14.jf.bpmntransformation.ws.ProcessTransformationFactorySEI;
 import edu.udo.cs.ls14.jf.bpmntransformation.ws.impl.ExtractorImpl;
 import edu.udo.cs.ls14.jf.bpmntransformation.ws.impl.FragmentCoordinateCalculatorImpl;
 import edu.udo.cs.ls14.jf.bpmntransformation.ws.impl.FragmentLabellerImpl;
