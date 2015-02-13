@@ -2,6 +2,7 @@ package edu.udo.cs.ls14.jf.bpmn.ws.adapter;
 
 import javax.xml.bind.annotation.adapters.XmlAdapter;
 
+import org.eclipse.bpmn2.Bpmn2Package;
 import org.eclipse.emf.ecore.EObject;
 
 import edu.udo.cs.ls14.jf.bpmn.util.Registries;

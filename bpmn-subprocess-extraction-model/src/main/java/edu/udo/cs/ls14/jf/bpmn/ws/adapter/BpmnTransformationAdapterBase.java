@@ -5,17 +5,18 @@ import javax.xml.bind.annotation.adapters.XmlAdapter;
 import org.eclipse.emf.ecore.EObject;
 
 import edu.udo.cs.ls14.jf.bpmn.util.Registries;
-import edu.udo.cs.ls14.jf.bpmnanalysis.BpmnAnalysisPackage;
+import edu.udo.cs.ls14.jf.bpmntransformation.BpmnTransformationPackage;
 
 /**
- * Abstract XMLAdapter implementation for objects of the BpmnAnalysis package.
+ * Abstract XMLAdapter implementation for objects of the BpmnTransformation
+ * package.
  * 
  * @author JulianFlake
  *
  * @param <T>
  *            concrete Type
  */
-public abstract class BpmnAnalysisAdapterBase<T extends EObject> extends
+public abstract class BpmnTransformationAdapterBase<T extends EObject> extends
 		XmlAdapter<String, T> {
 
 	/**
@@ -24,9 +25,9 @@ public abstract class BpmnAnalysisAdapterBase<T extends EObject> extends
 	@SuppressWarnings("unchecked")
 	@Override
 	public T unmarshal(String v) throws Exception {
-		Registries.registerBpmnAnalysis();
-		return (T) EObjectXmlConverter
-				.xml2EObject(BpmnAnalysisPackage.eNAME, v);
+		Registries.registerBpmnTransformation();
+		return (T) EObjectXmlConverter.xml2EObject(
+				BpmnTransformationPackage.eNAME, v);
 	}
 
 	/**
@@ -34,8 +35,9 @@ public abstract class BpmnAnalysisAdapterBase<T extends EObject> extends
 	 */
 	@Override
 	public String marshal(T v) throws Exception {
-		Registries.registerBpmnAnalysis();
-		return EObjectXmlConverter.eObject2Xml(BpmnAnalysisPackage.eNAME, v);
+		Registries.registerBpmnTransformation();
+		return EObjectXmlConverter.eObject2Xml(BpmnTransformationPackage.eNAME,
+				v);
 	}
 
 }
