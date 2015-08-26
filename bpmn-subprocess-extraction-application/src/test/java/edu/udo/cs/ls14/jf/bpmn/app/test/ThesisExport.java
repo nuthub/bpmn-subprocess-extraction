@@ -72,6 +72,42 @@ public class ThesisExport {
 	}
 
 	@Test
+	public void createPSTArtifacts1() throws Exception {
+		String pathname = "/bpmn/parallelGateway/";
+		String basename = "parallelism1";
+		String targetDir = (TARGET_DIR + "analysis/").replaceAll("//", "/");
+		List<String> nodes = Arrays.asList("Start", "Task A",
+				"Lieferschein erstellen", "Rechnung erstellen",
+				"Waren verpacken", "Task B", "End");
+		Definitions def = Bpmn2ResourceSet.getInstance()
+				.loadDefinitions(
+						getClass().getResource(pathname + basename + ".bpmn")
+								.getPath());
+		IProcessAnalyzer analyzer = new ProcessAnalyzerImpl();
+		ProcessAnalysis analysis = analyzer.analyzeAndDebug(def, pathname,
+				basename, targetDir, nodes);
+		assertNotNull(analysis);
+	}
+
+	@Test
+	public void createCPArtifacts1() throws Exception {
+		String pathname = "/bpmn/conditionalFlow/";
+		String basename = "conditionSequence1";
+		String targetDir = (TARGET_DIR + "analysis/").replaceAll("//", "/");
+		List<String> nodes = Arrays.asList("Task", "Task A",
+				"Lieferschein erstellen", "Rechnung erstellen",
+				"Waren verpacken", "Task B", "End");
+		Definitions def = Bpmn2ResourceSet.getInstance()
+				.loadDefinitions(
+						getClass().getResource(pathname + basename + ".bpmn")
+								.getPath());
+		IProcessAnalyzer analyzer = new ProcessAnalyzerImpl();
+		ProcessAnalysis analysis = analyzer.analyzeAndDebug(def, pathname,
+				basename, targetDir, nodes);
+		assertNotNull(analysis);
+	}
+
+	@Test
 	@Ignore
 	public void createAnalysisArtifacts2() throws Exception {
 		String pathname = "/bpmn/conditionalFlow/";
