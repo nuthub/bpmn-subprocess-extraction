@@ -1,0 +1,21 @@
+before_script:
+    - echo "Installing org.eclipse.bpmn2 into local Maven Repository"
+    - cd /tmp
+    - git clone git://git.eclipse.org/gitroot/bpmn2/org.eclipse.bpmn2.git
+    - cd org.eclipse.bpmn2/org.eclipse.bpmn2/
+    - mvn clean install -P platform-mars
+    - echo "Installing org.eclipse.emft.henshin into local Maven Repository"
+    - cd /tmp
+    - git clone https://git.eclipse.org/r/henshin/org.eclipse.emft.henshin
+    - cd  org.eclipse.emft.henshin
+    - git checkout R120
+    - mvn clean install
+
+test:
+  script: 
+    - mvn clean install
+  tags:
+    - non-root
+    - de_DE.UTF-8
+    - maven
+    - java-8-oracle
